@@ -570,17 +570,13 @@
     lockOptions(q, L, opts);
     if (correct) {
       toast("答對了 ✓");
-      var nb = qsa("#pagenav .pg")[currentPageIndex()];
-      if (nb) nb.classList.add("done");
+      var curBtn = qs("#pagenav .pg.current");
+      if (curBtn) curBtn.classList.add("done");
     } else {
       toast("差一點 —— 看看下面「為甚麼會選錯」");
     }
     var stat = qs("#quiz-progress");
     if (stat && PART) stat.textContent = progressText(PART);
-  }
-  function currentPageIndex() {
-    return parseInt((qs("#pagenav .pg.current") || {}).dataset ?
-      qs("#pagenav .pg.current").dataset.page : "0", 10) || 0;
   }
 
   function answerBox(q) {
@@ -680,7 +676,10 @@
 
   function renderQuestion(body, p, pages, cur, id, part) {
     var q = p.q;
-    body.appendChild(questionCard(q));
+    var qc = questionCard(q);
+    qc.appendChild(el("div", "sol-hint",
+      "題解已收起 —— 先自己在紙上做一次，做完再按右上角「顯示題解」對答案。"));
+    body.appendChild(qc);
     body.appendChild(solutionCard(q));
 
     var foot = el("div", "card foot-nav");

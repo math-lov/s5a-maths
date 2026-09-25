@@ -237,6 +237,15 @@ body[data-lang="both"] .l-en { opacity: .82; }
 .answer-box .a-note { font-size: 13px; color: var(--muted); }
 
 /* ── 題解 ─────────────────────────────────────────────────────────────── */
+/* 想先自己做的同學：按右上角「收起題解」→ 只隱藏題解卡（題目照留） */
+body[data-sol="hide"] .sol-card { display: none; }
+body[data-sol="show"] .sol-hint { display: none; }
+.sol-hint {
+  font-size: 14px; color: #2C5282; background: #EBF8FF;
+  border-radius: var(--radius-sm); padding: 10px 12px; margin-top: 6px;
+  border-left: 4px solid var(--primary);
+}
+
 .sol-head {
   display: flex; align-items: center; gap: 8px; margin-bottom: 4px;
 }

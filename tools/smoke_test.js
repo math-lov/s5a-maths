@@ -147,6 +147,8 @@ ok(q1c.lang() === "zh", "切回中文");
 q1c.$("#sol-toggle").click();
 ok(q1c.doc.body.getAttribute("data-sol") === "hide", "收起題解：body[data-sol=hide]");
 ok(/顯示題解/.test(q1c.$("#sol-toggle").textContent), "按鈕文字變成「顯示題解」");
+ok(!!q1c.$(".sol-hint"), "收起時題目卡有提示（做完才對答案）");
+ok(!!q1c.$(".sol-card"), "題解卡仍在 DOM（由 CSS 收起，切回即見）");
 q1c.$("#sol-toggle").click();
 ok(q1c.doc.body.getAttribute("data-sol") === "show", "再按一次顯示題解");
 
