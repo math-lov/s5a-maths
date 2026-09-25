@@ -1,0 +1,39 @@
+{
+  "site": {
+    "name": { "zh": "5A 數學溫習站", "en": "S.5A Maths Revision" },
+    "tagline": {
+      "zh": "中五A班專用 · 逐題檢討，一題一頁",
+      "en": "Built for class 5A · one question per page"
+    },
+    "school": "S.K.H. Bishop Baker Secondary School",
+    "class": { "zh": "2026–2027 年度 · 中五A班", "en": "2026–2027 · S.5A" },
+    "note": {
+      "zh": "這裡把校內測驗的每一題連題解一頁一頁展示：題目與作答用英文，詳解中英對照，可按「中／EN／中英」切換。",
+      "en": "Every question from the class quiz is shown on its own page, together with a full worked solution. Questions and options are in English; explanations are bilingual."
+    },
+    "parts": [
+      {
+        "id": "ch10-test",
+        "kind": { "zh": "測驗檢討", "en": "Quiz review" },
+        "unit": { "zh": "第 10 章 不等式", "en": "Chapter 10 · Inequalities" },
+        "title": { "zh": "第 10 章 測驗檢討", "en": "Chapter 10 Quiz Review" },
+        "meta": {
+          "paper": "S.5 Mathematics · Chapter Quiz",
+          "date": "25 / 9 / 2026",
+          "marks": 38,
+          "sections": [
+            { "id": "A", "marks": 10, "title": { "zh": "甲部 · 多項選擇題", "en": "Section A · Multiple choice" } },
+            { "id": "B", "marks": 28, "title": { "zh": "乙部 · 長題目", "en": "Section B · Conventional questions" } }
+          ]
+        },
+        "stats": { "questions": 11, "marks": 38, "bonus": 3 },
+        "status": "ready",
+        "source": { "zh": "校本 Chapter Quiz（2026-09-25）", "en": "School chapter quiz (25 Sep 2026)" }
+      }
+    ],
+    "comingSoon": {
+      "zh": "之後會陸續加入其他章節測驗、課堂練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。",
+      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/."
+    }
+  }
+}

@@ -1,0 +1,189 @@
+{
+  "numline-a1": {
+    "type": "numline",
+    "min": -1.5, "max": 6.8,
+    "ticks": [0, 4],
+    "points": [{ "v": 4, "closed": true }],
+    "rays": [{ "from": 4, "to": 5.2 }],
+    "caption": {
+      "zh": "數線上 $4$ 是實心圓點，並由 $4$ 向右畫一支箭嘴。",
+      "en": "Closed circle at 4 with an arrow pointing to the right."
+    }
+  },
+  "numline-a2": {
+    "type": "numline",
+    "min": -3.5, "max": 2.5,
+    "ticks": [-1, 0],
+    "points": [
+      { "v": -1, "closed": true },
+      { "v": 2, "closed": false, "hideDot": true }
+    ],
+    "segments": [{ "from": -1, "to": 2, "startClosed": true, "endClosed": false }],
+    "caption": {
+      "zh": "答案是 $-1 \\le x < 4$：左端實心（包括 $-1$），右端空心（不包括 $4$）。",
+      "en": "Answer $-1 \\le x < 4$: closed at the left end, open at the right end."
+    }
+  },
+  "numline-a3": {
+    "type": "numline",
+    "min": -3, "max": 7,
+    "ticks": [0, 4],
+    "points": [{ "v": 4, "closed": false }],
+    "segments": [
+      { "from": -2.6, "to": 4, "endClosed": false, "arrowLeft": true },
+      { "from": 4, "to": 6.6, "startClosed": false, "arrowRight": true }
+    ],
+    "caption": {
+      "zh": "$x>4$ 或 $x<4$ ＝ 除了 $4$ 以外的所有實數（$4$ 是空心）。",
+      "en": "$x>4$ or $x<4$ means every real number except 4 (open circle at 4)."
+    }
+  },
+  "numline-b1b": {
+    "type": "numline",
+    "min": -8, "max": 3,
+    "ticks": [-5, 0],
+    "points": [{ "v": -5, "closed": true }],
+    "rays": [{ "from": -5, "to": -7.4 }],
+    "caption": {
+      "zh": "$x \\le -5$：實心圓點＋向左箭嘴。",
+      "en": "$x \\le -5$: closed circle with the arrow pointing left."
+    }
+  },
+  "numline-b2a": {
+    "type": "numline",
+    "min": -3.5, "max": 3.5,
+    "ticks": [-1, 0, 1],
+    "points": [{ "v": -1, "closed": false }],
+    "segments": [
+      { "from": -3.2, "to": -1, "endClosed": false, "arrowLeft": true },
+      { "from": -1, "to": 3.2, "startClosed": false, "arrowRight": true }
+    ],
+    "caption": {
+      "zh": "解集是「除了 $-1$ 以外的所有實數」；$-1$ 本身不符合 $(*)$。",
+      "en": "The solution is every real number except $-1$; $-1$ itself does not satisfy $(*)$."
+    }
+  },
+  "numline-b3a": {
+    "type": "numline",
+    "min": -7, "max": 3,
+    "ticks": [-5, 0.5],
+    "labels": [
+      { "v": -5, "text": "-5" },
+      { "v": 0.5, "text": "0.5" }
+    ],
+    "points": [
+      { "v": -5, "closed": true },
+      { "v": 0.5, "closed": true }
+    ],
+    "segments": [
+      { "from": -6.4, "to": -5, "endClosed": true, "arrowLeft": true },
+      { "from": 0.5, "to": 2.4, "startClosed": true, "arrowRight": true }
+    ],
+    "caption": {
+      "zh": "$x \\le -5$ 或 $x \\ge \\frac{1}{2}$（兩個端點都包括）。",
+      "en": "$x \\le -5$ or $x \\ge \\frac{1}{2}$, both endpoints included."
+    }
+  },
+  "numline-b4bi": {
+    "type": "numline",
+    "min": -2.2, "max": 6,
+    "ticks": [],
+    "labels": [
+      { "v": -0.449, "text": "2−√6" },
+      { "v": 4.449, "text": "2+√6" }
+    ],
+    "points": [
+      { "v": -0.449, "closed": true },
+      { "v": 4.449, "closed": true }
+    ],
+    "segments": [{ "from": -0.449, "to": 4.449, "startClosed": true, "endClosed": true }],
+    "caption": {
+      "zh": "$2-\\sqrt{6} \\approx -0.449$、$2+\\sqrt{6} \\approx 4.449$；中間的整數是 $0,1,2,3,4$。",
+      "en": "The integers inside the interval are 0, 1, 2, 3 and 4."
+    }
+  },
+  "numline-b5": {
+    "type": "numline",
+    "min": -6.5, "max": 3,
+    "ticks": [-2.5],
+    "labels": [
+      { "v": -2.5, "text": "-2.5" }
+    ],
+    "points": [
+      { "v": -2.5, "closed": false },
+      { "v": -2, "closed": false, "hideDot": true }
+    ],
+    "segments": [{ "from": -6, "to": -2.5, "endClosed": false, "arrowLeft": true }],
+    "caption": {
+      "zh": "$k < -\\frac{5}{2}$（$-2.5$ 空心）；$k<-2$ 這個條件在這段內自動成立。",
+      "en": "$k < -\\frac{5}{2}$ (open at $-2.5$); the condition $k<-2$ is automatically satisfied here."
+    }
+  },
+  "parabola-a4": {
+    "type": "graph",
+    "x": [-3, 5.4], "y": [-3.4, 6.4],
+    "parabolas": [{ "a": 1, "b": -1.5, "c": -2.5, "label": "y = ax² − bx − c" }],
+    "roots": [
+      { "x": -1, "label": "p" },
+      { "x": 2.5, "label": "q" }
+    ],
+    "hlBetween": [-1, 2.5],
+    "caption": {
+      "zh": "曲線開口向上，與 $x$ 軸交於 $p$、$q$：在 $p<x<q$ 時曲線在 $x$ 軸之下。",
+      "en": "The graph opens upwards and cuts the x-axis at p and q; it is below the x-axis between them."
+    }
+  },
+  "parabola-b4": {
+    "type": "graph",
+    "x": [-2.6, 6.2], "y": [-7.6, 9.4],
+    "parabolas": [{ "a": 1, "b": -4, "c": -2, "label": "y = x² + bx + c" }],
+    "dots": [{ "x": 2, "y": -6, "label": "(2, −6)", "dx": 8, "dy": 18 }],
+    "vlines": [{ "x": 2, "label": "x = 2" }],
+    "hlBetween": [-0.449489743, 4.449489743],
+    "hideO": true,
+    "roots": [
+      { "x": -0.449489743, "label": "2−√6" },
+      { "x": 4.449489743, "label": "2+√6" }
+    ],
+    "caption": {
+      "zh": "最低點（頂點）是 $(2,\\ -6)$，曲線與 $x$ 軸交於 $x = 2 \\pm \\sqrt{6}$。",
+      "en": "The minimum point is (2, −6); the graph cuts the x-axis at x = 2 ± √6."
+    }
+  },
+  "bonus-case1": {
+    "type": "graph",
+    "x": [-0.5, 7], "y": [-3, 22],
+    "parabolas": [{ "a": 1, "b": -6, "c": 18, "label": "" }],
+    "dots": [{ "x": 3, "y": 9, "label": "(3, 9)", "dx": 8, "dy": 20 }],
+    "vlines": [{ "x": 3, "label": "x = (k+3)/2" }],
+    "hlFrom": 3,
+    "caption": {
+      "zh": "情況 1（取 $k=3$ 為例）：$(3,\\ 9)$ 剛好在對稱軸上，$f(3)=9$ 就是最小值，$x\\ge 3$ 的部分（螢光）全部在 $x$ 軸之上。",
+      "en": "Case 1 (example k = 3): (3, 9) lies on the axis of symmetry, so f(3) = 9 is the minimum and the highlighted part (x ≥ 3) stays above the x-axis."
+    }
+  },
+  "bonus-case2": {
+    "type": "graph",
+    "x": [-0.5, 7], "y": [-3, 22],
+    "parabolas": [{ "a": 1, "b": -4, "c": 12, "label": "" }],
+    "dots": [{ "x": 3, "y": 9, "label": "(3, 9)", "dx": 8, "dy": 20 }],
+    "vlines": [{ "x": 2, "label": "x = (k+3)/2" }],
+    "hlFrom": 3,
+    "caption": {
+      "zh": "情況 2（取 $k=1$ 為例）：對稱軸在 $x=3$ 左邊，$x\\ge 3$ 時函數一直上升，所以 $f(x)\\ge f(3)=9>0$。",
+      "en": "Case 2 (example k = 1): the axis is left of x = 3 and f is increasing for x ≥ 3, so f(x) ≥ f(3) = 9 > 0."
+    }
+  },
+  "bonus-case3": {
+    "type": "graph",
+    "x": [0, 14], "y": [-19, 24],
+    "parabolas": [{ "a": 1, "b": -16, "c": 48, "label": "" }],
+    "dots": [{ "x": 3, "y": 9, "label": "(3, 9)", "dx": 8, "dy": -10 }],
+    "vlines": [{ "x": 8, "label": "x = (k+3)/2" }],
+    "hlFrom": 3,
+    "caption": {
+      "zh": "情況 3（取 $k=13$ 為例，$k>9$）：對稱軸在 $x=3$ 右邊，由 $3$ 向右走函數會向下穿過 $x$ 軸 → 不合格。所以要 $\\Delta<0$，最後得 $k<9$。",
+      "en": "Case 3 (example k = 13, i.e. k > 9): the axis is right of 3 and the graph dips below the x-axis for x ≥ 3, so it fails — this is why Δ < 0 is needed and the answer becomes k < 9."
+    }
+  }
+}

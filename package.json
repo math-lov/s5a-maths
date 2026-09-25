@@ -1,0 +1,15 @@
+{
+  "name": "s5a-maths",
+  "version": "1.0.0",
+  "private": true,
+  "description": "5A 數學溫習站 · 中五A班校內測驗逐題檢討（每題一頁，題目英文＋題解中英對照）",
+  "scripts": {
+    "build": "python tools/build.py",
+    "check": "python tools/build.py --check",
+    "figures": "python tools/preview_figures.py",
+    "test": "node tools/smoke_test.js"
+  },
+  "devDependencies": {
+    "jsdom": "30.0.1"
+  }
+}

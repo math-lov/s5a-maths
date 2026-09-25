@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>測驗檢討 · 5A 數學溫習站</title>
+<meta name="description" content="每題一頁的測驗檢討：題目（英文）＋逐步題解（中英對照）。">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body data-page="quiz">
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="index.html">← 主目錄</a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+    <button id="sol-toggle" class="btn btn-sm btn-ghost" data-sol-toggle="1">收起題解</button>
+  </div>
+  <div class="subbar">
+    <div>
+      <div class="brand" id="quiz-name" style="font-size:16px">測驗檢討</div>
+      <small class="muted" id="quiz-en"></small>
+    </div>
+    <div class="spacer"></div>
+    <span class="small muted" id="quiz-progress"></span>
+  </div>
+  <div class="subbar" style="padding-bottom:2px">
+    <div class="pagenav" id="pagenav"></div>
+  </div>
+</div>
+
+<div class="wrap" style="padding-top:14px">
+  <div id="quiz-body"></div>
+</div>
+
+<script defer src="vendor/katex/katex.min.js"></script>
+<script defer src="vendor/katex/auto-render.min.js"></script>
+<script>
+  window.__V = new Date().toISOString().slice(0, 13).replace(/[-T:]/g, "");
+  document.write('<script src="data/index.js?v=' + window.__V + '"><\/script>');
+  document.write('<script src="data/figures.js?v=' + window.__V + '"><\/script>');
+  document.write('<script src="assets/app.js?v=' + window.__V + '"><\/script>');
+</script>
+</body>
+</html>
