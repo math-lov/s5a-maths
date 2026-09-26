@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>5A 數學溫習站 · 中五A班</title>
-<meta name="description" content="中五A班數學溫習站：校內測驗逐題檢討，每題一頁，題目與題解一併展示，詳解中英對照可切換。">
+<meta name="description" content="中五A班數學溫習站：校內測驗逐題檢討，每題一頁，題目與題解中英對照，一鍵切換中英文。">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
 <link rel="stylesheet" href="assets/style.css">
 </head>
@@ -20,41 +20,55 @@
 
 <div class="wrap">
   <div class="hero">
-    <h1>中五A班 · 測驗逐題檢討</h1>
+    <h1><span class="l-zh">中五A班 · 測驗逐題檢討</span><span class="l-en">S.5A · Quiz Review, Question by Question</span></h1>
     <p id="site-stats">載入中…</p>
   </div>
 
   <div class="card safety-note">
-    <b>這裡沒有分數，也沒有排名。</b>
-    答錯只代表「還未學到」，不代表你不行；「已掌握」的記錄只存在你自己的瀏覽器裡，隨時可以重新開始。
+    <span class="l-zh"><b>這裡沒有分數，也沒有排名。</b>
+    答錯只代表「還未學到」，不代表你不行；「已掌握」的記錄只存在你自己的瀏覽器裡，隨時可以重新開始。</span>
+    <span class="l-en"><b>No scores here, and no ranking.</b>
+    Getting one wrong only means "not yet" — not that you can't. Your "mastered" marks stay in your own browser and you can start over any time.</span>
   </div>
 
-  <div class="section-title"><span>測驗檢討</span></div>
+  <div class="section-title"><span class="l-zh">測驗檢討</span><span class="l-en">Quiz reviews</span></div>
   <div class="part-grid" id="parts"></div>
 
-  <div class="section-title"><span>用法</span></div>
+  <div class="section-title"><span class="l-zh">用法</span><span class="l-en">How to use</span></div>
   <div class="card">
-    <p style="margin:0 0 8px"><b>1.</b> 打開一份測驗 → 左上是題號（A1…A5、B1…Bonus），可按題號直接跳去任何一題。</p>
-    <p style="margin:0 0 8px"><b>2.</b> 每題一頁：上面是題目（英文），下面是答案與逐步題解。選擇題可以按選項即時對答案。</p>
-    <p style="margin:0 0 8px"><b>3.</b> 想先自己做完才看題解？按右上角「收起題解」，做完再按「顯示題解」。</p>
-    <p style="margin:0"><b>4.</b> 右上角的「中文／EN／中英」可以隨時切換題解語言（題目一律用英文，跟測驗卷一樣）。</p>
+    <p style="margin:0 0 8px"><b>1.</b>
+      <span class="l-zh">打開一份測驗 → 左上是題號（A1…A5、B1…Bonus），可按題號直接跳去任何一題。</span>
+      <span class="l-en">Open a quiz → the top strip shows question numbers (A1…A5, B1…Bonus); tap one to jump straight to it.</span></p>
+    <p style="margin:0 0 8px"><b>2.</b>
+      <span class="l-zh">每題一頁：題目與逐步題解同頁展示，選擇題可以按選項即時對答案。</span>
+      <span class="l-en">One question per page: the question and the worked solution are shown together; click an option to check instantly.</span></p>
+    <p style="margin:0 0 8px"><b>3.</b>
+      <span class="l-zh">想先自己做完才看題解？按右上角「收起題解」，做完再按「顯示題解」。</span>
+      <span class="l-en">Want to finish the paper first? Press 'Hide solutions' at the top, then 'Show solutions' when done.</span></p>
+    <p style="margin:0"><b>4.</b>
+      <span class="l-zh">右上角的「中文／EN／中英」一鍵切換全站語言（題目、選項與題解都有中英兩版）。</span>
+      <span class="l-en">The '中文／EN／中英' switch at the top right changes the language of the whole site (questions, options and solutions all have both versions).</span></p>
   </div>
 
-  <div class="section-title"><span>之後會加</span></div>
+  <div class="section-title"><span class="l-zh">之後會加</span><span class="l-en">Coming up</span></div>
   <div class="card">
-    <div id="coming-soon" class="small muted"></div>
+    <div id="coming-soon" class="small muted l-zh"></div>
     <div id="coming-soon-en" class="small muted l-en" style="margin-top:6px"></div>
   </div>
 
-  <div class="section-title"><span>設定</span></div>
+  <div class="section-title"><span class="l-zh">設定</span><span class="l-en">Settings</span></div>
   <div class="card">
     <div class="row">
-      <button id="reset" class="btn btn-sm btn-ghost">清除本機「已掌握」記錄</button>
+      <button id="reset" class="btn btn-sm btn-ghost">
+        <span class="l-zh">清除本機「已掌握」記錄</span>
+        <span class="l-en">Clear my 'mastered' records</span>
+      </button>
     </div>
   </div>
 
   <p class="small muted center" style="margin:18px 0 0">
-    題目取自校本 Chapter Quiz（2026-09-25），僅供本科學生溫習使用。
+    <span class="l-zh">題目取自校本 Chapter Quiz（2026-09-25），僅供本科學生溫習使用。</span>
+    <span class="l-en">Questions from the school chapter quiz (25 Sep 2026), for our students' revision only.</span>
   </p>
 </div>
 

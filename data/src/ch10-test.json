@@ -18,7 +18,8 @@
           "marks": 2,
           "difficulty": 1,
           "stem": {
-            "en": "The following shows the graphical representation of the solutions of an inequality. Which of the following can be the inequality?"
+            "en": "The following shows the graphical representation of the solutions of an inequality. Which of the following can be the inequality?",
+            "zh": "下圖表示某不等式的解的圖像。下列哪一項可以是該不等式？"
           },
           "keywords": [
             { "en": "graphical representation", "zh": "用圖像（數線）表示" },
@@ -85,7 +86,10 @@
           "type": "mc",
           "marks": 2,
           "difficulty": 2,
-          "stem": { "en": "The solution of $x + 3 < 7 \\le 2x + 9$ is" },
+          "stem": {
+            "en": "The solution of $x + 3 < 7 \\le 2x + 9$ is",
+            "zh": "$x + 3 < 7 \\le 2x + 9$ 的解是"
+          },
           "keywords": [
             { "en": "the solution of", "zh": "……的解（單選題，只要一個答案）" },
             { "en": "compound inequality", "zh": "複合不等式（左右兩個不等式要同時成立）" }
@@ -150,7 +154,10 @@
           "type": "mc",
           "marks": 2,
           "difficulty": 2,
-          "stem": { "en": "The solution of $6 - \\frac{x}{2} < x$ or $-3x > -12$ is" },
+          "stem": {
+            "en": "The solution of $6 - \\frac{x}{2} < x$ or $-3x > -12$ is",
+            "zh": "$6 - \\frac{x}{2} < x$ 或 $-3x > -12$ 的解是"
+          },
           "keywords": [
             { "en": "or", "zh": "或＝兩個解集取聯集（兩邊都要）" },
             { "en": "all real numbers except 4", "zh": "除了 4 以外的所有實數" }
@@ -158,8 +165,8 @@
           "options": {
             "A": "$x > 4$",
             "B": "$x < -4$ or $x > 4$",
-            "C": "no solution",
-            "D": "all real numbers except $4$"
+            "C": { "en": "no solution", "zh": "無解" },
+            "D": { "en": "all real numbers except $4$", "zh": "除 $4$ 以外的所有實數" }
           },
           "answer": "D",
           "answers": [
@@ -218,7 +225,8 @@
           "marks": 2,
           "difficulty": 3,
           "stem": {
-            "en": "The figure shows the quadratic graph of $y = ax^{2} - bx - c$. The solutions of $-ax^{2} + bx + c < 0$ are"
+            "en": "The figure shows the quadratic graph of $y = ax^{2} - bx - c$. The solutions of $-ax^{2} + bx + c < 0$ are",
+            "zh": "圖中所示為 $y = ax^{2} - bx - c$ 的二次圖像。$-ax^{2} + bx + c < 0$ 的解是"
           },
           "keywords": [
             { "en": "quadratic graph", "zh": "二次函數的圖像（拋物線）" },
@@ -286,7 +294,8 @@
           "marks": 2,
           "difficulty": 3,
           "stem": {
-            "en": "If $a > b$ and $c < 0$, which of the following must be true?"
+            "en": "If $a > b$ and $c < 0$, which of the following must be true?",
+            "zh": "若 $a > b$ 及 $c < 0$，下列哪一項必定成立？"
           },
           "keywords": [
             { "en": "must be true", "zh": "必然成立（找反例就可以否定一句）" },
@@ -298,10 +307,10 @@
             { "label": "III", "math": "ac^{3} < bc^{3}" }
           ],
           "options": {
-            "A": "III only",
-            "B": "I and III only",
-            "C": "II and III only",
-            "D": "I, II and III"
+            "A": { "en": "III only", "zh": "只有 III" },
+            "B": { "en": "I and III only", "zh": "只有 I 及 III" },
+            "C": { "en": "II and III only", "zh": "只有 II 及 III" },
+            "D": { "en": "I, II and III", "zh": "I、II 及 III" }
           },
           "answer": "A",
           "answers": [{ "math": "\\text{III only}", "note": { "zh": "即選項 A", "en": "Option A" } }],
@@ -374,14 +383,17 @@
           "type": "long",
           "marks": 4,
           "difficulty": 1,
-          "stem": { "en": "Solve the inequality $4(x+3) > 10x + 1$, and hence the compound inequality that follows." },
+          "stem": {
+            "en": "Solve the inequality $4(x+3) > 10x + 1$, and hence the compound inequality that follows.",
+            "zh": "解不等式 $4(x+3) > 10x + 1$，並由此解其後的複合不等式。"
+          },
           "keywords": [
             { "en": "Hence", "zh": "由此（必須用上一小題的答案）" },
             { "en": "compound inequality", "zh": "複合不等式（兩個條件同時成立）" }
           ],
           "parts": [
-            { "label": "(a)", "en": "Solve the inequality $4(x + 3) > 10x + 1$.", "marks": 2 },
-            { "label": "(b)", "en": "Hence, solve the compound inequality $4(x + 3) > 10x + 1$ and $3 - x \\ge 8$.", "marks": 2 }
+            { "label": "(a)", "en": "Solve the inequality $4(x + 3) > 10x + 1$.", "zh": "解不等式 $4(x + 3) > 10x + 1$。", "marks": 2 },
+            { "label": "(b)", "en": "Hence, solve the compound inequality $4(x + 3) > 10x + 1$ and $3 - x \\ge 8$.", "zh": "由此，解複合不等式 $4(x + 3) > 10x + 1$ 及 $3 - x \\ge 8$。", "marks": 2 }
           ],
           "answers": [
             { "part": "(a)", "math": "x<\\frac{11}{6}" },
@@ -455,15 +467,16 @@
           "marks": 4,
           "difficulty": 2,
           "stem": {
-            "en": "Consider the compound inequality $4 - x < \\frac{32 - 3x}{7}$ or $x + 3 < 2$ …………… $(*)$."
+            "en": "Consider the compound inequality $4 - x < \\frac{32 - 3x}{7}$ or $x + 3 < 2$ …………… $(*)$.",
+            "zh": "考慮複合不等式 $4 - x < \\frac{32 - 3x}{7}$ 或 $x + 3 < 2$ …………… $(*)$。"
           },
           "keywords": [
             { "en": "or", "zh": "或＝聯集" },
             { "en": "greatest negative integer", "zh": "最大的負整數（$\\ldots,-3,-2,-1$ 之中最大那個）" }
           ],
           "parts": [
-            { "label": "(a)", "en": "Solve $(*)$.", "marks": 3 },
-            { "label": "(b)", "en": "Write down the greatest negative integer satisfying $(*)$.", "marks": 1 }
+            { "label": "(a)", "en": "Solve $(*)$.", "zh": "解 $(*)$。", "marks": 3 },
+            { "label": "(b)", "en": "Write down the greatest negative integer satisfying $(*)$.", "zh": "寫出滿足 $(*)$ 的最大負整數。", "marks": 1 }
           ],
           "answers": [
             { "part": "(a)", "math": "x>-1 \\text{ or } x<-1", "note": { "zh": "即除了 $-1$ 以外的所有實數", "en": "All real numbers except −1" } },
@@ -543,7 +556,10 @@
           "type": "long",
           "marks": 9,
           "difficulty": 2,
-          "stem": { "en": "Solve the following inequalities." },
+          "stem": {
+            "en": "Solve the following inequalities.",
+            "zh": "解下列各不等式。"
+          },
           "keywords": [
             { "en": "Solve the inequality", "zh": "解不等式（要寫出解集，不是只寫根）" },
             { "en": "no solutions", "zh": "無解（沒有任何數符合）" }
@@ -685,7 +701,8 @@
           "marks": 6,
           "difficulty": 2,
           "stem": {
-            "en": "The figure shows the quadratic graph of $y = x^{2} + bx + c$, where $b$ and $c$ are constants. It is given that the minimum point of the graph is $(2,\\ -6)$."
+            "en": "The figure shows the quadratic graph of $y = x^{2} + bx + c$, where $b$ and $c$ are constants. It is given that the minimum point of the graph is $(2,\\ -6)$.",
+            "zh": "圖中所示為 $y = x^{2} + bx + c$ 的二次圖像，其中 $b$、$c$ 為常數。已知圖像的最低點為 $(2,\\ -6)$。"
           },
           "keywords": [
             { "en": "minimum point", "zh": "最低點（＝頂點 vertex）" },
@@ -694,9 +711,9 @@
           ],
           "figures": ["parabola-b4"],
           "parts": [
-            { "label": "(a)", "en": "Find the values of $b$ and $c$.", "marks": 3 },
-            { "label": "(b)(i)", "en": "Solve the quadratic inequality $x^{2} + bx + c \\le 0$.", "marks": 2 },
-            { "label": "(b)(ii)", "en": "Hence, write down all possible integers satisfying the inequality in (b)(i).", "marks": 1 }
+            { "label": "(a)", "en": "Find the values of $b$ and $c$.", "zh": "求 $b$ 和 $c$ 的值。", "marks": 3 },
+            { "label": "(b)(i)", "en": "Solve the quadratic inequality $x^{2} + bx + c \\le 0$.", "zh": "解二次不等式 $x^{2} + bx + c \\le 0$。", "marks": 2 },
+            { "label": "(b)(ii)", "en": "Hence, write down all possible integers satisfying the inequality in (b)(i).", "zh": "由此，寫出所有滿足 (b)(i) 中不等式的整數。", "marks": 1 }
           ],
           "answers": [
             { "part": "(a)", "math": "b=-4,\\ c=-2" },
@@ -806,14 +823,15 @@
           "marks": 5,
           "difficulty": 3,
           "stem": {
-            "en": "Let $k$ be a constant and $k \\ne -2$. Find the range of values of $k$ such that $(k+2)x^{2} + 3x + (k-2) < 0$ for any real number $x$."
+            "en": "Let $k$ be a constant and $k \\ne -2$. Find the range of values of $k$ such that $(k+2)x^{2} + 3x + (k-2) < 0$ for any real number $x$.",
+            "zh": "設 $k$ 為常數且 $k \\ne -2$。求 $k$ 的取值範圍，使得對任意實數 $x$，$(k+2)x^{2} + 3x + (k-2) < 0$。"
           },
           "keywords": [
             { "en": "for any real number x", "zh": "對所有實數 $x$ 都成立" },
             { "en": "range of values of k", "zh": "$k$ 的取值範圍" }
           ],
           "parts": [
-            { "label": "", "en": "Find the range of values of $k$.", "marks": 5 }
+            { "label": "", "en": "Find the range of values of $k$.", "zh": "求 $k$ 的取值範圍。", "marks": 5 }
           ],
           "answers": [{ "math": "k<-\\frac{5}{2}" }],
           "solution": {
@@ -886,7 +904,8 @@
           "difficulty": 3,
           "bonus": true,
           "stem": {
-            "en": "Let $k$ be a constant. Find the range of values of $k$ such that $f(x) = x^{2} - (k+3)x + 3k + 9 > 0$ for all $x \\ge 3$. (Hint: Consider the vertex of the graph of $f(x)$.)"
+            "en": "Let $k$ be a constant. Find the range of values of $k$ such that $f(x) = x^{2} - (k+3)x + 3k + 9 > 0$ for all $x \\ge 3$. (Hint: Consider the vertex of the graph of $f(x)$.)",
+            "zh": "設 $k$ 為常數。求 $k$ 的取值範圍，使得對所有 $x \\ge 3$，$f(x) = x^{2} - (k+3)x + 3k + 9 > 0$。（提示：考慮 $f(x)$ 圖像的頂點。）"
           },
           "keywords": [
             { "en": "for all $x \\ge 3$", "zh": "只要求 $x\\ge 3$ 的部分（不是所有實數）" },
@@ -894,7 +913,7 @@
             { "en": "opens upwards", "zh": "開口向上（$x^{2}$ 的係數 $=1>0$）" }
           ],
           "parts": [
-            { "label": "", "en": "Find the range of values of $k$.", "marks": 3 }
+            { "label": "", "en": "Find the range of values of $k$.", "zh": "求 $k$ 的取值範圍。", "marks": 3 }
           ],
           "answers": [{ "math": "k<9" }],
           "solution": {

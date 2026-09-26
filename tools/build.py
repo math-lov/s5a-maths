@@ -96,6 +96,10 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
         err("S1 %s：type 只可以是 mc 或 long" % tag)
     stem = q.get("stem") or {}
     check_text(tag + " stem.en", stem.get("en", ""), need_zh=False)
+    if not stem.get("zh"):
+        err("S5 %s：缺少 stem.zh（全站要中英雙語題目）" % tag)
+    else:
+        check_text(tag + " stem.zh", stem.get("zh", ""), min_len=2, need_zh=True)
 
     for fid in q.get("figures", []):
         if fid not in fig_ids:
@@ -156,7 +160,11 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
         if sorted(opts.keys()) != ["A", "B", "C", "D"]:
             err("S3 %s：選項必須剛好是 A、B、C、D（現時：%s）" % (tag, sorted(opts.keys())))
         for L, v in opts.items():
-            check_text("%s option %s" % (tag, L), v)
+            if isinstance(v, dict):
+                check_text("%s option %s.en" % (tag, L), v.get("en", ""))
+                check_text("%s option %s.zh" % (tag, L), v.get("zh", ""), need_zh=True)
+            else:
+                check_text("%s option %s" % (tag, L), v)
         if q.get("answer") not in opts:
             err("S3 %s：answer 必須是 A–D 之一（現時 %r）" % (tag, q.get("answer")))
         if not (q.get("answers") or []):
@@ -170,6 +178,9 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
             if not p.get("label") and p.get("label") != "":
                 err("S1 %s：part 缺 label" % tag)
             check_text("%s part %s" % (tag, p.get("label")), p.get("en", ""))
+            if p.get("zh"):
+                check_text("%s part %s.zh" % (tag, p.get("label")), p.get("zh", ""),
+                           need_zh=True)
             total += int(p.get("marks") or 0)
         if total != q["marks"]:
             err("S2 %s：parts 分數加總 %d ≠ 題目分數 %d" % (tag, total, q["marks"]))

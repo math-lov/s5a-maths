@@ -84,7 +84,7 @@ ok(!!home.$(".part-btn .ring"), "每份測驗都有進度環");
 ok(/11 題 · 38 分/.test((home.$(".part-btn .t-meta") || {}).textContent || ""), "顯示題數與分數");
 ok(!!home.$(".safety-note") && /沒有分數/.test(home.$(".safety-note").textContent), "有心理安全卡");
 ok(home.$$(".langbar button").length === 3, "語言切換有 3 個選項（中／EN／中英）");
-ok(home.lang() === "zh", "預設語言是中文");
+ok(home.lang() === "both", "預設語言是「中英」（雙語並列）");
 home.$$(".langbar button")[1].click();
 ok(home.lang() === "en", "按 EN 後 body[data-lang] 變成 en");
 ok(home.ctx.window.localStorage.getItem("s5a-lang") === "en", "語言選擇寫入 localStorage");
@@ -117,6 +117,12 @@ ok(!!q1.$(".kw .k"), "有「題目字眼」提示");
 const stem1 = q1.$(".q-stem");
 ok(!!stem1 && !/\$/.test(stem1.textContent) && stem1.textContent.length > 10,
   "題幹文字已渲染（沒有殘留 $）");
+ok(!!q1.$(".q-stem .l-zh") && !!q1.$(".q-stem .l-en") &&
+   /下圖表示/.test(q1.$(".q-stem .l-zh").textContent) &&
+   /graphical representation/.test(q1.$(".q-stem .l-en").textContent),
+  "題幹有中英兩份（可一鍵切換）");
+ok(!!q1.$(".q-marks .l-zh") && /2 分/.test(q1.$(".q-marks .l-zh").textContent),
+  "分數 chip 有中文版");
 ok(!!q1.$(".sol-card"), "題解卡與題目同時出現（一併展示）");
 ok(/答案/.test((q1.$(".answer-box .ah") || {}).textContent || ""), "有答案欄");
 ok(/^B\.$/.test((q1.$(".answer-box .a-row span") || {}).textContent || ""),
@@ -181,6 +187,7 @@ const all = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((p) => boot("quiz.html", "?c
 ok(all.every((t) => t.$$(".sol-card").length === 1), "每題都有題解卡");
 ok(all.every((t) => t.$$(".sol-card .steps .step").length >= 3), "每題至少 3 個步驟");
 ok(all.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "所有題幹都已渲染（無殘留 $）");
+ok(all.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")), "所有題幹都有中英兩版");
 ok(all.every((t) => !!t.$(".sol-card .tip")), "每題都有「帶得走的技巧」");
 ok(all.every((t) => t.$$(".sol-card .trap").length >= 3), "每題至少 3 個錯誤提示");
 ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")),

@@ -22,6 +22,43 @@
   var PAGE = document.body.getAttribute("data-page") || "index";
   var LANGS = ["zh", "en", "both"];
 
+  /* 介面文字（跟 body[data-lang] 一起切換） */
+  var UI = {
+    solHide: { zh: "收起題解", en: "Hide solutions" },
+    solShow: { zh: "顯示題解", en: "Show solutions" },
+    backHome: { zh: "← 主目錄", en: "← Home" },
+    overview: { zh: "總覽", en: "Overview" },
+    prev: { zh: "← 上一題", en: "← Previous" },
+    next: { zh: "下一題 →", en: "Next →" },
+    backOverview: { zh: "回總覽", en: "Overview" },
+    mark: { zh: "標記為已掌握", en: "Mark as mastered" },
+    marked: { zh: "已掌握 ✓", en: "Mastered ✓" },
+    secA: { zh: "甲部", en: "Sec A" },
+    secB: { zh: "乙部", en: "Sec B" },
+    qList: { zh: "題目一覽", en: "Question list" },
+    answer: { zh: "答案", en: "Answer" },
+    solution: { zh: "題解", en: "Solution" },
+    whyWrong: { zh: "為甚麼會選錯？（看看偏差出在哪一步）", en: "Why the other options are wrong — see where the slip is" },
+    commonErr: { zh: "常見錯誤（做完之後，檢查自己有沒有踩中）", en: "Common mistakes — check these after finishing" },
+    tip: { zh: "帶得走的技巧：", en: "Take-away tip: " },
+    bonus: { zh: "加分題", en: "Bonus" },
+    hint: {
+      zh: "題解已收起 —— 先自己在紙上做一次，做完再按右上角「顯示題解」對答案。",
+      en: "Solutions are hidden — try it on paper first, then press 'Show solutions' at the top right to check."
+    },
+    usage: {
+      zh: "每題一頁 —— 先自己動手做一次（可以按選項即時對答案），再向下看逐步題解。想先做完整份卷的話，按右上角「收起題解」。",
+      en: "One question per page — try it yourself first (click an option to check instantly), then read the worked steps below. To attempt the whole paper first, press 'Hide solutions' at the top right."
+    },
+    usageLabel: { zh: "用法：", en: "How to use: " },
+    resetAsk: {
+      zh: "要清除這部裝置上的「已掌握」記錄嗎？",
+      en: "Clear the 'mastered' records on this device?"
+    },
+    okToast: { zh: "答對了 ✓", en: "Correct ✓" },
+    missToast: { zh: "差一點 —— 看看下面「為甚麼會選錯」", en: "Close — see why the other options are wrong below" }
+  };
+
   /* ── 儲存 ───────────────────────────────────────────────────────────── */
   function loadStore() {
     try {
@@ -42,7 +79,7 @@
   function getLang() {
     var v = null;
     try { v = localStorage.getItem(LANG_KEY); } catch (e) {}
-    return LANGS.indexOf(v) >= 0 ? v : "zh";
+    return LANGS.indexOf(v) >= 0 ? v : "both";
   }
   function setLang(l) {
     if (LANGS.indexOf(l) < 0) return;
@@ -80,8 +117,14 @@
     try { localStorage.setItem(SOL_KEY, h ? "hide" : "show"); } catch (e) {}
     document.body.setAttribute("data-sol", h ? "hide" : "show");
     qsa("[data-sol-toggle]").forEach(function (b) {
-      b.textContent = h ? "顯示題解" : "收起題解";
+      setPair(b, h ? UI.solShow : UI.solHide);
     });
+  }
+  /* 把一個 {zh, en} 物件寫進節點（兩份都寫入，由 CSS 決定顯示哪份） */
+  function setPair(node, obj) {
+    node.innerHTML = "";
+    node.appendChild(pairSpan(obj));
+    return node;
   }
 
   /* ── DOM 小工具 ─────────────────────────────────────────────────────── */
@@ -107,7 +150,8 @@
   function toast(msg) {
     var t = qs("#toast");
     if (!t) { t = el("div", "toast"); t.id = "toast"; document.body.appendChild(t); }
-    t.textContent = msg;
+    if (msg && typeof msg === "object") { t.innerHTML = ""; t.appendChild(pairSpan(msg)); }
+    else t.textContent = msg;
     t.classList.add("show");
     clearTimeout(t.__timer);
     t.__timer = setTimeout(function () { t.classList.remove("show"); }, 1800);
@@ -256,10 +300,14 @@
       nm.appendChild(en);
       var meta = el("div", "t-meta");
       var s = part.stats || {};
-      meta.textContent = (part.meta && part.meta.paper ? part.meta.paper + " · " : "") +
-        (s.questions || 0) + " 題 · " + (s.marks || 0) + " 分" +
-        (s.bonus ? "（另加 " + s.bonus + " 分加分題）" : "") +
-        " · 已掌握 " + pct + "%";
+      setPair(meta, {
+        zh: (part.meta && part.meta.paper ? part.meta.paper + " · " : "") +
+          (s.questions || 0) + " 題 · " + (s.marks || 0) + " 分" +
+          (s.bonus ? "（另加 " + s.bonus + " 分加分題）" : "") + " · 已掌握 " + pct + "%",
+        en: (part.meta && part.meta.paper ? part.meta.paper + " · " : "") +
+          (s.questions || 0) + " questions · " + (s.marks || 0) + " marks" +
+          (s.bonus ? " (+" + s.bonus + " bonus)" : "") + " · " + pct + "% mastered"
+      });
       body.appendChild(meta);
       btn.appendChild(body);
       btn.onclick = function () { go("quiz.html?c=" + encodeURIComponent(part.id)); };
@@ -274,7 +322,10 @@
         tq += (p.stats && p.stats.questions) || 0;
         tm += (p.stats && p.stats.marks) || 0;
       });
-      n.textContent = "共 " + (INDEX.parts || []).length + " 份測驗 · " + tq + " 題 · " + tm + " 分";
+      setPair(n, {
+        zh: "共 " + (INDEX.parts || []).length + " 份測驗 · " + tq + " 題 · " + tm + " 分",
+        en: (INDEX.parts || []).length + " quiz review(s) · " + tq + " questions · " + tm + " marks"
+      });
     }
     var note = qs("#coming-soon");
     if (note && site.comingSoon) richInto(note, site.comingSoon.zh), autoRender(note);
@@ -283,7 +334,8 @@
 
     var rb = qs("#reset");
     if (rb) rb.onclick = function () {
-      if (!confirm("要清除這部裝置上的「已掌握」記錄嗎？")) return;
+      var ask = getLang() === "en" ? UI.resetAsk.en : UI.resetAsk.zh;
+      if (!confirm(ask)) return;
       store = { done: {}, picked: {} };
       saveStore();
       location.reload();
@@ -362,11 +414,14 @@
       nav.innerHTML = "";
       pages.forEach(function (p, i) {
         if (p.kind === "q" && (i === 1 || pages[i - 1].sec !== p.sec)) {
-          nav.appendChild(el("span", "pg-sec", (p.sec.id === "A" ? "甲部" : "乙部")));
+          var secSpan = el("span", "pg-sec");
+          secSpan.appendChild(pairSpan(p.sec.id === "A" ? UI.secA : UI.secB));
+          nav.appendChild(secSpan);
         }
         var b = el("button", "pg" + (i === cur ? " current" : "") +
           (p.kind === "q" && store.done[p.q.id] ? " done" : ""));
-        b.textContent = p.kind === "overview" ? "總覽" : p.q.code;
+        if (p.kind === "overview") b.appendChild(pairSpan(UI.overview));
+        else b.textContent = p.q.code;
         b.title = p.kind === "overview" ? "測驗資料與用法"
           : ((p.q.stem && p.q.stem.en) || "").replace(/\$[^$]*\$/g, "").slice(0, 40);
         b.dataset.page = String(i);
@@ -375,8 +430,7 @@
       });
 
       renderPage(pages, cur, id, part);
-      var stat = qs("#quiz-progress");
-      if (stat) stat.textContent = progressText(part);
+      setProgress(qs("#quiz-progress"), part);
       var curBtn = qsa("#pagenav .pg")[cur];
       if (curBtn && typeof curBtn.scrollIntoView === "function") {
         try { curBtn.scrollIntoView({ block: "nearest", inline: "center" }); } catch (e) {}
@@ -395,7 +449,14 @@
         if (store.done[q.id]) done++;
       });
     });
-    return "已掌握 " + done + " / " + total + " 題";
+    return {
+      zh: "已掌握 " + done + " / " + total + " 題",
+      en: done + " / " + total + " mastered"
+    };
+  }
+  function setProgress(node, part) {
+    if (!node || !part) return;
+    setPair(node, progressText(part));
   }
 
   function renderPage(pages, cur, id, part) {
@@ -420,15 +481,22 @@
     var meta = part.meta || {};
     var ul = el("div", "small muted");
     ul.style.marginTop = "10px";
-    ul.textContent = [meta.paper, meta.date, meta.marks ? "全卷 " + meta.marks + " 分" : ""]
-      .filter(Boolean).join(" · ");
+    setPair(ul, {
+      zh: [meta.paper, meta.date, meta.marks ? "全卷 " + meta.marks + " 分" : ""].filter(Boolean).join(" · "),
+      en: [meta.paper, meta.date, meta.marks ? "Total " + meta.marks + " marks" : ""].filter(Boolean).join(" · ")
+    });
     card.appendChild(ul);
 
     var row = el("div", "row");
     row.style.marginTop = "12px";
     (part.sections || []).forEach(function (sec) {
-      var b = el("button", "btn btn-sm btn-ghost",
-        (sec.id === "A" ? "甲部" : "乙部") + " · " + (sec.questions || []).length + " 題（" + sec.marks + " 分）");
+      var b = el("button", "btn btn-sm btn-ghost");
+      b.appendChild(pairSpan({
+        zh: (sec.id === "A" ? "甲部" : "乙部") + " · " + (sec.questions || []).length +
+          " 題（" + sec.marks + " 分）",
+        en: (sec.id === "A" ? "Section A" : "Section B") + " · " + (sec.questions || []).length +
+          " questions (" + sec.marks + " marks)"
+      }));
       b.onclick = function () {
         var idx = 0;
         pages.forEach(function (pg, i) { if (pg.kind === "q" && pg.sec === sec && !idx) idx = i; });
@@ -440,16 +508,20 @@
     body.appendChild(card);
 
     var tip = el("div", "card safety-note");
-    tip.innerHTML = "<b>用法：</b>每題一頁 —— 先自己動手做一次（可以按選項即時對答案），" +
-      "再向下看逐步題解。想先做完整份卷的話，按右上角「收起題解」。";
+    var tb = el("b");
+    tb.appendChild(pairSpan(UI.usageLabel));
+    tip.appendChild(tb);
+    tip.appendChild(pair(UI.usage, "div", "bi"));
     body.appendChild(tip);
 
     var list = el("div", "card");
-    list.appendChild(el("div", "section-title")).appendChild(el("span", null, "題目一覽"));
+    var st = el("div", "section-title");
+    st.appendChild(pairSpan(UI.qList));
+    list.appendChild(st);
     (part.sections || []).forEach(function (sec) {
       var h = el("div", "small muted");
       h.style.marginTop = "8px";
-      h.textContent = (sec.id === "A" ? "甲部 · 多項選擇題" : "乙部 · 長題目");
+      setPair(h, sec.title || { zh: sec.id, en: sec.id });
       list.appendChild(h);
       var grid = el("div", "row");
       grid.style.marginTop = "6px";
@@ -471,10 +543,18 @@
     card.setAttribute("data-qid", q.id);
     var head = el("div", "q-head");
     head.appendChild(el("span", "q-code", q.code));
-    if (q.marks) head.appendChild(el("span", "q-marks", q.marks + " marks"));
+    if (q.marks) {
+      var mk = el("span", "q-marks");
+      mk.appendChild(pairSpan({ zh: q.marks + " 分", en: q.marks + " marks" }));
+      head.appendChild(mk);
+    }
     head.appendChild(el("span", "q-diff",
       "★".repeat(q.difficulty || 1) + "☆".repeat(3 - (q.difficulty || 1))));
-    if (q.bonus) head.appendChild(el("span", "q-bonus", "加分題 Bonus"));
+    if (q.bonus) {
+      var bn = el("span", "q-bonus");
+      bn.appendChild(pairSpan(UI.bonus));
+      head.appendChild(bn);
+    }
     card.appendChild(head);
 
     // 題目字眼（讀題提示）
@@ -495,8 +575,12 @@
     }
 
     var stem = el("div", "q-stem");
-    richInto(stem, (q.stem && q.stem.en) || "");
-    autoRender(stem);
+    if (q.stem && q.stem.zh) {
+      stem.appendChild(pair(q.stem, "div", "bi"));
+    } else {
+      richInto(stem, (q.stem && q.stem.en) || "");
+      autoRender(stem);
+    }
     card.appendChild(stem);
 
     // 題目圖
@@ -525,11 +609,20 @@
       q.parts.forEach(function (pt) {
         var li = el("li");
         li.appendChild(el("span", "lab", pt.label || ""));
-        var v = el("span");
-        richInto(v, pt.en || "");
-        autoRender(v);
+        var v;
+        if (pt.zh) {
+          v = pair(pt, "div", "bi");
+        } else {
+          v = el("div");
+          richInto(v, pt.en || "");
+          autoRender(v);
+        }
         li.appendChild(v);
-        li.appendChild(el("span", "mk", pt.marks ? "(" + pt.marks + " marks)" : ""));
+        if (pt.marks) {
+          var m = el("span", "mk");
+          m.appendChild(pairSpan({ zh: "(" + pt.marks + " 分)", en: "(" + pt.marks + " marks)" }));
+          li.appendChild(m);
+        }
         ul.appendChild(li);
       });
       card.appendChild(ul);
@@ -543,7 +636,17 @@
         b.dataset.opt = L;
         b.appendChild(el("span", "letter", L));
         var v = el("span", "val");
-        mathInto(v, (q.options || {})[L]);
+        var val = (q.options || {})[L];
+        if (val && typeof val === "object") {
+          var vz = el("div", "l-zh");
+          mathInto(vz, val.zh || val.en || "");
+          var ve = el("div", "l-en");
+          mathInto(ve, val.en || "");
+          v.appendChild(vz);
+          v.appendChild(ve);
+        } else {
+          mathInto(v, val);
+        }
         b.appendChild(v);
         b.onclick = function () { pickOption(q, L, opts); };
         opts.appendChild(b);
@@ -569,19 +672,21 @@
     saveStore();
     lockOptions(q, L, opts);
     if (correct) {
-      toast("答對了 ✓");
+      toast(UI.okToast);
       var curBtn = qs("#pagenav .pg.current");
       if (curBtn) curBtn.classList.add("done");
     } else {
-      toast("差一點 —— 看看下面「為甚麼會選錯」");
+      toast(UI.missToast);
     }
     var stat = qs("#quiz-progress");
-    if (stat && PART) stat.textContent = progressText(PART);
+    setProgress(stat, PART);
   }
 
   function answerBox(q) {
     var box = el("div", "answer-box");
-    box.appendChild(el("span", "ah", "答案 Answer"));
+    var ah = el("span", "ah");
+    ah.appendChild(pairSpan(UI.answer));
+    box.appendChild(ah);
     (q.answers || []).forEach(function (a) {
       var row = el("div", "a-row");
       if (a.part) row.appendChild(el("span", "a-part", a.part));
@@ -603,7 +708,9 @@
   function solutionCard(q) {
     var card = el("div", "card sol-card");
     var head = el("div", "sol-head");
-    head.appendChild(el("h2", null, "題解 · Solution"));
+    var h2 = el("h2");
+    h2.appendChild(pairSpan(UI.solution));
+    head.appendChild(h2);
     var sp = el("span", "small muted");
     sp.textContent = q.code + " · " + (q.marks || 0) + " marks";
     head.appendChild(sp);
@@ -651,9 +758,9 @@
 
     if ((sol.traps || []).length) {
       var isMc = q.type === "mc";
-      card.appendChild(el("div", "trap-head", isMc
-        ? "為甚麼會選錯？（看看偏差出在哪一步）"
-        : "常見錯誤（做完之後，檢查自己有沒有踩中）"));
+      var th = el("div", "trap-head");
+      th.appendChild(pairSpan(isMc ? UI.whyWrong : UI.commonErr));
+      card.appendChild(th);
       var traps = el("div", "traps");
       (sol.traps || []).forEach(function (tr) {
         var t = el("div", "trap");
@@ -667,7 +774,9 @@
 
     if (sol.tip && (sol.tip.zh || sol.tip.en)) {
       var tip = el("div", "tip");
-      tip.appendChild(el("b", null, "帶得走的技巧："));
+      var tb = el("b");
+      tb.appendChild(pairSpan(UI.tip));
+      tip.appendChild(tb);
       tip.appendChild(pair(sol.tip, "div", "bi"));
       card.appendChild(tip);
     }
@@ -677,30 +786,30 @@
   function renderQuestion(body, p, pages, cur, id, part) {
     var q = p.q;
     var qc = questionCard(q);
-    qc.appendChild(el("div", "sol-hint",
-      "題解已收起 —— 先自己在紙上做一次，做完再按右上角「顯示題解」對答案。"));
+    qc.appendChild(pair(UI.hint, "div", "sol-hint bi"));
     body.appendChild(qc);
     body.appendChild(solutionCard(q));
 
     var foot = el("div", "card foot-nav");
     var row = el("div", "row");
-    var prev = el("button", "btn btn-sm", "← 上一題");
+    var prev = el("button", "btn btn-sm");
+    setPair(prev, UI.prev);
     prev.disabled = cur <= 0;
     prev.onclick = function () { gotoPage(id, cur - 1); };
-    var marked = el("button", "btn btn-sm" + (store.done[q.id] ? " btn-primary" : " btn-ghost"),
-      store.done[q.id] ? "已掌握 ✓" : "標記為已掌握");
+    var marked = el("button", "btn btn-sm" + (store.done[q.id] ? " btn-primary" : " btn-ghost"));
+    setPair(marked, store.done[q.id] ? UI.marked : UI.mark);
     marked.onclick = function () {
       if (store.done[q.id]) delete store.done[q.id];
       else store.done[q.id] = true;
       saveStore();
       marked.className = "btn btn-sm" + (store.done[q.id] ? " btn-primary" : " btn-ghost");
-      marked.textContent = store.done[q.id] ? "已掌握 ✓" : "標記為已掌握";
+      setPair(marked, store.done[q.id] ? UI.marked : UI.mark);
       var nb = qsa("#pagenav .pg")[cur];
       if (nb) nb.classList.toggle("done", !!store.done[q.id]);
-      var stat = qs("#quiz-progress");
-      if (stat && part) stat.textContent = progressText(part);
+      setProgress(qs("#quiz-progress"), part);
     };
-    var next = el("button", "btn btn-sm btn-primary", "下一題 →");
+    var next = el("button", "btn btn-sm btn-primary");
+    setPair(next, UI.next);
     next.disabled = cur >= pages.length - 1;
     next.onclick = function () { gotoPage(id, cur + 1); };
     row.appendChild(prev);
@@ -709,9 +818,11 @@
     foot.appendChild(row);
     var row2 = el("div", "row");
     row2.style.marginTop = "8px";
-    var home = el("button", "btn btn-sm btn-ghost", "回總覽");
+    var home = el("button", "btn btn-sm btn-ghost");
+    setPair(home, UI.backOverview);
     home.onclick = function () { gotoPage(id, 0); };
-    var idx = el("button", "btn btn-sm btn-ghost", "回主目錄");
+    var idx = el("button", "btn btn-sm btn-ghost");
+    setPair(idx, UI.backHome);
     idx.onclick = function () { go("index.html"); };
     row2.appendChild(home);
     row2.appendChild(idx);
