@@ -11,8 +11,14 @@
 from __future__ import annotations
 
 INK = "#1A202C"
+MUTED = "#A0AEC0"
 HL = "#F6E05E"
 FONT = "system-ui, &quot;Noto Sans TC&quot;, &quot;Segoe UI&quot;, Arial, sans-serif"
+
+
+def _c(node, key: str = "color") -> str:
+    """節點可指定 color: muted（輔助線／次要條件用灰色）"""
+    return MUTED if node.get(key) == "muted" else INK
 
 
 def _n(v: float) -> str:
@@ -20,7 +26,8 @@ def _n(v: float) -> str:
     return s if s else "0"
 
 
-def _arrow(x: float, y: float, dx: float, dy: float, size: float = 10.0) -> str:
+def _arrow(x: float, y: float, dx: float, dy: float, size: float = 10.0,
+           color: str = INK) -> str:
     """在 (x, y) 畫一個指向 (dx, dy) 的實心箭嘴"""
     n = (dx * dx + dy * dy) ** 0.5 or 1.0
     ux, uy = dx / n, dy / n
@@ -29,7 +36,7 @@ def _arrow(x: float, y: float, dx: float, dy: float, size: float = 10.0) -> str:
     w = size * 0.42
     pts = "%.1f,%.1f %.1f,%.1f %.1f,%.1f" % (
         x, y, bx + px * w, by + py * w, bx - px * w, by - py * w)
-    return '<polygon points="%s" fill="%s"/>' % (pts, INK)
+    return '<polygon points="%s" fill="%s"/>' % (pts, color)
 
 
 # ── 數線 ────────────────────────────────────────────────────────────────────
@@ -62,30 +69,33 @@ def numline(spec) -> str:
     # 粗線段
     for seg in spec.get("segments", []):
         a, b = px(seg["from"]), px(seg["to"])
+        c = _c(seg)
         out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="4" '
-                   'stroke-linecap="round"/>' % (a, y, b, y, INK))
+                   'stroke-linecap="round"/>' % (a, y, b, y, c))
         if seg.get("arrowLeft"):
-            out.append(_arrow(a, y, -1, 0))
+            out.append(_arrow(a, y, -1, 0, color=c))
         if seg.get("arrowRight"):
-            out.append(_arrow(b, y, 1, 0))
+            out.append(_arrow(b, y, 1, 0, color=c))
         for end, key in ((a, "startClosed"), (b, "endClosed")):
             if seg.get(key) is not None:
-                fill = INK if seg[key] else "#FFFFFF"
+                fill = c if seg[key] else "#FFFFFF"
                 out.append('<circle cx="%.1f" cy="%.1f" r="6.5" fill="%s" stroke="%s" '
-                           'stroke-width="2"/>' % (end, y, fill, INK))
+                           'stroke-width="2"/>' % (end, y, fill, c))
     # 射線（由一點向一邊伸延）
     for ray in spec.get("rays", []):
         a, b = px(ray["from"]), px(ray["to"])
+        c = _c(ray)
         out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="4" '
-                   'stroke-linecap="round"/>' % (a, y, b, y, INK))
-        out.append(_arrow(b, y, 1 if b > a else -1, 0))
+                   'stroke-linecap="round"/>' % (a, y, b, y, c))
+        out.append(_arrow(b, y, 1 if b > a else -1, 0, color=c))
     # 端點圓點
     for pt in spec.get("points", []):
         if pt.get("hideDot"):
             continue
-        fill = INK if pt.get("closed") else "#FFFFFF"
+        c = _c(pt)
+        fill = c if pt.get("closed") else "#FFFFFF"
         out.append('<circle cx="%.1f" cy="%.1f" r="6.5" fill="%s" stroke="%s" stroke-width="2"/>'
-                   % (px(pt["v"]), y, fill, INK))
+                   % (px(pt["v"]), y, fill, c))
     out.append("</svg>")
     return "".join(out)
 

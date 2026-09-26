@@ -12,13 +12,13 @@
   },
   "numline-a2": {
     "type": "numline",
-    "min": -3.5, "max": 2.5,
-    "ticks": [-1, 0],
+    "min": -3.5, "max": 6,
+    "ticks": [-1, 0, 4],
     "points": [
       { "v": -1, "closed": true },
-      { "v": 2, "closed": false, "hideDot": true }
+      { "v": 4, "closed": false }
     ],
-    "segments": [{ "from": -1, "to": 2, "startClosed": true, "endClosed": false }],
+    "segments": [{ "from": -1, "to": 4, "startClosed": true, "endClosed": false }],
     "caption": {
       "zh": "答案是 $-1 \\le x < 4$：左端實心（包括 $-1$），右端空心（不包括 $4$）。",
       "en": "Answer $-1 \\le x < 4$: closed at the left end, open at the right end."
@@ -104,19 +104,26 @@
   },
   "numline-b5": {
     "type": "numline",
-    "min": -6.5, "max": 3,
-    "ticks": [-2.5],
+    "min": -6.5, "max": 4.5,
+    "ticks": [],
     "labels": [
-      { "v": -2.5, "text": "-2.5" }
+      { "v": -2.5, "text": "-2.5" },
+      { "v": -2, "text": "-2" },
+      { "v": 2.5, "text": "2.5" }
     ],
     "points": [
+      { "v": -2, "closed": false, "color": "muted" },
       { "v": -2.5, "closed": false },
-      { "v": -2, "closed": false, "hideDot": true }
+      { "v": 2.5, "closed": false, "color": "muted" }
     ],
-    "segments": [{ "from": -6, "to": -2.5, "endClosed": false, "arrowLeft": true }],
+    "segments": [
+      { "from": -5.4, "to": -2, "endClosed": false, "arrowLeft": true, "color": "muted" },
+      { "from": 2.5, "to": 3.9, "startClosed": false, "arrowRight": true, "color": "muted" },
+      { "from": -5.4, "to": -2.5, "endClosed": false, "arrowLeft": true }
+    ],
     "caption": {
-      "zh": "$k < -\\frac{5}{2}$（$-2.5$ 空心）；$k<-2$ 這個條件在這段內自動成立。",
-      "en": "$k < -\\frac{5}{2}$ (open at $-2.5$); the condition $k<-2$ is automatically satisfied here."
+      "zh": "灰色＝兩個條件：$k<-2$ 與（$k<-\\frac{5}{2}$ 或 $k>\\frac{5}{2}$）；黑色＝同時成立的答案 $k<-\\frac{5}{2}$（$-2.5$ 空心，而 $-\\frac{5}{2}<-2$）。",
+      "en": "Grey = the two conditions: $k<-2$ and ($k<-\\frac{5}{2}$ or $k>\\frac{5}{2}$); black = their overlap, the answer $k<-\\frac{5}{2}$ (open at $-2.5$, and $-\\frac{5}{2}<-2$)."
     }
   },
   "parabola-a4": {

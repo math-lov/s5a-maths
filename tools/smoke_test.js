@@ -165,7 +165,7 @@ ok(!!b3.$('.q-card[data-qid="ch10-B3"]'), "渲染出 B3 題目卡");
 ok(b3.$$(".q-parts li").length === 3, "B3 有 (a)(b)(c) 三小題");
 ok(b3.$$(".q-parts .mk").length === 3, "每小題都顯示分數");
 ok(b3.$$(".answer-box .a-row").length === 3, "答案欄有三個答案");
-ok(b3.$$(".sol-card .steps .step").length === 11, "B3 有 11 個解題步驟");
+ok(b3.$$(".sol-card .steps .step").length === 12, "B3 有 12 個解題步驟（含方法二）");
 ok(b3.$$(".step .part-chip").length >= 3, "步驟標明屬於哪一小題");
 ok(b3.$$(".step .marking").length === 9, "步驟分標記齊全（9 個）");
 ok(b3.$$(".sol-card .trap").length === 4, "B3 列出 4 個常見錯誤");

@@ -45,9 +45,9 @@
               },
               {
                 "title": { "zh": "第 2 步 · 逐一解四個選項", "en": "Step 2 · Solve the four options one by one" },
-                "math": "\\text{A: } 2x+3>3x-1 \\Rightarrow x<4\n\\text{B: } 8x-14\\ge 3(x+2) \\Rightarrow 5x\\ge 20 \\Rightarrow x\\ge 4\n\\text{C: } 5x-10>-3x+22 \\Rightarrow 8x>32 \\Rightarrow x>4\n\\text{D: } \\frac{x-8}{6}\\ge \\frac{x}{2} \\Rightarrow x-8\\ge 3x \\Rightarrow x\\le -4",
-                "zh": "A 解得 $x<4$；B 解得 $x \\ge 4$；C 解得 $x>4$；D 兩邊乘 $6$ 得 $x-8\\ge 3x$，再解得 $x\\le -4$。",
-                "en": "A gives $x<4$, B gives $x\\ge 4$, C gives $x>4$, and D (multiply by 6) gives $x-8\\ge 3x$, i.e. $x\\le -4$."
+                "math": "\\text{A: } 2x+3>3x-1 \\Rightarrow -x>-4 \\Rightarrow x<4\n\\text{B: } 8x-14\\ge 3(x+2) \\Rightarrow 5x\\ge 20 \\Rightarrow x\\ge 4\n\\text{C: } 5x-10>-3x+22 \\Rightarrow 8x>32 \\Rightarrow x>4\n\\text{D: } \\frac{x-8}{6}\\ge \\frac{x}{2} \\Rightarrow x-8\\ge 3x \\Rightarrow -8\\ge 2x \\Rightarrow x\\le -4",
+                "zh": "A：兩邊減 $3x$、減 $3$，得 $-x>-4$；兩邊乘 $-1$（反方向）得 $x<4$。B：展開得 $8x-14\\ge 3x+6$，整理得 $5x\\ge 20$，即 $x\\ge 4$。C：兩邊加 $3x$、加 $10$，得 $8x>32$，即 $x>4$。D：兩邊乘 $6$，得 $x-8\\ge 3x$，即 $-8\\ge 2x$，除以 $2$ 得 $x\\le -4$。",
+                "en": "A: subtract $3x$ then 3 to get $-x>-4$; multiply by $-1$ (flip) to get $x<4$. B: expand to $8x-14\\ge 3x+6$, so $5x\\ge 20$, i.e. $x\\ge 4$. C: add $3x$ then 10 to get $8x>32$, i.e. $x>4$. D: multiply by 6 to get $x-8\\ge 3x$, i.e. $-8\\ge 2x$, so $x\\le -4$."
               },
               {
                 "title": { "zh": "第 3 步 · 對比圖示", "en": "Step 3 · Match with the figure" },
@@ -113,8 +113,8 @@
               {
                 "title": { "zh": "第 2 步 · 各自求解", "en": "Step 2 · Solve each inequality" },
                 "math": "x+3<7 \\Rightarrow x<4\n7\\le 2x+9 \\Rightarrow -2\\le 2x \\Rightarrow x\\ge -1",
-                "zh": "第一個：兩邊減 $3$，得 $x<4$。第二個：兩邊減 $9$，得 $-2\\le 2x$，再除 $2$，得 $x\\ge -1$。",
-                "en": "First: subtract 3 from both sides to get $x<4$. Second: subtract 9 to get $-2\\le 2x$, then divide by 2 to get $x\\ge -1$."
+                "zh": "第一個：兩邊減 $3$，得 $x<4$。第二個：兩邊減 $9$，得 $-2\\le 2x$（以未知數 $x$ 的視角看，開口是 $2x\\ge -2$），兩邊同除以正數 $2$，得 $x\\ge -1$。",
+                "en": "First: subtract 3 from both sides to get $x<4$. Second: subtract 9 to get $-2\\le 2x$ (read with $x$ as the subject: $2x\\ge -2$); dividing both sides by the positive number 2 gives $x\\ge -1$, not $x\\le -1$."
               },
               {
                 "title": { "zh": "第 3 步 · 取交集", "en": "Step 3 · Take the intersection" },
@@ -176,9 +176,9 @@
             "steps": [
               {
                 "title": { "zh": "第 1 步 · 解第一個不等式", "en": "Step 1 · Solve the first inequality" },
-                "math": "6-\\frac{x}{2}<x \\Rightarrow 6<\\frac{3x}{2} \\Rightarrow x>4",
-                "zh": "兩邊加 $\\frac{x}{2}$，得 $6<\\frac{3x}{2}$；兩邊乘 $2$ 得 $12<3x$，再除 $3$（正數，方向不變）得 $x>4$。",
-                "en": "Add $\\frac{x}{2}$ to both sides: $6<\\frac{3x}{2}$. Multiply by 2: $12<3x$, so $x>4$."
+                "math": "6-\\frac{x}{2}<x \\Rightarrow 12-x<2x \\Rightarrow 12<3x \\Rightarrow x>4",
+                "zh": "保險做法：兩邊先同乘以 $2$ 消去分母，得 $12-x<2x$；兩邊加 $x$、減 $12$，得 $12<3x$；兩邊除以正數 $3$（方向不變）得 $x>4$。",
+                "en": "Safe route: multiply both sides by 2 first to clear the fraction: $12-x<2x$. Add $x$ and subtract 12: $12<3x$; divide by the positive number 3 (direction unchanged) to get $x>4$."
               },
               {
                 "title": { "zh": "第 2 步 · 解第二個不等式（留意反方向）", "en": "Step 2 · Solve the second inequality (watch the sign)" },
@@ -253,8 +253,8 @@
               {
                 "title": { "zh": "第 2 步 · 題目問的式多了一個負號", "en": "Step 2 · The expression asked about has an extra minus sign" },
                 "math": "-ax^{2}+bx+c<0 \\iff -(ax^{2}-bx-c)<0 \\iff ax^{2}-bx-c>0",
-                "zh": "$-ax^{2}+bx+c=-(ax^{2}-bx-c)$，即整條式反號，不等式方向也跟着反：$-ax^{2}+bx+c<0$ 等於 $ax^{2}-bx-c>0$。",
-                "en": "Since $-ax^{2}+bx+c=-(ax^{2}-bx-c)$, the inequality flips: $-ax^{2}+bx+c<0$ is the same as $ax^{2}-bx-c>0$."
+                "zh": "$-ax^{2}+bx+c=-(ax^{2}-bx-c)$。兩邊同乘以 $-1$（由於乘以負數，不等號方向必須倒轉），故 $-ax^{2}+bx+c<0$ 等價於 $ax^{2}-bx-c>0$。",
+                "en": "Since $-ax^{2}+bx+c=-(ax^{2}-bx-c)$, multiplying both sides by $-1$ reverses the inequality, so $-ax^{2}+bx+c<0$ is equivalent to $ax^{2}-bx-c>0$."
               },
               {
                 "title": { "zh": "第 3 步 · 回到圖上讀「曲線在 x 軸之上」", "en": "Step 3 · Read where the curve is above the x-axis" },
@@ -384,8 +384,8 @@
           "marks": 4,
           "difficulty": 1,
           "stem": {
-            "en": "Solve the inequality $4(x+3) > 10x + 1$, and hence the compound inequality that follows.",
-            "zh": "解不等式 $4(x+3) > 10x + 1$，並由此解其後的複合不等式。"
+            "en": "Solve the following.",
+            "zh": "解下列各題。"
           },
           "keywords": [
             { "en": "Hence", "zh": "由此（必須用上一小題的答案）" },
@@ -413,8 +413,8 @@
                 "part": "(a)",
                 "title": { "zh": "第 2 步 · 移項、除係數", "en": "Step 2 · Collect terms and divide" },
                 "math": "4x+12>10x+1 \\Rightarrow 11>6x \\Rightarrow x<\\frac{11}{6}",
-                "zh": "兩邊減 $4x$、再減 $1$：$11>6x$。兩邊除 $6$（正數，方向不變）得 $x<\\frac{11}{6}$。",
-                "en": "Subtract $4x$ and 1 from both sides: $11>6x$. Dividing by the positive number 6 keeps the direction, so $x<\\frac{11}{6}$.",
+                "zh": "方法一（推薦，避免負號）：兩邊減 $4x$、再減 $1$，得 $11>6x$；兩邊除以正數 $6$，得 $x<\\frac{11}{6}$。\n方法二（把 $x$ 移到左邊）：$4x-10x>1-12$，得 $-6x>-11$；兩邊除以負數 $-6$ 時，不等號必須轉向，同樣得 $x<\\frac{11}{6}$。",
+                "en": "Method 1 (recommended, avoids negatives): subtract $4x$ then 1 to get $11>6x$; divide by the positive number 6 to get $x<\\frac{11}{6}$.\nMethod 2 (move $x$ to the left): $4x-10x>1-12$ gives $-6x>-11$; dividing by the negative number $-6$ must flip the sign, again giving $x<\\frac{11}{6}$.",
                 "marking": "(1A)",
                 "highlight": ["x<\\frac{11}{6}"]
               },
@@ -506,15 +506,15 @@
                 "title": { "zh": "第 3 步 · 解第二句", "en": "Step 3 · Solve the second inequality" },
                 "math": "x+3<2 \\Rightarrow x<-1",
                 "zh": "第二個不等式：$x+3<2$，兩邊同減 $3$，得 $x<-1$。",
-                "en": "The other inequality: $x+3<2$ gives $x<-1$.",
-                "marking": "(1A)"
+                "en": "The other inequality: $x+3<2$ gives $x<-1$."
               },
               {
                 "part": "(a)",
                 "title": { "zh": "第 4 步 · 取聯集", "en": "Step 4 · Take the union" },
                 "math": "x>-1 \\text{ or } x<-1",
-                "zh": "題目是「or」（或），所以取聯集：$x>-1$ 或 $x<-1$ 加起來就是「除了 $-1$ 以外的所有實數」。留意 $-1$ 本身兩個條件都不符合（$-1>-1$ 與 $-1<-1$ 都是錯的）。",
-                "en": "The word is 'or', so take the union: $x>-1$ or $x<-1$ covers every real number except $-1$, which satisfies neither condition."
+                "zh": "題目是「or」（或），所以取聯集：$x>-1$ 或 $x<-1$ 加起來就是「除了 $-1$ 以外的所有實數」。作答時務必保留「or」這個字，不可以只寫逗號。留意 $-1$ 本身兩個條件都不符合（$-1>-1$ 與 $-1<-1$ 都是錯的）。",
+                "en": "The word is 'or', so take the union: $x>-1$ or $x<-1$ covers every real number except $-1$, which satisfies neither condition. Keep the word 'or' in your answer — don't replace it with a comma.",
+                "marking": "(1A)"
               },
               {
                 "part": "(b)",
@@ -530,8 +530,8 @@
             "traps": [
               {
                 "label": "把「or」當成「and」",
-                "zh": "「or」要取聯集。如果取交集（$x>-1$ 且 $x<-1$）就會甚麼都沒有，得出「無解」，那就完全錯了。",
-                "en": "'Or' means union. Intersecting ($x>-1$ and $x<-1$) leaves nothing, which is wrong."
+                "zh": "「or」要取聯集，而且答案一定要保留「or」這個字（$x>-1$ or $x<-1$），不可以只寫逗號，更不可以寫成「and」——如果取交集（$x>-1$ 且 $x<-1$）就會甚麼都沒有，得出「無解」。",
+                "en": "'Or' means union, and the word 'or' must appear in the final answer ($x>-1$ or $x<-1$) — don't replace it with a comma, and never use 'and': intersecting ($x>-1$ and $x<-1$) leaves nothing."
               },
               {
                 "label": "忘記 −1 被排除",
@@ -626,7 +626,14 @@
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 7 步 · 寫出解集", "en": "Step 7 · State the solution" },
+                "title": { "zh": "第 7 步 · 方法二：判別式 Δ（跟 (c) 和第 5 題同一套工具）", "en": "Step 7 · Method 2: discriminant Δ (same tool as in (c) and Q5)" },
+                "math": "\\Delta=(-2)^{2}-4(1)(8)=-28<0",
+                "zh": "也可以用判別式：考慮 $x^{2}-2x+8=0$，$\\Delta=(-2)^{2}-4(1)(8)=-28<0$，即方程沒有實根。因為 $x^{2}$ 的係數 $1>0$（開口向上）而 $\\Delta<0$，整條二次式恆在 $x$ 軸之上（恆正）。這與 (c) 題及第 5 題的判別式做法是同一套思路。",
+                "en": "Alternatively, use the discriminant: for $x^{2}-2x+8=0$, $\\Delta=(-2)^{2}-4(1)(8)=-28<0$, so the equation has no real root. With the coefficient of $x^{2}$ equal to $1>0$ (opens upwards) and $\\Delta<0$, the quadratic is above the x-axis for every $x$, i.e. always positive — the same idea as in (c) and Question 5."
+              },
+              {
+                "part": "(b)",
+                "title": { "zh": "第 8 步 · 寫出解集", "en": "Step 8 · State the solution" },
                 "math": "\\text{all real numbers}",
                 "zh": "不等式對所有實數 $x$ 都成立，所以解集是「所有實數」。",
                 "en": "The inequality holds for every real number $x$, so the solution is all real numbers.",
@@ -634,7 +641,7 @@
               },
               {
                 "part": "(c)",
-                "title": { "zh": "第 8 步 · 展開並移項", "en": "Step 8 · Expand and rearrange" },
+                "title": { "zh": "第 9 步 · 展開並移項", "en": "Step 9 · Expand and rearrange" },
                 "math": "(4x+1)(2x-3)\\le -8 \\Rightarrow 8x^{2}-10x+5\\le 0",
                 "zh": "先展開：$(4x+1)(2x-3)=8x^{2}-12x+2x-3=8x^{2}-10x-3$；再把 $-8$ 移到左邊（$+8$），得 $8x^{2}-10x+5\\le 0$。",
                 "en": "Expand: $(4x+1)(2x-3)=8x^{2}-12x+2x-3=8x^{2}-10x-3$; then add 8 to both sides: $8x^{2}-10x+5\\le 0$.",
@@ -642,7 +649,7 @@
               },
               {
                 "part": "(c)",
-                "title": { "zh": "第 9 步 · 計判別式", "en": "Step 9 · Compute the discriminant" },
+                "title": { "zh": "第 10 步 · 計判別式", "en": "Step 10 · Compute the discriminant" },
                 "math": "\\Delta=(-10)^{2}-4(8)(5)=100-160=-60<0",
                 "zh": "考慮 $8x^{2}-10x+5=0$，判別式 $\\Delta=100-160=-60<0$，即方程沒有實根（曲線不與 $x$ 軸相交）。",
                 "en": "For $8x^{2}-10x+5=0$, the discriminant is $\\Delta=100-160=-60<0$, so the equation has no real root.",
@@ -650,7 +657,7 @@
               },
               {
                 "part": "(c)",
-                "title": { "zh": "第 10 步 · 開口向上＋Δ<0 ⇒ 恆正 ⇒ 無解", "en": "Step 10 · Upward opening and Δ < 0 means always positive" },
+                "title": { "zh": "第 11 步 · 開口向上＋Δ<0 ⇒ 恆正 ⇒ 無解", "en": "Step 11 · Upward opening and Δ < 0 means always positive" },
                 "math": "8>0,\\ \\Delta<0 \\Rightarrow 8x^{2}-10x+5>0 \\text{ for all } x",
                 "zh": "$x^{2}$ 的係數 $8>0$ 而 $\\Delta<0$，整條二次式對所有 $x$ 都大於 $0$（曲線整條在 $x$ 軸之上），不可能 $\\le 0$。",
                 "en": "With $8>0$ and $\\Delta<0$, the quadratic is positive for every $x$ (the whole graph is above the x-axis), so it can never be $\\le 0$.",
@@ -658,7 +665,7 @@
               },
               {
                 "part": "(c)",
-                "title": { "zh": "第 11 步 · 結論", "en": "Step 11 · Conclusion" },
+                "title": { "zh": "第 12 步 · 結論", "en": "Step 12 · Conclusion" },
                 "math": "\\text{no solutions}",
                 "zh": "整條二次式恆大於 $0$，所以 $(4x+1)(2x-3)\\le -8$ 沒有解。",
                 "en": "Therefore $(4x+1)(2x-3)\\le -8$ has no solutions.",
@@ -712,7 +719,7 @@
           "figures": ["parabola-b4"],
           "parts": [
             { "label": "(a)", "en": "Find the values of $b$ and $c$.", "zh": "求 $b$ 和 $c$ 的值。", "marks": 3 },
-            { "label": "(b)(i)", "en": "Solve the quadratic inequality $x^{2} + bx + c \\le 0$.", "zh": "解二次不等式 $x^{2} + bx + c \\le 0$。", "marks": 2 },
+            { "label": "(b)(i)", "en": "Solve the quadratic inequality $x^{2} + bx + c \\le 0$. (Leave your answer in surd form.)", "zh": "解二次不等式 $x^{2} + bx + c \\le 0$。（答案以根式表示。）", "marks": 2 },
             { "label": "(b)(ii)", "en": "Hence, write down all possible integers satisfying the inequality in (b)(i).", "zh": "由此，寫出所有滿足 (b)(i) 中不等式的整數。", "marks": 1 }
           ],
           "answers": [
@@ -756,19 +763,19 @@
               },
               {
                 "part": "(b)(i)",
-                "title": { "zh": "第 5 步 · 配方後開方", "en": "Step 5 · Complete the square and take square roots" },
-                "math": "x^{2}-4x-2\\le 0 \\iff (x-2)^{2}\\le 6 \\iff 2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}",
-                "zh": "先配方：$(x-2)^{2}-6\\le 0$，即 $(x-2)^{2}\\le 6$。兩邊開平方根，得 $|x-2|\\le\\sqrt{6}$，所以 $2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}$。",
-                "en": "Completing the square: $(x-2)^{2}-6\\le 0$, i.e. $(x-2)^{2}\\le 6$. Taking square roots gives $|x-2|\\le\\sqrt{6}$, so $2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}$.",
+                "title": { "zh": "第 5 步 · 用公式求兩根（主力做法）", "en": "Step 5 · Find the roots by the formula (main method)" },
+                "math": "x=\\frac{4\\pm\\sqrt{(-4)^{2}-4(1)(-2)}}{2}=\\frac{4\\pm\\sqrt{24}}{2}=2\\pm\\sqrt{6}",
+                "zh": "解對應方程 $x^{2}-4x-2=0$：用求根公式，$x=\\frac{4\\pm\\sqrt{(-4)^{2}-4(1)(-2)}}{2}=\\frac{4\\pm\\sqrt{24}}{2}=2\\pm\\sqrt{6}$。因為開口向上，而「$\\le 0$」對應曲線在 $x$ 軸之下的部分（即兩根之間，包括端點），所以 $2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}$（以根式表示）。",
+                "en": "Solve the corresponding equation $x^{2}-4x-2=0$ by the quadratic formula: $x=\\frac{4\\pm\\sqrt{(-4)^{2}-4(1)(-2)}}{2}=\\frac{4\\pm\\sqrt{24}}{2}=2\\pm\\sqrt{6}$. The parabola opens upwards and '$\\le 0$' is the part below the x-axis (between the roots, endpoints included), so $2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}$ (in surd form).",
                 "marking": "(1A)",
                 "highlight": ["2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}"]
               },
               {
                 "part": "(b)(i)",
-                "title": { "zh": "第 6 步 · 用公式也可以", "en": "Step 6 · Or use the quadratic formula" },
-                "math": "x=\\frac{4\\pm\\sqrt{16+8}}{2}=\\frac{4\\pm\\sqrt{24}}{2}=2\\pm\\sqrt{6}",
-                "zh": "用公式：$x=\\frac{4\\pm\\sqrt{(-4)^{2}-4(1)(-2)}}{2}=\\frac{4\\pm\\sqrt{24}}{2}=2\\pm\\sqrt{6}$，所以 $\\frac{4-\\sqrt{24}}{2}\\le x\\le\\frac{4+\\sqrt{24}}{2}$ 與上面的答案相同。",
-                "en": "By the formula, $x=\\frac{4\\pm\\sqrt{24}}{2}=2\\pm\\sqrt{6}$, the same answer as above."
+                "title": { "zh": "第 6 步 · 方法二：配方", "en": "Step 6 · Method 2: completing the square" },
+                "math": "x^{2}-4x-2\\le 0 \\iff (x-2)^{2}\\le 6 \\iff 2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}",
+                "zh": "也可以配方：$(x-2)^{2}-6\\le 0$，即 $(x-2)^{2}\\le 6$；兩邊開平方得 $2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}$，與公式法的答案相同。",
+                "en": "Or complete the square: $(x-2)^{2}-6\\le 0$, i.e. $(x-2)^{2}\\le 6$; taking square roots gives the same $2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}$."
               },
               {
                 "part": "(b)(ii)",
@@ -823,11 +830,11 @@
           "marks": 5,
           "difficulty": 3,
           "stem": {
-            "en": "Let $k$ be a constant and $k \\ne -2$. Find the range of values of $k$ such that $(k+2)x^{2} + 3x + (k-2) < 0$ for any real number $x$.",
+            "en": "Let $k$ be a constant and $k \\ne -2$. Find the range of values of $k$ such that $(k+2)x^{2} + 3x + (k-2) < 0$ for all real values of $x$.",
             "zh": "設 $k$ 為常數且 $k \\ne -2$。求 $k$ 的取值範圍，使得對任意實數 $x$，$(k+2)x^{2} + 3x + (k-2) < 0$。"
           },
           "keywords": [
-            { "en": "for any real number x", "zh": "對所有實數 $x$ 都成立" },
+            { "en": "for all real values of $x$", "zh": "對所有實數 $x$ 都成立" },
             { "en": "range of values of k", "zh": "$k$ 的取值範圍" }
           ],
           "parts": [
@@ -948,8 +955,8 @@
               {
                 "title": { "zh": "第 5 步 · 情況 3：對稱軸在 x = 3 右邊（要看 Δ）", "en": "Step 5 · Case 3: the axis is right of x = 3 (need Δ)" },
                 "math": "\\frac{k+3}{2}>3 \\Rightarrow k>3",
-                "zh": "情況 3：對稱軸在 $3$ 的右邊（$k>3$）。由 $x=3$ 向右走，函數會先下降（走向頂點），所以不能只用 $f(3)$；必須整條曲線都在 $x$ 軸之上，即 $\\Delta<0$。",
-                "en": "Case 3: the axis is right of 3 ($k>3$). From $x=3$ the function decreases towards the vertex, so $f(3)$ alone is not enough — the whole graph must stay above the x-axis, i.e. $\\Delta<0$.",
+                "zh": "情況 3：對稱軸在 $x=3$ 的右邊（$k>3$）。因為頂點落在 $x\\ge 3$ 的範圍內，頂點正是函數在這段區間的最低點：由 $x=3$ 向右走，函數會先下降到頂點。要令所有 $x\\ge 3$ 的 $f(x)>0$，這個最低點必須嚴格大於 $0$，即整條開口向上的拋物線不能接觸或穿過 $x$ 軸，等價於判別式 $\\Delta<0$。",
+                "en": "Case 3: the axis is right of $x=3$ ($k>3$). The vertex now lies inside the region $x\\ge 3$, so it is the lowest point of the graph on that interval: moving right from $x=3$, $f$ first decreases towards the vertex. For $f(x)>0$ to hold for every $x\\ge 3$, this lowest point must be strictly above 0 — the whole upward parabola must never touch or cross the x-axis, which is exactly $\\Delta<0$.",
                 "figure": "bonus-case3"
               },
               {
