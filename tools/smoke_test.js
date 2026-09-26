@@ -169,6 +169,10 @@ ok(b3.$$(".sol-card .steps .step").length === 12, "B3 有 12 個解題步驟（�
 ok(b3.$$(".step .part-chip").length >= 3, "步驟標明屬於哪一小題");
 ok(b3.$$(".step .marking").length === 9, "步驟分標記齊全（9 個）");
 ok(b3.$$(".sol-card .trap").length === 4, "B3 列出 4 個常見錯誤");
+ok(b3.$$(".sol-card .trap .l-zh").length === 8 && b3.$$(".sol-card .trap .l-en").length === 8,
+  "每個錯誤提示都有中英兩版（標籤＋內文）");
+ok(/flip|negative|Forgetting/.test(b3.$$(".sol-card .trap .l-en")[0].textContent),
+  "錯誤提示的英文標籤已渲染");
 ok(!!b3.$(".sol-card .fig svg"), "答案圖（數線）已插入題解");
 ok(b3.$$(".step .hl").length >= 2, "重點答案有高亮 chip");
 

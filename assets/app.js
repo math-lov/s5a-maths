@@ -395,9 +395,9 @@
       var cur = Math.min(pageFromUrl(), pages.length - 1);
 
       var nameEl = qs("#quiz-name");
-      if (nameEl) nameEl.textContent = (part.title && part.title.zh) || part.id;
+      if (nameEl && part.title) setPair(nameEl, part.title);
       var enEl = qs("#quiz-en");
-      if (enEl) enEl.textContent = (part.title && part.title.en) || "";
+      if (enEl) enEl.textContent = "";
       document.title = ((part.title && part.title.zh) || part.id) + " · 5A 數學溫習站";
 
       var bar = qs("#lang-slot");
@@ -475,7 +475,9 @@
   function renderOverview(body, part, pages, id) {
     var card = el("div", "card");
     var head = el("div", "q-head");
-    head.appendChild(el("span", "q-code", "總覽"));
+    var oc = el("span", "q-code");
+    oc.appendChild(pairSpan(UI.overview));
+    head.appendChild(oc);
     card.appendChild(head);
     if (part.intro) card.appendChild(pair(part.intro, "div", "bi"));
     var meta = part.meta || {};
@@ -764,9 +766,16 @@
       var traps = el("div", "traps");
       (sol.traps || []).forEach(function (tr) {
         var t = el("div", "trap");
-        var tag = isMc ? ("選 " + tr.opt + " 的話：") : ((tr.label || "") + "：");
-        if (tr.label || tr.opt) t.appendChild(el("b", null, tag));
-        t.appendChild(rich(tr.zh || ""));
+        if (isMc && tr.opt) {
+          var bt = el("b");
+          bt.appendChild(pairSpan({ zh: "選 " + tr.opt + " 的話：", en: "If you chose " + tr.opt + ": " }));
+          t.appendChild(bt);
+        } else if (tr.label) {
+          var bl = el("b");
+          bl.appendChild(pairSpan({ zh: tr.label + "：", en: (tr.labelEn || tr.label) + ": " }));
+          t.appendChild(bl);
+        }
+        t.appendChild(pair({ zh: tr.zh, en: tr.en || tr.zh }, "div", "bi"));
         traps.appendChild(t);
       });
       card.appendChild(traps);

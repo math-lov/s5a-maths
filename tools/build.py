@@ -144,6 +144,8 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
         else:
             if not tr.get("label"):
                 err("S4 %s：長題 trap 要用 label（自由標籤）" % tag)
+            if not tr.get("labelEn"):
+                err("S4 %s：長題 trap 缺 labelEn（全站雙語）" % tag)
         check_text(tag + " trap.zh", tr.get("zh", ""), min_len=6, need_zh=True)
         check_text(tag + " trap.en", tr.get("en", ""))
 
