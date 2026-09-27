@@ -1,5 +1,6 @@
 node_modules/
 tools/_preview/
+backups/
 *.log
 .DS_Store
 Thumbs.db

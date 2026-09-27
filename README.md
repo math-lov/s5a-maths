@@ -48,6 +48,65 @@ node tools\smoke_test.js        # 要見到 all smoke tests passed
 start index.html
 ```
 
+## 檔案放哪裡？（本機 ↔ GitHub）
+
+| 位置 | 內容 | 用途 |
+|---|---|---|
+| `C:\Code Buddy\S5A\site\` | 工作檔案（HTML/CSS/JS/JSON） | 平時編輯的地方 |
+| `C:\Code Buddy\S5A\site\.git\` | **完整歷史**：每一次 commit 都是一份完整快照 | 回溯、比對、復原 |
+| GitHub `math-lov/s5a-maths` | 遠端副本（同時就是 Pages 的來源） | 換電腦、備份、上網 |
+
+### 換電腦／第二部電腦編輯
+
+```powershell
+git clone https://github.com/math-lov/s5a-maths.git
+cd s5a-maths
+# 改完之後（記得先跑 build.py 檢查）：
+git add -A; git commit -m "說明改了甚麼"; git push
+```
+
+回到原本的電腦時先 `git pull` 拿最新版本。
+（只改 `data/src/*.json` 的話，務必跑 `python tools/build.py` 重新生成 `data/*.js`。）
+
+## 版本控制與回溯（每次修改都會留舊版）
+
+**git 本身就是自動保留舊版本**：每次 `git commit` 都會把當下所有檔案存成一份完整快照，
+新版本有問題時隨時可以退回，舊版本永遠不會被覆蓋。本專案已加上里程碑標籤：
+
+```
+v1.0-初始版      第一版（題目英文＋題解中英）
+v1.1-雙語版      全站中英雙語（一鍵切換）
+v1.2-第一輪審查  第一輪教學審查修訂
+v1.3-陷阱雙語    陷阱標籤補英文
+v1.4-第二輪審查  第二輪審查修訂（目前最新）
+```
+
+常用指令：
+
+```powershell
+git log --oneline              # 看歷史
+git tag                        # 看里程碑
+git diff v1.3-陷阱雙語 -- data/src\   # 比較某一版之後改了甚麼
+
+# 只還原某一個檔案（最常用、最安全）
+git restore --source=v1.3-陷阱雙語 -- data/src/ch10-test.json
+
+# 整份退回某一版（保留歷史，適合已 push 的情況）
+git revert <commit>
+
+# 整份退回並丟棄後面的修改（未 push 才用，會失去資料）
+git reset --hard <commit>
+```
+
+**第二重保險（非 git）**：改資料前跑
+
+```powershell
+python tools/backup.py 改題解前
+```
+
+會把 `data/src/`（可編輯資料）、`assets/`、兩個 HTML 複製到
+`backups/20260928-075709-改題解前/`，該資料夾已加入 `.gitignore`，不會塞進 repo。
+
 ## 檢查器（`tools/build.py`）會擋的事
 
 | 代號 | 內容 |
