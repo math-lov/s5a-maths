@@ -134,7 +134,6 @@
       { "x": -1, "label": "p" },
       { "x": 2.5, "label": "q" }
     ],
-    "hlBetween": [-1, 2.5],
     "caption": {
       "zh": "曲線開口向上，與 $x$ 軸交於 $p$、$q$：在 $p<x<q$ 時曲線在 $x$ 軸之下。",
       "en": "The graph opens upwards and cuts the x-axis at p and q; it is below the x-axis between them."
@@ -146,7 +145,6 @@
     "parabolas": [{ "a": 1, "b": -4, "c": -2, "label": "y = x² + bx + c" }],
     "dots": [{ "x": 2, "y": -6, "label": "(2, −6)", "dx": 8, "dy": 18 }],
     "vlines": [{ "x": 2, "label": "x = 2" }],
-    "hlBetween": [-0.449489743, 4.449489743],
     "hideO": true,
     "roots": [
       { "x": -0.449489743, "label": "2−√6" },
