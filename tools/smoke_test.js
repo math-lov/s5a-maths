@@ -143,18 +143,41 @@ ok(q1.$$(".step .why .l-zh").length === 3 && q1.$$(".step .why .l-en").length ==
   "每個步驟都有中、英兩份解釋（可切換）");
 ok(!!q1.$(".step .marking") === false, "選擇題不顯示步驟分（只長題才有）");
 
-// 作答：先答錯，再答對
+/* 作答：KA 式「選取 → 檢查答案 → 回饋」 */
 const q1b = boot("quiz.html", "?c=ch10-test&p=1");
-const wrongBtn = q1b.$$(".opt").find((b) => b.dataset.opt === "C");
-wrongBtn.click();
-ok(q1b.$$(".opt.wrong").length === 1, "答錯的選項標成 wrong");
-ok(q1b.$$(".opt.correct").length === 1, "正確答案同時標成 correct");
+ok(q1b.$("[data-check]").disabled === true, "未選取時「檢查答案」不可按");
+q1b.$$(".opt").find((b) => b.dataset.opt === "C").click();
+ok(q1b.$$(".opt.picked").length === 1, "選取後該選項標成 picked");
+ok(q1b.$("[data-check]").disabled === false, "選取後「檢查答案」可按");
+q1b.$("[data-check]").click();
+ok(q1b.$$(".opt.wrong").length === 1, "第一次答錯：該選項標成 wrong");
+ok(!q1b.$("[data-feedback=ok]"), "第一次答錯不立即揭示答案（先叫學生再試）");
+ok(!!q1b.$("[data-feedback=bad]"), "第一次答錯有回饋橫幅");
 ok(q1b.store().picked["ch10-A1"] === "C", "作答記錄寫入 localStorage");
-ok(!q1b.store().done || !q1b.store().done["ch10-A1"], "答錯不會標記為已掌握");
+ok(!q1b.store().done["ch10-A1"], "答錯不會標記為已掌握");
+// 第二次答錯 → 揭示正確答案
+q1b.$$(".opt").find((b) => b.dataset.opt === "A").click();
+q1b.$("[data-check]").click();
+ok(q1b.$$(".opt.correct").length === 1, "第二次答錯後揭示正確答案");
+
 const q1c = boot("quiz.html", "?c=ch10-test&p=1");
 q1c.$$(".opt").find((b) => b.dataset.opt === "B").click();
+q1c.$("[data-check]").click();
 ok(q1c.store().done["ch10-A1"] === true, "答對會標記為已掌握");
+ok(!!q1c.$("[data-feedback=ok]"), "答對有綠色正確橫幅");
 ok(q1c.$$("#pagenav .pg")[1].classList.contains("done"), "分頁列的 A1 打勾");
+
+/* 逐步提示（KA hint 模式） */
+const qh = boot("quiz.html", "?c=ch10-test&p=1");
+qh.$("#sol-toggle").click();
+ok(qh.$$(".sol-card .steps .step").length === 0, "收起題解後先不顯示步驟");
+ok(!!qh.$("[data-hint]"), "有「顯示提示」按鈕");
+qh.$("[data-hint]").click();
+ok(qh.$$(".sol-card .steps .step").length === 1, "按一次提示 → 顯示第 1 步");
+qh.$("[data-hint]").click();
+ok(qh.$$(".sol-card .steps .step").length === 2, "再按一次 → 顯示第 2 步");
+ok(!!qh.$(".sol-card .sol-extra"),
+  "陷阱與技巧放在 .sol-extra（收起題解時由 CSS 隱藏，揭曉完才出現）");
 
 /* ── 一鍵複製 LLM 提問 Prompt ────────────────────────────────────────── */
 console.log("\n== LLM 提問 Prompt ==");

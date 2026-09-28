@@ -79,6 +79,25 @@
     pmClose: { zh: "關閉", en: "Close" },
     pmCopied: { zh: "已複製 —— 可以貼去 AI 再問", en: "Copied — paste it into your AI" },
     pmCopyFail: { zh: "複製失敗，請手動選取下面的文字複製", en: "Copy failed — please select the text below and copy manually" },
+    /* P1：Khan Academy 式「檢查答案」與回饋 */
+    check: { zh: "檢查答案", en: "Check answer" },
+    fbCorrect: { zh: "正確！", en: "Correct!" },
+    fbCorrectSub: {
+      zh: "做得好 —— 向下睇題解，確認自己每一步都真係明。",
+      en: "Nice work — read the steps below and check that you really understand each one."
+    },
+    fbWrong: { zh: "唔係這一個", en: "Not quite" },
+    fbRetrySub: {
+      zh: "再試一次 —— 先睇清楚題目問甚麼，再選過。",
+      en: "Try again — re-read what the question asks, then choose another option."
+    },
+    fbRevealSub: {
+      zh: "正確答案已標成綠色，請向下睇題解，找出偏差喺邊一步。",
+      en: "The correct answer is highlighted in green — read the steps below to see where you went wrong."
+    },
+    /* P1：逐步提示（hint）模式 */
+    showAllSol: { zh: "顯示全部題解", en: "Show all steps" },
+    hintsDone: { zh: "提示已全部顯示 —— 再按一次可睇埋陷阱與技巧。", en: "All hints shown — press again to see the traps and tips too." },
     pmHint: {
       zh: "先寫下你卡住的地方，勾選想要的選項，再按「複製」。下面的內容可以直接修改。",
       en: "Write where you are stuck, tick the options you want, then press Copy. You can edit the text below directly."
@@ -91,9 +110,10 @@
       var s = JSON.parse(localStorage.getItem(PROG_KEY)) || {};
       s.done = s.done || {};      // { qid: true }
       s.picked = s.picked || {};  // { qid: "A" | "B" | ... }
+      s.hints = s.hints || {};    // { qid: 已顯示的提示步數 }
       return s;
     } catch (e) {
-      return { done: {}, picked: {} };
+      return { done: {}, picked: {}, hints: {} };
     }
   }
   var store = loadStore();
@@ -145,6 +165,7 @@
     qsa("[data-sol-toggle]").forEach(function (b) {
       setPair(b, h ? UI.solShow : UI.solHide);
     });
+    if (refreshCurrent) refreshCurrent();   // 重畫，讓「逐步提示」與全部步驟同步
   }
   /* 把一個 {zh, en} 物件寫進節點（兩份都寫入，由 CSS 決定顯示哪份） */
   function setPair(node, obj) {
@@ -660,9 +681,11 @@
       card.appendChild(ul);
     }
 
-    // MC 選項（可按，即時對答案；題解一樣照顯示）
+    /* MC 選項：先選一個 → 按「檢查答案」→ 綠／紅回饋橫幅（KA 式）
+       題解仍然同頁顯示（學生亦可以先睇題解，兩者不衝突） */
     if (q.type === "mc") {
       var opts = el("div", "opts");
+      var state = { picked: null, locked: false, tries: 0 };
       ["A", "B", "C", "D"].forEach(function (L) {
         var b = el("button", "opt");
         b.dataset.opt = L;
@@ -680,12 +703,90 @@
           mathInto(v, val);
         }
         b.appendChild(v);
-        b.onclick = function () { pickOption(q, L, opts); };
+        b.onclick = function () {
+          if (state.locked) return;
+          state.picked = L;
+          markPicked();
+          btnCheck.disabled = false;
+        };
         opts.appendChild(b);
       });
       card.appendChild(opts);
-      var prevPick = store.picked[q.id];
-      if (prevPick) lockOptions(q, prevPick, opts);
+
+      var checkRow = el("div", "check-row");
+      var btnCheck = el("button", "btn btn-primary");
+      btnCheck.setAttribute("data-check", "1");
+      setPair(btnCheck, UI.check);
+      btnCheck.disabled = true;
+      var fbHost = el("div");
+      checkRow.appendChild(btnCheck);
+      checkRow.appendChild(fbHost);
+      card.appendChild(checkRow);
+
+      function markPicked() {
+        qsa(".opt", opts).forEach(function (b) {
+          b.classList.toggle("picked", b.dataset.opt === state.picked);
+        });
+      }
+      function lockAll(ans) {
+        state.locked = true;
+        qsa(".opt", opts).forEach(function (b) {
+          b.disabled = true;
+          b.classList.remove("picked");
+          if (b.dataset.opt === ans) b.classList.add("correct");
+        });
+        btnCheck.disabled = true;
+      }
+      function showFeedback(ok, revealed) {
+        fbHost.innerHTML = "";
+        var box = el("div", "feedback " + (ok ? "ok" : "bad"));
+        box.setAttribute("data-feedback", ok ? "ok" : "bad");
+        box.appendChild(el("span", "fb-icon", ok ? "✅" : "✖"));
+        var txt = el("div");
+        var main = el("div");
+        main.appendChild(pairSpan(ok ? UI.fbCorrect : UI.fbWrong));
+        var sub = el("span", "fb-sub");
+        sub.appendChild(pairSpan(ok ? UI.fbCorrectSub : (revealed ? UI.fbRevealSub : UI.fbRetrySub)));
+        txt.appendChild(main);
+        txt.appendChild(sub);
+        box.appendChild(txt);
+        fbHost.appendChild(box);
+      }
+      btnCheck.onclick = function () {
+        if (!state.picked || state.locked) return;
+        var correct = state.picked === q.answer;
+        state.tries++;
+        store.picked[q.id] = state.picked;
+        if (correct) {
+          store.done[q.id] = true;
+          saveStore();
+          lockAll(q.answer);
+          showFeedback(true);
+          var curBtn = qs("#pagenav .pg.current");
+          if (curBtn) curBtn.classList.add("done");
+          setProgress(qs("#quiz-progress"), PART);
+        } else {
+          delete store.done[q.id];
+          saveStore();
+          qsa(".opt", opts).forEach(function (b) {
+            if (b.dataset.opt === state.picked) b.classList.add("wrong");
+          });
+          if (state.tries >= 2) {
+            lockAll(q.answer);
+            showFeedback(false, true);
+          } else {
+            state.picked = null;
+            markPicked();
+            btnCheck.disabled = true;
+            showFeedback(false, false);
+          }
+        }
+      };
+      /* 之前答對過 → 回到這一題時直接顯示正確答案 */
+      if (store.done[q.id]) {
+        lockAll(q.answer);
+        btnCheck.disabled = true;
+      }
     }
     return card;
   }
@@ -737,22 +838,29 @@
     return box;
   }
 
-  function solutionCard(q, sec) {
+  function solutionCard(q, sec, refresh) {
     var card = el("div", "card sol-card");
     var head = el("div", "sol-head");
     var h2 = el("h2");
     h2.appendChild(pairSpan(UI.solution));
     head.appendChild(h2);
     var sp = el("span", "small muted");
-    sp.textContent = q.code + " · " + (q.marks || 0) + " marks";
+    sp.appendChild(pairSpan({
+      zh: q.code + " · " + (q.marks || 0) + " 分",
+      en: q.code + " · " + (q.marks || 0) + " marks"
+    }));
     head.appendChild(sp);
     card.appendChild(head);
     card.appendChild(answerBox(q));
 
     var sol = q.solution || {};
-    var stepsHost = el("div", "steps");
+    /* 收起題解時：逐步要提示（KA hint 模式），只顯示已揭曉的步驟 */
+    var all = sol.steps || [];
+    var total = all.length;
+    var shown = solHidden() ? Math.min(store.hints[q.id] || 0, total) : total;
+    var stepsHost = el("div", "steps sol-body");
     var lastPart = null;
-    (sol.steps || []).forEach(function (st, i) {
+    all.slice(0, shown).forEach(function (st, i) {
       var box = el("div", "step");
       var h = el("h4");
       if (st.part && st.part !== lastPart) {
@@ -797,16 +905,20 @@
     });
     card.appendChild(stepsHost);
 
+    /* 圖／陷阱／技巧：收起題解時一併收起（提示揭曉完才出現） */
+    var extra = el("div", "sol-extra");
+    card.appendChild(extra);
+
     (sol.figures || []).forEach(function (fid) {
       var f = figureNode(fid);
-      if (f) card.appendChild(f);
+      if (f) extra.appendChild(f);
     });
 
     if ((sol.traps || []).length) {
       var isMc = q.type === "mc";
       var th = el("div", "trap-head");
       th.appendChild(pairSpan(isMc ? UI.whyWrong : UI.commonErr));
-      card.appendChild(th);
+      extra.appendChild(th);
       var traps = el("div", "traps");
       (sol.traps || []).forEach(function (tr) {
         var t = el("div", "trap");
@@ -822,7 +934,7 @@
         t.appendChild(pair({ zh: tr.zh, en: tr.en || tr.zh }, "div", "bi"));
         traps.appendChild(t);
       });
-      card.appendChild(traps);
+      extra.appendChild(traps);
     }
 
     if (sol.tip && (sol.tip.zh || sol.tip.en)) {
@@ -831,7 +943,38 @@
       tb.appendChild(pairSpan(UI.tip));
       tip.appendChild(tb);
       tip.appendChild(pair(sol.tip, "div", "bi"));
-      card.appendChild(tip);
+      extra.appendChild(tip);
+    }
+
+    /* 收起題解時：逐步提示 + 一次顯示全部 */
+    if (solHidden()) {
+      var hr = el("div", "hint-row");
+      if (shown < total) {
+        var hb = el("button", "btn btn-sm btn-primary");
+        hb.setAttribute("data-hint", String(shown + 1));
+        hb.appendChild(pairSpan({
+          zh: "顯示提示（第 " + (shown + 1) + " / " + total + " 步）",
+          en: "Show hint (step " + (shown + 1) + " / " + total + ")"
+        }));
+        hb.onclick = function () {
+          store.hints[q.id] = shown + 1;
+          saveStore();
+          if (refresh) refresh();
+        };
+        hr.appendChild(hb);
+      } else {
+        var hc = el("div", "hint-count");
+        hc.appendChild(pairSpan(UI.hintsDone));
+        hr.appendChild(hc);
+      }
+      var ab = el("button", "btn btn-sm btn-ghost");
+      ab.appendChild(pairSpan(UI.showAllSol));
+      ab.onclick = function () {
+        setSolHidden(false);
+        if (refresh) refresh();
+      };
+      hr.appendChild(ab);
+      card.appendChild(hr);
     }
     return card;
   }
@@ -848,8 +991,10 @@
       pb.onclick = function () { openPrompt({ q: q, sec: p.sec }); };
       qc.appendChild(pb);
     }
+    function redraw() { renderPage(pages, cur, id, part); }
+    refreshCurrent = redraw;
     body.appendChild(qc);
-    body.appendChild(solutionCard(q, p.sec));
+    body.appendChild(solutionCard(q, p.sec, redraw));
 
     var foot = el("div", "card foot-nav");
     var row = el("div", "row");
@@ -900,6 +1045,7 @@
        每題 1 個主按鈕（整題）＋ 每個步驟 1 個小按鈕（聚焦該步）
   ──────────────────────────────────────────────────────────────────────── */
   var META = null;                                   // 目前這份測驗的 meta
+  var refreshCurrent = null;                         // 重畫目前這一題（提示／顯示題解用）
   var TPLS = (INDEX && INDEX.promptTemplates) || null;
   var PM_OPTS = ["simpler", "examples", "examTips", "visual", "practice"];
 
