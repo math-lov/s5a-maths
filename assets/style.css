@@ -123,6 +123,18 @@ body {
 }
 .section-title::after { content: ""; flex: 1; height: 1px; background: var(--line-soft); }
 
+/* ── 用法步驟（編號圓點 + 中英兩行）───────────────────────────────────── */
+.how { display: grid; gap: 12px; }
+.how-row { display: flex; gap: 12px; align-items: flex-start; }
+.how-n {
+  flex: none; width: 26px; height: 26px; border-radius: 50%; margin-top: 4px;
+  background: var(--blue-soft); color: var(--blue-ink);
+  font-weight: 800; font-size: 14px; display: grid; place-items: center;
+}
+.how-t { flex: 1; min-width: 0; font-size: 15.5px; line-height: 1.65; }
+.how-t .l-zh, .how-t .l-en { display: block; }
+.how-t .l-zh + .l-en { margin-top: 4px; }
+
 /* ── 語言切換 ─────────────────────────────────────────────────────────── */
 .langbar { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; background: var(--card); overflow: hidden; }
 .langbar button {

@@ -1,6 +1,6 @@
 {
   "site": {
-    "name": { "zh": "5A 數學溫習站", "en": "S.5A Maths Revision" },
+    "name": { "zh": "5A 數學溫習站", "en": "5A Maths Revision" },
     "llmPrompt": true,
     "tagline": {
       "zh": "中五A班專用 · 逐題檢討，一題一頁",

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>5A 數學溫習站 · 中五A班</title>
+<title>5A 數學溫習站 · 5A Maths Revision</title>
 <meta name="description" content="中五A班數學溫習站：校內測驗逐題檢討，每題一頁，題目與題解中英對照，一鍵切換中英文。">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
 <link rel="stylesheet" href="assets/style.css">
@@ -12,7 +12,7 @@
 
 <div class="topbar">
   <div class="inner">
-    <div class="brand">5A 數學溫習站<small>S.5A Maths Revision</small></div>
+    <div class="brand">5A 數學溫習站<small>5A Maths Revision</small></div>
     <div class="spacer"></div>
     <span id="lang-slot"></span>
   </div>
@@ -26,7 +26,7 @@
   <span class="doodle d-star" aria-hidden="true"></span>
   <div class="wrap">
     <div class="hero">
-      <h1><span class="l-zh">中五A班 · 測驗逐題檢討</span><span class="l-en">S.5A · Quiz Review, Question by Question</span></h1>
+      <h1>S.5A · Quiz Review, Question by Question</h1>
       <p id="site-stats">載入中…</p>
     </div>
   </div>
@@ -34,10 +34,16 @@
 
 <div class="wrap">
   <div class="card safety-note" style="margin-top:18px">
-    <span class="l-zh"><b>這裡沒有分數，也沒有排名。</b>
-    答錯只代表「還未學到」，不代表你不行；「已掌握」的記錄只存在你自己的瀏覽器裡，隨時可以重新開始。</span>
-    <span class="l-en"><b>No scores here, and no ranking.</b>
-    Getting one wrong only means "not yet" — not that you can't. Your "mastered" marks stay in your own browser and you can start over any time.</span>
+    <p style="margin:0">
+      <span class="l-zh"><b>這裡沒有分數，也沒有排名。</b>
+      答錯只代表「還未學到」，不代表你不行；「已掌握」的記錄只存在你自己的瀏覽器裡，隨時可以重新開始。</span>
+      <span class="l-en"><b>No scores here, and no ranking.</b>
+      Getting one wrong only means "not yet" — not that you can't. Your "mastered" marks stay in your own browser and you can start over any time.</span>
+    </p>
+    <div class="sol-hint bi" style="margin-top:12px">
+      <span class="l-zh">本站的讀法是「<b>先試，後明白（try first, understand later）</b>」：先在紙上自己做一次；卡住了才按提示鍵要一個小提示；做完才看完整題解。<b>直接看答案，是最快忘記的方法。</b></span>
+      <span class="l-en">How this site works: <b>"try first, understand later"</b> — work every question out on paper yourself; ask the hint key for one small nudge only when you are stuck; read the full explanation after you have finished. <b>Reading the answer straight away is the fastest way to forget it.</b></span>
+    </div>
   </div>
 
   <div class="section-title"><span class="l-zh">測驗檢討</span><span class="l-en">Quiz reviews</span></div>
@@ -45,18 +51,70 @@
 
   <div class="section-title"><span class="l-zh">用法</span><span class="l-en">How to use</span></div>
   <div class="card">
-    <p style="margin:0 0 8px"><b>1.</b>
-      <span class="l-zh">打開一份測驗 → 左上是題號（A1…A5、B1…Bonus），可按題號直接跳去任何一題。</span>
-      <span class="l-en">Open a quiz → the top strip shows question numbers (A1…A5, B1…Bonus); tap one to jump straight to it.</span></p>
-    <p style="margin:0 0 8px"><b>2.</b>
-      <span class="l-zh">每題一頁：題目與逐步題解同頁展示，選擇題可以按選項即時對答案。</span>
-      <span class="l-en">One question per page: the question and the worked solution are shown together; click an option to check instantly.</span></p>
-    <p style="margin:0 0 8px"><b>3.</b>
-      <span class="l-zh">想先自己做完才看題解？按右上角「收起題解」，做完再按「顯示題解」。</span>
-      <span class="l-en">Want to finish the paper first? Press 'Hide solutions' at the top, then 'Show solutions' when done.</span></p>
-    <p style="margin:0"><b>4.</b>
-      <span class="l-zh">右上角的「中文／EN／中英」一鍵切換全站語言（題目、選項與題解都有中英兩版）。</span>
-      <span class="l-en">The '中文／EN／中英' switch at the top right changes the language of the whole site (questions, options and solutions all have both versions).</span></p>
+    <div class="how">
+      <div class="how-row">
+        <div class="how-n">1</div>
+        <div class="how-t">
+          <span class="l-zh"><b>選一份檢討</b>：按下面「第 10 章 測驗檢討」進入。進入後最上面那條是題號（A1…A5、B1…Bonus），按任何一個可以直接跳去那一題；<b>每題一頁</b>。</span>
+          <span class="l-en"><b>Open a review</b>: tap "Chapter 10 Quiz Review" below. The top strip lists the question numbers (A1…A5, B1…Bonus) — tap one to jump straight to it. One question per page.</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-n">2</div>
+        <div class="how-t">
+          <span class="l-zh"><b>開工前先按右上角「收起題解」</b>：整頁只會剩題目，跟考試一樣，答案預先看不到。（預設是顯示題解，所以每次開始前都要先按這一下。）</span>
+          <span class="l-en"><b>Before you start, press "Hide solutions"</b> at the top right: only the question stays on screen, like in the exam, with nothing spoiling it. (Solutions are shown by default, so press this first every session.)</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-n">3</div>
+        <div class="how-t">
+          <span class="l-zh"><b>先自己做一次</b>：<br>
+          · 選擇題：點選項 → 按「檢查答案」；第一次錯只會顯示「再試一次」，同一題第二次錯才把正確答案標成綠色。<br>
+          · 長題目：先在紙上寫你自己的步驟，才去對答案。</span>
+          <span class="l-en"><b>Try it yourself first</b>:<br>
+          · Multiple choice: pick an option, then press "Check answer". One wrong attempt just says "Try again"; a second wrong attempt marks the correct answer in green.<br>
+          · Long questions: write your own working on paper first, then compare with the answer.</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-n">4</div>
+        <div class="how-t">
+          <span class="l-zh"><b>卡住了？用提示鍵（hint key）</b>：在「已收起題解」的狀態下會見到「顯示提示（第 n / N 步）」；<b>每按一次只揭曉下一步</b>，是「給方向」而不是直接給答案。揭到最後一步會出現「顯示全部題解」。用過幾多提示，網站會按題目記住。</span>
+          <span class="l-en"><b>Stuck? Use the hint key</b>: while solutions are hidden you will see "Show hint (step n / N)". <b>Each press reveals only the next step</b> — a nudge rather than the whole solution. Once you reach the last hint, "Show all steps" appears. How many hints you have opened is remembered per question.</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-n">5</div>
+        <div class="how-t">
+          <span class="l-zh"><b>做完（或提示用完）才看題解</b>：按右上角「顯示題解」或下面的「顯示全部題解」，一次過看到全部步驟（連 <b>(1M)</b> 方法分、<b>(1A)</b> 答案分）、圖、「為甚麼會選錯」的陷阱分析，以及「帶得走的技巧」。</span>
+          <span class="l-en"><b>Read the explanation after you finish</b>: press "Show solutions" at the top right, or "Show all steps" below it, to see every step at once (with <b>(1M)</b> method and <b>(1A)</b> accuracy marks), the figures, "why the other options are wrong", and the take-away tip.</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-n">6</div>
+        <div class="how-t">
+          <span class="l-zh"><b>覺得掌握了？</b>按題目下方的「標記為已掌握」，該題號會變成綠色 ✓。記錄只存在你自己的瀏覽器（既不上載，也不計分）：再按一次可取消，主目錄底部有「清除本機『已掌握』記錄」。</span>
+          <span class="l-en"><b>Got it?</b> Press "Mark as mastered" below the question and that question number turns green ✓. The record lives in your own browser only (nothing is uploaded and nothing is scored): press again to undo, or use "Clear my 'mastered' records" at the bottom of this page.</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-n">7</div>
+        <div class="how-t">
+          <span class="l-zh"><b>仍有唔明白？交給 AI 追問</b>：按題目下方的「複製提問 Prompt（整題）」，或每個步驟旁邊的「問 AI」—— 網站會自動幫你寫好題目、你的疑問和該步驟，<b>貼去任何 AI 都可以繼續追問</b>。</span>
+          <span class="l-en"><b>Still unsure? Hand it to an AI</b>: press "Copy prompt (whole question)" under the question, or "Ask AI" next to any step — the site writes the question, your doubt and that step into a prompt; <b>paste it into any AI and keep asking until it clicks</b>.</span>
+        </div>
+      </div>
+      <div class="how-row">
+        <div class="how-n">8</div>
+        <div class="how-t">
+          <span class="l-zh"><b>語言</b>：右上角「中文／EN／中英」一鍵切換。<b>題目與選項固定用英文</b>（與考試卷一致），詳解則中英並列。<br>
+          <b>← 上一題／下一題 →</b> 在每題最底；<b>「總覽」</b>可以看整份卷的題目一覽。</span>
+          <span class="l-en"><b>Language</b>: "中文／EN／中英" at the top right switches the whole site. <b>Questions and options stay in English</b> (as in the exam); explanations are bilingual.<br>
+          <b>← Previous / Next →</b> sit at the bottom of each page; <b>"Overview"</b> lists every question in the paper.</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="section-title"><span class="l-zh">之後會加</span><span class="l-en">Coming up</span></div>
