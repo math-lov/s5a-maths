@@ -86,7 +86,10 @@ console.log("\n== 首頁 ==");
 const home = boot("index.html", "");
 ok(home.$$(".part-btn").length === INDEX.parts.length,
   "首頁列出 " + INDEX.parts.length + " 份測驗（實際 " + home.$$(".part-btn").length + "）");
-ok(/共 \d+ 份測驗/.test((home.$("#site-stats") || {}).textContent || ""), "顯示全站統計");
+ok(home.$("#site-stats") === null, "首頁不再顯示全站統計（共 N 份測驗… 已刪除）");
+ok(!!home.$(".hero h1 .l-zh") && /5A 數學溫習站/.test(home.$(".hero h1 .l-zh").textContent) &&
+  /5A Maths Revision/.test(home.$(".hero h1 .l-en").textContent), "主標題：中文「5A 數學溫習站」／英文「5A Maths Revision」");
+ok(/先試後明白/.test(home.$(".safety-note").textContent), "安全卡載明「先試後明白」讀法");
 ok(!!home.$(".part-btn .ring"), "每份測驗都有進度環");
 ok(/11 題 · 38 分/.test((home.$(".part-btn .t-meta") || {}).textContent || ""), "顯示題數與分數");
 ok(!!home.$(".safety-note") && /沒有分數/.test(home.$(".safety-note").textContent), "有心理安全卡");
@@ -166,6 +169,10 @@ q1c.$("[data-check]").click();
 ok(q1c.store().done["ch10-A1"] === true, "答對會標記為已掌握");
 ok(!!q1c.$("[data-feedback=ok]"), "答對有綠色正確橫幅");
 ok(q1c.$$("#pagenav .pg")[1].classList.contains("done"), "分頁列的 A1 打勾");
+ok(!!q1c.$(".answer-box.sol-answer") && q1c.$(".answer-box").classList.contains("on"),
+  "答對後答案欄揭曉（.sol-answer.on）");
+ok(/已掌握 1 \/ 11 題/.test((q1c.$("#quiz-progress") || {}).textContent || ""),
+  "進度文字正常（不再是 [object Object]）");
 
 /* 逐步提示（KA hint 模式） */
 const qh = boot("quiz.html", "?c=ch10-test&p=1");
@@ -178,6 +185,13 @@ qh.$("[data-hint]").click();
 ok(qh.$$(".sol-card .steps .step").length === 2, "再按一次 → 顯示第 2 步");
 ok(!!qh.$(".sol-card .sol-extra"),
   "陷阱與技巧放在 .sol-extra（收起題解時由 CSS 隱藏，揭曉完才出現）");
+ok(!!qh.$(".answer-box.sol-answer") && !qh.$(".answer-box").classList.contains("on"),
+  "收起題解且未作答時，答案欄未揭曉（收起題解不再顯示答案）");
+const cssText = read("assets/style.css");
+ok(!/\.sol-card \.sol-body\s*\{\s*display:\s*none/.test(cssText),
+  "style.css 不再收起 .sol-body（否則按「顯示提示」無反應）");
+ok(/\[data-sol="hide"\] \.sol-card \.sol-answer\b/.test(cssText),
+  "style.css 有「收起題解時一併收起答案欄」的規則");
 
 /* ── 一鍵複製 LLM 提問 Prompt ────────────────────────────────────────── */
 console.log("\n== LLM 提問 Prompt ==");

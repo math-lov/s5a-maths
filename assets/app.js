@@ -108,12 +108,13 @@
   function loadStore() {
     try {
       var s = JSON.parse(localStorage.getItem(PROG_KEY)) || {};
-      s.done = s.done || {};      // { qid: true }
-      s.picked = s.picked || {};  // { qid: "A" | "B" | ... }
-      s.hints = s.hints || {};    // { qid: 已顯示的提示步數 }
+      s.done = s.done || {};         // { qid: true }
+      s.picked = s.picked || {};     // { qid: "A" | "B" | ... }
+      s.hints = s.hints || {};       // { qid: 已顯示的提示步數 }
+      s.revealed = s.revealed || {}; // { qid: true } 答案已揭曉（收起題解時才顯示答案欄）
       return s;
     } catch (e) {
-      return { done: {}, picked: {}, hints: {} };
+      return { done: {}, picked: {}, hints: {}, revealed: {} };
     }
   }
   var store = loadStore();
@@ -383,7 +384,7 @@
     if (rb) rb.onclick = function () {
       var ask = getLang() === "en" ? UI.resetAsk.en : UI.resetAsk.zh;
       if (!confirm(ask)) return;
-      store = { done: {}, picked: {} };
+      store = { done: {}, picked: {}, hints: {}, revealed: {} };
       saveStore();
       location.reload();
     };
@@ -517,7 +518,7 @@
     else renderQuestion(body, p, pages, cur, id, part);
 
     var stat = qs("#quiz-progress");
-    if (stat) stat.textContent = progressText(part);
+    if (stat) setProgress(stat, part);
   }
 
   function renderOverview(body, part, pages, id) {
@@ -730,6 +731,11 @@
       }
       function lockAll(ans) {
         state.locked = true;
+        /* 答案已揭曉 → 收起題解時答案欄也要跟著出現 */
+        store.revealed[q.id] = true;
+        saveStore();
+        var revealAb = qs(".sol-answer");
+        if (revealAb) revealAb.classList.add("on");
         qsa(".opt", opts).forEach(function (b) {
           b.disabled = true;
           b.classList.remove("picked");
@@ -816,7 +822,9 @@
   }
 
   function answerBox(q) {
-    var box = el("div", "answer-box");
+    /* .sol-answer：收起題解時一併收起；答完／揭完（.on）才顯示 */
+    var box = el("div", "answer-box sol-answer");
+    if (store.revealed[q.id]) box.classList.add("on");
     var ah = el("span", "ah");
     ah.appendChild(pairSpan(UI.answer));
     box.appendChild(ah);

@@ -86,6 +86,7 @@ body {
 .hero { padding: 24px 0 8px; }
 .hero h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.25; font-weight: 800; letter-spacing: -.02em; }
 .hero p { margin: 0; color: var(--muted); font-size: 15.5px; }
+.hero h1 .l-zh, .hero h1 .l-en { display: block; }
 
 /* ── 首頁：KA 式淺藍橫幅 + 手繪裝飾 ───────────────────────────────────── */
 .ka-band {
@@ -328,8 +329,11 @@ body[data-lang="both"] .l-en { opacity: .82; }
 
 /* ── 題解 ─────────────────────────────────────────────────────────────── */
 /* 想先自己做的同學：按「收起題解」→ 可一步步要提示（KA hint 模式） */
-body[data-sol="hide"] .sol-card .sol-body { display: none; }
 body[data-sol="hide"] .sol-card .sol-extra { display: none; }
+/* 答案欄：收起題解時要一併收起（答完／揭完加上 .on 才顯示）
+   注意：不可收起 .sol-body —— 提示（hint）模式就是逐少把步驟放進 .sol-body */
+body[data-sol="hide"] .sol-card .sol-answer { display: none; }
+body[data-sol="hide"] .sol-card .sol-answer.on { display: block; }
 body[data-sol="show"] .sol-hint { display: none; }
 body[data-sol="show"] .hint-row { display: none; }
 .hint-row { display: grid; gap: 8px; margin-top: 12px; }
