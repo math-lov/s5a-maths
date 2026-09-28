@@ -277,7 +277,7 @@
         {
           "id": "ch17-2-sc",
           "code": "SC",
-          "type": "long",
+          "type": "tf",
           "marks": 7,
           "difficulty": 1,
           "stem": {
@@ -294,13 +294,13 @@
             { "label": "(g)", "en": "The number of permutations of 6 distinct objects is the same as the number of permutations of selecting 5 objects from 6 distinct objects.", "zh": "6 件相異物件全取排列的數目，與從 6 件中選 5 件排列的數目相同。", "marks": 1 }
           ],
           "answers": [
-            { "part": "(a)", "math": "\\text{Correct}", "note": { "zh": "正確", "en": "Correct" } },
-            { "part": "(b)", "math": "\\text{Correct}", "note": { "zh": "正確", "en": "Correct" } },
-            { "part": "(c)", "math": "\\text{Incorrect}", "note": { "zh": "錯誤，應為 $9!$", "en": "Incorrect: it is $9!$" } },
-            { "part": "(d)", "math": "\\text{Correct}", "note": { "zh": "正確", "en": "Correct" } },
-            { "part": "(e)", "math": "\\text{Incorrect}", "note": { "zh": "錯誤，應為 $4! \\times 4! \\times 2 = 1152$", "en": "Incorrect: it is $4! \\times 4! \\times 2 = 1152$" } },
-            { "part": "(f)", "math": "\\text{Incorrect}", "note": { "zh": "錯誤，兩者同為 $8! = 40320$", "en": "Incorrect: both equal $8! = 40320$" } },
-            { "part": "(g)", "math": "\\text{Correct}", "note": { "zh": "正確，兩者都是 $720$", "en": "Correct: both are $720$" } }
+            { "part": "(a)", "tf": true, "math": "\\text{Correct}", "note": { "zh": "正確", "en": "Correct" } },
+            { "part": "(b)", "tf": true, "math": "\\text{Correct}", "note": { "zh": "正確", "en": "Correct" } },
+            { "part": "(c)", "tf": false, "math": "\\text{Incorrect}", "note": { "zh": "錯誤，應為 $9!$", "en": "Incorrect: it is $9!$" } },
+            { "part": "(d)", "tf": true, "math": "\\text{Correct}", "note": { "zh": "正確", "en": "Correct" } },
+            { "part": "(e)", "tf": false, "math": "\\text{Incorrect}", "note": { "zh": "錯誤，應為 $4! \\times 4! \\times 2 = 1152$", "en": "Incorrect: it is $4! \\times 4! \\times 2 = 1152$" } },
+            { "part": "(f)", "tf": false, "math": "\\text{Incorrect}", "note": { "zh": "錯誤，兩者同為 $8! = 40320$", "en": "Incorrect: both equal $8! = 40320$" } },
+            { "part": "(g)", "tf": true, "math": "\\text{Correct}", "note": { "zh": "正確，兩者都是 $720$", "en": "Correct: both are $720$" } }
           ],
           "solution": {
             "steps": [

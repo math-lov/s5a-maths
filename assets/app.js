@@ -33,6 +33,11 @@
     backOverview: { zh: "回總覽", en: "Overview" },
     mark: { zh: "標記為已掌握", en: "Mark as mastered" },
     marked: { zh: "已掌握 ✓", en: "Mastered ✓" },
+    /* 判斷題（Section Check）逐小題作答 */
+    tfTrue: { zh: "正確", en: "Correct" },
+    tfFalse: { zh: "錯誤", en: "Incorrect" },
+    tfRetry: { zh: "再試一次", en: "Try again" },
+    tfAll: { zh: "這一題全部小題都答對了 ✓", en: "All parts of this question are correct ✓" },
     secA: { zh: "甲部", en: "Sec A" },
     secB: { zh: "乙部", en: "Sec B" },
     classwork: { zh: "課本練習", en: "Classwork" },
@@ -115,9 +120,10 @@
       s.done = s.done || {};      // { qid: true }
       s.picked = s.picked || {};  // { qid: "A" | "B" | ... }
       s.hints = s.hints || {};    // { qid: 已顯示的提示步數 }
+      s.tf = s.tf || {};          // 判斷題逐小題：{ "qid/(a)": true }
       return s;
     } catch (e) {
-      return { done: {}, picked: {}, hints: {} };
+      return { done: {}, picked: {}, hints: {}, tf: {} };
     }
   }
   var store = loadStore();
@@ -466,7 +472,7 @@
     if (rb) rb.onclick = function () {
       var ask = getLang() === "en" ? UI.resetAsk.en : UI.resetAsk.zh;
       if (!confirm(ask)) return;
-      store = { done: {}, picked: {}, hints: {} };
+      store = { done: {}, picked: {}, hints: {}, tf: {} };
       saveStore();
       location.reload();
     };
@@ -850,7 +856,7 @@
       var ul = el("ul", "q-parts");
       q.parts.forEach(function (pt) {
         var li = el("li");
-        li.appendChild(el("span", "lab", pt.label || ""));
+        if (pt.label) li.appendChild(el("span", "lab", pt.label));
         var v;
         if (pt.zh) {
           v = pair(pt, "div", "bi");
@@ -868,6 +874,88 @@
         ul.appendChild(li);
       });
       card.appendChild(ul);
+    }
+
+    /* 判斷題（Section Check）：每小題都像 MC 一樣，可以點「正確／錯誤」即時對答案 */
+    if (q.type === "tf" && (q.parts || []).length) {
+      var tfParts = q.parts;
+      var tfAns = {};
+      (q.answers || []).forEach(function (a) { if (a.part != null) tfAns[a.part] = a; });
+      var tfKey = function (label) { return q.id + "/" + (label || ""); };
+      function tfDoneCount() {
+        var n = 0;
+        tfParts.forEach(function (p) { if (store.tf[tfKey(p.label)]) n++; });
+        return n;
+      }
+      function tfAllDone() {
+        if (tfDoneCount() === tfParts.length) {
+          if (!store.done[q.id]) {
+            store.done[q.id] = true;
+            saveStore();
+            var tb = qs("#pagenav .pg.current");
+            if (tb) tb.classList.add("done");
+            setProgress(qs("#quiz-progress"), PART);
+          }
+          toast(UI.tfAll);
+        }
+      }
+      var tfBox = el("div", "tf-parts");
+      tfParts.forEach(function (pt) {
+        var a = tfAns[pt.label] || {};
+        var st = { tries: 0, locked: false };
+        var btns = {};
+        var item = el("div", "tf-item");
+        var head = el("div", "tf-head");
+        if (pt.label) head.appendChild(el("span", "lab", pt.label));
+        var txt = el("div", "tf-text");
+        if (pt.zh) txt.appendChild(pair(pt, "div", "bi"));
+        else { richInto(txt, pt.en || ""); autoRender(txt); }
+        head.appendChild(txt);
+        if (pt.marks) {
+          var mk = el("span", "mk");
+          mk.appendChild(pairSpan({ zh: "(" + pt.marks + " 分)", en: "(" + pt.marks + " marks)" }));
+          head.appendChild(mk);
+        }
+        item.appendChild(head);
+
+        var row = el("div", "tf-row");
+        [["T", "✓", UI.tfTrue], ["F", "✗", UI.tfFalse]].forEach(function (o) {
+          var b = el("button", "tf-opt");
+          b.dataset.tf = o[0];
+          b.appendChild(el("span", "tf-mark", o[1]));
+          b.appendChild(pairSpan(o[2]));
+          b.onclick = function () { pick(o[0]); };
+          btns[o[0]] = b;
+          row.appendChild(b);
+        });
+        item.appendChild(row);
+        tfBox.appendChild(item);
+
+        function revealAnswer() {
+          st.locked = true;
+          Object.keys(btns).forEach(function (k) {
+            btns[k].disabled = true;
+            if ((k === "T") === (a.tf === true)) btns[k].classList.add("correct");
+          });
+        }
+        function pick(choice) {
+          if (st.locked) return;
+          st.tries++;
+          if ((choice === "T") === (a.tf === true)) {
+            store.tf[tfKey(pt.label)] = true;
+            saveStore();
+            revealAnswer();
+            tfAllDone();
+          } else if (st.tries >= 2) {
+            revealAnswer();
+          } else {
+            btns[choice].classList.add("wrong");
+            toast(UI.tfRetry);
+          }
+        }
+        if (store.tf[tfKey(pt.label)]) revealAnswer();
+      });
+      card.appendChild(tfBox);
     }
 
     /* MC 選項：先選一個 → 按「檢查答案」→ 綠／紅回饋橫幅（KA 式）

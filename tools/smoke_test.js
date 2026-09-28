@@ -408,6 +408,56 @@ ok(!!crumb && /chapter\.html\?ch=ch17/.test(crumb.getAttribute("href") || ""),
 const cSc = boot("quiz.html", "?c=ch17-2&p=5");
 ok(!!cSc.$('.q-card[data-qid="ch17-2-sc"]'), "第 5 頁是 Section Check 判斷題");
 ok(cSc.$$(".answer-box .a-row").length === 7, "判斷題有 7 個答案 (a)–(g)");
+ok(cSc.$$(".tf-item").length === 7, "判斷題有 7 個可作答小題");
+ok(cSc.$$(".tf-opt").length === 14, "每小題有「正確／錯誤」兩個按鈕");
+ok(cSc.$$(".tf-opt[disabled]").length === 0, "未作答前按鈕可以按");
+
+/* 判斷題互動：答對、答錯兩次、全對、重開頁面 */
+const P172_JS = read("data/ch17-2.js");
+const P172_DATA = JSON.parse(P172_JS.slice(P172_JS.indexOf("{"), P172_JS.lastIndexOf("}") + 1));
+const scQ = P172_DATA.sections
+  .reduce((acc, s) => acc.concat(s.questions || []), [])
+  .filter((q) => q.id === "ch17-2-sc")[0] || { parts: [], answers: [] };
+const scAns = {};
+(scQ.answers || []).forEach((a) => { scAns[a.part] = a.tf; });
+ok(Object.keys(scAns).length === 7 && scQ.parts.length === 7,
+  "判斷題資料齊全（7 小題、每個都有 tf 答案）");
+
+const scT = boot("quiz.html", "?c=ch17-2&p=5");
+const scItem0 = scT.$$(".tf-item")[0];
+const scBtn0 = Array.prototype.slice.call(scItem0.querySelectorAll(".tf-opt"))
+  .filter((b) => b.dataset.tf === (scAns[scQ.parts[0].label] ? "T" : "F"))[0];
+scBtn0.click();
+ok(scT.store().tf && scT.store().tf["ch17-2-sc/(a)"] === true, "答對小題會記錄在 localStorage");
+ok(scItem0.querySelectorAll(".tf-opt[disabled]").length === 2, "答對後該小題的按鈕鎖定");
+ok(!!scItem0.querySelector(".tf-opt.correct"), "答對的按鈕標綠");
+ok(!scT.store().done["ch17-2-sc"], "只答對 1 小題，未算整題已掌握");
+
+const scW = boot("quiz.html", "?c=ch17-2&p=5");
+const scWItem = scW.$$(".tf-item")[1];
+const scWrong = Array.prototype.slice.call(scWItem.querySelectorAll(".tf-opt"))
+  .filter((b) => b.dataset.tf === (scAns[scQ.parts[1].label] ? "F" : "T"))[0];
+scWrong.click();
+ok(scWrong.classList.contains("wrong"), "第一次答錯標紅");
+ok(!scWItem.querySelector(".tf-opt.correct"), "第一次答錯不揭示正確答案");
+scWrong.click();
+ok(!!scWItem.querySelector(".tf-opt.correct"), "第二次答錯揭示正確答案");
+
+const scAll = boot("quiz.html", "?c=ch17-2&p=5");
+scAll.$$(".tf-item").forEach((it, i) => {
+  const want = scAns[scQ.parts[i].label] ? "T" : "F";
+  Array.prototype.slice.call(it.querySelectorAll(".tf-opt"))
+    .filter((b) => b.dataset.tf === want)[0].click();
+});
+ok(scAll.store().done["ch17-2-sc"] === true, "7 小題全對 → 整題標記為已掌握");
+ok(scAll.$$("#pagenav .pg")[5].classList.contains("done"), "分頁列的 SC 打勾");
+
+const scBack = boot("quiz.html", "?c=ch17-2&p=5", JSON.stringify({
+  done: { "ch17-2-sc": true }, picked: {}, hints: {},
+  tf: { "ch17-2-sc/(a)": true }
+}));
+ok(scBack.$$(".tf-item")[0].querySelectorAll(".tf-opt[disabled]").length === 2,
+  "重開頁面：已答對的小題保持鎖定");
 
 const cLast = boot("quiz.html", "?c=ch17-2&p=36");
 ok(!!cLast.$('.q-card[data-qid="ch17-2-ct-31"]'), "最後一頁是第 31 題（跨課題）");

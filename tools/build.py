@@ -15,6 +15,7 @@
   S7  角度一律用「度」：不可出現 rad／\\frac{\\pi}{}（本章無角度，仍保留閘門）
   S8  引用的圖（figures / steps[].figure）一定存在於 figures.json
   S9  每個課題都要有 answer / tip，tip 中英齊全
+  S12 判斷題（type=tf）：每個小題都要有答案，而且要有 tf: true／false
 """
 
 from __future__ import annotations
@@ -127,8 +128,8 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
         if key not in q:
             err("S1 %s：缺少 %s" % (tag, key))
             return
-    if q["type"] not in ("mc", "long"):
-        err("S1 %s：type 只可以是 mc 或 long" % tag)
+    if q["type"] not in ("mc", "long", "tf"):
+        err("S1 %s：type 只可以是 mc、long 或 tf" % tag)
     stem = q.get("stem") or {}
     check_text(tag + " stem.en", stem.get("en", ""), need_zh=False)
     if not stem.get("zh"):
@@ -229,6 +230,17 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
     for a in q.get("answers") or []:
         if not a.get("math"):
             err("S9 %s：answers[].math 不可空" % tag)
+
+    if q["type"] == "tf":
+        ans_by_part = {}
+        for a in q.get("answers") or []:
+            ans_by_part[a.get("part")] = a
+        for p in q.get("parts") or []:
+            a = ans_by_part.get(p.get("label"))
+            if not a:
+                err("S12 %s：判斷題每個小題都要有答案（缺少 %s）" % (tag, p.get("label")))
+            elif not isinstance(a.get("tf"), bool):
+                err("S12 %s：判斷題的答案要有 tf: true 或 false（%s）" % (tag, p.get("label")))
 
 
 # ── 生成 JS ─────────────────────────────────────────────────────────────────
