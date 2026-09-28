@@ -3,7 +3,10 @@
 中五A班的校內測驗檢討網站。**每題一頁**：題目（英文，跟試卷一樣）＋ 逐步題解（中英對照，可切換）。
 純靜態（HTML／CSS／JS，無框架、無 build step），KaTeX 自托管，可以離線開啟，也可以放上 GitHub Pages。
 
-線上版：`https://math-lov.github.io/s5a-maths/`（部署後）
+線上版：`https://math-lov.github.io/s5a-maths/`（已上線）
+
+> **要加新內容（新測驗／新章節）？先讀 [`docs/ADD-CONTENT-HANDOFF.md`](docs/ADD-CONTENT-HANDOFF.md)**：
+> 有檔案地圖、題目 JSON 骨架、五步流程、檢查清單，以及 2026-09-28 老師訂下的四條內容規則。
 
 ## 目錄
 
@@ -30,8 +33,8 @@ vendor/katex/           自托管 KaTeX（0.16.x）
 ## 日常流程
 
 ```powershell
-cd "C:\Code Buddy\S5A\site"
-$py = "python"
+cd "C:\Code Buddy\s5a-maths"
+$py = "python -X utf8"
 
 # 1) 改完 data/src/*.json 之後：檢查 + 生成
 & $py tools/build.py            # 0 錯誤 0 警告才繼續
