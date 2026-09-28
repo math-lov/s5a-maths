@@ -66,6 +66,22 @@
     markLegend: {
       zh: "步驟分圖例：(1M)＝方法分（Method mark）；(1A)＝答案分（Accuracy mark）",
       en: "Marking codes: (1M) = method mark; (1A) = accuracy (answer) mark"
+    },
+    /* 「一鍵複製 LLM 提問 Prompt」介面文字 */
+    copyPrompt: { zh: "複製提問 Prompt（整題）", en: "Copy prompt (whole question)" },
+    askStep: { zh: "問 AI", en: "Ask AI" },
+    pmTitle: {
+      zh: "複製提問 Prompt —— 可貼到任何 AI 再追問",
+      en: "Copy a prompt — paste it into any AI and keep asking"
+    },
+    pmDoubt: { zh: "我唔明白的地方（可留空，越具體越好）", en: "What I don't understand (optional — be specific)" },
+    pmCopy: { zh: "複製", en: "Copy" },
+    pmClose: { zh: "關閉", en: "Close" },
+    pmCopied: { zh: "已複製 —— 可以貼去 AI 再問", en: "Copied — paste it into your AI" },
+    pmCopyFail: { zh: "複製失敗，請手動選取下面的文字複製", en: "Copy failed — please select the text below and copy manually" },
+    pmHint: {
+      zh: "先寫下你卡住的地方，勾選想要的選項，再按「複製」。下面的內容可以直接修改。",
+      en: "Write where you are stuck, tick the options you want, then press Copy. You can edit the text below directly."
     }
   };
 
@@ -401,6 +417,7 @@
         return;
       }
       PART = part;
+      META = meta;
       var pages = buildPages(part);
       var cur = Math.min(pageFromUrl(), pages.length - 1);
 
@@ -720,7 +737,7 @@
     return box;
   }
 
-  function solutionCard(q) {
+  function solutionCard(q, sec) {
     var card = el("div", "card sol-card");
     var head = el("div", "sol-head");
     var h2 = el("h2");
@@ -735,7 +752,7 @@
     var sol = q.solution || {};
     var stepsHost = el("div", "steps");
     var lastPart = null;
-    (sol.steps || []).forEach(function (st) {
+    (sol.steps || []).forEach(function (st, i) {
       var box = el("div", "step");
       var h = el("h4");
       if (st.part && st.part !== lastPart) {
@@ -745,6 +762,14 @@
       var titleBox = el("span");
       titleBox.appendChild(pairSpan(st.title || {}));
       h.appendChild(titleBox);
+      /* 每個步驟旁的小按鈕：只聚焦這一步（prompt 即時生成，不額外維護） */
+      if (llmOn()) {
+        var sb = el("button", "pm-step");
+        sb.setAttribute("data-pm-step", String(i));
+        sb.appendChild(pairSpan(UI.askStep));
+        sb.onclick = function () { openPrompt({ q: q, sec: sec, step: st, index: i }); };
+        h.appendChild(sb);
+      }
       box.appendChild(h);
       if (st.math) {
         var f = el("div", "formula");
@@ -815,8 +840,16 @@
     var q = p.q;
     var qc = questionCard(q);
     qc.appendChild(pair(UI.hint, "div", "sol-hint bi"));
+    /* 每題的主按鈕：涵蓋整題的 prompt */
+    if (llmOn()) {
+      var pb = el("button", "btn btn-sm btn-prompt");
+      pb.setAttribute("data-pm-main", "1");
+      pb.appendChild(pairSpan(UI.copyPrompt));
+      pb.onclick = function () { openPrompt({ q: q, sec: p.sec }); };
+      qc.appendChild(pb);
+    }
     body.appendChild(qc);
-    body.appendChild(solutionCard(q));
+    body.appendChild(solutionCard(q, p.sec));
 
     var foot = el("div", "card foot-nav");
     var row = el("div", "row");
@@ -858,6 +891,226 @@
     body.appendChild(foot);
 
     if (solHidden()) scrollToTopOf(body);
+  }
+
+  /* ── 一鍵複製 LLM 提問 Prompt ─────────────────────────────────────────
+     設計：所有 prompt 都由「一份模板 + 題目資料」即時生成
+     （模板在 data/src/prompt-templates.json，中英各一份，跟隨語言切換）。
+     所以步驟增減、文字改動都不需要另外維護 prompt。
+       每題 1 個主按鈕（整題）＋ 每個步驟 1 個小按鈕（聚焦該步）
+  ──────────────────────────────────────────────────────────────────────── */
+  var META = null;                                   // 目前這份測驗的 meta
+  var TPLS = (INDEX && INDEX.promptTemplates) || null;
+  var PM_OPTS = ["simpler", "examples", "examTips", "visual", "practice"];
+
+  function llmOn() {
+    return !!(TPLS && (INDEX.site || {}).llmPrompt !== false);
+  }
+  function tpl() {
+    return TPLS ? TPLS[getLang() === "en" ? "en" : "zh"] : null;
+  }
+  /* 取值：字串直接用；{zh,en} 物件按語言取 */
+  function biText(v, en) {
+    if (!v) return "";
+    if (typeof v === "object") {
+      var s = en ? (v.en || v.zh) : (v.zh || v.en);
+      return s || "";
+    }
+    return v;
+  }
+
+  /* 步驟標題本身已含「第 N 步／Step N」，不要再補一次編號 */
+  function stepLabel(st, no, en) {
+    var ttl = biText(st && st.title, en) || "";
+    var hasNo = en ? /^Step\s*\d/i.test(ttl) : /^第\s*\d/.test(ttl);
+    if (hasNo) return ttl;
+    return (en ? "Step " : "第 ") + no + (en ? "：" : " 步：") + ttl;
+  }
+
+  function buildPrompt(o) {
+    var t = tpl();
+    if (!t) return "";
+    var en = getLang() === "en";
+    var h = t.headings || {};
+    var L = [];
+    L.push(t.role);
+    L.push("");
+    L.push(t.student);
+    L.push("");
+    // 出處與題號
+    var src = [];
+    if (META && META.title) src.push(biText(META.title, en));
+    if (PART && PART.meta) src.push([PART.meta.paper, PART.meta.date].filter(Boolean).join(en ? ", " : "，"));
+    L.push("## " + h.source);
+    if (src.length) L.push("- " + src.join(en ? " · " : " · "));
+    L.push("- " + h.question + (en ? ": " : "：") + o.q.code +
+      (en ? " (" : "（") + biText(o.sec && o.sec.title, en) +
+      (en ? ", " : "，") + o.q.marks + (en ? " marks)" : " 分）"));
+    L.push("");
+    // 題目
+    L.push("## " + h.stemEn);
+    L.push(biText(o.q.stem && o.q.stem.en, en));
+    L.push("");
+    L.push("## " + h.stemZh);
+    L.push(biText(o.q.stem && o.q.stem.zh, en));
+    L.push("");
+    // 選項／小題
+    var items = [];
+    if (o.q.type === "mc") {
+      ["A", "B", "C", "D"].forEach(function (k) {
+        var v = (o.q.options || {})[k];
+        if (v) items.push(k + ". " + biText(v, en));
+      });
+      items.push((en ? "Given answer: " : "標準答案：") + o.q.answer);
+    } else {
+      (o.q.parts || []).forEach(function (p) {
+        var line = (p.label ? p.label + " " : "") + biText({ zh: p.zh, en: p.en }, en);
+        if (p.marks) line += " (" + p.marks + (en ? " marks" : " 分") + ")";
+        items.push(line);
+      });
+    }
+    if (items.length) {
+      L.push("## " + h.items);
+      items.forEach(function (s) { L.push("- " + s); });
+      L.push("");
+    }
+    // 聚焦範圍
+    L.push("## " + h.focus);
+    if (o.step) {
+      L.push(t.focusStep.replace("{n}", String(o.index + 1))
+        .replace("{title}", stepLabel(o.step, o.index + 1, en)));
+    } else {
+      L.push(t.focusAll);
+    }
+    L.push("");
+    // 學生目前的理解（整題＝全部步驟；步驟模式＝只有該步）
+    L.push("## " + h.existing);
+    var steps = o.step ? [o.step] : ((o.q.solution && o.q.solution.steps) || []);
+    steps.forEach(function (st, i) {
+      var no = o.step ? (o.index + 1) : (i + 1);
+      L.push(stepLabel(st, no, en));
+      if (st.math) L.push("$$" + st.math + "$$");
+      var body = biText({ zh: st.zh, en: st.en }, en) || biText(st.title, en);
+      if (body) L.push(body);
+      L.push("");
+    });
+    // 疑惑點
+    L.push("## " + h.doubt);
+    var dt = (o.doubt || "").trim();
+    L.push(dt || (en
+      ? "(Not filled in — please guess the two mistakes I am most likely to make here and explain them.)"
+      : "（未填寫 —— 請你估計我喺呢一步最常犯嘅兩個錯誤，並解釋清楚。）"));
+    L.push("");
+    // 要求（含勾選項）
+    L.push("## " + h.requirements);
+    (t.requirements || []).forEach(function (s) { L.push("- " + s); });
+    (o.opts || []).forEach(function (k) { if (t.options && t.options[k]) L.push("- " + t.options[k]); });
+    L.push("");
+    // 輸出格式
+    L.push("## " + h.format);
+    (t.format || []).forEach(function (s) { L.push(s); });
+    return L.join("\n");
+  }
+
+  function copyText(s) {
+    function ok() { toast(UI.pmCopied); }
+    function legacy() {
+      try {
+        var ta = el("textarea");
+        ta.value = s;
+        ta.style.position = "fixed";
+        ta.style.top = "-1000px";
+        document.body.appendChild(ta);
+        ta.select();
+        var done = document.execCommand ? document.execCommand("copy") : false;
+        document.body.removeChild(ta);
+        if (done) ok(); else toast(UI.pmCopyFail);
+      } catch (e) {
+        toast(UI.pmCopyFail);
+      }
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(s).then(ok, legacy);
+        return;
+      }
+    } catch (e) { /* 退回手動複製 */ }
+    legacy();
+  }
+
+  function openPrompt(o) {
+    var t = tpl();
+    var wrap = el("div", "prompt-modal");
+    var box = el("div", "pm-box");
+    var chosen = {};
+    var doubt, ta;
+
+    var head = el("div", "pm-head");
+    var ht = el("h3");
+    ht.appendChild(pairSpan(UI.pmTitle));
+    head.appendChild(ht);
+    var x = el("button", "pm-x", "×");
+    x.setAttribute("aria-label", "close");
+    x.onclick = close;
+    head.appendChild(x);
+    box.appendChild(head);
+
+    var hint = el("div", "pm-hint");
+    hint.appendChild(pairSpan(UI.pmHint));
+    box.appendChild(hint);
+
+    var optsBox = el("div", "pm-opts");
+    PM_OPTS.forEach(function (k) {
+      var lab = el("label", "pm-opt");
+      var cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.setAttribute("data-opt", k);
+      cb.onchange = function () { chosen[k] = cb.checked; refresh(); };
+      var sp = el("span");
+      sp.appendChild(pairSpan({ zh: (t.optionLabels || {})[k] || k, en: (t.optionLabels || {})[k] || k }));
+      lab.appendChild(cb);
+      lab.appendChild(sp);
+      optsBox.appendChild(lab);
+    });
+    box.appendChild(optsBox);
+
+    doubt = el("textarea", "pm-doubt");
+    doubt.rows = 2;
+    doubt.placeholder = t.doubtPlaceholder || "";
+    doubt.oninput = refresh;
+    box.appendChild(doubt);
+
+    ta = el("textarea", "pm-preview");
+    ta.rows = 12;
+    ta.setAttribute("data-pm-preview", "1");
+    box.appendChild(ta);
+
+    var acts = el("div", "pm-actions");
+    var bc = el("button", "btn btn-primary");
+    bc.setAttribute("data-pm-copy", "1");
+    bc.appendChild(pairSpan(UI.pmCopy));
+    bc.onclick = function () { copyText(ta.value); };
+    var bx = el("button", "btn btn-ghost");
+    bx.appendChild(pairSpan(UI.pmClose));
+    bx.onclick = close;
+    acts.appendChild(bc);
+    acts.appendChild(bx);
+    box.appendChild(acts);
+
+    wrap.appendChild(box);
+    document.body.appendChild(wrap);
+    wrap.onclick = function (e) { if (e.target === wrap) close(); };
+
+    function refresh() {
+      o.opts = Object.keys(chosen).filter(function (k) { return chosen[k]; });
+      o.doubt = doubt.value;
+      ta.value = buildPrompt(o);
+    }
+    function close() {
+      if (wrap.parentNode) wrap.parentNode.removeChild(wrap);
+    }
+    refresh();
+    return wrap;
   }
 
   /* ── 啟動 ───────────────────────────────────────────────────────────── */

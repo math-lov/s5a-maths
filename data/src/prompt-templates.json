@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "note": "LLM 提問 prompt 模板：全站所有「複製提問」按鈕都由這份模板 + 題目資料即時生成，改這裡就等於改全部 prompt（勿逐題 hardcode）。",
+  "zh": {
+    "role": "你是香港中學文憑試（HKDSE）數學科（必修部分）的資深補習老師，最叻係把解題步驟拆到最細，照顧基礎較弱的學生。",
+    "student": "我是 DSE 數學科的中五考生，基礎較弱，正在溫習校本測驗。請用**繁體中文**及**香港數學用語**（因式分解、十字相乘、開方、數線、判別式、頂點、對稱軸）回答。",
+    "headings": {
+      "source": "出處",
+      "question": "題號",
+      "stemEn": "原題（英文）",
+      "stemZh": "題目（中文）",
+      "items": "選項／小題",
+      "focus": "我想問的部分",
+      "existing": "我目前的理解（可能不完整或有錯）",
+      "doubt": "我唔明白的地方",
+      "requirements": "解釋要求",
+      "format": "請用以下格式回答"
+    },
+    "focusAll": "我想你解釋【整題】——由讀題、設式到得出答案。",
+    "focusStep": "我卡在【第 {n} 步】：{title}",
+    "requirements": [
+      "由淺入深：每一步都要解釋「點解要咁做」，不可以只寫算式。",
+      "不可以跳步；涉及乘／除以負數而需要變號的地方要特別提醒我。",
+      "多用簡單例子：先講概念，再代入這題的數字。",
+      "不要用我下面提供的解法照抄或只換幾個字，請換另一個角度（圖像／數線／表格／具體數字例子）重新講一次。",
+      "如果我下面的步驟有錯，請直接話我知錯在第幾步、正確應該點做。"
+    ],
+    "format": [
+      "先用 2–3 句講清這一題／這一步的核心概念。",
+      "分點、逐步推導，每一步標明用到的公式或性質。",
+      "小結（3–4 句）。",
+      "最後出 2 條自我檢查題（附簡答），等我確認自己係咪真係識。",
+      "全篇約 300–500 字，唔好長篇大論。"
+    ],
+    "doubtPlaceholder": "（例如：點解兩邊除以負數要轉向？／呢個 $\\frac{11}{6}$ 點樣計出嚟？）",
+    "optionLabels": {
+      "simpler": "用更簡單嘅說法（當我完全唔識）",
+      "examples": "畀 2 個數字唔同、做法一樣嘅例子",
+      "examTips": "教我考試時點樣唔會喺呢步失分",
+      "visual": "用圖像／數線／表格輔助解釋",
+      "practice": "出 1 條同類型練習題（先唔好畀答案）"
+    },
+    "options": {
+      "simpler": "我完全唔明，請用最簡單的說法（當我係初中程度）再講一次。",
+      "examples": "請額外畀 2 個數字唔同、但做法完全一樣的例子。",
+      "examTips": "請教我在 DSE 考試入面點樣避免在呢一步失分（應試技巧、常見伏位）。",
+      "visual": "請用圖像／數線／表格輔助解釋，令我更易睇得出規律。",
+      "practice": "最後出 1 條同類型練習題（先唔好畀答案，等我做完先對）。"
+    }
+  },
+  "en": {
+    "role": "You are an experienced tutor for the Hong Kong Diploma of Secondary Education (HKDSE) Mathematics (Compulsory Part), especially good at breaking solutions into the smallest steps for weaker students.",
+    "student": "I am an S.5 HKDSE mathematics student with a weak foundation, revising a school quiz. Please answer in **English** using standard Hong Kong maths wording (factorization, cross method, square root, number line, discriminant, vertex, axis of symmetry).",
+    "headings": {
+      "source": "Source",
+      "question": "Question",
+      "stemEn": "Question (English)",
+      "stemZh": "Question (Chinese)",
+      "items": "Options / parts",
+      "focus": "What I want to ask about",
+      "existing": "My current understanding (may be incomplete or wrong)",
+      "doubt": "What I do not understand",
+      "requirements": "Requirements for your explanation",
+      "format": "Please answer in this format"
+    },
+    "focusAll": "Please explain the **whole question** — from reading it to the final answer.",
+    "focusStep": "I am stuck at **Step {n}**: {title}",
+    "requirements": [
+      "Go from simple to deep: explain WHY at every step, not just the algebra.",
+      "Do not skip steps; point out clearly whenever a sign must be reversed (multiplying or dividing by a negative number).",
+      "Use simple examples: explain the idea first, then substitute this question's numbers.",
+      "Do not just copy or rephrase the solution I give below — explain it from another angle (graph / number line / table / concrete numerical example).",
+      "If any step below is wrong, tell me exactly which step is wrong and what it should be."
+    ],
+    "format": [
+      "Start with 2–3 sentences on the core idea of this question / this step.",
+      "Then a numbered, step-by-step derivation, naming the formula or property used at each step.",
+      "A short summary (3–4 sentences).",
+      "Finish with 2 self-check questions (with brief answers) so I can test myself.",
+      "Keep the whole answer to about 300–500 words — no long essays."
+    ],
+    "doubtPlaceholder": "(e.g. Why must the inequality sign reverse when dividing by a negative number? / How do we get $\\frac{11}{6}$?)",
+    "optionLabels": {
+      "simpler": "Explain it even more simply (assume I know nothing)",
+      "examples": "Give 2 more examples with different numbers but the same method",
+      "examTips": "Tell me how to avoid losing marks here in the DSE exam",
+      "visual": "Use a diagram / number line / table to explain",
+      "practice": "Set 1 similar practice question (no answer yet)"
+    },
+    "options": {
+      "simpler": "I do not understand at all — please explain again in the simplest possible way (as if I were a junior secondary student).",
+      "examples": "Please also give 2 further examples with different numbers but exactly the same method.",
+      "examTips": "Please tell me how to avoid losing marks at this step in the DSE exam (exam technique, common traps).",
+      "visual": "Please use a diagram, number line or table so the pattern is easier to see.",
+      "practice": "Finally, set 1 similar practice question (do not give the answer yet)."
+    }
+  }
+}

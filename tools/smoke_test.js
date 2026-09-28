@@ -50,6 +50,13 @@ function boot(page, search, storage) {
   });
   const ctx = dom.getInternalVMContext();
   ctx.window.confirm = () => true;
+  // 假的剪貼簿（jsdom 沒有 clipboard API）
+  try {
+    Object.defineProperty(ctx.window.navigator, "clipboard", {
+      configurable: true,
+      value: { writeText: (t) => { ctx.__clip = t; return Promise.resolve(); } },
+    });
+  } catch (e) { /* ignore */ }
   const scrolls = [];
   ctx.window.scrollTo = (x, y) => { scrolls.push(y); };
   if (storage) ctx.window.localStorage.setItem(PROG_KEY, storage);
@@ -148,6 +155,62 @@ const q1c = boot("quiz.html", "?c=ch10-test&p=1");
 q1c.$$(".opt").find((b) => b.dataset.opt === "B").click();
 ok(q1c.store().done["ch10-A1"] === true, "答對會標記為已掌握");
 ok(q1c.$$("#pagenav .pg")[1].classList.contains("done"), "分頁列的 A1 打勾");
+
+/* ── 一鍵複製 LLM 提問 Prompt ────────────────────────────────────────── */
+console.log("\n== LLM 提問 Prompt ==");
+const idx = JSON.parse(indexJs.slice(indexJs.indexOf("{"), indexJs.lastIndexOf("}") + 1));
+ok(!!(idx.promptTemplates && idx.promptTemplates.zh && idx.promptTemplates.en),
+  "模板檔已內嵌（中英各一份）");
+ok(idx.site.llmPrompt === true, "site.json 有 LLM prompt 開關");
+
+const pm = boot("quiz.html", "?c=ch10-test&p=1");
+ok(!!pm.$("[data-pm-main]"), "每題有 1 個主按鈕（整題 prompt）");
+ok(pm.$$("[data-pm-step]").length === 3, "每個步驟都有小按鈕（A1 有 3 步 → 3 個）");
+
+const btnMain = pm.$("[data-pm-main]");
+btnMain.click();
+const modal = pm.$(".prompt-modal");
+ok(!!modal, "按主按鈕會開面板");
+ok(pm.$$(".pm-opt input").length === 5, "面板有 5 個可勾選項");
+const preview1 = pm.$("[data-pm-preview]").value;
+ok(/A1/.test(preview1), "prompt 帶有題號 A1");
+ok(/繁體中文/.test(preview1), "prompt 指定繁體中文及香港用語");
+ok(/由淺入深/.test(preview1), "prompt 有解釋風格要求（由淺入深）");
+ok(/未填寫/.test(preview1), "疑惑位未填時有提示（請 AI 估計最常犯的錯）");
+ok(/不要用我下面提供的解法照抄|換另一個角度/.test(preview1),
+  "prompt 要求換角度講，避免重複現有解釋");
+ok(/自我檢查題/.test(preview1), "prompt 指定輸出格式（含自我檢查題）");
+
+// 勾選「更簡單說法」
+const cb0 = pm.$('.pm-opt input[data-opt="simpler"]');
+cb0.checked = true;
+cb0.dispatchEvent(new pm.dom.window.Event("change"));
+ok(/最簡單/.test(pm.$("[data-pm-preview]").value), "勾選後 prompt 加入「更簡單說法」要求");
+// 填寫疑惑
+const db = pm.$(".pm-doubt");
+db.value = "點解兩邊除以負數要轉向？";
+db.dispatchEvent(new pm.dom.window.Event("input"));
+ok(/除以負數要轉向/.test(pm.$("[data-pm-preview]").value), "填寫的疑惑會放進 prompt");
+
+// 複製
+pm.$("[data-pm-copy]").click();
+ok(pm.ctx.__clip && pm.ctx.__clip === pm.$("[data-pm-preview]").value,
+  "按複製會把 prompt 寫入剪貼簿");
+
+// 步驟按鈕：只聚焦該步驟
+pm.$(".pm-x").click();
+ok(!pm.$(".prompt-modal"), "關閉後面板移除");
+const pm2 = boot("quiz.html", "?c=ch10-test&p=1");
+pm2.$$("[data-pm-step]")[1].click();
+ok(/第 2 步/.test(pm2.$("[data-pm-preview]").value), "步驟按鈕的 prompt 聚焦該一步");
+
+// 英文模式 → 英文 prompt
+const pm3 = boot("quiz.html", "?c=ch10-test&p=1");
+pm3.$$(".langbar button")[1].click();
+pm3.$("[data-pm-main]").click();
+const enPrompt = pm3.$("[data-pm-preview]").value;
+ok(/HKDSE/.test(enPrompt) && /step by step|Step /.test(enPrompt), "EN 模式產生英文 prompt");
+ok(!/由淺入深/.test(enPrompt), "英文 prompt 內不含中文要求");
 
 // 語言與題解開關
 q1c.$$(".langbar button")[0].click();

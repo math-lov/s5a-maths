@@ -317,6 +317,45 @@ body[data-sol="show"] .sol-hint { display: none; }
 }
 .tip b { color: var(--accent); }
 
+/* ── 一鍵複製 LLM 提問 Prompt ─────────────────────────────────────────── */
+.btn-prompt {
+  margin-top: 10px; font-weight: 600;
+  background: #FFFAF0; border-color: #F6AD55; color: #7B341E;
+}
+.step h4 { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.pm-step {
+  margin-left: auto; flex: none; cursor: pointer; font-family: inherit;
+  min-height: 30px; padding: 2px 10px; font-size: 12.5px; font-weight: 600;
+  border: 1px solid #F6AD55; border-radius: 999px; background: #FFFAF0; color: #7B341E;
+}
+.pm-step:hover { background: #FEEBC8; }
+
+.prompt-modal {
+  position: fixed; inset: 0; z-index: 50; background: rgba(26, 32, 44, .45);
+  display: flex; align-items: center; justify-content: center; padding: 14px;
+}
+.pm-box {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow-lift);
+  width: 100%; max-width: 680px; max-height: 90vh; overflow-y: auto; padding: 16px;
+  animation: rise .25s ease both;
+}
+.pm-head { display: flex; align-items: flex-start; gap: 10px; }
+.pm-head h3 { margin: 0; font-size: 17px; flex: 1; }
+.pm-x { border: 0; background: transparent; font-size: 22px; line-height: 1; color: var(--muted); cursor: pointer; min-height: 34px; }
+.pm-hint { font-size: 13.5px; color: var(--muted); margin: 6px 0 10px; }
+.pm-opts { display: grid; gap: 6px; margin-bottom: 10px; }
+.pm-opt { display: flex; gap: 8px; align-items: flex-start; font-size: 14px; cursor: pointer; }
+.pm-opt input { margin-top: 4px; width: 18px; height: 18px; }
+.pm-doubt, .pm-preview {
+  width: 100%; font: inherit; font-size: 13.5px; border: 1px solid var(--line);
+  border-radius: var(--radius-sm); padding: 8px 10px; margin-bottom: 8px; resize: vertical;
+}
+.pm-preview {
+  font-family: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  background: #F7FAFC; line-height: 1.6;
+}
+.pm-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
 /* ── 其他 ─────────────────────────────────────────────────────────────── */
 .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
 .muted { color: var(--muted); }
@@ -350,7 +389,7 @@ body[data-sol="show"] .sol-hint { display: none; }
 }
 
 @media print {
-  .topbar, .pagenav, .foot-nav, .langbar { display: none; }
+  .topbar, .pagenav, .foot-nav, .langbar, .btn-prompt, .pm-step, .prompt-modal { display: none; }
   .card { box-shadow: none; break-inside: avoid; }
   body { background: #fff; }
 }

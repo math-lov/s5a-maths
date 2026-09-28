@@ -84,6 +84,40 @@ def check_text(label: str, s: str, min_len: int = 0, need_zh: bool = False) -> N
             err("S5 %s：中文詳解太短（少於 %d 個中文字）" % (label, min_len))
 
 
+PROMPT_KEYS = ["role", "student", "headings", "focusAll", "focusStep",
+               "requirements", "format", "doubtPlaceholder", "optionLabels", "options"]
+PROMPT_HEADINGS = ["source", "question", "stemEn", "stemZh", "items", "focus",
+                   "existing", "doubt", "requirements", "format"]
+PROMPT_OPTS = ["simpler", "examples", "examTips", "visual", "practice"]
+
+
+def check_prompt_templates(tpl) -> None:
+    """S11 prompt 模板：中英對稱、欄位齊全（改一次模板＝全部 prompt 更新）"""
+    if not isinstance(tpl, dict) or "zh" not in tpl or "en" not in tpl:
+        err("S11 prompt-templates.json：必須同時有 zh 與 en 兩份模板")
+        return
+    for lang in ("zh", "en"):
+        node = tpl.get(lang) or {}
+        for key in PROMPT_KEYS:
+            if key not in node:
+                err("S11 prompt 模板 %s 缺少欄位 %s" % (lang, key))
+        h = node.get("headings") or {}
+        for key in PROMPT_HEADINGS:
+            if not h.get(key):
+                err("S11 prompt 模板 %s headings 缺少 %s" % (lang, key))
+        for key in ("requirements", "format"):
+            items = node.get(key)
+            if not isinstance(items, list) or not items:
+                err("S11 prompt 模板 %s 的 %s 必須是非空陣列" % (lang, key))
+        for key in PROMPT_OPTS:
+            if not (node.get("options") or {}).get(key):
+                err("S11 prompt 模板 %s 缺少可選項 options.%s" % (lang, key))
+            if not (node.get("optionLabels") or {}).get(key):
+                err("S11 prompt 模板 %s 缺少可選項標籤 optionLabels.%s" % (lang, key))
+        if "{n}" not in (node.get("focusStep") or ""):
+            err("S11 prompt 模板 %s 的 focusStep 必須包含 {n}（步驟編號）" % lang)
+
+
 # ── 單題檢查 ────────────────────────────────────────────────────────────────
 def check_question(q: dict, where: str, fig_ids: set) -> None:
     qid = q.get("id") or "?"
@@ -212,6 +246,8 @@ def main() -> int:
     site = load("site.json")
     figures = load("figures.json")
     fig_ids = set(figures.keys())
+    templates = load("prompt-templates.json")
+    check_prompt_templates(templates)
 
     rendered_figs = {}
     for fid, spec in figures.items():
@@ -252,6 +288,7 @@ def main() -> int:
     index = {
         "site": site["site"],
         "parts": parts_out,
+        "promptTemplates": templates,
     }
     if not args.check:
         with open(os.path.join(OUT, "index.js"), "w", encoding="utf-8", newline="\n") as f:
