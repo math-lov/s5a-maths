@@ -401,6 +401,31 @@ const c1 = boot("quiz.html", "?c=ch17-2&p=1");
 ok(!!c1.$('.q-card[data-qid="ch17-2-ce1"]'), "第 1 頁渲染出 CE1");
 ok(c1.$$(".opt").length === 0, "課本練習不是選擇題（沒有 A–D 選項）");
 ok(c1.$$(".answer-box .a-row").length >= 1, "有答案欄");
+
+/* 拆步：每個步驟只帶一個 (1M)／(1A) */
+const oneToken = (s) => {
+  const m = s.querySelector(".marking");
+  return !!m && (m.textContent.match(/\(\d*[MA]\)/g) || []).length === 1;
+};
+ok(c1.$$(".sol-card .steps .step").length === 4, "CE1 拆成 4 個步驟（(a) 1M+1A、(b) 1M+1A）");
+const cCe3 = boot("quiz.html", "?c=ch17-2&p=3");
+ok(cCe3.$$(".sol-card .steps .step").length === 6, "CE3 拆成 6 個步驟（(a)3 分、(b)3 分）");
+const cCe4 = boot("quiz.html", "?c=ch17-2&p=4");
+ok(cCe4.$$(".sol-card .steps .step").length === 5, "CE4 拆成 5 個步驟（a2＋b2＋c3＝7 分）");
+ok(c1.$$(".sol-card .steps .step").every(oneToken), "CE1 每個步驟只有一個評分標記");
+ok(cCe3.$$(".sol-card .steps .step").every(oneToken), "CE3 每個步驟只有一個評分標記");
+ok(cCe4.$$(".sol-card .steps .step").slice(2).every(oneToken),
+  "CE4 (c) 的三個步驟各只有一個評分標記");
+ok(c1.$$(".sol-card .marking").length === 4 && cCe3.$$(".sol-card .marking").length === 6 &&
+  cCe4.$$(".sol-card .marking").length === 5, "三題的評分標記數目與步驟數一致");
+
+/* solution.alt：另一個做法（參考），預設收起 */
+ok(!!c1.$(".sol-card .alt-box"), "CE1 有「另一個做法（參考）」摺疊區");
+ok((c1.$(".sol-card .alt-box") || {}).tagName === "DETAILS", "摺疊區用 <details>（可開合）");
+ok(c1.$(".sol-card .alt-box").open === false, "摺疊區預設收起，不搶第一解法");
+ok(/計算機/.test(c1.$(".sol-card .alt-box").textContent), "摺疊區載有計算機核對做法");
+ok(!!c1.$(".sol-card .alt-box .l-zh") && !!c1.$(".sol-card .alt-box .l-en"),
+  "摺疊區內容有中英兩版");
 const crumb = c1.$("#crumb-slot a");
 ok(!!crumb && /chapter\.html\?ch=ch17/.test(crumb.getAttribute("href") || ""),
   "頂欄有返回第 17 章的連結");

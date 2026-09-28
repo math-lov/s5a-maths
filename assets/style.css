@@ -335,6 +335,22 @@ body[data-lang="both"] .l-en { opacity: .82; }
 .tf-opt.wrong { border-color: var(--err); background: var(--err-soft); color: #a11c0c; }
 .tf-opt[disabled] { cursor: default; }
 
+/* ── 另一個做法（參考）：摺疊區，不作為第一解法 ───────────────────────── */
+.alt-box {
+  margin-top: 14px; border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm); background: #fbfcfe;
+}
+.alt-box > summary {
+  cursor: pointer; padding: 10px 12px; font-size: 14px; font-weight: 800;
+  color: var(--blue-ink); list-style: none;
+}
+.alt-box > summary::-webkit-details-marker { display: none; }
+.alt-box > summary::before { content: "▸ "; }
+.alt-box[open] > summary::before { content: "▾ "; }
+.alt-item { padding: 0 12px 12px; }
+.alt-item .alt-name { font-weight: 800; font-size: 14.5px; color: var(--purple-dark); margin-bottom: 4px; }
+.alt-item .bi { font-size: 15.5px; }
+
 /* 檢查答案按鈕 + 回饋橫幅（P1） */
 .check-row { margin-top: 14px; display: grid; gap: 10px; }
 .feedback {

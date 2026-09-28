@@ -16,6 +16,7 @@
   S8  引用的圖（figures / steps[].figure）一定存在於 figures.json
   S9  每個課題都要有 answer / tip，tip 中英齊全
   S12 判斷題（type=tf）：每個小題都要有答案，而且要有 tf: true／false
+  S13 solution.alt（另一個做法／參考）：每項要有 name，中英解說齊全（zh ≥ 8 字）
 """
 
 from __future__ import annotations
@@ -241,6 +242,19 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
                 err("S12 %s：判斷題每個小題都要有答案（缺少 %s）" % (tag, p.get("label")))
             elif not isinstance(a.get("tf"), bool):
                 err("S12 %s：判斷題的答案要有 tf: true 或 false（%s）" % (tag, p.get("label")))
+
+    for i, a in enumerate(sol.get("alt") or [], 1):
+        a_tag = "%s alt %d" % (tag, i)
+        nm = a.get("name")
+        if isinstance(nm, dict):
+            check_text(a_tag + ".name.zh", nm.get("zh", ""))
+            check_text(a_tag + ".name.en", nm.get("en", ""))
+        elif nm:
+            check_text(a_tag + ".name", str(nm))
+        else:
+            err("S13 %s：alt 缺少 name" % a_tag)
+        check_text(a_tag + ".zh", a.get("zh", ""), min_len=8, need_zh=True)
+        check_text(a_tag + ".en", a.get("en", ""))
 
 
 # ── 生成 JS ─────────────────────────────────────────────────────────────────

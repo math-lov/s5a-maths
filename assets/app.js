@@ -38,6 +38,8 @@
     tfFalse: { zh: "錯誤", en: "Incorrect" },
     tfRetry: { zh: "再試一次", en: "Try again" },
     tfAll: { zh: "這一題全部小題都答對了 ✓", en: "All parts of this question are correct ✓" },
+    /* solution.alt：另一個做法（參考），預設收起，不作為第一解法 */
+    altMore: { zh: "另一個做法（參考）", en: "Another approach (reference)" },
     secA: { zh: "甲部", en: "Sec A" },
     secB: { zh: "乙部", en: "Sec B" },
     classwork: { zh: "課本練習", en: "Classwork" },
@@ -1224,6 +1226,25 @@
       tip.appendChild(tb);
       tip.appendChild(pair(sol.tip, "div", "bi"));
       extra.appendChild(tip);
+    }
+
+    /* 另一個做法（參考）：用 <details> 收起，不搶第一解法的位置 */
+    if ((sol.alt || []).length) {
+      var ad = el("details", "alt-box");
+      var sm = el("summary");
+      sm.appendChild(pairSpan(UI.altMore));
+      ad.appendChild(sm);
+      (sol.alt || []).forEach(function (a) {
+        a = a || {};
+        var it = el("div", "alt-item");
+        var nm = el("div", "alt-name");
+        if (a.name && typeof a.name === "object") nm.appendChild(pairSpan(a.name));
+        else nm.textContent = a.name || "";
+        it.appendChild(nm);
+        it.appendChild(pair({ zh: a.zh, en: a.en }, "div", "bi"));
+        ad.appendChild(it);
+      });
+      extra.appendChild(ad);
     }
 
     /* 收起題解時：逐步提示 + 一次顯示全部 */

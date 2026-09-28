@@ -34,21 +34,44 @@
             "steps": [
               {
                 "part": "(a)",
-                "title": { "zh": "第 1 步 · 把「分貼紙」看成「依次選貼紙」", "en": "Step 1 · Read 'distributing' as 'choosing in order'" },
-                "math": "P^8_4 = 8 \\times 7 \\times 6 \\times 5\n= 1680",
-                "zh": "貼紙與小朋友都互不相同，所以「分給 4 人」等於「依次選 4 張派出去」：第 1 人有 8 個選擇，第 2 人剩 7 個，第 3 人剩 6 個，第 4 人剩 5 個。用排列公式即 $P^8_4 = 1680$。",
-                "en": "The stickers and the children are all distinct, so giving stickers to 4 children is the same as picking 4 stickers one after another: 8 choices for the first child, then 7, 6 and 5. In permutation notation, $P^8_4 = 1680$.",
-                "marking": "(1M)(1A)",
-                "highlight": [ "P^8_4 = 1680" ]
+                "title": { "zh": "第 1 步 · 列出排列算式", "en": "Step 1 · Set up the permutation formula" },
+                "math": "P^8_4 = 8 \\times 7 \\times 6 \\times 5",
+                "zh": "由 8 張不同貼紙中依次分給 4 名小朋友，次序有別，所以用排列 $P^8_4$：第 1 人有 8 個選擇，第 2 人剩 7 個，第 3 人剩 6 個，第 4 人剩 5 個。",
+                "en": "Distributing 8 distinct stickers to 4 children in order uses the permutation $P^8_4$: 8 choices for the first child, then 7, then 6, then 5.",
+                "marking": "(1M)"
+              },
+              {
+                "part": "(a)",
+                "title": { "zh": "第 2 步 · 計算最終結果", "en": "Step 2 · Evaluate the numerical answer" },
+                "math": "= 1680",
+                "zh": "把 4 個因數相乘：$8 \\times 7 \\times 6 \\times 5 = 1680$，即共有 1680 種分法。",
+                "en": "Multiplying the four factors: $8 \\times 7 \\times 6 \\times 5 = 1680$, so there are 1680 ways.",
+                "marking": "(1A)",
+                "highlight": [ "1680" ]
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 2 步 · (b) 只是多派一張", "en": "Step 2 · (b) simply hands out one more sticker" },
-                "math": "P^8_5 = 8 \\times 7 \\times 6 \\times 5 \\times 4\n= 6720",
-                "zh": "分給 5 人就是由 8 張中依次選 5 張，比 (a) 多乘一個選擇：$P^8_5 = P^8_4 \\times 4 = 6720$。人數越多，可行方法越多。",
-                "en": "Giving stickers to 5 children means choosing 5 of the 8 in order, so one more factor appears: $P^8_5 = P^8_4 \\times 4 = 6720$. The more children, the more arrangements.",
-                "marking": "(1M)(1A)",
-                "highlight": [ "P^8_5 = 6720" ]
+                "title": { "zh": "第 3 步 · 列出 5 人的排列算式", "en": "Step 3 · Set up the permutation for 5 children" },
+                "math": "P^8_5 = 8 \\times 7 \\times 6 \\times 5 \\times 4",
+                "zh": "分給 5 名小朋友就是由 8 張中依次選 5 張，用排列 $P^8_5$：比 (a) 多派一張，所以乘積多一個因數。",
+                "en": "Giving stickers to 5 children means choosing 5 of the 8 in order, the permutation $P^8_5$: one more sticker than (a), so one more factor.",
+                "marking": "(1M)"
+              },
+              {
+                "part": "(b)",
+                "title": { "zh": "第 4 步 · 計算最終結果", "en": "Step 4 · Evaluate the numerical answer" },
+                "math": "= 6720",
+                "zh": "把 5 個因數相乘：$1680 \\times 4 = 6720$，即共有 6720 種分法。可見人數越多，可行方法越多。",
+                "en": "Multiplying the five factors: $1680 \\times 4 = 6720$, so there are 6720 ways. More children give more arrangements.",
+                "marking": "(1A)",
+                "highlight": [ "6720" ]
+              }
+            ],
+            "alt": [
+              {
+                "name": { "zh": "計算機核對：Casio fx-50FH II / fx-3650P II 操作", "en": "Calculator check: Casio fx-50FH II / fx-3650P II operation" },
+                "zh": "在計算機按「8 → SHIFT → ×（這個鍵上印着 nPr）→ 4 → =」可即時得出 1680（不同型號的按鍵位置或有差異，認住鍵上的 nPr 字樣即可）。但卷一的作答必須寫出算式（$P^8_4$ 或 $8 \\times 7 \\times 6 \\times 5$）才可取得方法分 (1M)，計算機只用來核對答案。",
+                "en": "On the calculator press '8, SHIFT, × (the key marked nPr), 4, =' to get 1680 immediately (key positions differ between models — look for the nPr label). In Paper 1 you must still write the working ($P^8_4$ or $8 \\times 7 \\times 6 \\times 5$) to earn the method mark (1M); the calculator is only for checking."
               }
             ],
             "traps": [
@@ -152,29 +175,53 @@
             "steps": [
               {
                 "part": "(a)",
-                "title": { "zh": "第 1 步 · 分清母音與子音", "en": "Step 1 · Separate the vowels from the consonants" },
+                "title": { "zh": "第 1 步 · 數出母音的數目", "en": "Step 1 · Count the vowels" },
                 "math": "\\text{Vowels: E, U, A, I, O}",
-                "zh": "'EDUCATION' 共 9 個字母，而且全部不同。母音有 5 個（E, U, A, I, O），子音有 4 個（D, C, T, N）。(a) 要求首字母是母音，所以第一個位置只有 5 個選擇。",
-                "en": "'EDUCATION' has 9 letters, all different. It contains 5 vowels (E, U, A, I, O) and 4 consonants (D, C, T, N). In (a) the first letter must be a vowel, so position 1 has 5 choices.",
-                "marking": "(1M)(1M)"
+                "zh": "'EDUCATION' 共 9 個字母，而且全部不同。母音有 5 個（E, U, A, I, O），子音有 4 個（D, C, T, N）。(a) 要求首字母是母音，所以第一個位置有 5 個選擇。",
+                "en": "'EDUCATION' has 9 letters, all different: 5 vowels (E, U, A, I, O) and 4 consonants (D, C, T, N). In (a) the first letter must be a vowel, so position 1 has 5 choices.",
+                "marking": "(1M)"
               },
               {
                 "part": "(a)",
                 "title": { "zh": "第 2 步 · 其餘 8 個字母任意排列", "en": "Step 2 · Arrange the remaining 8 letters freely" },
-                "math": "5 \\times 8! = 201600",
-                "zh": "首字母選定後，餘下 8 個字母在 8 個位置任意排列，有 $8!$ 種。所以總數是 $5 \\times 8! = 201600$。",
-                "en": "Once the first letter is chosen, the other 8 letters occupy the remaining 8 positions in any order: $8!$ ways. The total is $5 \\times 8! = 201600$.",
+                "math": "5 \\times 8!",
+                "zh": "首字母選定後，餘下 8 個字母在 8 個位置任意排列，有 $8!$ 種。首位 5 個選擇與後面 $8!$ 種排法互相獨立，所以用乘法原理相乘。",
+                "en": "Once the first letter is chosen, the other 8 letters occupy the remaining 8 positions freely: $8!$ ways. The 5 choices for the first letter and the $8!$ arrangements are independent, so multiply.",
+                "marking": "(1M)"
+              },
+              {
+                "part": "(a)",
+                "title": { "zh": "第 3 步 · 計算 (a) 的數值", "en": "Step 3 · Evaluate part (a)" },
+                "math": "= 201600",
+                "zh": "代入 $8! = 40320$，乘 5 得 $5 \\times 40320 = 201600$，即 (a) 有 201600 種排法。",
+                "en": "With $8! = 40320$, multiplying by 5 gives $5 \\times 40320 = 201600$, so (a) has 201600 arrangements.",
                 "marking": "(1A)",
-                "highlight": [ "5 \\times 8! = 201600" ]
+                "highlight": [ "201600" ]
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 3 步 · 把 5 個母音綁成一塊", "en": "Step 3 · Tie the 5 vowels into one block" },
+                "title": { "zh": "第 4 步 · 綁成一塊：排整體區塊", "en": "Step 4 · Bundle the vowels: arrange the blocks" },
+                "math": "5!",
+                "zh": "母音必須相鄰，就把 5 個母音綑綁成 1 塊。這 1 塊與 4 個子音合共 5 件物件，排成一行有 $5!$ 種。",
+                "en": "For the vowels to be together, tie the 5 vowels into one block. Together with the 4 consonants this gives 5 items in a row, arranged in $5!$ ways.",
+                "marking": "(1M)"
+              },
+              {
+                "part": "(b)",
+                "title": { "zh": "第 5 步 · 區塊內部自行排列", "en": "Step 5 · Permute inside the block" },
+                "math": "5!",
+                "zh": "綁成一塊只處理了「相鄰」，塊內 5 個母音仍然可以互換次序，所以塊內另有 $5!$ 種排法。",
+                "en": "Bundling only handles 'together'; inside the block the 5 vowels can still swap, giving another $5!$ arrangements.",
+                "marking": "(1M)"
+              },
+              {
+                "part": "(b)",
+                "title": { "zh": "第 6 步 · 計算 (b) 的數值", "en": "Step 6 · Evaluate part (b)" },
                 "math": "5! \\times 5! = 14400",
-                "zh": "母音必須相鄰，就把它們綁成一塊：這 1 塊加上 4 個子音，共 5 件物件，先排這 5 件有 $5!$ 種；塊內 5 個母音自己再排，有 $5!$ 種。所以共有 $5! \\times 5! = 14400$ 種。",
-                "en": "For the vowels to be together, tie them into one block. Together with the 4 consonants this gives 5 items, arranged in $5!$ ways; inside the block the 5 vowels are arranged in $5!$ ways. The total is $5! \\times 5! = 14400$.",
-                "marking": "(1M)(1M)(1A)",
-                "highlight": [ "5! \\times 5! = 14400" ]
+                "zh": "兩部分互相獨立，相乘得 $120 \\times 120 = 14400$，即 (b) 有 14400 種排法。",
+                "en": "The two parts are independent, so multiply: $120 \\times 120 = 14400$, giving 14400 arrangements for (b).",
+                "marking": "(1A)",
+                "highlight": [ "14400" ]
               }
             ],
             "traps": [
@@ -238,12 +285,28 @@
               },
               {
                 "part": "(c)",
-                "title": { "zh": "第 3 步 · 交替排列有兩種起頭方式", "en": "Step 3 · Alternating rows can start two ways" },
-                "math": "5! \\times 5! \\times 2 = 28800",
-                "zh": "男女數目相同（各 5 人），交替排列可以由男儐相起頭，也可以由女儐相起頭，共 2 種「男女位置花款」。每種花款中，男儐相填男位（$5!$）、女儐相填女位（$5!$）。總數是 $5! \\times 5! \\times 2 = 28800$。",
-                "en": "There are equal numbers of each (5 and 5), so an alternating row may start with a groomsman or with a bridesmaid: 2 patterns. For each pattern, the groomsmen fill the male slots ($5!$) and the bridesmaids fill the female slots ($5!$). Total $5! \\times 5! \\times 2 = 28800$.",
-                "marking": "(1M)(1M)(1A)",
-                "highlight": [ "5! \\times 5! \\times 2 = 28800" ]
+                "title": { "zh": "第 3 步 · 交替站立：兩種開頭花款", "en": "Step 3 · Alternating row: two starting patterns" },
+                "math": "2",
+                "zh": "男女各 5 人（數目相同），男女交替站立時可以由男儐相起頭，也可以由女儐相起頭，所以共有 2 種「男女位置花款」。",
+                "en": "There are 5 of each, so an alternating row may start with a groomsman or with a bridesmaid: 2 patterns.",
+                "marking": "(1M)"
+              },
+              {
+                "part": "(c)",
+                "title": { "zh": "第 4 步 · 每種花款：男女各自全排", "en": "Step 4 · Each pattern: permute the two groups" },
+                "math": "5! \\times 5!",
+                "zh": "固定一種花款後，男儐相填入 5 個男位（$5!$），女儐相填入 5 個女位（$5!$），兩組互不影響，所以每種花款有 $5! \\times 5!$ 種排法。",
+                "en": "For a fixed pattern, the groomsmen fill the 5 male slots ($5!$) and the bridesmaids the 5 female slots ($5!$); the groups are independent, so each pattern gives $5! \\times 5!$ arrangements.",
+                "marking": "(1M)"
+              },
+              {
+                "part": "(c)",
+                "title": { "zh": "第 5 步 · 計算交替站立數值結果", "en": "Step 5 · Evaluate the alternating row count" },
+                "math": "= 28800",
+                "zh": "把 2 種花款與每種的 $5! \\times 5! = 14400$ 相乘：$2 \\times 14400 = 28800$，即 (c) 有 28800 種排法。",
+                "en": "Multiplying the 2 patterns by $5! \\times 5! = 14400$ each: $2 \\times 14400 = 28800$, so (c) has 28800 arrangements.",
+                "marking": "(1A)",
+                "highlight": [ "28800" ]
               }
             ],
             "traps": [
