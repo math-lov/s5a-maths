@@ -462,6 +462,9 @@ const scQ = P172_DATA.sections
   .filter((q) => q.id === "ch17-2-sc")[0] || { parts: [], answers: [] };
 const scAns = {};
 (scQ.answers || []).forEach((a) => { scAns[a.part] = a.tf; });
+const card3 = (P172_DATA.cards || []).filter((c) => c.id === "ch17-c03")[0] || {};
+ok(card3.warn && !/C\^/.test((card3.warn.zh || "") + (card3.warn.en || "")),
+  "ch17-c03 的常犯錯誤只用排列記法（不引入組合 C^n_r）");
 ok(Object.keys(scAns).length === 7 && scQ.parts.length === 7,
   "判斷題資料齊全（7 小題、每個都有 tf 答案）");
 
