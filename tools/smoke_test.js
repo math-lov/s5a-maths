@@ -396,6 +396,14 @@ ok(c0.$$("#pagenav .pg").length === 37, "分頁列 = 總覽 + 36 題（實際 " 
 ok(c0.$$("#pagenav .pg-sec").length === 6, "分頁列有 6 個分段標題");
 ok(/課堂例題/.test(c0.$("#pagenav .pg-sec").textContent), "第一個分段寫「課堂例題」");
 ok(c0.$$("#quiz-body .btn").length >= 36, "總覽有跳去各題的按鈕");
+ok(c0.$$(".cc").length === 2, "17.2 總覽有 2 張教學卡（實際 " + c0.$$(".cc").length + "）");
+ok(/綑綁法/.test(c0.$(".cc .cc-title").textContent), "第一張教學卡是綑綁法");
+ok(/插空法/.test(c0.$$(".cc .cc-title")[1].textContent), "第二張教學卡是插空法");
+ok(!!c0.$(".cc .formula .katex"), "教學卡的 {{math:0}} 已代入並經 KaTeX 渲染");
+ok(!/\{\{math:/.test(c0.$("#quiz-body").textContent), "總覽沒有殘留 {{math:}} 佔位符");
+ok(c0.$$(".cc-warn").length === 2, "兩張卡都有「常犯錯誤」");
+ok(!!c0.$(".cc-vocab .cc-chip"), "教學卡有詞彙 chips");
+ok(!!c0.$(".cc .l-zh") && !!c0.$(".cc .l-en"), "教學卡有中英兩版");
 
 const c1 = boot("quiz.html", "?c=ch17-2&p=1");
 ok(!!c1.$('.q-card[data-qid="ch17-2-ce1"]'), "第 1 頁渲染出 CE1");
@@ -426,6 +434,7 @@ ok(c1.$(".sol-card .alt-box").open === false, "摺疊區預設收起，不搶第
 ok(/計算機/.test(c1.$(".sol-card .alt-box").textContent), "摺疊區載有計算機核對做法");
 ok(!!c1.$(".sol-card .alt-box .l-zh") && !!c1.$(".sol-card .alt-box .l-en"),
   "摺疊區內容有中英兩版");
+ok(c1.$$(".cc").length === 0, "教學卡只出現在總覽頁，不會重複在每一題");
 const crumb = c1.$("#crumb-slot a");
 ok(!!crumb && /chapter\.html\?ch=ch17/.test(crumb.getAttribute("href") || ""),
   "頂欄有返回第 17 章的連結");

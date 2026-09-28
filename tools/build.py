@@ -17,6 +17,8 @@
   S9  每個課題都要有 answer / tip，tip 中英齊全
   S12 判斷題（type=tf）：每個小題都要有答案，而且要有 tf: true／false
   S13 solution.alt（另一個做法／參考）：每項要有 name，中英解說齊全（zh ≥ 8 字）
+  S14 教學卡（part 的 cards[]）：中英標題與內文，{{math:N}} 要對得上 math[]，
+      數式不可有 $、不可有中文（規則 1）
 """
 
 from __future__ import annotations
@@ -257,6 +259,54 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
         check_text(a_tag + ".en", a.get("en", ""))
 
 
+# ── 教學卡（part 的 cards[]）────────────────────────────────────────────────
+MATH_PLACEHOLDER_RE = re.compile(r"\{\{math:(\d+)\}\}")
+CJK_RE = re.compile(r"[\u4e00-\u9fff]")
+
+
+def check_cards(cards, where: str) -> None:
+    """S14 教學卡：顯示在該節的總覽頁（p=0）"""
+    if cards is None:
+        return
+    if not isinstance(cards, list):
+        err("S14 %s：cards 必須是陣列" % where)
+        return
+    for c in cards:
+        c = c or {}
+        tag = "%s card %s" % (where, c.get("id") or "?")
+        if not c.get("id"):
+            err("S14 %s：缺少 id" % tag)
+        title = c.get("title") or {}
+        check_text(tag + ".title.zh", title.get("zh", ""))
+        check_text(tag + ".title.en", title.get("en", ""))
+        body = c.get("body") or {}
+        maths = c.get("math") or []
+        for lang in ("zh", "en"):
+            s = body.get(lang, "")
+            check_text(tag + ".body." + lang, s, min_len=20 if lang == "zh" else 0,
+                       need_zh=(lang == "zh"))
+            for n in MATH_PLACEHOLDER_RE.findall(s or ""):
+                if int(n) >= len(maths):
+                    err("S14 %s：body.%s 引用了不存在的 {{math:%s}}（math 只有 %d 項）"
+                        % (tag, lang, n, len(maths)))
+        for i, mm in enumerate(maths):
+            mm = mm or ""
+            if "$" in mm:
+                err("S14 %s.math[%d]：不可有 `$`" % (tag, i))
+            if CJK_RE.search(mm):
+                err("S14 %s.math[%d]：數式不可有中文（規則 1）" % (tag, i))
+            if re.search(r"\brad\b|\\frac\{\\pi\}", mm):
+                err("S14 %s.math[%d]：角度要用度" % (tag, i))
+        warn = c.get("warn") or {}
+        if warn:
+            check_text(tag + ".warn.zh", warn.get("zh", ""), min_len=6, need_zh=True)
+            check_text(tag + ".warn.en", warn.get("en", ""))
+        for v in c.get("vocab") or []:
+            v = v or {}
+            check_text(tag + ".vocab.zh", v.get("zh", ""))
+            check_text(tag + ".vocab.en", v.get("en", ""))
+
+
 # ── 生成 JS ─────────────────────────────────────────────────────────────────
 HEADER = "// 自動生成，請勿手改：改 data/src/*.json 後跑 python tools/build.py\n"
 
@@ -327,6 +377,7 @@ def main() -> int:
             err("S1 課題 %s 找不到資料檔 data/src/%s" % (pid, fname))
             continue
         data = load(fname)
+        check_cards(data.get("cards"), pid)
         total_q = 0
         for sec in data.get("sections", []):
             for q in sec.get("questions", []):

@@ -351,6 +351,27 @@ body[data-lang="both"] .l-en { opacity: .82; }
 .alt-item .alt-name { font-weight: 800; font-size: 14.5px; color: var(--purple-dark); margin-bottom: 4px; }
 .alt-item .bi { font-size: 15.5px; }
 
+/* ── 教學卡（總覽頁 part.cards[]）────────────────────────────────────── */
+.cc {
+  border: 1px solid var(--line-soft); border-radius: var(--radius-sm);
+  padding: 14px 16px; margin-top: 12px; background: var(--card);
+}
+.cc + .cc { margin-top: 14px; }
+.cc-title { margin: 0 0 8px; font-size: 16px; font-weight: 800; color: var(--blue-ink); }
+.cc-p { margin: 6px 0; font-size: 16px; line-height: 1.7; }
+.cc .formula { margin: 8px 0; }
+.cc-warn {
+  margin-top: 12px; background: var(--warn-soft); border-left: 4px solid var(--warn);
+  border-radius: var(--radius-sm); padding: 10px 12px;
+}
+.cc-warn-h { font-size: 12.5px; font-weight: 800; color: #8a6100; margin-bottom: 4px; }
+.cc-warn .bi { font-size: 15px; }
+.cc-vocab { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+.cc-chip {
+  font-size: 13px; background: var(--blue-soft); color: var(--blue-ink);
+  border-radius: 999px; padding: 3px 10px;
+}
+
 /* 檢查答案按鈕 + 回饋橫幅（P1） */
 .check-row { margin-top: 14px; display: grid; gap: 10px; }
 .feedback {

@@ -40,6 +40,9 @@
     tfAll: { zh: "這一題全部小題都答對了 ✓", en: "All parts of this question are correct ✓" },
     /* solution.alt：另一個做法（參考），預設收起，不作為第一解法 */
     altMore: { zh: "另一個做法（參考）", en: "Another approach (reference)" },
+    /* 教學卡（part.cards，顯示在該節的總覽頁） */
+    cards: { zh: "教學卡", en: "Concept cards" },
+    cardWarn: { zh: "常犯錯誤", en: "Common pitfall" },
     secA: { zh: "甲部", en: "Sec A" },
     secB: { zh: "乙部", en: "Sec B" },
     classwork: { zh: "課本練習", en: "Classwork" },
@@ -717,6 +720,70 @@
     if (stat) setProgress(stat, part);
   }
 
+  /* ── 教學卡（part.cards[]）：顯示在該節的總覽頁（p=0）────────────────── */
+  /* 內文用 {{math:N}} 佔位符（跟四個站的 learn 內容同一套寫法），
+     渲染時換成 math[N] 的顯示數式 */
+  function mathBits(host, text, maths) {
+    var parts = String(text == null ? "" : text).split(/\{\{math:(\d+)\}\}/g);
+    parts.forEach(function (seg, i) {
+      if (i % 2 === 1) {
+        var v = (maths || [])[Number(seg)];
+        var f = el("div", "formula");
+        if (v != null) formulaBlock(f, v, true);
+        else f.textContent = "—";
+        host.appendChild(f);
+      } else if (seg) {
+        var p = el("div", "cc-p");
+        richInto(p, seg);
+        host.appendChild(p);
+      }
+    });
+  }
+  function pairWithMath(obj, maths) {
+    var box = el("div", "bi");
+    [["zh", "l-zh"], ["en", "l-en"]].forEach(function (L) {
+      var host = el("div", L[1]);
+      mathBits(host, (obj || {})[L[0]], maths);
+      box.appendChild(host);
+    });
+    autoRender(box);
+    return box;
+  }
+  function renderCards(part, host) {
+    var cards = part.cards || [];
+    if (!cards.length) return;
+    var card = el("div", "card");
+    var st = el("div", "section-title");
+    st.appendChild(pairSpan(UI.cards));
+    card.appendChild(st);
+    cards.forEach(function (c) {
+      var box = el("div", "cc");
+      var h = el("h3", "cc-title");
+      h.appendChild(pairSpan(c.title || {}));
+      box.appendChild(h);
+      box.appendChild(pairWithMath(c.body || {}, c.math || []));
+      if (c.warn && (c.warn.zh || c.warn.en)) {
+        var w = el("div", "cc-warn");
+        var wh = el("div", "cc-warn-h");
+        wh.appendChild(pairSpan(UI.cardWarn));
+        w.appendChild(wh);
+        w.appendChild(pair(c.warn, "div", "bi"));
+        box.appendChild(w);
+      }
+      if ((c.vocab || []).length) {
+        var vv = el("div", "cc-vocab");
+        (c.vocab || []).forEach(function (t) {
+          var chip = el("span", "cc-chip");
+          chip.appendChild(pairSpan(t));
+          vv.appendChild(chip);
+        });
+        box.appendChild(vv);
+      }
+      card.appendChild(box);
+    });
+    host.appendChild(card);
+  }
+
   function renderOverview(body, part, pages, id) {
     var card = el("div", "card");
     var head = el("div", "q-head");
@@ -756,6 +823,8 @@
     });
     card.appendChild(row);
     body.appendChild(card);
+
+    renderCards(part, body);
 
     var tip = el("div", "card safety-note");
     var tb = el("b");
