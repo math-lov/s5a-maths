@@ -404,6 +404,9 @@ ok(!/\{\{math:/.test(c0.$("#quiz-body").textContent), "總覽沒有殘留 {{math
 ok(c0.$$(".cc-warn").length === 2, "兩張卡都有「常犯錯誤」");
 ok(!!c0.$(".cc-vocab .cc-chip"), "教學卡有詞彙 chips");
 ok(!!c0.$(".cc .l-zh") && !!c0.$(".cc .l-en"), "教學卡有中英兩版");
+ok(c0.$$(".cc-ul").length >= 8, "步驟已分行：中英合共至少 8 個清單（實際 " + c0.$$(".cc-ul").length + "）");
+ok(/第一步/.test(c0.$(".cc-ul li").textContent), "第一個清單項目是「第一步 …」");
+ok(c0.$$(".cc .formula").length === 4, "兩張卡各自中英都有一個數式區（{{math}} 已代入）");
 
 const c1 = boot("quiz.html", "?c=ch17-2&p=1");
 ok(!!c1.$('.q-card[data-qid="ch17-2-ce1"]'), "第 1 頁渲染出 CE1");

@@ -359,7 +359,18 @@ body[data-lang="both"] .l-en { opacity: .82; }
 .cc + .cc { margin-top: 14px; }
 .cc-title { margin: 0 0 8px; font-size: 16px; font-weight: 800; color: var(--blue-ink); }
 .cc-p { margin: 6px 0; font-size: 16px; line-height: 1.7; }
-.cc .formula { margin: 8px 0; }
+.cc-ul { margin: 6px 0 6px 2px; padding-left: 22px; list-style: disc; font-size: 16px; line-height: 1.7; }
+.cc-ul li { margin: 4px 0; }
+.cc-ul li::marker { color: var(--blue); }
+/* 教學卡的數式區：左對齊、緊湊（題解步驟的 .formula 維持原本居中樣式） */
+.cc .formula {
+  align-items: flex-start; text-align: left;
+  margin: 8px 0; padding: 8px 12px;
+  background: #f7f9fb; border-left: 4px solid var(--line);
+}
+.cc .formula .katex { font-size: 1em; }
+.cc .formula .katex-display { margin: 0; }
+.cc .formula-line + .formula-line { margin-top: 3px; }
 .cc-warn {
   margin-top: 12px; background: var(--warn-soft); border-left: 4px solid var(--warn);
   border-radius: var(--radius-sm); padding: 10px 12px;

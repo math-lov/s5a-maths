@@ -733,8 +733,29 @@
         else f.textContent = "—";
         host.appendChild(f);
       } else if (seg) {
+        var sp = el("span", "cc-txt");
+        richInto(sp, seg);
+        host.appendChild(sp);
+      }
+    });
+  }
+  /* 內文逐行處理：行首 "- " 變成清單項目，其餘為段落
+     （令「第一步／第二步」各自一行，唔會擠成一大段） */
+  function cardText(host, text, maths) {
+    var ul = null;
+    String(text == null ? "" : text).split("\n").forEach(function (ln) {
+      var item = /^\s*-\s+/.test(ln);
+      var line = item ? ln.replace(/^\s*-\s+/, "") : ln;
+      if (!line.trim()) { ul = null; return; }
+      if (item) {
+        if (!ul) { ul = el("ul", "cc-ul"); host.appendChild(ul); }
+        var li = el("li");
+        mathBits(li, line, maths);
+        ul.appendChild(li);
+      } else {
+        ul = null;
         var p = el("div", "cc-p");
-        richInto(p, seg);
+        mathBits(p, line, maths);
         host.appendChild(p);
       }
     });
@@ -743,7 +764,7 @@
     var box = el("div", "bi");
     [["zh", "l-zh"], ["en", "l-en"]].forEach(function (L) {
       var host = el("div", L[1]);
-      mathBits(host, (obj || {})[L[0]], maths);
+      cardText(host, (obj || {})[L[0]], maths);
       box.appendChild(host);
     });
     autoRender(box);
