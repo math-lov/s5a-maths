@@ -57,7 +57,7 @@
     },
     okToast: { zh: "答對了 ✓", en: "Correct ✓" },
     missToast: { zh: "差一點 —— 看看下面「為甚麼會選錯」", en: "Close — see why the other options are wrong below" },
-    /* 後進生鷹架：乘／除以負數要轉向的高亮標籤 */
+    /* 鷹架：乘／除以負數要轉向的高亮標籤 */
     flipNote: {
       zh: "【注意】兩邊乘以／除以負數，不等號必須轉向",
       en: "Note: reverse the inequality sign when multiplying or dividing by a negative number"
@@ -898,7 +898,7 @@
       }
       box.appendChild(pair({ zh: st.zh, en: st.en }, "div", "why bi"));
       if (st.marking) box.appendChild(el("span", "marking", st.marking));
-      /* 變號步驟：加一個雙語高亮標籤（後進生最容易失分的地方） */
+      /* 變號步驟：加一個雙語高亮標籤（最容易失分的地方） */
       if (st.flip) {
         var fn = el("div", "flip-note");
         fn.appendChild(pairSpan(UI.flipNote));

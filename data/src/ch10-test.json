@@ -1236,7 +1236,7 @@
               },
               {
                 "label": "(b)(ii) 列舉整數時遺漏 0",
-                "zh": "在 $-0.449$ 至 $4.449$ 之間的整數包括 $0,\\ 1,\\ 2,\\ 3,\\ 4$。後進生極易直覺地只列出正整數而漏掉 $0$。另外不等式帶有等號，若端點剛好是整數也必須納入。",
+                "zh": "在 $-0.449$ 至 $4.449$ 之間的整數包括 $0,\\ 1,\\ 2,\\ 3,\\ 4$。常見直覺：只列出正整數，容易漏掉 $0$。另外不等式帶有等號，若端點剛好是整數也必須納入。",
                 "en": "The integers inside $[-0.449, 4.449]$ are $0,\\ 1,\\ 2,\\ 3,\\ 4$. Students frequently overlook 0 and only list positive integers. Also ensure endpoints are checked if they happen to be integers.",
                 "labelEn": "(b)(ii) Forgetting 0 when listing integers"
               }

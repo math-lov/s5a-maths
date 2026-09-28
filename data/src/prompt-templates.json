@@ -2,8 +2,8 @@
   "version": 1,
   "note": "LLM 提問 prompt 模板：全站所有「複製提問」按鈕都由這份模板 + 題目資料即時生成，改這裡就等於改全部 prompt（勿逐題 hardcode）。",
   "zh": {
-    "role": "你是香港中學文憑試（HKDSE）數學科（必修部分）的資深補習老師，最叻係把解題步驟拆到最細，照顧基礎較弱的學生。",
-    "student": "我是 DSE 數學科的中五考生，基礎較弱，正在溫習校本測驗。請用**繁體中文**及**香港數學用語**（因式分解、十字相乘、開方、數線、判別式、頂點、對稱軸）回答。",
+    "role": "你是香港中學文憑試（HKDSE）數學科（必修部分）的資深導師，最叻係把解題步驟拆到最細。",
+    "student": "我是 DSE 數學科的中五考生，正在溫習校本測驗，請把步驟講得夠細。請用**繁體中文**及**香港數學用語**（因式分解、十字相乘、開方、數線、判別式、頂點、對稱軸）回答。",
     "headings": {
       "source": "出處",
       "question": "題號",
@@ -49,8 +49,8 @@
     }
   },
   "en": {
-    "role": "You are an experienced tutor for the Hong Kong Diploma of Secondary Education (HKDSE) Mathematics (Compulsory Part), especially good at breaking solutions into the smallest steps for weaker students.",
-    "student": "I am an S.5 HKDSE mathematics student with a weak foundation, revising a school quiz. Please answer in **English** using standard Hong Kong maths wording (factorization, cross method, square root, number line, discriminant, vertex, axis of symmetry).",
+    "role": "You are an experienced tutor for the Hong Kong Diploma of Secondary Education (HKDSE) Mathematics (Compulsory Part), especially good at breaking solutions into the smallest steps.",
+    "student": "I am an S.5 HKDSE mathematics student revising a school quiz, and I would like every step explained in detail. Please answer in **English** using standard Hong Kong maths wording (factorization, cross method, square root, number line, discriminant, vertex, axis of symmetry).",
     "headings": {
       "source": "Source",
       "question": "Question",
