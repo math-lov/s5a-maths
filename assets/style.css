@@ -1,9 +1,9 @@
 /* ==========================================================================
-   5A 數學溫習站 · 樣式（Khan Academy 風格 v2）
+   5A 數學溫習站 · 樣式（Khan Academy 風格 v2 · KA 淺藍）
    設計方向（P0）：
-     · 極淺灰底 + 大量留白，卡片白底、1px 淺灰邊、陰影極淡
-     · 高飽和主色只用在「行動與狀態」：KA 綠（主按鈕／正確）、紫（次要／標籤）、
-       藍（選取）、紅（錯誤）；內文維持黑白灰，不用漸變
+     · KA 淺藍底（#eef4fd）+ 大量留白，卡片白底、淺藍灰邊、陰影極淡
+     · 主色用藍（#1865f2 選取／強調）、綠（#14bf96 主按鈕／答對）、
+       紫（#7639e3 題解步驟）、紅（#d92916 答錯）；內文維持黑白灰
      · 字級放大（內文 17px、行距 1.7）、標題粗大、靠大小與粗體分層
      · 圓角：卡片 12px、按鈕 10px（KA 的圓角矩形，不是全圓）
    沿用既有 class 名稱，前端邏輯不變（P1 只加新元件）
@@ -18,15 +18,18 @@
   --purple-dark: #5b21b6;
   --purple-soft: #f3ecfd;
   --blue: #1865f2;
-  --blue-soft: #e9f0fe;
+  --blue-soft: #e2ecfd;
+  --blue-line: #c3d9f8;
+  --blue-ink: #10429e;
 
-  /* 中性（頁面底色要比白卡明顯深一級，否則會覺得「全白」） */
-  --bg: #e9edf2;
+  /* 中性（KA 淺藍底：與白卡有明顯層次，又不會死白） */
+  --bg: #eef4fd;
+  --band: #eaf2fd;
   --card: #ffffff;
-  --text: #1c1f23;
+  --text: #15202b;
   --muted: #59636e;
-  --line: #ccd4dc;
-  --line-soft: #dfe5ea;
+  --line: #cfdaea;
+  --line-soft: #e3ebf6;
 
   /* 狀態 */
   --ok: #14bf96;
@@ -39,8 +42,8 @@
   --radius: 12px;
   --radius-sm: 8px;
   --btn-radius: 10px;
-  --shadow: 0 1px 2px rgba(28, 31, 35, .07), 0 2px 8px rgba(28, 31, 35, .05);
-  --shadow-lift: 0 2px 6px rgba(28, 31, 35, .10), 0 10px 24px rgba(28, 31, 35, .10);
+  --shadow: 0 1px 2px rgba(16, 42, 86, .06), 0 2px 10px rgba(16, 42, 86, .05);
+  --shadow-lift: 0 2px 6px rgba(16, 42, 86, .09), 0 12px 26px rgba(16, 42, 86, .12);
 }
 
 * { box-sizing: border-box; }
@@ -63,9 +66,9 @@ body {
 .topbar {
   position: sticky; top: 0; z-index: 30;
   background: #ffffff;   /* 全不透明：避免下面的 ✓ 徽章透出來 */
-  border-top: 3px solid var(--green);   /* KA 綠品牌線，令頁面不至全白 */
+  border-top: 3px solid var(--blue);   /* KA 藍品牌線 */
   border-bottom: 1px solid var(--line-soft);
-  box-shadow: 0 1px 3px rgba(28, 31, 35, .05);
+  box-shadow: 0 1px 3px rgba(16, 42, 86, .06);
 }
 .topbar .inner {
   max-width: 720px; margin: 0 auto; padding: 10px 16px;
@@ -84,6 +87,36 @@ body {
 .hero h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.25; font-weight: 800; letter-spacing: -.02em; }
 .hero p { margin: 0; color: var(--muted); font-size: 15.5px; }
 
+/* ── 首頁：KA 式淺藍橫幅 + 手繪裝飾 ───────────────────────────────────── */
+.ka-band {
+  position: relative; overflow: hidden; padding: 30px 0 26px;
+  background: linear-gradient(180deg, #eef5ff 0%, #e5effd 100%);
+  border-bottom: 1px solid #d9e6f8;
+}
+.ka-band::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(closest-side, rgba(255, 255, 255, .95), rgba(255, 255, 255, 0)) 6% 80% / 300px 200px no-repeat,
+    radial-gradient(closest-side, rgba(255, 255, 255, .9), rgba(255, 255, 255, 0)) 96% 20% / 260px 180px no-repeat;
+}
+.ka-band .hero { position: relative; padding: 0; }
+.doodle { position: absolute; pointer-events: none; z-index: 1; }
+.d-spark {
+  left: 9%; top: 16px; width: 26px; height: 26px; background: #f97316;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+}
+.d-ring { right: 11%; top: 20px; width: 26px; height: 26px; border: 4px solid #2f6ee0; border-radius: 50%; border-right-color: transparent; }
+.d-bolt {
+  left: 19%; bottom: 10px; width: 22px; height: 28px; background: #fbbf24;
+  clip-path: polygon(58% 0, 16% 58%, 42% 58%, 34% 100%, 84% 40%, 54% 40%);
+}
+.d-tri { right: 19%; bottom: 12px; width: 26px; height: 24px; background: #7ed6b8; clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.d-star {
+  right: 6%; bottom: 30px; width: 18px; height: 18px; background: #6aa9f2;
+  clip-path: polygon(50% 0, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0 50%, 39% 39%);
+}
+@media (max-width: 620px) { .d-bolt, .d-tri, .d-star { display: none; } }
+
 .section-title {
   margin: 28px 0 12px; font-size: 15px; font-weight: 800; color: var(--muted);
   letter-spacing: .04em; display: flex; align-items: center; gap: 8px;
@@ -96,7 +129,7 @@ body {
   min-height: 36px; padding: 4px 12px; border: 0; background: transparent; cursor: pointer;
   font: inherit; font-size: 13px; font-weight: 700; color: var(--muted);
 }
-.langbar button.on { background: var(--purple); color: #fff; }
+.langbar button.on { background: var(--blue); color: #fff; }
 
 /* 語言顯示規則：所有可切換文字都放成 .l-zh / .l-en 兩份 */
 body[data-lang="en"] .l-zh { display: none; }
@@ -111,7 +144,7 @@ body[data-lang="both"] .l-en { opacity: .82; }
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   transition: background .15s ease, border-color .15s ease, transform .1s ease, box-shadow .15s ease;
 }
-.btn:hover { background: #f0f2f4; border-color: var(--line); }
+.btn:hover { background: #eaf1fd; border-color: var(--blue-line); }
 .btn:active { transform: translateY(1px); }
 .btn:focus-visible { outline: 3px solid rgba(24, 101, 242, .4); outline-offset: 2px; }
 .btn-primary {
@@ -120,7 +153,7 @@ body[data-lang="both"] .l-en { opacity: .82; }
 }
 .btn-primary:hover { background: var(--green-dark); border-color: var(--green-dark); box-shadow: 0 2px 0 #0b7d63; }
 .btn-ghost { background: transparent; }
-.btn-ghost:hover { background: #eef0f2; }
+.btn-ghost:hover { background: #e7effc; }
 .btn-sm { min-height: 40px; padding: 8px 14px; font-size: 14.5px; }
 .btn-block { width: 100%; }
 .btn:disabled { cursor: default; transform: none; box-shadow: none; }
@@ -144,7 +177,7 @@ body[data-lang="both"] .l-en { opacity: .82; }
   font: inherit; color: inherit;
   transition: border-color .15s ease, box-shadow .18s ease, transform .12s ease;
 }
-.part-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-lift); border-color: var(--green); }
+.part-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-lift); border-color: var(--blue); }
 .part-btn:focus-visible { outline: 3px solid rgba(24, 101, 242, .4); outline-offset: 2px; }
 .part-btn .t-body { flex: 1; min-width: 0; }
 .part-btn .t-name { font-weight: 800; font-size: 17px; }
@@ -154,7 +187,7 @@ body[data-lang="both"] .l-en { opacity: .82; }
 
 .ring {
   --p: 0; width: 46px; height: 46px; flex: none; border-radius: 50%;
-  background: conic-gradient(var(--green) calc(var(--p) * 1%), #e6e8eb 0);
+  background: conic-gradient(var(--green) calc(var(--p) * 1%), #d7e3f3 0);
   display: grid; place-items: center;
 }
 .ring::after {
@@ -175,8 +208,12 @@ body[data-lang="both"] .l-en { opacity: .82; }
   display: grid; place-items: center; cursor: pointer; position: relative;
   transition: border-color .15s ease, background .15s ease, color .15s ease;
 }
-.pagenav .pg:hover { border-color: var(--green); }
-.pagenav .pg.current { background: var(--purple); border-color: var(--purple); color: #fff; }
+.pagenav .pg:hover { border-color: var(--blue); background: #f6faff; }
+/* 現時題目：KA 淺藍底＋藍框＋底邊藍線（一眼看出「你在這裡」） */
+.pagenav .pg.current {
+  background: var(--blue-soft); border-color: var(--blue); color: var(--blue-ink);
+  box-shadow: inset 0 -3px 0 var(--blue);
+}
 .pagenav .pg.done { color: var(--green-dark); border-color: var(--green); background: var(--green-soft); }
 .pagenav .pg.done::after {
   content: "✓"; position: absolute; top: -6px; right: -4px; font-size: 11px;
@@ -193,7 +230,7 @@ body[data-lang="both"] .l-en { opacity: .82; }
 .q-head { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; }
 .q-code {
   font-size: 13px; font-weight: 800; letter-spacing: .04em;
-  color: var(--purple-dark); background: var(--purple-soft);
+  color: var(--blue-ink); background: var(--blue-soft);
   border-radius: 999px; padding: 3px 12px;
 }
 .q-marks {
@@ -216,7 +253,7 @@ body[data-lang="both"] .l-en { opacity: .82; }
 /* 題目字眼 */
 .kw { display: flex; flex-wrap: wrap; gap: 6px; margin: 2px 0 14px; }
 .kw .k {
-  font-size: 13px; background: var(--blue-soft); color: #12408f;
+  font-size: 13px; background: var(--blue-soft); color: var(--blue-ink);
   border-radius: 999px; padding: 3px 10px;
 }
 .kw .k b { color: var(--blue); }
@@ -236,12 +273,12 @@ body[data-lang="both"] .l-en { opacity: .82; }
   font: inherit; color: inherit;
   transition: border-color .15s ease, background .15s ease, transform .1s ease;
 }
-.opt:hover:not([disabled]) { border-color: var(--green); background: #fbfdfc; }
+.opt:hover:not([disabled]) { border-color: var(--blue); background: #f7fbff; }
 .opt:active:not([disabled]) { transform: translateY(1px); }
 .opt:focus-visible { outline: 3px solid rgba(24, 101, 242, .4); outline-offset: 2px; }
 .opt .letter {
   flex: none; width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
-  background: #eef0f2; color: var(--muted); font-weight: 800; font-size: 14px;
+  background: #e9eff8; color: var(--muted); font-weight: 800; font-size: 14px;
 }
 .opt .val { flex: 1; min-width: 0; }
 .opt.picked { border-color: var(--blue); background: var(--blue-soft); }
@@ -286,7 +323,7 @@ body[data-sol="show"] .hint-row { display: none; }
 .hint-row { display: grid; gap: 8px; margin-top: 12px; }
 .hint-count { font-size: 13.5px; color: var(--muted); font-weight: 700; }
 .sol-hint {
-  font-size: 14.5px; color: #12408f; background: var(--blue-soft);
+  font-size: 14.5px; color: var(--blue-ink); background: var(--blue-soft);
   border-radius: var(--radius-sm); padding: 10px 12px; margin-top: 6px;
   border-left: 4px solid var(--blue);
 }
@@ -313,7 +350,7 @@ body[data-sol="show"] .hint-row { display: none; }
   color: var(--green-dark); background: var(--green-soft); border-radius: 999px; padding: 2px 10px;
 }
 .step .hl {
-  display: inline-block; margin-top: 8px; font-size: 15px; color: #12408f;
+  display: inline-block; margin-top: 8px; font-size: 15px; color: var(--blue-ink);
   background: var(--blue-soft); border-radius: 8px; padding: 4px 10px;
 }
 /* 後進生鷹架：乘／除以負數要轉向的高亮標籤 */
