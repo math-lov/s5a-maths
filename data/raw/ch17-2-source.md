@@ -7,8 +7,8 @@
 
 | 檔案 | 說明 |
 |---|---|
-| `C:\Code Buddy\S5A\source\SMS_bkexe_5B17_e.docx` | 課本習題（Book 5B Chapter 17，含 Class Exercise 17.2 與 Exercise 17.2） |
-| `C:\Code Buddy\S5A\source\SMS_sol_5B17_e.docx` | 課本解答（數式以 MathType／WMF 圖片顯示） |
+| `C:\Code Buddy\s5a-maths\source\SMS_bkexe_5B17_e.docx` | 課本習題（Book 5B Chapter 17，含 Class Exercise 17.2 與 Exercise 17.2） |
+| `C:\Code Buddy\s5a-maths\source\SMS_sol_5B17_e.docx` | 課本解答（數式以 MathType／WMF 圖片顯示） |
 
 抽取方法（工具見 `tools/doc-extract/`）：
 

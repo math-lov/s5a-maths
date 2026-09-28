@@ -58,9 +58,13 @@ start index.html
 
 | 位置 | 內容 | 用途 |
 |---|---|---|
-| `C:\Code Buddy\S5A\site\` | 工作檔案（HTML/CSS/JS/JSON） | 平時編輯的地方 |
-| `C:\Code Buddy\S5A\site\.git\` | **完整歷史**：每一次 commit 都是一份完整快照 | 回溯、比對、復原 |
+| `C:\Code Buddy\s5a-maths\` | 工作檔案（HTML/CSS/JS/JSON） | **平時編輯的地方（唯一工作副本）** |
+| `C:\Code Buddy\s5a-maths\.git\` | **完整歷史**：每一次 commit 都是一份完整快照 | 回溯、比對、復原 |
+| `C:\Code Buddy\s5a-maths\source\` | 課本／試卷原文（`SMS_*.docx`） | 只在本機參考；已在 `.gitignore`，**不會**發佈上網 |
 | GitHub `math-lov/s5a-maths` | 遠端副本（同時就是 Pages 的來源） | 換電腦、備份、上網 |
+
+> ⚠️ **`C:\Code Buddy\S5A\site\` 是舊副本**（停在舊 commit，remote 相同而已）。
+> 改它**線上不會更新** —— 所有編輯只認 `C:\Code Buddy\s5a-maths\`。
 
 ### 換電腦／第二部電腦編輯
 

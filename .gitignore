@@ -6,3 +6,5 @@ backups/
 Thumbs.db
 __pycache__/
 *.pyc
+# 課本／試卷原文（出版商版權檔案）：留在本機參考，唔發佈上 GitHub Pages
+/source/
