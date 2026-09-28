@@ -20,13 +20,13 @@
   --blue: #1865f2;
   --blue-soft: #e9f0fe;
 
-  /* 中性 */
-  --bg: #f5f6f7;
+  /* 中性（頁面底色要比白卡明顯深一級，否則會覺得「全白」） */
+  --bg: #e9edf2;
   --card: #ffffff;
   --text: #1c1f23;
-  --muted: #5b6570;
-  --line: #d6d9dd;
-  --line-soft: #e6e8eb;
+  --muted: #59636e;
+  --line: #ccd4dc;
+  --line-soft: #dfe5ea;
 
   /* 狀態 */
   --ok: #14bf96;
@@ -39,8 +39,8 @@
   --radius: 12px;
   --radius-sm: 8px;
   --btn-radius: 10px;
-  --shadow: 0 1px 2px rgba(28, 31, 35, .06);
-  --shadow-lift: 0 2px 10px rgba(28, 31, 35, .10);
+  --shadow: 0 1px 2px rgba(28, 31, 35, .07), 0 2px 8px rgba(28, 31, 35, .05);
+  --shadow-lift: 0 2px 6px rgba(28, 31, 35, .10), 0 10px 24px rgba(28, 31, 35, .10);
 }
 
 * { box-sizing: border-box; }
@@ -61,10 +61,11 @@ body {
 .wrap { max-width: 720px; margin: 0 auto; padding: 0 16px; }
 
 .topbar {
-  position: sticky; top: 0; z-index: 20;
-  background: rgba(255, 255, 255, .96);
+  position: sticky; top: 0; z-index: 30;
+  background: #ffffff;   /* 全不透明：避免下面的 ✓ 徽章透出來 */
+  border-top: 3px solid var(--green);   /* KA 綠品牌線，令頁面不至全白 */
   border-bottom: 1px solid var(--line-soft);
-  backdrop-filter: saturate(140%) blur(8px);
+  box-shadow: 0 1px 3px rgba(28, 31, 35, .05);
 }
 .topbar .inner {
   max-width: 720px; margin: 0 auto; padding: 10px 16px;
@@ -122,7 +123,9 @@ body[data-lang="both"] .l-en { opacity: .82; }
 .btn-ghost:hover { background: #eef0f2; }
 .btn-sm { min-height: 40px; padding: 8px 14px; font-size: 14.5px; }
 .btn-block { width: 100%; }
-.btn:disabled { opacity: .5; cursor: default; transform: none; box-shadow: none; }
+.btn:disabled { cursor: default; transform: none; box-shadow: none; }
+/* 未選取時：用灰色（清楚表示「未可按」），不要用淡化綠色 */
+.btn-primary:disabled { background: #cfd7de; border-color: #cfd7de; color: #fff; opacity: 1; }
 
 /* ── 卡片 ─────────────────────────────────────────────────────────────── */
 .card {
@@ -229,7 +232,7 @@ body[data-lang="both"] .l-en { opacity: .82; }
 .opt {
   display: flex; align-items: flex-start; gap: 12px; width: 100%; text-align: left;
   min-height: 52px; padding: 13px 16px; cursor: pointer;
-  background: var(--card); border: 2px solid var(--line-soft); border-radius: var(--btn-radius);
+  background: var(--card); border: 2px solid var(--line); border-radius: var(--btn-radius);
   font: inherit; color: inherit;
   transition: border-color .15s ease, background .15s ease, transform .1s ease;
 }
