@@ -6,8 +6,8 @@
     "points": [{ "v": 4, "closed": true }],
     "rays": [{ "from": 4, "to": 5.2 }],
     "caption": {
-      "zh": "數線上 $4$ 是實心圓點，並由 $4$ 向右畫一支箭嘴。",
-      "en": "Closed circle at 4 with an arrow pointing to the right."
+      "zh": "數線上 $4$ 是實心圓點（包括端點 inclusive），並由 $4$ 向右畫一支箭嘴。",
+      "en": "Closed (inclusive) circle at 4 with an arrow pointing to the right."
     }
   },
   "numline-a2": {
@@ -20,8 +20,8 @@
     ],
     "segments": [{ "from": -1, "to": 4, "startClosed": true, "endClosed": false }],
     "caption": {
-      "zh": "答案是 $-1 \\le x < 4$：左端實心（包括 $-1$），右端空心（不包括 $4$）。",
-      "en": "Answer $-1 \\le x < 4$: closed at the left end, open at the right end."
+      "zh": "答案是 $-1 \\le x < 4$：左端實心（包括端點 inclusive），右端空心（不包括端點 exclusive）。",
+      "en": "Answer $-1 \\le x < 4$: closed (inclusive) at the left end, open (exclusive) at the right end."
     }
   },
   "numline-a3": {
@@ -34,8 +34,8 @@
       { "from": 4, "to": 6.6, "startClosed": false, "arrowRight": true }
     ],
     "caption": {
-      "zh": "$x>4$ 或 $x<4$ ＝ 除了 $4$ 以外的所有實數（$4$ 是空心）。",
-      "en": "$x>4$ or $x<4$ means every real number except 4 (open circle at 4)."
+      "zh": "$x>4$ 或 $x<4$ ＝ 除了 $4$ 以外的所有實數（$4$ 是空心，不包括端點 exclusive）。",
+      "en": "$x>4$ or $x<4$ means every real number except 4 (open / exclusive circle at 4)."
     }
   },
   "numline-b1b": {
@@ -45,8 +45,8 @@
     "points": [{ "v": -5, "closed": true }],
     "rays": [{ "from": -5, "to": -7.4 }],
     "caption": {
-      "zh": "$x \\le -5$：實心圓點＋向左箭嘴。",
-      "en": "$x \\le -5$: closed circle with the arrow pointing left."
+      "zh": "$x \\le -5$：實心圓點（包括端點 inclusive）＋向左箭嘴。",
+      "en": "$x \\le -5$: closed (inclusive) circle with the arrow pointing left."
     }
   },
   "numline-b2a": {
@@ -59,8 +59,8 @@
       { "from": -1, "to": 3.2, "startClosed": false, "arrowRight": true }
     ],
     "caption": {
-      "zh": "解集是「除了 $-1$ 以外的所有實數」；$-1$ 本身不符合 $(*)$。",
-      "en": "The solution is every real number except $-1$; $-1$ itself does not satisfy $(*)$."
+      "zh": "解集是「除了 $-1$ 以外的所有實數」（all real numbers except $-1$）；$-1$ 以空心圓點表示（不包括端點），本身不符合 $(*)$。",
+      "en": "The solution is all real numbers except $-1$, shown as an open (exclusive) circle at $-1$; $-1$ itself does not satisfy $(*)$."
     }
   },
   "numline-b3a": {
@@ -80,8 +80,8 @@
       { "from": 0.5, "to": 2.4, "startClosed": true, "arrowRight": true }
     ],
     "caption": {
-      "zh": "$x \\le -5$ 或 $x \\ge \\frac{1}{2}$（兩個端點都包括）。",
-      "en": "$x \\le -5$ or $x \\ge \\frac{1}{2}$, both endpoints included."
+      "zh": "$x \\le -5$ 或 $x \\ge \\frac{1}{2}$（兩個端點都是實心，即包括端點 inclusive）。",
+      "en": "$x \\le -5$ or $x \\ge \\frac{1}{2}$, both endpoints closed (inclusive)."
     }
   },
   "numline-b4bi": {
@@ -98,8 +98,8 @@
     ],
     "segments": [{ "from": -0.449, "to": 4.449, "startClosed": true, "endClosed": true }],
     "caption": {
-      "zh": "$2-\\sqrt{6} \\approx -0.449$、$2+\\sqrt{6} \\approx 4.449$；中間的整數是 $0,1,2,3,4$。",
-      "en": "The integers inside the interval are 0, 1, 2, 3 and 4."
+      "zh": "$2-\\sqrt{6} \\approx -0.449$、$2+\\sqrt{6} \\approx 4.449$；區間內（端點包括在內）的整數是 $0,1,2,3,4$。",
+      "en": "The integers inside the interval (endpoints inclusive) are 0, 1, 2, 3 and 4."
     }
   },
   "numline-b5": {

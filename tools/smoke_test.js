@@ -102,6 +102,8 @@ ok(ov.$$("#pagenav .pg-sec").length === 2, "分頁列有甲部／乙部兩個分
 ok(/甲部/.test(ov.$("#pagenav .pg-sec").textContent), "第一個分隔寫「甲部」");
 ok(ov.$$("#quiz-body .btn").length >= total, "總覽有跳去各題的按鈕");
 ok(!!ov.$("#sol-toggle"), "有收起題解的按鈕");
+ok(!!ov.$(".mark-legend") && /method mark/.test(ov.$(".mark-legend").textContent),
+  "總覽有評分代號圖例（(1M)/(1A)）");
 
 /* ── 3. 測驗頁：MC 第 1 題 ───────────────────────────────────────────── */
 console.log("\n== 測驗頁（A1 多項選擇題）==");
@@ -175,6 +177,19 @@ ok(/flip|negative|Forgetting/.test(b3.$$(".sol-card .trap .l-en")[0].textContent
   "錯誤提示的英文標籤已渲染");
 ok(!!b3.$(".sol-card .fig svg"), "答案圖（數線）已插入題解");
 ok(b3.$$(".step .hl").length >= 2, "重點答案有高亮 chip");
+ok(b3.$$(".step .flip-note").length >= 1 && /轉向/.test(b3.$(".flip-note").textContent),
+  "變號步驟有雙語高亮標籤（注意：不等號必須轉向）");
+ok(/EQN/.test(b3.$(".sol-card .tip").textContent), "B3 貼士含計數機 EQN 驗證技巧");
+
+/* ── B4：頂點式 + 方法二（對稱軸公式）───────────────────────────────── */
+console.log("\n== 測驗頁（B4 長題目）==");
+const b4p = boot("quiz.html", "?c=ch10-test&p=9");
+ok(!!b4p.$('.q-card[data-qid="ch10-B4"]'), "渲染出 B4 題目卡");
+ok(b4p.$$(".sol-card .steps .step").length === 9, "B4 有 9 個步驟（含方法二）");
+ok(/a\s*=\s*1/.test(b4p.$$(".sol-card .steps .step")[0].textContent),
+  "B4(a) 第 1 步講明 $x^2$ 係數 a = 1");
+ok(b4p.$$(".sol-card .steps .step").some((s) => /對稱軸公式/.test(s.textContent)),
+  "B4(a) 有「方法二 · 對稱軸公式反推」");
 
 /* ── 5. 加分題：逐步出圖 ─────────────────────────────────────────────── */
 console.log("\n== 測驗頁（加分題）==");

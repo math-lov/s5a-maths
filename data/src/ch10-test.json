@@ -78,7 +78,8 @@
                 },
                 "math": "\\text{A: } 2x+3>3x-1 \\Rightarrow -x>-4 \\Rightarrow x<4\n\\text{B: } 8x-14\\ge 3(x+2) \\Rightarrow 5x\\ge 20 \\Rightarrow x\\ge 4\n\\text{C: } 5x-10>-3x+22 \\Rightarrow 8x>32 \\Rightarrow x>4\n\\text{D: } \\frac{x-8}{6}\\ge \\frac{x}{2} \\Rightarrow x-8\\ge 3x \\Rightarrow -8\\ge 2x \\Rightarrow x\\le -4",
                 "zh": "A：兩邊減 $3x$、減 $3$，得 $-x>-4$；兩邊乘 $-1$（反方向）得 $x<4$。B：展開得 $8x-14\\ge 3x+6$，整理得 $5x\\ge 20$，即 $x\\ge 4$。C：兩邊加 $3x$、加 $10$，得 $8x>32$，即 $x>4$。D：兩邊乘 $6$，得 $x-8\\ge 3x$，即 $-8\\ge 2x$，除以 $2$ 得 $x\\le -4$。",
-                "en": "A: subtract $3x$ then 3 to get $-x>-4$; multiply by $-1$ (flip) to get $x<4$. B: expand to $8x-14\\ge 3x+6$, so $5x\\ge 20$, i.e. $x\\ge 4$. C: add $3x$ then 10 to get $8x>32$, i.e. $x>4$. D: multiply by 6 to get $x-8\\ge 3x$, i.e. $-8\\ge 2x$, so $x\\le -4$."
+                "en": "A: subtract $3x$ then 3 to get $-x>-4$; multiply by $-1$ (flip) to get $x<4$. B: expand to $8x-14\\ge 3x+6$, so $5x\\ge 20$, i.e. $x\\ge 4$. C: add $3x$ then 10 to get $8x>32$, i.e. $x>4$. D: multiply by 6 to get $x-8\\ge 3x$, i.e. $-8\\ge 2x$, so $x\\le -4$.",
+                "flip": true
               },
               {
                 "title": {
@@ -271,7 +272,8 @@
                 },
                 "math": "-3x>-12 \\Rightarrow x<4",
                 "zh": "兩邊同除 $-3$：除以負數，不等號要反方向，所以是 $x<4$（不是 $x>4$）。",
-                "en": "Divide both sides by $-3$. Dividing by a negative number reverses the inequality, so $x<4$, not $x>4$."
+                "en": "Divide both sides by $-3$. Dividing by a negative number reverses the inequality, so $x<4$, not $x>4$.",
+                "flip": true
               },
               {
                 "title": {
@@ -616,16 +618,17 @@
               {
                 "part": "(a)",
                 "title": {
-                  "zh": "第 2 步 · 移項、除係數",
-                  "en": "Step 2 · Collect terms and divide"
+                  "zh": "第 2 步 · 移項並化簡（提供兩種常見移項習慣）",
+                  "en": "Step 2 · Rearrange and solve (two standard approaches)"
                 },
-                "math": "4x+12>10x+1 \\Rightarrow 11>6x \\Rightarrow x<\\frac{11}{6}",
-                "zh": "方法一（推薦，避免負號）：兩邊減 $4x$、再減 $1$，得 $11>6x$；兩邊除以正數 $6$，得 $x<\\frac{11}{6}$。\n方法二（把 $x$ 移到左邊）：$4x-10x>1-12$，得 $-6x>-11$；兩邊除以負數 $-6$ 時，不等號必須轉向，同樣得 $x<\\frac{11}{6}$。",
-                "en": "Method 1 (recommended, avoids negatives): subtract $4x$ then 1 to get $11>6x$; divide by the positive number 6 to get $x<\\frac{11}{6}$.\nMethod 2 (move $x$ to the left): $4x-10x>1-12$ gives $-6x>-11$; dividing by the negative number $-6$ must flip the sign, again giving $x<\\frac{11}{6}$.",
+                "math": "\\text{法一（移向正係數）：} 12-1>10x-4x \\Rightarrow 11>6x \\Rightarrow x<\\frac{11}{6}\n\\text{法二（未知數置左）：} 4x-10x>1-12 \\Rightarrow -6x>-11 \\Rightarrow x<\\frac{11}{6}",
+                "zh": "方法一（推薦，避免負號）：把未知數移到係數較大的一方。兩邊減 $4x$、減 $1$，得 $11>6x$，即 $x<\\frac{11}{6}$。\n方法二（一般習慣）：把 $x$ 移到左邊，得 $-6x>-11$。【注意：兩邊除以負數 $-6$，不等號必須轉向】得 $x<\\frac{11}{6}$。",
+                "en": "Method 1 (recommended, avoids negatives): move $x$ to the side with the larger coefficient — subtract $4x$ and 1 to get $11>6x$, i.e. $x<\\frac{11}{6}$.\nMethod 2 (standard): move $x$ to the left to get $-6x>-11$. [Note: dividing by the negative number $-6$ reverses the inequality sign] giving $x<\\frac{11}{6}$.",
                 "marking": "(1A)",
                 "highlight": [
                   "x<\\frac{11}{6}"
-                ]
+                ],
+                "flip": true
               },
               {
                 "part": "(b)",
@@ -650,7 +653,8 @@
                 "marking": "(1A)",
                 "highlight": [
                   "x\\le -5"
-                ]
+                ],
+                "flip": true
               }
             ],
             "figures": [
@@ -884,7 +888,8 @@
                 "math": "-2x^{2}+5\\le 9x \\Rightarrow 2x^{2}+9x-5\\ge 0",
                 "zh": "把 $9x$ 移到左邊：$-2x^{2}-9x+5\\le 0$；兩邊乘 $-1$（不等號反方向）：$2x^{2}+9x-5\\ge 0$。",
                 "en": "Move $9x$ to the left: $-2x^{2}-9x+5\\le 0$. Multiply by $-1$ (reverse the sign): $2x^{2}+9x-5\\ge 0$.",
-                "marking": "(1M)"
+                "marking": "(1M)",
+                "flip": true
               },
               {
                 "part": "(a)",
@@ -914,12 +919,12 @@
               {
                 "part": "(b)",
                 "title": {
-                  "zh": "第 4 步 · 配方（先加再減）",
-                  "en": "Step 4 · Complete the square (add and subtract)"
+                  "zh": "第 4 步 · 方法一：配方法（先加再減）",
+                  "en": "Step 4 · Method 1: Completing the square"
                 },
-                "math": "x^{2}-2x+8=x^{2}-2x+\\left(\\frac{2}{2}\\right)^{2}-\\left(\\frac{2}{2}\\right)^{2}+8",
-                "zh": "配方法：$x^{2}$ 的係數是 $1$，取 $\\frac{-2}{2}=-1$，加再減 $(-1)^{2}=1$：$x^{2}-2x+1-1+8$。",
-                "en": "Complete the square: the coefficient of $x^{2}$ is 1, so add and subtract $(-1)^{2}=1$: $x^{2}-2x+1-1+8$.",
+                "math": "x^{2}-2x+8=x^{2}-2x+\\left(\\frac{-2}{2}\\right)^{2}-\\left(\\frac{-2}{2}\\right)^{2}+8",
+                "zh": "配方法關鍵：看 $x$ 的係數 $-2$，取它一半的平方，即 $\\left(\\frac{-2}{2}\\right)^{2}=(-1)^{2}=1$。在式中「加上 $1$，隨即減去 $1$」以保持數值不變：$x^{2}-2x+1-1+8$。",
+                "en": "Completing the square: take half of the $x$-coefficient and square it: $\\left(\\frac{-2}{2}\\right)^{2}=(-1)^{2}=1$. Add 1 and immediately subtract 1 to keep the value unchanged: $x^{2}-2x+1-1+8$.",
                 "marking": "(1M)"
               },
               {
@@ -1041,8 +1046,8 @@
               }
             ],
             "tip": {
-              "zh": "解二次不等式三步：① 移到一邊令一邊是 0（注意反方向）② 找根（因式分解／公式／配方）③ 看開口方向畫草圖，判斷「中間」還是「外面」。",
-              "en": "Three steps for quadratic inequalities: move everything to one side, find the roots, then sketch the parabola to decide 'between' or 'outside'."
+              "zh": "解二次不等式三步：① 移到一邊令一邊是 0（注意反方向）② 找根（因式分解／公式／配方）③ 看開口方向畫草圖，判斷「中間」還是「外面」。\n【計數機快速驗證技巧（fx-50FH II／fx-5100 等 DSE 認可計數機）】遇到二次方程／不等式要找臨界值，可按【MODE】【MODE】【1】進入 EQN 模式，輸入 $a$、$b$、$c$：若答案出現虛數符號「$i$」，即代表無實根（$\\Delta<0$）；若顯示實數，那就是臨界根，可用來檢查因式分解或十字相乘有沒有計錯。",
+              "en": "Three steps for quadratic inequalities: move everything to one side, find the roots, then sketch the parabola to decide 'between' or 'outside'.\n【Calculator checking tip (fx-50FH II / fx-5100 or any DSE-approved calculator)】 Use EQN mode (e.g. MODE MODE 1) and enter a, b, c. If the roots are displayed with an imaginary unit 'i', there are no real roots (Δ < 0); real values shown are the critical values, which let you check your factorization."
             }
           }
         },
@@ -1110,14 +1115,13 @@
           "solution": {
             "steps": [
               {
-                "part": "(a)",
                 "title": {
-                  "zh": "第 1 步 · 由頂點寫出頂點式",
-                  "en": "Step 1 · Write the vertex form"
+                  "zh": "第 1 步 · 觀察 x² 係數並由頂點寫出頂點式",
+                  "en": "Step 1 · Identify the leading coefficient and write the vertex form"
                 },
-                "math": "y=(x-2)^{2}-6",
-                "zh": "最低點是 $(2,\\ -6)$，所以頂點式是 $y=(x-2)^{2}-6$。",
-                "en": "The minimum point is $(2,\\ -6)$, so the vertex form is $y=(x-2)^{2}-6$.",
+                "math": "a=1 \\implies y=1\\cdot(x-2)^{2}+(-6)=(x-2)^{2}-6",
+                "zh": "題目的二次式為 $y=x^{2}+bx+c$，可知 $x^{2}$ 的係數為 $a=1$。已知最低點（頂點）坐標為 $(h,\\ k)=(2,\\ -6)$，代入頂點式 $y=a(x-h)^{2}+k$，可得 $y=(x-2)^{2}-6$。注意：必須先確認 $a=1$；若 $a\\ne 1$，頂點式前面要保留 $a$。",
+                "en": "The equation is $y=x^{2}+bx+c$, so the coefficient of $x^{2}$ is $a=1$. Given the minimum point (vertex) is $(h,\\ k)=(2,\\ -6)$, substitute into the vertex form $y=a(x-h)^{2}+k$ to get $y=(x-2)^{2}-6$. Note: this only works because $a=1$; otherwise the factor $a$ must stay in front.",
                 "marking": "(1M)"
               },
               {
@@ -1143,6 +1147,16 @@
                 "highlight": [
                   "b=-4,\\quad c=-2"
                 ]
+              },
+              {
+                "part": "(a)",
+                "title": {
+                  "zh": "方法二 · 對稱軸公式反推（適合習慣用公式的同學）",
+                  "en": "Method 2 · Use the axis of symmetry formula (for students who prefer formulas)"
+                },
+                "math": "x=-\\frac{b}{2(1)}=2 \\implies b=-4;\\quad -6=(2)^{2}+(-4)(2)+c \\implies c=-2",
+                "zh": "【一題多解 · 對稱軸公式法】\n1. 頂點的 $x$ 坐標（對稱軸）公式是 $x=-\\frac{b}{2a}$。代入 $a=1$ 及 $x=2$：$-\\frac{b}{2(1)}=2$，即 $-b=4$，得 $b=-4$。\n2. 再把頂點 $(2,\\ -6)$ 與 $b=-4$ 代入 $y=x^{2}+bx+c$：$-6=(2)^{2}+(-4)(2)+c=-4+c$，得 $c=-2$。\n（這個方法不必記頂點式，只要記對稱軸公式。）",
+                "en": "【Alternative method · axis of symmetry formula】\n1. The axis of symmetry is $x=-\\frac{b}{2a}$. With $a=1$ and $x=2$: $-\\frac{b}{2(1)}=2$, so $-b=4$ and $b=-4$.\n2. Substitute the vertex $(2,\\ -6)$ and $b=-4$ into $y=x^{2}+bx+c$: $-6=(2)^{2}+(-4)(2)+c=-4+c$, giving $c=-2$.\n(No need to remember the vertex form — just the axis formula.)"
               },
               {
                 "part": "(b)(i)",
@@ -1332,10 +1346,10 @@
                 "labelEn": "Stopping after Δ < 0 only"
               },
               {
-                "label": "解 4k² − 25 > 0 時直接開方",
-                "zh": "後進生解 $4k^{2}-25>0$ 時極常寫成 $4k^{2} > 25 \\Rightarrow k > \\pm\\frac{5}{2}$ 或單純寫 $k > \\frac{5}{2}$。不等式兩邊不能隨意開平方，必須透過因式分解 $(2k+5)(2k-5)>0$ 取兩根外側：$k<-\\frac{5}{2}$ 或 $k>\\frac{5}{2}$，否則會丟失整個負數解區間。",
-                "en": "When solving $4k^{2}-25>0$, weaker students often take square roots directly, erroneously writing $k > \\pm\\frac{5}{2}$ or $k > \\frac{5}{2}$. You must factorize into $(2k+5)(2k-5)>0$ to get the outside intervals: $k<-\\frac{5}{2}$ or $k>\\frac{5}{2}$, avoiding the loss of the negative range.",
-                "labelEn": "Taking square roots directly when solving 4k² − 25 > 0"
+                "label": "解 4k² − 25 > 0 時直接開方（常見致命錯誤）",
+                "labelEn": "Taking square roots directly in 4k² − 25 > 0 (common fatal error)",
+                "zh": "很多同學會直接寫成 $4k^{2}>25 \\Rightarrow k>\\pm\\frac{5}{2}$。切記：不等式絕對不能這樣直接開方！正確做法有兩個：一是因式分解成 $(2k+5)(2k-5)>0$；二是理解為「距離原點大於 $\\frac{5}{2}$」，即 $|k|>\\frac{5}{2}$。兩者都得出兩根外側：$k<-\\frac{5}{2}$ 或 $k>\\frac{5}{2}$。若直接開方只保留正數，會完全漏掉負數區間。",
+                "en": "Many students write $4k^{2}>25 \\Rightarrow k>\\pm\\frac{5}{2}$. Never take square roots across an inequality this way. Either factorize into $(2k+5)(2k-5)>0$, or read it as 'distance from the origin greater than $\\frac{5}{2}$', i.e. $|k|>\\frac{5}{2}$. Both give the outside intervals: $k<-\\frac{5}{2}$ or $k>\\frac{5}{2}$. Taking only the positive root loses the whole negative interval."
               },
               {
                 "label": "最後沒有取交集",
@@ -1431,12 +1445,12 @@
               },
               {
                 "title": {
-                  "zh": "第 5 步 · 情況 3：對稱軸在 x = 3 右邊（要看 Δ）",
-                  "en": "Step 5 · Case 3: the axis is right of x = 3 (need Δ)"
+                  "zh": "第 5 步 · 情況 3：對稱軸在 x = 3 右邊（頂點成為區間內的最低點）",
+                  "en": "Step 5 · Case 3: axis of symmetry is to the right of x = 3 (vertex is the minimum)"
                 },
-                "math": "\\frac{k+3}{2}>3 \\Rightarrow k>3",
-                "zh": "情況 3：對稱軸在 $x=3$ 的右邊（$k>3$）。因為頂點落在 $x\\ge 3$ 的範圍內，頂點正是函數在這段區間的最低點：由 $x=3$ 向右走，函數會先下降到頂點。要令所有 $x\\ge 3$ 的 $f(x)>0$，這個最低點必須嚴格大於 $0$，即整條開口向上的拋物線不能接觸或穿過 $x$ 軸，等價於判別式 $\\Delta<0$。",
-                "en": "Case 3: the axis is right of $x=3$ ($k>3$). The vertex now lies inside the region $x\\ge 3$, so it is the lowest point of the graph on that interval: moving right from $x=3$, $f$ first decreases towards the vertex. For $f(x)>0$ to hold for every $x\\ge 3$, this lowest point must be strictly above 0 — the whole upward parabola must never touch or cross the x-axis, which is exactly $\\Delta<0$.",
+                "math": "\\frac{k+3}{2}>3 \\implies k>3",
+                "zh": "情況 3：對稱軸在 $x=3$ 的右邊（$k>3$）。\n因為拋物線開口向上，頂點是整條拋物線的最低點；當對稱軸 $>3$ 時，這個最低點剛好落在題目要求的定義域 $x\\ge 3$ 之內。\n因此，要保證在 $x\\ge 3$ 時「每一點都 $f(x)>0$」，最低點（頂點）的 $y$ 坐標就必須嚴格大於 $0$。\n開口向上的拋物線頂點 $>0$，等價於整條曲線懸浮在 $x$ 軸上方（不與 $x$ 軸相交），因此必須滿足判別式 $\\Delta<0$。",
+                "en": "Case 3: the axis of symmetry lies to the right of $x=3$ ($k>3$). Since the parabola opens upwards, the vertex is the absolute minimum of the graph; with the axis $>3$, this minimum falls inside the required domain $x\\ge 3$.\nSo to guarantee $f(x)>0$ for every $x\\ge 3$, the minimum value (the vertex) must be strictly positive.\nAn upward parabola with its vertex above the x-axis means the whole curve floats above the x-axis (no intersection), which is exactly $\\Delta<0$.",
                 "figure": "bonus-case3"
               },
               {

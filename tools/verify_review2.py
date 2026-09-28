@@ -24,7 +24,7 @@ checks = [
     ("A2 optB 跨項配對", "跨項配對" in traps("ch10-A2")[1]["zh"]),
     ("A5 optB 同號（同正或同負）", "同正或同負" in traps("ch10-A5")[0]["zh"]),
     ("B3(c) 非零拆項警告", any("切忌拆成" in t["zh"] for t in traps("ch10-B3"))),
-    ("B5 直接開方陷阱", any("開平方" in t["zh"] and "5}{2}" in t["zh"]
+    ("B5 直接開方陷阱", any("開方" in t["zh"] and "5}{2}" in t["zh"]
                             for t in traps("ch10-B5"))),
     ("B4(ii) 列整數遺漏 0", any("漏掉 $0$" in t["zh"] for t in traps("ch10-B4"))),
     ("B4(i) 解集區間而非方程根", any("方程根" in t["zh"] for t in traps("ch10-B4"))),

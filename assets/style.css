@@ -271,6 +271,18 @@ body[data-sol="show"] .sol-hint { display: none; }
   display: inline-block; margin-top: 8px; font-size: 14px; color: var(--primary-dark);
   background: #EBF8FF; border-radius: 8px; padding: 4px 10px;
 }
+/* 後進生鷹架：乘／除以負數要轉向的高亮標籤 */
+.step .flip-note {
+  display: inline-block; margin-top: 8px; font-size: 13.5px; font-weight: 600;
+  color: #7B341E; background: #FEEBC8; border-left: 4px solid var(--warn);
+  border-radius: 8px; padding: 4px 10px;
+}
+/* 評分代號圖例 */
+.mark-legend {
+  margin-top: 8px; font-size: 13px; color: var(--muted);
+  background: #F7FAFF; border: 1px dashed #BEE3F8; border-radius: var(--radius-sm);
+  padding: 6px 10px;
+}
 
 .formula {
   display: flex; flex-direction: column; align-items: center; justify-content: center;

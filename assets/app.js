@@ -56,7 +56,17 @@
       en: "Clear the 'mastered' records on this device?"
     },
     okToast: { zh: "答對了 ✓", en: "Correct ✓" },
-    missToast: { zh: "差一點 —— 看看下面「為甚麼會選錯」", en: "Close — see why the other options are wrong below" }
+    missToast: { zh: "差一點 —— 看看下面「為甚麼會選錯」", en: "Close — see why the other options are wrong below" },
+    /* 後進生鷹架：乘／除以負數要轉向的高亮標籤 */
+    flipNote: {
+      zh: "【注意】兩邊乘以／除以負數，不等號必須轉向",
+      en: "Note: reverse the inequality sign when multiplying or dividing by a negative number"
+    },
+    /* 評分代號圖例（DSE marking scheme codes） */
+    markLegend: {
+      zh: "步驟分圖例：(1M)＝方法分（Method mark）；(1A)＝答案分（Accuracy mark）",
+      en: "Marking codes: (1M) = method mark; (1A) = accuracy (answer) mark"
+    }
   };
 
   /* ── 儲存 ───────────────────────────────────────────────────────────── */
@@ -488,6 +498,9 @@
       en: [meta.paper, meta.date, meta.marks ? "Total " + meta.marks + " marks" : ""].filter(Boolean).join(" · ")
     });
     card.appendChild(ul);
+    var legend = el("div", "mark-legend");
+    setPair(legend, UI.markLegend);
+    card.appendChild(legend);
 
     var row = el("div", "row");
     row.style.marginTop = "12px";
@@ -740,6 +753,12 @@
       }
       box.appendChild(pair({ zh: st.zh, en: st.en }, "div", "why bi"));
       if (st.marking) box.appendChild(el("span", "marking", st.marking));
+      /* 變號步驟：加一個雙語高亮標籤（後進生最容易失分的地方） */
+      if (st.flip) {
+        var fn = el("div", "flip-note");
+        fn.appendChild(pairSpan(UI.flipNote));
+        box.appendChild(fn);
+      }
       (st.highlight || []).forEach(function (hv) {
         var hl = el("div", "hl");
         tex(hl, hv, false);
