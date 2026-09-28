@@ -169,8 +169,8 @@ q1c.$("[data-check]").click();
 ok(q1c.store().done["ch10-A1"] === true, "答對會標記為已掌握");
 ok(!!q1c.$("[data-feedback=ok]"), "答對有綠色正確橫幅");
 ok(q1c.$$("#pagenav .pg")[1].classList.contains("done"), "分頁列的 A1 打勾");
-ok(!!q1c.$(".answer-box.sol-answer") && q1c.$(".answer-box").classList.contains("on"),
-  "答對後答案欄揭曉（.sol-answer.on）");
+ok(!q1c.$(".answer-box").classList.contains("on"),
+  "答對後答案欄不會自動揭曉（要自己按「顯示答案」）");
 ok(/已掌握 1 \/ 11 題/.test((q1c.$("#quiz-progress") || {}).textContent || ""),
   "進度文字正常（不再是 [object Object]）");
 
@@ -192,6 +192,46 @@ ok(!/\.sol-card \.sol-body\s*\{\s*display:\s*none/.test(cssText),
   "style.css 不再收起 .sol-body（否則按「顯示提示」無反應）");
 ok(/\[data-sol="hide"\] \.sol-card \.sol-answer\b/.test(cssText),
   "style.css 有「收起題解時一併收起答案欄」的規則");
+
+/* ── 收起題解：把真的 style.css 注入 jsdom，驗證 computed style ──────────
+   （上一版只做 DOM class 檢查，CSS 出錯照樣「測試通過」→ 要用真 CSS 驗） */
+console.log("\n== 收起題解（真 CSS 驗證）==");
+function bootCss(page, search, storage) {
+  const d = boot(page, search, storage);
+  const st = d.doc.createElement("style");
+  st.textContent = cssText;
+  d.doc.head.appendChild(st);
+  return d;
+}
+const cssDisp = (d, sel) => {
+  const n = d.$(sel);
+  return n ? d.ctx.window.getComputedStyle(n).display : "MISSING";
+};
+
+const sc = bootCss("quiz.html", "?c=ch10-test&p=1");
+ok(cssDisp(sc, ".answer-box.sol-answer") !== "none", "顯示題解時答案欄可見");
+sc.$("#sol-toggle").click();
+ok(cssDisp(sc, ".answer-box.sol-answer") === "none", "收起題解 → 答案欄隱藏（不再露答案）");
+ok(cssDisp(sc, ".sol-card .sol-body") !== "none", "收起題解 → .sol-body 仍可見（提示出得來）");
+ok(cssDisp(sc, ".sol-card .sol-extra") === "none", "收起題解 → 陷阱／技巧隱藏");
+ok(!!sc.$("[data-peek]"), "收起題解時有「顯示答案」按鈕");
+sc.$("[data-peek]").click();
+ok(cssDisp(sc, ".answer-box.sol-answer") !== "none", "按「顯示答案」→ 答案欄出現");
+ok(sc.$$(".sol-card .steps .step").length === 0, "「顯示答案」只揭答案，不揭步驟");
+sc.$("[data-hint]").click();
+ok(cssDisp(sc, ".answer-box.sol-answer") !== "none", "按下提示後（重畫）答案欄仍保持揭曉");
+sc.$("[data-peek]").click();
+ok(cssDisp(sc, ".answer-box.sol-answer") === "none", "再按一次 → 答案欄收起");
+
+const sc2 = bootCss("quiz.html", "?c=ch10-test&p=1",
+  JSON.stringify({ done: { "ch10-A1": true }, picked: { "ch10-A1": "B" }, hints: {} }));
+sc2.$("#sol-toggle").click();
+ok(cssDisp(sc2, ".answer-box.sol-answer") === "none",
+  "曾答對過的題目：收起題解後答案欄仍然隱藏（上一版在此漏了答案）");
+
+/* 版本戳：由 build.py 依內容寫入，內容一變就要變 */
+ok(/window\.__V = "[0-9a-f]{8}"/.test(read("index.html")), "index.html 有 build 版本戳");
+ok(/window\.__V = "[0-9a-f]{8}"/.test(read("quiz.html")), "quiz.html 有 build 版本戳");
 
 /* ── 一鍵複製 LLM 提問 Prompt ────────────────────────────────────────── */
 console.log("\n== LLM 提問 Prompt ==");

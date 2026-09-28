@@ -20,6 +20,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import os
 import re
@@ -238,6 +239,41 @@ def js_dump(obj) -> str:
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
 
 
+# ── 版本戳（cache stamp）──────────────────────────────────────────────────────
+# 之前的做法是「按小時」產生 ?v=，一小時內再部署，瀏覽器見到同一個 URL 就繼續用
+# 快取的舊檔（＝改了但學生看不到）。現在改成依內容算 hash：內容一變，HTML 內的
+# window.__V 就變，URL 亦變，瀏覽器與 GitHub Pages 的 CDN 都必然取到新檔。
+STAMP_RE = re.compile(r"window\.__V\s*=\s*[^;]+;")
+STAMP_HTML = ("index.html", "quiz.html")
+STAMP_ASSETS = ("assets/app.js", "assets/style.css", "data/index.js", "data/figures.js")
+
+
+def content_stamp(part_files) -> str:
+    h = hashlib.sha1()
+    for rel in list(STAMP_ASSETS) + list(part_files):
+        path = os.path.join(BASE, rel)
+        if not os.path.exists(path):
+            continue
+        h.update(rel.encode("utf-8"))
+        with open(path, "rb") as f:
+            h.update(f.read())
+    return h.hexdigest()[:8]
+
+
+def write_stamp(stamp: str) -> list[str]:
+    changed = []
+    for name in STAMP_HTML:
+        path = os.path.join(BASE, name)
+        with open(path, encoding="utf-8") as f:
+            src = f.read()
+        new = STAMP_RE.sub('window.__V = "%s";' % stamp, src, count=1)
+        if new != src:
+            with open(path, "w", encoding="utf-8", newline="\n") as f:
+                f.write(new)
+            changed.append(name)
+    return changed
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="只檢查，不生成檔案")
@@ -297,6 +333,9 @@ def main() -> int:
         with open(os.path.join(OUT, "figures.js"), "w", encoding="utf-8", newline="\n") as f:
             f.write(HEADER)
             f.write("window.S5A_FIGURES = %s;\n" % js_dump(rendered_figs))
+        stamp = content_stamp([p["dataFile"] for p in parts_out])
+        touched = write_stamp(stamp)
+        print("版本戳（cache stamp）%s → %s" % (stamp, "、".join(touched) if touched else "HTML 無變動"))
 
     for w in WARNINGS:
         print("警告 " + w)

@@ -98,6 +98,8 @@
     /* P1：逐步提示（hint）模式 */
     showAllSol: { zh: "顯示全部題解", en: "Show all steps" },
     hintsDone: { zh: "提示已全部顯示 —— 再按一次可睇埋陷阱與技巧。", en: "All hints shown — press again to see the traps and tips too." },
+    showAnswer: { zh: "顯示答案", en: "Show answer" },
+    hideAnswer: { zh: "收起答案", en: "Hide answer" },
     pmHint: {
       zh: "先寫下你卡住的地方，勾選想要的選項，再按「複製」。下面的內容可以直接修改。",
       en: "Write where you are stuck, tick the options you want, then press Copy. You can edit the text below directly."
@@ -108,19 +110,21 @@
   function loadStore() {
     try {
       var s = JSON.parse(localStorage.getItem(PROG_KEY)) || {};
-      s.done = s.done || {};         // { qid: true }
-      s.picked = s.picked || {};     // { qid: "A" | "B" | ... }
-      s.hints = s.hints || {};       // { qid: 已顯示的提示步數 }
-      s.revealed = s.revealed || {}; // { qid: true } 答案已揭曉（收起題解時才顯示答案欄）
+      s.done = s.done || {};      // { qid: true }
+      s.picked = s.picked || {};  // { qid: "A" | "B" | ... }
+      s.hints = s.hints || {};    // { qid: 已顯示的提示步數 }
       return s;
     } catch (e) {
-      return { done: {}, picked: {}, hints: {}, revealed: {} };
+      return { done: {}, picked: {}, hints: {} };
     }
   }
   var store = loadStore();
   function saveStore() {
     try { localStorage.setItem(PROG_KEY, JSON.stringify(store)); } catch (e) {}
   }
+  /* 本次瀏覽才有效的「睇答案」狀態（收起題解時按「顯示答案」才會揭曉；
+     刻意不寫入 localStorage —— 換頁／重新載入後回復收起） */
+  var PEEKED = {};
 
   /* ── 語言 ───────────────────────────────────────────────────────────── */
   function getLang() {
@@ -362,6 +366,10 @@
       host.appendChild(btn);
     });
 
+    /* 版本戳：方便確認瀏覽器有沒有取到最新版本（由 tools/build.py 寫入） */
+    var bs = qs("#build-stamp");
+    if (bs) bs.textContent = (window.__V || "dev");
+
     var site = INDEX.site || {};
     var n = qs("#site-stats");
     if (n) {
@@ -384,7 +392,7 @@
     if (rb) rb.onclick = function () {
       var ask = getLang() === "en" ? UI.resetAsk.en : UI.resetAsk.zh;
       if (!confirm(ask)) return;
-      store = { done: {}, picked: {}, hints: {}, revealed: {} };
+      store = { done: {}, picked: {}, hints: {} };
       saveStore();
       location.reload();
     };
@@ -731,11 +739,6 @@
       }
       function lockAll(ans) {
         state.locked = true;
-        /* 答案已揭曉 → 收起題解時答案欄也要跟著出現 */
-        store.revealed[q.id] = true;
-        saveStore();
-        var revealAb = qs(".sol-answer");
-        if (revealAb) revealAb.classList.add("on");
         qsa(".opt", opts).forEach(function (b) {
           b.disabled = true;
           b.classList.remove("picked");
@@ -822,9 +825,10 @@
   }
 
   function answerBox(q) {
-    /* .sol-answer：收起題解時一併收起；答完／揭完（.on）才顯示 */
+    /* .sol-answer：收起題解時一律隱藏（連曾答對過的題目都不可洩露答案）；
+       學生要按「顯示答案」才加上 .on 揭曉（只記在本次瀏覽，不寫入 localStorage）*/
     var box = el("div", "answer-box sol-answer");
-    if (store.revealed[q.id]) box.classList.add("on");
+    if (PEEKED[q.id]) box.classList.add("on");
     var ah = el("span", "ah");
     ah.appendChild(pairSpan(UI.answer));
     box.appendChild(ah);
@@ -975,7 +979,21 @@
         hc.appendChild(pairSpan(UI.hintsDone));
         hr.appendChild(hc);
       }
+      /* 做完想對答案：按一下只揭曉答案欄（不揭步驟） */
+      var pkb = el("button", "btn btn-sm btn-ghost");
+      pkb.setAttribute("data-peek", "1");
+      function labelPeek() { setPair(pkb, PEEKED[q.id] ? UI.hideAnswer : UI.showAnswer); }
+      labelPeek();
+      pkb.onclick = function () {
+        PEEKED[q.id] = !PEEKED[q.id];
+        var box = qs(".sol-answer");
+        if (box) box.classList.toggle("on", !!PEEKED[q.id]);
+        labelPeek();
+      };
+      hr.appendChild(pkb);
+
       var ab = el("button", "btn btn-sm btn-ghost");
+      ab.setAttribute("data-all-steps", "1");
       ab.appendChild(pairSpan(UI.showAllSol));
       ab.onclick = function () {
         setSolHidden(false);

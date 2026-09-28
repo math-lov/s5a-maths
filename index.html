@@ -136,13 +136,17 @@
     <span class="l-zh">題目取自校本 Chapter Quiz（2026-09-25），僅供本科學生溫習使用。</span>
     <span class="l-en">Questions from the school chapter quiz (25 Sep 2026), for our students' revision only.</span>
   </p>
+
+  <p class="small muted center" style="margin:6px 0 0">
+    版本 / Version: <span id="build-stamp">—</span>
+  </p>
 </div>
 
 <script defer src="vendor/katex/katex.min.js"></script>
 <script defer src="vendor/katex/auto-render.min.js"></script>
 <script>
-  // 快取戳：每小時變一次，繞過 GitHub Pages 的靜態檔快取
-  window.__V = new Date().toISOString().slice(0, 13).replace(/[-T:]/g, "");
+  // 快取戳：由 tools/build.py 依「內容」自動寫入（內容一變，?v= 就變 → 不會再取到舊檔）
+  window.__V = "6f10e784";
   document.write('<script src="data/index.js?v=' + window.__V + '"><\/script>');
   document.write('<script src="assets/app.js?v=' + window.__V + '"><\/script>');
 </script>
