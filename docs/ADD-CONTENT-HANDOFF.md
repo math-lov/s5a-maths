@@ -38,6 +38,20 @@
 4. 有新圖 → 寫入 `data/src/figures.json`
 5. 跑齊檢查（§5）→ **同步更新 `tools/smoke_test.js` 的頁數／題數斷言（只能加，不要刪舊的）**
 
+### 3b. 課本練習（Classwork：章 → 節）
+
+網站另有「課本練習」類別，結構是 **章 → 節**（節數可隨時加減，不一定是 3 節）：
+
+| 檔案／位置 | 要改甚麼 |
+|---|---|
+| `data/src/site.json` 的 `parts` | 每一「節」一項：`group` 設 `"classwork"`、`chapter` 設章 id（例 `ch17`）；`stats.questions`／`stats.marks` 要對 |
+| `data/src/site.json` 的 `classwork.chapters` | 章清單；每章有 `sections`（`part` 指向 `parts` 的 id，未上線寫 `null`，可加 `short` 做頂欄麵包屑） |
+| `data/src/<節id>.json`（例 `ch17-2.json`） | 該節題目；`sections` 就是書內分段（課堂例題／判斷題／Level 1／Level 2…），每段可加 `short`（分頁列短標題） |
+
+* 首頁只顯示「章」；點進去是 `chapter.html?ch=<章id>`，再選節（`quiz.html?c=<節id>`）。
+* 課本練習**沒有官方評分**：題目分數與 `(1M)/(1A)` 由老師自擬，但 `parts[].marks` 加總＝題目分數、`steps[].marking` 加總亦要對得上（`build.py` S2）。
+* 新增一節＝加一個 `parts` 項、加一個 `data/src/<節id>.json`、把 `part` 填回 `classwork.chapters[].sections`；**不用改 HTML／JS**。
+
 ## 4. 題目 JSON 骨架（真實欄位，跟住填）
 
 ```json

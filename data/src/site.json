@@ -9,12 +9,13 @@
     "school": "S.K.H. Bishop Baker Secondary School",
     "class": { "zh": "2026–2027 年度 · 中五A班", "en": "2026–2027 · S.5A" },
     "note": {
-      "zh": "這裡把校內測驗的每一題連題解一頁一頁展示：題目與作答用英文，詳解中英對照，可按「中／EN／中英」切換。",
-      "en": "Every question from the class quiz is shown on its own page, together with a full worked solution. Questions and options are in English; explanations are bilingual."
+      "zh": "這裡把校內測驗與課本練習的每一題連題解一頁一頁展示：題目與作答用英文，詳解中英對照，可按「中／EN／中英」切換。",
+      "en": "Every question from the class quiz and the textbook exercises is shown on its own page, together with a full worked solution. Questions are in English; explanations are bilingual."
     },
     "parts": [
       {
         "id": "ch10-test",
+        "group": "quiz",
         "kind": { "zh": "測驗檢討", "en": "Quiz review" },
         "unit": { "zh": "第 10 章 不等式", "en": "Chapter 10 · Inequalities" },
         "title": { "zh": "第 10 章 測驗檢討", "en": "Chapter 10 Quiz Review" },
@@ -30,11 +31,47 @@
         "stats": { "questions": 11, "marks": 38, "bonus": 3 },
         "status": "ready",
         "source": { "zh": "校本 Chapter Quiz（2026-09-25）", "en": "School chapter quiz (25 Sep 2026)" }
+      },
+      {
+        "id": "ch17-2",
+        "group": "classwork",
+        "chapter": "ch17",
+        "code": "17.2",
+        "kind": { "zh": "課本練習", "en": "Book exercise" },
+        "unit": { "zh": "第 17 章 · 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
+        "title": { "zh": "17.2 排列 · 課本練習", "en": "17.2 Permutations · Book Exercise" },
+        "meta": { "paper": "Book 5B · Exercise 17.2" },
+        "stats": { "questions": 36, "marks": 185, "bonus": 0 },
+        "status": "ready",
+        "source": { "zh": "課本 Exercise 17.2（Class Exercise 17.2 ＋ Exercise 17.2）", "en": "Textbook Exercise 17.2" }
       }
     ],
+    "classwork": {
+      "title": { "zh": "課本練習", "en": "Classwork" },
+      "lead": {
+        "zh": "按上課進度整理的課本練習，每一節一版，附逐步題解。分數與步驟分 (1M)/(1A) 為老師自擬，方便核對思路。",
+        "en": "Textbook exercises arranged by section, one section per page, with step-by-step solutions. Marks and (1M)/(1A) step marks are set by the teacher for checking your working."
+      },
+      "chapters": [
+        {
+          "id": "ch17",
+          "short": { "zh": "第 17 章", "en": "Chapter 17" },
+          "title": { "zh": "第 17 章 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
+          "intro": {
+            "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。今次先上 17.2 排列（課本 Exercise 17.2），其餘兩節稍後補上。",
+            "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. Section 17.2 (Book Exercise 17.2) is online now; the other two sections follow later."
+          },
+          "sections": [
+            { "code": "17.1", "part": null, "title": { "zh": "17.1 計數基本原理", "en": "17.1 Basic counting principles" } },
+            { "code": "17.2", "part": "ch17-2", "title": { "zh": "17.2 排列", "en": "17.2 Permutations" } },
+            { "code": "17.3", "part": null, "title": { "zh": "17.3 組合", "en": "17.3 Combinations" } }
+          ]
+        }
+      ]
+    },
     "comingSoon": {
-      "zh": "之後會陸續加入其他章節測驗、課堂練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。",
-      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/."
+      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17.1 與 17.3 節會接著補上。",
+      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. Sections 17.1 and 17.3 follow next."
     }
   }
 }

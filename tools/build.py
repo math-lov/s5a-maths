@@ -244,7 +244,7 @@ def js_dump(obj) -> str:
 # 快取的舊檔（＝改了但學生看不到）。現在改成依內容算 hash：內容一變，HTML 內的
 # window.__V 就變，URL 亦變，瀏覽器與 GitHub Pages 的 CDN 都必然取到新檔。
 STAMP_RE = re.compile(r"window\.__V\s*=\s*[^;]+;")
-STAMP_HTML = ("index.html", "quiz.html")
+STAMP_HTML = ("index.html", "quiz.html", "chapter.html")
 STAMP_ASSETS = ("assets/app.js", "assets/style.css", "data/index.js", "data/figures.js")
 
 
@@ -313,7 +313,8 @@ def main() -> int:
         part["dataFile"] = "data/%s.js" % pid
         part["globalName"] = global_name
         part["qids"] = [q["id"] for s in data.get("sections", []) for q in s.get("questions", [])]
-        part["sections"] = [{"id": s["id"], "title": s.get("title", {}), "marks": s.get("marks", 0),
+        part["sections"] = [{"id": s["id"], "short": s.get("short", {}), "title": s.get("title", {}),
+                             "marks": s.get("marks", 0),
                              "questions": len(s.get("questions", []))} for s in data.get("sections", [])]
         parts_out.append(part)
         if not args.check:

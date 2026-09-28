@@ -35,6 +35,8 @@
     marked: { zh: "已掌握 ✓", en: "Mastered ✓" },
     secA: { zh: "甲部", en: "Sec A" },
     secB: { zh: "乙部", en: "Sec B" },
+    classwork: { zh: "課本練習", en: "Classwork" },
+    comingSoon: { zh: "即將推出", en: "Coming soon" },
     qList: { zh: "題目一覽", en: "Question list" },
     answer: { zh: "答案", en: "Answer" },
     solution: { zh: "題解", en: "Solution" },
@@ -331,13 +333,50 @@
     (part.qids || []).forEach(function (qid) { if (store.done[qid]) done++; });
     return Math.min(100, Math.round(done / total * 100));
   }
+  /* ── 課本練習（章 → 節；節數可加減，資料放在 site.json）────────────────── */
+  function chapters() {
+    var cw = (INDEX.site || {}).classwork || {};
+    return cw.chapters || [];
+  }
+  function chapterOf(id) {
+    var out = null;
+    chapters().forEach(function (c) { if (c.id === id) out = c; });
+    return out;
+  }
+  function chapterPartIds(ch) {
+    return ((ch && ch.sections) || []).map(function (s) { return s.part; }).filter(Boolean);
+  }
+  function chapterStats(ch) {
+    var q = 0, m = 0, done = 0, total = 0, live = 0;
+    chapterPartIds(ch).forEach(function (id) {
+      var p = metaOf(id);
+      if (!p) return;
+      live++;
+      q += (p.stats && p.stats.questions) || 0;
+      m += (p.stats && p.stats.marks) || 0;
+      (p.qids || []).forEach(function (qid) { total++; if (store.done[qid]) done++; });
+    });
+    return {
+      live: live, sections: ((ch && ch.sections) || []).length, questions: q, marks: m,
+      done: done, total: total,
+      pct: total ? Math.min(100, Math.round(done / total * 100)) : 0
+    };
+  }
+  /* 分頁列／分部按鈕的短標題：有 short 用 short，否則用 title（不寫死甲部／乙部） */
+  function secLabel(sec) {
+    if (sec && sec.short && (sec.short.zh || sec.short.en)) return sec.short;
+    if (sec && sec.title && (sec.title.zh || sec.title.en)) return sec.title;
+    return { zh: (sec && sec.id) || "", en: (sec && sec.id) || "" };
+  }
+
   function renderIndex() {
     var host = qs("#parts");
     if (!host) return;
     var bar = qs("#lang-slot");
     if (bar) bar.appendChild(langBar());
 
-    (INDEX.parts || []).forEach(function (part) {
+    var quizParts = (INDEX.parts || []).filter(function (p) { return p.group !== "classwork"; });
+    quizParts.forEach(function (part) {
       var pct = partProgress(part);
       var btn = el("button", "part-btn" + (pct >= 100 ? " done" : ""));
       var ring = el("div", "ring" + (pct >= 100 ? " full" : ""));
@@ -365,6 +404,41 @@
       btn.onclick = function () { go("quiz.html?c=" + encodeURIComponent(part.id)); };
       host.appendChild(btn);
     });
+
+    /* 課本練習：首頁只放「章」，點進去（chapter.html）再選節 */
+    var cwHost = qs("#classwork");
+    var cwWrap = qs("#classwork-wrap");
+    if (cwHost) {
+      var cwMeta = (INDEX.site || {}).classwork || {};
+      var lead = qs("#classwork-lead");
+      if (lead && cwMeta.lead) lead.appendChild(pair(cwMeta.lead, "div", "bi"));
+      var chs = cwMeta.chapters || [];
+      if (!chs.length && cwWrap) cwWrap.style.display = "none";
+      chs.forEach(function (ch) {
+        var st = chapterStats(ch);
+        var full = st.total > 0 && st.pct >= 100;
+        var btn = el("button", "part-btn" + (full ? " done" : ""));
+        var ring = el("div", "ring" + (full ? " full" : ""));
+        ring.style.setProperty("--p", st.pct);
+        ring.setAttribute("data-label", st.pct + "%");
+        btn.appendChild(ring);
+        var body = el("div", "t-body");
+        var nm = el("div", "t-name", (ch.title && ch.title.zh) || ch.id);
+        body.appendChild(nm);
+        nm.appendChild(el("span", "t-en", (ch.title && ch.title.en) || ""));
+        var meta = el("div", "t-meta");
+        setPair(meta, {
+          zh: st.sections + " 節 · 已上線 " + st.live + " 節 · " + st.questions + " 題 · " +
+            st.marks + " 分 · 已掌握 " + st.pct + "%",
+          en: st.sections + " sections · " + st.live + " online · " + st.questions +
+            " questions · " + st.marks + " marks · " + st.pct + "% mastered"
+        });
+        body.appendChild(meta);
+        btn.appendChild(body);
+        btn.onclick = function () { go("chapter.html?ch=" + encodeURIComponent(ch.id)); };
+        cwHost.appendChild(btn);
+      });
+    }
 
     /* 版本戳：方便確認瀏覽器有沒有取到最新版本（由 tools/build.py 寫入） */
     var bs = qs("#build-stamp");
@@ -396,6 +470,94 @@
       saveStore();
       location.reload();
     };
+  }
+
+  /* ── 章節頁（課本練習：先選章，再選節）────────────────────────────────── */
+  function chapterFromUrl() {
+    var p = new URLSearchParams(location.search);
+    return (p.get("ch") || ((chapters()[0] || {}).id) || "").toLowerCase();
+  }
+  function renderChapter() {
+    var bar = qs("#lang-slot");
+    if (bar) bar.appendChild(langBar());
+    var body = qs("#chapter-body");
+    var id = chapterFromUrl();
+    var ch = chapterOf(id);
+    if (!ch) {
+      if (body) body.appendChild(el("div", "empty", "找不到這一章（" + id + "）"));
+      return;
+    }
+    setPair(qs("#chapter-name"), ch.title || { zh: ch.id, en: ch.id });
+    var enEl = qs("#chapter-en");
+    if (enEl) enEl.textContent = (ch.title && ch.title.en) || "";
+    document.title = ((ch.title && ch.title.zh) || ch.id) + " · 5A 數學溫習站";
+    var st = chapterStats(ch);
+    var pg = qs("#chapter-progress");
+    if (pg) setPair(pg, {
+      zh: "已掌握 " + st.done + " / " + st.total + " 題",
+      en: st.done + " / " + st.total + " mastered"
+    });
+    var bs = qs("#build-stamp");
+    if (bs) bs.textContent = (window.__V || "dev");
+    if (!body) return;
+
+    var card = el("div", "card");
+    var head = el("div", "q-head");
+    var oc = el("span", "q-code");
+    oc.appendChild(pairSpan(UI.classwork));
+    head.appendChild(oc);
+    card.appendChild(head);
+    if (ch.intro) card.appendChild(pair(ch.intro, "div", "bi"));
+    var meta = el("div", "small muted");
+    meta.style.marginTop = "10px";
+    setPair(meta, {
+      zh: st.sections + " 節 · 已上線 " + st.live + " 節 · 共 " + st.questions + " 題 · " + st.marks + " 分",
+      en: st.sections + " sections · " + st.live + " online · " + st.questions + " questions · " +
+        st.marks + " marks"
+    });
+    card.appendChild(meta);
+    body.appendChild(card);
+
+    var list = el("div", "part-grid");
+    list.style.marginTop = "14px";
+    ((ch.sections) || []).forEach(function (sec) {
+      var part = sec.part ? metaOf(sec.part) : null;
+      if (!part) {
+        var sd = el("button", "part-btn");
+        sd.disabled = true;
+        var sb = el("div", "t-body");
+        var sn = el("div", "t-name", (sec.title && sec.title.zh) || sec.code);
+        sb.appendChild(sn);
+        sn.appendChild(el("span", "t-en", (sec.title && sec.title.en) || ""));
+        var sm = el("div", "t-meta");
+        setPair(sm, UI.comingSoon);
+        sb.appendChild(sm);
+        sd.appendChild(sb);
+        list.appendChild(sd);
+        return;
+      }
+      var pct = partProgress(part);
+      var btn = el("button", "part-btn" + (pct >= 100 ? " done" : ""));
+      var ring = el("div", "ring" + (pct >= 100 ? " full" : ""));
+      ring.style.setProperty("--p", pct);
+      ring.setAttribute("data-label", pct + "%");
+      btn.appendChild(ring);
+      var tb = el("div", "t-body");
+      var nm = el("div", "t-name", (part.title && part.title.zh) || part.id);
+      tb.appendChild(nm);
+      nm.appendChild(el("span", "t-en", (part.title && part.title.en) || ""));
+      var mt = el("div", "t-meta");
+      var ss = part.stats || {};
+      setPair(mt, {
+        zh: (ss.questions || 0) + " 題 · " + (ss.marks || 0) + " 分 · 已掌握 " + pct + "%",
+        en: (ss.questions || 0) + " questions · " + (ss.marks || 0) + " marks · " + pct + "% mastered"
+      });
+      tb.appendChild(mt);
+      btn.appendChild(tb);
+      btn.onclick = function () { go("quiz.html?c=" + encodeURIComponent(part.id)); };
+      list.appendChild(btn);
+    });
+    body.appendChild(list);
   }
 
   /* ── 測驗頁 ─────────────────────────────────────────────────────────── */
@@ -454,8 +616,26 @@
       var nameEl = qs("#quiz-name");
       if (nameEl && part.title) setPair(nameEl, part.title);
       var enEl = qs("#quiz-en");
-      if (enEl) enEl.textContent = "";
+      if (enEl) enEl.textContent = part.group === "classwork"
+        ? (((part.unit || {}).en) || "") : "";
       document.title = ((part.title && part.title.zh) || part.id) + " · 5A 數學溫習站";
+      /* 課本練習：頂欄多一個「返回這一章」的麵包屑 */
+      var crumb = qs("#crumb-slot");
+      if (crumb) {
+        crumb.innerHTML = "";
+        var chMeta = meta.chapter ? chapterOf(meta.chapter) : null;
+        if (chMeta) {
+          var clab = chMeta.short || chMeta.title || { zh: chMeta.id, en: chMeta.id };
+          var ca = el("a", "btn btn-sm btn-ghost");
+          ca.href = "chapter.html?ch=" + encodeURIComponent(chMeta.id);
+          ca.appendChild(pairSpan({
+            zh: "← " + (clab.zh || chMeta.id),
+            en: "← " + (clab.en || chMeta.id)
+          }));
+          ca.onclick = function (e) { e.preventDefault(); go(ca.getAttribute("href")); };
+          crumb.appendChild(ca);
+        }
+      }
 
       var bar = qs("#lang-slot");
       if (bar) bar.appendChild(langBar());
@@ -472,7 +652,7 @@
       pages.forEach(function (p, i) {
         if (p.kind === "q" && (i === 1 || pages[i - 1].sec !== p.sec)) {
           var secSpan = el("span", "pg-sec");
-          secSpan.appendChild(pairSpan(p.sec.id === "A" ? UI.secA : UI.secB));
+          secSpan.appendChild(pairSpan(secLabel(p.sec)));
           nav.appendChild(secSpan);
         }
         var b = el("button", "pg" + (i === cur ? " current" : "") +
@@ -554,9 +734,9 @@
     (part.sections || []).forEach(function (sec) {
       var b = el("button", "btn btn-sm btn-ghost");
       b.appendChild(pairSpan({
-        zh: (sec.id === "A" ? "甲部" : "乙部") + " · " + (sec.questions || []).length +
+        zh: ((sec.title || {}).zh || sec.id) + " · " + (sec.questions || []).length +
           " 題（" + sec.marks + " 分）",
-        en: (sec.id === "A" ? "Section A" : "Section B") + " · " + (sec.questions || []).length +
+        en: ((sec.title || {}).en || sec.id) + " · " + (sec.questions || []).length +
           " questions (" + sec.marks + " marks)"
       }));
       b.onclick = function () {
@@ -1293,6 +1473,7 @@
     applyLang();
     if (PAGE === "index") renderIndex();
     else if (PAGE === "quiz") renderQuiz();
+    else if (PAGE === "chapter") renderChapter();
 
     if (!window.katex) {
       var tries = 0;

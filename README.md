@@ -11,15 +11,18 @@
 ## 目錄
 
 ```
-index.html              首頁（測驗清單、進度環、語言切換）
-quiz.html               測驗檢討頁（?c=ch10-test&p=0；p=0 是總覽，1 起是各題）
+index.html              首頁（測驗清單、「課本練習」章清單、進度環、語言切換）
+chapter.html            章節頁（課本練習：?ch=ch17，列出 17.1／17.2／17.3）
+quiz.html               測驗檢討／課本練習頁（?c=ch10-test&p=0；p=0 是總覽，1 起是各題）
 assets/style.css        樣式（沿用 DSEPass「自學追上站」的設計語言）
-assets/app.js           前端（兩頁共用；KaTeX 兩路渲染、語言切換、進度）
+assets/app.js           前端（三頁共用；KaTeX 兩路渲染、語言切換、進度）
 data/index.js           生成檔：網站資料（勿手改）
 data/figures.js         生成檔：所有圖的 SVG（勿手改）
 data/ch10-test.js       生成檔：第 10 章測驗題目＋題解（勿手改）
-data/src/site.json      手改：網站資料與測驗清單
+data/ch17-2.js          生成檔：第 17.2 節課本練習題目＋題解（勿手改）
+data/src/site.json      手改：網站資料、測驗清單與課本練習（章／節）清單
 data/src/ch10-test.json 手改：題目與題解
+data/src/ch17-2.json    手改：第 17.2 節課本練習題目與題解
 data/src/figures.json   手改：圖形規格（數線／拋物線）
 data/raw/               來源原文與核實記錄（草稿層，只讀）
 tools/build.py          檢查 + 生成 data/*.js

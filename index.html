@@ -61,14 +61,20 @@
   <div class="section-title"><span class="l-zh">測驗檢討</span><span class="l-en">Quiz reviews</span></div>
   <div class="part-grid" id="parts"></div>
 
+  <div id="classwork-wrap">
+    <div class="section-title"><span class="l-zh">課本練習</span><span class="l-en">Classwork</span></div>
+    <div class="small muted" id="classwork-lead" style="margin:-6px 0 12px"></div>
+    <div class="part-grid" id="classwork"></div>
+  </div>
+
   <div class="section-title"><span class="l-zh">用法</span><span class="l-en">How to use</span></div>
   <div class="card">
     <div class="how">
       <div class="how-row">
         <div class="how-n">1</div>
         <div class="how-t">
-          <span class="l-zh"><b>選一份檢討</b>：按下面<b>任何一份檢討</b>進入（之後會陸續加入新章節）。進入後最上面那條是題號（A1…A5、B1…Bonus），按任何一個可以直接跳去那一題；<b>每題一頁</b>。</span>
-          <span class="l-en"><b>Open a review</b>: tap <b>any review listed below</b> (more chapters will be added over time). The top strip lists the question numbers (A1…A5, B1…Bonus) — tap one to jump straight to it. One question per page.</span>
+          <span class="l-zh"><b>選一份檢討或練習</b>：按下面「<b>測驗檢討</b>」或「<b>課本練習</b>」其中一項進入（之後會陸續加入新章節）。課本練習要先選<b>章</b>（例如第 17 章），再選<b>節</b>（17.1／17.2／17.3）。進入後最上面那條是題號（A1…B1…Bonus，或 1、2、3…），按任何一個可以直接跳去那一題；<b>每題一頁</b>。</span>
+          <span class="l-en"><b>Open a review or an exercise set</b>: tap an item under <b>Quiz reviews</b> or <b>Classwork</b> below (more will be added over time). For classwork, pick a <b>chapter</b> (e.g. Chapter 17) first, then a <b>section</b> (17.1 / 17.2 / 17.3). The top strip lists the question numbers (A1, B1, ... Bonus, or 1, 2, 3...) — tap one to jump straight to it. One question per page.</span>
         </div>
       </div>
       <div class="how-row">
@@ -146,8 +152,8 @@
   </div>
 
   <p class="small muted center" style="margin:18px 0 0">
-    <span class="l-zh">題目取自校本 Chapter Quiz（2026-09-25），僅供本科學生溫習使用。</span>
-    <span class="l-en">Questions from the school chapter quiz (25 Sep 2026), for our students' revision only.</span>
+    <span class="l-zh">測驗題目取自校本 Chapter Quiz（2026-09-25）；課本練習題目取自課本 Exercise 17.2。僅供本科學生溫習使用。</span>
+    <span class="l-en">Quiz questions come from the school chapter quiz (25 Sep 2026); classwork questions come from textbook Exercise 17.2. For our students' revision only.</span>
   </p>
 
   <p class="small muted center" style="margin:6px 0 0">
@@ -159,7 +165,7 @@
 <script defer src="vendor/katex/auto-render.min.js"></script>
 <script>
   // 快取戳：由 tools/build.py 依「內容」自動寫入（內容一變，?v= 就變 → 不會再取到舊檔）
-  window.__V = "73a2db76";
+  window.__V = "0154bff1";
   document.write('<script src="data/index.js?v=' + window.__V + '"><\/script>');
   document.write('<script src="assets/app.js?v=' + window.__V + '"><\/script>');
 </script>

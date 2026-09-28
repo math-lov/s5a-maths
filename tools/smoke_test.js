@@ -84,8 +84,15 @@ const INDEX = JSON.parse(
 /* ── 1. 首頁 ───────────────────────────────────────────────────────────── */
 console.log("\n== 首頁 ==");
 const home = boot("index.html", "");
-ok(home.$$(".part-btn").length === INDEX.parts.length,
-  "首頁列出 " + INDEX.parts.length + " 份測驗（實際 " + home.$$(".part-btn").length + "）");
+const CW_META = (INDEX.site && INDEX.site.classwork) || {};
+const CW_CHAPTERS = CW_META.chapters || [];
+const QUIZ_PARTS = INDEX.parts.filter((p) => p.group !== "classwork");
+ok(home.$$("#parts .part-btn").length === QUIZ_PARTS.length,
+  "首頁「測驗檢討」只列 " + QUIZ_PARTS.length + " 份測驗（實際 " + home.$$("#parts .part-btn").length + "）");
+ok(home.$$("#classwork .part-btn").length === CW_CHAPTERS.length,
+  "首頁「課本練習」只列 " + CW_CHAPTERS.length + " 個章（實際 " + home.$$("#classwork .part-btn").length + "）");
+ok(/第 17 章/.test((home.$("#classwork .part-btn .t-name") || {}).textContent || ""),
+  "課本練習的按鈕顯示章名（第 17 章）");
 ok(home.$("#site-stats") === null, "首頁不再顯示全站統計（共 N 份測驗… 已刪除）");
 ok(!!home.$(".hero h1 .l-zh") && /5A 數學溫習站/.test(home.$(".hero h1 .l-zh").textContent) &&
   /5A Maths Revision/.test(home.$(".hero h1 .l-en").textContent), "主標題：中文「5A 數學溫習站」／英文「5A Maths Revision」");
@@ -232,6 +239,7 @@ ok(cssDisp(sc2, ".answer-box.sol-answer") === "none",
 /* 版本戳：由 build.py 依內容寫入，內容一變就要變 */
 ok(/window\.__V = "[0-9a-f]{8}"/.test(read("index.html")), "index.html 有 build 版本戳");
 ok(/window\.__V = "[0-9a-f]{8}"/.test(read("quiz.html")), "quiz.html 有 build 版本戳");
+ok(/window\.__V = "[0-9a-f]{8}"/.test(read("chapter.html")), "chapter.html 有 build 版本戳");
 
 /* ── 一鍵複製 LLM 提問 Prompt ────────────────────────────────────────── */
 console.log("\n== LLM 提問 Prompt ==");
@@ -358,6 +366,60 @@ ok(Object.keys(figs).every((k) => /<svg [^>]*viewBox/.test(figs[k].svg)),
   "每幅圖都是合法的 SVG（有 viewBox）");
 ok(Object.keys(figs).every((k) => (figs[k].caption || {}).zh && (figs[k].caption || {}).en),
   "每幅圖都有中英說明");
+
+/* ── 6b. 課本練習：章 → 節，以及第 17.2 節 ───────────────────────────── */
+console.log("\n== 課本練習（章 → 節）==");
+const CH17 = CW_CHAPTERS[0] || {};
+const chPage = boot("chapter.html", "?ch=ch17");
+ok(!!chPage.$("#chapter-body"), "章節頁有內容區");
+ok(/第 17 章/.test((chPage.$("#chapter-name") || {}).textContent || ""), "章節頁顯示章名（第 17 章）");
+ok(chPage.$$("#chapter-body .part-btn").length === (CH17.sections || []).length,
+  "章節頁列出 " + (CH17.sections || []).length + " 節（實際 " +
+  chPage.$$("#chapter-body .part-btn").length + "）");
+const soonBtns = chPage.$$("#chapter-body .part-btn[disabled]");
+const liveBtns = chPage.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
+ok(soonBtns.length === 2, "未上線的節（17.1、17.3）標示為即將推出且不可按");
+ok(liveBtns.length === 1, "已上線的節只有 1 個（17.2）");
+liveBtns[0].click();
+ok(/c=ch17-2/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
+  "按「17.2」會去 quiz.html?c=ch17-2");
+
+console.log("\n== 第 17.2 節（課本練習頁）==");
+const P172 = INDEX.parts.filter((p) => p.id === "ch17-2")[0] || {};
+ok(P172.stats && P172.stats.questions === 36, "第 17.2 節共 36 題");
+ok((P172.sections || []).length === 6, "第 17.2 節分 6 段（例題／判斷／L1／L2／挑戰／跨課題）");
+ok((P172.qids || []).length === 36, "qids 與題數一致");
+ok(P172.stats && P172.stats.marks === 185, "全節 185 分");
+
+const c0 = boot("quiz.html", "?c=ch17-2&p=0");
+ok(c0.$$("#pagenav .pg").length === 37, "分頁列 = 總覽 + 36 題（實際 " + c0.$$("#pagenav .pg").length + "）");
+ok(c0.$$("#pagenav .pg-sec").length === 6, "分頁列有 6 個分段標題");
+ok(/課堂例題/.test(c0.$("#pagenav .pg-sec").textContent), "第一個分段寫「課堂例題」");
+ok(c0.$$("#quiz-body .btn").length >= 36, "總覽有跳去各題的按鈕");
+
+const c1 = boot("quiz.html", "?c=ch17-2&p=1");
+ok(!!c1.$('.q-card[data-qid="ch17-2-ce1"]'), "第 1 頁渲染出 CE1");
+ok(c1.$$(".opt").length === 0, "課本練習不是選擇題（沒有 A–D 選項）");
+ok(c1.$$(".answer-box .a-row").length >= 1, "有答案欄");
+const crumb = c1.$("#crumb-slot a");
+ok(!!crumb && /chapter\.html\?ch=ch17/.test(crumb.getAttribute("href") || ""),
+  "頂欄有返回第 17 章的連結");
+
+const cSc = boot("quiz.html", "?c=ch17-2&p=5");
+ok(!!cSc.$('.q-card[data-qid="ch17-2-sc"]'), "第 5 頁是 Section Check 判斷題");
+ok(cSc.$$(".answer-box .a-row").length === 7, "判斷題有 7 個答案 (a)–(g)");
+
+const cLast = boot("quiz.html", "?c=ch17-2&p=36");
+ok(!!cLast.$('.q-card[data-qid="ch17-2-ct-31"]'), "最後一頁是第 31 題（跨課題）");
+
+const allC = [];
+for (let i = 1; i <= 36; i++) allC.push(boot("quiz.html", "?c=ch17-2&p=" + i));
+ok(allC.every((t) => t.$$(".sol-card").length === 1), "第 17.2 節每題都有題解卡");
+ok(allC.every((t) => t.$$(".sol-card .steps .step").length >= 1), "每題至少 1 個步驟");
+ok(allC.every((t) => !!t.$(".sol-card .tip")), "每題都有「帶得走的技巧」");
+ok(allC.every((t) => t.$$(".sol-card .trap").length >= 1), "每題至少 1 個常見錯誤");
+ok(allC.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "所有題幹已渲染（無殘留 $）");
+ok(allC.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")), "所有題幹都有中英兩版");
 
 /* ── 7. 進度記錄（新開頁面仍記得）────────────────────────────────────── */
 console.log("\n== 進度 ==");
