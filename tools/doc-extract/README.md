@@ -8,7 +8,7 @@
 ```powershell
 # 0) 先在 PowerShell 把 .doc 的 WordOpenXML（flat OPC）倒出來
 $w = New-Object -ComObject Word.Application; $w.Visible = $false; $w.DisplayAlerts = 0
-$d = $w.Documents.Open("C:\Code Buddy\S5A\2627 ch10 test.doc", $false, $true)
+$d = $w.Documents.Open("C:\Code Buddy\s5a-maths\source\2627 ch10 test.doc", $false, $true)
 [System.IO.File]::WriteAllText("C:\temp\ch10.xml", [string]$d.WordOpenXML, [System.Text.Encoding]::UTF8)
 $d.Close(0); $w.Quit()
 

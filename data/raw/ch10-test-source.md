@@ -7,8 +7,8 @@
 
 | 檔案 | 說明 |
 |---|---|
-| `C:\Code Buddy\S5A\2627 ch10 test.doc` | 試卷（S.5 Mathematics · Chapter Quiz · Chapter 10 Inequalities · 25/9/2026 · 38 分） |
-| `C:\Code Buddy\S5A\2627 ch10 test marking.doc` | 官方評分參考（部分答案以紅色方程式圖顯示） |
+| `C:\Code Buddy\s5a-maths\source\2627 ch10 test.doc` | 試卷（S.5 Mathematics · Chapter Quiz · Chapter 10 Inequalities · 25/9/2026 · 38 分） |
+| `C:\Code Buddy\s5a-maths\source\2627 ch10 test marking.doc` | 官方評分參考（部分答案以紅色方程式圖顯示） |
 
 抽取方法（工具見 `tools/doc-extract/`）：
 
