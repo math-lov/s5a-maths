@@ -1349,7 +1349,7 @@
           },
           "parts": [
             { "label": "(a)", "en": "In how many ways can all men be paired with all ladies to dance with each other?", "zh": "若所有男士都要與所有女士一一配對跳舞，求配對方法數目。", "marks": 2 },
-            { "label": "(b)", "en": "In how many ways can 3 men be selected and paired with 3 ladies to dance with each other?", "zh": "若選出 3 名男士與 3 名女士一一配對跳舞，求方法數目。", "marks": 3 }
+            { "label": "(b)", "en": "In how many ways can 3 men and 3 ladies be selected, paired up, and arranged to dance in 3 different regions?", "zh": "若選出 3 名男士與 3 名女士一一配對，並安排到 3 個不同區域跳舞，求方法數目。", "marks": 3 }
           ],
           "answers": [
             { "part": "(a)", "math": "8! = 40320" },
@@ -1359,40 +1359,34 @@
             "steps": [
               {
                 "part": "(a)",
-                "title": { "zh": "第 1 步 · 固定一列，另一列自由排", "en": "Step 1 · Fix one row and permute the other" },
+                "title": { "zh": "第 1 步 · 固定一列，另一列全排列", "en": "Step 1 · Fix one row and permute the other" },
                 "math": "8! = 40320",
-                "zh": "把 8 名男士排成一列（次序其實不影響配對，只需固定一個次序作基準），8 名女士依次與他們配對，可任意排 $8!$ 種。所以共 $8! = 40320$ 種配對。",
-                "en": "Line up the 8 men (the lineup itself does not matter, it just fixes a reference order); the 8 ladies then match them in any of $8!$ orders. So there are $8! = 40320$ pairings.",
+                "zh": "先固定 8 名男士的名單作基準，8 名女士依次分配與他們配對，共有 $8! = 40320$ 種不同配對方式。",
+                "en": "Fix the list of 8 men as reference; the 8 ladies are assigned to them in turn, giving $8! = 40320$ distinct pairings.",
                 "marking": "(1M)(1A)",
                 "highlight": [ "8! = 40320" ]
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 2 步 · 兩邊各自選人再配對", "en": "Step 2 · Choose on both sides, then pair" },
-                "math": "P^8_3 \\times P^8_3\n= 336 \\times 336\n= 112896",
-                "zh": "先由 8 名男士中依次選 3 人（$P^8_3 = 336$，因為「誰排哪個次序」＝誰配哪位女士），再由 8 名女士中依次選 3 人（$P^8_3 = 336$），兩邊相乘：$336 \\times 336 = 112896$ 種。",
-                "en": "First choose 3 of the 8 men in order ($P^8_3 = 336$, since the order decides who partners whom), then 3 of the 8 ladies in order ($P^8_3 = 336$). Multiply the two: $336 \\times 336 = 112896$ ways.",
+                "title": { "zh": "第 2 步 · 3 個不同區域依次分配男女", "en": "Step 2 · Assign men and ladies into 3 distinct regions" },
+                "math": "P^8_3 \\times P^8_3 = 336 \\times 336 = 112896",
+                "zh": "因為 3 個舞區互不相同（有次序之別）：第 1 區從 8 男 8 女各選 1 人（$8 \\times 8$）；第 2 區從餘下 7 男 7 女各選 1 人（$7 \\times 7$）；第 3 區從餘下 6 男 6 女各選 1 人（$6 \\times 6$）。兩邊各自整理即為 $P^8_3 \\times P^8_3 = 336 \\times 336 = 112896$ 種。",
+                "en": "Since the 3 dance regions are distinct (order matters): Region 1 takes 1 man and 1 lady from 8 ($8 \\times 8$); Region 2 takes 1 man and 1 lady from the remaining 7 ($7 \\times 7$); Region 3 takes 1 man and 1 lady from the remaining 6 ($6 \\times 6$). Regrouping gives $P^8_3 \\times P^8_3 = 336 \\times 336 = 112896$ ways.",
                 "marking": "(1M)(1M)(1A)",
                 "highlight": [ "P^8_3 \\times P^8_3 = 112896" ]
               }
             ],
             "traps": [
               {
-                "label": "(b) 只用組合忽略配對次序",
-                "zh": "配對時「男士次序」與「女士次序」形成一對一組合，所以兩邊都要用排列 $P^8_3$，而不是 $C^8_3$。",
-                "en": "Pairing aligns the man-order with the lady-order one-to-one, so both sides use the permutation $P^8_3$, not $C^8_3$.",
-                "labelEn": "(b) Using combinations and losing the pairing"
-              },
-              {
-                "label": "(b) 只算一邊",
-                "zh": "只選了 3 男 3 女而未把兩邊次序相乘，就會少算配對方法。",
-                "en": "Choosing 3 men and 3 ladies without multiplying the two orders under-counts the pairings.",
-                "labelEn": "(b) Counting only one side"
+                "label": "忽略區域之別而少算次序",
+                "zh": "若題目沒有指定「3 個不同區域」，純粹分成 3 對組合只有 18816 種；但因為分派到 3 個不同區域（帶有次序），所以要再乘以 3!（$18816 \\times 6 = 112896$）。",
+                "en": "If there were no distinct regions, purely forming 3 unordered pairs would give 18816 ways; assigning them to 3 distinct regions introduces order, multiplying by 3! ($18816 \\times 6 = 112896$).",
+                "labelEn": "Ignoring the distinction between regions"
               }
             ],
             "tip": {
-              "zh": "「兩組人配對」＝固定一組作基準，另一組排列；若只選部分人，兩組都要按次序選出。",
-              "en": "For 'pairing two groups', fix one group as the reference and permute the other; if only part is chosen, both groups are taken in order."
+              "zh": "「分配到不同位置／崗位／區域」必定帶有次序，可把每個區域視為一個獨立步驟，依次填入男女。",
+              "en": "Assigning to named positions, posts, or regions always involves order; treat each region as a step and fill it in turn."
             }
           }
         },
