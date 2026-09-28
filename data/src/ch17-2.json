@@ -21,8 +21,8 @@
         "\\text{Total}\n= (\\text{arrangement of units})\n\\times (\\text{arrangement inside the block})"
       ],
       "warn": {
-        "zh": "常犯錯誤：只寫出外部的 $4!$ 而忘記乘大單位內部的 $2!$。另外，若題目已固定塊內相對次序（例如「甲必須緊接在乙前」），塊內就只有 1 種次序，切勿再乘 $2!$。",
-        "en": "Common pitfall: writing only the external $4!$ and forgetting the internal factor $2!$. Also, if the question fixes the relative order inside the block (e.g. 'A must be immediately before B'), the block has only 1 internal order — do not multiply by $2!$ again."
+        "zh": "- 常犯錯誤：只寫出外部的 $4!$，忘記乘大單位內部的 $2!$，會得 24，少了一半。\n- 若題目已固定塊內次序（例如「甲必須緊接在乙前」），塊內就只有 1 種：同一個 3 男 2 女的例子會變成 $4! = 24$ 種，切勿再乘 $2!$ 而得 48。",
+        "en": "- Common pitfall: writing only the external $4!$ and forgetting the internal $2!$ gives 24, exactly half.\n- If the question fixes the order inside the block (e.g. 'A must be immediately before B'), the block has only 1 order: the same 3 boys and 2 girls example becomes $4! = 24$ — do not multiply by $2!$ to get 48."
       },
       "vocab": [
         { "zh": "綑綁法", "en": "Bundling method / Block method" },
@@ -45,8 +45,8 @@
         "\\text{Total}\n= (\\text{permutation of unrestricted items})\n\\times P^{\\text{gaps}}_{\\text{restricted items}}"
       ],
       "warn": {
-        "zh": "常犯錯誤：數錯空隙數目是最大的陷阱，切勿漏掉最左及最右兩端（$k$ 件物件有 $k+1$ 個空隙，不是 $k-1$ 個）。另外，當受限制物件有 3 件或以上時，「互不相鄰」不可用「全部減去相鄰」，因為相鄰的情況包含「兩人相鄰而另一人分開」，必須用插空法。",
-        "en": "Common pitfall: miscounting the gaps is the most frequent mistake — never omit the two outer ends ($k$ objects give $k+1$ gaps, not $k-1$). Also, with 3 or more restricted objects, 'mutually non-adjacent' cannot be done by 'total minus adjacent', because those adjacent cases include 'two together while one is apart'. Use the slot-in method."
+        "zh": "- 數錯空隙：2 件物件其實形成 3 個空隙（前、中、後），不是 1 個；$k$ 件物件有 $k+1$ 個空隙。\n- 3 件或以上「互不相鄰」不可用「全部減相鄰」。例：2 男 3 女、3 女互不相鄰——\n  正確（插空法）：先排 2 男（$2! = 2$），2 男形成 3 個空隙，3 女依次放入（$P^3_3 = 6$），共 $2 \\times 6 = 12$ 種；\n  錯誤（$120$ 減去「3 女綁成一塊」的 $3! \\times 3! = 36$）得 $84$ 種，多算了「剛好兩女相鄰、第三女分開」的 72 種。",
+        "en": "- Miscounting the gaps: 2 objects actually create 3 gaps (before, between, after), not 1; $k$ objects give $k+1$ gaps.\n- With 3 or more restricted objects, 'mutually non-adjacent' cannot be 'total minus adjacent'. Example: 2 boys and 3 girls, no two girls adjacent —\n  correct (slot-in): arrange the 2 boys ($2! = 2$), they create 3 gaps, place the 3 girls in order ($P^3_3 = 6$), total $2 \\times 6 = 12$;\n  wrong ($120$ minus 'the 3 girls as one block' $3! \\times 3! = 36$) gives $84$, over-counting the 72 cases where exactly two girls are adjacent."
       },
       "vocab": [
         { "zh": "插空法", "en": "Slot-in method / Gap method" },

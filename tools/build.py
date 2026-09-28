@@ -301,6 +301,11 @@ def check_cards(cards, where: str) -> None:
         if warn:
             check_text(tag + ".warn.zh", warn.get("zh", ""), min_len=6, need_zh=True)
             check_text(tag + ".warn.en", warn.get("en", ""))
+            for lang in ("zh", "en"):
+                for n in MATH_PLACEHOLDER_RE.findall(warn.get(lang, "") or ""):
+                    if int(n) >= len(maths):
+                        err("S14 %s：warn.%s 引用了不存在的 {{math:%s}}（math 只有 %d 項）"
+                            % (tag, lang, n, len(maths)))
         for v in c.get("vocab") or []:
             v = v or {}
             check_text(tag + ".vocab.zh", v.get("zh", ""))

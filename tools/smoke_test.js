@@ -407,6 +407,11 @@ ok(!!c0.$(".cc .l-zh") && !!c0.$(".cc .l-en"), "教學卡有中英兩版");
 ok(c0.$$(".cc-ul").length >= 8, "步驟已分行：中英合共至少 8 個清單（實際 " + c0.$$(".cc-ul").length + "）");
 ok(/第一步/.test(c0.$(".cc-ul li").textContent), "第一個清單項目是「第一步 …」");
 ok(c0.$$(".cc .formula").length === 4, "兩張卡各自中英都有一個數式區（{{math}} 已代入）");
+ok(c0.$$(".cc-warn .cc-ul li").length >= 4, "常犯錯誤用清單逐項列出");
+ok(/24/.test(c0.$$(".cc-warn")[0].textContent), "綑綁法的常犯錯誤有計算例子（24 對 48）");
+ok(/12/.test(c0.$$(".cc-warn")[1].textContent) && /84/.test(c0.$$(".cc-warn")[1].textContent),
+  "插空法的常犯錯誤有計算例子（正確 12 對錯誤 84）");
+ok(!/\{\{math:/.test(c0.$$(".cc-warn")[0].textContent), "常犯錯誤內沒有殘留佔位符");
 
 const c1 = boot("quiz.html", "?c=ch17-2&p=1");
 ok(!!c1.$('.q-card[data-qid="ch17-2-ce1"]'), "第 1 頁渲染出 CE1");

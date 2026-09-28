@@ -788,7 +788,7 @@
         var wh = el("div", "cc-warn-h");
         wh.appendChild(pairSpan(UI.cardWarn));
         w.appendChild(wh);
-        w.appendChild(pair(c.warn, "div", "bi"));
+        w.appendChild(pairWithMath(c.warn, c.math || []));
         box.appendChild(w);
       }
       if ((c.vocab || []).length) {
