@@ -2,8 +2,8 @@
   "id": "ch17-2",
   "title": { "zh": "17.2 排列 · 課本練習", "en": "17.2 Permutations · Book Exercise" },
   "intro": {
-    "zh": "這一節是課本 17.2「排列」。全部題目按課本原文分成六段：課堂例題、判斷題、基礎練習（Level 1）、進階練習（Level 2）、挑戰題（SMART CORNER）與跨課題。每題一頁，先自己做，再看逐步題解。",
-    "en": "This page covers Section 17.2, Permutations. The questions follow the textbook and are grouped into six parts: Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. One question per page — try it first, then read the steps."
+    "zh": "這一節是課本 17.2「排列」。全部題目按課本原文分成六個部分：課堂例題、判斷題、基礎練習（Level 1）、進階練習（Level 2）、挑戰題（SMART CORNER）及跨課題。每題一頁，先嘗試自己作答，再參閱逐步題解，掌握思路與關鍵技巧。",
+    "en": "This section covers Textbook 17.2, Permutations. The questions follow the textbook and are grouped into six parts: Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. One question per page — try it yourself first, then read the step-by-step explanation to understand the method clearly."
   },
   "cards": [
     {
@@ -11,23 +11,23 @@
       "topic": "ch17-2",
       "title": {
         "zh": "排列法：綑綁法（處理「必須相鄰」）",
-        "en": "Permutation: bundling method (objects 'must be adjacent')"
+        "en": "Permutation: Bundling method (objects must be adjacent)"
       },
       "body": {
-        "zh": "當題目要求某些指定物件「必須相鄰」或「連在一起」時，用綑綁法。標準兩步：\n- 第一步 · 把所有必須相鄰的物件綑綁成一個大單位，與其他不受限制的物件一同做整體全排列；\n- 第二步 · 計算大單位內部各物件的自排數目。\n總排列數就是兩者相乘：{{math:0}}\n示例：把 3 名男生與 2 名女生排成一行，其中 2 名女生必須相鄰。\n- 第一步 · 把 2 名女生綑綁成 1 個大單位，連同 3 名男生共 4 個單位排成一行，有 $4! = 24$ 種；\n- 第二步 · 大單位內 2 名女生自排有 $2! = 2$ 種。\n所以總數是 $[4!] \\times [2!] = 24 \\times 2 = 48$。",
-        "en": "Use the bundling method when particular objects must be adjacent or together. Two standard steps:\n- Step 1 · tie the adjacent objects into one block, and arrange this block together with the other unrestricted objects;\n- Step 2 · permute the objects inside the block.\nThe total is their product: {{math:0}}\nExample: arrange 3 boys and 2 girls in a row so that the 2 girls are next to each other.\n- Step 1 · tie the 2 girls into 1 block; with the 3 boys there are 4 units, arranged in $4! = 24$ ways;\n- Step 2 · inside the block the 2 girls swap in $2! = 2$ ways.\nSo the total is $[4!] \\times [2!] = 24 \\times 2 = 48$."
+        "zh": "當題目要求某些指定物件「必須相鄰」或「連在一起」時，通常可用綑綁法。做法可分為兩步：\n- 第一步 · 把所有必須相鄰的物件視為一個整體，並與其他不受限制的物件一起進行排列；\n- 第二步 · 再計算該整體內部各物件的排列數。\n總排列數為兩部分之積：{{math:0}}\n示例：將 3 名男生與 2 名女生排成一行，並要求 2 名女生必須相鄰。\n- 第一步 · 將 2 名女生綑綁成一個大單位，連同 3 名男生共有 4 個單位，故有 $4! = 24$ 種排法；\n- 第二步 · 大單位內 2 名女生的排列數為 $2! = 2$ 種。\n因此總數為 $[4!] \\times [2!] = 24 \\times 2 = 48$。",
+        "en": "When a question states that certain objects must be adjacent or kept together, the bundling method is usually the clearest approach. There are two standard steps:\n- Step 1 · treat all required adjacent objects as one block and arrange this block together with the other unrestricted objects;\n- Step 2 · count the number of ways to arrange the objects inside the block.\nThe total number of arrangements is the product of the two parts: {{math:0}}\nExample: arrange 3 boys and 2 girls in a row so that the 2 girls must be adjacent.\n- Step 1 · tie the 2 girls into one block; together with the 3 boys there are 4 units, so the number of arrangements is $4! = 24$;\n- Step 2 · the 2 girls can be arranged inside the block in $2! = 2$ ways.\nHence the total is $[4!] \\times [2!] = 24 \\times 2 = 48$."
       },
       "math": [
         "\\text{Total}\n= (\\text{arrangement of units})\n\\times (\\text{arrangement inside the block})"
       ],
       "warn": {
-        "zh": "- 常犯錯誤：只寫出外部的 $4!$，忘記乘大單位內部的 $2!$，會得 24，少了一半。\n- 若題目已固定塊內次序（例如「甲必須緊接在乙前」），塊內就只有 1 種：同一個 3 男 2 女的例子會變成 $4! = 24$ 種，切勿再乘 $2!$ 而得 48。",
-        "en": "- Common pitfall: writing only the external $4!$ and forgetting the internal $2!$ gives 24, exactly half.\n- If the question fixes the order inside the block (e.g. 'A must be immediately before B'), the block has only 1 order: the same 3 boys and 2 girls example becomes $4! = 24$ — do not multiply by $2!$ to get 48."
+        "zh": "- 常見錯誤：只寫外部的 $4!$，卻忘記乘上大單位內部的 $2!$，便會得到 24，少了一半。\n- 若題目已規定塊內次序（例如「甲必須緊接在乙前」），則塊內只有 1 種排列。因此同樣的 3 男 2 女例子，實際只會是 $4! = 24$，不能再乘 $2!$。",
+        "en": "- Common mistake: writing only the outside factor $4!$ but forgetting the internal arrangement $2!$ gives 24, which is exactly half the correct answer.\n- If the order inside the block is fixed in advance (for example, 'A must be immediately before B'), then the block has only 1 possible arrangement. In that case, the same 3 boys and 2 girls example becomes $4! = 24$; do not multiply by $2!$ again."
       },
       "vocab": [
         { "zh": "綑綁法", "en": "Bundling method / Block method" },
-        { "zh": "相鄰", "en": "Next to each other / Adjacent" },
-        { "zh": "內部排列", "en": "Internal permutation" }
+        { "zh": "相鄰", "en": "Adjacent / next to each other" },
+        { "zh": "內部排列", "en": "Internal arrangement" }
       ]
     },
     {
@@ -35,23 +35,23 @@
       "topic": "ch17-2",
       "title": {
         "zh": "排列法：插空法（處理「互不相鄰」）",
-        "en": "Permutation: slot-in method (objects 'must not be adjacent')"
+        "en": "Permutation: Slot-in method (objects must not be adjacent)"
       },
       "body": {
-        "zh": "當題目要求某些特定物件「不可相鄰」或「互不相鄰」時，用插空法。標準三步：\n- 第一步 · 先把沒有限制的其他物件排好；\n- 第二步 · 數出這些物件前後及中間產生的空隙數目（$k$ 件物件必定產生 $k+1$ 個空隙）；\n- 第三步 · 把受限制的物件依次放入空隙。\n總排列數就是兩者相乘：{{math:0}}\n示例：把 4 名男生與 2 名女生排成一行，其中 2 名女生不可相鄰。\n- 第一步 · 先排 4 名男生，有 $4! = 24$ 種；\n- 第二步 · 4 名男生前後及中間共形成 $4 + 1 = 5$ 個空隙；\n- 第三步 · 2 名相異女生由 5 個空隙中選 2 個放入並排序，有 $P^5_2 = 20$ 種。\n所以總數是 $[4!] \\times [P^5_2] = 24 \\times 20 = 480$。",
-        "en": "Use the slot-in method when particular objects must not be adjacent. Three standard steps:\n- Step 1 · arrange the unrestricted objects first;\n- Step 2 · count the gaps between them and at both ends ($k$ objects create $k+1$ gaps);\n- Step 3 · slot the restricted objects into the chosen gaps in order.\nThe total is their product: {{math:0}}\nExample: arrange 4 boys and 2 girls in a row so that no two girls are adjacent.\n- Step 1 · arrange the 4 boys in $4! = 24$ ways;\n- Step 2 · the 4 boys create $4 + 1 = 5$ gaps;\n- Step 3 · place the 2 distinct girls into 2 of the 5 gaps in order, $P^5_2 = 20$ ways.\nSo the total is $[4!] \\times [P^5_2] = 24 \\times 20 = 480$."
+        "zh": "當題目要求某些指定物件「不可相鄰」或「互不相鄰」時，通常使用插空法。步驟一般為三步：\n- 第一步 · 先把不受限制的其他物件排列好；\n- 第二步 · 計算這些物件左右兩端及中間所形成的空隙數目；\n- 第三步 · 把受限制的物件依次放進這些空隙中。\n總排列數為兩部分之積：{{math:0}}\n示例：將 4 名男生與 2 名女生排成一行，並要求 2 名女生不可相鄰。\n- 第一步 · 先排 4 名男生，有 $4! = 24$ 種；\n- 第二步 · 4 名男生前後及中間共形成 $4 + 1 = 5$ 個空隙；\n- 第三步 · 2 名相異女生從 5 個空隙中選 2 個放入，並考慮其順序，有 $P^5_2 = 20$ 種。\n因此總數為 $[4!] \\times [P^5_2] = 24 \\times 20 = 480$。",
+        "en": "When a question requires certain objects to be non-adjacent or separated from one another, the slot-in method is the standard technique. It usually follows three steps:\n- Step 1 · arrange the unrestricted objects first;\n- Step 2 · count the available spaces before, between and after them;\n- Step 3 · place the restricted objects into these spaces in order.\nThe total number of arrangements is the product of the two parts: {{math:0}}\nExample: arrange 4 boys and 2 girls in a row so that the 2 girls are not adjacent.\n- Step 1 · arrange the 4 boys in $4! = 24$ ways;\n- Step 2 · the 4 boys create $4 + 1 = 5$ gaps;\n- Step 3 · place the 2 distinct girls into 2 of the 5 gaps in order, giving $P^5_2 = 20$ ways.\nHence the total is $[4!] \\times [P^5_2] = 24 \\times 20 = 480$."
       },
       "math": [
-        "\\text{Total}\n= (\\text{permutation of unrestricted items})\n\\times P^{\\text{gaps}}_{\\text{restricted items}}"
+        "\\text{Total}\n= (\\text{arrangement of unrestricted items})\n\\times P^{\\text{gaps}}_{\\text{restricted items}}"
       ],
       "warn": {
-        "zh": "- 數錯空隙：2 件物件其實形成 3 個空隙（前、中、後），不是 1 個；$k$ 件物件有 $k+1$ 個空隙。\n- 面對 3 個或以上物件「互不相鄰」的題目（例如 2 男 3 女排隊，要求「3 女互不相鄰」），最直觀且絕不重覆的解法是「插空法」（Slot-in Method）。計算只需分兩步：\n- 第一步 · 先排不受限制的 2 個男生，共有 $2! = 2$ 種排法；\n- 第二步 · 2 個男生形成 3 個空隙，將 3 個女生依次放入這 3 個空隙中（每空一人），排法為 $P^3_3 = 6$ 種，隊形必然是「女、男、女、男、女」；\n- 根據乘法原理，符合條件的總排法即為 $2 \\times 6 = 12$ 種。\n- 初學者最容易犯的錯誤，是誤用反面減法，以為可以用「全體減去相鄰」。5 個人隨意排列共有 $5! = 120$ 種；若將 3 個女生用「綑綁法」視為一體，連同 2 個男生共 3 件元素排列，排法為 $3! \\times 3! = 36$ 種。若直接拿 $120 - 36 = 84$ 種，答案是錯的。\n- 盲點在於，「3 女互不相鄰」的相反並不是「3 女全部黏在一起」，而是「至少有 2 女相鄰」。這包括了兩類情況：第一類是「剛好 2 女相鄰，第 3 女分開」；第二類才是「3 女全部黏在一起」（即上述的 36 種）。若只扣除 36 種，根本沒有扣除「剛好 2 女相鄰」的情況。\n- 「剛好 2 女相鄰」如何數？3 對女生中選出相鄰的一對（AB、BC、AC，共 3 種）；該對內部可調換（$2!$）；先排 2 男（$2!$）形成 3 個空隙；該對與第 3 女放入其中 2 個空隙並排序（$P^3_2 = 6$）。合共 $3 \\times 2! \\times 2! \\times P^3_2 = 72$ 種，這 72 種不合規的排列全部留在了 84 種當中，造成嚴重重複計算。\n- 因此，只要題目涉及 3 個或以上物件互不相鄰，切勿使用反面扣減，必須使用插空法。",
-        "en": "- Miscounting the gaps: 2 objects actually create 3 gaps (before, between, after), not 1; $k$ objects give $k+1$ gaps.\n- When arranging 3 or more restricted objects that must be mutually non-adjacent — such as arranging 2 boys and 3 girls where no two girls can sit together — complementary counting (\"Total minus Adjacent\") fails. The total number of unrestricted arrangements is $5! = 120$. Treating the 3 girls as a single block gives $3! \\times 3! = 36$ arrangements. However, calculating $120 - 36 = 84$ is incorrect, because the complement of \"no two girls adjacent\" is \"at least two girls adjacent\". Subtracting 36 only removes the cases where all three girls are together.\n- How many 'exactly two girls adjacent' arrangements are there? Pick the adjacent pair (3 possible pairs: AB, BC, AC); order within the pair ($2!$); arrange the 2 boys first ($2!$), creating 3 gaps; place the pair and the lone girl into 2 of these gaps in order ($P^3_2 = 6$), giving $3 \\times 2! \\times 2! \\times P^3_2 = 72$. All 72 invalid arrangements remain inside the 84, causing severe double-counting.\n- The standard and foolproof technique is the Slot-in Method. First, arrange the 2 unconstrained boys in $2! = 2$ ways. These 2 boys create 3 available slots (left, between, right). Next, place the 3 girls into these 3 distinct slots, one girl per slot, in $P^3_3 = 6$ ways. By the multiplication principle, the total number of valid arrangements is $2 \\times 6 = 12$."
+        "zh": "- 數空隙時常見失誤：2 件物件會形成 3 個空隙（前、中、後），並非 1 個；一般而言，$k$ 件物件能形成 $k+1$ 個空隙。\n- 例如 2 名男生與 3 名女生排成一行，若 3 名女生互不相鄰，先排男生會形成 3 個空隙，3 名女生須各佔一個空隙，故正確數目是 $2! \times P^3_3 = 12$。若錯用「全部排列減去 3 名女生全部相鄰」，便會算成 $5! - (3! \times 3!) = 84$；但這只扣除了 3 名女生連成一組的情況，仍把「剛好 2 名女生相鄰」的排列算在內，所以 84 並非正確答案。\n- 因此，涉及 3 個或以上指定物件互不相鄰時，插空法尤其可靠；不要把「不可互相相鄰」的反面誤當成「全部相鄰」。\n- 這類題目最重要的是先排列不受限制的物件，再把受限制的物件放入空隙，較容易避免重複或遺漏。",
+        "en": "- A common error is to count the gaps incorrectly: 2 objects form 3 gaps (before, between and after), not 1. In general, $k$ objects create $k+1$ gaps.\n- For example, arrange 2 boys and 3 girls in a row, with no two girls adjacent. Arranging the boys first creates 3 gaps, and each girl must occupy a different gap, so the correct count is $2! \times P^3_3 = 12$. The incorrect shortcut 'total arrangements minus the arrangements with all 3 girls together' gives $5! - (3! \times 3!) = 84$. However, this subtracts only the cases where all 3 girls form one block; it still counts arrangements where exactly 2 girls are adjacent, so 84 is not the correct answer.\n- The slot-in method is especially reliable when 3 or more specified objects must be mutually non-adjacent. Do not mistake the opposite of 'not mutually adjacent' for 'all together'.\n- The key is to arrange the unrestricted objects first, then place the restricted objects into the gaps. This helps avoid double-counting or missing cases."
       },
       "vocab": [
         { "zh": "插空法", "en": "Slot-in method / Gap method" },
-        { "zh": "互不相鄰", "en": "Not adjacent to each other" },
-        { "zh": "空隙", "en": "Gaps / Spaces" }
+        { "zh": "互不相鄰", "en": "Not adjacent to one another" },
+        { "zh": "空隙", "en": "Gaps / spaces" }
       ]
     }
   ],
@@ -86,16 +86,16 @@
                 "part": "(a)",
                 "title": { "zh": "第 1 步 · 列出排列算式", "en": "Step 1 · Set up the permutation formula" },
                 "math": "P^8_4 = 8 \\times 7 \\times 6 \\times 5",
-                "zh": "由 8 張不同貼紙中依次分給 4 名小朋友，次序有別，所以用排列 $P^8_4$：第 1 人有 8 個選擇，第 2 人剩 7 個，第 3 人剩 6 個，第 4 人剩 5 個。",
-                "en": "Distributing 8 distinct stickers to 4 children in order uses the permutation $P^8_4$: 8 choices for the first child, then 7, then 6, then 5.",
+                "zh": "由 8 張不同貼紙中依次分給 4 名小朋友，因為每人得到的貼紙不同，故須考慮順序，所以用排列 $P^8_4$。第 1 人有 8 個選擇，第 2 人剩 7 個，第 3 人剩 6 個，第 4 人剩 5 個。",
+                "en": "Distributing 8 distinct stickers to 4 children in order requires a permutation, since the identity of the child receiving each sticker matters. Use $P^8_4$: 8 choices for the first child, then 7, then 6, then 5.",
                 "marking": "(1M)"
               },
               {
                 "part": "(a)",
-                "title": { "zh": "第 2 步 · 計算最終結果", "en": "Step 2 · Evaluate the numerical answer" },
+                "title": { "zh": "第 2 步 · 計算結果", "en": "Step 2 · Evaluate the result" },
                 "math": "= 1680",
                 "zh": "把 4 個因數相乘：$8 \\times 7 \\times 6 \\times 5 = 1680$，即共有 1680 種分法。",
-                "en": "Multiplying the four factors: $8 \\times 7 \\times 6 \\times 5 = 1680$, so there are 1680 ways.",
+                "en": "Multiplying the four factors: $8 \\times 7 \\times 6 \\times 5 = 1680$, so there are 1680 ways to distribute the stickers.",
                 "marking": "(1A)",
                 "highlight": [ "1680" ]
               },
@@ -103,16 +103,16 @@
                 "part": "(b)",
                 "title": { "zh": "第 3 步 · 列出 5 人的排列算式", "en": "Step 3 · Set up the permutation for 5 children" },
                 "math": "P^8_5 = 8 \\times 7 \\times 6 \\times 5 \\times 4",
-                "zh": "分給 5 名小朋友就是由 8 張中依次選 5 張，用排列 $P^8_5$：比 (a) 多派一張，所以乘積多一個因數。",
-                "en": "Giving stickers to 5 children means choosing 5 of the 8 in order, the permutation $P^8_5$: one more sticker than (a), so one more factor.",
+                "zh": "分給 5 名小朋友，即由 8 張貼紙中依次選出 5 張，順序仍然重要，因此用排列 $P^8_5$。它與 (a) 相比，只多出一個選擇位，故多乘一個因數。",
+                "en": "Giving stickers to 5 children means selecting 5 stickers from 8 in order, so we use $P^8_5$. Compared with (a), there is one extra choice to make, so one more factor is included.",
                 "marking": "(1M)"
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 4 步 · 計算最終結果", "en": "Step 4 · Evaluate the numerical answer" },
+                "title": { "zh": "第 4 步 · 計算結果", "en": "Step 4 · Evaluate the result" },
                 "math": "= 6720",
-                "zh": "把 5 個因數相乘：$1680 \\times 4 = 6720$，即共有 6720 種分法。可見人數越多，可行方法越多。",
-                "en": "Multiplying the five factors: $1680 \\times 4 = 6720$, so there are 6720 ways. More children give more arrangements.",
+                "zh": "把 5 個因數相乘：$1680 \\times 4 = 6720$，故共有 6720 種分法。由此可見，當分配的人數增加時，方法數亦會增加。",
+                "en": "Multiplying the five factors: $1680 \\times 4 = 6720$, so there are 6720 ways to distribute the stickers. This shows that increasing the number of recipients increases the number of possible arrangements.",
                 "marking": "(1A)",
                 "highlight": [ "6720" ]
               }
@@ -120,27 +120,27 @@
             "alt": [
               {
                 "name": { "zh": "計算機核對：Casio fx-50FH II / fx-3650P II 操作", "en": "Calculator check: Casio fx-50FH II / fx-3650P II operation" },
-                "zh": "在計算機按「8 → SHIFT → ×（這個鍵上印着 nPr）→ 4 → =」可即時得出 1680（不同型號的按鍵位置或有差異，認住鍵上的 nPr 字樣即可）。但卷一的作答必須寫出算式（$P^8_4$ 或 $8 \\times 7 \\times 6 \\times 5$）才可取得方法分 (1M)，計算機只用來核對答案。",
-                "en": "On the calculator press '8, SHIFT, × (the key marked nPr), 4, =' to get 1680 immediately (key positions differ between models — look for the nPr label). In Paper 1 you must still write the working ($P^8_4$ or $8 \\times 7 \\times 6 \\times 5$) to earn the method mark (1M); the calculator is only for checking."
+                "zh": "在計算機按「8 → SHIFT → ×（鍵上標有 nPr）→ 4 → =」即可得出 1680。不同型號的計算機按鍵位置可能略有差異，請留意鍵上的 nPr 字樣。卷一作答時仍須寫出算式（如 $P^8_4$ 或 $8 \\times 7 \\times 6 \\times 5$），以取得方法分 (1M)；計算機只作校對之用。",
+                "en": "Press '8, SHIFT, × (the key labelled nPr), 4, =' on the calculator to get 1680. Different models may place the keys slightly differently, so look for the nPr label. In Paper 1, you still need to write the working ($P^8_4$ or $8 \\times 7 \\times 6 \\times 5$) to get the method mark (1M); the calculator is only for checking."
               }
             ],
             "traps": [
               {
                 "label": "用組合代替排列",
-                "zh": "小朋友互不相同，所以「誰拿哪一張」有分別，要用排列 $P^8_4$；若寫成組合 $C^8_4$ 會嚴重少算。",
-                "en": "The children are different, so who gets which sticker matters: use the permutation $P^8_4$. Writing the combination $C^8_4$ under-counts badly.",
+                "zh": "小朋友互不相同，所以「誰拿到哪一張貼紙」是有分別的，故必須用排列 $P^8_4$；若錯寫為組合 $C^8_4$，會嚴重低估方法數。",
+                "en": "The children are different, so who receives which sticker matters. This is a permutation, not a combination: use $P^8_4$. Writing $C^8_4$ would seriously undercount the number of ways.",
                 "labelEn": "Using a combination instead of a permutation"
               },
               {
-                "label": "讓貼紙可重複使用",
-                "zh": "每人只獲一張，貼紙不可重複派，所以第二人只有 7 個選擇；若寫成 $8^4$ 就等於允許同一張貼紙派兩次。",
-                "en": "Each child gets one sticker and nothing is reused, so the second child has only 7 choices; $8^4$ would wrongly allow the same sticker twice.",
-                "labelEn": "Reusing the same sticker"
+                "label": "令貼紙可重複使用",
+                "zh": "每人只獲一張貼紙，且貼紙不能重複派發，所以第二人只有 7 個選擇；若寫成 $8^4$，等於錯誤地容許同一張貼紙被派給兩人。",
+                "en": "Each child receives only one sticker, and no sticker may be used more than once, so the second child has only 7 choices. Writing $8^4$ wrongly allows the same sticker to be used twice.",
+                "labelEn": "Allowing the same sticker to be reused"
               }
             ],
             "tip": {
-              "zh": "先問「有無次序之分」：有次序用 $P^n_r$，無次序用組合。派貼紙、頒獎牌、排隊都是有次序。",
-              "en": "First ask whether order matters: with order use $P^n_r$, without order use a combination. Handing out stickers, awarding medals and lining up all have order."
+              "zh": "首先判斷「次序是否重要」：若有次序差異，便用 $P^n_r$；若只是選出一批而不理順序，才用組合。派貼紙、頒獎牌、排隊等情況皆屬有次序。",
+              "en": "First ask whether order matters: if the order matters, use $P^n_r$; if only the selection matters and order does not, use a combination. Handing out stickers, awarding prizes, and arranging people in a line are all order-sensitive cases."
             }
           }
         },
@@ -166,40 +166,40 @@
             "steps": [
               {
                 "part": "(a)",
-                "title": { "zh": "第 1 步 · 6 件不同物件排一行", "en": "Step 1 · Six distinct objects in a row" },
+                "title": { "zh": "第 1 步 · 6 件不同物件排成一行", "en": "Step 1 · Six distinct objects in a row" },
                 "math": "6! = 6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1\n= 720",
-                "zh": "6 個手袋全部不同，排一行等於依次填 6 個位置：第 1 位 6 選 1，第 2 位 5 選 1，如此類推，所以共有 $6! = 720$ 種。",
-                "en": "All 6 handbags are different, so filling the 6 positions one by one gives 6 then 5 then 4 choices, and so on: $6! = 720$ arrangements.",
+                "zh": "6 個手袋全部不同，因此排成一行等於把 6 個位置依次填滿：第 1 個位置有 6 種選擇，第 2 個位置有 5 種，如此類推，故共有 $6! = 720$ 種。",
+                "en": "All 6 handbags are different, so arranging them in a row means filling 6 positions one by one: 6 choices for the first position, then 5, then 4, and so on. Hence there are $6! = 720$ arrangements.",
                 "marking": "(1M)(1A)",
                 "highlight": [ "6! = 720" ]
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 2 步 · 先固定佔用位置的一件", "en": "Step 2 · Fix the one with a fixed position first" },
+                "title": { "zh": "第 2 步 · 先固定指定物件的位置", "en": "Step 2 · Fix the required object first" },
                 "math": "5! = 120",
-                "zh": "指定手袋已固定在最左，它的位置不用再選；餘下 5 個手袋在 5 個位置自由排列，共 $5! = 120$ 種。",
-                "en": "The particular handbag is fixed on the left, so its position is not a choice; the remaining 5 handbags fill the 5 positions freely, giving $5! = 120$ arrangements.",
+                "zh": "指定手袋已固定在最左邊，這個位置不再需要選擇；餘下 5 個手袋則在其餘 5 個位置中自由排列，因此共有 $5! = 120$ 種。",
+                "en": "The particular handbag is fixed on the far left, so its position is already determined and does not need to be chosen. The remaining 5 handbags then arrange themselves in the remaining 5 positions, giving $5! = 120$ arrangements.",
                 "marking": "(1M)(1A)",
                 "highlight": [ "5! = 120" ]
               }
             ],
             "traps": [
               {
-                "label": "把固定位置的手袋也當成可選",
-                "zh": "(b) 中指定手袋已鎖在最左，不應再乘 6；若寫成 $6!$ 或 $6 \\times 5!$ 就重複計算了它。",
-                "en": "In (b) the particular handbag is locked on the left, so do not multiply by 6 again; writing $6!$ or $6 \\times 5!$ double-counts it.",
-                "labelEn": "Counting the fixed bag as a free choice"
+                "label": "把固定位置的手袋也計算進去",
+                "zh": "(b) 中指定手袋已固定在最左，不應再乘 6；若寫成 $6!$ 或 $6 \\times 5!$，等於把它重複計算了一次。",
+                "en": "In (b), the specified handbag is already fixed on the left, so it should not be counted again. Writing $6!$ or $6 \\times 5!$ double-counts the same object.",
+                "labelEn": "Counting the fixed handbag as a free choice"
               },
               {
-                "label": "誤以為有兩個「最左」",
-                "zh": "「最左邊」只有 1 個位置，不是 2 個；若以為左邊或右邊都可以（即乘以 2）會變成 240，答案錯。",
-                "en": "There is only one leftmost position, not two; treating left or right as acceptable (multiplying by 2) gives 240, which is wrong.",
+                "label": "誤以為最左有兩個位置",
+                "zh": "最左邊只有一個位置，並非兩個；若以為左邊或右邊都可（即乘以 2），答案便會變成 240，明顯錯誤。",
+                "en": "There is only one leftmost position, not two. If one assumes both left and right positions are acceptable and multiplies by 2, the result becomes 240, which is incorrect.",
                 "labelEn": "Thinking there are two 'leftmost' positions"
               }
             ],
             "tip": {
-              "zh": "遇到「某件固定在指定位置」，就把它從排列中拿走，只排其餘物件（此處 $6! \\to 5!$）。",
-              "en": "When one object has a fixed position, remove it from the arrangement and permute only the rest (here $6! \\to 5!$)."
+              "zh": "當題目出現「某件物件固定在指定位置」時，先把它剔除，然後只排列其餘物件，此時數目會由 $6!$ 轉為 $5!$。",
+              "en": "When one object is fixed in a specified position, remove it first and arrange only the remaining objects. Here, the count changes from $6!$ to $5!$."
             }
           }
         },
@@ -225,72 +225,72 @@
             "steps": [
               {
                 "part": "(a)",
-                "title": { "zh": "第 1 步 · 數出母音的數目", "en": "Step 1 · Count the vowels" },
+                "title": { "zh": "第 1 步 · 計算母音數目", "en": "Step 1 · Count the vowels" },
                 "math": "\\text{Vowels: E, U, A, I, O}",
-                "zh": "'EDUCATION' 共 9 個字母，而且全部不同。母音有 5 個（E, U, A, I, O），子音有 4 個（D, C, T, N）。(a) 要求首字母是母音，所以第一個位置有 5 個選擇。",
-                "en": "'EDUCATION' has 9 letters, all different: 5 vowels (E, U, A, I, O) and 4 consonants (D, C, T, N). In (a) the first letter must be a vowel, so position 1 has 5 choices.",
+                "zh": "'EDUCATION' 共 9 個字母，且全部不同。母音有 5 個（E, U, A, I, O），子音有 4 個（D, C, T, N）。因為 (a) 要求首字母是母音，所以第一個位置有 5 個選擇。",
+                "en": "'EDUCATION' has 9 letters, all different. There are 5 vowels (E, U, A, I, O) and 4 consonants (D, C, T, N). In (a), the first letter must be a vowel, so the first position has 5 choices.",
                 "marking": "(1M)"
               },
               {
                 "part": "(a)",
-                "title": { "zh": "第 2 步 · 其餘 8 個字母任意排列", "en": "Step 2 · Arrange the remaining 8 letters freely" },
+                "title": { "zh": "第 2 步 · 安排其餘 8 個字母", "en": "Step 2 · Arrange the remaining 8 letters" },
                 "math": "5 \\times 8!",
-                "zh": "首字母選定後，餘下 8 個字母在 8 個位置任意排列，有 $8!$ 種。首位 5 個選擇與後面 $8!$ 種排法互相獨立，所以用乘法原理相乘。",
-                "en": "Once the first letter is chosen, the other 8 letters occupy the remaining 8 positions freely: $8!$ ways. The 5 choices for the first letter and the $8!$ arrangements are independent, so multiply.",
+                "zh": "首字母選定後，其餘 8 個字母在其餘 8 個位置中自由排列，共有 $8!$ 種。第一個位置的 5 個選擇與後面 $8!$ 種情況互相獨立，因此需相乘。",
+                "en": "After fixing the first letter, the remaining 8 letters can be placed in the remaining 8 positions in $8!$ ways. The 5 choices for the first letter and the $8!$ arrangements are independent, so we multiply them.",
                 "marking": "(1M)"
               },
               {
                 "part": "(a)",
-                "title": { "zh": "第 3 步 · 計算 (a) 的數值", "en": "Step 3 · Evaluate part (a)" },
+                "title": { "zh": "第 3 步 · 計算 (a) 的結果", "en": "Step 3 · Evaluate part (a)" },
                 "math": "= 201600",
-                "zh": "代入 $8! = 40320$，乘 5 得 $5 \\times 40320 = 201600$，即 (a) 有 201600 種排法。",
-                "en": "With $8! = 40320$, multiplying by 5 gives $5 \\times 40320 = 201600$, so (a) has 201600 arrangements.",
+                "zh": "代入 $8! = 40320$，得 $5 \\times 40320 = 201600$，所以 (a) 的排列數為 201600。",
+                "en": "Since $8! = 40320$, we get $5 \\times 40320 = 201600$. Therefore, the number of arrangements in (a) is 201600.",
                 "marking": "(1A)",
                 "highlight": [ "201600" ]
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 4 步 · 綁成一塊：排整體區塊", "en": "Step 4 · Bundle the vowels: arrange the blocks" },
+                "title": { "zh": "第 4 步 · 綑綁母音成一塊", "en": "Step 4 · Bundle the vowels into one block" },
                 "math": "5!",
-                "zh": "母音必須相鄰，就把 5 個母音綑綁成 1 塊。這 1 塊與 4 個子音合共 5 件物件，排成一行有 $5!$ 種。",
-                "en": "For the vowels to be together, tie the 5 vowels into one block. Together with the 4 consonants this gives 5 items in a row, arranged in $5!$ ways.",
+                "zh": "因為母音必須相鄰，所以把 5 個母音視為一個整體。這個整體加上 4 個子音，共有 5 個單位，因此可排列成一行的方式有 $5!$ 種。",
+                "en": "Since the vowels must stay together, treat the 5 vowels as one single block. Together with the 4 consonants, there are 5 units, so the number of ways to arrange them in a row is $5!$.",
                 "marking": "(1M)"
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 5 步 · 區塊內部自行排列", "en": "Step 5 · Permute inside the block" },
+                "title": { "zh": "第 5 步 · 計算塊內排列數", "en": "Step 5 · Count arrangements inside the block" },
                 "math": "5!",
-                "zh": "綁成一塊只處理了「相鄰」，塊內 5 個母音仍然可以互換次序，所以塊內另有 $5!$ 種排法。",
-                "en": "Bundling only handles 'together'; inside the block the 5 vowels can still swap, giving another $5!$ arrangements.",
+                "zh": "把母音綑綁後，只是確保它們相鄰；塊內 5 個母音仍可互換次序，因此還要乘上 $5!$。",
+                "en": "Bundling ensures the vowels are together, but the 5 vowels inside the block can still be arranged in different orders, so we must multiply by another $5!$.",
                 "marking": "(1M)"
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 6 步 · 計算 (b) 的數值", "en": "Step 6 · Evaluate part (b)" },
+                "title": { "zh": "第 6 步 · 計算 (b) 的結果", "en": "Step 6 · Evaluate part (b)" },
                 "math": "5! \\times 5! = 14400",
-                "zh": "兩部分互相獨立，相乘得 $120 \\times 120 = 14400$，即 (b) 有 14400 種排法。",
-                "en": "The two parts are independent, so multiply: $120 \\times 120 = 14400$, giving 14400 arrangements for (b).",
+                "zh": "兩部分互相獨立，因此乘法原理得 $120 \\times 120 = 14400$，故 (b) 的排列數為 14400。",
+                "en": "The two parts are independent, so by the multiplication principle: $120 \\times 120 = 14400$. Hence the number of arrangements in (b) is 14400.",
                 "marking": "(1A)",
                 "highlight": [ "14400" ]
               }
             ],
             "traps": [
               {
-                "label": "(b) 忘記塊內也要排列",
-                "zh": "「綁成一塊」只是處理「相鄰」，塊內 5 個母音仍然可以換次序，所以要再乘 $5!$；只寫 $5!$ 會少算成 120。",
-                "en": "Tying the vowels into a block only handles 'together'; the 5 vowels inside can still swap, so multiply by $5!$. Writing just $5!$ gives 120, far too small.",
-                "labelEn": "(b) Forgetting to arrange inside the block"
+                "label": "(b) 忘記塊內排列",
+                "zh": "「綑綁成一塊」只處理了相鄰問題，塊內 5 個母音仍可互換次序，因此必須再乘 $5!$；若只寫 $5!$，便會少算成 120。",
+                "en": "Bundling the vowels together only ensures that they stay adjacent; the 5 vowels inside the block can still be arranged in different orders, so we must multiply by $5!$. Writing only $5!$ would undercount badly.",
+                "labelEn": "(b) Forgetting the order inside the block"
               },
               {
                 "label": "(a) 把母音數目算錯",
-                "zh": "'EDUCATION' 的母音是 E, U, A, I, O 共 5 個（不是 4 個）；若少算一個就會得 $4 \\times 8!$。",
-                "en": "'EDUCATION' has 5 vowels, E, U, A, I and O (not 4); missing one gives $4 \\times 8!$ instead.",
+                "zh": "'EDUCATION' 的母音為 E, U, A, I, O，共 5 個，不是 4 個；若漏算一個，就會得到 $4 \\times 8!$，答案錯誤。",
+                "en": "'EDUCATION' has 5 vowels: E, U, A, I, O, not 4. Missing one vowel gives $4 \\times 8!$, which is incorrect.",
                 "labelEn": "(a) Miscounting the vowels"
               }
             ],
             "tip": {
-              "zh": "看到「相鄰／連在一起」就綁成一塊：先排「塊＋其他物件」，再乘「塊內排列數」。",
-              "en": "When you see 'next to each other / together', tie them into a block: arrange 'the block plus the others', then multiply by the arrangements inside the block."
+              "zh": "當你看到「相鄰／連在一起」這類字眼時，便可考慮綑綁法：先排「整塊 + 其他物件」，再乘以「塊內排列數」。",
+              "en": "When you see words such as 'adjacent' or 'together', consider the bundling method: first arrange 'the block + the other objects', then multiply by the number of arrangements inside the block."
             }
           }
         },
@@ -318,64 +318,64 @@
             "steps": [
               {
                 "part": "(a)",
-                "title": { "zh": "第 1 步 · 10 個人當作 10 件不同物件", "en": "Step 1 · Treat the 10 people as 10 distinct objects" },
+                "title": { "zh": "第 1 步 · 把 10 個人視為 10 件不同物件", "en": "Step 1 · Treat the 10 people as 10 distinct objects" },
                 "math": "10! = 3628800",
-                "zh": "10 個人互不相同，排一行就是把 10 個位置填滿，共 $10! = 3628800$ 種。",
-                "en": "The 10 people are all distinct, so filling 10 positions in a row gives $10! = 3628800$ arrangements.",
+                "zh": "10 個人互不相同，排成一行實際上就是把 10 個位置全部填滿，因此共有 $10! = 3628800$ 種排列。",
+                "en": "The 10 people are all distinct, so arranging them in a row is simply filling 10 positions. This gives $10! = 3628800$ arrangements.",
                 "marking": "(1M)(1A)",
                 "highlight": [ "10! = 3628800" ]
               },
               {
                 "part": "(b)",
-                "title": { "zh": "第 2 步 · 左右兩組各自排列", "en": "Step 2 · Permute each group separately" },
+                "title": { "zh": "第 2 步 · 兩組分別排列", "en": "Step 2 · Arrange each group separately" },
                 "math": "5! \\times 5! = 14400",
-                "zh": "左邊 5 個位置只放男儐相，可任意排列（$5!$）；右邊 5 個位置只放女儐相（$5!$）。兩組互不影響，總數是 $5! \\times 5! = 14400$。",
-                "en": "The 5 positions on the left hold only groomsmen (arranged in $5!$ ways) and the 5 on the right hold only bridesmaids ($5!$). The groups are independent, so the total is $5! \\times 5! = 14400$.",
+                "zh": "左邊 5 個位置只放男儐相，這 5 人可任意排列，故有 $5!$ 種；右邊 5 個位置只放女儐相，也有 $5!$ 種。兩組獨立，因此總數是 $5! \\times 5! = 14400$。",
+                "en": "The 5 positions on the left hold only the groomsmen, and these 5 can be arranged in $5!$ ways. The 5 positions on the right hold only the bridesmaids, also in $5!$ ways. The two groups are independent, so the total is $5! \\times 5! = 14400$.",
                 "marking": "(1M)(1A)"
               },
               {
                 "part": "(c)",
-                "title": { "zh": "第 3 步 · 交替站立：兩種開頭花款", "en": "Step 3 · Alternating row: two starting patterns" },
+                "title": { "zh": "第 3 步 · 交替站立：先決定男女起始花款", "en": "Step 3 · Alternating arrangement: decide the starting pattern" },
                 "math": "2",
-                "zh": "男女各 5 人（數目相同），男女交替站立時可以由男儐相起頭，也可以由女儐相起頭，所以共有 2 種「男女位置花款」。",
-                "en": "There are 5 of each, so an alternating row may start with a groomsman or with a bridesmaid: 2 patterns.",
+                "zh": "男女各有 5 人，且數目相同，所以交替站立時可由男儐相起頭，也可由女儐相起頭，故有 2 種男女位置花款。",
+                "en": "There are 5 groomsmen and 5 bridesmaids, so an alternating arrangement can begin with a groomsman or a bridesmaid. Thus there are 2 possible patterns for the male/female positions.",
                 "marking": "(1M)"
               },
               {
                 "part": "(c)",
-                "title": { "zh": "第 4 步 · 每種花款：男女各自全排", "en": "Step 4 · Each pattern: permute the two groups" },
+                "title": { "zh": "第 4 步 · 每種花款內部分別排列", "en": "Step 4 · Arrange each gender within its pattern" },
                 "math": "5! \\times 5!",
-                "zh": "固定一種花款後，男儐相填入 5 個男位（$5!$），女儐相填入 5 個女位（$5!$），兩組互不影響，所以每種花款有 $5! \\times 5!$ 種排法。",
-                "en": "For a fixed pattern, the groomsmen fill the 5 male slots ($5!$) and the bridesmaids the 5 female slots ($5!$); the groups are independent, so each pattern gives $5! \\times 5!$ arrangements.",
+                "zh": "固定一種花款後，男儐相安排在 5 個男位，有 $5!$ 種；女儐相安排在 5 個女位，也有 $5!$ 種。兩者互不影響，所以每種花款共有 $5! \\times 5!$ 種。",
+                "en": "Once a pattern is fixed, the 5 groomsmen are arranged in the 5 male positions in $5!$ ways and the 5 bridesmaids in the 5 female positions in $5!$ ways. The two groups are independent, so each pattern gives $5! \\times 5!$ arrangements.",
                 "marking": "(1M)"
               },
               {
                 "part": "(c)",
-                "title": { "zh": "第 5 步 · 計算交替站立數值結果", "en": "Step 5 · Evaluate the alternating row count" },
+                "title": { "zh": "第 5 步 · 計算交替站立的總數", "en": "Step 5 · Evaluate the alternating arrangement count" },
                 "math": "= 28800",
-                "zh": "把 2 種花款與每種的 $5! \\times 5! = 14400$ 相乘：$2 \\times 14400 = 28800$，即 (c) 有 28800 種排法。",
-                "en": "Multiplying the 2 patterns by $5! \\times 5! = 14400$ each: $2 \\times 14400 = 28800$, so (c) has 28800 arrangements.",
+                "zh": "總數為 $2 \\times (5! \\times 5!) = 2 \\times 14400 = 28800$，故 (c) 的排列數為 28800。",
+                "en": "The total is $2 \\times (5! \\times 5!) = 2 \\times 14400 = 28800$, so the number of alternating arrangements in (c) is 28800.",
                 "marking": "(1A)",
                 "highlight": [ "28800" ]
               }
             ],
             "traps": [
               {
-                "label": "(c) 漏了乘 2",
-                "zh": "交替排列的「男女位置花款」有兩種（男先或女先），漏乘 2 會得 14400，少了一半。",
-                "en": "There are two alternating patterns (start with a man or a woman); omitting the factor 2 gives 14400, exactly half the answer.",
+                "label": "(c) 忘記乘 2",
+                "zh": "交替排列有兩種男女位置花款（男先或女先），若漏乘 2，答案會變成 14400，少了一半。",
+                "en": "An alternating arrangement can begin with either a man or a woman, so there are 2 patterns. Omitting the factor 2 gives 14400, exactly half the correct answer.",
                 "labelEn": "(c) Missing the factor 2"
               },
               {
                 "label": "(b) 把兩組混合排列",
-                "zh": "(b) 已指定男在左、女在右，不可再把 10 人一起排；若寫成 $10!$ 就把不合規定的排法也計入。",
-                "en": "In (b) the men are fixed on the left and the women on the right, so the 10 cannot be permuted together; writing $10!$ counts arrangements that break the rule.",
+                "zh": "(b) 已規定男儐相在左、女儐相在右，因此不能再把 10 個人整體混合排列；若寫成 $10!$，就會把不符合條件的排列也計算進去。",
+                "en": "In (b), the men are fixed on the left and the women on the right, so the 10 people should not be treated as one mixed group. Writing $10!$ would incorrectly include arrangements that violate the condition.",
                 "labelEn": "(b) Permuting both groups together"
               }
             ],
             "tip": {
-              "zh": "交替問題先數「有幾種位置花款」（人數相同＝2 種；相差 1＝1 種），再乘各組內部排列數。",
-              "en": "For alternating problems, first count the position patterns (equal numbers give 2; a difference of 1 gives 1), then multiply by the internal arrangements of each group."
+              "zh": "交替問題的關鍵，是先判斷位置花款有幾種；當男女人數相同時，通常有 2 種花款，之後再乘各組內部排列數。",
+              "en": "For alternating problems, the first step is to count the possible position patterns. When the numbers of men and women are equal, there are usually 2 patterns; then multiply by the internal arrangements of each group."
             }
           }
         }
@@ -525,10 +525,10 @@
           "solution": {
             "steps": [
               {
-                "title": { "zh": "第 1 步 · 4 件不同物件全排列", "en": "Step 1 · A full permutation of 4 distinct objects" },
+                "title": { "zh": "第 1 步 · 全部不同，直接全排列", "en": "Step 1 · All are distinct, so use a full permutation" },
                 "math": "4! = 4 \\times 3 \\times 2 \\times 1\n= 24",
-                "zh": "4 盆植物全部不同，排一行就是把 4 個位置填滿：第 1 位 4 選 1、第 2 位 3 選 1、第 3 位 2 選 1、第 4 位 1 選 1，所以共 $4! = 24$ 種。",
-                "en": "The 4 pots are all different, so filling the 4 positions gives 4, then 3, then 2, then 1 choices: $4! = 24$ ways.",
+                "zh": "4 盆植物全部不同，排成一行就是把 4 個位置全部填滿：第 1 個位置有 4 種選擇，第 2 個位置有 3 種，如此類推，所以共有 $4! = 24$ 種。",
+                "en": "The 4 pots are all different, so arranging them in a row means filling 4 positions in turn: 4 choices for the first, then 3, then 2, then 1. Hence there are $4! = 24$ ways.",
                 "marking": "(1M)(1A)",
                 "highlight": [ "4! = 24" ]
               }
@@ -536,14 +536,14 @@
             "traps": [
               {
                 "label": "以為 4 盆植物有相同",
-                "zh": "題目寫明 4 盆「不同」，若當成有重複物件就會錯誤地除以重複數。",
-                "en": "The question states the 4 pots are different; treating them as repeated would wrongly divide by the repeats.",
+                "zh": "題目明明寫出 4 盆「不同」，若當成相同物件就會錯誤地分母縮小，答案便會偏差。",
+                "en": "The question clearly states that the 4 pots are different. Treating them as identical would wrongly reduce the count.",
                 "labelEn": "Assuming the plants are identical"
               }
             ],
             "tip": {
-              "zh": "$n$ 件相異物件全排列，數目就是 $n!$；這是最基本的排列。",
-              "en": "A full permutation of $n$ distinct objects is simply $n!$; this is the basic case."
+              "zh": "$n$ 件相異物件全部排列，方法數就是 $n!$；這是排列的最基本情況。",
+              "en": "A full permutation of $n$ distinct objects is simply $n!$; this is the basic arrangement case."
             }
           }
         },
@@ -564,10 +564,10 @@
           "solution": {
             "steps": [
               {
-                "title": { "zh": "第 1 步 · 演奏次序就是全排列", "en": "Step 1 · A performance order is a full permutation" },
+                "title": { "zh": "第 1 步 · 演奏次序是全排列", "en": "Step 1 · A performance order is a full permutation" },
                 "math": "8! = 8 \\times 7 \\times 6 \\times 5 \\times 4 \\times 3 \\times 2 \\times 1\n= 40320",
-                "zh": "8 名小朋友互不相同，安排演奏次序就是把 8 個人放在 8 個先後位置，共 $8! = 40320$ 種。",
-                "en": "The 8 children are distinct, so ordering their performances places 8 people into 8 time slots: $8! = 40320$ ways.",
+                "zh": "8 名小朋友互不相同，安排演奏次序就是把 8 個人依次放進 8 個先後位置中，因此共有 $8! = 40320$ 種。",
+                "en": "The 8 children are distinct, so ordering their performances means placing 8 people into 8 time slots in order: $8! = 40320$ ways.",
                 "marking": "(1M)(1A)",
                 "highlight": [ "8! = 40320" ]
               }
@@ -575,13 +575,13 @@
             "traps": [
               {
                 "label": "誤用組合",
-                "zh": "「次序」一詞已說明有先後之分，必須用排列；若用組合會少算很多。",
-                "en": "The word 'order' shows that sequence matters, so a permutation is needed; a combination would under-count badly.",
+                "zh": "題目已明示「次序」有先後之分，因此必須用排列；若誤用組合，會嚴重少算。",
+                "en": "The word 'order' shows that sequence matters, so a permutation is required; using a combination would undercount badly.",
                 "labelEn": "Using a combination by mistake"
               }
             ],
             "tip": {
-              "zh": "凡見到「次序」「排隊」「先後」，都是排列問題。",
+              "zh": "凡見到「次序」「排隊」「先後」等字眼，都是排列問題。",
               "en": "Whenever you see 'order', 'line up' or 'sequence', it is a permutation problem."
             }
           }
