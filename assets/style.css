@@ -263,12 +263,12 @@ body[data-lang="both"] .mchip .l-en { font-size: 11px; opacity: .8; }
    · 色條＝狀態：未開始（暖灰）／進行中（靛藍）／已完成（綠）／未上線（近白）。 */
 .part-btn::before {
   content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 4px;
-  border-radius: 0 999px 999px 0; background: var(--bar-idle);
+  border-radius: 0 999px 999px 0; background: transparent;
   transition: background .18s ease;
 }
 .part-btn.doing::before { background: var(--bar-doing); }
 .part-btn.done::before { background: var(--bar-done); }
-.part-btn:disabled::before { background: var(--bar-off); }
+.part-btn:disabled::before { background: transparent; }   /* 未上線：唔顯示色條 */
 
 .ring {
   --p: 0; width: 46px; height: 46px; flex: none; border-radius: 50%;
