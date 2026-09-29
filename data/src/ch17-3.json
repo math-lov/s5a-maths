@@ -2,7 +2,7 @@
   "id": "ch17-3",
   "title": {
     "zh": "17.3 組合 · 課本練習",
-    "en": "17.3 Combinations ? Book Exercise"
+    "en": "17.3 Combinations · Book Exercise"
   },
   "intro": {
     "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。先判斷題目只要求選出一組，還是要安排位置或角色：前者用組合，後者須計算次序。",
@@ -276,8 +276,8 @@
                   "zh": "總數減去全男及全女",
                   "en": "Subtract the all-boys and all-girls cases"
                 },
-                "math": "C^{26}_6-C^{14}_6-C^{12}_6=226303",
-                "zh": "至少一男一女的反面是全男或全女。全部隊伍有 $C^{26}_6=230230$ 種，扣除兩種極端情況，得 226303 種。",
+                "math": "C^{26}_6 - [C^{14}_6 + C^{12}_6] = 230230 - [3003 + 924] = 226303",
+                "zh": "至少一男一女的反面是全男或全女。全部隊伍有 $C^{26}_6=230230$ 種，扣除兩種互斥極端情況 $[C^{14}_6 + C^{12}_6] = [3003 + 924] = 3927$ 種，得 $230230 - 3927 = 226303$ 種。",
                 "en": "The complement is an all-boys or all-girls team. From $C^{26}_6=230230$, subtract both cases to obtain 226303 ways.",
                 "marking": "(1M)(1A)"
               }
@@ -291,7 +291,7 @@
               }
             ],
             "tip": {
-              "zh": "「至少一男一女」可用總數減去全男及全女。",
+              "zh": "「至少一男一女」宜用反面計數：總隊伍數扣除全男及全女，即 $C^{14}_6+C^{12}_6$。可利用 Casio 計算機「SHIFT」接「÷」(nCr) 快速核算大組合數，如按 26 SHIFT ÷ 6 得到 230230。",
               "en": "For 'at least one boy and one girl', subtract all-boys and all-girls teams from the total."
             }
           }
@@ -411,8 +411,8 @@
           "marks": 6,
           "difficulty": 2,
           "stem": {
-            "en": "Determine whether each of the following is correct. Put a tick ??? in the box if it is correct and a cross ??? if it is not.",
-            "zh": "判斷下列各項是否正確。正確的在方格內加剔號，錯誤的加交叉。"
+            "en": "Determine whether each of the following is correct. Put a tick ✓ in the box if it is correct and a cross ✗ if it is not.",
+            "zh": "判斷下列各項是否正確。正確的在方格內加剔號（✓），錯誤的加交叉（✗）。"
           },
           "parts": [
             {
@@ -859,7 +859,7 @@
                   "en": "Choose 3 from 9"
                 },
                 "math": "C^9_3=84",
-                "zh": "同理，$C^9_3=84$ 種。，此處不計選取次序。",
+                "zh": "同理，組隊不計選入先後：$C^9_3=84$ 種。",
                 "en": "Similarly, $C^9_3=84$ ways.",
                 "marking": "(1A)"
               }
@@ -932,7 +932,7 @@
                   "en": "Choose 6 channels"
                 },
                 "math": "C^{12}_6=924",
-                "zh": "同理，$C^{12}_6=924$ 種。，此處不計選取次序。",
+                "zh": "同理，訂閱先後不重要：$C^{12}_6=924$ 種。",
                 "en": "Similarly, $C^{12}_6=924$ ways.",
                 "marking": "(1A)"
               }
@@ -1213,7 +1213,7 @@
                   "en": "Choose 6 from 25"
                 },
                 "math": "C^{25}_6=177100",
-                "zh": "無限制時有 $C^{25}_6=177100$ 種。，此處不計選取次序。",
+                "zh": "無限制時，從 25 人中選 6 人，不計次序：$C^{25}_6=177100$ 種。",
                 "en": "With no restrictions, there are $C^{25}_6=177100$ selections.",
                 "marking": "(1A)"
               },
@@ -1573,7 +1573,7 @@
             {
               "label": "(b)(i)",
               "en": "The coach assigns different players to be the captain and the goalkeeper. In how many ways can the players be selected if Ronaldo must be the captain and Hugo must be the goalkeeper?",
-              "zh": "?????????????????? Ronaldo ??????Hugo ?????????????",
+              "zh": "教練安排不同球員擔任隊長及守門員。若 Ronaldo 必須任隊長，Hugo 必須任守門員，求選人方法數目。",
               "marks": 2
             },
             {
@@ -1606,7 +1606,7 @@
                   "en": "Choose 11 from 20"
                 },
                 "math": "C^{20}_{11}=167960",
-                "zh": "只選參賽隊員：$C^{20}_{11}=167960$ 種。，此處不計選取次序。",
+                "zh": "只選參賽隊員，不計排列次序：$C^{20}_{11}=167960$ 種。",
                 "en": "Only the 11 players are selected: $C^{20}_{11}=167960$ ways.",
                 "marking": "(1M)(1A)"
               },
@@ -1690,7 +1690,7 @@
                   "en": "Choose 3 of the 5 hot drinks"
                 },
                 "math": "C^5_3=10",
-                "zh": "只從熱飲選 3 款：$C^5_3=10$。，此處不計選取次序。",
+                "zh": "只從 5 款熱飲中選 3 款，不計次序：$C^5_3=10$ 種。",
                 "en": "Choose 3 of the 5 hot drinks: $C^5_3=10$.",
                 "marking": "(1A)"
               },
@@ -1700,8 +1700,8 @@
                   "zh": "總數扣除全熱及全冷",
                   "en": "Subtract all-hot and all-cold"
                 },
-                "math": "C^9_3-C^5_3-C^4_3=70",
-                "zh": "至少一熱一冷的反面是全熱或全冷，故 $C^9_3-C^5_3-C^4_3=70$。",
+                "math": "C^9_3 - [C^5_3 + C^4_3] = 84 - [10 + 4] = 70",
+                "zh": "至少一熱一冷的反面是全熱或全冷。總選法減去不合條件的選法：$C^9_3 - [C^5_3 + C^4_3] = 84 - [10 + 4] = 70$ 種。",
                 "en": "The complement is all hot or all cold, so $C^9_3-C^5_3-C^4_3=70$.",
                 "marking": "(1M)(1A)"
               }
@@ -1846,7 +1846,7 @@
                   "en": "Choose 6 from 30"
                 },
                 "math": "C^{30}_6=593775",
-                "zh": "全公司有 30 人，選 6 人：$C^{30}_6=593775$。，此處不計選取次序。",
+                "zh": "全公司有 30 人，從中選 6 人組隊，不計次序：$C^{30}_6=593775$ 種。",
                 "en": "There are 30 employees, so $C^{30}_6=593775$ teams.",
                 "marking": "(1A)"
               },
@@ -1940,7 +1940,7 @@
                   "en": "Choose 5 from 26"
                 },
                 "math": "C^{26}_5=65780",
-                "zh": "無限制時有 $C^{26}_5=65780$ 種。，此處不計選取次序。",
+                "zh": "無限制時，從 26 人中選 5 人，不計次序：$C^{26}_5=65780$ 種。",
                 "en": "With no restrictions, there are $C^{26}_5=65780$ selections.",
                 "marking": "(1A)"
               },
@@ -1970,7 +1970,7 @@
             "traps": [
               {
                 "label": "把至多 2 人誤作恰有 2 人",
-                "zh": "(b) 包括中五 0、1、2 人。，須包括全部可能人數。",
+                "zh": "(b) 部的「至多 2 人」包括中五學生人數為 0、1 或 2 的情況；容易誤看成恰好 2 人，應分三種互斥情況計算後相加。",
                 "en": "Part (b) includes 0, 1, and 2 S5 students.",
                 "labelEn": "Treating at most 2 as exactly 2"
               }
@@ -2305,7 +2305,7 @@
                   "en": "Choose 3 of the 13 hearts"
                 },
                 "math": "C^{13}_3=286",
-                "zh": "選 3 張紅心有 $C^{13}_3=286$ 種。，此處不計選取次序。",
+                "zh": "從 13 張紅心中選 3 張，不計選取先後：$C^{13}_3=286$ 種。",
                 "en": "Choose 3 of the 13 hearts: $C^{13}_3=286$ ways.",
                 "marking": "(1A)"
               },
@@ -2400,7 +2400,7 @@
                   "en": "Choose 2 from 6"
                 },
                 "math": "C^6_2=15",
-                "zh": "只選一組 2 人：$C^6_2=15$ 種。，此處不計選取次序。",
+                "zh": "只選一組 2 名家人探訪，不計次序：$C^6_2=15$ 種。",
                 "en": "Select one unordered pair: $C^6_2=15$ ways.",
                 "marking": "(1A)"
               },
@@ -2805,7 +2805,7 @@
             {
               "label": "(b)(i)",
               "en": "Hence, answer the following questions. Find the size of an interior angle of the polygon.",
-              "zh": "???????????????????????",
+              "zh": "由此，回答下列問題。求該多邊形一個內角的大小。",
               "marks": 1
             },
             {
@@ -2837,8 +2837,8 @@
                   "zh": "建立對角線數目方程",
                   "en": "Form an equation for the diagonals"
                 },
-                "math": "n(n-3)/2=170; (n-20)(n+17)=0; n=20",
-                "zh": "每個頂點連接 n-3 個非相鄰頂點，除以 2 避免重複計數：$n(n-3)/2=170$。解得 n=20 或 -17；邊數不能為負，故 n=20。",
+                "math": "\\frac{n(n-3)}{2} = 170 \\implies n^2 - 3n - 340 = 0 \\implies (n-20)(n+17) = 0 \\implies n = 20 \\text{ or } n = -17 \\text{ (discard)}",
+                "zh": "每個頂點連接 $n-3$ 條對角線，因每條對角線被兩個頂點重複計算，列式為 $\\frac{n(n-3)}{2}=170$。去分母去括號得 $n^2 - 3n - 340 = 0$，十字相乘因式分解為 $(n-20)(n+17)=0$。解得 $n=20$ 或 $n=-17$。由於多邊形邊數 $n$ 必須為正整數，$n=-17$ 捨去，故 $n=20$。",
                 "en": "Each vertex joins to n-3 non-adjacent vertices; divide by 2 to avoid counting each diagonal twice: $n(n-3)/2=170$. The roots are 20 and -17; reject the negative value, so n=20.",
                 "marking": "(1M)(1A)"
               },
@@ -2874,7 +2874,7 @@
               }
             ],
             "tip": {
-              "zh": "組合可用來選多邊形頂點；選 3 個不同頂點便唯一決定一個三角形。",
+              "zh": "多邊形選 3 個頂點便可組成一個三角形，故頂點數確認為 20 後，三角形數目即為 $C^{20}_3$。解一元二次方程 $n^2-3n-340=0$ 時，若因式分解較繁複，可用計算機的二次方程程式（Prog 1 或 Formula 01）求根核對。",
               "en": "Combinations select polygon vertices; each set of 3 distinct vertices determines one triangle."
             }
           }
