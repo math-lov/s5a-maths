@@ -605,6 +605,12 @@ ok(all173.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
 console.log("\n== 進度 ==");
 const saved = JSON.stringify({ done: { "ch10-A1": true, "ch10-A2": true }, picked: { "ch10-A1": "B" } });
 const back = boot("index.html", "", saved);
+ok(!!back.$(".part-btn.doing") && back.$$(".part-btn.done").length === 0,
+  "有進度但未完成的卡會標 .doing（左側色條轉靛藍）");
+const cssBar = read("assets/style.css");
+ok(/\.part-btn::before\b/.test(cssBar) && /\.part-btn\.doing::before/.test(cssBar) &&
+  /--bar-idle/.test(cssBar) && /--bar-off/.test(cssBar),
+  "style.css 有狀態色條（四狀態：idle／doing／done／off）");
 ok(/已掌握 18%/.test((back.$(".part-btn .t-meta") || {}).textContent || ""),
   "首頁顯示已掌握百分比（2/11 = 18%）");
 ok(back.$$(".part-btn .ring.full").length === 0, "未完成時進度環不是 full");

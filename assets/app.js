@@ -380,6 +380,13 @@
     return { zh: (sec && sec.id) || "", en: (sec && sec.id) || "" };
   }
 
+  /* 狀態 class：100% = done、0% < x < 100% = doing、未開始就唔加
+     （CSS 會用 .doing／.done 決定左側狀態色條與進度環的顏色） */
+  function stateClass(pct) {
+    if (pct >= 100) return " done";
+    return pct > 0 ? " doing" : "";
+  }
+
   function renderIndex() {
     var host = qs("#parts");
     if (!host) return;
@@ -389,7 +396,7 @@
     var quizParts = (INDEX.parts || []).filter(function (p) { return p.group !== "classwork"; });
     quizParts.forEach(function (part) {
       var pct = partProgress(part);
-      var btn = el("button", "part-btn" + (pct >= 100 ? " done" : ""));
+      var btn = el("button", "part-btn" + stateClass(pct));
       var ring = el("div", "ring" + (pct >= 100 ? " full" : ""));
       ring.style.setProperty("--p", pct);
       ring.setAttribute("data-label", pct + "%");
@@ -428,7 +435,7 @@
       chs.forEach(function (ch) {
         var st = chapterStats(ch);
         var full = st.total > 0 && st.pct >= 100;
-        var btn = el("button", "part-btn" + (full ? " done" : ""));
+        var btn = el("button", "part-btn" + stateClass(st.pct));
         var ring = el("div", "ring" + (full ? " full" : ""));
         ring.style.setProperty("--p", st.pct);
         ring.setAttribute("data-label", st.pct + "%");
@@ -548,7 +555,7 @@
         return;
       }
       var pct = partProgress(part);
-      var btn = el("button", "part-btn" + (pct >= 100 ? " done" : ""));
+      var btn = el("button", "part-btn" + stateClass(pct));
       var ring = el("div", "ring" + (pct >= 100 ? " full" : ""));
       ring.style.setProperty("--p", pct);
       ring.setAttribute("data-label", pct + "%");

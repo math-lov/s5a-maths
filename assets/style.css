@@ -47,6 +47,12 @@
   --warn: #b45309;
   --warn-soft: #fff6e6;
 
+  /* 狀態色條（只出現在有狀態的卡：首頁課題卡、章節頁節卡） */
+  --bar-idle: #ded7cd;            /* 未開始 */
+  --bar-doing: var(--primary);    /* 進行中 */
+  --bar-done: var(--ok);          /* 已完成 */
+  --bar-off: #efe9e1;             /* 未上線（不可按） */
+
   /* 間距級（8 的倍數） */
   --sp-1: 4px;
   --sp-2: 8px;
@@ -205,6 +211,7 @@ body[data-lang="both"] .l-en { opacity: .82; }
 /* ── 首頁：課題卡 ─────────────────────────────────────────────────────── */
 .part-grid { display: grid; gap: var(--sp-3); }
 .part-btn {
+  position: relative;   /* 供左側狀態色條（::before）定位 */
   width: 100%; text-align: left; cursor: pointer;
   background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius);
   padding: var(--sp-5); box-shadow: var(--shadow); display: flex; align-items: center; gap: var(--sp-4);
@@ -221,6 +228,22 @@ body[data-lang="both"] .l-en { opacity: .82; }
 .part-btn:disabled { cursor: default; opacity: .7; }
 .part-btn:disabled:hover { transform: none; box-shadow: var(--shadow); border-color: var(--line-soft); }
 
+/* ── 左側狀態色條（做法 B：內縮小色條）──────────────────────────────────
+   只在「有狀態」的卡出現（首頁課題卡、章節頁節卡）；內容卡（.card／.cc／.fig）
+   一律不加，以免同 .step／.trap／.tip 嘅「角色色帶」語意混淆。
+   · 用 ::before 而唔用 border-left：border 會令內容盒縮 4px，2 欄 grid 下
+     有色條與冇色條嘅卡，文字起點就會唔對齊。
+   · 上下內縮 16px ＝ 卡片圓角半徑，所以色條完全避開圓角，唔會出現錐形。
+   · 色條＝狀態：未開始（暖灰）／進行中（靛藍）／已完成（綠）／未上線（近白）。 */
+.part-btn::before {
+  content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 4px;
+  border-radius: 0 999px 999px 0; background: var(--bar-idle);
+  transition: background .18s ease;
+}
+.part-btn.doing::before { background: var(--bar-doing); }
+.part-btn.done::before { background: var(--bar-done); }
+.part-btn:disabled::before { background: var(--bar-off); }
+
 .ring {
   --p: 0; width: 46px; height: 46px; flex: none; border-radius: 50%;
   background: conic-gradient(var(--ok) calc(var(--p) * 1%), #e8e2d9 0);
@@ -233,6 +256,8 @@ body[data-lang="both"] .l-en { opacity: .82; }
 }
 .ring.full { background: conic-gradient(var(--ok) 100%, var(--ok) 0); }
 .ring.full::after { content: "✓"; color: var(--ok-dark); font-size: 16px; }
+/* 進行中：進度弧用靛藍（同左側色條同色系），做到 100% 才轉綠 */
+.part-btn.doing .ring { background: conic-gradient(var(--primary) calc(var(--p) * 1%), #eee9e2 0); }
 
 /* ── 分頁列（甲部／乙部＋題號）───────────────────────────────────────── */
 /* 題數多（例如第 17.2 節 36 題）時一定要見到可以橫向捲動 → 保留可見的捲軸 */
