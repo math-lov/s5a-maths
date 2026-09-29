@@ -411,7 +411,7 @@
           "marks": 6,
           "difficulty": 2,
           "stem": {
-            "en": "Determine whether each of the following is correct. Put a tick in the box if it is correct and a cross if it is not.",
+            "en": "Determine whether each of the following is correct. Put a tick ??? in the box if it is correct and a cross ??? if it is not.",
             "zh": "判斷下列各項是否正確。正確的在方格內加剔號，錯誤的加交叉。"
           },
           "parts": [
@@ -1572,8 +1572,8 @@
             },
             {
               "label": "(b)(i)",
-              "en": "Ronaldo must be the captain and Hugo must be the goalkeeper?",
-              "zh": "Ronaldo 必須任隊長而 Hugo 必須任守門員？",
+              "en": "The coach assigns different players to be the captain and the goalkeeper. In how many ways can the players be selected if Ronaldo must be the captain and Hugo must be the goalkeeper?",
+              "zh": "?????????????????? Ronaldo ??????Hugo ?????????????",
               "marks": 2
             },
             {
@@ -2804,8 +2804,8 @@
             },
             {
               "label": "(b)(i)",
-              "en": "Find the size of an interior angle of the polygon.",
-              "zh": "求該多邊形一個內角的大小。",
+              "en": "Hence, answer the following questions. Find the size of an interior angle of the polygon.",
+              "zh": "???????????????????????",
               "marks": 1
             },
             {
