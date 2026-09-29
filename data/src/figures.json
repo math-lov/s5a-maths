@@ -179,6 +179,20 @@
       "en": "Case 2 (example k = 1): the axis is left of x = 3 and f is increasing for x ≥ 3, so f(x) ≥ f(3) = 9 > 0."
     }
   },
+  "ch17-3-sm-29": {
+    "type": "grid",
+    "width": 4,
+    "height": 5,
+    "labels": [
+      { "x": 0, "y": 0, "text": "P", "dx": -22, "dy": 6 },
+      { "x": 2, "y": 3, "text": "R", "dx": 10, "dy": -8 },
+      { "x": 4, "y": 5, "text": "Q", "dx": 10, "dy": -8 }
+    ],
+    "caption": {
+      "zh": "每一步只可向東或向北；$R$ 位於由 $P$ 向東 2 格、向北 3 格的位置。",
+      "en": "At each step Jimmy moves east or north; R is 2 steps east and 3 steps north of P."
+    }
+  },
   "bonus-case3": {
     "type": "graph",
     "x": [0, 14], "y": [-19, 24],

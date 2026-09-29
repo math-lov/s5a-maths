@@ -376,7 +376,7 @@ ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")
   "每頁都有語言設定");
 
 const figs = JSON.parse(figuresJs.slice(figuresJs.indexOf("{"), figuresJs.lastIndexOf("}") + 1));
-ok(Object.keys(figs).length === 13, "圖共 13 幅（實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).length === 14, "圖共 14 幅（實際 " + Object.keys(figs).length + "）");
 ok(Object.keys(figs).every((k) => /<svg [^>]*viewBox/.test(figs[k].svg)),
   "每幅圖都是合法的 SVG（有 viewBox）");
 ok(Object.keys(figs).every((k) => (figs[k].caption || {}).zh && (figs[k].caption || {}).en),
@@ -393,11 +393,15 @@ ok(chPage.$$("#chapter-body .part-btn").length === (CH17.sections || []).length,
   chPage.$$("#chapter-body .part-btn").length + "）");
 const soonBtns = chPage.$$("#chapter-body .part-btn[disabled]");
 const liveBtns = chPage.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
-ok(soonBtns.length === 2, "未上線的節（17.1、17.3）標示為即將推出且不可按");
-ok(liveBtns.length === 1, "已上線的節只有 1 個（17.2）");
+ok(soonBtns.length === 1, "未上線的節（17.1）標示為即將推出且不可按");
+ok(liveBtns.length === 2, "已上線的節有 2 個（17.2、17.3）");
 liveBtns[0].click();
 ok(/c=ch17-2/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
   "按「17.2」會去 quiz.html?c=ch17-2");
+const section173 = liveBtns.filter((b) => /17\.3/.test(b.textContent))[0];
+section173.click();
+ok(/c=ch17-3/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
+  "按「17.3」會去 quiz.html?c=ch17-3");
 
 console.log("\n== 第 17.2 節（課本練習頁）==");
 const P172 = INDEX.parts.filter((p) => p.id === "ch17-2")[0] || {};
@@ -534,6 +538,40 @@ ok(allC.every((t) => !!t.$(".sol-card .tip")), "每題都有「帶得走的技�
 ok(allC.every((t) => t.$$(".sol-card .trap").length >= 1), "每題至少 1 個常見錯誤");
 ok(allC.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "所有題幹已渲染（無殘留 $）");
 ok(allC.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")), "所有題幹都有中英兩版");
+
+console.log("\n== 第 17.3 節（課本練習頁）==");
+const P173 = INDEX.parts.filter((p) => p.id === "ch17-3")[0] || {};
+ok(P173.stats && P173.stats.questions === 35 && P173.stats.marks === 102,
+  "第 17.3 節共 35 題、102 分");
+ok((P173.sections || []).length === 6 && (P173.qids || []).length === 35,
+  "第 17.3 節有 6 段且 qids 數目正確");
+const p173Overview = boot("quiz.html", "?c=ch17-3&p=0");
+ok(p173Overview.$$("#pagenav .pg").length === 36,
+  "17.3 分頁列 = 總覽 + 35 題（實際 " + p173Overview.$$("#pagenav .pg").length + "）");
+ok(p173Overview.$$(".cc").length === 1 && /組合/.test(p173Overview.$(".cc-title").textContent),
+  "17.3 總覽有組合教學卡");
+const p173Sc = boot("quiz.html", "?c=ch17-3&p=5");
+ok(!!p173Sc.$('.q-card[data-qid="ch17-3-sc"]') && p173Sc.$$(".tf-item").length === 6,
+  "17.3 Section Check 有 6 個互動判斷項");
+const p173Q25 = boot("quiz.html", "?c=ch17-3&p=30", null, "show");
+ok(!!p173Q25.$('.q-card[data-qid="ch17-3-l2-25"]') && /90/.test(p173Q25.$(".answer-box").textContent),
+  "L2-25(b) 依次探訪的答案為 90");
+ok(/540/.test(p173Q25.$(".sol-card").textContent),
+  "L2-25 題解說明官方 540 的重複計數");
+const p173Q29 = boot("quiz.html", "?c=ch17-3&p=34", null, "show");
+ok(!!p173Q29.$('.q-card[data-qid="ch17-3-sm-29"] .fig svg') &&
+  /126/.test(p173Q29.$(".answer-box").textContent) && /60/.test(p173Q29.$(".answer-box").textContent),
+  "SMART Q29 顯示路徑圖及 126／60 答案");
+const p173Last = boot("quiz.html", "?c=ch17-3&p=35");
+ok(!!p173Last.$('.q-card[data-qid="ch17-3-ct-30"]'), "17.3 最後一頁是第 30 題跨課題");
+const all173 = [];
+for (let i = 1; i <= 35; i++) all173.push(boot("quiz.html", "?c=ch17-3&p=" + i, null, "show"));
+ok(all173.every((t) => t.$$(".sol-card").length === 1 && t.$$(".sol-card .steps .step").length > 0),
+  "17.3 每題都有逐步題解");
+ok(all173.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
+  "17.3 每題都有技巧與常見錯誤");
+ok(all173.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "17.3 所有題幹均有中英版本");
 
 /* ── 7. 進度記錄（新開頁面仍記得）────────────────────────────────────── */
 console.log("\n== 進度 ==");

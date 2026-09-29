@@ -20,9 +20,11 @@ data/index.js           生成檔：網站資料（勿手改）
 data/figures.js         生成檔：所有圖的 SVG（勿手改）
 data/ch10-test.js       生成檔：第 10 章測驗題目＋題解（勿手改）
 data/ch17-2.js          生成檔：第 17.2 節課本練習題目＋題解（勿手改）
+data/ch17-3.js          生成檔：第 17.3 節課本練習題目＋題解（勿手改）
 data/src/site.json      手改：網站資料、測驗清單與課本練習（章／節）清單
 data/src/ch10-test.json 手改：題目與題解
 data/src/ch17-2.json    手改：第 17.2 節課本練習題目與題解
+data/src/ch17-3.json    手改：第 17.3 節課本練習題目與題解
 data/src/figures.json   手改：圖形規格（數線／拋物線）
 data/raw/               來源原文與核實記錄（草稿層，只讀）
 tools/build.py          檢查 + 生成 data/*.js

@@ -203,12 +203,45 @@ def graph(spec) -> str:
     return "".join(out)
 
 
+def grid(spec) -> str:
+    cols, rows = int(spec["width"]), int(spec["height"])
+    W, H = 440.0, 410.0
+    left, top = 42.0, 32.0
+    step_x, step_y = (W - 2 * left) / cols, (H - 2 * top) / rows
+
+    def px(x):
+        return left + float(x) * step_x
+
+    def py(y):
+        return H - top - float(y) * step_y
+
+    out = ['<svg viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg" role="img">' % (W, H)]
+    for x in range(cols + 1):
+        out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="#A0AEC0" stroke-width="1.4"/>'
+                   % (px(x), py(0), px(x), py(rows)))
+    for y in range(rows + 1):
+        out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="#A0AEC0" stroke-width="1.4"/>'
+                   % (px(0), py(y), px(cols), py(y)))
+    for y in range(rows + 1):
+        for x in range(cols + 1):
+            out.append('<circle cx="%.1f" cy="%.1f" r="2.5" fill="%s"/>'
+                       % (px(x), py(y), INK))
+    for mark in spec.get("labels", []):
+        out.append('<text x="%.1f" y="%.1f" fill="%s" font-size="18" font-family="%s" font-weight="600">%s</text>'
+                   % (px(mark["x"]) + mark.get("dx", 9), py(mark["y"]) + mark.get("dy", -9),
+                      INK, FONT, mark["text"]))
+    out.append("</svg>")
+    return "".join(out)
+
+
 def render(fig_id: str, spec) -> dict:
     kind = spec.get("type")
     if kind == "numline":
         svg = numline(spec)
     elif kind == "graph":
         svg = graph(spec)
+    elif kind == "grid":
+        svg = grid(spec)
     else:
         raise ValueError("未知圖形類型：%s（%s）" % (kind, fig_id))
     return {"id": fig_id, "svg": svg, "caption": spec.get("caption", {})}
