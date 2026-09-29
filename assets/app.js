@@ -15,7 +15,7 @@
 
   var LANG_KEY = "s5a-lang";
   var PROG_KEY = "s5a-progress:v1";
-  var SOL_KEY = "s5a-sol";
+  var SOL_KEY = "s5a-sol:v2";
   var INDEX = window.S5A_INDEX || { site: { parts: [] }, parts: [] };
   var FIGS = window.S5A_FIGURES || {};
   var PART = null;

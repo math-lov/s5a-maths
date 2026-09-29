@@ -35,13 +35,15 @@ const dataFiles = fs.readdirSync(path.join(root, "data"))
   .filter((f) => /^[a-z0-9-]+\.js$/.test(f) && f !== "index.js" && f !== "figures.js");
 
 const PROG_KEY = "s5a-progress:v1";
+const SOL_KEY = "s5a-sol:v2";
+const LEGACY_SOL_KEY = "s5a-sol";
 let fails = 0;
 const ok = (cond, label) => {
   console.log((cond ? "  PASS  " : "  FAIL  ") + label);
   if (!cond) fails++;
 };
 
-function boot(page, search, storage, solPreference) {
+function boot(page, search, storage, solPreference, legacySolPreference) {
   const html = read(page);
   const dom = new JSDOM(html, {
     url: "https://example.test/" + page + (search || ""),
@@ -60,7 +62,8 @@ function boot(page, search, storage, solPreference) {
   const scrolls = [];
   ctx.window.scrollTo = (x, y) => { scrolls.push(y); };
   if (storage) ctx.window.localStorage.setItem(PROG_KEY, storage);
-  if (solPreference != null) ctx.window.localStorage.setItem("s5a-sol", solPreference);
+  if (solPreference != null) ctx.window.localStorage.setItem(SOL_KEY, solPreference);
+  if (legacySolPreference != null) ctx.window.localStorage.setItem(LEGACY_SOL_KEY, legacySolPreference);
   vm.runInContext(katexJs, ctx, { filename: "katex.min.js" });
   vm.runInContext(autoRenderJs, ctx, { filename: "auto-render.min.js" });
   vm.runInContext(indexJs, ctx, { filename: "index.js" });
@@ -131,9 +134,9 @@ const q1 = boot("quiz.html", "?c=ch10-test&p=1");
 ok(q1.doc.body.getAttribute("data-sol") === "hide", "新瀏覽器首次進入 A1 時題解收起");
 q1.$("#sol-toggle").click();
 ok(q1.doc.body.getAttribute("data-sol") === "show", "按「顯示題解」後題解出現");
-ok(q1.ctx.window.localStorage.getItem("s5a-sol") === "show", "顯示題解的選擇寫入 localStorage");
+ok(q1.ctx.window.localStorage.getItem(SOL_KEY) === "show", "顯示題解的選擇寫入 localStorage");
 const q1Reload = boot("quiz.html", "?c=ch10-test&p=1", null,
-  q1.ctx.window.localStorage.getItem("s5a-sol"));
+  q1.ctx.window.localStorage.getItem(SOL_KEY));
 ok(q1Reload.doc.body.getAttribute("data-sol") === "show", "重新載入後保留明確選擇的顯示狀態");
 const card1 = q1.$('.q-card[data-qid="ch10-A1"]');
 ok(!!card1, "渲染出 A1 題目卡");
@@ -425,6 +428,10 @@ ok(/12/.test(c0.$$(".cc-warn")[1].textContent) && /84/.test(c0.$$(".cc-warn")[1]
   "插空法的常犯錯誤有計算例子（正確 12 對錯誤 84）");
 ok(!/\{\{math:/.test(c0.$$(".cc-warn")[0].textContent), "常犯錯誤內沒有殘留佔位符");
 
+const c17Default = boot("quiz.html", "?c=ch17-2&p=1");
+ok(c17Default.doc.body.getAttribute("data-sol") === "hide", "第 17.2 節首次進入時題解預設收起");
+const c17Legacy = boot("quiz.html", "?c=ch17-2&p=1", null, null, "show");
+ok(c17Legacy.doc.body.getAttribute("data-sol") === "hide", "第 17.2 節忽略舊版自動儲存的顯示偏好");
 const c1 = boot("quiz.html", "?c=ch17-2&p=1", null, "show");
 ok(!!c1.$('.q-card[data-qid="ch17-2-ce1"]'), "第 1 頁渲染出 CE1");
 ok(c1.$$(".opt").length === 0, "課本練習不是選擇題（沒有 A–D 選項）");
