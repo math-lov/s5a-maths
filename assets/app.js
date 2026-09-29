@@ -387,6 +387,19 @@
     return pct > 0 ? " doing" : "";
   }
 
+  /* 課題卡上的資料 chip：「11 題」「38 分」「已掌握 18%」
+     把數字由長句抽出來，英文就唔會換成 3 行，數字亦一眼睇到 */
+  function mchip(zh, en) {
+    var s = el("span", "mchip");
+    s.appendChild(pairSpan({ zh: zh, en: en }));
+    return s;
+  }
+  function mchips(items) {
+    var box = el("div", "mchips");
+    items.forEach(function (it) { box.appendChild(mchip(it.zh, it.en)); });
+    return box;
+  }
+
   function renderIndex() {
     var host = qs("#parts");
     if (!host) return;
@@ -409,14 +422,16 @@
       nm.appendChild(en);
       var meta = el("div", "t-meta");
       var s = part.stats || {};
-      setPair(meta, {
-        zh: (part.meta && part.meta.paper ? part.meta.paper + " · " : "") +
-          (s.questions || 0) + " 題 · " + (s.marks || 0) + " 分" +
-          (s.bonus ? "（另加 " + s.bonus + " 分加分題）" : "") + " · 已掌握 " + pct + "%",
-        en: (part.meta && part.meta.paper ? part.meta.paper + " · " : "") +
-          (s.questions || 0) + " questions · " + (s.marks || 0) + " marks" +
-          (s.bonus ? " (+" + s.bonus + " bonus)" : "") + " · " + pct + "% mastered"
-      });
+      var paper = (part.meta && part.meta.paper) || "";
+      if (paper) setPair(meta, { zh: paper, en: paper });
+      meta.appendChild(mchips([
+        { zh: (s.questions || 0) + " 題", en: (s.questions || 0) + " questions" },
+        {
+          zh: (s.marks || 0) + " 分" + (s.bonus ? "（另加 " + s.bonus + " 分）" : ""),
+          en: (s.marks || 0) + " marks" + (s.bonus ? " (+" + s.bonus + " bonus)" : "")
+        },
+        { zh: "已掌握 " + pct + "%", en: pct + "% mastered" }
+      ]));
       body.appendChild(meta);
       btn.appendChild(body);
       btn.onclick = function () { go("quiz.html?c=" + encodeURIComponent(part.id)); };
@@ -445,12 +460,16 @@
         body.appendChild(nm);
         nm.appendChild(el("span", "t-en", (ch.title && ch.title.en) || ""));
         var meta = el("div", "t-meta");
-        setPair(meta, {
-          zh: st.sections + " 節 · 已上線 " + st.live + " 節 · " + st.questions + " 題 · " +
-            st.marks + " 分 · 已掌握 " + st.pct + "%",
-          en: st.sections + " sections · " + st.live + " online · " + st.questions +
-            " questions · " + st.marks + " marks · " + st.pct + "% mastered"
-        });
+        var chips = [
+          { zh: st.sections + " 節", en: st.sections + " sections" },
+          { zh: st.questions + " 題", en: st.questions + " questions" },
+          { zh: st.marks + " 分", en: st.marks + " marks" },
+          { zh: "已掌握 " + st.pct + "%", en: st.pct + "% mastered" }
+        ];
+        if (st.live < st.sections) {
+          chips.splice(1, 0, { zh: "已上線 " + st.live + " 節", en: st.live + " online" });
+        }
+        meta.appendChild(mchips(chips));
         body.appendChild(meta);
         btn.appendChild(body);
         btn.onclick = function () { go("chapter.html?ch=" + encodeURIComponent(ch.id)); };
@@ -566,10 +585,11 @@
       nm.appendChild(el("span", "t-en", (part.title && part.title.en) || ""));
       var mt = el("div", "t-meta");
       var ss = part.stats || {};
-      setPair(mt, {
-        zh: (ss.questions || 0) + " 題 · " + (ss.marks || 0) + " 分 · 已掌握 " + pct + "%",
-        en: (ss.questions || 0) + " questions · " + (ss.marks || 0) + " marks · " + pct + "% mastered"
-      });
+      mt.appendChild(mchips([
+        { zh: (ss.questions || 0) + " 題", en: (ss.questions || 0) + " questions" },
+        { zh: (ss.marks || 0) + " 分", en: (ss.marks || 0) + " marks" },
+        { zh: "已掌握 " + pct + "%", en: pct + "% mastered" }
+      ]));
       tb.appendChild(mt);
       btn.appendChild(tb);
       btn.onclick = function () { go("quiz.html?c=" + encodeURIComponent(part.id)); };

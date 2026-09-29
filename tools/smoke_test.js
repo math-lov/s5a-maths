@@ -102,7 +102,11 @@ ok(!!home.$(".hero h1 .l-zh") && /5A 數學溫習站/.test(home.$(".hero h1 .l-z
   /5A Maths Revision/.test(home.$(".hero h1 .l-en").textContent), "主標題：中文「5A 數學溫習站」／英文「5A Maths Revision」");
 ok(/先試後明白/.test(home.$(".safety-note").textContent), "安全卡載明「先試後明白」讀法");
 ok(!!home.$(".part-btn .ring"), "每份測驗都有進度環");
-ok(/11 題 · 38 分/.test((home.$(".part-btn .t-meta") || {}).textContent || ""), "顯示題數與分數");
+const qMeta = (home.$(".part-btn .t-meta") || {}).textContent || "";
+ok(/11 題/.test(qMeta) && /38 分/.test(qMeta), "顯示題數與分數");
+ok(home.$$(".part-btn .mchips .mchip").length >= 3 &&
+  /11 題/.test(home.$(".part-btn .mchips .mchip").textContent || ""),
+  "題數／分數／掌握度改用細 chip 顯示（實際 " + home.$$(".part-btn .mchip").length + " 粒）");
 ok(!!home.$(".safety-note") && /沒有分數/.test(home.$(".safety-note").textContent), "有心理安全卡");
 ok(home.$$(".langbar button").length === 3, "語言切換有 3 個選項（中／EN／中英）");
 ok(home.lang() === "both", "預設語言是「中英」（雙語並列）");
