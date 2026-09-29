@@ -59,8 +59,8 @@
       en: "Solutions are hidden — try it on paper first, then press 'Show solutions' at the top right to check."
     },
     usage: {
-      zh: "每題一頁 —— 先自己動手做一次（可以按選項即時對答案），再向下看逐步題解。想先做完整份卷的話，按右上角「收起題解」。",
-      en: "One question per page — try it yourself first (click an option to check instantly), then read the worked steps below. To attempt the whole paper first, press 'Hide solutions' at the top right."
+      zh: "每題一頁，題解預設收起 —— 先自己動手做一次（可以按選項即時對答案），完成後按右上角「顯示題解」核對步驟。",
+      en: "One question per page, with solutions hidden by default — try it yourself first (click an option to check instantly), then press 'Show solutions' at the top right to check the steps."
     },
     usageLabel: { zh: "用法：", en: "How to use: " },
     resetAsk: {
@@ -175,7 +175,7 @@
   function solHidden() {
     var v = null;
     try { v = localStorage.getItem(SOL_KEY); } catch (e) {}
-    return v === "hide";
+    return v !== "show";
   }
   function setSolHidden(h) {
     try { localStorage.setItem(SOL_KEY, h ? "hide" : "show"); } catch (e) {}

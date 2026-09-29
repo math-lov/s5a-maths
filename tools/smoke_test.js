@@ -41,7 +41,7 @@ const ok = (cond, label) => {
   if (!cond) fails++;
 };
 
-function boot(page, search, storage) {
+function boot(page, search, storage, solPreference) {
   const html = read(page);
   const dom = new JSDOM(html, {
     url: "https://example.test/" + page + (search || ""),
@@ -60,6 +60,7 @@ function boot(page, search, storage) {
   const scrolls = [];
   ctx.window.scrollTo = (x, y) => { scrolls.push(y); };
   if (storage) ctx.window.localStorage.setItem(PROG_KEY, storage);
+  if (solPreference != null) ctx.window.localStorage.setItem("s5a-sol", solPreference);
   vm.runInContext(katexJs, ctx, { filename: "katex.min.js" });
   vm.runInContext(autoRenderJs, ctx, { filename: "auto-render.min.js" });
   vm.runInContext(indexJs, ctx, { filename: "index.js" });
@@ -112,6 +113,8 @@ ok(!!home.$("#coming-soon").textContent.trim(), "有「之後會加」說明");
 console.log("\n== 測驗頁（總覽）==");
 const total = INDEX.parts[0].stats.questions;   // 11 題
 const ov = boot("quiz.html", "?c=ch10-test&p=0");
+ok(ov.doc.body.getAttribute("data-sol") === "hide", "首次進入測驗時題解預設收起");
+ok(/顯示題解/.test(ov.$("#sol-toggle").textContent), "預設收起時按鈕提示可顯示題解");
 ok(/第 10 章/.test((ov.$("#quiz-name") || {}).textContent || ""), "顯示測驗名稱");
 ok(ov.$$("#pagenav .pg").length === total + 1,
   "分頁列 = 總覽 + " + total + " 題（實際 " + ov.$$("#pagenav .pg").length + "）");
@@ -125,6 +128,13 @@ ok(!!ov.$(".mark-legend") && /method mark/.test(ov.$(".mark-legend").textContent
 /* ── 3. 測驗頁：MC 第 1 題 ───────────────────────────────────────────── */
 console.log("\n== 測驗頁（A1 多項選擇題）==");
 const q1 = boot("quiz.html", "?c=ch10-test&p=1");
+ok(q1.doc.body.getAttribute("data-sol") === "hide", "新瀏覽器首次進入 A1 時題解收起");
+q1.$("#sol-toggle").click();
+ok(q1.doc.body.getAttribute("data-sol") === "show", "按「顯示題解」後題解出現");
+ok(q1.ctx.window.localStorage.getItem("s5a-sol") === "show", "顯示題解的選擇寫入 localStorage");
+const q1Reload = boot("quiz.html", "?c=ch10-test&p=1", null,
+  q1.ctx.window.localStorage.getItem("s5a-sol"));
+ok(q1Reload.doc.body.getAttribute("data-sol") === "show", "重新載入後保留明確選擇的顯示狀態");
 const card1 = q1.$('.q-card[data-qid="ch10-A1"]');
 ok(!!card1, "渲染出 A1 題目卡");
 ok(/A1/.test((q1.$(".q-code") || {}).textContent || ""), "題號顯示 A1");
@@ -183,7 +193,7 @@ ok(/已掌握 1 \/ 11 題/.test((q1c.$("#quiz-progress") || {}).textContent || "
 
 /* 逐步提示（KA hint 模式） */
 const qh = boot("quiz.html", "?c=ch10-test&p=1");
-qh.$("#sol-toggle").click();
+ok(qh.doc.body.getAttribute("data-sol") === "hide", "新瀏覽器進入題目時已自動收起題解");
 ok(qh.$$(".sol-card .steps .step").length === 0, "收起題解後先不顯示步驟");
 ok(!!qh.$("[data-hint]"), "有「顯示提示」按鈕");
 qh.$("[data-hint]").click();
@@ -216,7 +226,9 @@ const cssDisp = (d, sel) => {
 };
 
 const sc = bootCss("quiz.html", "?c=ch10-test&p=1");
-ok(cssDisp(sc, ".answer-box.sol-answer") !== "none", "顯示題解時答案欄可見");
+ok(cssDisp(sc, ".answer-box.sol-answer") === "none", "首次進入時答案欄預設隱藏");
+sc.$("#sol-toggle").click();
+ok(cssDisp(sc, ".answer-box.sol-answer") !== "none", "按「顯示題解」後答案欄可見");
 sc.$("#sol-toggle").click();
 ok(cssDisp(sc, ".answer-box.sol-answer") === "none", "收起題解 → 答案欄隱藏（不再露答案）");
 ok(cssDisp(sc, ".sol-card .sol-body") !== "none", "收起題解 → .sol-body 仍可見（提示出得來）");
@@ -232,7 +244,6 @@ ok(cssDisp(sc, ".answer-box.sol-answer") === "none", "再按一次 → 答案欄
 
 const sc2 = bootCss("quiz.html", "?c=ch10-test&p=1",
   JSON.stringify({ done: { "ch10-A1": true }, picked: { "ch10-A1": "B" }, hints: {} }));
-sc2.$("#sol-toggle").click();
 ok(cssDisp(sc2, ".answer-box.sol-answer") === "none",
   "曾答對過的題目：收起題解後答案欄仍然隱藏（上一版在此漏了答案）");
 
@@ -248,7 +259,7 @@ ok(!!(idx.promptTemplates && idx.promptTemplates.zh && idx.promptTemplates.en),
   "模板檔已內嵌（中英各一份）");
 ok(idx.site.llmPrompt === true, "site.json 有 LLM prompt 開關");
 
-const pm = boot("quiz.html", "?c=ch10-test&p=1");
+const pm = boot("quiz.html", "?c=ch10-test&p=1", null, "show");
 ok(!!pm.$("[data-pm-main]"), "每題有 1 個主按鈕（整題 prompt）");
 ok(pm.$$("[data-pm-step]").length === 3, "每個步驟都有小按鈕（A1 有 3 步 → 3 個）");
 
@@ -285,7 +296,7 @@ ok(pm.ctx.__clip && pm.ctx.__clip === pm.$("[data-pm-preview]").value,
 // 步驟按鈕：只聚焦該步驟
 pm.$(".pm-x").click();
 ok(!pm.$(".prompt-modal"), "關閉後面板移除");
-const pm2 = boot("quiz.html", "?c=ch10-test&p=1");
+const pm2 = boot("quiz.html", "?c=ch10-test&p=1", null, "show");
 pm2.$$("[data-pm-step]")[1].click();
 ok(/第 2 步/.test(pm2.$("[data-pm-preview]").value), "步驟按鈕的 prompt 聚焦該一步");
 
@@ -300,17 +311,18 @@ ok(!/由淺入深/.test(enPrompt), "英文 prompt 內不含中文要求");
 // 語言與題解開關
 q1c.$$(".langbar button")[0].click();
 ok(q1c.lang() === "zh", "切回中文");
+ok(q1c.doc.body.getAttribute("data-sol") === "hide", "首次載入的題目預設收起題解");
 q1c.$("#sol-toggle").click();
-ok(q1c.doc.body.getAttribute("data-sol") === "hide", "收起題解：body[data-sol=hide]");
-ok(/顯示題解/.test(q1c.$("#sol-toggle").textContent), "按鈕文字變成「顯示題解」");
+ok(q1c.doc.body.getAttribute("data-sol") === "show", "按一次顯示題解：body[data-sol=show]");
+ok(/收起題解/.test(q1c.$("#sol-toggle").textContent), "顯示時按鈕可收起題解");
+q1c.$("#sol-toggle").click();
+ok(q1c.doc.body.getAttribute("data-sol") === "hide", "再按一次收起題解：body[data-sol=hide]");
 ok(!!q1c.$(".sol-hint"), "收起時題目卡有提示（做完才對答案）");
 ok(!!q1c.$(".sol-card"), "題解卡仍在 DOM（由 CSS 收起，切回即見）");
-q1c.$("#sol-toggle").click();
-ok(q1c.doc.body.getAttribute("data-sol") === "show", "再按一次顯示題解");
 
 /* ── 4. 測驗頁：長題目（B3）──────────────────────────────────────────── */
 console.log("\n== 測驗頁（B3 長題目）==");
-const b3 = boot("quiz.html", "?c=ch10-test&p=8");
+const b3 = boot("quiz.html", "?c=ch10-test&p=8", null, "show");
 ok(!!b3.$('.q-card[data-qid="ch10-B3"]'), "渲染出 B3 題目卡");
 ok(b3.$$(".q-parts li").length === 3, "B3 有 (a)(b)(c) 三小題");
 ok(b3.$$(".q-parts .mk").length === 3, "每小題都顯示分數");
@@ -331,7 +343,7 @@ ok(/EQN/.test(b3.$(".sol-card .tip").textContent), "B3 貼士含計數機 EQN �
 
 /* ── B4：頂點式 + 方法二（對稱軸公式）───────────────────────────────── */
 console.log("\n== 測驗頁（B4 長題目）==");
-const b4p = boot("quiz.html", "?c=ch10-test&p=9");
+const b4p = boot("quiz.html", "?c=ch10-test&p=9", null, "show");
 ok(!!b4p.$('.q-card[data-qid="ch10-B4"]'), "渲染出 B4 題目卡");
 ok(b4p.$$(".sol-card .steps .step").length === 9, "B4 有 9 個步驟（含方法二）");
 ok(/a\s*=\s*1/.test(b4p.$$(".sol-card .steps .step")[0].textContent),
@@ -341,7 +353,7 @@ ok(b4p.$$(".sol-card .steps .step").some((s) => /對稱軸公式/.test(s.textCon
 
 /* ── 5. 加分題：逐步出圖 ─────────────────────────────────────────────── */
 console.log("\n== 測驗頁（加分題）==");
-const bo = boot("quiz.html", "?c=ch10-test&p=11");
+const bo = boot("quiz.html", "?c=ch10-test&p=11", null, "show");
 ok(!!bo.$('.q-card[data-qid="ch10-bonus"]'), "渲染出加分題");
 ok(/加分題/.test((bo.$(".q-bonus") || {}).textContent || ""), "有加分題標籤");
 ok(bo.$$(".sol-card .fig svg").length === 3, "三個情況各有一幅圖（實際 " +
@@ -350,7 +362,7 @@ ok(bo.$$(".sol-card .steps .step").length === 8, "加分題有 8 個解題步驟
 
 /* ── 6. 全部題目都要有題解、圖、答案 ─────────────────────────────────── */
 console.log("\n== 全卷體檢 ==");
-const all = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((p) => boot("quiz.html", "?c=ch10-test&p=" + p));
+const all = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map((p) => boot("quiz.html", "?c=ch10-test&p=" + p, null, "show"));
 ok(all.every((t) => t.$$(".sol-card").length === 1), "每題都有題解卡");
 ok(all.every((t) => t.$$(".sol-card .steps .step").length >= 3), "每題至少 3 個步驟");
 ok(all.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "所有題幹都已渲染（無殘留 $）");
@@ -413,7 +425,7 @@ ok(/12/.test(c0.$$(".cc-warn")[1].textContent) && /84/.test(c0.$$(".cc-warn")[1]
   "插空法的常犯錯誤有計算例子（正確 12 對錯誤 84）");
 ok(!/\{\{math:/.test(c0.$$(".cc-warn")[0].textContent), "常犯錯誤內沒有殘留佔位符");
 
-const c1 = boot("quiz.html", "?c=ch17-2&p=1");
+const c1 = boot("quiz.html", "?c=ch17-2&p=1", null, "show");
 ok(!!c1.$('.q-card[data-qid="ch17-2-ce1"]'), "第 1 頁渲染出 CE1");
 ok(c1.$$(".opt").length === 0, "課本練習不是選擇題（沒有 A–D 選項）");
 ok(c1.$$(".answer-box .a-row").length >= 1, "有答案欄");
@@ -424,9 +436,9 @@ const oneToken = (s) => {
   return !!m && (m.textContent.match(/\(\d*[MA]\)/g) || []).length === 1;
 };
 ok(c1.$$(".sol-card .steps .step").length === 4, "CE1 拆成 4 個步驟（(a) 1M+1A、(b) 1M+1A）");
-const cCe3 = boot("quiz.html", "?c=ch17-2&p=3");
+const cCe3 = boot("quiz.html", "?c=ch17-2&p=3", null, "show");
 ok(cCe3.$$(".sol-card .steps .step").length === 6, "CE3 拆成 6 個步驟（(a)3 分、(b)3 分）");
-const cCe4 = boot("quiz.html", "?c=ch17-2&p=4");
+const cCe4 = boot("quiz.html", "?c=ch17-2&p=4", null, "show");
 ok(cCe4.$$(".sol-card .steps .step").length === 5, "CE4 拆成 5 個步驟（a2＋b2＋c3＝7 分）");
 ok(c1.$$(".sol-card .steps .step").every(oneToken), "CE1 每個步驟只有一個評分標記");
 ok(cCe3.$$(".sol-card .steps .step").every(oneToken), "CE3 每個步驟只有一個評分標記");
@@ -508,7 +520,7 @@ const cLast = boot("quiz.html", "?c=ch17-2&p=36");
 ok(!!cLast.$('.q-card[data-qid="ch17-2-ct-31"]'), "最後一頁是第 31 題（跨課題）");
 
 const allC = [];
-for (let i = 1; i <= 36; i++) allC.push(boot("quiz.html", "?c=ch17-2&p=" + i));
+for (let i = 1; i <= 36; i++) allC.push(boot("quiz.html", "?c=ch17-2&p=" + i, null, "show"));
 ok(allC.every((t) => t.$$(".sol-card").length === 1), "第 17.2 節每題都有題解卡");
 ok(allC.every((t) => t.$$(".sol-card .steps .step").length >= 1), "每題至少 1 個步驟");
 ok(allC.every((t) => !!t.$(".sol-card .tip")), "每題都有「帶得走的技巧」");
