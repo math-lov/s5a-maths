@@ -191,6 +191,12 @@
     node.appendChild(pairSpan(obj));
     return node;
   }
+  /* 內文式配對：中英各佔一行（句子、圖例用），避免中英黏成一行 */
+  function setPairLines(node, obj) {
+    node.innerHTML = "";
+    node.appendChild(pair(obj, "div", "bi"));
+    return node;
+  }
 
   /* ── DOM 小工具 ─────────────────────────────────────────────────────── */
   function el(tag, cls, text) {
@@ -423,12 +429,12 @@
       var meta = el("div", "t-meta");
       var s = part.stats || {};
       var paper = (part.meta && part.meta.paper) || "";
-      if (paper) setPair(meta, { zh: paper, en: paper });
+      if (paper) meta.appendChild(el("div", "t-paper", paper));   /* 語言中立，不重複顯示 */
       meta.appendChild(mchips([
         { zh: (s.questions || 0) + " 題", en: (s.questions || 0) + " questions" },
         {
-          zh: (s.marks || 0) + " 分" + (s.bonus ? "（另加 " + s.bonus + " 分）" : ""),
-          en: (s.marks || 0) + " marks" + (s.bonus ? " (+" + s.bonus + " bonus)" : "")
+          zh: (s.marks || 0) + " 分" + (s.bonus ? "（+" + s.bonus + " 加分）" : ""),
+          en: (s.marks || 0) + " marks" + (s.bonus ? " (+" + s.bonus + ")" : "")
         },
         { zh: "已掌握 " + pct + "%", en: pct + "% mastered" }
       ]));
@@ -460,16 +466,15 @@
         body.appendChild(nm);
         nm.appendChild(el("span", "t-en", (ch.title && ch.title.en) || ""));
         var meta = el("div", "t-meta");
-        var chips = [
-          { zh: st.sections + " 節", en: st.sections + " sections" },
+        meta.appendChild(mchips([
+          {
+            zh: st.sections + " 節" + (st.live < st.sections ? "（已上線 " + st.live + " 節）" : ""),
+            en: st.sections + " sections" + (st.live < st.sections ? " (" + st.live + " online)" : "")
+          },
           { zh: st.questions + " 題", en: st.questions + " questions" },
           { zh: st.marks + " 分", en: st.marks + " marks" },
           { zh: "已掌握 " + st.pct + "%", en: st.pct + "% mastered" }
-        ];
-        if (st.live < st.sections) {
-          chips.splice(1, 0, { zh: "已上線 " + st.live + " 節", en: st.live + " online" });
-        }
-        meta.appendChild(mchips(chips));
+        ]));
         body.appendChild(meta);
         btn.appendChild(body);
         btn.onclick = function () { go("chapter.html?ch=" + encodeURIComponent(ch.id)); };
@@ -525,8 +530,9 @@
       return;
     }
     setPair(qs("#chapter-name"), ch.title || { zh: ch.id, en: ch.id });
+    /* #chapter-name 已經中英並列（CSS 分兩行），唔可以再喺 #chapter-en 重複英文 */
     var enEl = qs("#chapter-en");
-    if (enEl) enEl.textContent = (ch.title && ch.title.en) || "";
+    if (enEl) enEl.textContent = "";
     document.title = ((ch.title && ch.title.zh) || ch.id) + " · 5A 數學溫習站";
     var st = chapterStats(ch);
     var pg = qs("#chapter-progress");
@@ -547,7 +553,7 @@
     if (ch.intro) card.appendChild(pair(ch.intro, "div", "bi"));
     var meta = el("div", "small muted");
     meta.style.marginTop = "10px";
-    setPair(meta, {
+    setPairLines(meta, {
       zh: st.sections + " 節 · 已上線 " + st.live + " 節 · 共 " + st.questions + " 題 · " + st.marks + " 分",
       en: st.sections + " sections · " + st.live + " online · " + st.questions + " questions · " +
         st.marks + " marks"
@@ -843,13 +849,13 @@
     var meta = part.meta || {};
     var ul = el("div", "small muted");
     ul.style.marginTop = "10px";
-    setPair(ul, {
+    setPairLines(ul, {
       zh: [meta.paper, meta.date, meta.marks ? "全卷 " + meta.marks + " 分" : ""].filter(Boolean).join(" · "),
       en: [meta.paper, meta.date, meta.marks ? "Total " + meta.marks + " marks" : ""].filter(Boolean).join(" · ")
     });
     card.appendChild(ul);
     var legend = el("div", "mark-legend");
-    setPair(legend, UI.markLegend);
+    setPairLines(legend, UI.markLegend);
     card.appendChild(legend);
 
     var row = el("div", "row");
@@ -888,7 +894,7 @@
     (part.sections || []).forEach(function (sec) {
       var h = el("div", "small muted");
       h.style.marginTop = "8px";
-      setPair(h, sec.title || { zh: sec.id, en: sec.id });
+      setPairLines(h, sec.title || { zh: sec.id, en: sec.id });
       list.appendChild(h);
       var grid = el("div", "row");
       grid.style.marginTop = "6px";
