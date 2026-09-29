@@ -545,6 +545,22 @@ ok(P173.stats && P173.stats.questions === 35 && P173.stats.marks === 102,
   "第 17.3 節共 35 題、102 分");
 ok((P173.sections || []).length === 6 && (P173.qids || []).length === 35,
   "第 17.3 節有 6 段且 qids 數目正確");
+const P173_JS = read("data/ch17-3.js");
+const P173_DATA = JSON.parse(P173_JS.slice(P173_JS.indexOf("{"), P173_JS.lastIndexOf("}") + 1));
+const p173Questions = P173_DATA.sections.reduce((all, section) => all.concat(section.questions || []), []);
+const p173Trap = (qid) => {
+  const question = p173Questions.find((q) => q.id === qid) || {};
+  return (question.solution && question.solution.traps || [])
+    .map((trap) => (trap.zh || "") + " " + (trap.en || "")).join(" ");
+};
+ok(/C\^5_1C\^4_1C\^7_1=140/.test(p173Trap("ch17-3-l2-17")) &&
+  /twice/.test(p173Trap("ch17-3-l2-17")), "17(b) explains why the anchor-first product double-counts");
+ok(/C\^\{14\}_1C\^\{12\}_1C\^\{24\}_4/.test(p173Trap("ch17-3-ce3")) &&
+  /repeatedly/.test(p173Trap("ch17-3-ce3")), "CE3(c) explains duplicate mixed-team counts");
+ok(/C\^8_1C\^7_1C\^\{17\}_1/.test(p173Trap("ch17-3-l2-21")) &&
+  /missing valid/.test(p173Trap("ch17-3-l2-21")), "L2-21(b) explains omitted and duplicated colour selections");
+ok(/C\^6_1C\^7_1C\^\{11\}_3=6930/.test(p173Trap("ch17-3-sc")) &&
+  /b\(5-b\)/.test(p173Trap("ch17-3-sc")), "Section Check (f) explains anchor-pair overcounting");
 const p173Overview = boot("quiz.html", "?c=ch17-3&p=0");
 ok(p173Overview.$$("#pagenav .pg").length === 36,
   "17.3 分頁列 = 總覽 + 35 題（實際 " + p173Overview.$$("#pagenav .pg").length + "）");

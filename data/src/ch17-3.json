@@ -288,6 +288,12 @@
                 "zh": "隊伍仍有 6 人；條件容許 1 至 5 名男生，不能只計兩種極端分配。",
                 "en": "The team still has 6 members; the condition allows 1 to 5 boys, not only the two extreme splits.",
                 "labelEn": "Counting only the extreme gender splits"
+              },
+              {
+                "label": "(c) 先選一男一女會重複計隊伍",
+                "zh": "直接計 $C^{14}_1C^{12}_1C^{24}_4$ 會先標記一名男生及一名女生；同一隊伍可有多種男、女人選作這對「標記」成員，故隊伍會按男女人數被重複計算。用總隊伍數扣除全男及全女可避免重複。",
+                "en": "The direct count $C^{14}_1C^{12}_1C^{24}_4$ first marks one boy and one girl. A team may have several choices for which boy and girl serve as this marked pair, so the same team is counted repeatedly according to its gender split. Subtracting all-boys and all-girls teams from the total avoids the overlap.",
+                "labelEn": "Counting the same mixed team through several boy-girl pairs"
               }
             ],
             "tip": {
@@ -583,6 +589,12 @@
                 "zh": "不同職位要計次序；同時選多類要相乘；「至少」條件可用反面計數。",
                 "en": "Different posts make order matter; simultaneous group selections are multiplied; an 'at least' condition can use a complement.",
                 "labelEn": "Mixing up permutations, combinations, and counting rules"
+              },
+              {
+                "label": "SC(f) 先選一男一女會重複計隊伍",
+                "zh": "所列 $C^6_1C^7_1C^{11}_3=6930$ 並不正確。先選一男一女作標記，再選 3 人，會令同一隊伍重複計算：若一隊有 b 名男生及 5-b 名女生，可從隊內選出 b(5-b) 對不同的標記男女。宜用總隊伍數扣除全男及全女，得 1260。",
+                "en": "The proposed product $C^6_1C^7_1C^{11}_3=6930$ is not correct. It marks one boy-girl pair before choosing 3 more, so a final team with b boys and 5-b girls is counted b(5-b) times: any of its boys and girls could be the marked pair. Subtract the all-boys and all-girls teams from the total instead; the answer is 1260.",
+                "labelEn": "Double-counting teams after marking one boy and one girl"
               }
             ],
             "tip": {
@@ -1712,6 +1724,12 @@
                 "zh": "亦包括兩冷一熱；反面計數可完整涵蓋。",
                 "en": "Two cold and one hot is also valid; the complement includes it.",
                 "labelEn": "Counting only one cold drink"
+              },
+              {
+                "label": "(b) 先固定一熱一冷會重複計數",
+                "zh": "直接計 $C^5_1C^4_1C^7_1=140$ 並不正確。若最後選到兩熱一冷，兩款熱飲都可充當先選的熱飲；若選到一熱兩冷，兩款冷飲都可充當先選的冷飲。因此每組有效選擇都被計了 2 次，140 是正確答案 70 的兩倍。用全選法扣除全熱及全冷較穩妥。",
+                "en": "The direct count $C^5_1C^4_1C^7_1=140$ is not correct. For a final set with two hot drinks and one cold, either hot drink could have been the initially selected hot drink; for one hot and two cold, either cold drink could have been selected first. Thus every valid set is counted twice, making 140 twice the correct 70. Subtracting all-hot and all-cold selections avoids this overlap.",
+                "labelEn": "Double-counting after fixing one hot and one cold drink"
               }
             ],
             "tip": {
@@ -2067,6 +2085,12 @@
                 "zh": "(b) 也包括 2+1 的顏色分配。",
                 "en": "Part (b) also includes a 2+1 colour split.",
                 "labelEn": "Counting only one box from each of two colours"
+              },
+              {
+                "label": "(b) 固定一紅一綠會漏算並重複計數",
+                "zh": "直接計 $C^8_1C^7_1C^{17}_1$ 會強制每組都有紅、綠各一盒，漏掉只由綠、黑或紅、黑組成的有效選法；而有兩盒紅及一盒綠的同一組，又可由兩盒紅中的任何一盒作首選，造成重複計數。故不宜用此乘積，應以總數扣除三盒同色。",
+                "en": "The direct count $C^8_1C^7_1C^{17}_1$ forces every selection to contain both red and green, missing valid green-black or red-black selections. Also, a set with two red boxes and one green can be formed by choosing either red box first, so it is counted more than once. Use the total minus the all-one-colour cases instead.",
+                "labelEn": "Omitting some colours while double-counting others"
               }
             ],
             "tip": {
