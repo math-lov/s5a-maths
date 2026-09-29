@@ -517,7 +517,7 @@ body[data-sol="show"] .hint-row { display: none; }
 .step {
   background: var(--card); border: 1px solid var(--line-soft);
   border-left: 5px solid var(--primary);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 16px;
+  border-radius: var(--radius-sm); padding: 14px 16px;
   animation: rise .28s ease both;
 }
 .step h4 { margin: 0 0 6px; font-size: 16px; font-weight: 800; color: var(--primary-ink); }
