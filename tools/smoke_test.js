@@ -561,19 +561,30 @@ ok(/C\^8_1C\^7_1C\^\{17\}_1/.test(p173Trap("ch17-3-l2-21")) &&
   /missing valid/.test(p173Trap("ch17-3-l2-21")), "L2-21(b) explains omitted and duplicated colour selections");
 ok(/C\^6_1C\^7_1C\^\{11\}_3=6930/.test(p173Trap("ch17-3-sc")) &&
   /b\(5-b\)/.test(p173Trap("ch17-3-sc")), "Section Check (f) explains anchor-pair overcounting");
+ok(p173Questions.every((q) => q.solution.steps.every((st) => (st.highlight || []).length === 1)),
+  "17.3 每個步驟都有 highlight 重點框（資料層）");
+ok(p173Questions.filter((q) => (q.solution.alt || []).length > 0).map((q) => q.id).join(",") ===
+  "ch17-3-sm-28,ch17-3-sm-29", "SMART Q28／Q29 有另一個做法（alt）");
+ok((P173_DATA.cards || []).length === 4, "17.3 有 4 張教學卡（資料層）");
+const scEAns = ((p173Questions.find((q) => q.id === "ch17-3-sc") || {}).answers || [])[4] || {};
+ok(/35/.test(((scEAns.note || {}).zh) || "") && /unlabelled/.test(((scEAns.note || {}).en) || ""),
+  "Section Check (e) 補充「兩隊不編號要除以 2!」");
 const p173Overview = boot("quiz.html", "?c=ch17-3&p=0");
 ok(p173Overview.$$("#pagenav .pg").length === 36,
   "17.3 分頁列 = 總覽 + 35 題（實際 " + p173Overview.$$("#pagenav .pg").length + "）");
-ok(p173Overview.$$(".cc").length === 1 && /組合/.test(p173Overview.$(".cc-title").textContent),
-  "17.3 總覽有組合教學卡");
+const p173Cards = p173Overview.$$(".cc");
+ok(p173Cards.length === 4, "17.3 總覽有 4 張教學卡（實際 " + p173Cards.length + "）");
+ok(/組合/.test(p173Cards[0].textContent) && /至少/.test(p173Cards[1].textContent) &&
+  /分組/.test(p173Cards[2].textContent) && /路徑/.test(p173Cards[3].textContent),
+  "17.3 教學卡依次為組合、至少／至多、分組、路徑");
 const p173Sc = boot("quiz.html", "?c=ch17-3&p=5");
 ok(!!p173Sc.$('.q-card[data-qid="ch17-3-sc"]') && p173Sc.$$(".tf-item").length === 6,
   "17.3 Section Check 有 6 個互動判斷項");
 const p173Q25 = boot("quiz.html", "?c=ch17-3&p=30", null, "show");
 ok(!!p173Q25.$('.q-card[data-qid="ch17-3-l2-25"]') && /90/.test(p173Q25.$(".answer-box").textContent),
   "L2-25(b) 依次探訪的答案為 90");
-ok(/540/.test(p173Q25.$(".sol-card").textContent),
-  "L2-25 題解說明官方 540 的重複計數");
+ok(!/540/.test(p173Q25.$(".sol-card").textContent) && /6!/.test(p173Q25.$(".sol-card").textContent),
+  "L2-25 只寫 90，並以 6!/(2!)^3 作驗算（不再提官方 540）");
 const p173Q29 = boot("quiz.html", "?c=ch17-3&p=34", null, "show");
 ok(!!p173Q29.$('.q-card[data-qid="ch17-3-sm-29"] .fig svg') &&
   /126/.test(p173Q29.$(".answer-box").textContent) && /60/.test(p173Q29.$(".answer-box").textContent),
@@ -586,6 +597,7 @@ ok(all173.every((t) => t.$$(".sol-card").length === 1 && t.$$(".sol-card .steps 
   "17.3 每題都有逐步題解");
 ok(all173.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
   "17.3 每題都有技巧與常見錯誤");
+ok(all173.every((t) => t.$$(".sol-card .hl").length > 0), "17.3 每題都顯示步驟重點框");
 ok(all173.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
   "17.3 所有題幹均有中英版本");
 
