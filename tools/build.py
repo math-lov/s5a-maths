@@ -262,6 +262,9 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
 # ── 教學卡（part 的 cards[]）────────────────────────────────────────────────
 MATH_PLACEHOLDER_RE = re.compile(r"\{\{math:(\d+)\}\}")
 CJK_RE = re.compile(r"[\u4e00-\u9fff]")
+# 互動示範：卡片可寫 "demo": { "type": "tie-up" }，由 assets/demos.js 建立
+# （新增示範：先在 demos.js 的 S5A_DEMO.types 註冊，再把 type 加落這裡）
+DEMO_TYPES = ("tie-up",)
 
 
 def check_cards(cards, where: str) -> None:
@@ -297,6 +300,22 @@ def check_cards(cards, where: str) -> None:
                 err("S14 %s.math[%d]：數式不可有中文（規則 1）" % (tag, i))
             if re.search(r"\brad\b|\\frac\{\\pi\}", mm):
                 err("S14 %s.math[%d]：角度要用度" % (tag, i))
+        demo = c.get("demo")
+        if demo is not None:
+            if not isinstance(demo, dict):
+                err("S14 %s：demo 必須是物件，例如 { \"type\": \"tie-up\" }" % tag)
+            else:
+                if demo.get("type") not in DEMO_TYPES:
+                    err("S14 %s：demo.type「%s」不在白名單（%s）"
+                        % (tag, demo.get("type"), "、".join(DEMO_TYPES)))
+                cap = demo.get("caption")
+                if cap is not None:
+                    if not isinstance(cap, dict):
+                        err("S14 %s：demo.caption 必須是 { zh, en }" % tag)
+                    else:
+                        check_text(tag + ".demo.caption.zh", cap.get("zh", ""),
+                                   min_len=4, need_zh=True)
+                        check_text(tag + ".demo.caption.en", cap.get("en", ""))
         warn = c.get("warn") or {}
         if warn:
             check_text(tag + ".warn.zh", warn.get("zh", ""), min_len=6, need_zh=True)
@@ -329,7 +348,7 @@ STAMP_RE = re.compile(r"window\.__V\s*=\s*[^;]+;")
 # 學生就可能沿用快取的舊樣式（＝改了 CSS 但看不到）。這裡一併把 href 加上 ?v=。
 CSS_RE = re.compile(r'href="assets/style\.css(\?v=[0-9a-f]+)?"')
 STAMP_HTML = ("index.html", "quiz.html", "chapter.html")
-STAMP_ASSETS = ("assets/app.js", "assets/style.css", "data/index.js", "data/figures.js")
+STAMP_ASSETS = ("assets/app.js", "assets/demos.js", "assets/style.css", "data/index.js", "data/figures.js")
 
 
 def content_stamp(part_files) -> str:

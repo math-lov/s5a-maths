@@ -833,6 +833,18 @@
       h.appendChild(pairSpan(c.title || {}));
       box.appendChild(h);
       box.appendChild(pairWithMath(c.body || {}, c.math || []));
+      /* 互動示範（assets/demos.js）：卡片寫 "demo": { "type": "tie-up" } */
+      var dm = c.demo || {};
+      if (dm.type && window.S5A_DEMO && S5A_DEMO.types[dm.type]) {
+        var dh = el("div", "demo-host");
+        if (dm.caption && (dm.caption.zh || dm.caption.en)) {
+          var dc = el("div", "small muted");
+          dc.appendChild(pairSpan(dm.caption));
+          dh.appendChild(dc);
+        }
+        S5A_DEMO.types[dm.type](dh, dm.opts || {});
+        box.appendChild(dh);
+      }
       if (c.warn && (c.warn.zh || c.warn.en)) {
         var w = el("div", "cc-warn");
         var wh = el("div", "cc-warn-h");

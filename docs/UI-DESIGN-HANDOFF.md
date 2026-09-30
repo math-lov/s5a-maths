@@ -71,6 +71,26 @@
 `.section-title` ＝ 12.5px / 800 / 字距 `.14em` / 靛藍 / 後面一條幼線。
 英文會自動大寫（`text-transform: uppercase`），中文唔受影響。
 
+### 2.5 互動示範（`.demo` ＋ `assets/demos.js`）
+
+教學卡內的分步示範（例：綑綁法 4 步）。**同一份代碼、兩種用法**：
+
+| 用法 | 位置 | 怎樣用 |
+|---|---|---|
+| 站內 | 教學卡內（內文之後、常犯錯誤之前） | 卡片寫 `"demo": { "type": "tie-up" }`，`app.js` 建 `.demo-host` 再呼叫 `S5A_DEMO.types[type](host, opts)` |
+| 獨立頁 | `demos/<name>.html`（薄外殼） | 載入同一支 `assets/demos.js` ＋ `assets/style.css`；`?step=N` 直接跳步（截圖用）；外殼用 `S5A_DEMO.langBar()` 做語言切換（站內用自己嘅 `#lang-slot`） |
+
+規則（同前面幾節一致）：
+
+- **唔用拖放**：全部按鈕／點擊（手機友善、jsdom 測得到）；步驟以 `data-step` 掛在 `.demo` 上，CSS 只負責顯示切換
+- **數學用純文字**（`4!`、`P(5,3)`）→ 唔需 KaTeX，`textContent` 可以直接斷言；`caption` 例外，佢經 `pairSpan` 會渲染 `$…$`
+- 符號（`←` `→` `⇄`）用 `button(cls, zh, en, arrow, side)` 放喺雙語之外（同第 3 節同一規則）
+- 顏色只用 token：主色＝目前步驟／一般節點，強調橙＝要留意嘅條件（指定人物、虛線框），綠＝最後答案
+- 無障礙／輸出：算式列 `aria-live="polite"`、符號 `aria-hidden="true"`；`@media print` 收起整個 `.demo`；`prefers-reduced-motion` 停過場
+- 示範用嘅**數字要同卡片正文一致**（正文例子一改，示範跟住改）
+
+加一個新示範：① `demos.js` 的 `S5A_DEMO.types` 註冊 builder ② `build.py` 的 `DEMO_TYPES` 加白名單 ③ 卡片加 `demo.type` ④ `smoke_test.js` 加斷言（步驟、符號次數、最終公式、print／reduced-motion 規則）⑤ 出 PNG（`demos/<name>.html?step=N`）
+
 ---
 
 ## 3. 中英顯示規則（最容易出錯的地方）

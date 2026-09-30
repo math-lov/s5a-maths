@@ -695,6 +695,179 @@ body[data-sol="show"] .hint-row { display: none; }
   .card, .step, .feedback { animation: none; }
 }
 
+/* ══ 互動示範（教學卡用，assets/demos.js）══════════════════════════════════
+   一塊獨立的互動面：米白底（--band）＋細邊，唔用陰影（避免同卡片爭層次）。
+   顏色只用 token：主色＝目前步驟／一般節點，強調橙＝要留意的條件（A、B 與虛線框），
+   綠＝最後的答案。符號與數字係語言中立，一律放雙語之外。 */
+.demo {
+  margin: var(--sp-4) 0 var(--sp-3);
+  padding: var(--sp-4);
+  background: var(--band); border: 1px solid var(--line-soft);
+  border-radius: var(--radius-sm);
+}
+.demo-head {
+  display: flex; align-items: baseline; gap: var(--sp-2); flex-wrap: wrap;
+  margin-bottom: var(--sp-3);
+}
+.demo-title { font-size: 15px; font-weight: 800; color: var(--primary-ink); letter-spacing: -.01em; }
+.demo-step {
+  margin-left: auto; flex: none; font-size: 12.5px; font-weight: 800; color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+.demo-q { font-size: 15px; line-height: 1.65; margin-bottom: var(--sp-3); }
+/* 短標籤：中英並列時要有分隔（同 .btn 的做法一致） */
+.demo .bi-inline > .l-zh + .l-en { margin-left: 8px; }
+
+/* 舞台：5 個 40px 圓形節點；綑綁後 A、B 收成一個大單位（連虛線框一齊移到任何位置） */
+.demo-stage {
+  position: relative; display: flex; align-items: center; gap: 18px;
+  padding: 12px 8px; overflow-x: auto; min-height: 64px;
+}
+.pnode {
+  flex: none; width: 40px; height: 40px; border-radius: 50%;
+  background: var(--primary-soft); color: var(--primary-ink);
+  border: 2px solid var(--primary-line);
+  display: grid; place-items: center; font-weight: 800; font-size: 16px;
+}
+/* A、B＝題目指定的條件（要留意）→ 強調橙 */
+.pnode-fixed { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent-line); }
+/* 大單位內的兩個節點縮一級，令大單位唔會太闊 */
+.pnode-in { width: 34px; height: 34px; font-size: 15px; }
+/* 單位＝可以點擊互換位置的按鈕；平時睇落同普通節點一樣（唔會似按鈕） */
+.unit {
+  flex: none; display: flex; align-items: center; gap: 8px;
+  padding: 0; border: 0; background: transparent; font: inherit; color: inherit;
+  border-radius: 16px; transition: background .15s ease;
+}
+.unit:disabled { cursor: default; }
+.unit-live { cursor: pointer; }
+.unit-live:hover { background: rgba(79, 70, 229, .07); }
+.unit-live:focus-visible { outline: 3px solid rgba(79, 70, 229, .35); outline-offset: 2px; }
+/* 大單位：虛線框包住 A、B（框跟住整個單位移動，所以永遠對齊） */
+.unit-block {
+  padding: 6px 8px; border: 2px dashed var(--accent);
+  background: rgba(249, 115, 22, .07);
+  opacity: .25; transition: opacity .25s ease;
+}
+.demo[data-step="1"] .unit-block,
+.demo[data-step="2"] .unit-block,
+.demo[data-step="3"] .unit-block,
+.demo[data-step="4"] .unit-block { opacity: 1; }
+/* 揀選中／剛換位：用顏色與外框回饋（唔靠動畫，reduced-motion 下都睇得到） */
+.unit-picked { background: rgba(79, 70, 229, .14); box-shadow: inset 0 0 0 2px var(--primary); }
+.unit-moved { animation: pulse .45s ease; }
+@keyframes pulse { 50% { transform: scale(1.05); } }
+
+.demo-hint { margin-top: var(--sp-2); font-size: 13px; color: var(--muted); }
+.demo[data-step="1"] .demo-hint,
+.demo[data-step="2"] .demo-hint,
+.demo[data-step="3"] .demo-hint,
+.demo[data-step="4"] .demo-hint { display: none; }
+
+/* 目前排列（例：A+B · C · D · E） */
+.demo-order {
+  display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+  margin-top: var(--sp-2); font-size: 13.5px; color: var(--muted);
+}
+.order-txt {
+  font-weight: 800; font-size: 14.5px; color: var(--text); font-variant-numeric: tabular-nums;
+}
+/* 4 個主體： */
+.demo-units { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 13.5px; color: var(--muted); }
+/* 換位提示（第 3 步）＋「示範 4 種位置」按鈕 */
+.demo-tip {
+  margin-top: 6px; font-size: 13.5px; color: var(--accent-ink);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.demo-tip .btn { color: var(--accent-ink); border-color: var(--accent-line); background: var(--accent-soft); }
+.demo-tip .btn:hover { background: #ffe9d5; border-color: var(--accent); }
+/* 已試 n / 24 種排列 */
+.demo-count { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 13.5px; color: var(--muted); }
+.demo[data-auto="1"] .demo-count { color: var(--primary-ink); }
+
+/* 框內：A ⇄ B */
+.demo-inner {
+  margin-top: var(--sp-3); padding: var(--sp-3);
+  background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius-sm);
+}
+.demo-inner-h { font-size: 13px; font-weight: 800; color: var(--accent-ink); margin-bottom: 6px; }
+.demo-inner-row { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
+.ichip {
+  flex: none; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent-ink); border: 2px solid var(--accent-line);
+  display: grid; place-items: center; font-weight: 800;
+  transition: transform .3s ease;
+}
+.demo-inner-row.flipped .ichip:first-child { transform: translateX(42px); }
+.demo-inner-row.flipped .ichip:nth-child(2) { transform: translateX(-42px); }
+
+/* 算式列：eqbox 逐個亮起 */
+.demo-eq {
+  margin-top: var(--sp-3); padding: 10px var(--sp-3);
+  background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius-sm);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 6px;
+}
+.eqrow { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+/* 未開始時收起整條算式（唔好一早劇透答案）；第 4 步才組裝出完整算式 */
+.demo[data-step="0"] .demo-eq { display: none; }
+.eqrow-total { display: none; }
+.demo[data-step="3"] .eqrow-total { display: flex; }
+.eq-chain { color: var(--text); font-size: 15.5px; }
+.demo-eqline { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 13.5px; color: var(--muted); }
+.demo-eqline .eq { color: var(--primary-ink); font-size: 15px; }
+.eq {
+  font-weight: 800; font-variant-numeric: tabular-nums; letter-spacing: .01em;
+  color: var(--primary-ink); font-size: 16px;
+}
+.eqtimes { color: var(--muted); font-weight: 800; }
+.eqbox { opacity: .25; transition: opacity .25s ease; }
+.eq-total .eq { color: var(--ok-dark); font-size: 19px; }
+.demo[data-step="1"] .eq-units,
+.demo[data-step="2"] .eq-units,
+.demo[data-step="3"] .eq-units,
+.demo[data-step="4"] .eq-units,
+.demo[data-step="3"] .eq-inner,
+.demo[data-step="4"] .eq-inner,
+.demo[data-step="4"] .eq-total { opacity: 1; }
+/* 未到的步驟唔顯示，減少干擾 */
+.demo-units, .demo-inner, .demo-order, .demo-tip, .demo-count { display: none; }
+.demo[data-step="2"] .demo-count,
+.demo[data-step="3"] .demo-count { display: flex; }
+.demo[data-step="1"] .demo-units,
+.demo[data-step="2"] .demo-units,
+.demo[data-step="3"] .demo-units,
+.demo[data-step="4"] .demo-units { display: flex; }
+.demo[data-step="2"] .demo-order,
+.demo[data-step="3"] .demo-order,
+.demo[data-step="4"] .demo-order { display: flex; }
+.demo[data-step="2"] .demo-tip,
+.demo[data-step="3"] .demo-tip,
+.demo[data-step="4"] .demo-tip { display: block; }
+.demo[data-step="3"] .demo-inner,
+.demo[data-step="4"] .demo-inner { display: block; }
+
+/* 控制列 */
+.demo-ctrl { display: flex; gap: 8px; flex-wrap: wrap; margin-top: var(--sp-3); }
+.demo-ctrl .btn { flex: 0 1 auto; }
+
+/* 獨立外殼（demos/*.html）用：頁面外框，站內唔會用到 */
+.demo-shell { max-width: 720px; margin: 0 auto; padding: 18px 16px 48px; }
+.demo-shell h1 { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin: 18px 0 6px; }
+.demo-shell h1 .l-zh, .demo-shell h1 .l-en { display: block; }
+/* 中英並列時：英文降為副題（同首頁 hero 一致） */
+body[data-lang="both"] .demo-shell h1 .l-en {
+  font-size: .62em; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-top: 2px;
+}
+.demo-shell .lead { color: var(--muted); font-size: 14.5px; margin: 0 0 8px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .demo .bundle, .demo .ichip, .demo .eqbox { transition: none; }
+}
+
+@media print {
+  .demo { display: none; }   /* 示範係互動內容，列印冇意義 */
+}
+
 @media print {
   .topbar, .pagenav, .foot-nav, .langbar, .btn-prompt, .pm-step, .prompt-modal,
   .check-row, .hint-row, .sol-hint { display: none; }

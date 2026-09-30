@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>綑綁法示範 · Bundling demo · 5A 數學溫習站</title>
+<meta name="description" content="綑綁法（必須相鄰）分步示範：5 名學生排成一列，A 與 B 必須相鄰 → 4! × 2! = 48。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：載入同一支 assets/demos.js 與同一份 style.css，
+     站內（教學卡）與這頁顯示的都是同一份示範。
+     可直接開啟、亦可複製去其他站（記得一併帶走 assets/demos.js 與 style.css 的 .demo 區塊）。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">綑綁法示範</span><span class="l-en">Bundling method demo</span></h1>
+  <p class="lead">
+    <span class="l-zh">5 名學生排成一列，A 與 B 必須相鄰 → 4! × 2! = 48。按「下一步」逐步看。</span>
+    <span class="l-en">Five students in a row with A and B adjacent → 4! × 2! = 48. Press Next to walk through it.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">這頁與「17.2 排列」總覽頁的教學卡顯示同一個示範（<code>?step=N</code> 可直接跳到第 N 步，方便截圖）。</span>
+    <span class="l-en">This page and the concept card on the 17.2 overview show the same demo (<code>?step=N</code> jumps to step N, handy for screenshots).</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  var step = parseInt(q.get("step") || "0", 10);
+  window.S5A_DEMO.tieUp(document.getElementById("demo-slot"),
+    { step: isNaN(step) ? 0 : step });
+})();
+</script>
+</body>
+</html>

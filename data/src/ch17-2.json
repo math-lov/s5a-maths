@@ -14,15 +14,22 @@
         "en": "Permutation: Bundling method (objects must be adjacent)"
       },
       "body": {
-        "zh": "當題目要求某些指定物件「必須相鄰」或「連在一起」時，通常可用綑綁法。做法可分為兩步：\n- 第一步 · 把所有必須相鄰的物件視為一個整體，並與其他不受限制的物件一起進行排列；\n- 第二步 · 再計算該整體內部各物件的排列數。\n總排列數為兩部分之積：{{math:0}}\n示例：將 3 名男生與 2 名女生排成一行，並要求 2 名女生必須相鄰。\n- 第一步 · 將 2 名女生綑綁成一個大單位，連同 3 名男生共有 4 個單位，故有 $4! = 24$ 種排法；\n- 第二步 · 大單位內 2 名女生的排列數為 $2! = 2$ 種。\n因此總數為 $[4!] \\times [2!] = 24 \\times 2 = 48$。",
-        "en": "When a question states that certain objects must be adjacent or kept together, the bundling method is usually the clearest approach. There are two standard steps:\n- Step 1 · treat all required adjacent objects as one block and arrange this block together with the other unrestricted objects;\n- Step 2 · count the number of ways to arrange the objects inside the block.\nThe total number of arrangements is the product of the two parts: {{math:0}}\nExample: arrange 3 boys and 2 girls in a row so that the 2 girls must be adjacent.\n- Step 1 · tie the 2 girls into one block; together with the 3 boys there are 4 units, so the number of arrangements is $4! = 24$;\n- Step 2 · the 2 girls can be arranged inside the block in $2! = 2$ ways.\nHence the total is $[4!] \\times [2!] = 24 \\times 2 = 48$."
+        "zh": "當題目要求某些指定物件「必須相鄰」或「連在一起」時，通常可用綑綁法。做法可分為兩步：\n- 第一步 · 把所有必須相鄰的物件視為一個整體，並與其他不受限制的物件一起進行排列；\n- 第二步 · 再計算該整體內部各物件的排列數。\n總排列數為兩部分之積：{{math:0}}\n示例：將 5 名學生 A、B、C、D、E 排成一行，並要求 A 與 B 必須相鄰。\n- 第一步 · 將 A 與 B 綑綁成一個大單位，連同其餘 3 人共有 4 個單位，故有 $4! = 24$ 種排法；\n- 第二步 · 大單位內 A 與 B 的排列數為 $2! = 2$ 種（AB 或 BA）。\n因此總數為 $4! \\times 2! = 24 \\times 2 = 48$。",
+        "en": "When a question states that certain objects must be adjacent or kept together, the bundling method is usually the clearest approach. There are two standard steps:\n- Step 1 · treat all required adjacent objects as one block and arrange this block together with the other unrestricted objects;\n- Step 2 · count the number of ways to arrange the objects inside the block.\nThe total number of arrangements is the product of the two parts: {{math:0}}\nExample: arrange 5 students A, B, C, D, E in a row so that A and B must be adjacent.\n- Step 1 · tie A and B into one block; together with the other 3 students there are 4 units, so the number of arrangements is $4! = 24$;\n- Step 2 · A and B can be arranged inside the block in $2! = 2$ ways (AB or BA).\nHence the total is $4! \\times 2! = 24 \\times 2 = 48$."
       },
       "math": [
         "\\text{Total}\n= (\\text{arrangement of units})\n\\times (\\text{arrangement inside the block})"
       ],
+      "demo": {
+        "type": "tie-up",
+        "caption": {
+          "zh": "示範用數字：5 名學生，A 與 B 必須相鄰（$4! \\times 2! = 48$）。",
+          "en": "Demo figures: five students with A and B adjacent ($4! \\times 2! = 48$)."
+        }
+      },
       "warn": {
-        "zh": "- 常見錯誤：只寫外部的 $4!$，卻忘記乘上大單位內部的 $2!$，便會得到 24，少了一半。\n- 若題目已規定塊內次序（例如「甲必須緊接在乙前」），則塊內只有 1 種排列。因此同樣的 3 男 2 女例子，實際只會是 $4! = 24$，不能再乘 $2!$。",
-        "en": "- Common mistake: writing only the outside factor $4!$ but forgetting the internal arrangement $2!$ gives 24, which is exactly half the correct answer.\n- If the order inside the block is fixed in advance (for example, 'A must be immediately before B'), then the block has only 1 possible arrangement. In that case, the same 3 boys and 2 girls example becomes $4! = 24$; do not multiply by $2!$ again."
+        "zh": "- 常見錯誤：只寫外部的 $4!$，卻忘記乘上大單位內部的 $2!$，便會得到 24，少了一半。\n- 若題目已規定塊內次序（例如「A 必須緊接在 B 之前」），則塊內只有 1 種排列。因此同樣的 5 人例子，實際只會是 $4! = 24$，不能再乘 $2!$。",
+        "en": "- Common mistake: writing only the outside factor $4!$ but forgetting the internal arrangement $2!$ gives 24, which is exactly half the correct answer.\n- If the order inside the block is fixed in advance (for example, 'A must be immediately before B'), then the block has only 1 possible arrangement. In that case, the same five-student example becomes $4! = 24$; do not multiply by $2!$ again."
       },
       "vocab": [
         { "zh": "綑綁法", "en": "Bundling method / Block method" },

@@ -29,6 +29,7 @@ const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const katexJs = read("vendor/katex/katex.min.js");
 const autoRenderJs = read("vendor/katex/auto-render.min.js");
 const appJs = read("assets/app.js");
+const demosJs = read("assets/demos.js");
 const indexJs = read("data/index.js");
 const figuresJs = read("data/figures.js");
 const dataFiles = fs.readdirSync(path.join(root, "data"))
@@ -69,6 +70,7 @@ function boot(page, search, storage, solPreference, legacySolPreference) {
   vm.runInContext(indexJs, ctx, { filename: "index.js" });
   vm.runInContext(figuresJs, ctx, { filename: "figures.js" });
   dataFiles.forEach((f) => vm.runInContext(read("data/" + f), ctx, { filename: f }));
+  vm.runInContext(demosJs, ctx, { filename: "demos.js" });   // 互動示範（教學卡用）
   vm.runInContext(appJs, ctx, { filename: "app.js" });
   if (typeof ctx.window.__S5A_START === "function") ctx.window.__S5A_START();
   const doc = dom.window.document;
@@ -449,6 +451,93 @@ ok(c0.$$(".cc-ul").length >= 8, "步驟已分行：中英合共至少 8 個清�
 ok(/第一步/.test(c0.$(".cc-ul li").textContent), "第一個清單項目是「第一步 …」");
 ok(c0.$$(".cc .formula").length === 4, "兩張卡各自中英都有一個數式區（{{math}} 已代入）");
 ok(c0.$$(".cc-warn .cc-ul li").length >= 4, "常犯錯誤用清單逐項列出");
+
+/* 綑綁法互動示範（assets/demos.js）：資料 → DOM → 互動 */
+const demo = c0.$('.cc .demo[data-demo="tie-up"]');
+ok(!!demo && !!c0.$(".cc .demo-host"), "綑綁法卡有互動示範（app.js 掛在 .demo-host 內）");
+ok(demo.getAttribute("data-step") === "0", "示範預設停在第 1 步");
+ok(demo.querySelectorAll(".pnode").length === 5, "舞台有 5 個學生節點");
+ok(demo.querySelectorAll(".pnode-fixed").length === 2, "A 與 B 標示為「必須相鄰」的指定人物");
+ok(!!demo.querySelector(".bi .l-zh") && !!demo.querySelector(".bi .l-en"), "示範文字有中英兩版");
+ok(countOf(demo.textContent, "←") === 1 && countOf(demo.textContent, "→") === 1,
+  "示範的箭頭各只出現一次（語言中立符號放雙語之外）");
+const demoBtns = demo.querySelectorAll(".demo-ctrl .btn");
+ok(demoBtns[0].disabled === true, "第 1 步「上一步」不可按");
+demoBtns[1].click();
+ok(demo.getAttribute("data-step") === "1", "第 2 步：把 A、B 綑綁成一個主體");
+ok(/4! = 24/.test(demo.querySelector(".demo-units").textContent),
+  "第 2 步同步顯示「4 個主體 · 4! = 24」");
+ok(demo.querySelectorAll(".unit").length === 4 && !!demo.querySelector(".unit-block"),
+  "綑綁後舞台變成 4 個單位（A＋B 合成一個大單位）");
+demoBtns[1].click();
+ok(demo.getAttribute("data-step") === "2", "第 3 步：大單位可與 C、D、E 換位");
+const unitAt = () => Array.prototype.slice.call(demo.querySelectorAll(".unit"));
+ok(unitAt().map((u) => u.getAttribute("data-unit")).join(",") === "AB,C,D,E",
+  "起初大單位在最左（實際 " + unitAt().map((u) => u.getAttribute("data-unit")).join(",") + "）");
+unitAt()[0].click();
+ok(!!demo.querySelector(".unit-picked"), "點一下單位會標示為已揀選");
+unitAt()[1].click();                                   /* 把大單位同 C 對調 */
+const orderAfter = unitAt().map((u) => u.getAttribute("data-unit")).join(",");
+ok(orderAfter === "C,AB,D,E", "再點另一個單位 → 兩者交換位置（實際 " + orderAfter + "）");
+ok(demo.querySelector(".order-txt").textContent === "C · A+B · D · E",
+  "「目前排列」同步更新（實際 " + demo.querySelector(".order-txt").textContent + "）");
+unitAt()[1].click();
+unitAt()[0].click();                                   /* 換返原位，方便之後斷言 */
+ok(unitAt().map((u) => u.getAttribute("data-unit")).join(",") === "AB,C,D,E",
+  "可以再換返轉頭（學生可以自由試位）");
+/* 「示範 4 種位置」自動播放（jsdom 唔等 timer → 按一下之後手動 tick） */
+const autoBtn = demo.querySelector(".demo-tip .btn");
+ok(!!autoBtn, "第 3 步有「示範 4 種位置」按鈕");
+autoBtn.click();
+ok(demo.getAttribute("data-auto") === "1" && autoBtn.disabled === true,
+  "播放中：標記 data-auto 並鎖定按鈕（避免同學亂按）");
+ok(demo.__demoAuto.playing() === true, "自動播放進行中");
+demo.__demoAuto.stop();
+ok(!demo.getAttribute("data-auto") && autoBtn.disabled === false, "可以停得返");
+demo.__demoAuto.tick();
+ok(unitAt().map((u) => u.getAttribute("data-unit")).join(",") === "C,AB,D,E",
+  "每格 tick = 大單位向右移一格");
+demo.__demoAuto.tick();
+demo.__demoAuto.tick();
+ok(unitAt().map((u) => u.getAttribute("data-unit")).join(",") === "C,D,E,AB",
+  "行到最右（大單位在第 4 位）");
+ok(/4 \/ 24/.test(demo.querySelector(".demo-count").textContent),
+  "「已試排列」會累加，指向 24 而唔係 4（實際 " + demo.querySelector(".demo-count").textContent + "）");
+/* C、D、E 自己都可以換位（唔止大單位可以動） */
+unitAt()[0].click();
+unitAt()[1].click();
+ok(unitAt().map((u) => u.getAttribute("data-unit")).join(",") === "D,C,E,AB",
+  "C、D、E 之間一樣可以互換位置");
+ok(/5 \/ 24/.test(demo.querySelector(".demo-count").textContent),
+  "換出新組合會計入「已試排列」（實際 " + demo.querySelector(".demo-count").textContent + "）");
+demo.__demoAuto.stop();
+demoBtns[1].click();
+ok(demo.getAttribute("data-step") === "3", "第 4 步：框內部對調");
+const swapBtn = demo.querySelector(".demo-inner .btn");
+swapBtn.click();
+ok(swapBtn.getAttribute("aria-pressed") === "true" &&
+  demo.querySelector(".demo-inner-row").classList.contains("flipped"),
+  "框內 A、B 可對調（AB／BA），並標註 2! = 2");
+ok(/2! = 2/.test(demo.querySelector(".demo-inner").textContent), "框內標註內部排列 2! = 2");
+demoBtns[1].click();
+ok(demo.getAttribute("data-step") === "4", "第 5 步：組裝公式");
+ok(/4! = 24/.test(demo.querySelector(".demo-eq").textContent) &&
+  /2! = 2/.test(demo.querySelector(".demo-eq").textContent) &&
+  demo.querySelector(".eq-total .eq").textContent === "48",
+  "最終公式 4! × 2! = 24 × 2 = 48");
+ok(/4! × 2! = 24 × 2 =/.test(demo.querySelector(".demo-eq").textContent),
+  "第 5 步才組裝出完整算式（之前只亮起零件）");
+ok(demoBtns[1].disabled === true, "最後一步「下一步」不可按");
+demoBtns[2].click();
+ok(demo.getAttribute("data-step") === "0" &&
+  !demo.querySelector(".demo-inner-row").classList.contains("flipped"),
+  "「重播」回到第 1 步並還原對調狀態");
+ok(demo.querySelector(".demo-eq").getAttribute("aria-live") === "polite",
+  "算式列用 aria-live 播報目前步驟（螢幕閱讀器讀得到）");
+const cssDemo = read("assets/style.css");
+ok(/@media print\s*\{\s*\.demo \{ display: none/.test(cssDemo), "列印時收起示範");
+ok(/prefers-reduced-motion[\s\S]{0,200}\.demo \.bundle/.test(cssDemo),
+  "系統「減少動態效果」時示範停用過場");
 ok(/24/.test(c0.$$(".cc-warn")[0].textContent), "綑綁法的常犯錯誤有計算例子（24 對 48）");
 ok(/12/.test(c0.$$(".cc-warn")[1].textContent) && /84/.test(c0.$$(".cc-warn")[1].textContent),
   "插空法的常犯錯誤有計算例子（正確 12 對錯誤 84）");
@@ -510,6 +599,16 @@ const scAns = {};
 const card3 = (P172_DATA.cards || []).filter((c) => c.id === "ch17-c03")[0] || {};
 ok(card3.warn && !/C\^/.test((card3.warn.zh || "") + (card3.warn.en || "")),
   "ch17-c03 的常犯錯誤只用排列記法（不引入組合 C^n_r）");
+/* 教學卡正文與示範用同一組數字（避免學生看到兩套例子） */
+const card2 = (P172_DATA.cards || []).filter((c) => c.id === "ch17-c02")[0] || {};
+ok(card2.demo && card2.demo.type === "tie-up", "綑綁法卡資料有 demo.type = tie-up");
+ok(/5 名學生/.test((card2.body || {}).zh || "") &&
+  /5 students/.test((card2.body || {}).en || "") &&
+  !/3 名男生/.test((card2.body || {}).zh || "") &&
+  !/3 boys/.test((card2.body || {}).en || ""),
+  "綑綁法卡正文已同步為「5 名學生」（與示範一致）");
+ok(/A 與 B/.test((card2.body || {}).zh || "") && /A and B/.test((card2.body || {}).en || ""),
+  "綑綁法卡正文改用 A、B（不再用男生／女生）");
 ok(Object.keys(scAns).length === 7 && scQ.parts.length === 7,
   "判斷題資料齊全（7 小題、每個都有 tf 答案）");
 
