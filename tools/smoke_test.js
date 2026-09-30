@@ -444,7 +444,7 @@ const q171 = (id) => P171_DATA.sections
   .reduce((a, s) => a.concat(s.questions || []), []).filter((q) => q.id === id)[0] || {};
 ok(P171_DATA.sections.map((s) => s.id).join(",") === "CE,SC,L1,L2,SM,CT",
   "17.1 分段順序＝課堂例題／判斷／L1／L2／挑戰／跨課題");
-ok((P171_DATA.cards || []).length === 3, "17.1 有 3 張教學卡");
+ok((P171_DATA.cards || []).length === 4, "17.1 有 4 張教學卡");
 
 /* 官方答案（source/SMS_sol_5B17_e.docx 逐題核對，見 data/raw/ch17-1-source.md） */
 ok(q171("ch17-1-ce1").answers[1].math === "[36 + 54] - 15 = 90 - 15 = 75",
@@ -525,11 +525,11 @@ ok(P171_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).leng
 ok(P171_DATA.sections.every((s) => s.questions.every((q) => (q.solution.traps || []).length >= 1)),
   "17.1 每題都有常犯錯誤（traps）");
 /* 三張教學卡各有互動示範（2026-09-30 老師拍板：全部都加） */
-ok(P171_DATA.cards.map((c) => (c.demo || {}).type).join(",") === "menu,venn,code",
+ok(P171_DATA.cards.map((c) => (c.demo || {}).type).join(",") === "menu,venn,code,venncalc",
   "17.1 三張卡各有示範：menu、venn、code（實際 " +
   P171_DATA.cards.map((c) => (c.demo || {}).type).join(",") + "）");
 const C171d = bootCss("quiz.html", "?c=ch17-1&p=0");
-ok(C171d.$$(".cc .demo").length === 3, "17.1 總覽渲染出 3 個示範");
+ok(C171d.$$(".cc .demo").length === 4, "17.1 總覽渲染出 4 個示範");
 const vis171 = (rootNode, sel) => {
   const n = rootNode.querySelector(sel);
   return n ? C171d.ctx.window.getComputedStyle(n).display : "MISSING";
@@ -655,13 +655,68 @@ ok(kKey(1).disabled && kKey(3).disabled && kKey(0).disabled === false,
 ok(!/[\\$]/.test(demoM.textContent + demoV.textContent + demoK.textContent),
   "三個示範的文字冇 $ 或反斜線（唔會顯示 $20 + 25$、\\times 之類）");
 ok(C171d.$$(".cc .demo").every((n) => !/[\\$]/.test(n.textContent)),
-  "站內三張卡的所有示範文字同樣冇 $ 或反斜線");
+  "站內四張卡的所有示範文字同樣冇 $ 或反斜線");
+
+/* ── venncalc 示範：文氏圖計算器（六個數量，輸入幾個其餘自動算出）──────── */
+const demoVC = C171d.$('.demo[data-demo="venncalc"]');
+const vcIn = (id) => demoVC.querySelector('[data-vc="' + id + '"]');
+const vcType = (id, val) => {
+  vcIn(id).value = String(val);
+  vcIn(id).dispatchEvent(new (C171d.ctx.window.Event)("input", { bubbles: true }));
+};
+const vcReset = () => demoVC.querySelector("[data-vc-reset]").click();
+const vcAuto = (id) => vcIn(id).readOnly && vcIn(id).classList.contains("vc-input-auto");
+const vcNum = (cls) => demoVC.querySelector("." + cls).textContent;
+ok(demoVC.querySelectorAll(".vc-input").length === 6 &&
+  demoVC.querySelectorAll("input[readonly]").length === 0,
+  "計算器有 6 個輸入格（A／B／A and B／A or B／Total／not A nor B），起初全部可輸入");
+ok(!!demoVC.querySelector(".vc-box") && demoVC.querySelectorAll(".vc-cir").length === 2 &&
+  demoVC.querySelector(".vc-cirA") && demoVC.querySelector(".vc-cirB"),
+  "圖形：一個長方形（Total）內有兩個相交圓（固定不動）");
+ok(vcNum("vc-onlyA") === "?" && vcNum("vc-both") === "?" && vcNum("vc-onlyB") === "?" &&
+  vcNum("vc-neither") === "?" && demoVC.getAttribute("data-solved") === "0/6",
+  "未輸入時圖內四個區域都顯示 ？");
+vcType("a", 20);
+vcType("b", 15);
+ok(demoVC.getAttribute("data-solved") === "2/6" && vcIn("or").value === "" && !vcAuto("or"),
+  "只知 A、B 時未算得出 A or B（唔會亂填）");
+vcType("ab", 5);
+ok(vcIn("or").value === "30" && vcAuto("or"),
+  "輸入 A = 20、B = 15、A and B = 5 → A or B 自動顯示 30 並鎖住");
+ok(vcNum("vc-onlyA") === "15" && vcNum("vc-both") === "5" && vcNum("vc-onlyB") === "10",
+  "圖內顯示 15／5／10（只 A、交集、只 B）");
+ok(vcIn("total").readOnly === false && vcIn("neither").readOnly === false,
+  "Total 與 not A nor B 仍然可以輸入");
+vcIn("or").value = "99";
+vcIn("or").dispatchEvent(new (C171d.ctx.window.Event)("input", { bubbles: true }));
+ok(vcIn("or").value === "30", "自動格拒絕改動（寫 99 無效，仍然 30）");
+vcType("total", 50);
+ok(vcIn("neither").value === "20" && vcAuto("neither") && vcNum("vc-neither") === "20" &&
+  demoVC.getAttribute("data-solved") === "6/6",
+  "再輸入 Total = 50 → not A nor B 自動顯示 20 並鎖住（六格齊全）");
+vcReset();
+ok(demoVC.querySelectorAll("input[readonly]").length === 0 && vcIn("a").value === "" &&
+  demoVC.getAttribute("data-solved") === "0/6" && vcNum("vc-both") === "?",
+  "按「重新輸入」清空全部，可以從頭再輸入");
+vcType("a", 20);
+vcType("b", 25);
+vcType("ab", 0);
+ok(vcIn("or").value === "45" && vcNum("vc-both") === "0",
+  "無交集（A and B = 0）→ 交集區顯示 0，A or B = 45");
+vcReset();
+vcType("a", 20);
+vcType("b", 15);
+vcType("ab", 5);
+vcType("total", 10);
+const vcw = demoVC.querySelector(".vc-warn");
+ok(vcw.classList.contains("vc-warn-on") && /矛盾/.test(vcw.textContent),
+  "數據矛盾（Total 少過 A or B，算出負數）→ 出警告，唔會靜靜當正確");
 
 const C171 = boot("quiz.html", "?c=ch17-1&p=0");
 ok(C171.$$("#pagenav .pg").length === 38,
   "17.1 分頁列 = 總覽 + 37 題（實際 " + C171.$$("#pagenav .pg").length + "）");
 ok(C171.$$("#pagenav .pg-sec").length === 6, "17.1 分頁列有 6 個分段標題");
-ok(C171.$$(".cc").length === 3, "17.1 總覽渲染出 3 張教學卡");
+ok(C171.$$(".cc").length === 4, "17.1 總覽渲染出 4 張教學卡（加咗文氏圖計算器）");
 ok(/分類/.test((C171.$(".cc .cc-title") || {}).textContent || ""), "第一張教學卡講分類／分步");
 const ce1Page = boot("quiz.html", "?c=ch17-1&p=1");
 ok(/36 students are learning Chinese chess/.test((ce1Page.$(".q-stem") || {}).textContent || ""),

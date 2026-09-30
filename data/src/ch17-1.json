@@ -137,6 +137,51 @@
      "en": "Leading-digit restriction"
     }
    ]
+  },
+  {
+   "id": "ch17-1-c04",
+   "topic": "ch17-1",
+   "title": {
+    "zh": "文氏圖計算器：六個數量，知部分求其餘",
+    "en": "Venn-diagram calculator: six quantities from a few"
+   },
+   "body": {
+    "zh": "- 六個數量：A、B、A and B、A or B、Total、not A nor B。\n- 兩條關係：{{math:0}}；{{math:1}}（即 Total 分成「至少一個」與「兩個都唔係」兩部分）。\n- 知道 A、B 之外再多一個（A and B 或 A or B），就可以求出另一個；再輸入 Total，「not A nor B」亦會自動算出。四格已知之後，其餘兩格一定有唯一答案。",
+    "en": "- Six quantities: A, B, A and B, A or B, Total and not A nor B.\n- Two relations: {{math:0}} and {{math:1}} (Total splits into \"at least one\" and \"neither\").\n- Knowing A and B plus one more (A and B, or A or B) determines the other; once Total is entered, \"not A nor B\" follows. With four of the six given, the remaining two are fixed."
+   },
+   "math": [
+    "\\text{A or B} = \\text{A} + \\text{B} - \\text{A and B}",
+    "\\text{Total} = \\text{A or B} + \\text{not A nor B}"
+   ],
+   "demo": {
+    "type": "venncalc",
+    "caption": {
+     "zh": "輸入其中幾個數量，其餘自動計出（自動格會鎖住、唔可以輸入）。例：A = 20、B = 15、A and B = 5 → A or B = 30；再輸入 Total = 50 → not A nor B = 20。",
+     "en": "Enter some of the six quantities and the rest are filled in (those cells lock). Example: A = 20, B = 15, A and B = 5 → A or B = 30; then Total = 50 → not A nor B = 20."
+    }
+   },
+   "warn": {
+    "zh": "- 「A or B」唔可以就咁 $A + B$：兩樣都會的人會被數兩次，所以要減 A and B。\n- Total 唔等於 $A + B$：咁樣「兩個都唔係」的人會被漏掉，而重疊的人會被數兩次。\n- 算出的數字若出現負數或「A and B 大過 min(A, B)」，代表輸入的數據互相矛盾，要檢查哪一格寫錯。",
+    "en": "- \"A or B\" is not just $A + B$: those in both groups would be counted twice, so subtract A and B.\n- Total is not $A + B$: that misses the people in neither group and double-counts the overlap.\n- A negative result, or \"A and B\" larger than min(A, B), means the numbers contradict each other — check which cell is wrong."
+   },
+   "vocab": [
+    {
+     "zh": "文氏圖",
+     "en": "Venn diagram"
+    },
+    {
+     "zh": "交集（兩樣都會）",
+     "en": "Intersection (both)"
+    },
+    {
+     "zh": "至少一個",
+     "en": "At least one"
+    },
+    {
+     "zh": "兩個都唔係",
+     "en": "Neither"
+    }
+   ]
   }
  ],
  "sections": [

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>文氏圖計算器 · Venn-diagram calculator · 5A 數學溫習站</title>
+<meta name="description" content="輸入 A、B、A and B、A or B、Total、not A nor B 其中幾個，其餘自動算出；A or B = A + B − A and B。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
+     六個輸入格：A、B、A and B、A or B、Total、not A nor B。
+     自動算出的格會鎖住（唯讀），按「重新輸入」可清空再試。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">文氏圖計算器</span><span class="l-en">Venn-diagram calculator</span></h1>
+  <p class="lead">
+    <span class="l-zh">六個數量：A、B、A and B、A or B、Total、not A nor B。輸入其中幾個，其他會自動計出（自動格會鎖住）。圖中的圓固定不動；兩者無交集時交集區顯示 0。</span>
+    <span class="l-en">Six quantities: A, B, A and B, A or B, Total, not A nor B. Enter some of them and the rest are worked out (those cells lock). The circles never move; if there is no overlap the middle region shows 0.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">試試：A = 20、B = 15、A and B = 5 → A or B 自動變成 30；再輸入 Total = 50 → not A nor B 自動變成 20。</span>
+    <span class="l-en">Try: A = 20, B = 15, A and B = 5 → A or B becomes 30; then enter Total = 50 → not A nor B becomes 20.</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  window.S5A_DEMO.venncalc(document.getElementById("demo-slot"), {});
+})();
+</script>
+</body>
+</html>

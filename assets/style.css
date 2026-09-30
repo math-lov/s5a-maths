@@ -1141,6 +1141,39 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .code-dot { color: var(--muted); }
 .code-mode { color: var(--muted); font-size: 13px; }
 
+/* ══ 文氏圖計算器（venncalc）：六個數量，輸入其中幾個其餘自動算出 ═══════ */
+.stage-vc { padding: 4px 0; }
+.vc-svg { width: 100%; max-width: 360px; height: auto; display: block; margin: 0 auto; }
+.vc-box { fill: var(--card); stroke: var(--line); stroke-width: 1.5; }
+.vc-cir { fill-opacity: .55; stroke-width: 2; }
+.vc-cirA { fill: var(--primary-soft); stroke: var(--primary-line); }
+.vc-cirB { fill: var(--accent-soft); stroke: var(--accent-line); }
+.vc-t { font-size: 15px; font-weight: 800; text-anchor: middle; fill: var(--text); }
+.vc-lab { font-size: 13px; font-weight: 800; fill: var(--muted); }
+.vc-onlyA { fill: var(--primary-ink); }
+.vc-onlyB { fill: var(--accent-ink); }
+.vc-neither { fill: var(--muted); }
+.vc-grid { display: grid; gap: 8px; margin-top: var(--sp-2); }
+@media (min-width: 620px) { .vc-grid { grid-template-columns: 1fr 1fr; } }
+.vc-row { display: flex; align-items: center; gap: 8px; }
+.vc-lab-cell { flex: 1; min-width: 0; font-size: 13.5px; font-weight: 700; color: var(--text); }
+.vc-input {
+  width: 96px; min-height: 40px; padding: 6px 10px; font: inherit; font-size: 15px; font-weight: 700;
+  border-radius: var(--radius-sm); border: 1px solid var(--line); background: var(--card);
+  color: var(--text); text-align: right; font-variant-numeric: tabular-nums;
+}
+.vc-input:focus-visible { outline: 3px solid rgba(79, 70, 229, .35); outline-offset: 2px; }
+/* 自動算出的格：唯讀＋灰底，一眼睇到唔可以輸入 */
+.vc-input-auto {
+  background: var(--chip-bg); color: var(--primary-ink); border-color: var(--primary-line);
+  cursor: not-allowed;
+}
+.vc-auto { display: none; font-size: 11.5px; font-weight: 800; color: var(--primary-ink); min-width: 30px; }
+.vc-auto-on { display: inline; }
+.vc-warn { display: none; margin-top: 6px; font-size: 13px; font-weight: 700; color: var(--accent-ink); }
+.vc-warn-on { display: block; }
+.vc-hint { font-size: 12.5px; color: var(--muted); }
+
 @media (prefers-reduced-motion: reduce) {
   .demo .unit-block, .demo .ichip, .demo .eqbox, .demo .slot { transition: none; }
   .demo .g-in, .demo .unit-moved { animation: none; }

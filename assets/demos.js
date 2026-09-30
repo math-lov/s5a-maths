@@ -2218,11 +2218,218 @@
     return root;
   }
 
+  /* ── 文氏圖計算器（venncalc）：六個數量，輸入其中幾個，其餘自動算出 ──────
+     欄位：A、B、A and B、A or B、Total、not A nor B
+     兩條關係：A or B = A + B − A and B ；Total = A or B + not A nor B
+     自動算出的格會鎖住（唯讀），想改就按 Reset 重新輸入。
+     圖中的圓固定不動；交集為 0 時就在交集區顯示 0。
+     ───────────────────────────────────────────────────────────────────── */
+  var VENN_CALC_FIELDS = [
+    { id: "a", zh: "A", en: "A" },
+    { id: "b", zh: "B", en: "B" },
+    { id: "ab", zh: "A and B", en: "A and B" },
+    { id: "or", zh: "A or B", en: "A or B" },
+    { id: "total", zh: "Total", en: "Total" },
+    { id: "neither", zh: "not A nor B", en: "not A nor B" }
+  ];
+
+  function vennCalc(host, opts) {
+    var o = opts || {};
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "venncalc");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("文氏圖計算器", "Venn-diagram calculator"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    stepTag.appendChild(biInline("輸入其中幾個，其餘自動算出", "Enter some; the rest are worked out"));
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("六個數量：A、B、A and B、A or B、Total、not A nor B。輸入其中幾個，其他會自動計出。",
+      "Six quantities: A, B, A and B, A or B, Total and not A nor B. Enter some of them and the rest are filled in."));
+    root.appendChild(q);
+
+    /* 圖：一個長方形（Total），內有兩個相交圓（固定不動） */
+    var stage = el("div", "demo-stage stage-vc");
+    var svg = svgEl("svg", { viewBox: "0 0 340 200", class: "vc-svg", role: "img" });
+    var box = svgEl("rect", { x: 16, y: 14, width: 308, height: 172, rx: 10, class: "vc-box" });
+    var cirA = svgEl("circle", { cx: 132, cy: 104, r: 62, class: "vc-cir vc-cirA" });
+    var cirB = svgEl("circle", { cx: 204, cy: 104, r: 62, class: "vc-cir vc-cirB" });
+    [box, cirA, cirB].forEach(function (n) { svg.appendChild(n); });
+    function svgT(cls, x, y, txt, size) {
+      var t = svgEl("text", { x: x, y: y, class: "vc-t " + cls });
+      if (size) t.setAttribute("font-size", String(size));
+      t.textContent = txt;
+      return t;
+    }
+    var tLabA = svgT("vc-lab", 78, 52, "A");
+    var tLabB = svgT("vc-lab", 246, 52, "B");
+    var tOnlyA = svgT("vc-onlyA", 94, 110, "?");
+    var tBoth = svgT("vc-both", 168, 110, "?");
+    var tOnlyB = svgT("vc-onlyB", 242, 110, "?");
+    var tNeither = svgT("vc-neither", 286, 36, "?");
+    [tLabA, tLabB, tOnlyA, tBoth, tOnlyB, tNeither].forEach(function (n) { svg.appendChild(n); });
+    stage.appendChild(svg);
+    root.appendChild(stage);
+
+    /* 六個輸入格 */
+    var grid = el("div", "vc-grid");
+    var inputs = {};
+    var autoBadges = {};
+    VENN_CALC_FIELDS.forEach(function (f) {
+      var row = el("div", "vc-row");
+      row.setAttribute("data-row", f.id);
+      /* 六個欄位名稱中英一樣（A、B、A and B…）→ 用普通文字，唔用雙語 span，
+         否則「中英」模式會顯示兩次（A A、Total Total） */
+      var lab = el("label", "vc-lab-cell", f.zh);
+      lab.setAttribute("for", "vc-" + f.id);
+      row.appendChild(lab);
+      var inp = el("input", "vc-input");
+      inp.setAttribute("type", "number");
+      inp.setAttribute("inputmode", "numeric");
+      inp.setAttribute("min", "0");
+      inp.setAttribute("step", "1");
+      inp.setAttribute("id", "vc-" + f.id);
+      inp.setAttribute("data-vc", f.id);
+      inp.oninput = function () { onType(f.id, inp.value); };
+      row.appendChild(inp);
+      var badge = el("span", "vc-auto", "");
+      badge.appendChild(biInline("自動", "auto"));
+      badge.setAttribute("aria-hidden", "true");
+      row.appendChild(badge);
+      autoBadges[f.id] = badge;
+      grid.appendChild(row);
+      inputs[f.id] = inp;
+    });
+    root.appendChild(grid);
+
+    var warn = el("div", "vc-warn");
+    warn.setAttribute("aria-live", "polite");
+    root.appendChild(warn);
+
+    var ctrl = el("div", "demo-ctrl");
+    var reset = button("btn-primary", "重新輸入", "Reset", "↺", "start");
+    reset.setAttribute("data-vc-reset", "1");
+    ctrl.appendChild(reset);
+    var hint = el("span", "vc-hint");
+    hint.appendChild(biInline("（按「重新輸入」可以清空再試）", "(press Reset to clear and start again)"));
+    ctrl.appendChild(hint);
+    root.appendChild(ctrl);
+
+    var vals = {};
+    var owned = {};
+    VENN_CALC_FIELDS.forEach(function (f) { vals[f.id] = null; owned[f.id] = false; });
+
+    function rule(target, deps, fn) {
+      if (vals[target] != null) return false;
+      for (var i = 0; i < deps.length; i++) { if (vals[deps[i]] == null) return false; }
+      vals[target] = fn(vals);
+      return true;
+    }
+    function solve() {
+      for (var pass = 0; pass < 8; pass++) {
+        var any = false;
+        any = rule("or", ["a", "b", "ab"], function (v) { return v.a + v.b - v.ab; }) || any;
+        any = rule("ab", ["a", "b", "or"], function (v) { return v.a + v.b - v.or; }) || any;
+        any = rule("a", ["b", "ab", "or"], function (v) { return v.or + v.ab - v.b; }) || any;
+        any = rule("b", ["a", "ab", "or"], function (v) { return v.or + v.ab - v.a; }) || any;
+        any = rule("neither", ["total", "or"], function (v) { return v.total - v.or; }) || any;
+        any = rule("total", ["or", "neither"], function (v) { return v.or + v.neither; }) || any;
+        if (!any) break;
+      }
+    }
+    function problem() {
+      var v = vals;
+      var bad = [];
+      function has() {
+        for (var i = 0; i < arguments.length; i++) { if (v[arguments[i]] == null) return false; }
+        return true;
+      }
+      VENN_CALC_FIELDS.forEach(function (f) {
+        if (v[f.id] != null && v[f.id] < 0) bad.push(f.id);
+      });
+      if (has("a", "b", "ab", "or") && v.or !== v.a + v.b - v.ab) bad.push("or");
+      if (has("or", "total", "neither") && v.total !== v.or + v.neither) bad.push("total");
+      if (has("a", "b", "ab") && v.ab > Math.min(v.a, v.b)) bad.push("ab");
+      if (has("a", "or") && v.or < v.a) bad.push("or");
+      if (has("b", "or") && v.or < v.b) bad.push("or");
+      return bad;
+    }
+    var WORDS = {
+      a: ["A", "A"], b: ["B", "B"], ab: ["A and B", "A and B"],
+      or: ["A or B", "A or B"], total: ["Total", "Total"], neither: ["not A nor B", "not A nor B"]
+    };
+    function paint() {
+      VENN_CALC_FIELDS.forEach(function (f) {
+        var auto = vals[f.id] != null && !owned[f.id];
+        inputs[f.id].value = vals[f.id] == null ? "" : String(vals[f.id]);
+        inputs[f.id].readOnly = auto;
+        inputs[f.id].setAttribute("aria-readonly", auto ? "true" : "false");
+        inputs[f.id].className = "vc-input" + (auto ? " vc-input-auto" : "");
+        autoBadges[f.id].className = "vc-auto" + (auto ? " vc-auto-on" : "");
+      });
+      var aOnly = (vals.a != null && vals.ab != null) ? vals.a - vals.ab : null;
+      var bOnly = (vals.b != null && vals.ab != null) ? vals.b - vals.ab : null;
+      tOnlyA.textContent = aOnly == null ? "?" : String(aOnly);
+      tBoth.textContent = vals.ab == null ? "?" : String(vals.ab);
+      tOnlyB.textContent = bOnly == null ? "?" : String(bOnly);
+      tNeither.textContent = vals.neither == null ? "?" : String(vals.neither);
+      root.setAttribute("data-solved",
+        VENN_CALC_FIELDS.filter(function (f) { return vals[f.id] != null; }).length + "/6");
+      warn.innerHTML = "";
+      var bad = problem();
+      if (bad.length) {
+        var names = bad.map(function (k) { return WORDS[k][0] + "／" + WORDS[k][1]; });
+        warn.appendChild(bi("數據有矛盾，請檢查：" + names.join("、"),
+          "These numbers are inconsistent — please check: " + names.join(", ")));
+        warn.className = "vc-warn vc-warn-on";
+      } else {
+        warn.className = "vc-warn";
+      }
+    }
+    function recompute() {
+      var keep = {};
+      VENN_CALC_FIELDS.forEach(function (f) { if (owned[f.id]) keep[f.id] = vals[f.id]; });
+      VENN_CALC_FIELDS.forEach(function (f) { vals[f.id] = owned[f.id] ? keep[f.id] : null; });
+      solve();
+      paint();
+    }
+    function onType(id, raw) {
+      /* 自動算出的格要鎖住：瀏覽器唔會對 readOnly 格觸發 input，
+         這裡再擋一次（換走 JS 直接呼叫都唔會改到） */
+      if (vals[id] != null && !owned[id]) { paint(); return; }
+      var t = String(raw).trim();
+      if (t === "") {
+        owned[id] = false;
+        vals[id] = null;
+      } else {
+        var n = parseInt(t, 10);
+        if (isNaN(n) || n < 0) { n = 0; }
+        owned[id] = true;
+        vals[id] = n;
+      }
+      recompute();
+    }
+    reset.onclick = function () {
+      VENN_CALC_FIELDS.forEach(function (f) { owned[f.id] = false; vals[f.id] = null; });
+      paint();
+      if (inputs.a.focus) inputs.a.focus();
+    };
+
+    paint();
+    host.appendChild(root);
+    return root;
+  }
+
   global.S5A_DEMO = {
     types: {
       "tie-up": tieUp, "slot-in": slotIn, grouping: grouping,
       combination: combination, path: pathDemo, complement: complement,
-      menu: menuDemo, venn: vennDemo, code: codeDemo
+      menu: menuDemo, venn: vennDemo, code: codeDemo, venncalc: vennCalc
     },
     tieUp: tieUp,
     slotIn: slotIn,
@@ -2233,6 +2440,7 @@
     menu: menuDemo,
     venn: vennDemo,
     code: codeDemo,
+    venncalc: vennCalc,
     langBar: langBar,
     setLang: setLang
   };
