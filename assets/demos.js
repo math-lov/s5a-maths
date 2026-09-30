@@ -10,7 +10,9 @@
      · 文字用 .l-zh／.l-en，由 body[data-lang] 控制（中／EN／中英）
      · 符號、數字、公式係語言中立 → 一律放雙語之外（唔會出兩次）
      · 顏色只用 style.css 的 token；尊重 prefers-reduced-motion
-     · 唔用拖放（手機友善＋可測試）：全部用按鈕／點擊
+     · 互動以按鈕／點擊為主（手機友善＋可測試）；唯一例外：路徑示範的「拖動調位」
+      —— 用 pointer 事件（唔用 HTML5 drag，手機唔支援），憑幾何找最近一格
+      （唔用 elementFromPoint，佢會回 null 令拖動斷開），並一定有鍵盤替代（←／→）
      · 數學用純文字（4!、P(5,3)），唔需要 KaTeX，textContent 可以直接斷言
    ========================================================================== */
 (function (global) {
@@ -1233,6 +1235,7 @@
   var PATH_STEPS = 3;
   var GRID_E = 4;
   var GRID_N = 3;
+  var PATH_TOTAL = 35;                    /* C(7,4)：4 個 E、3 個 N 的全部排法 */
   var CELL = 22, PAD = 9;
   function svgEl(tag, attrs) {
     var n = document.createElementNS("http://www.w3.org/2000/svg", tag);
@@ -1256,8 +1259,8 @@
     root.appendChild(head);
 
     var q = el("div", "demo-q");
-    q.appendChild(bi("由 P 走到 Q：只可以向右（東）或向上（北），共 7 步（4 東、3 北）。",
-      "Walk from P to Q using only east and north moves: 7 steps in total (4 east, 3 north)."));
+    q.appendChild(bi("由 P 走到 Q：只可以向右（E，東）或向上（N，北），共 7 步（4 個 E、3 個 N）。",
+      "Walk from P to Q using only east (E) and north (N) moves: 7 steps in total (4 E, 3 N)."));
     root.appendChild(q);
 
     var guide = el("div", "demo-guide");
@@ -1265,11 +1268,12 @@
     guide.appendChild(guideTxt);
     root.appendChild(guide);
     var GUIDES = [
-      ["按「下一步」先睇一條合法路徑。", "Press Next to see one valid path."],
-      ["呢條路徑＝東北東北東北東。留意：7 步之中只要揀邊 4 步向東，路徑就唯一決定。",
-        "This path is E N E N E N E. Note: choosing which 4 of the 7 steps go east decides the whole path."],
-      ["點任何一格切換「東／北」，要保持 4 東 3 北 —— 每個合法組合就係一條路徑。C(7,4) = 35。",
-        "Tap a box to switch east/north; keep 4 east and 3 north — each valid choice is one path. C(7,4) = 35."],
+      ["下面已經有 4 個 E、3 個 N（唔使自己砌），按「下一步」先睇一條合法路徑。",
+        "The row below already has 4 E and 3 N. Press Next to see one valid path."],
+      ["呢條路徑＝ E N E N E N E。試吓拖動下面任何一格去換位：上面路線會即刻跟住變，次序唔同就係另一條路徑。",
+        "This path is E N E N E N E. Try dragging any box below to a new place: the route above changes at once, and a different order is a different path."],
+      ["因為永遠都係 4 個 E、3 個 N，拖極都一定合法。試拖出唔同路線，睇住「已找到路線」增加 —— 全部共 C(7,4) = 35 條。",
+        "It is always 4 E and 3 N, so every arrangement is valid. Drag out new routes and watch \"paths found\" grow — there are C(7,4) = 35 in all."],
       ["換個角度：揀 3 步向北一樣得 → C(7,3) = 35，答案相同。",
         "Another view: choose the 3 north steps instead → C(7,3) = 35, the same answer."]
     ];
@@ -1305,21 +1309,41 @@
 
     var stepRow = el("div", "path-steps");
     root.appendChild(stepRow);
+    /* 7 格係固定嘅（4 個 E、3 個 N 已預設好），文字用 E／N：中英模式都一樣，
+       唔會出現「英文版仍然寫住東／北」。位置固定，拖動時只係調次序。 */
+    var chips = [];
+    for (var ci = 0; ci < TOTAL; ci++) {
+      var cbox = el("button", "pstep");
+      cbox.setAttribute("type", "button");
+      cbox.setAttribute("data-step-i", String(ci));
+      stepRow.appendChild(cbox);
+      chips.push(cbox);
+    }
     var countLine = el("div", "demo-count");
-    countLine.appendChild(biInline("向東的步數：", "East steps:"));
+    countLine.appendChild(biInline("已找到路線：", "Paths found:"));
     var countTxt = el("span", "order-txt");
     countLine.appendChild(countTxt);
-    var okTxt = el("span", "path-ok");
-    countLine.appendChild(okTxt);
+    var countNote = el("span", "path-note");
+    countNote.appendChild(biInline("（永遠 4 個 E、3 個 N，次序唔同＝新路線）",
+      "(always 4 E and 3 N; a different order is a new route)"));
+    countLine.appendChild(countNote);
     root.appendChild(countLine);
 
     var eq = el("div", "demo-eq");
     eq.setAttribute("aria-live", "polite");
+    /* 下圖：同其他示範一樣，用數字逐步砌出答案（有次序 → ÷ 4! → C(7,4)） */
     var rowA = el("div", "eqrow eqrow-p");
     var boxA = el("span", "eqbox");
-    boxA.appendChild(el("span", "eq", "C(7,4) = 35"));
+    boxA.appendChild(el("span", "eq", "7 × 6 × 5 × 4 = 840"));
     rowA.appendChild(boxA);
-    rowA.appendChild(biInline("（揀 4 步向東）", "(choose 4 east steps)"));
+    rowA.appendChild(biInline("（有次序：把 4 個 E 排入 7 個位置 → P(7,4)）",
+      "(with order: placing the 4 E's into 7 places → P(7,4))"));
+    var rowN = el("div", "eqrow");
+    var boxN = el("span", "eqbox");
+    boxN.appendChild(el("span", "eq", "840 ÷ 4! = 35"));
+    rowN.appendChild(boxN);
+    rowN.appendChild(biInline("（4 個 E 一模一樣，同一條路線數咗 4! 次）",
+      "(the 4 E's are identical, so each route was counted 4! times)"));
     var rowB = el("div", "eqrow eqrow-total");
     var boxB = el("span", "eqbox eq-total");
     boxB.appendChild(el("span", "eq", "35"));
@@ -1327,6 +1351,7 @@
     rowB.appendChild(boxB);
     rowB.appendChild(biInline("（揀 3 步向北，答案一樣）", "(choose 3 north steps: same answer)"));
     eq.appendChild(rowA);
+    eq.appendChild(rowN);
     eq.appendChild(rowB);
     root.appendChild(eq);
 
@@ -1341,6 +1366,9 @@
 
     var seq = DEMO_SEQ.slice();
     var step = 0;
+    var found = {};            /* 已經出現過嘅路線（次序字串）；拖／按 ←→ 都算 */
+    var dragAt = -1;           /* 正在拖嘅位置；-1＝冇 */
+    function foundCount() { return Object.keys(found).length; }
 
     function pts() {
       var x = 0, y = 0, out = [gx(0) + "," + gy(0)];
@@ -1350,35 +1378,88 @@
       });
       return out.join(" ");
     }
-    function eastCount() {
-      return seq.filter(function (s) { return s === "E"; }).length;
+    /* 拖動（或鍵盤 ←→）都只係「調位」：4 個 E、3 個 N 永遠不變 → 一定係合法路線 */
+    function moveChip(from, to) {
+      if (from === to || from < 0 || to < 0 || from >= TOTAL || to >= TOTAL) return false;
+      var item = seq.splice(from, 1)[0];
+      seq.splice(to, 0, item);
+      paint();
+      return true;
+    }
+    function chipIndex(target) {
+      var node = target && target.closest ? target.closest(".pstep") : null;
+      if (!node) return -1;
+      var i = parseInt(node.getAttribute("data-step-i"), 10);
+      return isNaN(i) ? -1 : i;
+    }
+    /* 拖動時手指／游標未必啱啱在格仔上（會歪、會太快）：用幾何找最近一格。
+       唔用 elementFromPoint —— 手指滑到格與格之間會返回 null，拖動會斷。 */
+    function chipAtPoint(x, y) {
+      var box = stepRow.getBoundingClientRect();
+      var slop = 24;                     /* 略為離開整行都可以繼續拖 */
+      if (x < box.left - slop || x > box.right + slop || y < box.top - slop || y > box.bottom + slop) return -1;
+      var best = -1, bestD = Infinity;
+      for (var i = 0; i < chips.length; i++) {
+        var r = chips[i].getBoundingClientRect();
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return i;
+        var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        var d = (x - cx) * (x - cx) + (y - cy) * (y - cy);
+        if (d < bestD) { bestD = d; best = i; }
+      }
+      return best;
     }
     function paint() {
-      stepRow.innerHTML = "";
-      seq.forEach(function (s, k) {
-        var box = el("button", "pstep " + (s === "E" ? "pstep-e" : "pstep-n"));
-        box.setAttribute("type", "button");
-        box.setAttribute("data-step-i", String(k));
-        box.textContent = s === "E" ? "東" : "北";
-        box.disabled = step < 2;
-        box.onclick = function () {
-          if (step < 2) return;
-          seq[k] = seq[k] === "E" ? "N" : "E";
-          paint();
-        };
-        stepRow.appendChild(box);
+      chips.forEach(function (box, i) {
+        box.textContent = seq[i];        /* 中英模式都係 E／N，唔會夾雜中文 */
+        box.className = "pstep " + (seq[i] === "E" ? "pstep-e" : "pstep-n") +
+          (step >= 1 ? " pstep-move" : "");
+        box.disabled = step < 1;
+        box.setAttribute("aria-label", "第 " + (i + 1) + " 步 · Step " + (i + 1) + ": " + seq[i]);
       });
-      var e = eastCount();
-      countTxt.textContent = e + " / " + GRID_E;
-      okTxt.textContent = e === GRID_E ? "✓ 合法路徑" : "（要向東走 " + GRID_E + " 步）";
-      okTxt.classList.toggle("path-bad", e !== GRID_E);
+      if (step >= 1) found[seq.join("")] = true;
+      countTxt.textContent = foundCount() + " / " + PATH_TOTAL;
       poly.setAttribute("points", step >= 1 ? pts() : "");
       poly.setAttribute("data-seq", seq.join(""));
     }
+    stepRow.addEventListener("pointerdown", function (ev) {
+      if (step < 1) return;
+      var i = chipIndex(ev.target);
+      if (i < 0) return;
+      dragAt = i;
+      stepRow.classList.add("dragging");
+      poly.classList.add("no-draw");     /* 拖動時路線即時更新，唔重播畫線動畫 */
+      if (ev.preventDefault) ev.preventDefault();
+    });
+    document.addEventListener("pointermove", function (ev) {
+      if (dragAt < 0) return;
+      if (ev.preventDefault) ev.preventDefault();
+      var to = chipAtPoint(ev.clientX, ev.clientY);
+      if (to < 0 || to === dragAt) return;
+      var from = dragAt;
+      if (moveChip(from, to)) dragAt = to;
+    });
+    function endDrag() {
+      if (dragAt < 0) return;
+      dragAt = -1;
+      stepRow.classList.remove("dragging");
+      poly.classList.remove("no-draw");
+    }
+    document.addEventListener("pointerup", endDrag);
+    document.addEventListener("pointercancel", endDrag);
+    /* 鍵盤都可以調位：聚焦一格，按 ←／→ */
+    stepRow.addEventListener("keydown", function (ev) {
+      if (step < 1) return;
+      var i = chipIndex(ev.target);
+      var dir = ev.key === "ArrowLeft" ? -1 : (ev.key === "ArrowRight" ? 1 : 0);
+      if (i < 0 || !dir) return;
+      var to = i + dir;
+      if (to < 0 || to >= TOTAL) return;
+      ev.preventDefault();
+      if (moveChip(i, to)) chips[to].focus();
+    });
     function setStep(n) {
       step = Math.max(0, Math.min(PATH_STEPS, n | 0));
-      if (step === 0) seq = DEMO_SEQ.slice();
-      if (step === 1) seq = DEMO_SEQ.slice();
+      if (step <= 1) { seq = DEMO_SEQ.slice(); found = {}; }   /* 第 1、2 步：示範路線固定，計數重新開始 */
       root.setAttribute("data-step", String(step));
       stepTag.innerHTML = "";
       stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (PATH_STEPS + 1) + " 步",
@@ -1391,7 +1472,7 @@
     }
     prev.onclick = function () { setStep(step - 1); };
     next.onclick = function () { setStep(step + 1); };
-    replay.onclick = function () { seq = DEMO_SEQ.slice(); setStep(0); };
+    replay.onclick = function () { seq = DEMO_SEQ.slice(); found = {}; setStep(0); };
 
     host.appendChild(root);
     setStep(o.step || 0);

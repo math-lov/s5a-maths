@@ -1006,8 +1006,15 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .pstep:disabled { cursor: default; }
 .pstep-e { border-color: var(--primary-line); background: var(--primary-soft); color: var(--primary-ink); }
 .pstep-n { border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent-ink); }
-.path-ok { font-weight: 800; color: var(--ok-dark); }
-.path-bad { font-weight: 800; color: var(--accent-ink); }
+/* 可以拖拉調位：grab 手勢；touch-action: pan-y 令手機仍可正常上下捲頁，
+   只有橫向拖動（＝調位）交由示範處理。文字唔可以被選中。 */
+.pstep { user-select: none; -webkit-user-select: none; }
+.pstep-move { cursor: grab; touch-action: pan-y; }
+.pstep-move:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
+.path-steps.dragging .pstep-move { cursor: grabbing; }
+/* 拖動期間路線即時跟住手指走，唔重播「畫線」動畫（初次顯示仍然會畫一次） */
+.grid-path.no-draw { animation: none; }
+.path-note { color: var(--muted); font-weight: 400; }
 .demo[data-demo="path"] .demo-count { display: none; }
 .demo[data-demo="path"][data-step="1"] .demo-count,
 .demo[data-demo="path"][data-step="2"] .demo-count,

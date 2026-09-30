@@ -884,27 +884,86 @@ ok(demoC.getAttribute("data-step") === "0" && teamNums() === "" &&
 /* ── 路徑示範：路徑＝揀邊幾步向東 ───────────────────────────────────────── */
 const demoP = p173Overview.$('.demo[data-demo="path"]');
 ok(!!demoP, "路徑卡有互動示範");
-ok(demoP.querySelectorAll(".pstep").length === 7, "7 個步驟格（4 東 3 北）");
+const pChips = () => demoP.querySelectorAll(".pstep");
+ok(pChips().length === 7, "7 個步驟格");
+ok(Array.from(pChips()).map((c) => c.textContent).join("") === "ENENENE",
+  "預設 4 個 E、3 個 N（一格一格已排好）");
 const pPoly = () => demoP.querySelector(".grid-path");
-ok(pPoly().getAttribute("data-seq") === "ENENENE", "預設示範路徑＝東北東北東北東");
+ok(pPoly().getAttribute("data-seq") === "ENENENE", "預設示範路徑＝E N E N E N E");
 ok(!pPoly().getAttribute("points"), "第 1 步未畫路徑");
+ok(Array.from(pChips()).every((c) => c.disabled), "第 1 步未可以拖（路線未出現）");
 const pBtns = demoP.querySelectorAll(".demo-ctrl .btn");
 pBtns[1].click();
 ok(demoP.getAttribute("data-step") === "1" && !!pPoly().getAttribute("points"), "第 2 步：畫出示範路徑");
-ok(/4 \/ 4/.test(demoP.querySelector(".demo-count").textContent), "向東步數 4 / 4（合法）");
+ok(!pChips()[0].disabled && pChips()[0].classList.contains("pstep-move"), "第 2 步開始可以拖動調位");
+ok(/1 \/ 35/.test(demoP.querySelector(".demo-count").textContent), "已找到路線 1 / 35");
+/* 語言中立：格仔文字中英模式都係 E／N，唔會出「東／北」 */
+ok(!/東|北/.test(Array.from(pChips()).map((c) => c.textContent).join("")),
+  "步驟格只用 E／N（英文模式唔會顯示中文）");
+ok(!/\? "東" : "北"/.test(read("assets/demos.js")), "格仔內容唔再寫死「東／北」（一律 E／N）");
+/* 鍵盤調位＝真實使用者路徑（jsdom 冇 pointer 事件，用 ←→ 驗同一個 moveChip） */
+const pKey = (node, key) => node.dispatchEvent(new node.ownerDocument.defaultView.KeyboardEvent("keydown",
+  { key, bubbles: true, cancelable: true }));
+pKey(pChips()[0], "ArrowRight");
+ok(pPoly().getAttribute("data-seq") === "NEENENE", "按 → 把第 1 格移到第 2 位（N E E N E N E）");
+ok(/2 \/ 35/.test(demoP.querySelector(".demo-count").textContent), "新次序＝新路線，計數加到 2 / 35");
+ok(pChips()[0].textContent === "N" && pChips()[1].textContent === "E", "格仔文字跟住次序更新");
+pKey(pChips()[1], "ArrowLeft");
+ok(pPoly().getAttribute("data-seq") === "ENENENE" && /2 \/ 35/.test(demoP.querySelector(".demo-count").textContent),
+  "移返原位：路線變回 ENENENE，但同一條路線唔會重複計（仍然 2 / 35）");
+ok(Array.from(pChips()).filter((c) => c.textContent === "E").length === 4 &&
+  Array.from(pChips()).filter((c) => c.textContent === "N").length === 3,
+  "無論點調位，永遠保持 4 個 E、3 個 N（一定合法）");
+/* 真正嘅拖曳（pointer）：jsdom 冇佈局，這裡假造每格位置，驗同一段拖動邏輯
+   （真實瀏覽器另有 headless Chrome 驗證，見 docs/UI-DESIGN-HANDOFF.md） */
+const pRow = demoP.querySelector(".path-steps");
+const pSlot = (i) => ({ left: i * 34 + 2, top: 0, right: i * 34 + 32, bottom: 30, width: 30, height: 30 });
+pRow.getBoundingClientRect = () => ({ left: 0, top: 0, right: 238, bottom: 30, width: 238, height: 30 });
+Array.from(pChips()).forEach((c, i) => { c.getBoundingClientRect = () => pSlot(i); });
+const pMv = (target, type, i, y) => {
+  const r = pSlot(i);
+  target.dispatchEvent(new (target.ownerDocument.defaultView.MouseEvent)(type,
+    { clientX: r.left + 15, clientY: y == null ? 15 : y, bubbles: true, cancelable: true }));
+};
+pMv(pChips()[0], "pointerdown", 0);
+ok(pRow.classList.contains("dragging") && pPoly().classList.contains("no-draw"),
+  "開始拖：加了 dragging，並停用畫線動畫（跟住手指即時更新）");
+pMv(pRow, "pointermove", 3);
+ok(pPoly().getAttribute("data-seq") === "NENEENE",
+  "拖第 1 格到第 4 位（E N E N E N E → N E N E E N E）");
+ok(/3 \/ 35/.test(demoP.querySelector(".demo-count").textContent), "拖出新路線 → 3 / 35");
+const pSeqBeforeFar = pPoly().getAttribute("data-seq");
+pMv(pRow, "pointermove", 3, 400);
+ok(pPoly().getAttribute("data-seq") === pSeqBeforeFar, "拖到遠離整行（y=400）唔會亂跳");
+pMv(pRow, "pointerup", 3);
+ok(!pRow.classList.contains("dragging") && !pPoly().classList.contains("no-draw"), "放手後還原狀態");
 pBtns[1].click();
-ok(demoP.getAttribute("data-step") === "2", "第 3 步：可以自己砌路徑");
-ok(/✓/.test(demoP.querySelector(".path-ok").textContent), "4 東 3 北＝合法路徑");
-const pstep0 = () => demoP.querySelectorAll(".pstep")[0];
-pstep0().click();
-ok(pstep0().classList.contains("pstep-n") &&
-  /3 \/ 4/.test(demoP.querySelector(".demo-count").textContent) &&
-  /要向東走/.test(demoP.querySelector(".path-ok").textContent), "點一格變「北」→ 提示未夠 4 東");
-pstep0().click();
-ok(/4 \/ 4/.test(demoP.querySelector(".demo-count").textContent), "再點一次還原成 4 東");
+ok(demoP.getAttribute("data-step") === "2", "第 3 步：可以自己拖路線");
+ok(/3 \/ 35/.test(demoP.querySelector(".demo-count").textContent), "已找到路線繼續累計（3 / 35）");
+pKey(pChips()[0], "ArrowRight");
+ok(pPoly().getAttribute("data-seq") === "ENNEENE" && /4 \/ 35/.test(demoP.querySelector(".demo-count").textContent),
+  "第 3 步仍然可以調位，再多一條路線（4 / 35）");
 pBtns[1].click();
 ok(demoP.getAttribute("data-step") === "3" &&
   /C\(7,3\)/.test(demoP.querySelector(".demo-eq").textContent), "第 4 步：C(7,4) = C(7,3) = 35");
+ok(/7 × 6 × 5 × 4 = 840/.test(demoP.querySelector(".demo-eq").textContent) &&
+  /840 ÷ 4! = 35/.test(demoP.querySelector(".demo-eq").textContent),
+  "下圖有數字例子（7 × 6 × 5 × 4 = 840 → ÷ 4! = 35，同其他示範一致）");
+/* 英文模式（真 CSS 驗證）：步驟格一律 E／N，唔會殘留中文「東／北」
+   （示範頁的掛載在 inline script；jsdom 唔會行 inline script，所以這裡照做一次） */
+const pEn = bootCss("demos/path.html", "?step=1");
+pEn.ctx.window.S5A_DEMO.path(pEn.$("#demo-slot"), { step: 1 });
+pEn.doc.body.setAttribute("data-lang", "en");
+const pEnSel = '.demo[data-demo="path"]';
+const pEnChips = pEn.$$(pEnSel + " .pstep");
+ok(cssDisp(pEn, pEnSel + " .pstep") !== "none", "英文模式：步驟格仍然顯示");
+ok(pEnChips.length === 7 && pEnChips.every((c) => /^[EN]$/.test(c.textContent)),
+  "英文模式：7 格只有 E／N（唔會顯示東／北）");
+ok(cssDisp(pEn, pEnSel + " .l-zh") === "none" && cssDisp(pEn, pEnSel + " .l-en") !== "none",
+  "英文模式：中文說明收起、英文說明顯示");
+const pEnCount = pEn.$(pEnSel + " .demo-count");
+ok(!!pEnCount && /Paths found/.test(pEnCount.textContent) && /1 \/ 35/.test(pEnCount.textContent),
+  "英文模式：計數行用英文（Paths found 1 / 35）");
 ok(/4 步向東、3 步向北/.test(read("data/src/ch17-3.json")), "路徑卡正文已加入 4 東 3 北的例子");
 
 /* ── 至少／至多示範：反面計數 ──────────────────────────────────────────── */

@@ -158,6 +158,21 @@ $ch = "C:\Program Files\Google\Chrome\Application\chrome.exe"
   - `src=` 要驗嘅頁（相對 repo 根）；帶 query 嘅頁要 encode，例如 `quiz.html%3Fc%3Dch10-test`
   - `h=` iframe 高度，長頁可以加大（截圖 window 高度要 ≥ `h` + 約 50）
   - 視窗闊度用 520（> 500 就唔會被夾硬擴闊），iframe 本身仍然係 390px
+- **驗 pointer 拖曳（唔用滑鼠，用合成事件）**：開一個臨時頁掛載示範，dispatch
+  `pointerdown／pointermove／pointerup`，再 `--dump-dom` 讀結果。呢招係必要嘅——
+  `document.elementFromPoint` 喺 headless（同部分裝置）會回 `null`，所以示範改為
+  **憑格仔矩形找最近一格**（`chipAtPoint`），拖動先至唔會斷：
+
+  ```powershell
+  # demos/_tmp-drag-test.html：記住 demo 元素，合成拖曳後把結果寫入 <pre id="out">
+  & $ch --headless=new --disable-gpu --virtual-time-budget=5000 `
+        --dump-dom "file:///C:/Code%20Buddy/s5a-maths/demos/_tmp-drag-test.html" 2>$null |
+    Select-String -Pattern "DRAG_"
+  # 驗完即刻刪除臨時檔（唔可以留喺 repo）
+  ```
+
+  smoke test 亦有同一段拖曳斷言：jsdom 冇佈局，測試會**假造每格 `getBoundingClientRect`**
+  再 dispatch `MouseEvent("pointermove")`（jsdom 冇 `PointerEvent`），所以唔靠人手試。
 
 ---
 
