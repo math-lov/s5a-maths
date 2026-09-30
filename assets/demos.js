@@ -145,31 +145,22 @@
     tip.appendChild(autoBtn);
     root.appendChild(tip);
 
-    /* 框內：A ⇄ B */
-    var inner = el("div", "demo-inner");
-    var innerTitle = el("div", "demo-inner-h");
-    innerTitle.appendChild(biInline("框內部排列", "Inside the block"));
-    inner.appendChild(innerTitle);
-    var innerRow = el("div", "demo-inner-row");
-    var chipA = el("div", "ichip", "A");
-    var chipB = el("div", "ichip", "B");
-    var swap = button("btn-ghost", "A、B 對調", "Swap A and B", "⇄", "end");
-    var flipped = false;
-    swap.onclick = function () {
-      flipped = !flipped;
-      innerRow.classList.toggle("flipped", flipped);
-      swap.setAttribute("aria-pressed", flipped ? "true" : "false");
-    };
+    /* 框內部排列：直接喺舞台嘅大單位上對調（唔會另外畫一組 A、B），
+       下面一行只負責講「AB ⇄ BA ⇒ 2! = 2」 */
+    var innerLine = el("div", "demo-innerline");
+    innerLine.appendChild(biInline("框內部排列（大單位內）：", "Inside the block:"));
+    var tagAB = el("span", "itag", "AB");
+    var tagBA = el("span", "itag", "BA");
+    innerLine.appendChild(tagAB);
+    innerLine.appendChild(el("span", "eqtimes", "⇄"));
+    innerLine.appendChild(tagBA);
+    innerLine.appendChild(el("span", "eq", "2! = 2"));
+    var swap = button("btn-ghost", "對調框內 A、B", "Swap A and B inside the block", "⇄", "end");
+    swap.setAttribute("data-swap", "ab");
     swap.setAttribute("aria-pressed", "false");
-    innerRow.appendChild(chipA);
-    innerRow.appendChild(chipB);
-    innerRow.appendChild(swap);
-    inner.appendChild(innerRow);
-    var innerEq = el("div", "demo-eqline");
-    innerEq.appendChild(biInline("內部 2 種次序：", "2 internal orders:"));
-    innerEq.appendChild(el("span", "eq", "2! = 2"));
-    inner.appendChild(innerEq);
-    root.appendChild(inner);
+    swap.onclick = function () { setFlipped(!flipped); };
+    innerLine.appendChild(swap);
+    root.appendChild(innerLine);
 
     /* 公式列（aria-live：每一步讀出目前的算式）
        第一行＝逐步亮起的零件，第二行＝第 5 步才組裝出來的完整算式 */
@@ -209,6 +200,7 @@
     var tried = {};      /* 已試過的排列（key ＝ order 串埋一齊） */
     var auto = null;     /* 自動播放的 timer */
     var autoLeft = 0;
+    var flipped = false; /* 大單位內 A、B 有冇對調 */
 
     function isBundled() { return step >= 1; }
     function canSwap() { return step === 2 || step === 3; }
@@ -219,8 +211,10 @@
       b.setAttribute("data-unit", id);
       if (id === "AB") {
         b.classList.add("unit-block");
-        b.appendChild(el("div", "pnode pnode-fixed pnode-in", "A"));
-        b.appendChild(el("div", "pnode pnode-fixed pnode-in", "B"));
+        /* 對調時，兩個圓圈直接喺大單位內交換次序（跟 flipped 狀態） */
+        (flipped ? ["B", "A"] : ["A", "B"]).forEach(function (ch) {
+          b.appendChild(el("div", "pnode pnode-fixed pnode-in", ch));
+        });
       } else {
         b.appendChild(el("div", "pnode" + (id === "A" || id === "B" ? " pnode-fixed" : ""), id));
       }
@@ -242,7 +236,9 @@
         }
         stage.appendChild(u);
       });
-      orderTxt.textContent = order.join(" · ").replace("AB", "A+B");
+      orderTxt.textContent = order.map(function (id) {
+        return id === "AB" ? (flipped ? "B+A" : "A+B") : id;
+      }).join(" · ");
       if (canSwap()) markTried();
     }
 
@@ -260,6 +256,39 @@
         u.classList.add("unit-moved");
         setTimeout(function () { u.classList.remove("unit-moved"); }, 450);
       });
+    }
+    /* 對調大單位內 A、B：兩個圓圈喺原位滑去對方位置（FLIP），
+       唔會另外畫一組 A、B —— 學生一眼睇到「框入面換咗次序」 */
+    function flipInner() {
+      var oldBlk = root.querySelector('[data-unit="AB"]');
+      var oldNodes = oldBlk ? Array.prototype.slice.call(oldBlk.querySelectorAll(".pnode")) : [];
+      var x = oldNodes.map(function (n) { return n.getBoundingClientRect().left; });
+      var names = oldNodes.map(function (n) { return n.textContent; });
+      paintStage();
+      var blk = root.querySelector('[data-unit="AB"]');
+      if (!blk) return;
+      Array.prototype.slice.call(blk.querySelectorAll(".pnode")).forEach(function (n) {
+        var k = names.indexOf(n.textContent);
+        if (k < 0) return;
+        var dx = x[k] - n.getBoundingClientRect().left;
+        n.style.transition = "none";
+        n.style.transform = "translateX(" + dx + "px)";
+        if (typeof requestAnimationFrame === "function") {
+          requestAnimationFrame(function () {
+            n.style.transition = "transform .3s ease";
+            n.style.transform = "";
+          });
+        } else {
+          n.style.transform = "";
+        }
+      });
+    }
+    function setFlipped(v) {
+      flipped = !!v;
+      swap.setAttribute("aria-pressed", flipped ? "true" : "false");
+      tagAB.classList.toggle("itag-on", !flipped);
+      tagBA.classList.toggle("itag-on", flipped);
+      flipInner();
     }
 
     /* 點兩個單位 → 交換位置（唔用拖放：手機＋鍵盤都一樣）
@@ -347,15 +376,15 @@
     prev.onclick = function () { setStep(step - 1); };
     next.onclick = function () { setStep(step + 1); };
     replay.onclick = function () {
-      flipped = false;
-      innerRow.classList.remove("flipped");
-      swap.setAttribute("aria-pressed", "false");
+      setFlipped(false);
       order = ["A", "B", "C", "D", "E"];
       setStep(0);
     };
 
     host.appendChild(root);
     setStep(o.step || 0);
+    /* opts.swap = true：先對調大單位內 A、B（獨立頁 ?swap=1 用，方便截圖） */
+    if (o.swap) setFlipped(true);
     return root;
   }
 

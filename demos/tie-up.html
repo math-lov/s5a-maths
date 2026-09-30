@@ -48,8 +48,10 @@
   document.getElementById("lang-slot").appendChild(bar);
   if (bar.__paint) bar.__paint();
   var step = parseInt(q.get("step") || "0", 10);
-  window.S5A_DEMO.tieUp(document.getElementById("demo-slot"),
-    { step: isNaN(step) ? 0 : step });
+  window.S5A_DEMO.tieUp(document.getElementById("demo-slot"), {
+    step: isNaN(step) ? 0 : step,
+    swap: q.get("swap") === "1"          /* ?swap=1 先對調框內 A、B（截圖用） */
+  });
 })();
 </script>
 </body>

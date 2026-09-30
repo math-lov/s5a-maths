@@ -513,12 +513,19 @@ ok(/5 \/ 24/.test(demo.querySelector(".demo-count").textContent),
 demo.__demoAuto.stop();
 demoBtns[1].click();
 ok(demo.getAttribute("data-step") === "3", "第 4 步：框內部對調");
-const swapBtn = demo.querySelector(".demo-inner .btn");
+const swapBtn = demo.querySelector('[data-swap="ab"]');
+const blockSeq = () => Array.prototype.slice.call(
+  demo.querySelectorAll('[data-unit="AB"] .pnode')).map((n) => n.textContent).join(",");
+const stageSeq = () => Array.prototype.slice.call(
+  demo.querySelectorAll(".demo-stage .pnode")).map((n) => n.textContent).join(",");
+ok(blockSeq() === "A,B", "大單位內起初係 A 然後 B");
 swapBtn.click();
-ok(swapBtn.getAttribute("aria-pressed") === "true" &&
-  demo.querySelector(".demo-inner-row").classList.contains("flipped"),
-  "框內 A、B 可對調（AB／BA），並標註 2! = 2");
-ok(/2! = 2/.test(demo.querySelector(".demo-inner").textContent), "框內標註內部排列 2! = 2");
+ok(swapBtn.getAttribute("aria-pressed") === "true" && blockSeq() === "B,A",
+  "對調後：舞台大單位內真的變成 B 然後 A（唔係另外畫一組）");
+ok(!demo.querySelector(".ichip"), "唔會另畫一組 A、B（框內直接用舞台嗰兩個圓圈）");
+ok(/B\+A/.test(demo.querySelector(".order-txt").textContent),
+  "「目前排列」同步顯示 B+A（實際 " + demo.querySelector(".order-txt").textContent + "）");
+ok(/2! = 2/.test(demo.querySelector(".demo-innerline").textContent), "框內標註內部排列 2! = 2");
 demoBtns[1].click();
 ok(demo.getAttribute("data-step") === "4", "第 5 步：組裝公式");
 ok(/4! = 24/.test(demo.querySelector(".demo-eq").textContent) &&
@@ -529,9 +536,8 @@ ok(/4! × 2! = 24 × 2 =/.test(demo.querySelector(".demo-eq").textContent),
   "第 5 步才組裝出完整算式（之前只亮起零件）");
 ok(demoBtns[1].disabled === true, "最後一步「下一步」不可按");
 demoBtns[2].click();
-ok(demo.getAttribute("data-step") === "0" &&
-  !demo.querySelector(".demo-inner-row").classList.contains("flipped"),
-  "「重播」回到第 1 步並還原對調狀態");
+ok(demo.getAttribute("data-step") === "0" && stageSeq() === "A,B,C,D,E",
+  "「重播」回到第 1 步並還原對調（大單位拆返 A、B）");
 ok(demo.querySelector(".demo-eq").getAttribute("aria-live") === "polite",
   "算式列用 aria-live 播報目前步驟（螢幕閱讀器讀得到）");
 const cssDemo = read("assets/style.css");

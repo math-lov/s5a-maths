@@ -792,21 +792,16 @@ body[data-sol="show"] .hint-row { display: none; }
 .demo-count { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 13.5px; color: var(--muted); }
 .demo[data-auto="1"] .demo-count { color: var(--primary-ink); }
 
-/* 框內：A ⇄ B */
-.demo-inner {
-  margin-top: var(--sp-3); padding: var(--sp-3);
+/* 框內部排列：只留一行文字（AB ⇄ BA、2! = 2）。
+   對調動作直接喺舞台嘅大單位上做 —— 唔會另外畫一組 A、B 出嚟。 */
+.demo-innerline {
+  margin-top: var(--sp-3); padding: 10px var(--sp-3);
   background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius-sm);
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-size: 13.5px; color: var(--muted);
 }
-.demo-inner-h { font-size: 13px; font-weight: 800; color: var(--accent-ink); margin-bottom: 6px; }
-.demo-inner-row { display: flex; align-items: center; gap: var(--sp-2); flex-wrap: wrap; }
-.ichip {
-  flex: none; width: 34px; height: 34px; border-radius: 50%;
-  background: var(--accent-soft); color: var(--accent-ink); border: 2px solid var(--accent-line);
-  display: grid; place-items: center; font-weight: 800;
-  transition: transform .3s ease;
-}
-.demo-inner-row.flipped .ichip:first-child { transform: translateX(42px); }
-.demo-inner-row.flipped .ichip:nth-child(2) { transform: translateX(-42px); }
+.itag { font-weight: 800; font-size: 15px; color: var(--muted); opacity: .4; }
+.itag-on { color: var(--primary-ink); opacity: 1; }
 
 /* 算式列：eqbox 逐個亮起 */
 .demo-eq {
@@ -838,7 +833,7 @@ body[data-sol="show"] .hint-row { display: none; }
 .demo[data-step="4"] .eq-inner,
 .demo[data-step="4"] .eq-total { opacity: 1; }
 /* 未到的步驟唔顯示，減少干擾 */
-.demo-units, .demo-inner, .demo-order, .demo-tip, .demo-count { display: none; }
+.demo-units, .demo-innerline, .demo-order, .demo-tip, .demo-count { display: none; }
 .demo[data-step="2"] .demo-count,
 .demo[data-step="3"] .demo-count { display: flex; }
 .demo[data-step="1"] .demo-units,
@@ -851,8 +846,8 @@ body[data-sol="show"] .hint-row { display: none; }
 .demo[data-step="2"] .demo-tip,
 .demo[data-step="3"] .demo-tip,
 .demo[data-step="4"] .demo-tip { display: block; }
-.demo[data-step="3"] .demo-inner,
-.demo[data-step="4"] .demo-inner { display: block; }
+.demo[data-step="3"] .demo-innerline,
+.demo[data-step="4"] .demo-innerline { display: flex; }
 
 /* 控制列 */
 .demo-ctrl { display: flex; gap: 8px; flex-wrap: wrap; margin-top: var(--sp-3); }
