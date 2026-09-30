@@ -1,6 +1,6 @@
 # 5A 數學溫習站 · 介面設計交接文件
 
-> 最近更新：2026-09-30（P0 換皮完成；P1 未開始）
+> 最近更新：2026-09-30（P0 換皮完成 → 再加一輪「中英並列可讀性」修正：雙語分段／標題層次／對比／箭頭與符號不重複／CSS 版本戳；P1 未開始）
 > 適用：任何改 `assets/style.css`／`assets/app.js`／三個 HTML 的工作
 > 相關：`docs/ADD-CONTENT-HANDOFF.md`（加題目內容）、`README.md`（整體流程）
 
@@ -80,6 +80,20 @@
 - **句子／段落**（圖例、meta、小節標題）：用 **`setPairLines()`**（div 版配對）→ 中英各佔一行，**唔好用 `setPair()`**（否則會黏成「…答案分（Accuracy mark）Marking codes:…」）
 - 頁首標題 `#quiz-name` / `#chapter-name`：CSS 已設兩語上下兩行（英文做次標題）；`#chapter-en` 唔可以再寫英文（會重複）
 - 語言中立的文字（例如試卷來源 `S.5 Mathematics · Chapter Quiz`）用普通元素，**唔好**用 `setPair`（否則並列模式會顯示兩次）
+- **箭頭／狀態符號**（`←` `→` `✓` `✗`）同屬語言中立，**唔可以寫入 `{zh, en}` 字串**：並列模式會出兩次（「← 主目錄 ← Home」、「已掌握 ✓ Mastered ✓」）。用 `setPairArrow()` 把符號放到雙語之外：
+
+  ```js
+  setPairArrow(prev, UI.prev, "←", "start");    // 符號在前
+  setPairArrow(next, UI.next, "→", "end");      // 符號在後
+  setPairArrow(marked, UI.marked, "✓", "end");  // 狀態符號（未標記時照舊 setPair(marked, UI.mark)）
+  toast(UI.okToast, "✓");                       // toast 同樣支援
+  ```
+
+  - 符號會寫成 `<span class="arw" aria-hidden="true">`（裝飾，唔會被螢幕閱讀器讀出），並且係雙語 span 之外嘅兄弟節點
+  - 箭頭唔夠位時 `arrow` 傳 `""`／`undefined` → 自動等同 `setPair()`
+  - 靜態 HTML（`quiz.html`／`chapter.html` 頂欄「主目錄」）用同一寫法：
+    `<span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span>`
+  - 新增／修改 `{zh, en}` 字串時，先睇下內容有冇箭頭、`✓`、`✗`、`·` 之類符號
 
 ---
 
@@ -99,7 +113,20 @@ $ch = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 - 檔名用空格時要寫成 `%20`
 - `--force-prefers-reduced-motion` 一定要加（否則卡片入場動畫會被拍到半透明）
 - 截圖放 **`C:\Code Buddy\_shots\`**（repo 之外，唔會入 git；IDE 檔案樹可直接點開）
-- 已知限制：**headless Chrome 喺 Windows 有最細視窗闊度，640px 以下截唔準** → 手機版面要老師用手機實測
+- 已知限制：**headless Chrome 喺 Windows 有最細視窗闊度（約 500 DIP）**。直接拍 `--window-size=390` 只會得到「500px 版面被裁成 390px」嘅圖——文字看似被切，**唔係橫向溢出**，唔好誤判（要證實就掃描圖右緣像素：卡片係 `#ffffff`、頁底係 `#faf7f3`；右緣一直係卡片色先至係真溢出）
+- **驗手機版面（390px）**：用 `tools/mobile-harness.html`。iframe 有自己嘅 390px viewport，媒體查詢（620px 斷點）照樣生效：
+
+  ```powershell
+  $ch = "C:\Program Files\Google\Chrome\Application\chrome.exe"
+  & $ch --headless=new --disable-gpu --hide-scrollbars --force-prefers-reduced-motion `
+        --virtual-time-budget=4000 --window-size=520,2450 `
+        --screenshot="C:\Code Buddy\_shots\s5a-ui\mobile390.png" `
+        "file:///C:/Code%20Buddy/s5a-maths/tools/mobile-harness.html?src=index.html&h=2400"
+  ```
+
+  - `src=` 要驗嘅頁（相對 repo 根）；帶 query 嘅頁要 encode，例如 `quiz.html%3Fc%3Dch10-test`
+  - `h=` iframe 高度，長頁可以加大（截圖 window 高度要 ≥ `h` + 約 50）
+  - 視窗闊度用 520（> 500 就唔會被夾硬擴闊），iframe 本身仍然係 390px
 
 ---
 

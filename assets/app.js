@@ -34,12 +34,13 @@
     next: { zh: "下一題", en: "Next" },
     backOverview: { zh: "回總覽", en: "Overview" },
     mark: { zh: "標記為已掌握", en: "Mark as mastered" },
-    marked: { zh: "已掌握 ✓", en: "Mastered ✓" },
+    /* 狀態符號（✓）唔寫入字串：否則「中英」並列會出兩次（見 setPairArrow） */
+    marked: { zh: "已掌握", en: "Mastered" },
     /* 判斷題（Section Check）逐小題作答 */
     tfTrue: { zh: "正確", en: "Correct" },
     tfFalse: { zh: "錯誤", en: "Incorrect" },
     tfRetry: { zh: "再試一次", en: "Try again" },
-    tfAll: { zh: "這一題全部小題都答對了 ✓", en: "All parts of this question are correct ✓" },
+    tfAll: { zh: "這一題全部小題都答對了", en: "All parts of this question are correct" },
     /* solution.alt：另一個做法（參考），預設收起，不作為第一解法 */
     altMore: { zh: "另一個做法（參考）", en: "Another approach (reference)" },
     /* 教學卡（part.cards，顯示在該節的總覽頁） */
@@ -69,7 +70,7 @@
       zh: "要清除這部裝置上的「已掌握」記錄嗎？",
       en: "Clear the 'mastered' records on this device?"
     },
-    okToast: { zh: "答對了 ✓", en: "Correct ✓" },
+    okToast: { zh: "答對了", en: "Correct" },
     missToast: { zh: "差一點 —— 看看下面「為甚麼會選錯」", en: "Close — see why the other options are wrong below" },
     /* 鷹架：乘／除以負數要轉向的高亮標籤 */
     flipNote: {
@@ -196,6 +197,7 @@
   /* 同上，但箭頭放在雙語之外：並列模式只出一次（「← 主目錄 ← Home」→「← 主目錄 Home」），
      且箭頭是裝飾，唔應該被螢幕閱讀器讀出來 */
   function setPairArrow(node, obj, arrow, side) {
+    if (!arrow) return setPair(node, obj);   /* 冇符號時就等於 setPair */
     node.innerHTML = "";
     var arw = el("span", "arw", arrow);
     arw.setAttribute("aria-hidden", "true");
@@ -231,10 +233,11 @@
     window.__S5A_LAST_NAV = url;
     try { location.href = url; } catch (e) {}
   }
-  function toast(msg) {
+  /* msg：字串或 {zh, en}；symbol（例如 ✓）放雙語之外，並列模式只出一次 */
+  function toast(msg, symbol) {
     var t = qs("#toast");
     if (!t) { t = el("div", "toast"); t.id = "toast"; document.body.appendChild(t); }
-    if (msg && typeof msg === "object") { t.innerHTML = ""; t.appendChild(pairSpan(msg)); }
+    if (msg && typeof msg === "object") setPairArrow(t, msg, symbol, "end");
     else t.textContent = msg;
     t.classList.add("show");
     clearTimeout(t.__timer);
@@ -685,10 +688,11 @@
           var clab = chMeta.short || chMeta.title || { zh: chMeta.id, en: chMeta.id };
           var ca = el("a", "btn btn-sm btn-ghost");
           ca.href = "chapter.html?ch=" + encodeURIComponent(chMeta.id);
-          ca.appendChild(pairSpan({
-            zh: "← " + (clab.zh || chMeta.id),
-            en: "← " + (clab.en || chMeta.id)
-          }));
+          /* 箭頭放雙語之外（並列模式只出一次） */
+          setPairArrow(ca, {
+            zh: (clab.zh || chMeta.id),
+            en: (clab.en || chMeta.id)
+          }, "←", "start");
           ca.onclick = function (e) { e.preventDefault(); go(ca.getAttribute("href")); };
           crumb.appendChild(ca);
         }
@@ -1034,7 +1038,7 @@
             if (tb) tb.classList.add("done");
             setProgress(qs("#quiz-progress"), PART);
           }
-          toast(UI.tfAll);
+          toast(UI.tfAll, "✓");
         }
       }
       var tfBox = el("div", "tf-parts");
@@ -1220,7 +1224,7 @@
     saveStore();
     lockOptions(q, L, opts);
     if (correct) {
-      toast(UI.okToast);
+      toast(UI.okToast, "✓");
       var curBtn = qs("#pagenav .pg.current");
       if (curBtn) curBtn.classList.add("done");
     } else {
@@ -1454,13 +1458,18 @@
     prev.disabled = cur <= 0;
     prev.onclick = function () { gotoPage(id, cur - 1); };
     var marked = el("button", "btn btn-sm" + (store.done[q.id] ? " btn-primary" : " btn-ghost"));
-    setPair(marked, store.done[q.id] ? UI.marked : UI.mark);
+    /* ✓ 同箭頭一樣放雙語之外：並列模式只出一次（「已掌握 Mastered ✓」） */
+    function labelMarked() {
+      if (store.done[q.id]) setPairArrow(marked, UI.marked, "✓", "end");
+      else setPair(marked, UI.mark);
+    }
+    labelMarked();
     marked.onclick = function () {
       if (store.done[q.id]) delete store.done[q.id];
       else store.done[q.id] = true;
       saveStore();
       marked.className = "btn btn-sm" + (store.done[q.id] ? " btn-primary" : " btn-ghost");
-      setPair(marked, store.done[q.id] ? UI.marked : UI.mark);
+      labelMarked();
       var nb = qsa("#pagenav .pg")[cur];
       if (nb) nb.classList.toggle("done", !!store.done[q.id]);
       setProgress(qs("#quiz-progress"), part);

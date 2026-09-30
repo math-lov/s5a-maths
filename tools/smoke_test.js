@@ -198,6 +198,24 @@ ok(!q1c.$(".answer-box").classList.contains("on"),
 ok(/已掌握 1 \/ 11 題/.test((q1c.$("#quiz-progress") || {}).textContent || ""),
   "進度文字正常（不再是 [object Object]）");
 
+/* 中英並列：語言中立的符號（箭頭／✓）唔可以寫入 {zh, en} 字串，否則會出兩次 */
+const countOf = (s, ch) => (s.match(new RegExp(ch, "g")) || []).length;
+const footFresh = (boot("quiz.html", "?c=ch10-test&p=1").$(".foot-nav") || {}).textContent || "";
+ok(countOf(footFresh, "←") === 2,
+  "底欄「←」只出現 2 次（上一題、主目錄），並列模式不會重複（實際 " + countOf(footFresh, "←") + "）");
+ok(countOf(footFresh, "→") === 1, "底欄「→」只出現 1 次（下一題）");
+ok(countOf(footFresh, "✓") === 0, "未標記時底欄不會出現 ✓");
+const donePage = boot("quiz.html", "?c=ch10-test&p=1",
+  JSON.stringify({ done: { "ch10-A1": true }, picked: { "ch10-A1": "B" }, hints: {} }));
+const doneFoot = (donePage.$(".foot-nav") || {}).textContent || "";
+ok(countOf(doneFoot, "✓") === 1,
+  "已掌握的題目：底欄「✓」只出現 1 次，不會中英各出一次（實際 " + countOf(doneFoot, "✓") + "）");
+ok(!!donePage.$('.foot-nav .btn .arw[aria-hidden="true"]'),
+  "符號寫成 .arw 且標為 aria-hidden（裝飾，唔會被螢幕閱讀器讀出）");
+ok(!/\{ zh: "[^"]*[←→✓✗]/.test(appJs),
+  "UI 字串不含箭頭／✓／✗（一律用 setPairArrow 放在雙語之外）");
+
+
 /* 逐步提示（KA hint 模式） */
 const qh = boot("quiz.html", "?c=ch10-test&p=1");
 ok(qh.doc.body.getAttribute("data-sol") === "hide", "新瀏覽器進入題目時已自動收起題解");
@@ -523,6 +541,10 @@ scAll.$$(".tf-item").forEach((it, i) => {
 });
 ok(scAll.store().done["ch17-2-sc"] === true, "7 小題全對 → 整題標記為已掌握");
 ok(scAll.$$("#pagenav .pg")[5].classList.contains("done"), "分頁列的 SC 打勾");
+/* toast 的符號同樣放雙語之外（中英並列只出一次） */
+const scToast = (scAll.$("#toast") || {}).textContent || "";
+ok(/都答對了/.test(scToast) && countOf(scToast, "✓") === 1,
+  "判斷題全對的 toast 只有一個 ✓（實際 " + countOf(scToast, "✓") + "）");
 
 const scBack = boot("quiz.html", "?c=ch17-2&p=5", JSON.stringify({
   done: { "ch17-2-sc": true }, picked: {}, hints: {},

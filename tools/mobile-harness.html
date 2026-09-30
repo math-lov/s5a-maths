@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<title>手機版截圖 harness（390px）</title>
+<!--
+  用途：headless Chrome 喺 Windows 有最細視窗闊度（約 500 DIP），
+        直接拍 --window-size=390 只會得到「500px 版面被裁成 390px」嘅圖，
+        文字看似被切（唔係橫向溢出）。用 iframe 就有自己嘅 390px viewport，
+        媒體查詢（620px 斷點）照樣生效。
+
+  用法：用 --window-size=520,H 拍本檔（H ≥ h + 約 50）：
+    & $ch --headless=new --disable-gpu --hide-scrollbars --force-prefers-reduced-motion `
+          --virtual-time-budget=4000 --window-size=520,2450 `
+          --screenshot="C:\Code Buddy\_shots\mobile390.png" `
+          "file:///C:/Code%20Buddy/s5a-maths/tools/mobile-harness.html?src=index.html&h=2400"
+
+  參數：src＝要驗嘅頁（相對於 repo 根，例如 index.html、quiz.html%3Fc%3Dch10-test）
+        h  ＝iframe 高度（預設 2400，長頁可以加大）
+-->
+<style>
+  html, body { margin: 0; background: #4b5563; font: 12px system-ui; }
+  .cap { color: #fff; font-weight: 700; padding: 6px 10px; }
+  iframe { border: 0; display: block; margin-left: 10px; background: #fff; }
+</style>
+</head>
+<body>
+<div class="cap" id="cap">mobile harness · 390px</div>
+<iframe id="frame" title="mobile preview" width="390" height="2400" scrolling="no"></iframe>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  var src = q.get("src") || "index.html";
+  var h = parseInt(q.get("h") || "2400", 10);
+  if (!(h > 0)) h = 2400;
+  var f = document.getElementById("frame");
+  f.height = h;
+  f.src = "../" + src;                      /* harness 喺 tools/，頁面喺上一層 */
+  document.getElementById("cap").textContent =
+    "mobile harness · 390px · " + src + " · h=" + h;
+})();
+</script>
+</body>
+</html>

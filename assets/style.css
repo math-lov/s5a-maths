@@ -623,6 +623,8 @@ body[data-sol="show"] .hint-row { display: none; }
   padding: 10px 20px; opacity: 0; pointer-events: none; transition: all .25s ease; z-index: 60;
 }
 .toast.show { opacity: .96; transform: translateX(-50%) translateY(0); }
+/* toast 內的語言中立符號（✓）：與文字之間要有間隔（.btn 靠 flex gap，toast 唔係 flex） */
+.toast .arw { margin-left: 6px; }
 
 .done-banner {
   text-align: center; padding: 18px; border-radius: var(--radius);
