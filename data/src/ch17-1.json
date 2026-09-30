@@ -225,6 +225,16 @@
         ]
        }
       ],
+      "alt": [
+       {
+        "name": {
+         "zh": "另一個做法：三個互斥區域相加",
+         "en": "Alternative: add the three disjoint regions"
+        },
+        "zh": "把兩類分成三個互斥區域：只學中國象棋 $36 - 15 = 21$ 人、只學國際象棋 $54 - 15 = 39$ 人、兩樣都學 15 人。三區直接相加：$21 + 15 + 39 = 75$ 人，與 $[36 + 54] - 15 = 75$ 一致，可以用來核對答案。",
+        "en": "Split the two groups into three disjoint regions: Chinese chess only $36 - 15 = 21$, Western chess only $54 - 15 = 39$, and both 15. Adding the three regions gives $21 + 15 + 39 = 75$, agreeing with $[36 + 54] - 15 = 75$, so it doubles as a check."
+       }
+      ],
       "traps": [
        {
         "label": "（b）直接相加，忘記減重複",
@@ -1646,6 +1656,16 @@
         ]
        }
       ],
+      "alt": [
+       {
+        "name": {
+         "zh": "另一個做法：列三個互斥區域",
+         "en": "Alternative: list the three disjoint regions"
+        },
+        "zh": "設兩樣都會有 $x$ 人，則只煮西餐 $40 - x$ 人、只做甜品 $30 - x$ 人。全店人數是三個互斥區域之和：$(40 - x) + x + (30 - x) = 60$，即 $70 - x = 60$，得 $x = 10$；所以 (b) 只煮西餐有 $40 - 10 = 30$ 人。",
+        "en": "Let $x$ chefs do both; then $40 - x$ cook Western dishes only and $30 - x$ make desserts only. The kitchen is the sum of the three disjoint regions: $(40 - x) + x + (30 - x) = 60$, i.e. $70 - x = 60$, so $x = 10$; hence (b) Western only is $40 - 10 = 30$."
+       }
+      ],
       "traps": [
        {
         "label": "(b) 直接把 40 當答案",
@@ -1723,6 +1743,16 @@
         "highlight": [
          "150 - [(60 + 56) - 45] = 79"
         ]
+       }
+      ],
+      "alt": [
+       {
+        "name": {
+         "zh": "另一個做法：三區相加再取反面",
+         "en": "Alternative: the three regions, then the complement"
+        },
+        "zh": "標出三個互斥區域：只修物理 $56 - 45 = 11$ 人、只修化學 $60 - 45 = 15$ 人、兩科都修 45 人。至少修一科有 $11 + 45 + 15 = 71$ 人，兩科都不修即 $150 - 71 = 79$ 人，與 $150 - [(60 + 56) - 45] = 79$ 一致。",
+        "en": "Label the three disjoint regions: Physics only $56 - 45 = 11$, Chemistry only $60 - 45 = 15$, both 45. At least one subject is $11 + 45 + 15 = 71$, so neither is $150 - 71 = 79$, matching $150 - [(60 + 56) - 45] = 79$."
        }
       ],
       "traps": [
@@ -2177,8 +2207,8 @@
        }
       ],
       "tip": {
-       "zh": "有特別要求的位先數，其餘各位照樣用 10 個選擇相乘。",
-       "en": "Count the restricted places first, then multiply the remaining places with 10 choices each."
+       "zh": "奇數有 1、3、5、7、9 共 5 個；0 是偶數，所以偶數也有 5 個。先數有特別要求的位（首位與末位各 5 個選擇），其餘各位照樣用 10 個選擇相乘：$5 \\times 10^4 \\times 5 = 250000$。",
+       "en": "The odd digits are 1, 3, 5, 7 and 9 (five of them); 0 is even, so there are five even digits too. Count the restricted places first (first and last, 5 choices each), then multiply the free places with 10 choices each: $5 \\times 10^4 \\times 5 = 250000$."
       }
      }
     },
@@ -3060,6 +3090,16 @@
         "highlight": [
          "n = 10"
         ]
+       }
+      ],
+      "alt": [
+       {
+        "name": {
+         "zh": "另一個做法：用對數求指數",
+         "en": "Alternative: find the index with logarithms"
+        },
+        "zh": "若一時記不起 $1024$ 是 2 的幾次方，可用換底公式：$n = \\frac{\\log 1024}{\\log 2} = 10$（計算機按 $\\log 1024 \\div \\log 2$）。亦可在草稿紙把 1024 連續除以 2，數一數除了 10 次作驗算。",
+        "en": "If $1024 = 2^{10}$ is not recalled, use the change-of-base formula: $n = \\frac{\\log 1024}{\\log 2} = 10$ (press $\\log 1024 \\div \\log 2$ on the calculator). Halving 1024 on paper also takes exactly 10 steps."
        }
       ],
       "traps": [

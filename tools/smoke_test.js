@@ -475,6 +475,33 @@ ok(q171("ch17-1-sm-31").answers[2].math.indexOf("108") >= 0 &&
   "SM-31(b)(c) 官方答案 252／108（先處理首位；352 的奇數項用中括號寫明）");
 ok((q171("ch17-1-sm-31").solution.alt || []).length === 1,
   "SM-31 有官方 Alternative Solution（偶數分兩類）");
+/* 複檢後新增的「另一個做法（參考）」：互斥區域核對 ＋ 對數求指數 */
+const ALT_IDS = ["ch17-1-ce1", "ch17-1-l2-16", "ch17-1-l2-17", "ch17-1-ct-32"];
+ok(ALT_IDS.every((id) => {
+  const a = (q171(id).solution.alt || [])[0];
+  return a && a.name && a.name.zh && a.name.en && a.zh && a.en;
+}), "四題新增另一個做法（參考）：" + ALT_IDS.join("、"));
+ok(/21 \+ 15 \+ 39 = 75/.test(q171("ch17-1-ce1").solution.alt[0].zh),
+  "CE1 另一個做法：三個互斥區域 21 + 15 + 39 = 75（與 [36 + 54] − 15 對照）");
+ok(/11 \+ 45 \+ 15 = 71/.test(q171("ch17-1-l2-17").solution.alt[0].zh),
+  "L2-17 另一個做法：三區 11 + 45 + 15 = 71 → 150 − 71 = 79");
+ok(/\\frac\{\\log 1024\}\{\\log 2\}/.test(q171("ch17-1-ct-32").solution.alt[0].zh),
+  "CT-32 另一個做法：換底公式求指數 n");
+const l217Alt = boot("quiz.html", "?c=ch17-1&p=22", null, "show");
+ok(l217Alt.$$(".sol-card details").length >= 1 &&
+  /互斥區域/.test(l217Alt.$(".sol-card details").textContent) &&
+  l217Alt.$$(".katex-error").length === 0,
+  "L2-17 的「另一個做法（參考）」在題解卡內渲染（預設摺疊、真 KaTeX 無錯）");
+/* 計算機按鍵唔會取代方法性 tip（tip 講方法，計數機核對屬 alt） */
+ok(/k\^n/.test(q171("ch17-1-l1-13").solution.tip.zh) &&
+  !/計算機|\[\^\]/.test(q171("ch17-1-l1-13").solution.tip.zh),
+  "L1-13 的 tip 仍然講「k 為底、n 為指數」的方法（不是按鍵）");
+ok(/0 是偶數/.test(q171("ch17-1-l2-22").solution.tip.zh),
+  "L2-22 的 tip 補上「0 是偶數」（奇偶各有 5 個）");
+/* 規則 3：內容不可標籤學生 */
+const LABEL_WORDS = ["保底", "補底", "落後", "後進", "基礎較弱", "差生"];
+ok(!LABEL_WORDS.some((w) => read("data/src/ch17-1.json").includes(w)),
+  "17.1 全部內容沒有標籤學生的字眼（" + LABEL_WORDS.join("／") + "）");
 ok(q171("ch17-1-ct-32").answers[0].math === "n = 10", "CT-32 官方答案 n = 10");
 ok(P171_DATA.sections.every((s) => s.questions.every((q) =>
   q.solution.steps.every((st) => (st.highlight || []).length === 1))),
