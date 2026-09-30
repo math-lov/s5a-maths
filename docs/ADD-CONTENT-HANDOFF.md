@@ -172,7 +172,7 @@ GitHub Pages 約 1 分鐘生效；學生第一次要 **Ctrl+F5**。
 | `ch10-test` 第 10 章測驗檢討 | 已完成（11 題 · 38 分） | 校本 Chapter Quiz 2026-09-25 |
 | `ch17-2` 17.2 排列 | 已完成（36 題 · 185 分） | 課本 Exercise 17.2，含 Class Exercise／SC／L1／L2／SM／CT |
 | `ch17-3` 17.3 組合 | 已完成（35 題 · 102 分） | 課本 Exercise 17.3；2026-09-29 完成解釋修訂（見 9.2） |
-| `ch17-1` 17.1 計數基本原理 | **未開始**（章節頁標示「即將推出」） | 下一份要做嘅內容 |
+| `ch17-1` 17.1 計數基本原理 | 已完成（37 題 · 133 分） | 課本 Exercise 17.1；2026-09-30 上線，見 9.6 |
 
 ### 9.2 17.3 已拍板的處理（唔好再改返轉頭）
 
@@ -191,7 +191,7 @@ s5a-maths\source\SMS_bkexe_5B17_e.docx   （題目）
 s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 ```
 
-舊路徑 `C:\Code Buddy\S5A\source\` 已唔存在。抽取段落嘅做法見 `_ch17tmp/dump_book.py`（用 `zipfile` 讀 `word/document.xml`，取 `w:t`／`m:t` 文字；數式係 WMF 圖片，抽唔到字）。
+舊路徑 `C:\Code Buddy\S5A\source\` 已唔存在。抽取段落嘅做法見 `C:\Code Buddy\_probe\dump_book.py`（用 `zipfile` ＋ `ElementTree` 讀 `word/document.xml`，取 `w:t`／`m:t` 文字；數式係 WMF 圖片，抽唔到字）。**注意**：唔可以用 `<w:t[^>]*>` 之類 regex 抓文字 —— `<w:tabs>` 這類標籤會被誤認成 `<w:t>`，令抽取結果夾雜原始 XML。
 
 ### 9.4 介面（UI）
 

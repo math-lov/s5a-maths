@@ -417,15 +417,87 @@ ok(chPage.$$("#chapter-body .part-btn").length === (CH17.sections || []).length,
   chPage.$$("#chapter-body .part-btn").length + "）");
 const soonBtns = chPage.$$("#chapter-body .part-btn[disabled]");
 const liveBtns = chPage.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
-ok(soonBtns.length === 1, "未上線的節（17.1）標示為即將推出且不可按");
-ok(liveBtns.length === 2, "已上線的節有 2 個（17.2、17.3）");
-liveBtns[0].click();
+ok(soonBtns.length === 0 && liveBtns.length === 3,
+  "三節全部上線（沒有「即將推出」；實際上線 " + liveBtns.length + " 節）");
+const secBtn = (n) => liveBtns.filter((b) => new RegExp("17\\." + n).test(b.textContent))[0];
+secBtn(1).click();
+ok(/c=ch17-1/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
+  "按「17.1」會去 quiz.html?c=ch17-1");
+secBtn(2).click();
 ok(/c=ch17-2/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
   "按「17.2」會去 quiz.html?c=ch17-2");
-const section173 = liveBtns.filter((b) => /17\.3/.test(b.textContent))[0];
-section173.click();
+secBtn(3).click();
 ok(/c=ch17-3/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
   "按「17.3」會去 quiz.html?c=ch17-3");
+
+/* ── 第 17.1 節（課本練習頁）：官方答案核對 ＋ 頁面渲染 ───────────────── */
+console.log("\n== 第 17.1 節（課本練習頁）==");
+const P171 = INDEX.parts.filter((p) => p.id === "ch17-1")[0] || {};
+ok(P171.stats && P171.stats.questions === 37 && P171.stats.marks === 133,
+  "第 17.1 節 37 題 · 133 分（實際 " +
+  (P171.stats ? P171.stats.questions + " 題 · " + P171.stats.marks + " 分" : "缺 stats") + "）");
+ok((P171.sections || []).length === 6 && (P171.qids || []).length === 37,
+  "第 17.1 節分 6 段且 qids 數目正確");
+const P171_JS = read("data/ch17-1.js");
+const P171_DATA = JSON.parse(P171_JS.slice(P171_JS.indexOf("{"), P171_JS.lastIndexOf("}") + 1));
+const q171 = (id) => P171_DATA.sections
+  .reduce((a, s) => a.concat(s.questions || []), []).filter((q) => q.id === id)[0] || {};
+ok(P171_DATA.sections.map((s) => s.id).join(",") === "CE,SC,L1,L2,SM,CT",
+  "17.1 分段順序＝課堂例題／判斷／L1／L2／挑戰／跨課題");
+ok((P171_DATA.cards || []).length === 3, "17.1 有 3 張教學卡");
+
+/* 官方答案（source/SMS_sol_5B17_e.docx 逐題核對，見 data/raw/ch17-1-source.md） */
+ok(q171("ch17-1-ce1").answers[1].math === "36 + 54 - 15 = 75",
+  "CE1(b) 官方答案 75（加完要減重疊）");
+ok(q171("ch17-1-ce2").answers[1].math === "5 \\times 3 \\times 8 = 120",
+  "CE2(b) 官方答案 120（每類各一支＝分步）");
+ok(q171("ch17-1-ce3").answers[0].math === "10^4 = 10000" &&
+  q171("ch17-1-ce3").answers[1].math === "10 \\times 9 \\times 8 \\times 7 = 5040",
+  "CE3 官方答案 10000／5040");
+ok(q171("ch17-1-ce4").answers[0].math === "(5 + 7) \\times 9 = 108",
+  "CE4 官方答案 108（先分類再乘）");
+const sc171 = q171("ch17-1-sc");
+ok(sc171.answers.filter((a) => a.tf === false).map((a) => a.part).join(",") === "(b),(d)",
+  "判斷題：只有 (b)、(d) 是錯（實際錯 " +
+  sc171.answers.filter((a) => a.tf === false).length + " 項）");
+ok(q171("ch17-1-l1-7").answers[0].math === "20 + 25 - 15 = 30", "L1-7 官方答案 30（兩樣都會）");
+ok(q171("ch17-1-l1-13").answers[0].math === "4^5 = 1024", "L1-13 官方答案 4^5 = 1024（5 題 4 選項）");
+ok(q171("ch17-1-l2-16").answers[0].math.indexOf("40 + 30 - 60") >= 0, "L2-16(a) 反求重疊 = 10");
+ok(q171("ch17-1-l2-24").answers[3].math === "13 \\times 13 \\times 2 = 338",
+  "L2-24(d) 兩個次序都要計（338）");
+ok(q171("ch17-1-l2-27").answers[1].math === "20000 - 150 \\times 50 = 12500",
+  "L2-27(b) 反面計數 12500");
+ok(q171("ch17-1-sm-31").answers[2].math.indexOf("108") >= 0 && q171("ch17-1-sm-31").answers[1].math === "300 - 48 = 252",
+  "SM-31(b)(c) 官方答案 252／108（先處理首位）");
+ok((q171("ch17-1-sm-31").solution.alt || []).length === 1,
+  "SM-31 有官方 Alternative Solution（偶數分兩類）");
+ok(q171("ch17-1-ct-32").answers[0].math === "n = 10", "CT-32 官方答案 n = 10");
+ok(P171_DATA.sections.every((s) => s.questions.every((q) =>
+  q.solution.steps.every((st) => (st.highlight || []).length === 1))),
+  "17.1 每個步驟都有 highlight 重點框（資料層）");
+ok(P171_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).length >= 1 &&
+  q.parts.reduce((t, p) => t + p.marks, 0) === q.marks)),
+  "17.1 每題都有 parts，而且分數加總＝題目分數（單一答案用 label \"\"）");
+ok(P171_DATA.sections.every((s) => s.questions.every((q) => (q.solution.traps || []).length >= 1)),
+  "17.1 每題都有常犯錯誤（traps）");
+ok(P171_DATA.cards.every((c) => !c.demo),
+  "17.1 教學卡暫時沒有互動示範（等老師決定，見 docs/ADD-CONTENT-HANDOFF.md §4）");
+
+const C171 = boot("quiz.html", "?c=ch17-1&p=0");
+ok(C171.$$("#pagenav .pg").length === 38,
+  "17.1 分頁列 = 總覽 + 37 題（實際 " + C171.$$("#pagenav .pg").length + "）");
+ok(C171.$$("#pagenav .pg-sec").length === 6, "17.1 分頁列有 6 個分段標題");
+ok(C171.$$(".cc").length === 3, "17.1 總覽渲染出 3 張教學卡");
+ok(/分類/.test((C171.$(".cc .cc-title") || {}).textContent || ""), "第一張教學卡講分類／分步");
+const ce1Page = boot("quiz.html", "?c=ch17-1&p=1");
+ok(/36 students are learning Chinese chess/.test((ce1Page.$(".q-stem") || {}).textContent || ""),
+  "17.1 第 1 題（CE1）渲染出題幹");
+ok(ce1Page.$$(".q-parts li").length === 2, "CE1 有 (a)(b) 兩小題");
+ok(ce1Page.$$(".sol-card .steps .step").length === 0, "CE1 題解預設收起（跟全站一致）");
+ce1Page.$("#sol-toggle").click();
+ok(ce1Page.$$(".sol-card .steps .step").length === 2, "CE1 展開題解後有 2 個步驟（逐步 marking）");
+ok(/36 \+ 54 - 15 = 75/.test((ce1Page.$(".answer-box") || {}).textContent || ""),
+  "CE1 答案欄顯示 (b) 的 75" + "");
 
 console.log("\n== 第 17.2 節（課本練習頁）==");
 const P172 = INDEX.parts.filter((p) => p.id === "ch17-2")[0] || {};

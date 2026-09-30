@@ -33,6 +33,19 @@
         "source": { "zh": "校本 Chapter Quiz（2026-09-25）", "en": "School chapter quiz (25 Sep 2026)" }
       },
       {
+        "id": "ch17-1",
+        "group": "classwork",
+        "chapter": "ch17",
+        "code": "17.1",
+        "kind": { "zh": "課本練習", "en": "Book exercise" },
+        "unit": { "zh": "第 17 章 · 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
+        "title": { "zh": "17.1 計數基本原理 · 課本練習", "en": "17.1 Basic Counting Principles · Book Exercise" },
+        "meta": { "paper": "Book 5B · Exercise 17.1" },
+        "stats": { "questions": 37, "marks": 133, "bonus": 0 },
+        "status": "ready",
+        "source": { "zh": "課本 Exercise 17.1（Class Exercise 17.1 ＋ Exercise 17.1）", "en": "Textbook Exercise 17.1" }
+      },
+      {
         "id": "ch17-2",
         "group": "classwork",
         "chapter": "ch17",
@@ -71,11 +84,11 @@
           "short": { "zh": "第 17 章", "en": "Chapter 17" },
           "title": { "zh": "第 17 章 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
           "intro": {
-            "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。17.2 與 17.3 課本練習現已提供逐步題解；17.1 將稍後補上。",
-            "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. Sections 17.2 and 17.3 now have step-by-step solutions; Section 17.1 will follow later."
+            "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。三節的課本練習都已提供逐步題解：先學「分類用加、分步用乘」，再學排列（有次序），最後學組合（不計次序）。",
+            "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. All three sections now have step-by-step solutions: first add for cases and multiply for steps, then permutations (order matters) and finally combinations (order ignored)."
           },
           "sections": [
-            { "code": "17.1", "part": null, "title": { "zh": "17.1 計數基本原理", "en": "17.1 Basic counting principles" } },
+            { "code": "17.1", "part": "ch17-1", "title": { "zh": "17.1 計數基本原理", "en": "17.1 Basic counting principles" } },
             { "code": "17.2", "part": "ch17-2", "title": { "zh": "17.2 排列", "en": "17.2 Permutations" } },
             { "code": "17.3", "part": "ch17-3", "title": { "zh": "17.3 組合", "en": "17.3 Combinations" } }
           ]
@@ -83,8 +96,8 @@
       ]
     },
     "comingSoon": {
-      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17.1 節會接著補上。",
-      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. Section 17.1 follows next."
+      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章的三節（17.1、17.2、17.3）已全部上線。",
+      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17 (17.1, 17.2 and 17.3) are now online."
     }
   }
 }
