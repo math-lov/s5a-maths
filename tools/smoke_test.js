@@ -542,6 +542,9 @@ ok(/prefers-reduced-motion[\s\S]{0,220}\.demo \.unit-block/.test(cssDemo),
 /* 插空法示範 */
 const demoS = c0.$('.demo[data-demo="slot-in"]');
 ok(!!demoS, "插空法卡有互動示範");
+const sGuide = () => (demoS.querySelector(".demo-guide") || {}).textContent || "";
+ok(/下一步/.test(sGuide()), "第 1 步有清晰指示：叫學生按「下一步」");
+ok(!!demoS.querySelector(".demo-guide [data-shuffle]"), "指示列有「打亂男生」按鈕");
 ok(demoS.querySelectorAll(".pnode-boy").length === 4, "舞台上有 4 位男生");
 ok(demoS.querySelectorAll(".slot").length === 5, "4 位男生形成 5 個空隙（頭、中間 3 個、尾）");
 const sBtns = demoS.querySelectorAll(".demo-ctrl .btn");
@@ -553,11 +556,30 @@ const firstBoy = boyAt()[0].getAttribute("data-boy");
 boyAt()[0].click();
 boyAt()[1].click();
 ok(boyAt()[1].getAttribute("data-boy") === firstBoy, "男生一樣可以點兩下互換位置");
+ok(/打亂男生/.test(sGuide()), "第 2 步指示講明可以點男生換位或打亂");
+/* 打亂男生（自動動畫；jsdom 唔等 timer → 手動 tick） */
+const bSeq = () => boyAt().map((u) => u.getAttribute("data-boy")).join(",");
+const cntBoys = () => parseInt(
+  (demoS.querySelector(".demo-count .order-txt") || {}).textContent || "0", 10);
+const beforeShuffle = bSeq();
+const shBtn = demoS.querySelector(".demo-guide [data-shuffle]");
+shBtn.click();
+ok(demoS.getAttribute("data-shuffle") === "1" && shBtn.disabled === true,
+  "按「打亂男生」會開始自動打亂（播放中鎖定按鈕）");
+ok(demoS.__demoShuffle.playing() === true, "打亂動畫進行中");
+demoS.__demoShuffle.stop();
+ok(!demoS.getAttribute("data-shuffle") && shBtn.disabled === false, "打亂可以停得返");
+demoS.__demoShuffle.tick();
+ok(bSeq() !== beforeShuffle, "每 tick 會真的換位（" + beforeShuffle + " → " + bSeq() + "）");
+demoS.__demoShuffle.tick();
+ok(cntBoys() >= 2, "打亂後「男生已試排列」會累加（實際 " + cntBoys() + " / 24）");
+demoS.__demoShuffle.stop();
 sBtns[1].click();
 ok(demoS.getAttribute("data-step") === "2", "第 3 步：5 個空隙亮起");
 ok(demoS.querySelectorAll(".slot-on").length === 5, "5 個空隙同步亮起（頭、中間 3 個、尾）");
 sBtns[1].click();
 ok(demoS.getAttribute("data-step") === "3", "第 4 步：女生逐一放入空隙");
+ok(/點一個虛線空隙/.test(sGuide()), "第 4 步明確指示：點空隙放入女生（唔會唔知做咩）");
 ok(demoS.querySelectorAll(".hold-row .gchip").length === 3, "等候區有 3 位女生");
 ok(demoS.querySelectorAll(".slot-live").length === 5, "5 個空隙都可以揀（第一位女生有 5 個選擇）");
 const slotsAt = () => Array.prototype.slice.call(demoS.querySelectorAll(".slot"));

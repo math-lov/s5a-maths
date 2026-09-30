@@ -774,13 +774,20 @@ body[data-sol="show"] .hint-row { display: none; }
 }
 /* 4 個主體： */
 .demo-units { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 13.5px; color: var(--muted); }
-/* 換位提示（第 3 步）＋「示範 4 種位置」按鈕 */
-.demo-tip {
+/* 換位提示／每步指示（第 3 步）＋示範按鈕：橙色＝「要你留意／而家要做」 */
+.demo-tip, .demo-guide {
   margin-top: 6px; font-size: 13.5px; color: var(--accent-ink);
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
-.demo-tip .btn { color: var(--accent-ink); border-color: var(--accent-line); background: var(--accent-soft); }
-.demo-tip .btn:hover { background: #ffe9d5; border-color: var(--accent); }
+.demo-guide { margin: 0 0 var(--sp-3); padding: 10px 12px; background: var(--accent-soft); border-left: 4px solid var(--accent); border-radius: var(--radius-sm); }
+.demo-guide .guide-txt { flex: 1 1 200px; min-width: 0; }
+.demo-tip .btn, .demo-guide .btn { color: var(--accent-ink); border-color: var(--accent-line); background: var(--card); }
+.demo-tip .btn:hover, .demo-guide .btn:hover { background: #ffe9d5; border-color: var(--accent); }
+/* 插空法：「打亂男生」只在可以換位的步驟出現 */
+.demo[data-demo="slot-in"] .demo-guide .btn { display: none; }
+.demo[data-demo="slot-in"][data-step="1"] .demo-guide .btn,
+.demo[data-demo="slot-in"][data-step="2"] .demo-guide .btn,
+.demo[data-demo="slot-in"][data-step="3"] .demo-guide .btn { display: inline-flex; }
 /* 已試 n / 24 種排列 */
 .demo-count { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: 6px; font-size: 13.5px; color: var(--muted); }
 .demo[data-auto="1"] .demo-count { color: var(--primary-ink); }

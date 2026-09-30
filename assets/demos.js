@@ -411,11 +411,29 @@
     q.appendChild(legend);
     root.appendChild(q);
 
+    /* 每步的清晰指示：學生唔會唔知「下一步要做咩」 */
+    var guide = el("div", "demo-guide");
+    var guideTxt = el("div", "guide-txt");
+    guide.appendChild(guideTxt);
+    var shuffleBtn = button("btn-ghost", "打亂男生", "Shuffle the boys", "⇄", "end");
+    shuffleBtn.setAttribute("data-shuffle", "1");
+    guide.appendChild(shuffleBtn);
+    root.appendChild(guide);
+    var GUIDES = [
+      ["按「下一步」，先排好 4 位男生。",
+        "Press Next to arrange the 4 boys first."],
+      ["男生排成一排（4!）：點兩位男生可以互換位置，或按「打亂男生」看自動示範。做好就按「下一步」。",
+        "Arrange the boys (4!): tap two boys to swap them, or press Shuffle the boys. Then press Next."],
+      ["數一數空隙：4 位男生形成 5 個空隙（頭、中間 3 個、尾）—— 這就是 P(5,3) 的 5。按「下一步」開始放女生。",
+        "Count the gaps: 4 boys create 5 gaps (before, three in between, after) — the 5 in P(5,3). Press Next to place the girls."],
+      ["【現在做】點一個虛線空隙，放入下一位女生；每放一位，可以揀的空隙就少一個（5 → 4 → 3）。放好 3 位就按「下一步」。",
+        "NOW: tap a dashed gap to place the next girl. Each placement leaves one fewer gap (5 to 4 to 3). With all 3 placed, press Next."],
+      ["完成：4! × P(5,3) = 24 × 60 = 1440 種排法。按「重播」可以再試一次。",
+        "Done: 4! × P(5,3) = 24 × 60 = 1440 arrangements. Press Replay to try again."]
+    ];
+
     var stage = el("div", "demo-stage stage-slots");
     root.appendChild(stage);
-    var hint = el("div", "demo-hint");
-    hint.appendChild(biInline("按「下一步」開始", "Press Next to start"));
-    root.appendChild(hint);
 
     var hold = el("div", "demo-hold");
     hold.appendChild(biInline("等候放入空隙的女生：", "Girls waiting for a gap:"));
@@ -468,6 +486,7 @@
     var pickedBoy = null;
     var tried = {};
     var step = 0;
+    var shuffleTimer = null;    /* 打亂男生的 timer */
 
     function canSwapBoys() { return step >= 1 && step <= 3; }
     function girlsLeft() { return GIRLS.filter(function (g, k) { return !placedHolds(k); }); }
@@ -478,6 +497,11 @@
       tried[boys.join("")] = true;
       var c = root.querySelector(".demo-count .order-txt");
       if (c) c.textContent = Object.keys(tried).length + " / 24";
+    }
+    function swapUnits(i, j) {
+      var t = boys[i];
+      boys[i] = boys[j];
+      boys[j] = t;
     }
     function pulse(nodes) {
       nodes.forEach(function (n) {
@@ -504,7 +528,7 @@
         var y = boys.indexOf(id);
         pickedBoy = null;
         if (x < 0 || y < 0) { paintStage(); return; }
-        var t = boys[x]; boys[x] = boys[y]; boys[y] = t;
+        swapUnits(x, y);
         paintStage();
         pulse(Array.prototype.slice.call(stage.querySelectorAll(".unit")));
       };
@@ -569,11 +593,71 @@
       markTried();
     }
 
+    /* 打亂男生：隨機抽兩個位置互換（FLIP：由舊位滑去新位），令「4! 有咁多排法」睇得到 */
+    function flipSwap(i, j) {
+      var before = boyEls();
+      var x0 = before[i] ? before[i].getBoundingClientRect().left : 0;
+      var x1 = before[j] ? before[j].getBoundingClientRect().left : 0;
+      swapUnits(i, j);
+      paintStage();
+      var after = boyEls();
+      [[after[i], x0], [after[j], x1]].forEach(function (p) {
+        var n = p[0];
+        if (!n) return;
+        var now = n.getBoundingClientRect().left;
+        n.style.transition = "none";
+        n.style.transform = "translateX(" + (p[1] - now) + "px)";
+        if (typeof requestAnimationFrame === "function") {
+          requestAnimationFrame(function () {
+            n.style.transition = "transform .34s ease";
+            n.style.transform = "";
+          });
+        } else {
+          n.style.transform = "";
+        }
+      });
+    }
+    function boyEls() { return Array.prototype.slice.call(stage.querySelectorAll(".unit")); }
+    function shuffleTick() {
+      if (boys.length < 2) return;
+      var i = Math.floor(Math.random() * boys.length);
+      var j = Math.floor(Math.random() * boys.length);
+      if (i === j) j = (j + 1) % boys.length;
+      flipSwap(i, j);
+    }
+    function stopShuffle() {
+      if (shuffleTimer) { clearInterval(shuffleTimer); shuffleTimer = null; }
+      shuffleBtn.disabled = false;
+      root.removeAttribute("data-shuffle");
+    }
+    shuffleBtn.onclick = function () {
+      if (!canSwapBoys()) return;
+      if (shuffleTimer) { stopShuffle(); return; }
+      pickedBoy = null;
+      root.setAttribute("data-shuffle", "1");
+      shuffleBtn.disabled = true;
+      var left = 5;
+      shuffleTimer = setInterval(function () {
+        shuffleTick();
+        left--;
+        if (left <= 0) stopShuffle();
+      }, 380);
+    };
+    /* 供測試用：手動 tick 一次、停止、查詢是否播放中 */
+    root.__demoShuffle = {
+      tick: shuffleTick,
+      stop: stopShuffle,
+      playing: function () { return !!shuffleTimer; }
+    };
+
     function setStep(n) {
+      stopShuffle();                                 /* 換步時一定要停打亂動畫 */
       step = Math.max(0, Math.min(SLOT_STEPS, n | 0));
       if (step < 3) placed = [];
       pickedBoy = null;
       root.setAttribute("data-step", String(step));
+      guideTxt.innerHTML = "";
+      guideTxt.appendChild(bi(GUIDES[step][0], GUIDES[step][1]));
       stepTag.innerHTML = "";
       stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (SLOT_STEPS + 1) + " 步",
         "Step " + (step + 1) + " / " + (SLOT_STEPS + 1)));
