@@ -817,6 +817,88 @@ demoG.querySelector('[data-rand="2"]').click();
 ok(sizesTwo() === "4,4,2", "「隨機再分一次」後仍然是 4、4、2（實際 " + sizesTwo() + "）");
 ok(gPanel(1).querySelectorAll(".gmember").length === 10, "10 個人都分到組，無漏無重");
 ok(/4, 4, 2|4、4、2/.test(read("data/src/ch17-3.json")), "分組卡正文已同步為 4、4、2 的例子");
+
+/* ── 組合示範：為何要除 r! ─────────────────────────────────────────────── */
+const demoC = p173Overview.$('.demo[data-demo="combination"]');
+ok(!!demoC, "組合卡有互動示範");
+ok(demoC.querySelectorAll(".unit-dot").length === 5, "舞台有 5 位學生");
+ok(/唔計次序/.test(demoC.querySelector(".demo-q").textContent), "題目寫明「唔計次序」");
+const cBtns = demoC.querySelectorAll(".demo-ctrl .btn");
+const ordTxt = () => (demoC.querySelector(".ord-row") || {}).textContent || "";
+cBtns[1].click();
+ok(demoC.getAttribute("data-step") === "1", "第 2 步：同一隊兩種寫法");
+ok(/1,2/.test(ordTxt()) && /2,1/.test(ordTxt()), "同時列出 1,2 與 2,1（同一隊兩種寫法）");
+ok(countOf(ordTxt(), "⇄") === 1, "兩張卡之間用 ⇄ 表示對調");
+demoC.querySelector('[data-person="3"]').click();
+demoC.querySelector('[data-person="5"]').click();
+ok(/3,5/.test(ordTxt()) && /5,3/.test(ordTxt()), "點兩個人就換一隊（3、5）並更新兩張卡");
+ok(/2 \/ 10/.test(demoC.querySelector(".demo-count").textContent),
+  "「已找到隊伍」累加（實際 " + demoC.querySelector(".demo-count").textContent + "）");
+cBtns[1].click();
+ok(demoC.getAttribute("data-step") === "2" &&
+  /5 × 4 = 20/.test(demoC.querySelector(".demo-eq").textContent), "第 3 步：有次序 5 × 4 = 20");
+cBtns[1].click();
+ok(demoC.getAttribute("data-step") === "3" && demoC.querySelectorAll(".ord-card.ord-dim").length === 2 &&
+  !!demoC.querySelector(".ord-merged"), "第 4 步：兩張有序卡淡化並合併成一張");
+ok(/20 ÷ 2! =/.test(demoC.querySelector(".demo-eq").textContent) &&
+  demoC.querySelector(".eq-total .eq").textContent === "10", "算式 20 ÷ 2! = 10");
+cBtns[2].click();
+ok(demoC.getAttribute("data-step") === "0" &&
+  (demoC.querySelector(".demo-count .order-txt") || {}).textContent === "",
+  "「重播」回到第 1 步並清空計數（實際 " +
+  ((demoC.querySelector(".demo-count .order-txt") || {}).textContent || "（空）") + "）");
+
+/* ── 路徑示範：路徑＝揀邊幾步向東 ───────────────────────────────────────── */
+const demoP = p173Overview.$('.demo[data-demo="path"]');
+ok(!!demoP, "路徑卡有互動示範");
+ok(demoP.querySelectorAll(".pstep").length === 7, "7 個步驟格（4 東 3 北）");
+const pPoly = () => demoP.querySelector(".grid-path");
+ok(pPoly().getAttribute("data-seq") === "ENENENE", "預設示範路徑＝東北東北東北東");
+ok(!pPoly().getAttribute("points"), "第 1 步未畫路徑");
+const pBtns = demoP.querySelectorAll(".demo-ctrl .btn");
+pBtns[1].click();
+ok(demoP.getAttribute("data-step") === "1" && !!pPoly().getAttribute("points"), "第 2 步：畫出示範路徑");
+ok(/4 \/ 4/.test(demoP.querySelector(".demo-count").textContent), "向東步數 4 / 4（合法）");
+pBtns[1].click();
+ok(demoP.getAttribute("data-step") === "2", "第 3 步：可以自己砌路徑");
+ok(/✓/.test(demoP.querySelector(".path-ok").textContent), "4 東 3 北＝合法路徑");
+const pstep0 = () => demoP.querySelectorAll(".pstep")[0];
+pstep0().click();
+ok(pstep0().classList.contains("pstep-n") &&
+  /3 \/ 4/.test(demoP.querySelector(".demo-count").textContent) &&
+  /要向東走/.test(demoP.querySelector(".path-ok").textContent), "點一格變「北」→ 提示未夠 4 東");
+pstep0().click();
+ok(/4 \/ 4/.test(demoP.querySelector(".demo-count").textContent), "再點一次還原成 4 東");
+pBtns[1].click();
+ok(demoP.getAttribute("data-step") === "3" &&
+  /C\(7,3\)/.test(demoP.querySelector(".demo-eq").textContent), "第 4 步：C(7,4) = C(7,3) = 35");
+ok(/4 步向東、3 步向北/.test(read("data/src/ch17-3.json")), "路徑卡正文已加入 4 東 3 北的例子");
+
+/* ── 至少／至多示範：反面計數 ──────────────────────────────────────────── */
+const demoX = p173Overview.$('.demo[data-demo="complement"]');
+ok(!!demoX, "至少／至多卡有互動示範");
+ok(demoX.querySelectorAll(".pdot").length === 13 &&
+  demoX.querySelectorAll(".pdot-boy").length === 6 &&
+  demoX.querySelectorAll(".pdot-girl").length === 7, "舞台上 6 男 7 女共 13 點");
+const xBtns = demoX.querySelectorAll(".demo-ctrl .btn");
+xBtns[1].click();
+ok(demoX.getAttribute("data-step") === "1" && demoX.querySelectorAll(".case-row").length === 4,
+  "第 2 步：直接分類 4 個 case");
+ok(/1260/.test(demoX.querySelector(".case-sum").textContent), "4 個 case 合共 1260");
+demoX.querySelector('[data-case="d1"]').click();
+ok(demoX.querySelector('[data-case="d1"]').classList.contains("case-on") &&
+  demoX.querySelectorAll(".pdot-on").length === 5, "點 case → 亮起該 5 人（1 男 4 女）");
+demoX.querySelector('[data-case="d1"]').click();
+ok(demoX.querySelectorAll(".pdot-on").length === 0, "再點一次取消標示");
+xBtns[1].click();
+ok(demoX.getAttribute("data-step") === "2" && demoX.querySelectorAll(".case-row").length === 2,
+  "第 3 步：反面只有 2 個唔合法 case");
+ok(/27/.test(demoX.querySelector(".case-sum").textContent), "全男 6 + 全女 21 = 27");
+ok(/1287/.test(demoX.querySelector(".demo-eq").textContent) &&
+  demoX.querySelector(".eq-total .eq").textContent === "1260", "1287 − 6 − 21 = 1260");
+xBtns[1].click();
+ok(demoX.getAttribute("data-step") === "3" &&
+  /唔可以/.test(demoX.querySelector(".demo-guide").textContent), "第 4 步提醒唔可以用 anchor-first 重複計");
 const p173Sc = boot("quiz.html", "?c=ch17-3&p=5");
 ok(!!p173Sc.$('.q-card[data-qid="ch17-3-sc"]') && p173Sc.$$(".tf-item").length === 6,
   "17.3 Section Check 有 6 個互動判斷項");

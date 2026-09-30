@@ -980,8 +980,508 @@
     return root;
   }
 
+  /* ── 組合（Combination）示範：為何要除 r! ──────────────────────────────
+     步驟 0 · 題目：5 人選 2 人組隊（唔計次序）
+     步驟 1 · 同一隊有兩種寫法（1,2 與 2,1）
+     步驟 2 · 有次序：5 × 4 = P(5,2) = 20
+     步驟 3 · 合併重複 → 20 ÷ 2! = C(5,2) = 10（附「已找到 n / 10 隊」）
+     ───────────────────────────────────────────────────────────────────── */
+  var COMB_STEPS = 3;
+  function combination(host, opts) {
+    var o = opts || {};
+    var PEOPLE = [1, 2, 3, 4, 5];
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "combination");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("組合示範", "Combination demo"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("5 名學生中選 2 人組隊（唔計次序）。",
+      "Choose 2 of 5 students to form a team (order does not matter)."));
+    root.appendChild(q);
+
+    var guide = el("div", "demo-guide");
+    var guideTxt = el("div", "guide-txt");
+    guide.appendChild(guideTxt);
+    root.appendChild(guide);
+    var GUIDES = [
+      ["按「下一步」開始；想換人，就點下面嘅學生。",
+        "Press Next to start; tap a student to change the pair."],
+      ["同一隊有兩種寫法（1,2 同 2,1）——「次序」就係多出嚟嘅部分。",
+        "The same team has two writings (1,2 and 2,1) — that is the extra part created by order."],
+      ["有次序：第一位 5 個選擇、第二位 4 個 → P(5,2) = 5 × 4 = 20。按「下一步」睇合併。",
+        "With order: 5 choices then 4 → P(5,2) = 5 × 4 = 20. Press Next to merge them."],
+      ["兩個寫法其實同一隊 → 20 ÷ 2! = 10。點不同嘅人，睇下可以找到幾多隊（共 10 隊）。",
+        "Both writings are one team → 20 ÷ 2! = 10. Tap different students to find all 10 teams."]
+    ];
+
+    var stage = el("div", "demo-stage stage-dots");
+    root.appendChild(stage);
+    var ordRow = el("div", "ord-row");
+    root.appendChild(ordRow);
+
+    var countLine = el("div", "demo-count");
+    countLine.appendChild(biInline("已找到隊伍：", "Teams found:"));
+    var countTxt = el("span", "order-txt");
+    countLine.appendChild(countTxt);
+    root.appendChild(countLine);
+
+    var eq = el("div", "demo-eq");
+    eq.setAttribute("aria-live", "polite");
+    var rowA = el("div", "eqrow eqrow-p");
+    var boxP = el("span", "eqbox");
+    boxP.appendChild(el("span", "eq", "5 × 4 = 20"));
+    rowA.appendChild(boxP);
+    rowA.appendChild(biInline("有次序（P(5,2)）", "with order (P(5,2))"));
+    var rowB = el("div", "eqrow eqrow-total");
+    rowB.appendChild(el("span", "eq eq-chain", "20 ÷ 2! ="));
+    var boxC = el("span", "eqbox eq-total");
+    boxC.appendChild(el("span", "eq", "10"));
+    rowB.appendChild(boxC);
+    rowB.appendChild(biInline("組合（C(5,2)）", "combination (C(5,2))"));
+    eq.appendChild(rowA);
+    eq.appendChild(rowB);
+    root.appendChild(eq);
+
+    var ctrl = el("div", "demo-ctrl");
+    var prev = button("btn-ghost", "上一步", "Previous", "←", "start");
+    var next = button("btn-primary", "下一步", "Next", "→", "end");
+    var replay = button("btn-ghost", "重播", "Replay");
+    ctrl.appendChild(prev);
+    ctrl.appendChild(next);
+    ctrl.appendChild(replay);
+    root.appendChild(ctrl);
+
+    var pair = [1, 2];
+    var sel = [];
+    var tried = {};
+    var step = 0;
+
+    function markTried() {
+      tried[pair.join("-")] = true;
+      countTxt.textContent = Object.keys(tried).length + " / 10";
+    }
+    function dotEl(n) {
+      var b = el("button", "unit unit-dot");
+      b.setAttribute("type", "button");
+      b.setAttribute("data-person", String(n));
+      b.appendChild(el("div", "pnode", String(n)));
+      if (pair.indexOf(n) >= 0) b.classList.add("unit-picked");
+      if (sel.indexOf(n) >= 0) b.classList.add("unit-sel");
+      b.disabled = step < 1;
+      b.onclick = function () {
+        if (step < 1) return;
+        var k = sel.indexOf(n);
+        if (k >= 0) { sel.splice(k, 1); paint(); return; }
+        sel.push(n);
+        if (sel.length === 2) {
+          pair = sel.slice().sort(function (x, y) { return x - y; });
+          sel = [];
+        }
+        paint();
+      };
+      return b;
+    }
+    function ordCard(txt, cls) {
+      var c = el("div", "ord-card" + (cls ? " " + cls : ""), txt);
+      return c;
+    }
+    function paint() {
+      stage.innerHTML = "";
+      PEOPLE.forEach(function (n) { stage.appendChild(dotEl(n)); });
+      ordRow.innerHTML = "";
+      if (step < 1) countTxt.textContent = "";   /* 重播時清空「已找到隊伍」 */
+      if (step >= 1) {
+        var a = pair[0];
+        var b = pair[1];
+        ordRow.appendChild(ordCard(a + "," + b, step >= 3 ? "ord-dim" : ""));
+        ordRow.appendChild(el("span", "eqtimes", "⇄"));
+        ordRow.appendChild(ordCard(b + "," + a, step >= 3 ? "ord-dim" : ""));
+        if (step >= 3) {
+          ordRow.appendChild(el("span", "eqtimes", "="));
+          ordRow.appendChild(ordCard("{" + a + "," + b + "}", "ord-merged"));
+        }
+        markTried();
+      }
+    }
+
+    function setStep(n) {
+      step = Math.max(0, Math.min(COMB_STEPS, n | 0));
+      sel = [];
+      root.setAttribute("data-step", String(step));
+      stepTag.innerHTML = "";
+      stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (COMB_STEPS + 1) + " 步",
+        "Step " + (step + 1) + " / " + (COMB_STEPS + 1)));
+      guideTxt.innerHTML = "";
+      guideTxt.appendChild(bi(GUIDES[step][0], GUIDES[step][1]));
+      prev.disabled = step === 0;
+      next.disabled = step === COMB_STEPS;
+      paint();
+    }
+    prev.onclick = function () { setStep(step - 1); };
+    next.onclick = function () { setStep(step + 1); };
+    replay.onclick = function () {
+      pair = [1, 2];
+      tried = {};
+      setStep(0);
+    };
+
+    host.appendChild(root);
+    setStep(o.step || 0);
+    return root;
+  }
+
+  /* ── 路徑（Grid path）示範：路徑 ＝ 選哪幾步向東 ────────────────────────
+     4 步向東、3 步向北（共 7 步）→ C(7,4) = 35，亦等於 C(7,3)
+     ───────────────────────────────────────────────────────────────────── */
+  var PATH_STEPS = 3;
+  var GRID_E = 4;
+  var GRID_N = 3;
+  var CELL = 22, PAD = 9;
+  function svgEl(tag, attrs) {
+    var n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+    return n;
+  }
+  function pathDemo(host, opts) {
+    var o = opts || {};
+    var TOTAL = GRID_E + GRID_N;                 /* 7 步 */
+    var DEMO_SEQ = ["E", "N", "E", "N", "E", "N", "E"];
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "path");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("路徑示範", "Grid-path demo"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("由 P 走到 Q：只可以向右（東）或向上（北），共 7 步（4 東、3 北）。",
+      "Walk from P to Q using only east and north moves: 7 steps in total (4 east, 3 north)."));
+    root.appendChild(q);
+
+    var guide = el("div", "demo-guide");
+    var guideTxt = el("div", "guide-txt");
+    guide.appendChild(guideTxt);
+    root.appendChild(guide);
+    var GUIDES = [
+      ["按「下一步」先睇一條合法路徑。", "Press Next to see one valid path."],
+      ["呢條路徑＝東北東北東北東。留意：7 步之中只要揀邊 4 步向東，路徑就唯一決定。",
+        "This path is E N E N E N E. Note: choosing which 4 of the 7 steps go east decides the whole path."],
+      ["點任何一格切換「東／北」，要保持 4 東 3 北 —— 每個合法組合就係一條路徑。C(7,4) = 35。",
+        "Tap a box to switch east/north; keep 4 east and 3 north — each valid choice is one path. C(7,4) = 35."],
+      ["換個角度：揀 3 步向北一樣得 → C(7,3) = 35，答案相同。",
+        "Another view: choose the 3 north steps instead → C(7,3) = 35, the same answer."]
+    ];
+
+    var stage = el("div", "demo-stage stage-path");
+    var svg = svgEl("svg", { viewBox: "0 0 104 82", class: "grid-svg", role: "img" });
+    var GX = GRID_E * CELL, GY = GRID_N * CELL;
+    function gx(i) { return PAD + i * CELL; }
+    function gy(j) { return PAD + GY - j * CELL; }
+    var g = svgEl("g", {});
+    for (var i = 0; i <= GRID_E; i++) {
+      g.appendChild(svgEl("line", { x1: gx(i), y1: gy(0), x2: gx(i), y2: gy(GRID_N), class: "grid-line" }));
+    }
+    for (var j = 0; j <= GRID_N; j++) {
+      g.appendChild(svgEl("line", { x1: gx(0), y1: gy(j), x2: gx(GRID_E), y2: gy(j), class: "grid-line" }));
+    }
+    for (var a = 0; a <= GRID_E; a++) {
+      for (var b = 0; b <= GRID_N; b++) {
+        g.appendChild(svgEl("circle", { cx: gx(a), cy: gy(b), r: 1.6, class: "grid-dot" }));
+      }
+    }
+    var poly = svgEl("polyline", { points: "", class: "grid-path" });
+    g.appendChild(poly);
+    var pLab = svgEl("text", { x: gx(0) - 7, y: gy(0) + 4, class: "grid-lab" });
+    pLab.textContent = "P";
+    var qLab = svgEl("text", { x: gx(GRID_E) + 3, y: gy(GRID_N) + 4, class: "grid-lab" });
+    qLab.textContent = "Q";
+    g.appendChild(pLab);
+    g.appendChild(qLab);
+    svg.appendChild(g);
+    stage.appendChild(svg);
+    root.appendChild(stage);
+
+    var stepRow = el("div", "path-steps");
+    root.appendChild(stepRow);
+    var countLine = el("div", "demo-count");
+    countLine.appendChild(biInline("向東的步數：", "East steps:"));
+    var countTxt = el("span", "order-txt");
+    countLine.appendChild(countTxt);
+    var okTxt = el("span", "path-ok");
+    countLine.appendChild(okTxt);
+    root.appendChild(countLine);
+
+    var eq = el("div", "demo-eq");
+    eq.setAttribute("aria-live", "polite");
+    var rowA = el("div", "eqrow eqrow-p");
+    var boxA = el("span", "eqbox");
+    boxA.appendChild(el("span", "eq", "C(7,4) = 35"));
+    rowA.appendChild(boxA);
+    rowA.appendChild(biInline("（揀 4 步向東）", "(choose 4 east steps)"));
+    var rowB = el("div", "eqrow eqrow-total");
+    var boxB = el("span", "eqbox eq-total");
+    boxB.appendChild(el("span", "eq", "35"));
+    rowB.appendChild(el("span", "eq eq-chain", "C(7,4) = C(7,3) ="));
+    rowB.appendChild(boxB);
+    rowB.appendChild(biInline("（揀 3 步向北，答案一樣）", "(choose 3 north steps: same answer)"));
+    eq.appendChild(rowA);
+    eq.appendChild(rowB);
+    root.appendChild(eq);
+
+    var ctrl = el("div", "demo-ctrl");
+    var prev = button("btn-ghost", "上一步", "Previous", "←", "start");
+    var next = button("btn-primary", "下一步", "Next", "→", "end");
+    var replay = button("btn-ghost", "重播", "Replay");
+    ctrl.appendChild(prev);
+    ctrl.appendChild(next);
+    ctrl.appendChild(replay);
+    root.appendChild(ctrl);
+
+    var seq = DEMO_SEQ.slice();
+    var step = 0;
+
+    function pts() {
+      var x = 0, y = 0, out = [gx(0) + "," + gy(0)];
+      seq.forEach(function (s) {
+        if (s === "E") x++; else y++;
+        out.push(gx(x) + "," + gy(y));
+      });
+      return out.join(" ");
+    }
+    function eastCount() {
+      return seq.filter(function (s) { return s === "E"; }).length;
+    }
+    function paint() {
+      stepRow.innerHTML = "";
+      seq.forEach(function (s, k) {
+        var box = el("button", "pstep " + (s === "E" ? "pstep-e" : "pstep-n"));
+        box.setAttribute("type", "button");
+        box.setAttribute("data-step-i", String(k));
+        box.textContent = s === "E" ? "東" : "北";
+        box.disabled = step < 2;
+        box.onclick = function () {
+          if (step < 2) return;
+          seq[k] = seq[k] === "E" ? "N" : "E";
+          paint();
+        };
+        stepRow.appendChild(box);
+      });
+      var e = eastCount();
+      countTxt.textContent = e + " / " + GRID_E;
+      okTxt.textContent = e === GRID_E ? "✓ 合法路徑" : "（要向東走 " + GRID_E + " 步）";
+      okTxt.classList.toggle("path-bad", e !== GRID_E);
+      poly.setAttribute("points", step >= 1 ? pts() : "");
+      poly.setAttribute("data-seq", seq.join(""));
+    }
+    function setStep(n) {
+      step = Math.max(0, Math.min(PATH_STEPS, n | 0));
+      if (step === 0) seq = DEMO_SEQ.slice();
+      if (step === 1) seq = DEMO_SEQ.slice();
+      root.setAttribute("data-step", String(step));
+      stepTag.innerHTML = "";
+      stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (PATH_STEPS + 1) + " 步",
+        "Step " + (step + 1) + " / " + (PATH_STEPS + 1)));
+      guideTxt.innerHTML = "";
+      guideTxt.appendChild(bi(GUIDES[step][0], GUIDES[step][1]));
+      prev.disabled = step === 0;
+      next.disabled = step === PATH_STEPS;
+      paint();
+    }
+    prev.onclick = function () { setStep(step - 1); };
+    next.onclick = function () { setStep(step + 1); };
+    replay.onclick = function () { seq = DEMO_SEQ.slice(); setStep(0); };
+
+    host.appendChild(root);
+    setStep(o.step || 0);
+    return root;
+  }
+
+  /* ── 至少／至多（Complement）示範：反面計數 ────────────────────────────
+     6 男 7 女中選 5 人，至少 1 男 1 女
+     步驟 1 · 直接分類：4 個 case（1男4女 … 4男1女）合共 1260
+     步驟 2 · 反面計數：只有 2 個唔合法 case（全男 6、全女 21）→ 1287 − 27 = 1260
+     步驟 3 · 兩條路都得，反面只數 2 個 case，唔怕漏
+     ───────────────────────────────────────────────────────────────────── */
+  var COMP_STEPS = 3;
+  function complement(host, opts) {
+    var o = opts || {};
+    var BOYS = 6, GIRLS = 7;
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "complement");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("至少／至多示範", "At least / at most demo"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("6 男 7 女中選 5 人，要求至少 1 男 1 女。",
+      "Choose 5 people from 6 boys and 7 girls, with at least 1 boy and 1 girl."));
+    var legend = el("div", "demo-legend");
+    legend.appendChild(el("span", "lg-dot lg-boy"));
+    legend.appendChild(biInline("男生（6 人）", "boys (6)"));
+    legend.appendChild(el("span", "lg-dot lg-girl"));
+    legend.appendChild(biInline("女生（7 人）", "girls (7)"));
+    q.appendChild(legend);
+    root.appendChild(q);
+
+    var guide = el("div", "demo-guide");
+    var guideTxt = el("div", "guide-txt");
+    guide.appendChild(guideTxt);
+    root.appendChild(guide);
+    var GUIDES = [
+      ["按「下一步」睇直接分類要數幾多個 case。", "Press Next to see how many cases a direct count needs."],
+      ["直接分類有 4 個 case（1男4女、2男3女、3男2女、4男1女），加起來 1260。點任何一行可以睇嗰個 case 係點揀。",
+        "A direct count has 4 cases (1 boy 4 girls, 2+3, 3+2, 4+1), totalling 1260. Tap a row to see that case."],
+      ["反面計數：只有 2 個唔合法 case（全男、全女）→ 1287 − 6 − 21 = 1260。",
+        "Counting the complement: only 2 failing cases (all boys, all girls) → 1287 − 6 − 21 = 1260."],
+      ["兩條路都得到 1260，但反面只數 2 個 case，唔怕漏。切記唔可以用「先揀一男一女再揀其餘」——同一隊會重複計。",
+        "Both routes give 1260, but the complement needs only 2 cases and cannot miss any. Never use 'pick one boy and one girl first': the same team is counted many times."]
+    ];
+
+    var stage = el("div", "demo-stage stage-dots");
+    root.appendChild(stage);
+    var list = el("div", "case-list");
+    root.appendChild(list);
+    var eq = el("div", "demo-eq");
+    eq.setAttribute("aria-live", "polite");
+    var rowA = el("div", "eqrow eqrow-direct");
+    rowA.appendChild(el("span", "eq eq-chain", "直接分類 ＝"));
+    var boxA = el("span", "eqbox");
+    boxA.appendChild(el("span", "eq", "210 + 525 + 420 + 105 = 1260"));
+    rowA.appendChild(boxA);
+    var rowB = el("div", "eqrow eqrow-comp");
+    rowB.appendChild(el("span", "eq eq-chain", "反面計數 ＝ C(13,5) − C(6,5) − C(7,5) = 1287 − 6 − 21 ="));
+    var boxB = el("span", "eqbox eq-total");
+    boxB.appendChild(el("span", "eq", "1260"));
+    rowB.appendChild(boxB);
+    eq.appendChild(rowA);
+    eq.appendChild(rowB);
+    root.appendChild(eq);
+
+    var ctrl = el("div", "demo-ctrl");
+    var prev = button("btn-ghost", "上一步", "Previous", "←", "start");
+    var next = button("btn-primary", "下一步", "Next", "→", "end");
+    var replay = button("btn-ghost", "重播", "Replay");
+    ctrl.appendChild(prev);
+    ctrl.appendChild(next);
+    ctrl.appendChild(replay);
+    root.appendChild(ctrl);
+
+    var CASES = {
+      direct: [
+        { id: "d1", b: 1, g: 4, zh: "1 男 4 女", en: "1 boy, 4 girls", calc: "C(6,1) × C(7,4) = 6 × 35", n: 210 },
+        { id: "d2", b: 2, g: 3, zh: "2 男 3 女", en: "2 boys, 3 girls", calc: "C(6,2) × C(7,3) = 15 × 35", n: 525 },
+        { id: "d3", b: 3, g: 2, zh: "3 男 2 女", en: "3 boys, 2 girls", calc: "C(6,3) × C(7,2) = 20 × 21", n: 420 },
+        { id: "d4", b: 4, g: 1, zh: "4 男 1 女", en: "4 boys, 1 girl", calc: "C(6,4) × C(7,1) = 15 × 7", n: 105 }
+      ],
+      comp: [
+        { id: "c1", b: 5, g: 0, zh: "全男（5 人）", en: "all boys", calc: "C(6,5)", n: 6 },
+        { id: "c2", b: 0, g: 5, zh: "全女（5 人）", en: "all girls", calc: "C(7,5)", n: 21 }
+      ]
+    };
+    var active = null;
+    var step = 0;
+
+    function dotEl(kind, n) {
+      var d = el("span", "pdot pdot-" + kind, String(n));
+      d.setAttribute("data-dot-kind", kind);
+      return d;
+    }
+    function paintDots() {
+      stage.innerHTML = "";
+      for (var b = 1; b <= BOYS; b++) {
+        var db = dotEl("boy", b);
+        if (active && active.b >= b) db.classList.add("pdot-on");
+        stage.appendChild(db);
+      }
+      for (var g = 1; g <= GIRLS; g++) {
+        var dg = dotEl("girl", g);
+        if (active && active.g >= g) dg.classList.add("pdot-on");
+        stage.appendChild(dg);
+      }
+    }
+    function paintList() {
+      list.innerHTML = "";
+      var cls = step === 1 ? "direct" : step >= 2 ? "comp" : null;
+      if (!cls) return;
+      var items = CASES[cls];
+      var total = 0;
+      items.forEach(function (c) {
+        var row = el("button", "case-row" + (active && active.id === c.id ? " case-on" : ""));
+        row.setAttribute("type", "button");
+        row.setAttribute("data-case", c.id);
+        row.appendChild(el("span", "case-n", c.calc));
+        row.appendChild(el("span", "case-tag", "= " + c.n));
+        row.appendChild(biInline("（" + c.zh + "）", "(" + c.en + ")"));
+        row.onclick = function () {
+          active = active && active.id === c.id ? null : c;
+          paintDots();
+          paintList();
+        };
+        list.appendChild(row);
+        total += c.n;
+      });
+      var sum = el("div", "case-sum");
+      sum.appendChild(biInline(step === 1 ? "4 個 case 合共：" : "2 個唔合法 case 合共：",
+        step === 1 ? "All 4 cases:" : "Both failing cases:"));
+      sum.appendChild(el("span", "eq", String(total)));
+      list.appendChild(sum);
+    }
+    function paint() {
+      paintDots();
+      paintList();
+    }
+    function setStep(n) {
+      step = Math.max(0, Math.min(COMP_STEPS, n | 0));
+      active = null;
+      root.setAttribute("data-step", String(step));
+      stepTag.innerHTML = "";
+      stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (COMP_STEPS + 1) + " 步",
+        "Step " + (step + 1) + " / " + (COMP_STEPS + 1)));
+      guideTxt.innerHTML = "";
+      guideTxt.appendChild(bi(GUIDES[step][0], GUIDES[step][1]));
+      prev.disabled = step === 0;
+      next.disabled = step === COMP_STEPS;
+      paint();
+    }
+    prev.onclick = function () { setStep(step - 1); };
+    next.onclick = function () { setStep(step + 1); };
+    replay.onclick = function () { setStep(0); };
+
+    host.appendChild(root);
+    setStep(o.step || 0);
+    return root;
+  }
+
   global.S5A_DEMO = {
-    types: { "tie-up": tieUp, "slot-in": slotIn, grouping: grouping },
+    types: {
+      "tie-up": tieUp, "slot-in": slotIn, grouping: grouping,
+      combination: combination, path: pathDemo, complement: complement
+    },
+    tieUp: tieUp,
+    slotIn: slotIn,
+    grouping: grouping,
+    combination: combination,
+    path: pathDemo,
+    complement: complement,
     tieUp: tieUp,
     slotIn: slotIn,
     grouping: grouping,

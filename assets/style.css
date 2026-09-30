@@ -822,8 +822,17 @@ body[data-sol="show"] .hint-row { display: none; }
   color: var(--primary-ink); font-size: 16px;
 }
 .eqtimes { color: var(--muted); font-weight: 800; }
-/* 只有分步示範（有 data-step）才需要「未到的零件先淡化」；分組示範無步驟，直接全亮 */
-.demo[data-step] .eqbox { opacity: .25; transition: opacity .25s ease; }
+/* 逐步揭示的示範（綑綁法／插空法）才需要「未到的零件先淡化」；
+   組合／路徑／至少至多直接用 eqrow 的顯示切換，分組示範無步驟，一律全亮 */
+.demo[data-demo="tie-up"] .eqbox,
+.demo[data-demo="slot-in"] .eqbox { opacity: .25; transition: opacity .25s ease; }
+/* 組合／路徑：第一行算式未到步驟前先淡化 */
+.demo[data-demo="combination"] .eqrow-p,
+.demo[data-demo="path"] .eqrow-p { opacity: .3; }
+.demo[data-demo="combination"][data-step="2"] .eqrow-p,
+.demo[data-demo="combination"][data-step="3"] .eqrow-p,
+.demo[data-demo="path"][data-step="2"] .eqrow-p,
+.demo[data-demo="path"][data-step="3"] .eqrow-p { opacity: 1; }
 .eq-total .eq { color: var(--ok-dark); font-size: 19px; }
 .demo[data-step="1"] .eq-units,
 .demo[data-step="2"] .eq-units,
@@ -943,6 +952,88 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 /* C^n_r：用 sup/sub，跟站內 KaTeX 的寫法一致 */
 .ncr { font-weight: 800; color: var(--primary-ink); }
 .ncr sup, .ncr sub { font-size: .7em; }
+
+/* ══ 組合示範（combination）：同一隊兩種寫法 → 合併 ═════════════════════ */
+.stage-dots { gap: 10px; }
+.unit-dot { padding: 0; }
+.unit-sel { background: rgba(249, 115, 22, .12); box-shadow: inset 0 0 0 2px var(--accent); border-radius: 999px; }
+.ord-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: var(--sp-2); }
+.ord-card {
+  padding: 6px 12px; border-radius: var(--radius-sm); background: var(--card);
+  border: 2px solid var(--accent-line); color: var(--accent-ink);
+  font-weight: 800; font-size: 15px; font-variant-numeric: tabular-nums;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.ord-dim { opacity: .45; transform: scale(.94); border-style: dashed; }
+.ord-merged { border-color: var(--ok); color: var(--ok-dark); background: var(--ok-soft); }
+.demo[data-demo="combination"] .ord-row,
+.demo[data-demo="combination"] .demo-count { display: none; }
+.demo[data-demo="combination"][data-step="1"] .ord-row,
+.demo[data-demo="combination"][data-step="2"] .ord-row,
+.demo[data-demo="combination"][data-step="3"] .ord-row { display: flex; }
+.demo[data-demo="combination"][data-step="1"] .demo-count,
+.demo[data-demo="combination"][data-step="2"] .demo-count,
+.demo[data-demo="combination"][data-step="3"] .demo-count { display: flex; }
+
+/* ══ 路徑示範（path）：4 東 3 北 ══════════════════════════════════════ */
+.stage-path { padding: 4px 0; }
+.grid-svg { width: 100%; max-width: 300px; height: auto; display: block; margin: 0 auto; }
+.grid-line { stroke: var(--line-soft); stroke-width: 1; }
+.grid-dot { fill: var(--line); }
+.grid-lab { font-size: 7px; font-weight: 800; fill: var(--muted); }
+.grid-path {
+  fill: none; stroke: var(--primary); stroke-width: 2.6; stroke-linejoin: round; stroke-linecap: round;
+  stroke-dasharray: 400; animation: draw .9s ease-out both;
+}
+@keyframes draw { from { stroke-dashoffset: 400; } to { stroke-dashoffset: 0; } }
+.path-steps { display: flex; gap: 4px; flex-wrap: wrap; margin-top: var(--sp-2); }
+.pstep {
+  width: 30px; height: 30px; padding: 0; border-radius: 8px; border: 2px solid var(--line);
+  background: var(--card); font: inherit; font-size: 13px; font-weight: 800; color: var(--muted);
+  display: grid; place-items: center; cursor: pointer;
+}
+.pstep:disabled { cursor: default; }
+.pstep-e { border-color: var(--primary-line); background: var(--primary-soft); color: var(--primary-ink); }
+.pstep-n { border-color: var(--accent-line); background: var(--accent-soft); color: var(--accent-ink); }
+.path-ok { font-weight: 800; color: var(--ok-dark); }
+.path-bad { font-weight: 800; color: var(--accent-ink); }
+.demo[data-demo="path"] .demo-count { display: none; }
+.demo[data-demo="path"][data-step="1"] .demo-count,
+.demo[data-demo="path"][data-step="2"] .demo-count,
+.demo[data-demo="path"][data-step="3"] .demo-count { display: flex; }
+
+/* ══ 至少／至多示範（complement）：反面計數 ═════════════════════════════ */
+.pdot {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  font-size: 12px; font-weight: 800; border: 2px solid var(--line);
+  background: var(--chip-bg); color: var(--muted);
+}
+.pdot-boy { background: var(--primary-soft); color: var(--primary-ink); border-color: var(--primary-line); }
+.pdot-girl { background: var(--accent-soft); color: var(--accent-ink); border-color: var(--accent-line); }
+/* 被數中嘅 case 亮起，其餘淡出 → 一眼睇到「呢個 case 揀邊幾個人」 */
+.demo[data-demo="complement"] .pdot { opacity: .35; }
+.demo[data-demo="complement"] .pdot-on { opacity: 1; box-shadow: 0 0 0 2px var(--text); }
+.case-list { display: grid; gap: 6px; margin-top: var(--sp-2); }
+.case-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  padding: 8px 12px; border-radius: var(--radius-sm); border: 1px solid var(--line-soft);
+  background: var(--card); font: inherit; font-size: 13.5px; color: var(--muted);
+  text-align: left; cursor: pointer;
+}
+.case-row:hover { border-color: var(--primary-line); background: var(--primary-soft); }
+.case-row.case-on { border-color: var(--primary); background: var(--primary-soft); }
+.case-n { font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.case-tag { font-weight: 800; color: var(--primary-ink); }
+.case-sum { font-size: 13.5px; color: var(--muted); display: flex; gap: 8px; align-items: baseline; flex-wrap: wrap; }
+.demo[data-demo="complement"] .case-list,
+.demo[data-demo="complement"] .eqrow-direct,
+.demo[data-demo="complement"] .eqrow-comp { display: none; }
+.demo[data-demo="complement"][data-step="1"] .case-list,
+.demo[data-demo="complement"][data-step="2"] .case-list { display: grid; }
+.demo[data-demo="complement"][data-step="1"] .eqrow-direct,
+.demo[data-demo="complement"][data-step="3"] .eqrow-direct { display: flex; }
+.demo[data-demo="complement"][data-step="2"] .eqrow-comp,
+.demo[data-demo="complement"][data-step="3"] .eqrow-comp { display: flex; }
 
 @media (prefers-reduced-motion: reduce) {
   .demo .unit-block, .demo .ichip, .demo .eqbox, .demo .slot { transition: none; }

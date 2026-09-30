@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>至少／至多示範 · At-least demo · 5A 數學溫習站</title>
+<meta name="description" content="反面計數示範：6 男 7 女選 5 人，至少 1 男 1 女 → 1287 − 6 − 21 = 1260。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
+     ?step=N 跳到第 N 步（0–3）。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">至少／至多示範</span><span class="l-en">At-least / at-most demo</span></h1>
+  <p class="lead">
+    <span class="l-zh">6 男 7 女中選 5 人，至少 1 男 1 女：直接分類 4 個 case，反面只需 2 個。</span>
+    <span class="l-en">Choose 5 of 6 boys and 7 girls with at least one of each: 4 cases directly, only 2 for the complement.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">第 2、3 步可以點任何一行 case，看它揀了哪幾個人（其餘的點會淡出）。</span>
+    <span class="l-en">On steps 2 and 3, tap a case row to see which people it picks (the rest fade out).</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  var step = parseInt(q.get("step") || "0", 10);
+  window.S5A_DEMO.complement(document.getElementById("demo-slot"),
+    { step: isNaN(step) ? 0 : step });
+})();
+</script>
+</body>
+</html>
