@@ -1015,8 +1015,8 @@
     var GUIDES = [
       ["點上面 3 位學生，佢哋會移落下面嘅「隊伍列」；點隊伍成員可以放返出去。",
         "Tap 3 students above and they move down into the team row; tap a team member to send them back."],
-      ["同一隊 3 個人有 3! = 6 種寫法（123、132、213…），但全部都係同一隊。",
-        "The same 3-person team has 3! = 6 writings (123, 132, 213 ...) — all the same team."],
+      ["同一隊 3 個人有 3! = 6 種寫法（123、132、213…），但全部都係同一隊。按「⇄ 打亂次序」會隨機換一個寫法，下面對應嘅一格會亮起。",
+        "The same 3-person team has 3! = 6 writings (123, 132, 213 ...) — all the same team. Press Shuffle the order for a random writing; the matching box below lights up."],
       ["如果計次序：第一位 5 個選擇、第二位 4 個、第三位 3 個 → P(5,3) = 5 × 4 × 3 = 60。",
         "If order counted: 5 choices, then 4, then 3 → P(5,3) = 5 × 4 × 3 = 60."],
       ["6 種寫法其實同一隊 → 60 ÷ 3! = 10。試點不同的人，睇下可以找到幾多隊（共 10 隊）。",
@@ -1038,11 +1038,6 @@
     root.appendChild(teamLab);
     var teamRow = el("div", "team-row");
     root.appendChild(teamRow);
-
-    var note = el("div", "order-note");
-    note.appendChild(bi("按下「⇄ 打亂次序」會換成另一個次序，睇完會自動排返 1,2,3 —— 因為唔計次序，次序唔同唔算新一隊。",
-      "Press Shuffle the order to show another order; it then snaps back to 1,2,3 — with order ignored, a different order is not a new team."));
-    root.appendChild(note);
 
     var ordRow = el("div", "ord-row");
     root.appendChild(ordRow);
@@ -1082,7 +1077,6 @@
     var team = [];             /* 已選的學生（有序；預設空，等學生自己揀） */
     var tried = {};
     var step = 0;
-    var orderTimer = null;     /* 「換次序」自動還原的 timer */
 
     function pool() {
       return PEOPLE.filter(function (n) { return team.indexOf(n) < 0; });
@@ -1131,13 +1125,15 @@
         b.onclick = function () {
           var k = team.indexOf(n);
           if (k >= 0) team.splice(k, 1);
-          if (orderTimer) restoreOrder();
-          note.classList.remove("order-live");
           paint();
         };
         teamRow.appendChild(b);
       });
-      orderBtn.disabled = team.length !== COMB_PICK || !!orderTimer;
+      orderBtn.disabled = team.length !== COMB_PICK;
+      /* 「打亂次序」只喺見到下面 6 格時出現（第 2、3 步）；第 4 步變灰合併後就收起 */
+      var showOrder = step >= 1 && step < COMB_STEPS;
+      if (showOrder && !orderBtn.parentNode) teamLab.appendChild(orderBtn);
+      if (!showOrder && orderBtn.parentNode) orderBtn.parentNode.removeChild(orderBtn);
       /* 6 種寫法（第 2 步起） */
       ordRow.innerHTML = "";
       if (step >= 1 && team.length === COMB_PICK) {
@@ -1179,33 +1175,29 @@
         }
       });
     }
-    function restoreOrder() {
-      if (orderTimer) { clearTimeout(orderTimer); orderTimer = null; }
-      note.classList.remove("order-live");
-      if (team.length === COMB_PICK) {
-        animateOrder(team.slice().sort(function (a, b) { return a - b; }));
+    /* 隨機抽一個唔同嘅次序（同一隊 3 個人；下面對應嘅一格會亮起） */
+    function randomOrder() {
+      var arr = team.slice();
+      for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
       }
-      orderBtn.disabled = team.length !== COMB_PICK;
+      if (arr.join("-") === team.join("-")) arr.push(arr.shift());   /* 撞返原本次序就輪轉一格 */
+      return arr;
     }
     orderBtn.onclick = function () {
-      if (team.length !== COMB_PICK || orderTimer) return;
-      var next = team.slice();
-      var last = next[COMB_PICK - 1];
-      next[COMB_PICK - 1] = next[COMB_PICK - 2];
-      next[COMB_PICK - 2] = last;
-      animateOrder(next);
-      note.classList.add("order-live");
-      orderTimer = setTimeout(restoreOrder, 1200);
-    };
-    /* 供測試用：立即還原（jsdom 唔等 timer） */
-    root.__demoOrder = {
-      restore: restoreOrder,
-      playing: function () { return !!orderTimer; }
+      if (team.length !== COMB_PICK) return;
+      animateOrder(randomOrder());
     };
 
     function setStep(n) {
       step = Math.max(0, Math.min(COMB_STEPS, n | 0));
-      if (orderTimer) restoreOrder();
+      /* 最後一步：6 格變灰併成一格，隊伍亦回歸單一次序（由細至大） */
+      if (step === COMB_STEPS && team.length === COMB_PICK) {
+        team = team.slice().sort(function (a, b) { return a - b; });
+      }
       /* 入到第 2 步仍然未揀夠 3 人 → 保留已揀嘅，再補齊（令示範可以繼續） */
       if (step >= 1 && team.length !== COMB_PICK) {
         var avail = PEOPLE.filter(function (n) { return team.indexOf(n) < 0; });
@@ -1225,7 +1217,6 @@
     prev.onclick = function () { setStep(step - 1); };
     next.onclick = function () { setStep(step + 1); };
     replay.onclick = function () {
-      if (orderTimer) restoreOrder();
       team = [];
       tried = {};
       setStep(0);

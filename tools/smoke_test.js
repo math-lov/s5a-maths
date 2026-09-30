@@ -823,6 +823,7 @@ const demoC = p173Overview.$('.demo[data-demo="combination"]');
 ok(!!demoC, "組合卡有互動示範");
 ok(demoC.querySelectorAll(".pick-row .unit-dot").length === 5, "候選列有 5 位學生");
 ok(demoC.querySelectorAll(".team-row .unit-dot").length === 0, "第 1 步隊伍列空空（等學生自己揀）");
+ok(!demoC.querySelector('[data-order="1"]'), "第 1 步未見 6 格，唔會出現「打亂次序」按鈕");
 ok(/選 3 人/.test(demoC.querySelector(".demo-q").textContent), "題目寫明 5 人選 3 人");
 ok(/3! = 6/.test(demoC.querySelector(".demo-guide").textContent + read("assets/demos.js")), "示範以 3! = 6 種寫法講解");
 const cBtns = demoC.querySelectorAll(".demo-ctrl .btn");
@@ -846,21 +847,33 @@ ok(orderCards().length === 6, "列出 3! = 6 種寫法");
 ok(orderCards().filter((c) => c.classList.contains("ord-on")).length === 1 &&
   orderCards().filter((c) => c.classList.contains("ord-on"))[0].getAttribute("data-perm") === "2-5-1",
   "6 種寫法之中，目前次序（2-5-1）會亮起");
+ok(!demoC.querySelector(".order-note"), "已移除「自動排返 1,2,3」那句話（語意不明）");
+const beforeOrder = teamNums();
 const orderBtn = demoC.querySelector('[data-order="1"]');
+ok(!!orderBtn, "去到出現 6 格時，才出現「打亂次序」按鈕");
+const litNow = () => {
+  const on = orderCards().filter((c) => c.classList.contains("ord-on"));
+  return on.length === 1 ? on[0].getAttribute("data-perm") : "（" + on.length + " 格亮起）";
+};
 orderBtn.click();
-ok(teamNums() === "2,1,5", "「打亂次序」真的換了次序（2,5,1 → 2,1,5）");
-ok(!!demoC.querySelector(".order-note.order-live") && demoC.__demoOrder.playing() === true,
-  "同時標示次序已改變，並排定自動還原");
-demoC.__demoOrder.restore();
-ok(teamNums() === "1,2,5" && !demoC.querySelector(".order-note.order-live"),
-  "之後自動排返由細至大（1,2,5）—— 次序唔同唔算新一隊");
+const afterOrder = teamNums();
+ok(afterOrder !== beforeOrder, "按下會隨機換一個次序（" + beforeOrder + " → " + afterOrder + "）");
+ok(afterOrder.split(",").slice().sort().join(",") === beforeOrder.split(",").slice().sort().join(","),
+  "換嘅只係次序，3 個人一樣（仍然係同一隊）");
+ok(litNow() === afterOrder.replace(/,/g, "-"),
+  "下面對應嘅一格會亮起（亮起 " + litNow() + "，目前 " + afterOrder + "）");
+orderBtn.click();
+ok(litNow() === teamNums().replace(/,/g, "-"), "再按一次：亮起嘅格跟住新次序走");
 cBtns[1].click();
 ok(demoC.getAttribute("data-step") === "2" &&
   /5 × 4 × 3 = 60/.test(demoC.querySelector(".demo-eq").textContent), "第 3 步：有次序 5 × 4 × 3 = 60");
+ok(!!demoC.querySelector('[data-order="1"]'), "第 3 步 6 格仍然亮起，按鈕仍然可用");
 cBtns[1].click();
 ok(demoC.getAttribute("data-step") === "3" &&
   demoC.querySelectorAll(".ord-row .ord-card.ord-dim").length === 6 &&
-  !!demoC.querySelector(".ord-merged"), "第 4 步：6 種寫法一齊淡化並合併成一隊");
+  !!demoC.querySelector(".ord-merged"), "第 4 步：6 種寫法一齊變灰並合併成一隊");
+ok(!demoC.querySelector('[data-order="1"]'), "第 4 步（6 格變灰合併）就收起「打亂次序」按鈕");
+ok(teamNums() === "1,2,5", "最後隊伍回歸單一次序（由細至大：" + teamNums() + "）");
 ok(/60 ÷ 3! =/.test(demoC.querySelector(".demo-eq").textContent) &&
   demoC.querySelector(".eq-total .eq").textContent === "10", "算式 60 ÷ 3! = 10");
 cBtns[2].click();
