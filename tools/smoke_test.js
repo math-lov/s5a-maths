@@ -476,11 +476,24 @@ ok(q171("ch17-1-sm-31").answers[2].math.indexOf("108") >= 0 &&
 ok((q171("ch17-1-sm-31").solution.alt || []).length === 1,
   "SM-31 有官方 Alternative Solution（偶數分兩類）");
 /* 複檢後新增的「另一個做法（參考）」：互斥區域核對 ＋ 對數求指數 */
-const ALT_IDS = ["ch17-1-ce1", "ch17-1-l2-16", "ch17-1-l2-17", "ch17-1-ct-32"];
+const ALT_IDS = ["ch17-1-ce1", "ch17-1-l2-16", "ch17-1-l2-17",
+  "ch17-1-ce3", "ch17-1-l1-13", "ch17-1-l2-22", "ch17-1-ct-32"];
 ok(ALT_IDS.every((id) => {
   const a = (q171(id).solution.alt || [])[0];
   return a && a.name && a.name.zh && a.name.en && a.zh && a.en;
-}), "四題新增另一個做法（參考）：" + ALT_IDS.join("、"));
+}), "七題新增另一個做法（參考）：" + ALT_IDS.join("、"));
+ok(ALT_IDS.every((id) => {
+  const a = q171(id).solution.alt[0];
+  return !/保底/.test(a.name.zh + a.name.en + a.zh + a.en);
+}), "另一個做法的名稱與內容冇「保底」字眼（改寫為「另一個做法：…」）");
+ok(/次方鍵/.test(q171("ch17-1-ce3").solution.alt[0].zh) &&
+  /10 \\times 9 \\times 8 \\times 7/.test(q171("ch17-1-ce3").solution.alt[0].zh),
+  "CE3 另一個做法：計算機核對（次方鍵／逐個乘）");
+ok(/\(1M\)/.test(q171("ch17-1-l1-13").solution.alt[0].zh) &&
+  /4\^5/.test(q171("ch17-1-l1-13").solution.alt[0].zh),
+  "L1-13 另一個做法：計算機核對 ＋ 提醒 (1M) 在寫出 4^5 那一步");
+ok(/25 \\times 10\^4 = 250000/.test(q171("ch17-1-l2-22").solution.alt[0].zh),
+  "L2-22 另一個做法：計算機核對 25 × 10^4 = 250000");
 ok(/21 \+ 15 \+ 39 = 75/.test(q171("ch17-1-ce1").solution.alt[0].zh),
   "CE1 另一個做法：三個互斥區域 21 + 15 + 39 = 75（與 [36 + 54] − 15 對照）");
 ok(/11 \+ 45 \+ 15 = 71/.test(q171("ch17-1-l2-17").solution.alt[0].zh),

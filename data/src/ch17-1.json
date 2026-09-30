@@ -409,6 +409,16 @@
         ]
        }
       ],
+      "alt": [
+       {
+        "name": {
+         "zh": "另一個做法：計算機核對（次方鍵）",
+         "en": "Alternative: calculator check (power key)"
+        },
+        "zh": "用科學計算機核對：可以重複時用次方鍵算 $10^4 = 10000$；不可以重複時逐個相乘 $10 \\times 9 \\times 8 \\times 7 = 5040$，每按一個乘號就確認下一個數目少 1（10、9、8、7），與手算對照。",
+        "en": "Check on a scientific calculator: with repetition use the power key for $10^4 = 10000$; without repetition multiply step by step $10 \\times 9 \\times 8 \\times 7 = 5040$, confirming that each factor drops by one (10, 9, 8, 7)."
+       }
+      ],
       "traps": [
        {
         "label": "不可重複仍用次方",
@@ -1419,6 +1429,16 @@
         ]
        }
       ],
+      "alt": [
+       {
+        "name": {
+         "zh": "另一個做法：計算機核對與步驟分",
+         "en": "Alternative: calculator check and the method mark"
+        },
+        "zh": "計算機核對：先按底數 4、再按次方鍵、最後按指數 5，得 $4^5 = 1024$。書寫作答時，(1M) 就在寫出 $4^5$ 這一步 —— 只寫答案 1024 拿不到步驟分。",
+        "en": "Calculator check: enter the base 4, press the power key, then the index 5 to get $4^5 = 1024$. In written work the (1M) is earned by writing $4^5$; a bare answer of 1024 scores no method mark."
+       }
+      ],
       "traps": [
        {
         "label": "誤用 5^4",
@@ -2196,6 +2216,16 @@
         "highlight": [
          "5 \\times 10^4 \\times 5 = 250000"
         ]
+       }
+      ],
+      "alt": [
+       {
+        "name": {
+         "zh": "另一個做法：計算機核對（10 的次方）",
+         "en": "Alternative: calculator check (powers of ten)"
+        },
+        "zh": "計算機核對：先算首位與末位 $5 \\times 5 = 25$，再乘 $10^4$（按次方鍵或 $\\times 10000$），得 $25 \\times 10^4 = 250000$，與 $5 \\times 10^4 \\times 5 = 250000$ 一致。",
+        "en": "Calculator check: first $5 \\times 5 = 25$ for the first and last places, then multiply by $10^4$ (power key or $\\times 10000$): $25 \\times 10^4 = 250000$, matching $5 \\times 10^4 \\times 5 = 250000$."
        }
       ],
       "traps": [
