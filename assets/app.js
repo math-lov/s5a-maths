@@ -26,10 +26,12 @@
   var UI = {
     solHide: { zh: "收起題解", en: "Hide solutions" },
     solShow: { zh: "顯示題解", en: "Show solutions" },
-    backHome: { zh: "← 主目錄", en: "← Home" },
+    /* 箭頭屬語言中立的裝飾，唔會寫入 UI 文字：否則「中英」並列會出兩個箭頭
+       （見 setPairArrow） */
+    backHome: { zh: "主目錄", en: "Home" },
     overview: { zh: "總覽", en: "Overview" },
-    prev: { zh: "← 上一題", en: "← Previous" },
-    next: { zh: "下一題 →", en: "Next →" },
+    prev: { zh: "上一題", en: "Previous" },
+    next: { zh: "下一題", en: "Next" },
     backOverview: { zh: "回總覽", en: "Overview" },
     mark: { zh: "標記為已掌握", en: "Mark as mastered" },
     marked: { zh: "已掌握 ✓", en: "Mastered ✓" },
@@ -189,6 +191,17 @@
   function setPair(node, obj) {
     node.innerHTML = "";
     node.appendChild(pairSpan(obj));
+    return node;
+  }
+  /* 同上，但箭頭放在雙語之外：並列模式只出一次（「← 主目錄 ← Home」→「← 主目錄 Home」），
+     且箭頭是裝飾，唔應該被螢幕閱讀器讀出來 */
+  function setPairArrow(node, obj, arrow, side) {
+    node.innerHTML = "";
+    var arw = el("span", "arw", arrow);
+    arw.setAttribute("aria-hidden", "true");
+    if (side === "start") node.appendChild(arw);
+    node.appendChild(pairSpan(obj));
+    if (side !== "start") node.appendChild(arw);
     return node;
   }
   /* 內文式配對：中英各佔一行（句子、圖例用），避免中英黏成一行 */
@@ -1437,7 +1450,7 @@
     var foot = el("div", "card foot-nav");
     var row = el("div", "row");
     var prev = el("button", "btn btn-sm");
-    setPair(prev, UI.prev);
+    setPairArrow(prev, UI.prev, "←", "start");
     prev.disabled = cur <= 0;
     prev.onclick = function () { gotoPage(id, cur - 1); };
     var marked = el("button", "btn btn-sm" + (store.done[q.id] ? " btn-primary" : " btn-ghost"));
@@ -1453,7 +1466,7 @@
       setProgress(qs("#quiz-progress"), part);
     };
     var next = el("button", "btn btn-sm btn-primary");
-    setPair(next, UI.next);
+    setPairArrow(next, UI.next, "→", "end");
     next.disabled = cur >= pages.length - 1;
     next.onclick = function () { gotoPage(id, cur + 1); };
     row.appendChild(prev);
@@ -1466,7 +1479,7 @@
     setPair(home, UI.backOverview);
     home.onclick = function () { gotoPage(id, 0); };
     var idx = el("button", "btn btn-sm btn-ghost");
-    setPair(idx, UI.backHome);
+    setPairArrow(idx, UI.backHome, "←", "start");
     idx.onclick = function () { go("index.html"); };
     row2.appendChild(home);
     row2.appendChild(idx);

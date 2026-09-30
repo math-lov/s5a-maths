@@ -115,6 +115,10 @@ body {
 .hero h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.25; font-weight: 800; letter-spacing: -.025em; }
 .hero p { margin: 0; color: var(--muted); font-size: 15.5px; }
 .hero h1 .l-zh, .hero h1 .l-en { display: block; }
+/* 中英並列時：大標題只應該搶一次焦點，英文降為副題（同一句意思唔應該用同等重量出兩次） */
+body[data-lang="both"] .hero h1 .l-en {
+  font-size: .62em; font-weight: 600; color: var(--muted); letter-spacing: 0; margin-top: 2px;
+}
 
 /* ── 首頁：米白橫幅 + 手繪裝飾（低調版）──────────────────────────────── */
 .ka-band {
@@ -183,6 +187,10 @@ body[data-lang="zh"] .l-en { display: none; }
 body[data-lang="both"] .l-en { opacity: .82; }
 /* 中英並列時：按鈕／進度標籤的兩語之間要有明顯間隔，唔會黏成「顯示題解Show solutions」 */
 body[data-lang="both"] .btn .bi > .l-zh + .l-en { margin-left: 8px; }
+/* 按鈕直接包住兩語（例如「清除本機記錄」）一樣要有間隔，唔會黏成「記錄Clear…」 */
+body[data-lang="both"] .btn > .l-zh + .l-en { margin-left: 8px; }
+/* 中英並列：段落級雙語（app.js 的 .bi）兩語之間留 4px（＝--sp-1，同 .how-t 一致），讀落唔會黏成一大段 */
+body[data-lang="both"] .bi > .l-zh + .l-en { margin-top: var(--sp-1); }
 body[data-lang="both"] #quiz-progress .l-zh + .l-en::before,
 body[data-lang="both"] #chapter-progress .l-zh + .l-en::before { content: " · "; }
 
@@ -204,11 +212,24 @@ body[data-lang="both"] #chapter-progress .l-zh + .l-en::before { content: " · "
 .btn-primary:hover { background: var(--primary-dark); border-color: var(--primary-dark); box-shadow: 0 2px 0 #33308f; }
 .btn-ghost { background: transparent; }
 .btn-ghost:hover { background: var(--primary-soft); }
+/* 現時頁面（首頁「本站」）：淡靛底＋靛字，一眼睇到「你在此」。
+   唔用 opacity 淡化文字——淡化後只有約 3.5:1，讀唔清（現在約 8.8:1）。 */
+.site-links .btn[aria-current="page"] {
+  background: var(--primary-soft); border-color: var(--primary-line);
+  color: var(--primary-ink); cursor: default;
+}
+.site-links .btn[aria-current="page"]:hover {
+  background: var(--primary-soft); border-color: var(--primary-line);
+}
 .btn-sm { min-height: 40px; padding: 8px 14px; font-size: 14.5px; }
 .btn-block { width: 100%; }
 .btn:disabled { cursor: default; transform: none; box-shadow: none; }
-/* 未選取時：用暖灰（清楚表示「未可按」），不要用淡化主色 */
-.btn-primary:disabled { background: #d6d0c8; border-color: #d6d0c8; color: #fff; opacity: 1; }
+/* 未選取時：用暖灰（清楚表示「未可按」），不要用淡化主色。
+   注意：白字放在灰底上只有約 2:1（讀唔清），所以灰底配 --muted 文字（約 4:1），
+   靠「扁平、無陰影、無 hover、cursor: default」表示未可按，唔靠把文字淡化。 */
+.btn-primary:disabled {
+  background: var(--line); border-color: var(--bar-idle); color: var(--muted); opacity: 1;
+}
 
 /* ── 卡片 ─────────────────────────────────────────────────────────────── */
 .card {
@@ -662,8 +683,8 @@ body[data-sol="show"] .hint-row { display: none; }
   .hero h1 { font-size: 25px; }
   .q-stem { font-size: 18px; }
   .step h4 { font-size: 15.5px; }
-  /* 窄屏：按鈕同步收窄，減少頂欄行數 */
-  .langbar button { padding: 4px 9px; font-size: 12.5px; }
+  /* 窄屏：按鈕同步收窄，減少頂欄行數；但高度保持 40px，手指容易按得到 */
+  .langbar button { padding: 4px 9px; font-size: 12.5px; min-height: 40px; }
   .topbar .btn-sm { padding: 8px 10px; font-size: 13.5px; }
 }
 

@@ -6,7 +6,7 @@
 <title>5A 數學溫習站 · 5A Maths Revision</title>
 <meta name="description" content="中五A班數學溫習站：校內測驗逐題檢討，每題一頁，題目與題解中英對照，一鍵切換中英文。">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="stylesheet" href="assets/style.css?v=35167c25">
 </head>
 <body data-page="index">
 
@@ -35,7 +35,7 @@
   <!-- 其他網站：4 個站互相連結（本站以 aria-current 標示；唔連已計劃重做的舊頁） -->
   <nav class="site-links" style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px">
     <span class="small muted"><span class="l-zh">其他網站：</span><span class="l-en">Other sites:</span></span>
-    <span class="btn btn-sm btn-ghost" aria-current="page" style="opacity:.6;cursor:default">
+    <span class="btn btn-sm btn-ghost" aria-current="page">
       <span class="l-zh">5A 數學溫習站（本站）</span><span class="l-en">5A Maths (this site)</span></span>
     <a class="btn btn-sm btn-ghost" href="https://math-lov.github.io/daily.math/">
       <span class="l-zh">每日三題</span><span class="l-en">Daily 3</span></a>
@@ -46,15 +46,16 @@
   </nav>
 
   <div class="card safety-note" style="margin-top:18px">
-    <p style="margin:0">
-      <span class="l-zh"><b>這裡沒有分數，也沒有排名。</b>
-      答錯只代表「還未學到」，不代表你不行；「已掌握」的記錄只存在你自己的瀏覽器裡，隨時可以重新開始。</span>
-      <span class="l-en"><b>No scores here, and no ranking.</b>
-      Getting one wrong only means "not yet" — not that you can't. Your "mastered" marks stay in your own browser and you can start over any time.</span>
-    </p>
+    <!-- 中英兩語各自成行（同 app.js 產生的 .bi 一致）：中英並列時唔會黏成一大段 -->
+    <div class="bi" style="margin:0">
+      <div class="l-zh"><b>這裡沒有分數，也沒有排名。</b>
+      答錯只代表「還未學到」，不代表你不行；「已掌握」的記錄只存在你自己的瀏覽器裡，隨時可以重新開始。</div>
+      <div class="l-en"><b>No scores here, and no ranking.</b>
+      Getting one wrong only means "not yet" — not that you can't. Your "mastered" marks stay in your own browser and you can start over any time.</div>
+    </div>
     <div class="sol-hint bi" style="margin-top:12px">
-      <span class="l-zh">本站的讀法是「<b>先試後明白</b>」，如果你在測驗中做錯了，可以先再試一試，再逐步了解答案，最後是跟著答案再寫一次加深記憶。<b>只看答案，是最快忘記的方法，一般都不能幫助你。</b></span>
-      <span class="l-en">This site's approach is <b>"try first, understand later"</b>. If you get a question wrong in the quiz, try it again first, then work through the solution step by step, and finally write it out once following the solution to fix it in your memory. <b>Only looking at the answer is the fastest way to forget it, and usually it doesn't help you at all.</b></span>
+      <div class="l-zh">本站的讀法是「<b>先試後明白</b>」，如果你在測驗中做錯了，可以先再試一試，再逐步了解答案，最後是跟著答案再寫一次加深記憶。<b>只看答案，是最快忘記的方法，一般都不能幫助你。</b></div>
+      <div class="l-en">This site's approach is <b>"try first, understand later"</b>. If you get a question wrong in the quiz, try it again first, then work through the solution step by step, and finally write it out once following the solution to fix it in your memory. <b>Only looking at the answer is the fastest way to forget it, and usually it doesn't help you at all.</b></div>
     </div>
   </div>
 
@@ -165,7 +166,7 @@
 <script defer src="vendor/katex/auto-render.min.js"></script>
 <script>
   // 快取戳：由 tools/build.py 依「內容」自動寫入（內容一變，?v= 就變 → 不會再取到舊檔）
-  window.__V = "d06eecb3";
+  window.__V = "35167c25";
   document.write('<script src="data/index.js?v=' + window.__V + '"><\/script>');
   document.write('<script src="assets/app.js?v=' + window.__V + '"><\/script>');
 </script>

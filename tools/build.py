@@ -325,6 +325,9 @@ def js_dump(obj) -> str:
 # 快取的舊檔（＝改了但學生看不到）。現在改成依內容算 hash：內容一變，HTML 內的
 # window.__V 就變，URL 亦變，瀏覽器與 GitHub Pages 的 CDN 都必然取到新檔。
 STAMP_RE = re.compile(r"window\.__V\s*=\s*[^;]+;")
+# style.css 亦要帶版本戳：HTML／app.js／data 都是新 URL，只有 CSS 的 href 不變，
+# 學生就可能沿用快取的舊樣式（＝改了 CSS 但看不到）。這裡一併把 href 加上 ?v=。
+CSS_RE = re.compile(r'href="assets/style\.css(\?v=[0-9a-f]+)?"')
 STAMP_HTML = ("index.html", "quiz.html", "chapter.html")
 STAMP_ASSETS = ("assets/app.js", "assets/style.css", "data/index.js", "data/figures.js")
 
@@ -348,6 +351,7 @@ def write_stamp(stamp: str) -> list[str]:
         with open(path, encoding="utf-8") as f:
             src = f.read()
         new = STAMP_RE.sub('window.__V = "%s";' % stamp, src, count=1)
+        new = CSS_RE.sub('href="assets/style.css?v=%s"' % stamp, new)
         if new != src:
             with open(path, "w", encoding="utf-8", newline="\n") as f:
                 f.write(new)
