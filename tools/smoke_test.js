@@ -447,8 +447,8 @@ ok(P171_DATA.sections.map((s) => s.id).join(",") === "CE,SC,L1,L2,SM,CT",
 ok((P171_DATA.cards || []).length === 3, "17.1 有 3 張教學卡");
 
 /* 官方答案（source/SMS_sol_5B17_e.docx 逐題核對，見 data/raw/ch17-1-source.md） */
-ok(q171("ch17-1-ce1").answers[1].math === "36 + 54 - 15 = 75",
-  "CE1(b) 官方答案 75（加完要減重疊）");
+ok(q171("ch17-1-ce1").answers[1].math === "[36 + 54] - 15 = 90 - 15 = 75",
+  "CE1(b) 官方答案 75（中括號寫明「先加後減」，附中間值）");
 ok(q171("ch17-1-ce2").answers[1].math === "5 \\times 3 \\times 8 = 120",
   "CE2(b) 官方答案 120（每類各一支＝分步）");
 ok(q171("ch17-1-ce3").answers[0].math === "10^4 = 10000" &&
@@ -460,15 +460,19 @@ const sc171 = q171("ch17-1-sc");
 ok(sc171.answers.filter((a) => a.tf === false).map((a) => a.part).join(",") === "(b),(d)",
   "判斷題：只有 (b)、(d) 是錯（實際錯 " +
   sc171.answers.filter((a) => a.tf === false).length + " 項）");
-ok(q171("ch17-1-l1-7").answers[0].math === "20 + 25 - 15 = 30", "L1-7 官方答案 30（兩樣都會）");
+ok(q171("ch17-1-l1-7").answers[0].math === "[20 + 25] - 15 = 45 - 15 = 30",
+  "L1-7 官方答案 30（兩樣都會，同樣用中括號寫明次序）");
 ok(q171("ch17-1-l1-13").answers[0].math === "4^5 = 1024", "L1-13 官方答案 4^5 = 1024（5 題 4 選項）");
-ok(q171("ch17-1-l2-16").answers[0].math.indexOf("40 + 30 - 60") >= 0, "L2-16(a) 反求重疊 = 10");
+ok(q171("ch17-1-l2-16").answers[0].math === "[40 + 30] - 60 = 70 - 60 = 10" &&
+  /\\implies/.test(q171("ch17-1-l2-16").solution.steps[0].math),
+  "L2-16(a) 反求重疊 = 10（用 \\implies 由方程推到答案）");
 ok(q171("ch17-1-l2-24").answers[3].math === "13 \\times 13 \\times 2 = 338",
   "L2-24(d) 兩個次序都要計（338）");
-ok(q171("ch17-1-l2-27").answers[1].math === "20000 - 150 \\times 50 = 12500",
-  "L2-27(b) 反面計數 12500");
-ok(q171("ch17-1-sm-31").answers[2].math.indexOf("108") >= 0 && q171("ch17-1-sm-31").answers[1].math === "300 - 48 = 252",
-  "SM-31(b)(c) 官方答案 252／108（先處理首位）");
+ok(q171("ch17-1-l2-27").answers[1].math === "20000 - [150 \\times 50] = 20000 - 7500 = 12500",
+  "L2-27(b) 反面計數 12500（要減的那一項用中括號括住）");
+ok(q171("ch17-1-sm-31").answers[2].math.indexOf("108") >= 0 &&
+  q171("ch17-1-sm-31").answers[1].math === "300 - [4 \\times 4 \\times 3 \\times 1] = 300 - 48 = 252",
+  "SM-31(b)(c) 官方答案 252／108（先處理首位；352 的奇數項用中括號寫明）");
 ok((q171("ch17-1-sm-31").solution.alt || []).length === 1,
   "SM-31 有官方 Alternative Solution（偶數分兩類）");
 ok(q171("ch17-1-ct-32").answers[0].math === "n = 10", "CT-32 官方答案 n = 10");
@@ -626,8 +630,41 @@ ok(ce1Page.$$(".q-parts li").length === 2, "CE1 有 (a)(b) 兩小題");
 ok(ce1Page.$$(".sol-card .steps .step").length === 0, "CE1 題解預設收起（跟全站一致）");
 ce1Page.$("#sol-toggle").click();
 ok(ce1Page.$$(".sol-card .steps .step").length === 2, "CE1 展開題解後有 2 個步驟（逐步 marking）");
-ok(/36 \+ 54 - 15 = 75/.test((ce1Page.$(".answer-box") || {}).textContent || ""),
-  "CE1 答案欄顯示 (b) 的 75" + "");
+ok(/\[36 \+ 54\] - 15 = 90 - 15 = 75/.test((ce1Page.$(".answer-box") || {}).textContent || ""),
+  "CE1 答案欄顯示 (b) 的 75（連中間值 90 − 15）");
+/* 中括號與 \implies 都要真 KaTeX 過得（渲染失敗會出現 .katex-error） */
+ok(ce1Page.$$(".katex-error").length === 0, "CE1 全部數式 KaTeX 渲染成功（含 [36 + 54]）");
+const l216Page = boot("quiz.html", "?c=ch17-1&p=21", null, "show");
+ok(!!l216Page.$('.q-card[data-qid="ch17-1-l2-16"]') &&
+  l216Page.$$(".katex-error").length === 0 &&
+  /\[40 \+ 30\] - 60 = 70 - 60 = 10/.test(l216Page.$(".answer-box").textContent),
+  "L2-16 反求題渲染正常（\\implies 與中括號都有效）");
+const l217Page = boot("quiz.html", "?c=ch17-1&p=22", null, "show");
+ok(!!l217Page.$('.q-card[data-qid="ch17-1-l2-17"]') &&
+  l217Page.$$(".katex-error").length === 0 &&
+  /\[\(60 \+ 56\) - 45\]/.test(l217Page.$(".answer-box").textContent),
+  "L2-17 雙層中括號 [(60 + 56) − 45] 渲染正常");
+/* 中括號約定（2026-09-30 複檢後拍板）：先加後減／先乘再加／反面減一項，一律用 [ ] 寫明次序 */
+/* 判斷題的「答案」是 Correct／Incorrect，算式在 note 與 step 內 */
+ok(/\[5 \+ 2\] - 1 = 7 - 1 = 6/.test(q171("ch17-1-sc").solution.steps[1].math +
+  q171("ch17-1-sc").answers[1].note.zh),
+  "判斷題 (b) 的算式同樣用中括號（答案欄與題解一致）");
+const BRACKETED = [
+  ["ch17-1-ce1", "answers", 1],
+  ["ch17-1-l1-4", "answers", 0],
+  ["ch17-1-l1-6", "answers", 0],
+  ["ch17-1-l1-7", "answers", 0],
+  ["ch17-1-l2-15", "answers", 1],
+  ["ch17-1-l2-16", "answers", 0],
+  ["ch17-1-l2-17", "answers", 1],
+  ["ch17-1-l2-18", "answers", 2],
+  ["ch17-1-l2-20", "answers", 2],
+  ["ch17-1-l2-26", "answers", 0],
+  ["ch17-1-l2-27", "answers", 1],
+  ["ch17-1-sm-31", "answers", 1]
+];
+ok(BRACKETED.every(([id, kind, i]) => /\[/.test(q171(id)[kind][i].math)),
+  "先加後減／先乘再加／反面減一項的答案全部用中括號（" + BRACKETED.length + " 題）");
 
 console.log("\n== 第 17.2 節（課本練習頁）==");
 const P172 = INDEX.parts.filter((p) => p.id === "ch17-2")[0] || {};

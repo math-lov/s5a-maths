@@ -187,7 +187,7 @@
       },
       {
        "part": "(b)",
-       "math": "36 + 54 - 15 = 75",
+       "math": "[36 + 54] - 15 = 90 - 15 = 75",
        "note": {
         "zh": "同時學兩種的 15 人被數了兩次，要減一次",
         "en": "The 15 students who learn both were counted twice, so subtract once"
@@ -216,12 +216,12 @@
          "zh": "減去被數兩次的人",
          "en": "Subtract the students counted twice"
         },
-        "math": "36 + 54 - 15 = 75",
-        "zh": "有 15 人同時學兩種棋，他們在 $36$ 與 $54$ 之中各被數了一次，所以相加後要減一次：$36 + 54 - 15 = 75$ 名學生。",
-        "en": "The 15 students who learn both appear once in 36 and once in 54, so subtract the overlap once: $36 + 54 - 15 = 75$ students.",
+        "math": "[36 + 54] - 15 = 90 - 15 = 75",
+        "zh": "有 15 人同時學兩種棋，他們在 $36$ 與 $54$ 之中各被數了一次，所以相加後要減一次：$[36 + 54] - 15 = 90 - 15 = 75$ 名學生。",
+        "en": "The 15 students who learn both appear once in 36 and once in 54, so subtract the overlap once: $[36 + 54] - 15 = 90 - 15 = 75$ students.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "36 + 54 - 15 = 75"
+         "[36 + 54] - 15 = 75"
         ]
        }
       ],
@@ -445,9 +445,9 @@
          "zh": "先分類：套餐有兩種做法",
          "en": "Split into cases: two kinds of tea set"
         },
-        "math": "5 \\times 9 + 7 \\times 9 ; = (5 + 7) \\times 9",
-        "zh": "套餐可以是「漢堡 + 飲品」或「蛋糕 + 飲品」，兩類互不重疊。漢堡類有 $5 \\times 9$ 款，蛋糕類有 $7 \\times 9$ 款，所以總數是 $5 \\times 9 + 7 \\times 9$；兩項都有公因數 9，可寫成 $(5 + 7) \\times 9$。",
-        "en": "A tea set is either a burger with a drink or a cake with a drink, and the cases do not overlap. The burger case has $5 \\times 9$ sets and the cake case $7 \\times 9$, so the total is $5 \\times 9 + 7 \\times 9$, which is $(5 + 7) \\times 9$.",
+        "math": "[5 \\times 9] + [7 \\times 9] = (5 + 7) \\times 9",
+        "zh": "套餐可以是「漢堡 + 飲品」或「蛋糕 + 飲品」，兩類互不重疊。漢堡類有 $5 \\times 9$ 款，蛋糕類有 $7 \\times 9$ 款，所以總數是 $[5 \\times 9] + [7 \\times 9]$；兩項都有公因數 9，可寫成 $(5 + 7) \\times 9$。",
+        "en": "A tea set is either a burger with a drink or a cake with a drink, and the cases do not overlap. The burger case has $5 \\times 9$ sets and the cake case $7 \\times 9$, so the total is $[5 \\times 9] + [7 \\times 9]$, which is $(5 + 7) \\times 9$.",
         "marking": "(1M)",
         "highlight": [
          "(5 + 7) \\times 9"
@@ -554,7 +554,7 @@
        "tf": false,
        "math": "\\text{Incorrect}",
        "note": {
-        "zh": "錯誤，應為 $5 + 2 - 1 = 6$",
+        "zh": "錯誤，應為 $[5 + 2] - 1 = 7 - 1 = 6$",
         "en": "Incorrect: it is $5 + 2 - 1 = 6$"
        }
       },
@@ -599,12 +599,12 @@
          "zh": "10 被數了兩次",
          "en": "10 is counted twice"
         },
-        "math": "5 + 2 - 1 = 6",
-        "zh": "1 至 10 中有 5 個偶數（2、4、6、8、10）和 2 個 5 的倍數（5、10），但 10 同時屬於兩類，要減一次：$5 + 2 - 1 = 6$，(b) 錯誤。",
-        "en": "From 1 to 10 there are 5 even numbers (2, 4, 6, 8, 10) and 2 multiples of 5 (5, 10), but 10 belongs to both groups, so subtract it once: $5 + 2 - 1 = 6$; (b) is incorrect.",
+        "math": "[5 + 2] - 1 = 7 - 1 = 6",
+        "zh": "1 至 10 中有 5 個偶數（2、4、6、8、10）和 2 個 5 的倍數（5、10），但 10 同時屬於兩類，要減一次：$[5 + 2] - 1 = 7 - 1 = 6$，(b) 錯誤。",
+        "en": "From 1 to 10 there are 5 even numbers (2, 4, 6, 8, 10) and 2 multiples of 5 (5, 10), but 10 belongs to both groups, so subtract it once: $[5 + 2] - 1 = 7 - 1 = 6$; (b) is incorrect.",
         "marking": "(1A)",
         "highlight": [
-         "5 + 2 - 1 = 6"
+         "[5 + 2] - 1 = 6"
         ]
        },
        {
@@ -835,7 +835,7 @@
      },
      "answers": [
       {
-       "math": "20 + 30 - 3 = 47"
+       "math": "[20 + 30] - 3 = 50 - 3 = 47"
       }
      ],
      "solution": {
@@ -845,12 +845,12 @@
          "zh": "先處理售罄的款式",
          "en": "Remove the sold-out types first"
         },
-        "math": "20 + 30 - 3 = 47",
-        "zh": "熱飲原本 20 款，售罄 3 款後剩 17 款；凍飲 30 款不變。兩類加起來：$17 + 30 = 47$，即整體寫成 $20 + 30 - 3 = 47$ 款。",
-        "en": "Of the 20 hot drinks, 3 are sold out, leaving 17; the 30 iced drinks are unchanged. Adding the two groups: $17 + 30 = 47$, that is $20 + 30 - 3 = 47$ drinks.",
+        "math": "[20 + 30] - 3 = 50 - 3 = 47",
+        "zh": "熱飲原本 20 款，售罄 3 款後剩 17 款；凍飲 30 款不變。兩類加起來：$17 + 30 = 47$，即整體寫成 $[20 + 30] - 3 = 50 - 3 = 47$ 款。",
+        "en": "Of the 20 hot drinks, 3 are sold out, leaving 17; the 30 iced drinks are unchanged. Adding the two groups: $17 + 30 = 47$, that is $[20 + 30] - 3 = 50 - 3 = 47$ drinks.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "20 + 30 - 3 = 47"
+         "[20 + 30] - 3 = 47"
         ]
        }
       ],
@@ -967,7 +967,7 @@
      },
      "answers": [
       {
-       "math": "3 + 5 - 2 = 6"
+       "math": "[3 + 5] - 2 = 8 - 2 = 6"
       }
      ],
      "solution": {
@@ -977,12 +977,12 @@
          "zh": "重複的餐廳要減一次",
          "en": "Subtract the repeated restaurants once"
         },
-        "math": "3 + 5 - 2 = 6",
-        "zh": "兩人提議的餐廳合起來是 $3 + 5$，但其中 2 間是同一間，被數了兩次，所以減一次：$3 + 5 - 2 = 6$ 間餐廳。",
-        "en": "Together they suggested $3 + 5$ restaurants, but 2 of them are the same restaurant counted twice, so subtract once: $3 + 5 - 2 = 6$ restaurants.",
+        "math": "[3 + 5] - 2 = 8 - 2 = 6",
+        "zh": "兩人提議的餐廳合起來是 $3 + 5$，但其中 2 間是同一間，被數了兩次，所以減一次：$[3 + 5] - 2 = 8 - 2 = 6$ 間餐廳。",
+        "en": "Together they suggested $3 + 5$ restaurants, but 2 of them are the same restaurant counted twice, so subtract once: $[3 + 5] - 2 = 8 - 2 = 6$ restaurants.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "3 + 5 - 2 = 6"
+         "[3 + 5] - 2 = 6"
         ]
        }
       ],
@@ -1020,7 +1020,7 @@
      },
      "answers": [
       {
-       "math": "20 + 25 - 15 = 30"
+       "math": "[20 + 25] - 15 = 45 - 15 = 30"
       }
      ],
      "solution": {
@@ -1030,12 +1030,12 @@
          "zh": "減去兩樣都會的人",
          "en": "Subtract the players who can play both"
         },
-        "math": "20 + 25 - 15 = 30",
-        "zh": "兩樣都會的 15 人在 20 人與 25 人之中各被數了一次，所以總人數是 $20 + 25 - 15 = 30$ 名。",
-        "en": "The 15 who play both appear in the 20 and in the 25, so the team has $20 + 25 - 15 = 30$ players.",
+        "math": "[20 + 25] - 15 = 45 - 15 = 30",
+        "zh": "兩樣都會的 15 人在 20 人與 25 人之中各被數了一次，所以總人數是 $[20 + 25] - 15 = 45 - 15 = 30$ 名。",
+        "en": "The 15 who play both appear in the 20 and in the 25, so the team has $[20 + 25] - 15 = 45 - 15 = 30$ players.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "20 + 25 - 15 = 30"
+         "[20 + 25] - 15 = 30"
         ]
        }
       ],
@@ -1529,7 +1529,7 @@
       },
       {
        "part": "(b)",
-       "math": "28 - 2 - 1 = 25"
+       "math": "28 - [2 + 1] = 28 - 3 = 25"
       }
      ],
      "solution": {
@@ -1554,12 +1554,12 @@
          "zh": "更新受影響的兩類",
          "en": "Update the two affected types"
         },
-        "math": "28 - 2 - 1 = 25",
-        "zh": "爵士舞由 10 班減至 8 班，現代舞由 6 班減至 5 班，總數是 $8 + 5 + 8 + 4 = 25$；亦即在 (a) 的 $28$ 中減去 $2 + 1$，得 $28 - 2 - 1 = 25$ 班。",
-        "en": "Jazz drops from 10 to 8 classes and modern from 6 to 5, giving $8 + 5 + 8 + 4 = 25$; equivalently $28 - 2 - 1 = 25$ classes.",
+        "math": "28 - [2 + 1] = 28 - 3 = 25",
+        "zh": "爵士舞由 10 班減至 8 班，現代舞由 6 班減至 5 班，總數是 $8 + 5 + 8 + 4 = 25$；亦即在 (a) 的 $28$ 中減去 $2 + 1$，得 $28 - [2 + 1] = 28 - 3 = 25$ 班。",
+        "en": "Jazz drops from 10 to 8 classes and modern from 6 to 5, giving $8 + 5 + 8 + 4 = 25$; equivalently $28 - [2 + 1] = 28 - 3 = 25$ classes.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "28 - 2 - 1 = 25"
+         "28 - [2 + 1] = 25"
         ]
        }
       ],
@@ -1604,7 +1604,7 @@
      "answers": [
       {
        "part": "(a)",
-       "math": "40 + 30 - 60 = 10",
+       "math": "[40 + 30] - 60 = 70 - 60 = 10",
        "note": {
         "zh": "重疊部分",
         "en": "The overlap"
@@ -1623,12 +1623,12 @@
          "zh": "已知總數，反求重疊",
          "en": "The total is given: solve for the overlap"
         },
-        "math": "40 + 30 - x = 60 ; x = 40 + 30 - 60 = 10",
-        "zh": "設兩樣都會的有 $x$ 人。因為 $40 + 30$ 把這 $x$ 人數了兩次，而全店有 60 人，所以 $40 + 30 - x = 60$，解得 $x = 40 + 30 - 60 = 10$，即兩樣都會的有 10 人。",
-        "en": "Let $x$ chefs do both. The sum $40 + 30$ counts them twice and the kitchen has 60 chefs, so $40 + 30 - x = 60$, giving $x = 40 + 30 - 60 = 10$ chefs who do both.",
+        "math": "40 + 30 - x = 60 \\implies x = [40 + 30] - 60 = 70 - 60 = 10",
+        "zh": "設兩樣都會的有 $x$ 人。因為 $40 + 30$ 把這 $x$ 人數了兩次，而全店有 60 人，所以 $40 + 30 - x = 60$，解得 $x = [40 + 30] - 60 = 70 - 60 = 10$，即兩樣都會的有 10 人。",
+        "en": "Let $x$ chefs do both. The sum $40 + 30$ counts them twice and the kitchen has 60 chefs, so $40 + 30 - x = 60$, giving $x = [40 + 30] - 60 = 70 - 60 = 10$ chefs who do both.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "x = 40 + 30 - 60 = 10"
+         "x = [40 + 30] - 60 = 10"
         ]
        },
        {
@@ -1691,7 +1691,7 @@
       },
       {
        "part": "(b)",
-       "math": "150 - (60 + 56 - 45) = 79"
+       "math": "150 - [(60 + 56) - 45] = 150 - 71 = 79"
       }
      ],
      "solution": {
@@ -1716,12 +1716,12 @@
          "zh": "反面：減去至少修一科的人",
          "en": "Complement: subtract those taking at least one subject"
         },
-        "math": "150 - (60 + 56 - 45) = 79",
-        "zh": "至少修讀一科的人數是 $60 + 56 - 45 = 71$（兩科都修的在相加時被數了兩次，要減一次）；所以兩科都不修的有 $150 - 71 = 79$ 人。",
-        "en": "The number taking at least one subject is $60 + 56 - 45 = 71$ (the 45 who take both were counted twice), so $150 - 71 = 79$ students take neither.",
+        "math": "150 - [(60 + 56) - 45] = 150 - 71 = 79",
+        "zh": "至少修讀一科的人數是 $60 + 56 - 45 = 71$（兩科都修的在相加時被數了兩次，要減一次）；所以兩科都不修的有 $150 - [(60 + 56) - 45] = 150 - 71 = 79$ 人。",
+        "en": "The number taking at least one subject is $60 + 56 - 45 = 71$ (the 45 who take both were counted twice), so $150 - [(60 + 56) - 45] = 150 - 71 = 79$ students take neither.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "150 - (60 + 56 - 45) = 79"
+         "150 - [(60 + 56) - 45] = 79"
         ]
        }
       ],
@@ -1776,11 +1776,11 @@
       },
       {
        "part": "(b)",
-       "math": "26 + 4 - 2 = 28"
+       "math": "[26 + 4] - 2 = 30 - 2 = 28"
       },
       {
        "part": "(c)",
-       "math": "13 + 12 - 3 = 22"
+       "math": "[13 + 12] - 3 = 25 - 3 = 22"
       }
      ],
      "solution": {
@@ -1805,12 +1805,12 @@
          "zh": "黑色的 A 要減一次",
          "en": "The black aces are counted twice"
         },
-        "math": "26 + 4 - 2 = 28",
-        "zh": "黑色牌有 26 張，A 有 4 張，但葵扇 A 與梅花 A 同時屬於兩類（共 2 張），所以要減一次：$26 + 4 - 2 = 28$。",
-        "en": "There are 26 black cards and 4 aces, but the ace of spades and the ace of clubs belong to both (2 cards), so subtract them once: $26 + 4 - 2 = 28$.",
+        "math": "[26 + 4] - 2 = 30 - 2 = 28",
+        "zh": "黑色牌有 26 張，A 有 4 張，但葵扇 A 與梅花 A 同時屬於兩類（共 2 張），所以要減一次：$[26 + 4] - 2 = 30 - 2 = 28$。",
+        "en": "There are 26 black cards and 4 aces, but the ace of spades and the ace of clubs belong to both (2 cards), so subtract them once: $[26 + 4] - 2 = 30 - 2 = 28$.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "26 + 4 - 2 = 28"
+         "[26 + 4] - 2 = 28"
         ]
        },
        {
@@ -1819,12 +1819,12 @@
          "zh": "葵扇中的人頭牌",
          "en": "Face cards inside spades"
         },
-        "math": "13 + 12 - 3 = 22",
-        "zh": "葵扇有 13 張，人頭牌有 $4 \\times 3 = 12$ 張，其中葵扇 J、Q、K 這 3 張同時屬於兩類，所以 $13 + 12 - 3 = 22$。",
-        "en": "There are 13 spades and $4 \\times 3 = 12$ face cards; the 3 spade face cards belong to both, so $13 + 12 - 3 = 22$.",
+        "math": "[13 + 12] - 3 = 25 - 3 = 22",
+        "zh": "葵扇有 13 張，人頭牌有 $4 \\times 3 = 12$ 張，其中葵扇 J、Q、K 這 3 張同時屬於兩類，所以 $[13 + 12] - 3 = 25 - 3 = 22$。",
+        "en": "There are 13 spades and $4 \\times 3 = 12$ face cards; the 3 spade face cards belong to both, so $[13 + 12] - 3 = 25 - 3 = 22$.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "13 + 12 - 3 = 22"
+         "[13 + 12] - 3 = 22"
         ]
        }
       ],
@@ -1962,7 +1962,7 @@
       },
       {
        "part": "(c)",
-       "math": "51 + 38 - 18 = 71"
+       "math": "[51 + 38] - 18 = 89 - 18 = 71"
       }
      ],
      "solution": {
@@ -2001,12 +2001,12 @@
          "zh": "兩類有重疊：中碼男生",
          "en": "The groups overlap: medium boys"
         },
-        "math": "51 + 38 - 18 = 71",
-        "zh": "「男生」有 51 人、「中碼」有 38 人，其中中碼男生（18 人）同時符合兩個條件，被數了兩次，所以 $51 + 38 - 18 = 71$ 種選法。",
-        "en": "\"Boys\" has 51 students and \"medium\" has 38, but the 18 medium boys satisfy both and are counted twice: $51 + 38 - 18 = 71$ ways.",
+        "math": "[51 + 38] - 18 = 89 - 18 = 71",
+        "zh": "「男生」有 51 人、「中碼」有 38 人，其中中碼男生（18 人）同時符合兩個條件，被數了兩次，所以 $[51 + 38] - 18 = 89 - 18 = 71$ 種選法。",
+        "en": "\"Boys\" has 51 students and \"medium\" has 38, but the 18 medium boys satisfy both and are counted twice: $[51 + 38] - 18 = 89 - 18 = 71$ ways.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "51 + 38 - 18 = 71"
+         "[51 + 38] - 18 = 71"
         ]
        }
       ],
@@ -2261,7 +2261,7 @@
         "en": "The supply is 250000 and the demand is at most 250000 — exactly equal, so it is just enough. The claim is agreed, but only just: more students or more years would not fit.",
         "marking": "(1A)",
         "highlight": [
-         "供應 250000 = 需求 250000"
+         "250000 = 250000"
         ]
        }
       ],
@@ -2486,7 +2486,7 @@
      "answers": [
       {
        "part": "(a)",
-       "math": "4 \\times 3 + 2 = 14"
+       "math": "[4 \\times 3] + 2 = 12 + 2 = 14"
       },
       {
        "part": "(b)",
@@ -2501,12 +2501,12 @@
          "zh": "P 到 R 有兩條路線類別",
          "en": "Two kinds of route from P to R"
         },
-        "math": "4 \\times 3 + 2 = 14",
-        "zh": "可以由 P 經 Q 到 R（$4 \\times 3 = 12$ 種），或直接由 P 到 R（2 種）；兩類互不重疊，所以 $12 + 2 = 14$ 種，即 $4 \\times 3 + 2 = 14$。",
-        "en": "Either travel P → Q → R ($4 \\times 3 = 12$ ways) or go directly P → R (2 ways). The cases are disjoint: $12 + 2 = 14$, i.e. $4 \\times 3 + 2 = 14$ ways.",
+        "math": "[4 \\times 3] + 2 = 12 + 2 = 14",
+        "zh": "可以由 P 經 Q 到 R（$4 \\times 3 = 12$ 種），或直接由 P 到 R（2 種）；兩類互不重疊，所以 $12 + 2 = 14$ 種，即 $[4 \\times 3] + 2 = 12 + 2 = 14$。",
+        "en": "Either travel P → Q → R ($4 \\times 3 = 12$ ways) or go directly P → R (2 ways). The cases are disjoint: $12 + 2 = 14$, i.e. $[4 \\times 3] + 2 = 12 + 2 = 14$ ways.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "4 \\times 3 + 2 = 14"
+         "[4 \\times 3] + 2 = 14"
         ]
        },
        {
@@ -2569,7 +2569,7 @@
       },
       {
        "part": "(b)",
-       "math": "20000 - 150 \\times 50 = 12500",
+       "math": "20000 - [150 \\times 50] = 20000 - 7500 = 12500",
        "note": {
         "zh": "反面：兩人都來自 B 區",
         "en": "Complement: both from zone B"
@@ -2598,12 +2598,12 @@
          "zh": "反面：兩人都來自 B 區",
          "en": "Complement: both come from zone B"
         },
-        "math": "20000 - 150 \\times 50 = 12500",
-        "zh": "「至少一人來自 A 區」的反面是「兩人都來自 B 區」，共有 $150 \\times 50 = 7500$ 種；所以符合條件的有 $20000 - 7500 = 12500$ 種。",
-        "en": "The complement of \"at least one from A\" is \"both from B\", which has $150 \\times 50 = 7500$ ways; hence $20000 - 7500 = 12500$ ways.",
+        "math": "20000 - [150 \\times 50] = 20000 - 7500 = 12500",
+        "zh": "「至少一人來自 A 區」的反面是「兩人都來自 B 區」，共有 $150 \\times 50 = 7500$ 種；所以符合條件的有 $20000 - [150 \\times 50] = 20000 - 7500 = 12500$ 種。",
+        "en": "The complement of \"at least one from A\" is \"both from B\", which has $150 \\times 50 = 7500$ ways; hence $20000 - [150 \\times 50] = 20000 - 7500 = 12500$ ways.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "20000 - 150 \\times 50 = 12500"
+         "20000 - [150 \\times 50] = 12500"
         ]
        },
        {
@@ -2848,7 +2848,7 @@
         "en": "Two different colours give exactly three colour pairs: red–yellow, red–white and yellow–white. They are disjoint, so the cases are added.",
         "marking": "(1M)",
         "highlight": [
-         "\\text{三類顏色組合}"
+         "\\text{red–yellow} , \\text{red–white} , \\text{yellow–white}"
         ]
        },
        {
@@ -2924,7 +2924,7 @@
       },
       {
        "part": "(b)",
-       "math": "300 - 48 = 252"
+       "math": "300 - [4 \\times 4 \\times 3 \\times 1] = 300 - 48 = 252"
       },
       {
        "part": "(c)",
@@ -2953,12 +2953,12 @@
          "zh": "先數奇數，再用總數減",
          "en": "Count the odd numbers, then subtract from the total"
         },
-        "math": "300 - 4 \\times 4 \\times 3 \\times 1 = 252",
-        "zh": "奇數的個位必須是 5（1 個選擇），首位由 2、4、6、8 選（4 個），中間兩位 4 個與 3 個選擇，所以奇數有 $4 \\times 4 \\times 3 \\times 1 = 48$ 個；偶數則有 $300 - 48 = 252$ 個（用 (a) 的總數減去奇數，就不必分「個位是否 0」）。",
-        "en": "An odd number must end in 5 (1 choice), with 4 choices for the thousands digit (2, 4, 6, 8) and then 4 and 3: $4 \\times 4 \\times 3 \\times 1 = 48$ odd numbers. Hence there are $300 - 48 = 252$ even numbers — subtracting avoids splitting on whether the units digit is 0.",
+        "math": "300 - [4 \\times 4 \\times 3 \\times 1] = 300 - 48 = 252",
+        "zh": "奇數的個位必須是 5（1 個選擇），首位由 2、4、6、8 選（4 個），中間兩位 4 個與 3 個選擇，所以奇數有 $4 \\times 4 \\times 3 \\times 1 = 48$ 個；偶數則有 $300 - [4 \\times 4 \\times 3 \\times 1] = 300 - 48 = 252$ 個（用 (a) 的總數減去奇數，就不必分「個位是否 0」）。",
+        "en": "An odd number must end in 5 (1 choice), with 4 choices for the thousands digit (2, 4, 6, 8) and then 4 and 3: $4 \\times 4 \\times 3 \\times 1 = 48$ odd numbers. Hence there are $300 - [4 \\times 4 \\times 3 \\times 1] = 300 - 48 = 252$ even numbers — subtracting avoids splitting on whether the units digit is 0.",
         "marking": "(1M)(1A)",
         "highlight": [
-         "300 - 48 = 252"
+         "300 - [4 \\times 4 \\times 3 \\times 1] = 252"
         ]
        },
        {
@@ -3053,7 +3053,7 @@
          "zh": "解指數方程",
          "en": "Solve the index equation"
         },
-        "math": "2^n = 1024 = 2^{10} ; n = 10",
+        "math": "2^n = 1024 \\implies 2^n = 2^{10} \\implies n = 10",
         "zh": "把 1024 寫成 2 的次方：$1024 = 2^{10}$，所以 $2^n = 2^{10}$，得 $n = 10$ 條題目。",
         "en": "Write 1024 as a power of 2: $1024 = 2^{10}$, so $2^n = 2^{10}$ and $n = 10$ questions.",
         "marking": "(1A)",
