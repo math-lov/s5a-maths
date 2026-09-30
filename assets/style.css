@@ -966,6 +966,18 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 }
 .ord-dim { opacity: .45; transform: scale(.94); border-style: dashed; }
 .ord-merged { border-color: var(--ok); color: var(--ok-dark); background: var(--ok-soft); }
+.ord-on { border-color: var(--primary); color: var(--primary-ink); background: var(--primary-soft); }
+/* 兩行：候選（虛線框）／隊伍（實線＋淡靛底） */
+.row-lab { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: var(--sp-2) 0 4px; font-size: 13px; font-weight: 800; color: var(--muted); }
+.pick-row, .team-row {
+  display: flex; gap: 8px; flex-wrap: wrap; align-items: center; min-height: 44px;
+  padding: 6px 8px; border-radius: var(--radius-sm); border: 1px dashed var(--line); background: var(--card);
+}
+.team-row { border-style: solid; border-color: var(--primary-line); background: var(--primary-soft); }
+.unit-team { padding: 0; }
+.pnode-picked { background: var(--primary); color: #fff; border-color: var(--primary); }
+.order-note { margin-top: 6px; font-size: 13px; color: var(--muted); }
+.order-note.order-live { color: var(--accent-ink); font-weight: 700; }
 .demo[data-demo="combination"] .ord-row,
 .demo[data-demo="combination"] .demo-count { display: none; }
 .demo[data-demo="combination"][data-step="1"] .ord-row,

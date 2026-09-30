@@ -17,8 +17,8 @@
         "en": "Combinations: choose a group, ignore order"
       },
       "body": {
-        "zh": "若只關心選出哪些物件，不理會選取次序，便使用組合。從 $n$ 件相異物件中選 $r$ 件：\n- 第一步 · 依次排列所選的 $r$ 件物件，有 $P^n_r$ 種；\n- 第二步 · 同一組物件有 $r!$ 種內部次序，這些次序都代表同一組選擇，所以除以 $r!$。\n因此組合數為：{{math:0}}\n例如從 5 名學生中選 2 人組隊，甲乙與乙甲是同一隊，故用 $C^5_2=10$，而不是 $P^5_2=20$。",
-        "en": "Use a combination when only the selected objects matter and their selection order is irrelevant. To select $r$ objects from $n$ distinct objects:\n- Step 1 · Arrange the selected $r$ objects in order: $P^n_r$ ways;\n- Step 2 · Each group has $r!$ internal orders, all representing the same selection, so divide by $r!$.\nHence the number of combinations is: {{math:0}}\nFor example, choosing 2 students from 5 to form a team gives $C^5_2=10$: team AB is the same as BA, so this is not $P^5_2=20$."
+        "zh": "若只關心選出哪些物件，不理會選取次序，便使用組合。從 $n$ 件相異物件中選 $r$ 件：\n- 第一步 · 依次排列所選的 $r$ 件物件，有 $P^n_r$ 種；\n- 第二步 · 同一組物件有 $r!$ 種內部次序，這些次序都代表同一組選擇，所以除以 $r!$。\n因此組合數為：{{math:0}}\n例如從 5 名學生中選 3 人組隊：同一個組合有 $3! = 6$ 種次序，所以用 $C^5_3 = \\frac{60}{3!} = 10$，而不是 $P^5_3 = 60$。",
+        "en": "Use a combination when only the selected objects matter and their selection order is irrelevant. To select $r$ objects from $n$ distinct objects:\n- Step 1 · Arrange the selected $r$ objects in order: $P^n_r$ ways;\n- Step 2 · Each group has $r!$ internal orders, all representing the same selection, so divide by $r!$.\nHence the number of combinations is: {{math:0}}\nFor example, choosing 3 students from 5 to form a team: the same selection has $3! = 6$ orders, so use $C^5_3 = \\frac{60}{3!} = 10$, not $P^5_3 = 60$."
       },
       "math": [
         "C^n_r = \\frac{P^n_r}{r!} = \\frac{n!}{r!(n-r)!}"
@@ -26,8 +26,8 @@
       "demo": {
         "type": "combination",
         "caption": {
-          "zh": "示範用數字：5 人選 2 人組隊（$P^5_2 = 20$，$C^5_2 = 10$）。",
-          "en": "Demo figures: choose 2 of 5 students (P(5,2) = 20, C(5,2) = 10)."
+          "zh": "示範用數字：5 人選 3 人組隊（$P^5_3 = 60$，$C^5_3 = 10$）。",
+          "en": "Demo figures: choose 3 of 5 students (P(5,3) = 60, C(5,3) = 10)."
         }
       },
       "warn": {

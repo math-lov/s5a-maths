@@ -981,12 +981,13 @@
   }
 
   /* ── 組合（Combination）示範：為何要除 r! ──────────────────────────────
-     步驟 0 · 題目：5 人選 2 人組隊（唔計次序）
-     步驟 1 · 同一隊有兩種寫法（1,2 與 2,1）
-     步驟 2 · 有次序：5 × 4 = P(5,2) = 20
-     步驟 3 · 合併重複 → 20 ÷ 2! = C(5,2) = 10（附「已找到 n / 10 隊」）
+     步驟 0 · 題目：5 人選 3 人組隊（唔計次序）；點人即移落「隊伍列」
+     步驟 1 · 同一隊 3 人有 3! = 6 種寫法（123、132、213、231、312、321）
+     步驟 2 · 有次序：5 × 4 × 3 = P(5,3) = 60
+     步驟 3 · 6 種寫法合併成一隊 → 60 ÷ 3! = C(5,3) = 10（附「已找到 n / 10 隊」）
      ───────────────────────────────────────────────────────────────────── */
   var COMB_STEPS = 3;
+  var COMB_PICK = 3;
   function combination(host, opts) {
     var o = opts || {};
     var PEOPLE = [1, 2, 3, 4, 5];
@@ -1003,8 +1004,8 @@
     root.appendChild(head);
 
     var q = el("div", "demo-q");
-    q.appendChild(bi("5 名學生中選 2 人組隊（唔計次序）。",
-      "Choose 2 of 5 students to form a team (order does not matter)."));
+    q.appendChild(bi("5 名學生中選 3 人組隊（唔計次序）。",
+      "Choose 3 of 5 students to form a team (order does not matter)."));
     root.appendChild(q);
 
     var guide = el("div", "demo-guide");
@@ -1012,18 +1013,37 @@
     guide.appendChild(guideTxt);
     root.appendChild(guide);
     var GUIDES = [
-      ["按「下一步」開始；想換人，就點下面嘅學生。",
-        "Press Next to start; tap a student to change the pair."],
-      ["同一隊有兩種寫法（1,2 同 2,1）——「次序」就係多出嚟嘅部分。",
-        "The same team has two writings (1,2 and 2,1) — that is the extra part created by order."],
-      ["有次序：第一位 5 個選擇、第二位 4 個 → P(5,2) = 5 × 4 = 20。按「下一步」睇合併。",
-        "With order: 5 choices then 4 → P(5,2) = 5 × 4 = 20. Press Next to merge them."],
-      ["兩個寫法其實同一隊 → 20 ÷ 2! = 10。點不同嘅人，睇下可以找到幾多隊（共 10 隊）。",
-        "Both writings are one team → 20 ÷ 2! = 10. Tap different students to find all 10 teams."]
+      ["點上面 3 位學生，佢哋會移落下面嘅「隊伍列」；點隊伍成員可以放返出去。",
+        "Tap 3 students above and they move down into the team row; tap a team member to send them back."],
+      ["同一隊 3 個人有 3! = 6 種寫法（123、132、213…），但全部都係同一隊。",
+        "The same 3-person team has 3! = 6 writings (123, 132, 213 ...) — all the same team."],
+      ["如果計次序：第一位 5 個選擇、第二位 4 個、第三位 3 個 → P(5,3) = 5 × 4 × 3 = 60。",
+        "If order counted: 5 choices, then 4, then 3 → P(5,3) = 5 × 4 × 3 = 60."],
+      ["6 種寫法其實同一隊 → 60 ÷ 3! = 10。試點不同的人，睇下可以找到幾多隊（共 10 隊）。",
+        "The 6 writings are one team → 60 ÷ 3! = 10. Tap different students to find all 10 teams."]
     ];
 
-    var stage = el("div", "demo-stage stage-dots");
-    root.appendChild(stage);
+    /* 兩行：上＝候選（5 人），下＝隊伍（3 人，有序） */
+    var poolLab = el("div", "row-lab");
+    poolLab.appendChild(biInline("候選（5 人）", "Candidates (5)"));
+    root.appendChild(poolLab);
+    var poolRow = el("div", "pick-row");
+    root.appendChild(poolRow);
+
+    var teamLab = el("div", "row-lab");
+    teamLab.appendChild(biInline("你的隊伍（3 人）", "Your team (3)"));
+    var orderBtn = button("btn-ghost", "打亂次序", "Shuffle the order", "⇄", "start");
+    orderBtn.setAttribute("data-order", "1");
+    teamLab.appendChild(orderBtn);
+    root.appendChild(teamLab);
+    var teamRow = el("div", "team-row");
+    root.appendChild(teamRow);
+
+    var note = el("div", "order-note");
+    note.appendChild(bi("按下「⇄ 打亂次序」會換成另一個次序，睇完會自動排返 1,2,3 —— 因為唔計次序，次序唔同唔算新一隊。",
+      "Press Shuffle the order to show another order; it then snaps back to 1,2,3 — with order ignored, a different order is not a new team."));
+    root.appendChild(note);
+
     var ordRow = el("div", "ord-row");
     root.appendChild(ordRow);
 
@@ -1037,15 +1057,15 @@
     eq.setAttribute("aria-live", "polite");
     var rowA = el("div", "eqrow eqrow-p");
     var boxP = el("span", "eqbox");
-    boxP.appendChild(el("span", "eq", "5 × 4 = 20"));
+    boxP.appendChild(el("span", "eq", "5 × 4 × 3 = 60"));
     rowA.appendChild(boxP);
-    rowA.appendChild(biInline("有次序（P(5,2)）", "with order (P(5,2))"));
+    rowA.appendChild(biInline("有次序（P(5,3)）", "with order (P(5,3))"));
     var rowB = el("div", "eqrow eqrow-total");
-    rowB.appendChild(el("span", "eq eq-chain", "20 ÷ 2! ="));
+    rowB.appendChild(el("span", "eq eq-chain", "60 ÷ 3! ="));
     var boxC = el("span", "eqbox eq-total");
     boxC.appendChild(el("span", "eq", "10"));
     rowB.appendChild(boxC);
-    rowB.appendChild(biInline("組合（C(5,2)）", "combination (C(5,2))"));
+    rowB.appendChild(biInline("組合（C(5,3)）", "combination (C(5,3))"));
     eq.appendChild(rowA);
     eq.appendChild(rowB);
     root.appendChild(eq);
@@ -1059,62 +1079,139 @@
     ctrl.appendChild(replay);
     root.appendChild(ctrl);
 
-    var pair = [1, 2];
-    var sel = [];
+    var team = [];             /* 已選的學生（有序；預設空，等學生自己揀） */
     var tried = {};
     var step = 0;
+    var orderTimer = null;     /* 「換次序」自動還原的 timer */
 
+    function pool() {
+      return PEOPLE.filter(function (n) { return team.indexOf(n) < 0; });
+    }
     function markTried() {
-      tried[pair.join("-")] = true;
+      if (team.length !== COMB_PICK) return;
+      tried[team.slice().sort(function (a, b) { return a - b; }).join("-")] = true;
       countTxt.textContent = Object.keys(tried).length + " / 10";
     }
-    function dotEl(n) {
-      var b = el("button", "unit unit-dot");
+    /* 6 種寫法：把隊伍由細至大排好，再列出所有排列 */
+    function perms(arr) {
+      if (arr.length <= 1) return [arr.slice()];
+      var out = [];
+      arr.forEach(function (v, i) {
+        var rest = arr.slice(0, i).concat(arr.slice(i + 1));
+        perms(rest).forEach(function (p) { out.push([v].concat(p)); });
+      });
+      return out;
+    }
+    function chip(n, cls) {
+      var b = el("button", "unit unit-dot" + (cls ? " " + cls : ""));
       b.setAttribute("type", "button");
-      b.setAttribute("data-person", String(n));
-      b.appendChild(el("div", "pnode", String(n)));
-      if (pair.indexOf(n) >= 0) b.classList.add("unit-picked");
-      if (sel.indexOf(n) >= 0) b.classList.add("unit-sel");
-      b.disabled = step < 1;
-      b.onclick = function () {
-        if (step < 1) return;
-        var k = sel.indexOf(n);
-        if (k >= 0) { sel.splice(k, 1); paint(); return; }
-        sel.push(n);
-        if (sel.length === 2) {
-          pair = sel.slice().sort(function (x, y) { return x - y; });
-          sel = [];
-        }
-        paint();
-      };
+      b.appendChild(el("div", "pnode" + (cls ? " pnode-picked" : ""), String(n)));
       return b;
     }
-    function ordCard(txt, cls) {
-      var c = el("div", "ord-card" + (cls ? " " + cls : ""), txt);
-      return c;
-    }
     function paint() {
-      stage.innerHTML = "";
-      PEOPLE.forEach(function (n) { stage.appendChild(dotEl(n)); });
+      /* 候選列：未入隊的學生（滿 3 人後唔可以再加） */
+      poolRow.innerHTML = "";
+      pool().forEach(function (n) {
+        var b = chip(n);
+        b.setAttribute("data-person", String(n));
+        b.disabled = team.length >= COMB_PICK;
+        b.onclick = function () {
+          if (team.length >= COMB_PICK) return;
+          team.push(n);
+          markTried();
+          paint();
+        };
+        poolRow.appendChild(b);
+      });
+      /* 隊伍列：3 人，有序；點一下可以放返出去 */
+      teamRow.innerHTML = "";
+      team.forEach(function (n) {
+        var b = chip(n, "unit-team");
+        b.setAttribute("data-team", String(n));
+        b.onclick = function () {
+          var k = team.indexOf(n);
+          if (k >= 0) team.splice(k, 1);
+          if (orderTimer) restoreOrder();
+          note.classList.remove("order-live");
+          paint();
+        };
+        teamRow.appendChild(b);
+      });
+      orderBtn.disabled = team.length !== COMB_PICK || !!orderTimer;
+      /* 6 種寫法（第 2 步起） */
       ordRow.innerHTML = "";
-      if (step < 1) countTxt.textContent = "";   /* 重播時清空「已找到隊伍」 */
-      if (step >= 1) {
-        var a = pair[0];
-        var b = pair[1];
-        ordRow.appendChild(ordCard(a + "," + b, step >= 3 ? "ord-dim" : ""));
-        ordRow.appendChild(el("span", "eqtimes", "⇄"));
-        ordRow.appendChild(ordCard(b + "," + a, step >= 3 ? "ord-dim" : ""));
+      if (step >= 1 && team.length === COMB_PICK) {
+        var sorted = team.slice().sort(function (a, b) { return a - b; });
+        perms(sorted).forEach(function (p) {
+          var on = p.join("-") === team.join("-");
+          var c = el("div", "ord-card" + (step >= 3 ? " ord-dim" : (on ? " ord-on" : "")), p.join(""));
+          c.setAttribute("data-perm", p.join("-"));
+          ordRow.appendChild(c);
+        });
         if (step >= 3) {
           ordRow.appendChild(el("span", "eqtimes", "="));
-          ordRow.appendChild(ordCard("{" + a + "," + b + "}", "ord-merged"));
+          ordRow.appendChild(el("div", "ord-card ord-merged", "{" + sorted.join(",") + "}"));
         }
         markTried();
       }
+      if (team.length !== COMB_PICK) countTxt.textContent = "";
     }
+    /* 換次序：3 個隊員滑去對方位置（FLIP），睇完自動排返 1,2,3 */
+    function animateOrder(next) {
+      var pos = {};
+      Array.prototype.slice.call(teamRow.querySelectorAll("[data-team]")).forEach(function (b) {
+        pos[b.getAttribute("data-team")] = b.getBoundingClientRect().left;
+      });
+      team = next.slice();
+      paint();
+      Array.prototype.slice.call(teamRow.querySelectorAll("[data-team]")).forEach(function (b) {
+        var x0 = pos[b.getAttribute("data-team")];
+        if (x0 == null) return;
+        b.style.transition = "none";
+        b.style.transform = "translateX(" + (x0 - b.getBoundingClientRect().left) + "px)";
+        if (typeof requestAnimationFrame === "function") {
+          requestAnimationFrame(function () {
+            b.style.transition = "transform .3s ease";
+            b.style.transform = "";
+          });
+        } else {
+          b.style.transform = "";
+        }
+      });
+    }
+    function restoreOrder() {
+      if (orderTimer) { clearTimeout(orderTimer); orderTimer = null; }
+      note.classList.remove("order-live");
+      if (team.length === COMB_PICK) {
+        animateOrder(team.slice().sort(function (a, b) { return a - b; }));
+      }
+      orderBtn.disabled = team.length !== COMB_PICK;
+    }
+    orderBtn.onclick = function () {
+      if (team.length !== COMB_PICK || orderTimer) return;
+      var next = team.slice();
+      var last = next[COMB_PICK - 1];
+      next[COMB_PICK - 1] = next[COMB_PICK - 2];
+      next[COMB_PICK - 2] = last;
+      animateOrder(next);
+      note.classList.add("order-live");
+      orderTimer = setTimeout(restoreOrder, 1200);
+    };
+    /* 供測試用：立即還原（jsdom 唔等 timer） */
+    root.__demoOrder = {
+      restore: restoreOrder,
+      playing: function () { return !!orderTimer; }
+    };
 
     function setStep(n) {
       step = Math.max(0, Math.min(COMB_STEPS, n | 0));
-      sel = [];
+      if (orderTimer) restoreOrder();
+      /* 入到第 2 步仍然未揀夠 3 人 → 保留已揀嘅，再補齊（令示範可以繼續） */
+      if (step >= 1 && team.length !== COMB_PICK) {
+        var avail = PEOPLE.filter(function (n) { return team.indexOf(n) < 0; });
+        while (team.length < COMB_PICK && avail.length) team.push(avail.shift());
+        markTried();
+      }
       root.setAttribute("data-step", String(step));
       stepTag.innerHTML = "";
       stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (COMB_STEPS + 1) + " 步",
@@ -1128,7 +1225,8 @@
     prev.onclick = function () { setStep(step - 1); };
     next.onclick = function () { setStep(step + 1); };
     replay.onclick = function () {
-      pair = [1, 2];
+      if (orderTimer) restoreOrder();
+      team = [];
       tried = {};
       setStep(0);
     };

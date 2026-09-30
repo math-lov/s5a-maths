@@ -82,7 +82,7 @@
 | `tie-up` | 綑綁法：A、B 合成大單位、可與 C／D／E 換位（含「示範 4 種位置」自動播放與「已試 n / 24」） | `ch17-2` · `ch17-c02` | 5 | `demos/tie-up.html?step=N` |
 | `slot-in` | 插空法：4 男 3 女，男生可換位、5 個空隙亮起、女生逐一放入（5 × 4 × 3 = 60） | `ch17-2` · `ch17-c03` | 5 | `demos/slot-in.html?step=N` |
 | `grouping` | 分組：情境一 6 人 2 組（20／÷2! = 10）、情境二 10 人 4、4、2（3150／÷2! = 1575） | `ch17-3` · `ch17-3-c03` | 無步驟（切換模式） | `demos/grouping.html?scene=1` |
-| `combination` | 組合：5 選 2，同一隊兩種寫法（1,2／2,1）→ 合併 → 20 ÷ 2! = 10，附「已找到 n / 10 隊」 | `ch17-3` · `ch17-3-c01` | 4 | `demos/combination.html?step=N` |
+| `combination` | 組合：5 選 3，點人移落隊伍列；同一隊 3! = 6 種寫法（可「打亂次序」再自動排返）→ 合併 → 60 ÷ 3! = 10 | `ch17-3` · `ch17-3-c01` | 4 | `demos/combination.html?step=N` |
 | `path` | 路徑：4 東 3 北 → 點格子自己砌路徑（要保持 4 東）→ C(7,4) = C(7,3) = 35 | `ch17-3` · `ch17-3-c04` | 4 | `demos/path.html?step=N` |
 | `complement` | 至少／至多：直接分類 4 cases（1260）vs 反面 2 cases（1287 − 6 − 21）；點 case 會亮起該 5 人 | `ch17-3` · `ch17-3-c02` | 4 | `demos/complement.html?step=N` |
 

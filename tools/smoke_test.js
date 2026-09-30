@@ -818,35 +818,55 @@ ok(sizesTwo() === "4,4,2", "「隨機再分一次」後仍然是 4、4、2（實
 ok(gPanel(1).querySelectorAll(".gmember").length === 10, "10 個人都分到組，無漏無重");
 ok(/4, 4, 2|4、4、2/.test(read("data/src/ch17-3.json")), "分組卡正文已同步為 4、4、2 的例子");
 
-/* ── 組合示範：為何要除 r! ─────────────────────────────────────────────── */
+/* ── 組合示範：揀 3 人會移落隊伍列；換次序會自動還原（5C3）───────────── */
 const demoC = p173Overview.$('.demo[data-demo="combination"]');
 ok(!!demoC, "組合卡有互動示範");
-ok(demoC.querySelectorAll(".unit-dot").length === 5, "舞台有 5 位學生");
-ok(/唔計次序/.test(demoC.querySelector(".demo-q").textContent), "題目寫明「唔計次序」");
+ok(demoC.querySelectorAll(".pick-row .unit-dot").length === 5, "候選列有 5 位學生");
+ok(demoC.querySelectorAll(".team-row .unit-dot").length === 0, "第 1 步隊伍列空空（等學生自己揀）");
+ok(/選 3 人/.test(demoC.querySelector(".demo-q").textContent), "題目寫明 5 人選 3 人");
+ok(/3! = 6/.test(demoC.querySelector(".demo-guide").textContent + read("assets/demos.js")), "示範以 3! = 6 種寫法講解");
 const cBtns = demoC.querySelectorAll(".demo-ctrl .btn");
-const ordTxt = () => (demoC.querySelector(".ord-row") || {}).textContent || "";
-cBtns[1].click();
-ok(demoC.getAttribute("data-step") === "1", "第 2 步：同一隊兩種寫法");
-ok(/1,2/.test(ordTxt()) && /2,1/.test(ordTxt()), "同時列出 1,2 與 2,1（同一隊兩種寫法）");
-ok(countOf(ordTxt(), "⇄") === 1, "兩張卡之間用 ⇄ 表示對調");
-demoC.querySelector('[data-person="3"]').click();
+const poolNums = () => Array.prototype.slice.call(demoC.querySelectorAll(".pick-row .pnode"))
+  .map((n) => n.textContent).join(",");
+const teamNums = () => Array.prototype.slice.call(demoC.querySelectorAll(".team-row .pnode"))
+  .map((n) => n.textContent).join(",");
+demoC.querySelector('[data-person="2"]').click();
+ok(teamNums() === "2" && poolNums() === "1,3,4,5", "點學生 → 移落隊伍列（候選列同時少一個）");
+demoC.querySelector('[data-person="4"]').click();
 demoC.querySelector('[data-person="5"]').click();
-ok(/3,5/.test(ordTxt()) && /5,3/.test(ordTxt()), "點兩個人就換一隊（3、5）並更新兩張卡");
-ok(/2 \/ 10/.test(demoC.querySelector(".demo-count").textContent),
-  "「已找到隊伍」累加（實際 " + demoC.querySelector(".demo-count").textContent + "）");
+ok(teamNums() === "2,4,5" && poolNums() === "1,3", "揀夠 3 人：隊伍 2,4,5、候選只剩 1,3");
+ok(/1 \/ 10/.test(demoC.querySelector(".demo-count").textContent), "「已找到隊伍」+1");
+demoC.querySelector('[data-team="4"]').click();
+ok(teamNums() === "2,5" && /4/.test(poolNums()), "點隊伍成員 → 放返候選列");
+cBtns[1].click();
+ok(demoC.getAttribute("data-step") === "1" && teamNums() === "2,5,1",
+  "第 2 步：保留已揀嘅人再補齊 3 個（2,5 → 2,5,1）");
+const orderCards = () => Array.prototype.slice.call(demoC.querySelectorAll(".ord-row .ord-card"));
+ok(orderCards().length === 6, "列出 3! = 6 種寫法");
+ok(orderCards().filter((c) => c.classList.contains("ord-on")).length === 1 &&
+  orderCards().filter((c) => c.classList.contains("ord-on"))[0].getAttribute("data-perm") === "2-5-1",
+  "6 種寫法之中，目前次序（2-5-1）會亮起");
+const orderBtn = demoC.querySelector('[data-order="1"]');
+orderBtn.click();
+ok(teamNums() === "2,1,5", "「打亂次序」真的換了次序（2,5,1 → 2,1,5）");
+ok(!!demoC.querySelector(".order-note.order-live") && demoC.__demoOrder.playing() === true,
+  "同時標示次序已改變，並排定自動還原");
+demoC.__demoOrder.restore();
+ok(teamNums() === "1,2,5" && !demoC.querySelector(".order-note.order-live"),
+  "之後自動排返由細至大（1,2,5）—— 次序唔同唔算新一隊");
 cBtns[1].click();
 ok(demoC.getAttribute("data-step") === "2" &&
-  /5 × 4 = 20/.test(demoC.querySelector(".demo-eq").textContent), "第 3 步：有次序 5 × 4 = 20");
+  /5 × 4 × 3 = 60/.test(demoC.querySelector(".demo-eq").textContent), "第 3 步：有次序 5 × 4 × 3 = 60");
 cBtns[1].click();
-ok(demoC.getAttribute("data-step") === "3" && demoC.querySelectorAll(".ord-card.ord-dim").length === 2 &&
-  !!demoC.querySelector(".ord-merged"), "第 4 步：兩張有序卡淡化並合併成一張");
-ok(/20 ÷ 2! =/.test(demoC.querySelector(".demo-eq").textContent) &&
-  demoC.querySelector(".eq-total .eq").textContent === "10", "算式 20 ÷ 2! = 10");
+ok(demoC.getAttribute("data-step") === "3" &&
+  demoC.querySelectorAll(".ord-row .ord-card.ord-dim").length === 6 &&
+  !!demoC.querySelector(".ord-merged"), "第 4 步：6 種寫法一齊淡化並合併成一隊");
+ok(/60 ÷ 3! =/.test(demoC.querySelector(".demo-eq").textContent) &&
+  demoC.querySelector(".eq-total .eq").textContent === "10", "算式 60 ÷ 3! = 10");
 cBtns[2].click();
-ok(demoC.getAttribute("data-step") === "0" &&
+ok(demoC.getAttribute("data-step") === "0" && teamNums() === "" &&
   (demoC.querySelector(".demo-count .order-txt") || {}).textContent === "",
-  "「重播」回到第 1 步並清空計數（實際 " +
-  ((demoC.querySelector(".demo-count .order-txt") || {}).textContent || "（空）") + "）");
+  "「重播」回到第 1 步：隊伍清空、計數清空");
 
 /* ── 路徑示範：路徑＝揀邊幾步向東 ───────────────────────────────────────── */
 const demoP = p173Overview.$('.demo[data-demo="path"]');
