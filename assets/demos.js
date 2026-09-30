@@ -598,6 +598,12 @@
     root.insertBefore(countLine, eq);
 
     host.appendChild(root);
+    /* opts.place = n：先放好 n 位女生（獨立頁 ?place=N 用，方便截圖或直接跳到某一狀態） */
+    if (o.place) {
+      for (var pk = 0; pk < Math.min(o.place, GIRLS.length); pk++) {
+        placed.push({ slot: pk, girl: pk, fresh: false });
+      }
+    }
     setStep(o.step || 0);
     return root;
   }

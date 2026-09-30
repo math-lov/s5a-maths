@@ -864,14 +864,17 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 /* ══ 插空法示範（.demo[data-demo="slot-in"]）══════════════════════════ */
 .pnode-boy { background: var(--primary-soft); color: var(--primary-ink); border-color: var(--primary-line); }
 .gchip {
-  flex: none; width: 32px; height: 32px; border-radius: 50%;
+  flex: none; width: 26px; height: 26px; border-radius: 50%;
   background: var(--accent-soft); color: var(--accent-ink); border: 2px solid var(--accent-line);
-  display: grid; place-items: center; font-weight: 800; font-size: 14px;
+  display: grid; place-items: center; font-weight: 800; font-size: 12.5px;
 }
-.stage-slots { gap: 6px; }
+/* 插空法：男生、女生、空隙三者同一個尺寸框（32px）→ 一行排落完全對齊，
+   而且女生（26px）放入空隙後左右各留 1px，唔會壓到隔離嘅男生。 */
+.stage-slots { gap: 4px; }
+.stage-slots .pnode-boy { width: 32px; height: 32px; font-size: 13.5px; }
 /* 空隙：虛線空位 → 亮起（橙）→ 放入女生 */
 .slot {
-  flex: none; width: 26px; height: 38px; padding: 0; border-radius: 10px;
+  flex: none; width: 32px; height: 32px; padding: 0; border-radius: 10px;
   border: 2px dashed var(--line); background: transparent; cursor: default;
   display: grid; place-items: center; font: inherit; color: inherit;
   transition: border-color .2s ease, background .2s ease;

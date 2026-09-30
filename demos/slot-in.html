@@ -10,7 +10,7 @@
 <body data-page="demo" data-lang="both">
 
 <!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
-     ?step=N 可直接跳到第 N 步（0–4），方便截圖或課堂跳步。 -->
+     ?step=N 可直接跳到第 N 步（0–4）；?place=N 先放好 N 位女生（截圖／課堂示範用）。 -->
 
 <div class="topbar">
   <div class="inner">
@@ -47,8 +47,9 @@
   document.getElementById("lang-slot").appendChild(bar);
   if (bar.__paint) bar.__paint();
   var step = parseInt(q.get("step") || "0", 10);
+  var place = parseInt(q.get("place") || "0", 10);      /* ?place=N 先放好 N 位女生 */
   window.S5A_DEMO.slotIn(document.getElementById("demo-slot"),
-    { step: isNaN(step) ? 0 : step });
+    { step: isNaN(step) ? 0 : step, place: isNaN(place) ? 0 : place });
 })();
 </script>
 </body>
