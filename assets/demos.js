@@ -359,9 +359,508 @@
     return root;
   }
 
+  /* 組合記法：用 sup/sub 顯示 C^n_r（同站內 KaTeX 的 C^{n}_{r} 一致） */
+  function ncr(n, r) {
+    var s = el("span", "ncr");
+    s.setAttribute("data-ncr", "C(" + n + "," + r + ")");
+    s.appendChild(el("span", "ncr-c", "C"));
+    s.appendChild(el("sup", null, String(n)));
+    s.appendChild(el("sub", null, String(r)));
+    return s;
+  }
+  function shuffle(a) {
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var t = a[i]; a[i] = a[j]; a[j] = t;
+    }
+    return a;
+  }
+
+  /* ── 插空法（Slot-in）示範 ──────────────────────────────────────────────
+     步驟 0 · 題目：4 男 3 女排成一列，3 位女生互不相鄰
+     步驟 1 · 先排 4 位男生 → 4! = 24（男生可以互換位置）
+     步驟 2 · 4 位男生形成 5 個空隙（頭、中間 3 個、尾）
+     步驟 3 · 3 位女生逐一放入空隙 → 5 × 4 × 3 = P(5,3) = 60
+     步驟 4 · 組裝 4! × P(5,3) = 24 × 60 = 1440
+     ───────────────────────────────────────────────────────────────────── */
+  var SLOT_STEPS = 4;
+  function slotIn(host, opts) {
+    var o = opts || {};
+    var BOYS = ["B1", "B2", "B3", "B4"];
+    var GIRLS = ["G1", "G2", "G3"];
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "slot-in");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("插空法示範", "Slot-in demo"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("4 名男生與 3 名女生排成一列；3 名女生互不相鄰。",
+      "Four boys and three girls in a row; no two girls may be adjacent."));
+    var legend = el("div", "demo-legend");
+    legend.appendChild(el("span", "lg-dot lg-boy"));
+    legend.appendChild(biInline("男生（4 人）", "boys (4)"));
+    legend.appendChild(el("span", "lg-dot lg-girl"));
+    legend.appendChild(biInline("女生（3 人）", "girls (3)"));
+    q.appendChild(legend);
+    root.appendChild(q);
+
+    var stage = el("div", "demo-stage stage-slots");
+    root.appendChild(stage);
+    var hint = el("div", "demo-hint");
+    hint.appendChild(biInline("按「下一步」開始", "Press Next to start"));
+    root.appendChild(hint);
+
+    var hold = el("div", "demo-hold");
+    hold.appendChild(biInline("等候放入空隙的女生：", "Girls waiting for a gap:"));
+    var holdRow = el("div", "hold-row");
+    hold.appendChild(holdRow);
+    root.appendChild(hold);
+
+    /* 空隙的選擇數：5 × 4 × 3 = 60（逐位遞減） */
+    var choice = el("div", "demo-choice");
+    choice.setAttribute("aria-live", "polite");
+    [["1", "5"], ["2", "× 4"], ["3", "× 3"], ["4", "= 60"]].forEach(function (p) {
+      var b = el("span", "eqbox eq-c" + p[0]);
+      b.appendChild(el("span", "eq", p[1]));
+      choice.appendChild(b);
+    });
+    choice.appendChild(biInline("每放一位女生，可揀的空隙就少一個", "Each girl placed leaves one fewer gap"));
+    root.appendChild(choice);
+
+    /* 4! × P(5,3) */
+    var eq = el("div", "demo-eq");
+    eq.setAttribute("aria-live", "polite");
+    var rowParts = el("div", "eqrow");
+    var eqBoys = el("span", "eqbox eq-units");
+    eqBoys.appendChild(el("span", "eq", "4! = 24"));
+    var eqGaps = el("span", "eqbox eq-inner");
+    eqGaps.appendChild(el("span", "eq ncr-line", "P(5,3) = 60"));
+    rowParts.appendChild(eqBoys);
+    rowParts.appendChild(el("span", "eqtimes", "×"));
+    rowParts.appendChild(eqGaps);
+    var rowTotal = el("div", "eqrow eqrow-total");
+    rowTotal.appendChild(el("span", "eq eq-chain", "4! × P(5,3) = 24 × 60 ="));
+    var eqTotal = el("span", "eqbox eq-total");
+    eqTotal.appendChild(el("span", "eq", "1440"));
+    rowTotal.appendChild(eqTotal);
+    eq.appendChild(rowParts);
+    eq.appendChild(rowTotal);
+    root.appendChild(eq);
+
+    var ctrl = el("div", "demo-ctrl");
+    var prev = button("btn-ghost", "上一步", "Previous", "←", "start");
+    var next = button("btn-primary", "下一步", "Next", "→", "end");
+    var replay = button("btn-ghost", "重播", "Replay");
+    ctrl.appendChild(prev);
+    ctrl.appendChild(next);
+    ctrl.appendChild(replay);
+    root.appendChild(ctrl);
+
+    var boys = BOYS.slice();
+    var placed = [];            /* [{slot: i, girl: k}] 由先到後 */
+    var pickedBoy = null;
+    var tried = {};
+    var step = 0;
+
+    function canSwapBoys() { return step >= 1 && step <= 3; }
+    function girlsLeft() { return GIRLS.filter(function (g, k) { return !placedHolds(k); }); }
+    function placedHolds(k) {
+      return placed.some(function (p) { return p.girl === k; });
+    }
+    function markTried() {
+      tried[boys.join("")] = true;
+      var c = root.querySelector(".demo-count .order-txt");
+      if (c) c.textContent = Object.keys(tried).length + " / 24";
+    }
+    function pulse(nodes) {
+      nodes.forEach(function (n) {
+        n.classList.add("unit-moved");
+        setTimeout(function () { n.classList.remove("unit-moved"); }, 450);
+      });
+    }
+
+    function boyUnit(id, i) {
+      var b = el("button", "unit");
+      b.setAttribute("type", "button");
+      b.setAttribute("data-boy", id);
+      b.appendChild(el("div", "pnode pnode-boy", String(i + 1)));
+      b.disabled = !canSwapBoys();
+      if (canSwapBoys()) b.classList.add("unit-live");
+      if (pickedBoy === id) {
+        b.classList.add("unit-picked");
+        b.setAttribute("aria-pressed", "true");
+      }
+      b.onclick = function () {
+        if (!canSwapBoys()) return;
+        if (pickedBoy === null) { pickedBoy = id; paintStage(); return; }
+        var x = boys.indexOf(pickedBoy);
+        var y = boys.indexOf(id);
+        pickedBoy = null;
+        if (x < 0 || y < 0) { paintStage(); return; }
+        var t = boys[x]; boys[x] = boys[y]; boys[y] = t;
+        paintStage();
+        pulse(Array.prototype.slice.call(stage.querySelectorAll(".unit")));
+      };
+      return b;
+    }
+
+    function slotEl(i) {
+      var s = el("button", "slot");
+      s.setAttribute("type", "button");
+      s.setAttribute("data-slot", String(i));
+      var here = placed.filter(function (p) { return p.slot === i; })[0];
+      if (here) {
+        s.classList.add("slot-filled");
+        var g = el("span", "gchip", String(here.girl + 1));
+        g.setAttribute("data-girl", GIRLS[here.girl]);
+        if (here.fresh) g.classList.add("g-in");
+        s.appendChild(g);
+        /* 只可以拎返最後放入嘅一位（保持「逐位遞減」的推理一致） */
+        var last = placed[placed.length - 1];
+        if (step === 3 && last && last.slot === i) {
+          s.classList.add("slot-live");
+          s.onclick = function () {
+            placed.pop();
+            paintStage();
+          };
+        } else {
+          s.disabled = true;
+        }
+      } else {
+        var open = step === 3 && placed.length < GIRLS.length;
+        if (step >= 2) s.classList.add("slot-on");
+        if (open) {
+          s.classList.add("slot-live");
+          s.onclick = function () {
+            var left = GIRLS.map(function (g, k) { return k; })
+              .filter(function (k) { return !placedHolds(k); });
+            placed.push({ slot: i, girl: left[0], fresh: true });
+            paintStage();
+          };
+        } else {
+          s.disabled = true;
+        }
+      }
+      return s;
+    }
+
+    function paintStage() {
+      Array.prototype.slice.call(stage.querySelectorAll(".unit, .slot")).forEach(function (n) {
+        stage.removeChild(n);
+      });
+      for (var i = 0; i < boys.length; i++) {
+        stage.appendChild(slotEl(i));
+        stage.appendChild(boyUnit(boys[i], i));
+      }
+      stage.appendChild(slotEl(boys.length));
+      holdRow.innerHTML = "";
+      GIRLS.forEach(function (g, k) {
+        if (placedHolds(k)) return;
+        holdRow.appendChild(el("span", "gchip gchip-hold", String(k + 1)));
+      });
+      choice.setAttribute("data-placed", String(placed.length));
+      markTried();
+    }
+
+    function setStep(n) {
+      step = Math.max(0, Math.min(SLOT_STEPS, n | 0));
+      if (step < 3) placed = [];
+      pickedBoy = null;
+      root.setAttribute("data-step", String(step));
+      stepTag.innerHTML = "";
+      stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (SLOT_STEPS + 1) + " 步",
+        "Step " + (step + 1) + " / " + (SLOT_STEPS + 1)));
+      prev.disabled = step === 0;
+      next.disabled = step === SLOT_STEPS;
+      paintStage();
+    }
+    prev.onclick = function () { setStep(step - 1); };
+    next.onclick = function () { setStep(step + 1); };
+    replay.onclick = function () {
+      boys = BOYS.slice();
+      placed = [];
+      tried = {};
+      setStep(0);
+    };
+
+    /* 男生排列的計數（同綑綁法一致的「已試 n / 24 種」） */
+    var countLine = el("div", "demo-count");
+    countLine.appendChild(biInline("男生已試排列：", "Boy orders tried:"));
+    var countTxt = el("span", "order-txt");
+    countLine.appendChild(countTxt);
+    root.insertBefore(countLine, eq);
+
+    host.appendChild(root);
+    setStep(o.step || 0);
+    return root;
+  }
+
+  /* ── 分組問題（Grouping）示範 ────────────────────────────────────────────
+     情境一 · 6 人分 2 組（每組 3 人）
+       有組名（一隊去數學賽、一隊去科學賽）：C(6,3) × C(3,3) = 20
+       無組名（分兩隊打街頭籃球）：兩隊對調係同一場 → ÷ 2! → 10
+     情境二 · 10 人分 4、4、2 三組
+       指定營地 A／B／C：有標籤 → C(10,4) × C(6,4) × C(2,2) = 3150
+       4 人房 2 間＋2 人房 1 間／純粹分堆：只有兩個 4 人組會重複 → ÷ 2! → 1575
+     ───────────────────────────────────────────────────────────────────── */
+  function grouping(host, opts) {
+    var o = opts || {};
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "grouping");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("分組問題示範", "Grouping demo"));
+    head.appendChild(title);
+    root.appendChild(head);
+
+    var people6 = [1, 2, 3, 4, 5, 6];
+    var people10 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    var state = { scene: o.scene === 2 ? 2 : 1, one: "label", two: "camp" };
+
+    /* 情境切換 */
+    var segScene = el("div", "demo-seg");
+    var s1 = button("", "情境一 · 6 人分 2 組", "Scene 1 · 6 into 2 groups");
+    var s2 = button("", "情境二 · 10 人分 3 組", "Scene 2 · 10 into 3 groups");
+    segScene.appendChild(s1);
+    segScene.appendChild(s2);
+    root.appendChild(segScene);
+
+    /* 情境一 */
+    var panelOne = el("div", "demo-panel");
+    var segOne = el("div", "demo-seg");
+    var o1 = button("", "數理比賽（有組名）", "Maths / Science (labelled)");
+    var o2 = button("", "3 打 3 籃球（無組名）", "3-on-3 basketball (unlabelled)");
+    segOne.appendChild(o1);
+    segOne.appendChild(o2);
+    panelOne.appendChild(segOne);
+    var stageOne = el("div", "demo-stage stage-groups");
+    panelOne.appendChild(stageOne);
+    var ncrLineOne = el("div", "demo-eqline");
+    panelOne.appendChild(ncrLineOne);
+    var dupOne = el("div", "demo-dup");
+    panelOne.appendChild(dupOne);
+    var eqOne = el("div", "demo-eq");
+    eqOne.setAttribute("aria-live", "polite");
+    panelOne.appendChild(eqOne);
+    var randOne = button("btn-ghost", "隨機再分一次", "Shuffle again");
+    randOne.setAttribute("data-rand", "1");
+    panelOne.appendChild(randOne);
+    root.appendChild(panelOne);
+
+    /* 情境二 */
+    var panelTwo = el("div", "demo-panel");
+    var segTwo = el("div", "demo-seg");
+    var t1 = button("", "指定營地 A／B／C", "Camps A / B / C");
+    var t2 = button("", "4 人房 2 間＋2 人房 1 間", "Two 4-bed + one 2-bed room");
+    var t3 = button("", "純粹分堆", "Plain piles, no labels");
+    segTwo.appendChild(t1);
+    segTwo.appendChild(t2);
+    segTwo.appendChild(t3);
+    panelTwo.appendChild(segTwo);
+    var stageTwo = el("div", "demo-stage stage-groups");
+    panelTwo.appendChild(stageTwo);
+    var dupTwo = el("div", "demo-dup");
+    panelTwo.appendChild(dupTwo);
+    var eqTwo = el("div", "demo-eq");
+    eqTwo.setAttribute("aria-live", "polite");
+    panelTwo.appendChild(eqTwo);
+    var randTwo = button("btn-ghost", "隨機再分一次", "Shuffle again");
+    randTwo.setAttribute("data-rand", "2");
+    panelTwo.appendChild(randTwo);
+    root.appendChild(panelTwo);
+
+    /* ── 細部：建立每個組別容器 ─────────────────────────────────────────── */
+    function gbox(labelZh, labelEn, members, cls) {
+      var box = el("div", "gbox" + (cls ? " " + cls : ""));
+      if (labelZh) {
+        var h = el("div", "gbox-h");
+        h.appendChild(biInline(labelZh, labelEn));
+        box.appendChild(h);
+      } else {
+        box.appendChild(el("div", "gbox-h gbox-h-bare"));
+      }
+      var row = el("div", "gmembers");
+      members.forEach(function (m) {
+        row.appendChild(el("span", "gmember", String(m)));
+      });
+      box.appendChild(row);
+      return box;
+    }
+    function split(arr, sizes) {
+      var out = [];
+      var k = 0;
+      sizes.forEach(function (n) {
+        out.push(arr.slice(k, k + n));
+        k += n;
+      });
+      return out;
+    }
+    function dupNote(zh, en) {
+      var d = el("div", "dup-note");
+      d.appendChild(bi(zh, en));
+      return d;
+    }
+
+    function renderOne() {
+      var gs = split(people6, [3, 3]);
+      stageOne.innerHTML = "";
+      var named = state.one === "label";
+      stageOne.appendChild(gbox(named ? "數學隊" : "", named ? "Maths team" : "", gs[0]));
+      stageOne.appendChild(gbox(named ? "科學隊" : "", named ? "Science team" : "", gs[1]));
+      ncrLineOne.innerHTML = "";
+      ncrLineOne.appendChild(biInline(
+        named ? "兩隊有分別（一隊去數學賽、一隊去科學賽）："
+          : "兩隊無分別（同一場球賽）：",
+        named ? "The two teams differ (maths vs science):" : "The two teams are interchangeable:"));
+      ncrLineOne.appendChild(ncr(6, 3));
+      ncrLineOne.appendChild(el("span", "eqtimes", "×"));
+      ncrLineOne.appendChild(ncr(3, 3));
+      ncrLineOne.appendChild(el("span", "eq", named ? "= 20" : "÷ 2! = 10"));
+
+      dupOne.innerHTML = "";
+      eqOne.innerHTML = "";
+      if (named) {
+        var row = el("div", "eqrow");
+        row.appendChild(el("span", "eq", "20"));
+        row.appendChild(biInline("種（兩隊有組名，對調係兩個唔同結果）",
+          "ways (labelled teams: swapping them is a different outcome)"));
+        eqOne.appendChild(row);
+      } else {
+        dupOne.appendChild(dupNote(
+          "以下兩個寫法其實係同一場球賽：(1,2,3) 對 (4,5,6) 與 (4,5,6) 對 (1,2,3)。兩個 3 人組人數相同又無組名，對調無效，所以要除以 2!。",
+          "These two writings are the same match: (1,2,3) vs (4,5,6) and (4,5,6) vs (1,2,3). The two 3-person groups are the same size and carry no label, so swapping them changes nothing — divide by 2!."));
+        var swap = button("btn-ghost", "示範對調", "Swap the two groups", "⇄", "end");
+        swap.onclick = function () {
+          var a = people6.slice(0, 3);
+          var b = people6.slice(3, 6);
+          people6 = b.concat(a);
+          renderOne();
+        };
+        dupOne.appendChild(swap);
+        var r2 = el("div", "eqrow");
+        var box = el("span", "eqbox eq-total");
+        box.appendChild(el("span", "eq", "10"));
+        r2.appendChild(el("span", "eq-chain", "20 ÷ 2! ="));
+        r2.appendChild(box);
+        r2.appendChild(biInline("種", "ways"));
+        eqOne.appendChild(r2);
+      }
+    }
+
+    function renderTwo() {
+      var sizes = [4, 4, 2];
+      var gs = split(people10, sizes);
+      var mode = state.two;                       /* camp | room | pile */
+      stageTwo.innerHTML = "";
+      var labels = {
+        camp: [["營地 A", "Camp A"], ["營地 B", "Camp B"], ["營地 C", "Camp C"]],
+        room: [["4 人房（1）", "4-bed room (1)"], ["4 人房（2）", "4-bed room (2)"], ["2 人房", "2-bed room"]],
+        pile: [["", ""], ["", ""], ["", ""]]
+      }[mode];
+      var same4 = mode !== "camp";
+      gs.forEach(function (members, i) {
+        var cls = "";
+        if (same4 && i < 2) cls = "gbox-twin";
+        else if (same4 && i === 2) cls = "gbox-single";
+        stageTwo.appendChild(gbox(labels[i][0], labels[i][1], members, cls));
+      });
+      dupTwo.innerHTML = "";
+      eqTwo.innerHTML = "";
+      if (mode === "camp") {
+        eqTwo.appendChild(ncrRow(["C(10,4)", "×", "C(6,4)", "×", "C(2,2)", "= 3150"], "種（三個營地有名字，各自唔同）", "ways (three named camps, all different)"));
+      } else {
+        dupTwo.appendChild(dupNote(
+          "只有兩個 4 人組會互相重複：對調之後完全一樣 → 除以 2!。2 人組人數獨特，唔會同其他組混淆，所以唔使除 3!。",
+          "Only the two 4-person groups duplicate each other: swapping them gives the same division → divide by 2!. The 2-person group has a unique size, so it can never be confused with the others — no need to divide by 3!."));
+        var swap2 = button("btn-ghost", "示範對調兩個 4 人組", "Swap the two 4-person groups", "⇄", "end");
+        swap2.onclick = function () {
+          var a = people10.slice(0, 4);
+          var b = people10.slice(4, 8);
+          people10 = b.concat(a).concat(people10.slice(8));
+          renderTwo();
+        };
+        dupTwo.appendChild(swap2);
+        eqTwo.appendChild(ncrRow(["C(10,4)", "×", "C(6,4)", "×", "C(2,2)", "÷ 2! = 1575"],
+          "種（只有兩個 4 人組對調重複，所以除 2! 而唔係 3!）",
+          "ways (only the two 4-person groups duplicate, so divide by 2!, not 3!)"));
+      }
+    }
+    /* 一行 C^n_r 算式（最後一段＝結果，用綠色） */
+    function ncrRow(parts, zhTail, enTail) {
+      var row = el("div", "eqrow");
+      parts.forEach(function (p, i) {
+        if (/^C\(/.test(p)) {
+          var m = p.match(/C\((\d+),(\d+)\)/);
+          row.appendChild(ncr(m[1], m[2]));
+        } else if (p === "×") {
+          row.appendChild(el("span", "eqtimes", "×"));
+        } else {
+          var box = el("span", "eqbox eq-total");
+          box.appendChild(el("span", "eq", p.replace("= ", "").replace("÷ 2! = ", "")));
+          if (/÷ 2!/.test(p)) row.appendChild(el("span", "eq-chain", "÷ 2! ="));
+          else row.appendChild(el("span", "eq-chain", "= "));
+          row.appendChild(box);
+        }
+      });
+      row.appendChild(biInline(zhTail, enTail));
+      return row;
+    }
+
+    function paint() {
+      segScene.querySelectorAll(".btn").forEach(function (b, i) {
+        b.classList.toggle("on", (i === 0) === (state.scene === 1));
+        b.setAttribute("aria-pressed", state.scene === 1 ? (i === 0 ? "true" : "false") : (i === 1 ? "true" : "false"));
+      });
+      segOne.querySelectorAll(".btn").forEach(function (b, i) {
+        var on = (i === 0) === (state.one === "label");
+        b.classList.toggle("on", on);
+        b.setAttribute("aria-pressed", on ? "true" : "false");
+      });
+      ["camp", "room", "pile"].forEach(function (m, i) {
+        var b = segTwo.querySelectorAll(".btn")[i];
+        b.classList.toggle("on", state.two === m);
+        b.setAttribute("aria-pressed", state.two === m ? "true" : "false");
+      });
+      panelOne.style.display = state.scene === 1 ? "" : "none";
+      panelTwo.style.display = state.scene === 2 ? "" : "none";
+      renderOne();
+      renderTwo();
+    }
+
+    s1.onclick = function () { state.scene = 1; paint(); };
+    s2.onclick = function () { state.scene = 2; paint(); };
+    o1.onclick = function () { state.one = "label"; paint(); };
+    o2.onclick = function () { state.one = "bare"; paint(); };
+    t1.onclick = function () { state.two = "camp"; paint(); };
+    t2.onclick = function () { state.two = "room"; paint(); };
+    t3.onclick = function () { state.two = "pile"; paint(); };
+    randOne.onclick = function () {
+      people6 = shuffle([1, 2, 3, 4, 5, 6]);
+      renderOne();
+    };
+    randTwo.onclick = function () {
+      people10 = shuffle([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+      renderTwo();
+    };
+
+    host.appendChild(root);
+    paint();
+    return root;
+  }
+
   global.S5A_DEMO = {
-    types: { "tie-up": tieUp },
+    types: { "tie-up": tieUp, "slot-in": slotIn, grouping: grouping },
     tieUp: tieUp,
+    slotIn: slotIn,
+    grouping: grouping,
     langBar: langBar,
     setLang: setLang
   };

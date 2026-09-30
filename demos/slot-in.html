@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>插空法示範 · Slot-in demo · 5A 數學溫習站</title>
+<meta name="description" content="插空法（互不相鄰）分步示範：4 男 3 女排成一列，女生互不相鄰 → 4! × P(5,3) = 1440。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
+     ?step=N 可直接跳到第 N 步（0–4），方便截圖或課堂跳步。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">插空法示範</span><span class="l-en">Slot-in method demo</span></h1>
+  <p class="lead">
+    <span class="l-zh">4 名男生與 3 名女生排成一列，女生互不相鄰 → 4! × P(5,3) = 1440。按「下一步」逐步看。</span>
+    <span class="l-en">Four boys and three girls in a row with no two girls adjacent → 4! × P(5,3) = 1440. Press Next to walk through it.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">男生可以點兩下互換位置；第 4 步點空隙就可以放入女生（再點最後一位可以拎返）。</span>
+    <span class="l-en">Tap two boys to swap them; on step 4 tap a gap to place a girl (tap the last one again to take her back).</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  var step = parseInt(q.get("step") || "0", 10);
+  window.S5A_DEMO.slotIn(document.getElementById("demo-slot"),
+    { step: isNaN(step) ? 0 : step });
+})();
+</script>
+</body>
+</html>

@@ -536,8 +536,55 @@ ok(demo.querySelector(".demo-eq").getAttribute("aria-live") === "polite",
   "算式列用 aria-live 播報目前步驟（螢幕閱讀器讀得到）");
 const cssDemo = read("assets/style.css");
 ok(/@media print\s*\{\s*\.demo \{ display: none/.test(cssDemo), "列印時收起示範");
-ok(/prefers-reduced-motion[\s\S]{0,200}\.demo \.bundle/.test(cssDemo),
+ok(/prefers-reduced-motion[\s\S]{0,220}\.demo \.unit-block/.test(cssDemo),
   "系統「減少動態效果」時示範停用過場");
+
+/* 插空法示範 */
+const demoS = c0.$('.demo[data-demo="slot-in"]');
+ok(!!demoS, "插空法卡有互動示範");
+ok(demoS.querySelectorAll(".pnode-boy").length === 4, "舞台上有 4 位男生");
+ok(demoS.querySelectorAll(".slot").length === 5, "4 位男生形成 5 個空隙（頭、中間 3 個、尾）");
+const sBtns = demoS.querySelectorAll(".demo-ctrl .btn");
+sBtns[1].click();
+ok(demoS.getAttribute("data-step") === "1", "第 2 步：先排好 4 位男生");
+ok(/4! = 24/.test(demoS.querySelector(".demo-eq").textContent), "顯示 4! = 24");
+const boyAt = () => Array.prototype.slice.call(demoS.querySelectorAll(".unit"));
+const firstBoy = boyAt()[0].getAttribute("data-boy");
+boyAt()[0].click();
+boyAt()[1].click();
+ok(boyAt()[1].getAttribute("data-boy") === firstBoy, "男生一樣可以點兩下互換位置");
+sBtns[1].click();
+ok(demoS.getAttribute("data-step") === "2", "第 3 步：5 個空隙亮起");
+ok(demoS.querySelectorAll(".slot-on").length === 5, "5 個空隙同步亮起（頭、中間 3 個、尾）");
+sBtns[1].click();
+ok(demoS.getAttribute("data-step") === "3", "第 4 步：女生逐一放入空隙");
+ok(demoS.querySelectorAll(".hold-row .gchip").length === 3, "等候區有 3 位女生");
+ok(demoS.querySelectorAll(".slot-live").length === 5, "5 個空隙都可以揀（第一位女生有 5 個選擇）");
+const slotsAt = () => Array.prototype.slice.call(demoS.querySelectorAll(".slot"));
+const choice = demoS.querySelector(".demo-choice");
+slotsAt()[0].click();
+ok(demoS.querySelectorAll(".slot-filled").length === 1 &&
+  demoS.querySelector(".slot-filled .gchip").textContent === "1",
+  "點空隙就放入一位女生");
+ok(choice.getAttribute("data-placed") === "1", "放置數＝1（選擇數開始遞減）");
+slotsAt()[1].click();
+slotsAt()[2].click();
+ok(demoS.querySelectorAll(".slot-filled").length === 3, "3 位女生放好，而且互不相鄰");
+ok(choice.getAttribute("data-placed") === "3", "5 × 4 × 3 = 60 全部亮起");
+slotsAt()[2].click();
+ok(demoS.querySelectorAll(".slot-filled").length === 2, "再點最後一位可以拎返（只限最後放入）");
+slotsAt()[2].click();
+sBtns[1].click();
+ok(demoS.getAttribute("data-step") === "4", "第 5 步：組裝公式");
+ok(/P\(5,3\) = 60/.test(demoS.querySelector(".demo-eq").textContent) &&
+  demoS.querySelector(".eq-total .eq").textContent === "1440",
+  "最終公式 4! × P(5,3) = 24 × 60 = 1440");
+sBtns[2].click();
+ok(demoS.getAttribute("data-step") === "0" && demoS.querySelectorAll(".slot-filled").length === 0,
+  "「重播」回到第 1 步並清空已放的女生");
+ok(/4!/.test(read("data/src/ch17-2.json")) &&
+  /1440/.test(read("data/src/ch17-2.json")),
+  "插空法卡片正文已同步為 4 男 3 女（1440）");
 ok(/24/.test(c0.$$(".cc-warn")[0].textContent), "綑綁法的常犯錯誤有計算例子（24 對 48）");
 ok(/12/.test(c0.$$(".cc-warn")[1].textContent) && /84/.test(c0.$$(".cc-warn")[1].textContent),
   "插空法的常犯錯誤有計算例子（正確 12 對錯誤 84）");
@@ -702,6 +749,42 @@ ok(p173Cards.length === 4, "17.3 總覽有 4 張教學卡（實際 " + p173Cards
 ok(/組合/.test(p173Cards[0].textContent) && /至少/.test(p173Cards[1].textContent) &&
   /分組/.test(p173Cards[2].textContent) && /路徑/.test(p173Cards[3].textContent),
   "17.3 教學卡依次為組合、至少／至多、分組、路徑");
+
+/* 分組示範：有組名 vs 無組名；10 人分 4、4、2 只除 2! 而唔係 3! */
+const demoG = p173Overview.$('.demo[data-demo="grouping"]');
+ok(!!demoG, "分組卡有互動示範");
+const gSegs = () => Array.prototype.slice.call(demoG.querySelectorAll(".demo-seg .btn"));
+const gPanel = (i) => demoG.querySelectorAll(".demo-panel")[i];
+ok(gSegs().length === 7, "示範有 7 個切換按鈕（情境 2 ＋ 情境一 2 ＋ 情境二 3）");
+ok(!!demoG.querySelector(".ncr"), "組合記法用 C^n_r（sup/sub）顯示");
+ok(/20/.test(gPanel(0).querySelector(".demo-eq").textContent),
+  "情境一（有組名）：C(6,3) × C(3,3) = 20");
+gSegs()[3].click();                                   /* 切到「籃球（無組名）」 */
+ok(!!gPanel(0).querySelector(".demo-dup .dup-note"), "無組名時顯示「兩個寫法係同一場球賽」");
+ok(/10/.test(gPanel(0).querySelector(".demo-eq").textContent) &&
+  /2!/.test(gPanel(0).querySelector(".demo-eq").textContent),
+  "無組名：÷ 2! 得 10");
+const firstMember = () => gPanel(0).querySelectorAll(".gbox .gmember")[0].textContent;
+const beforeSwap = firstMember();
+gPanel(0).querySelector(".demo-dup .btn").click();
+ok(firstMember() !== beforeSwap, "「示範對調」真的把兩組對調（" + beforeSwap + " → " + firstMember() + "）");
+gSegs()[1].click();                                   /* 切到情境二 */
+ok(gPanel(1).querySelectorAll(".gbox").length === 3, "情境二：10 人分成 3 個組別（4、4、2）");
+ok(/3150/.test(gPanel(1).querySelector(".demo-eq").textContent),
+  "指定營地（有標籤）：C(10,4) × C(6,4) × C(2,2) = 3150");
+gSegs()[6].click();                                   /* 切到「純粹分堆」 */
+ok(/1575/.test(gPanel(1).querySelector(".demo-eq").textContent), "純粹分堆：÷ 2! = 1575");
+ok(demoG.querySelectorAll(".gbox-twin").length === 2 &&
+  demoG.querySelectorAll(".gbox-single").length === 1,
+  "兩個 4 人組標為會互相重複（twin），2 人組標為獨特（single）");
+const dupTwo = gPanel(1).querySelector(".dup-note").textContent;
+ok(/2!/.test(dupTwo) && /3!/.test(dupTwo), "說明只除 2!，唔使除 3!（2 人組人數獨特）");
+const sizesTwo = () => Array.prototype.slice.call(gPanel(1).querySelectorAll(".gbox"))
+  .map((b) => b.querySelectorAll(".gmember").length).join(",");
+demoG.querySelector('[data-rand="2"]').click();
+ok(sizesTwo() === "4,4,2", "「隨機再分一次」後仍然是 4、4、2（實際 " + sizesTwo() + "）");
+ok(gPanel(1).querySelectorAll(".gmember").length === 10, "10 個人都分到組，無漏無重");
+ok(/4, 4, 2|4、4、2/.test(read("data/src/ch17-3.json")), "分組卡正文已同步為 4、4、2 的例子");
 const p173Sc = boot("quiz.html", "?c=ch17-3&p=5");
 ok(!!p173Sc.$('.q-card[data-qid="ch17-3-sc"]') && p173Sc.$$(".tf-item").length === 6,
   "17.3 Section Check 有 6 個互動判斷項");

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分組問題示範 · Grouping demo · 5A 數學溫習站</title>
+<meta name="description" content="分組問題示範：有組名／無組名的分別，10 人分 4、4、2 三組只除 2! 而非 3!。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
+     ?scene=1 / ?scene=2 可直接開某一個情境。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">分組問題示範</span><span class="l-en">Grouping demo</span></h1>
+  <p class="lead">
+    <span class="l-zh">組別有無編號，答案差一個階乘：6 人分 2 組 = 20 或 10；10 人分 4、4、2 = 3150 或 1575。</span>
+    <span class="l-en">Labels change the answer by a factorial: 6 people into 2 groups = 20 or 10; 10 people into 4, 4, 2 = 3150 or 1575.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">切換上面兩個情境，再用「隨機再分一次」看看不同分法；無組名時按「示範對調」會見到重複計數的原因。</span>
+    <span class="l-en">Switch scenes and press Shuffle for other divisions; with unlabelled groups, press Swap to see why the counting repeats.</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  var scene = parseInt(q.get("scene") || "1", 10);
+  window.S5A_DEMO.grouping(document.getElementById("demo-slot"),
+    { scene: scene === 2 ? 2 : 1 });
+})();
+</script>
+</body>
+</html>

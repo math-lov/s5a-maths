@@ -820,7 +820,8 @@ body[data-sol="show"] .hint-row { display: none; }
   color: var(--primary-ink); font-size: 16px;
 }
 .eqtimes { color: var(--muted); font-weight: 800; }
-.eqbox { opacity: .25; transition: opacity .25s ease; }
+/* 只有分步示範（有 data-step）才需要「未到的零件先淡化」；分組示範無步驟，直接全亮 */
+.demo[data-step] .eqbox { opacity: .25; transition: opacity .25s ease; }
 .eq-total .eq { color: var(--ok-dark); font-size: 19px; }
 .demo[data-step="1"] .eq-units,
 .demo[data-step="2"] .eq-units,
@@ -860,8 +861,87 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 }
 .demo-shell .lead { color: var(--muted); font-size: 14.5px; margin: 0 0 8px; }
 
+/* ══ 插空法示範（.demo[data-demo="slot-in"]）══════════════════════════ */
+.pnode-boy { background: var(--primary-soft); color: var(--primary-ink); border-color: var(--primary-line); }
+.gchip {
+  flex: none; width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent-soft); color: var(--accent-ink); border: 2px solid var(--accent-line);
+  display: grid; place-items: center; font-weight: 800; font-size: 14px;
+}
+.stage-slots { gap: 6px; }
+/* 空隙：虛線空位 → 亮起（橙）→ 放入女生 */
+.slot {
+  flex: none; width: 26px; height: 38px; padding: 0; border-radius: 10px;
+  border: 2px dashed var(--line); background: transparent; cursor: default;
+  display: grid; place-items: center; font: inherit; color: inherit;
+  transition: border-color .2s ease, background .2s ease;
+}
+.slot:disabled { opacity: 1; }
+.slot-on { border-color: var(--accent-line); background: var(--accent-soft); }
+.slot-live { cursor: pointer; border-color: var(--accent); background: var(--accent-soft); }
+.slot-live:hover { background: #ffe9d5; }
+.slot-live:focus-visible { outline: 3px solid rgba(79, 70, 229, .35); outline-offset: 2px; }
+.slot-filled { border-style: solid; border-color: var(--accent); background: var(--card); }
+.g-in { animation: pop .3s ease; }
+@keyframes pop { from { transform: scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+.demo-legend { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+.lg-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.lg-boy { background: var(--primary-soft); border: 2px solid var(--primary-line); }
+.lg-girl { background: var(--accent-soft); border: 2px solid var(--accent-line); }
+.demo-hold { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: var(--sp-2); font-size: 13.5px; color: var(--muted); }
+.hold-row { display: flex; gap: 6px; flex-wrap: wrap; }
+/* 空隙的選擇數：5 × 4 × 3 = 60（每放一位就亮起一個） */
+.demo-choice { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin-top: var(--sp-2); font-size: 13.5px; color: var(--muted); }
+.demo-choice .eqbox { opacity: .2; }
+.demo-choice[data-placed="0"] .eq-c1,
+.demo-choice[data-placed="1"] .eq-c1, .demo-choice[data-placed="1"] .eq-c2,
+.demo-choice[data-placed="2"] .eq-c1, .demo-choice[data-placed="2"] .eq-c2, .demo-choice[data-placed="2"] .eq-c3,
+.demo-choice[data-placed="3"] .eqbox { opacity: 1; }
+/* 插空法：這幾行只在相關步驟出現 */
+.demo[data-demo="slot-in"] .demo-hold,
+.demo[data-demo="slot-in"] .demo-choice,
+.demo[data-demo="slot-in"] .demo-count { display: none; }
+.demo[data-demo="slot-in"][data-step="1"] .demo-hold,
+.demo[data-demo="slot-in"][data-step="2"] .demo-hold,
+.demo[data-demo="slot-in"][data-step="3"] .demo-hold,
+.demo[data-demo="slot-in"][data-step="1"] .demo-count,
+.demo[data-demo="slot-in"][data-step="2"] .demo-count,
+.demo[data-demo="slot-in"][data-step="3"] .demo-count { display: flex; }
+.demo[data-demo="slot-in"][data-step="3"] .demo-choice,
+.demo[data-demo="slot-in"][data-step="4"] .demo-choice { display: flex; }
+
+/* ══ 分組示範（.demo[data-demo="grouping"]）════════════════════════════ */
+.demo-seg { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: var(--sp-3); }
+.demo-seg .btn.on { background: var(--primary); border-color: var(--primary); color: #fff; }
+.demo-panel { margin-bottom: var(--sp-2); }
+.stage-groups { gap: var(--sp-2); flex-wrap: wrap; align-items: flex-start; overflow: visible; }
+.gbox {
+  flex: 1 1 150px; min-width: 140px; padding: var(--sp-3);
+  border: 1px solid var(--line-soft); border-radius: var(--radius-sm); background: var(--card);
+}
+.gbox-h { font-size: 13.5px; font-weight: 800; color: var(--primary-ink); margin-bottom: 6px; min-height: 20px; }
+.gbox-h-bare { border-bottom: 2px dashed var(--line); height: 0; min-height: 0; margin: 0 0 10px; }
+.gmembers { display: flex; flex-wrap: wrap; gap: 6px; }
+.gmember {
+  width: 30px; height: 30px; border-radius: 50%; background: var(--primary-soft); color: var(--primary-ink);
+  border: 2px solid var(--primary-line); display: grid; place-items: center; font-weight: 800; font-size: 13.5px;
+}
+/* 人數相同的兩組（會互相重複）＝橙；人數獨特的一組維持藍 */
+.gbox-twin { border-color: var(--accent); background: var(--accent-soft); }
+.demo-dup {
+  margin-top: var(--sp-2); padding: var(--sp-3); background: var(--accent-soft);
+  border-left: 4px solid var(--accent); border-radius: var(--radius-sm);
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px; font-size: 13.5px;
+}
+.demo-dup:empty { display: none; }
+.dup-note { color: var(--accent-ink); }
+/* C^n_r：用 sup/sub，跟站內 KaTeX 的寫法一致 */
+.ncr { font-weight: 800; color: var(--primary-ink); }
+.ncr sup, .ncr sub { font-size: .7em; }
+
 @media (prefers-reduced-motion: reduce) {
-  .demo .bundle, .demo .ichip, .demo .eqbox { transition: none; }
+  .demo .unit-block, .demo .ichip, .demo .eqbox, .demo .slot { transition: none; }
+  .demo .g-in, .demo .unit-moved { animation: none; }
 }
 
 @media print {
