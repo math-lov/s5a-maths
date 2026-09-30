@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>兩類重疊示範 · Overlap demo · 5A 數學溫習站</title>
+<meta name="description" content="兩類有重疊：|A ∪ B| = |A| + |B| − |A ∩ B|，20 + 25 − 15 = 30。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
+     ?step=N 跳到第 N 步（0–3）。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">兩類重疊示範</span><span class="l-en">Overlap demo</span></h1>
+  <p class="lead">
+    <span class="l-zh">20 人會排球、25 人會籃球，其中 15 人兩樣都會 → 全隊 20 + 25 − 15 = 30 人。</span>
+    <span class="l-en">20 players can play volleyball and 25 can play basketball, with 15 doing both → 20 + 25 − 15 = 30 players.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">按「−／＋」改變重疊人數，睇下總數點變；再想想「至少一個」為何常用反面計數。</span>
+    <span class="l-en">Use −／+ to change the overlap and watch the total; then think about why "at least one" is often counted by complement.</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  var step = parseInt(q.get("step") || "0", 10);
+  window.S5A_DEMO.venn(document.getElementById("demo-slot"),
+    { step: isNaN(step) ? 0 : step });
+})();
+</script>
+</body>
+</html>

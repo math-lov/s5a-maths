@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>午餐套裝示範 · Lunch-set demo · 5A 數學溫習站</title>
+<meta name="description" content="分類用加、分步用乘：午餐套裝 2 × 4 × 3 = 24，只買一樣則 2 + 4 + 3 = 9。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
+     ?step=N 跳到第 N 步（0–3）。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">午餐套裝示範</span><span class="l-en">Lunch-set demo</span></h1>
+  <p class="lead">
+    <span class="l-zh">餐牌：前菜 2 款、主菜 4 款、飲品 3 款。三樣都要揀（分步）就是 2 × 4 × 3 = 24；若只買一樣（分類）就是 2 + 4 + 3 = 9。</span>
+    <span class="l-en">Menu: 2 appetizers, 4 main dishes, 3 drinks. Choosing all three (steps) gives 2 × 4 × 3 = 24 sets; buying only one item (cases) gives 2 + 4 + 3 = 9.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">口訣：見到「或者」＝分類用加；見到「同時／然後」＝分步用乘。</span>
+    <span class="l-en">Rule of thumb: "or" means cases (add); "and then" means steps (multiply).</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  var step = parseInt(q.get("step") || "0", 10);
+  window.S5A_DEMO.menu(document.getElementById("demo-slot"),
+    { step: isNaN(step) ? 0 : step });
+})();
+</script>
+</body>
+</html>

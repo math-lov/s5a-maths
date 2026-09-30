@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>密碼逐位示範 · Digit-by-digit demo · 5A 數學溫習站</title>
+<meta name="description" content="密碼與編號：可重複 10^4 = 10000、不可重複 10 × 9 × 8 × 7 = 5040、首位限制 9 × 10^3 = 9000。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
+     ?step=N 跳到第 N 步（0–3）。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">密碼逐位示範</span><span class="l-en">Digit-by-digit demo</span></h1>
+  <p class="lead">
+    <span class="l-zh">按數字填入 4 個位，下面顯示「每一位有幾個選擇」：可重複是 10 × 10 × 10 × 10；不可重複是 10 × 9 × 8 × 7；首位不可為 0 就先處理首位。</span>
+    <span class="l-en">Tap digits to fill the four places and watch "choices left at this digit": repetition gives 10^4, no repetition gives 10 × 9 × 8 × 7, and a restricted first digit is handled first.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">「用過唔可以再用」＝每步少一個選擇；「首位不可以是 0」＝先把有規限的位置數清楚。</span>
+    <span class="l-en">"A digit used cannot be used again" = one fewer choice each step; "the first digit cannot be 0" = count the restricted place first.</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  var step = parseInt(q.get("step") || "0", 10);
+  window.S5A_DEMO.code(document.getElementById("demo-slot"),
+    { step: isNaN(step) ? 0 : step });
+})();
+</script>
+</body>
+</html>

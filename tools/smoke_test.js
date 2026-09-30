@@ -480,8 +480,113 @@ ok(P171_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).leng
   "17.1 每題都有 parts，而且分數加總＝題目分數（單一答案用 label \"\"）");
 ok(P171_DATA.sections.every((s) => s.questions.every((q) => (q.solution.traps || []).length >= 1)),
   "17.1 每題都有常犯錯誤（traps）");
-ok(P171_DATA.cards.every((c) => !c.demo),
-  "17.1 教學卡暫時沒有互動示範（等老師決定，見 docs/ADD-CONTENT-HANDOFF.md §4）");
+/* 三張教學卡各有互動示範（2026-09-30 老師拍板：全部都加） */
+ok(P171_DATA.cards.map((c) => (c.demo || {}).type).join(",") === "menu,venn,code",
+  "17.1 三張卡各有示範：menu、venn、code（實際 " +
+  P171_DATA.cards.map((c) => (c.demo || {}).type).join(",") + "）");
+const C171d = bootCss("quiz.html", "?c=ch17-1&p=0");
+ok(C171d.$$(".cc .demo").length === 3, "17.1 總覽渲染出 3 個示範");
+const vis171 = (rootNode, sel) => {
+  const n = rootNode.querySelector(sel);
+  return n ? C171d.ctx.window.getComputedStyle(n).display : "MISSING";
+};
+
+/* ── menu 示範：分類用加、分步用乘 ─────────────────────────────────────── */
+const demoM = C171d.$('.demo[data-demo="menu"]');
+const mBtns = demoM.querySelectorAll(".demo-ctrl .btn");
+const mOpts = () => demoM.querySelectorAll(".menu-opt");
+ok(mOpts().length === 9, "午餐示範有 2 + 4 + 3 = 9 個選項（實際 " + mOpts().length + "）");
+ok(Array.from(mOpts()).every((b) => b.disabled), "第 1 步未可以揀（先睇餐牌）");
+ok(vis171(demoM, '.menu-prod [data-lvl="2"]') === "none" &&
+  vis171(demoM, '.menu-prod [data-lvl="3"]') === "none", "第 1 步只顯示 2，未顯示 × 4／× 3");
+mBtns[1].click();
+ok(demoM.getAttribute("data-step") === "1" && !mOpts()[0].disabled, "第 2 步開始可以揀");
+ok(vis171(demoM, '.menu-prod [data-lvl="2"]') !== "none" &&
+  vis171(demoM, '.menu-prod [data-lvl="3"]') === "none" &&
+  /2× 4 =8/.test(demoM.querySelector(".menu-prod").textContent.replace(/\s+/g, " ")),
+  "第 2 步：亮起 2 × 4 = 8");
+mOpts()[0].click();
+mOpts()[2].click();
+mOpts()[7].click();
+ok(demoM.querySelectorAll(".menu-opt-on").length === 3, "一前菜、一主菜、一飲品各自亮起");
+ok(/沙律/.test(demoM.querySelector(".demo-count").textContent), "計數行寫出已砌出的套餐（沙律…）");
+mBtns[1].click();
+ok(demoM.getAttribute("data-step") === "2" && vis171(demoM, '.menu-prod [data-lvl="3"]') !== "none",
+  "第 3 步：亮起 × 3 = 24（一路乘落去）");
+ok(/2 × 4 × 3 = 24/.test(demoM.querySelector(".demo-eq").textContent) &&
+  vis171(demoM, ".eqrow-total") === "none", "算式區已有 2 × 4 × 3 = 24（對照未出現）");
+mBtns[1].click();
+ok(demoM.getAttribute("data-step") === "3" && vis171(demoM, ".eqrow-total") !== "none" &&
+  /2 \+ 4 \+ 3 = 9/.test(demoM.querySelector(".demo-eq").textContent),
+  "第 4 步：對照「只買一樣」2 + 4 + 3 = 9");
+
+/* ── venn 示範：加完要減重複 ───────────────────────────────────────────── */
+const demoV = C171d.$('.demo[data-demo="venn"]');
+const vBtns = demoV.querySelectorAll(".demo-ctrl .btn");
+const vNum = (cls) => demoV.querySelector("." + cls).textContent;
+const vX = () => demoV.querySelector(".venn-x").textContent;
+const vTotal = () => demoV.querySelector(".venn-total").textContent;
+ok(demoV.getAttribute("data-step") === "0" && vX() === "0" && vTotal() === "45" &&
+  vis171(demoV, ".demo-count") === "none", "第 1 步：未重疊 20 + 25 = 45（未顯示重疊控制）");
+ok(vNum("venn-onlyA") === "20" && vNum("venn-onlyB") === "25", "兩圈分別寫 20 與 25");
+vBtns[1].click();
+ok(demoV.getAttribute("data-step") === "1" && vX() === "15" && vTotal() === "30" &&
+  vNum("venn-both") === "15" && vNum("venn-onlyA") === "5" && vNum("venn-onlyB") === "10",
+  "第 2 步：15 人兩樣都會 → 20 + 25 − 15 = 30（圈內 5／15／10）");
+const vPlus = demoV.querySelector('[data-venn="1"]');
+const vMinus = demoV.querySelector('[data-venn="-1"]');
+vPlus.click();
+ok(vX() === "16" && vTotal() === "29", "按＋：重疊多 1 人，總數少 1（29）");
+vMinus.click();
+vMinus.click();
+ok(vX() === "14" && vTotal() === "31", "按−：重疊少，總數回升（31）");
+for (let i = 0; i < 10; i++) vPlus.click();
+ok(vX() === "20" && vPlus.disabled && vTotal() === "25",
+  "重疊最多 20（排球 20 人全部都識籃球）→ 總數 25");
+vBtns[1].click();
+ok(demoV.getAttribute("data-step") === "2" && /−／＋/.test(demoV.querySelector(".demo-guide").textContent),
+  "第 3 步：提醒可以自己改重疊人數");
+vBtns[1].click();
+ok(demoV.getAttribute("data-step") === "3" &&
+  /40 \+ 30/.test(demoV.querySelector(".demo-eq").textContent) &&
+  /= 60 → x =/.test(demoV.querySelector(".demo-eq").textContent) &&
+  demoV.querySelector(".eqrow-total .eq-total").textContent === "10" &&
+  vis171(demoV, ".eqrow-total") !== "none",
+  "第 4 步：反求 40 + 30 − x = 60 → x = 10");
+
+/* ── code 示範：可重複／不可重複／首位限制 ─────────────────────────────── */
+const demoK = C171d.$('.demo[data-demo="code"]');
+const kBtns = demoK.querySelectorAll(".demo-ctrl .btn");
+const kSlots = () => demoK.querySelectorAll(".code-slot");
+const kCounts = () => Array.from(demoK.querySelectorAll(".code-c")).map((n) => n.textContent).join("·");
+const kKey = (d) => demoK.querySelector('[data-key="' + d + '"]');
+ok(kSlots().length === 4 && kCounts() === "10·10·10·10" && demoK.getAttribute("data-prod") === "10000",
+  "第 1 步：可重複 → 每位 10 個選擇，10^4 = 10000");
+kKey(7).click();
+kKey(7).click();
+ok(kSlots()[0].textContent === "7" && kSlots()[1].textContent === "7" && kCounts() === "10·10·10·10",
+  "可重複：同一數字可以再用，選擇數目不變");
+kBtns[1].click();
+ok(demoK.getAttribute("data-step") === "1" && kSlots()[0].textContent === "–" &&
+  /10 × 9 × 8 × 7 = 5040/.test(demoK.querySelector(".demo-eq").textContent) && kCounts() === "10·9·8·7",
+  "第 2 步：不可重複 → 10 · 9 · 8 · 7 = 5040");
+kKey(7).click();
+ok(kCounts() === "10·9·8·7" && demoK.getAttribute("data-prod") === "5040" &&
+  kKey(7).disabled && kKey(7).classList.contains("code-key-off") && kSlots()[0].textContent === "7",
+  "填了 7：7 變灰唔可以再按，密碼第一位是 7");
+kBtns[1].click();
+ok(demoK.getAttribute("data-step") === "2" && kCounts() === "9·10·10·10" &&
+  /9 × 10 × 10 × 10 = 9000/.test(demoK.querySelector(".demo-eq").textContent),
+  "第 3 步：四位數首位不可為 0 → 9 · 10 · 10 · 10 = 9000");
+ok(kKey(0).disabled && !kKey(9).disabled, "首位限制：第一步 0 唔可以按（其餘 9 個都可以）");
+kBtns[1].click();
+kKey(2).click();
+ok(demoK.getAttribute("data-step") === "3" && kCounts() === "5·5·4·3" &&
+  demoK.getAttribute("data-prod") === "300" &&
+  /5 × 5 × 4 × 3 = 300/.test(demoK.querySelector(".demo-eq").textContent),
+  "第 4 步：用 2、4、5、6、8、0 → 5 · 5 · 4 · 3 = 300（跟 SM-31(a) 一致）");
+ok(kKey(1).disabled && kKey(3).disabled && kKey(0).disabled === false,
+  "這一題的數字池只有 0、2、4、5、6、8（1、3 唔可以按）");
 
 const C171 = boot("quiz.html", "?c=ch17-1&p=0");
 ok(C171.$$("#pagenav .pg").length === 38,

@@ -25,6 +25,13 @@
     "n_1 \\times n_2 \\times \\cdots \\times n_k",
     "2 \\times 4 \\times 3 = 24"
    ],
+   "demo": {
+    "type": "menu",
+    "caption": {
+     "zh": "示範用數字：前菜 2 款、主菜 4 款、飲品 3 款 → 三樣都要揀（分步）2 × 4 × 3 = 24；只買一樣（分類）2 + 4 + 3 = 9。",
+     "en": "Demo figures: 2 appetizers, 4 main dishes and 3 drinks → all three chosen (steps) gives 2 × 4 × 3 = 24 sets; one item only (cases) gives 2 + 4 + 3 = 9."
+    }
+   },
    "warn": {
     "zh": "- 「或者」＝分類，用加；「同時／然後」＝分步，用乘。一題可以兩者都用（先分類，類內再分步）。\n- 分步時每步的選項數目要重新數：上一步用掉一個選擇，下一步可能只剩 9 個。\n- 分類時各類不可重疊；有重疊就要先減重複（見下一張卡）。",
     "en": "- \"Or\" means cases → add; \"and then\" means steps → multiply. One question can use both (split into cases, then multiply within each case).\n- At each step count the choices again: a choice used in the previous step may leave only 9 for the next.\n- The classes must not overlap; if they do, subtract the overlap first (next card)."
@@ -63,6 +70,13 @@
     "|A \\cup B| = |A| + |B| - |A \\cap B|",
     "20 + 25 - 15 = 30"
    ],
+   "demo": {
+    "type": "venn",
+    "caption": {
+     "zh": "示範用數字：20 人會排球、25 人會籃球、15 人兩樣都會 → 20 + 25 - 15 = 30 人。",
+     "en": "Demo figures: 20 can play volleyball, 25 can play basketball and 15 can play both → 20 + 25 - 15 = 30 players."
+    }
+   },
    "warn": {
     "zh": "- 最常犯：忘記減重疊，答案多了「兩樣都會」的人數。\n- 「both」的數字只在相加之後減一次，不可在每一類都減。\n- 已知總數反而要反過來求重疊：$40 + 30 - x = 60$ 之類，先列式再解 $x$。",
     "en": "- Most common slip: forgetting to subtract the overlap, so the answer is too large by the number who belong to both.\n- The \"both\" number is subtracted once from the sum, not once from each group.\n- When the total is given instead, solve for the overlap: write $40 + 30 - x = 60$ and then find $x$."
@@ -98,6 +112,13 @@
     "10 \\times 9 \\times 8 \\times 7 = 5040",
     "5 \\times 5 \\times 4 \\times 3 = 300"
    ],
+   "demo": {
+    "type": "code",
+    "caption": {
+     "zh": "示範用數字：4 位密碼（0–9）→ 可重複 10^4 = 10000；不可重複 10 × 9 × 8 × 7 = 5040；若首位不可為 0 則 9 × 10 × 10 × 10 = 9000。",
+     "en": "Demo figures: a 4-digit code (0-9) → with repetition 10^4 = 10000; without repetition 10 × 9 × 8 × 7 = 5040; first digit not 0 gives 9 × 10 × 10 × 10 = 9000."
+    }
+   },
    "warn": {
     "zh": "- 首位不可為 0：若先數其他位，最後才處理首位，很容易多算或漏算；一律「先處理有規限的位置」。\n- 「不可以重複」時不可寫成次方（$10^4$），要看每步剩幾多個選擇。\n- 密碼若每一位都可以是 0–9，即使是第一位也可以為 0（與「四位數」不同）。",
     "en": "- Leading digit cannot be 0: counting the other positions first and leaving the thousands digit to the end often over- or under-counts. Always handle the restricted position first.\n- Without repetition, do not write a power such as $10^4$; count how many choices are left at each step.\n- In a code every digit may be 0–9, including the first one (unlike a 4-digit number)."

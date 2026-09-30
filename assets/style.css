@@ -1053,6 +1053,80 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .demo[data-demo="complement"][data-step="2"] .eqrow-comp,
 .demo[data-demo="complement"][data-step="3"] .eqrow-comp { display: flex; }
 
+/* ══ 午餐套裝示範（menu）：分類用加、分步用乘 ═════════════════════════════ */
+.stage-menu { display: grid; gap: 10px; }
+.menu-row { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
+.menu-lab {
+  min-width: 96px; display: flex; flex-direction: column; gap: 1px;
+  font-size: 13.5px; font-weight: 800; color: var(--text); padding-top: 9px;
+}
+.menu-lab-en { font-weight: 600; color: var(--muted); font-size: 12px; }
+.menu-n { font-weight: 800; color: var(--primary-ink); font-size: 12.5px; }
+.menu-opts { display: flex; flex-wrap: wrap; gap: 6px; flex: 1; min-width: 0; }
+.menu-opt {
+  font: inherit; font-size: 13.5px; padding: 7px 12px; min-height: 38px;
+  border-radius: 999px; border: 1px solid var(--line); background: var(--card);
+  color: var(--text); cursor: pointer;
+}
+.menu-opt:hover { border-color: var(--primary-line); background: var(--primary-soft); }
+.menu-opt:disabled { cursor: default; opacity: .6; }
+.menu-opt-on { border-color: var(--primary); background: var(--primary); color: #fff; }
+.menu-opt-on .l-zh, .menu-opt-on .l-en { color: #fff; }
+.menu-prod { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-top: var(--sp-2); }
+.menu-prod [data-lvl] { display: none; }
+.demo[data-demo="menu"][data-step="1"] .menu-prod [data-lvl="2"],
+.demo[data-demo="menu"][data-step="2"] .menu-prod [data-lvl="2"],
+.demo[data-demo="menu"][data-step="3"] .menu-prod [data-lvl="2"],
+.demo[data-demo="menu"][data-step="2"] .menu-prod [data-lvl="3"],
+.demo[data-demo="menu"][data-step="3"] .menu-prod [data-lvl="3"] { display: inline-flex; }
+.demo[data-demo="menu"] .eqrow-total { display: none; }
+.demo[data-demo="menu"][data-step="3"] .eqrow-total { display: flex; }
+.menu-plus { color: var(--muted); font-weight: 800; }
+
+/* ══ 兩類重疊示範（venn）：加完要減重複 ══════════════════════════════════ */
+.stage-venn { padding: 4px 0; }
+.venn-svg { width: 100%; max-width: 330px; height: auto; display: block; margin: 0 auto; }
+.venn-c { fill-opacity: .55; stroke-width: 2; }
+.venn-cA { fill: var(--primary-soft); stroke: var(--primary-line); }
+.venn-cB { fill: var(--accent-soft); stroke: var(--accent-line); }
+.venn-t { font-size: 13px; font-weight: 800; text-anchor: middle; fill: var(--text); }
+.venn-lab { font-size: 12px; font-weight: 800; fill: var(--muted); }
+.venn-onlyA { fill: var(--primary-ink); }
+.venn-onlyB { fill: var(--accent-ink); }
+.venn-both { fill: var(--text); }
+.demo[data-demo="venn"] .demo-count { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.demo[data-demo="venn"][data-step="0"] .demo-count { display: none; }
+.demo[data-demo="venn"] .demo-count .btn { min-width: 44px; padding: 6px 12px; font-size: 16px; }
+.demo[data-demo="venn"] .eqrow-total { display: none; }
+.demo[data-demo="venn"][data-step="3"] .eqrow-total { display: flex; }
+
+/* ══ 密碼逐位示範（code）：可重複／不可重複／首位限制 ═══════════════════ */
+.stage-code { display: grid; gap: 10px; justify-items: center; }
+.code-slots { display: flex; gap: 8px; }
+.code-slot {
+  width: 46px; height: 58px; border-radius: 10px; border: 2px dashed var(--line);
+  background: var(--card); font: inherit; font-size: 22px; font-weight: 800;
+  color: var(--muted); display: grid; place-items: center; cursor: pointer;
+}
+.code-slot:hover { border-color: var(--primary-line); }
+.code-slot-on {
+  border-style: solid; border-color: var(--primary);
+  background: var(--primary-soft); color: var(--primary-ink);
+}
+.code-pad { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; }
+.code-key {
+  width: 38px; height: 38px; border-radius: 9px; border: 1px solid var(--line);
+  background: var(--card); font: inherit; font-size: 15px; font-weight: 800;
+  color: var(--text); cursor: pointer;
+}
+.code-key:hover { border-color: var(--primary-line); background: var(--primary-soft); }
+.code-key:disabled { cursor: default; opacity: .35; }
+.code-key-off { text-decoration: line-through; }
+.code-counts { display: inline-flex; gap: 4px; align-items: baseline; }
+.code-c { font-weight: 800; color: var(--primary-ink); font-variant-numeric: tabular-nums; }
+.code-dot { color: var(--muted); }
+.code-mode { color: var(--muted); font-size: 13px; }
+
 @media (prefers-reduced-motion: reduce) {
   .demo .unit-block, .demo .ichip, .demo .eqbox, .demo .slot { transition: none; }
   .demo .g-in, .demo .unit-moved { animation: none; }

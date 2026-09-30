@@ -1641,10 +1641,546 @@
     return root;
   }
 
+  /* ── 午餐套裝（menu）：分類用加、分步用乘 ───────────────────────────────
+     步驟 0 · 先睇餐牌（前菜 2 款、主菜 4 款、飲品 3 款）
+     步驟 1 · 前菜配主菜 → 2 × 4 = 8
+     步驟 2 · 再加飲品 → 8 × 3 = 24（三樣都要揀＝分步，一路乘落去）
+     步驟 3 · 對照：只買一樣 → 2 + 4 + 3 = 9（分類，用加）
+     ───────────────────────────────────────────────────────────────────── */
+  var MENU_STEPS = 3;
+  var MENU_COURSES = [
+    { id: "A", n: 2, zh: "前菜", en: "Appetizer",
+      opts: [["沙律", "Salad"], ["湯", "Soup"]] },
+    { id: "M", n: 4, zh: "主菜", en: "Main dish",
+      opts: [["牛扒", "Steak"], ["豬扒", "Pork chop"], ["燒雞", "Roast chicken"], ["炸魚", "Fried fish"]] },
+    { id: "D", n: 3, zh: "飲品", en: "Drink",
+      opts: [["咖啡", "Coffee"], ["茶", "Tea"], ["汽水", "Soft drink"]] }
+  ];
+
+  function menuDemo(host, opts) {
+    var o = opts || {};
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "menu");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("午餐套裝示範", "Lunch-set demo"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("餐牌：前菜 2 款、主菜 4 款、飲品 3 款。套餐要三樣各揀一款。",
+      "Menu: 2 appetizers, 4 main dishes and 3 drinks. A set takes one of each."));
+    root.appendChild(q);
+
+    var guide = el("div", "demo-guide");
+    var guideTxt = el("div", "guide-txt");
+    guide.appendChild(guideTxt);
+    root.appendChild(guide);
+    var GUIDES = [
+      ["先睇餐牌：前菜 2 款、主菜 4 款、飲品 3 款。按「下一步」開始砌套餐。",
+        "Look at the menu: 2 appetizers, 4 main dishes, 3 drinks. Press Next to build a set."],
+      ["前菜配主菜：$2 \\times 4 = 8$ 種。試點一個前菜、一個主菜，睇下你砌咗邊一款。",
+        "Appetizer with main dish: $2 \\times 4 = 8$ ways. Tap one of each to see which set you have built."],
+      ["三樣都要揀（分步），所以一路乘落去：$8 \\times 3 = 24$ 款套餐。",
+        "All three courses are needed (steps), so keep multiplying: $8 \\times 3 = 24$ lunch sets."],
+      ["如果只買一樣（例如只買一杯飲品）就是分類，用加：$2 + 4 + 3 = 9$。同一份餐牌，問法唔同，原理就唔同。",
+        "If only one item is bought it is cases, so add: $2 + 4 + 3 = 9$. The same menu needs a different principle when the question changes."]
+    ];
+
+    /* 舞台：三行選項（每行一個課程） */
+    var stage = el("div", "demo-stage stage-menu");
+    var picks = {};
+    MENU_COURSES.forEach(function (c) {
+      picks[c.id] = -1;
+      var row = el("div", "menu-row");
+      var lab = el("div", "menu-lab");
+      lab.appendChild(el("span", "menu-lab-zh l-zh", c.zh));
+      lab.appendChild(el("span", "menu-lab-en l-en", c.en));
+      lab.appendChild(el("span", "menu-n", "× " + c.n));
+      row.appendChild(lab);
+      var box = el("div", "menu-opts");
+      c.opts.forEach(function (pair, i) {
+        var b = el("button", "menu-opt");
+        b.setAttribute("type", "button");
+        b.setAttribute("data-course", c.id);
+        b.setAttribute("data-opt", String(i));
+        b.appendChild(biInline(pair[0], pair[1]));
+        b.onclick = function () {
+          if (step < 1) return;
+          picks[c.id] = picks[c.id] === i ? -1 : i;
+          paint();
+        };
+        box.appendChild(b);
+      });
+      row.appendChild(box);
+      stage.appendChild(row);
+    });
+    root.appendChild(stage);
+
+    /* 乘起來的階梯：2 → × 4 = 8 → × 3 = 24 */
+    var prod = el("div", "menu-prod");
+    prod.setAttribute("aria-live", "polite");
+    var b1 = el("span", "eqbox", "2");
+    var s2 = el("span", "eq eq-chain", "× 4 ="), b2 = el("span", "eqbox", "8");
+    var s3 = el("span", "eq eq-chain", "× 3 ="), b3 = el("span", "eqbox menu-total", "24");
+    [b1, s2, b2, s3, b3].forEach(function (n) { prod.appendChild(n); });
+    s2.setAttribute("data-lvl", "2");
+    b2.setAttribute("data-lvl", "2");
+    s3.setAttribute("data-lvl", "3");
+    b3.setAttribute("data-lvl", "3");
+    root.appendChild(prod);
+
+    var pickLine = el("div", "demo-count");
+    pickLine.appendChild(biInline("你砌的套餐：", "Your set:"));
+    var pickTxt = el("span", "order-txt");
+    pickLine.appendChild(pickTxt);
+    root.appendChild(pickLine);
+
+    var eq = el("div", "demo-eq");
+    var rowA = el("div", "eqrow eqrow-p");
+    var boxA = el("span", "eqbox");
+    boxA.appendChild(el("span", "eq", "2 × 4 × 3 = 24"));
+    rowA.appendChild(boxA);
+    rowA.appendChild(biInline("（三樣都要揀＝分步，用乘）", "(all three courses = steps, so multiply)"));
+    var rowB = el("div", "eqrow eqrow-total");
+    var boxB = el("span", "eqbox eq-total");
+    boxB.appendChild(el("span", "eq", "2 + 4 + 3 = 9"));
+    rowB.appendChild(boxB);
+    rowB.appendChild(biInline("（只買一樣＝分類，用加）", "(only one item = cases, so add)"));
+    eq.appendChild(rowA);
+    eq.appendChild(rowB);
+    root.appendChild(eq);
+
+    var ctrl = el("div", "demo-ctrl");
+    var prev = button("btn-ghost", "上一步", "Previous", "←", "start");
+    var next = button("btn-primary", "下一步", "Next", "→", "end");
+    var replay = button("btn-ghost", "重播", "Replay");
+    ctrl.appendChild(prev);
+    ctrl.appendChild(next);
+    ctrl.appendChild(replay);
+    root.appendChild(ctrl);
+
+    var step = 0;
+
+    function paint() {
+      MENU_COURSES.forEach(function (c) {
+        var chosen = picks[c.id];
+        Array.prototype.slice.call(stage.querySelectorAll('[data-course="' + c.id + '"]'))
+          .forEach(function (b, i) {
+            var on = i === chosen;
+            b.className = "menu-opt" + (on ? " menu-opt-on" : "");
+            b.disabled = step < 1;
+            b.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+      });
+      var names = [];
+      MENU_COURSES.forEach(function (c) {
+        if (picks[c.id] >= 0) names.push(c.opts[picks[c.id]]);
+      });
+      pickTxt.innerHTML = "";
+      if (names.length < MENU_COURSES.length) {
+        pickTxt.appendChild(biInline("（仲未揀齊三樣）", "(not all three chosen yet)"));
+      } else {
+        /* 語言中立：揀中的菜名兩語並列（由 .l-zh／.l-en 控制顯示） */
+        names.forEach(function (pair, i) {
+          if (i) pickTxt.appendChild(el("span", "menu-plus", "+"));
+          pickTxt.appendChild(biInline(pair[0], pair[1]));
+        });
+      }
+    }
+    function setStep(n) {
+      step = Math.max(0, Math.min(MENU_STEPS, n | 0));
+      if (step === 0) MENU_COURSES.forEach(function (c) { picks[c.id] = -1; });
+      root.setAttribute("data-step", String(step));
+      stepTag.innerHTML = "";
+      stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (MENU_STEPS + 1) + " 步",
+        "Step " + (step + 1) + " / " + (MENU_STEPS + 1)));
+      guideTxt.innerHTML = "";
+      guideTxt.appendChild(bi(GUIDES[step][0], GUIDES[step][1]));
+      prev.disabled = step === 0;
+      next.disabled = step === MENU_STEPS;
+      paint();
+    }
+    prev.onclick = function () { setStep(step - 1); };
+    next.onclick = function () { setStep(step + 1); };
+    replay.onclick = function () {
+      MENU_COURSES.forEach(function (c) { picks[c.id] = -1; });
+      setStep(0);
+    };
+
+    host.appendChild(root);
+    setStep(o.step || 0);
+    return root;
+  }
+
+  /* ── 兩類重疊（venn）：加完要減重複 ─────────────────────────────────────
+     20 人會排球、25 人會籃球；重疊 x 人可以按「−／＋」調節（0–20）
+     步驟 1 · x = 0（未重疊）→ 20 + 25 = 45
+     步驟 2 · x = 15 → 20 + 25 − 15 = 30
+     步驟 3 · 自己試：x 越大，總數越小（20 + 25 − x）
+     步驟 4 · 反求：40 + 30 − x = 60 → x = 10（知三求一）
+     ───────────────────────────────────────────────────────────────────── */
+  var VENN_STEPS = 3;
+  var VENN_A = 20;        /* 會排球 */
+  var VENN_B = 25;        /* 會籃球 */
+  var VENN_MAX = 20;      /* 重疊最多 = 排球那 20 人全部都識籃球 */
+
+  function vennDemo(host, opts) {
+    var o = opts || {};
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "venn");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("兩類重疊示範", "Overlap demo"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("20 人會打排球，25 人會打籃球。（可以兩樣都會）",
+      "20 players can play volleyball and 25 can play basketball (a player may play both)."));
+    root.appendChild(q);
+
+    var guide = el("div", "demo-guide");
+    var guideTxt = el("div", "guide-txt");
+    guide.appendChild(guideTxt);
+    root.appendChild(guide);
+    var GUIDES = [
+      ["兩類未重疊：$20 + 25 = 45$ 人。按「下一步」加入「兩樣都會」的人。",
+        "No overlap yet: $20 + 25 = 45$ players. Press Next to bring in the players who do both."],
+      ["15 人兩樣都會。他們在相加時被數了兩次，所以要減一次：$20 + 25 - 15 = 30$ 人。",
+        "15 players do both. They were counted twice by the sum, so subtract them once: $20 + 25 - 15 = 30$ players."],
+      ["按「−／＋」改變重疊人數：重疊越多，總數越少。任何 x 都是 $20 + 25 - x$（最多 20 人）。",
+        "Use −／+ to change the overlap: the bigger the overlap, the smaller the total. For any x it is $20 + 25 - x$ (at most 20)."],
+      ["反過來：已知全隊 60 人、會排球 40、會籃球 30，則 $40 + 30 - x = 60$，得 $x = 10$。同一個關係，知三求一。",
+        "The other way round: if the whole team is 60, with 40 volleyball and 30 basketball, then $40 + 30 - x = 60$ and $x = 10$. One relation, three knowns are enough."]
+    ];
+
+    var R = 54, CX = 160, Y = 74;
+    var stage = el("div", "demo-stage stage-venn");
+    var svg = svgEl("svg", { viewBox: "0 0 320 152", class: "venn-svg", role: "img" });
+    var cA = svgEl("circle", { cx: 0, cy: Y, r: R, class: "venn-c venn-cA" });
+    var cB = svgEl("circle", { cx: 0, cy: Y, r: R, class: "venn-c venn-cB" });
+    svg.appendChild(cA);
+    svg.appendChild(cB);
+    function svgText(cls, x, y, txt) {
+      var t = svgEl("text", { x: x, y: y, class: "venn-t " + cls });
+      t.textContent = txt;
+      return t;
+    }
+    var tLabA = svgText("venn-lab", 0, 18, "A");
+    var tLabB = svgText("venn-lab", 0, 18, "B");
+    var tOnlyA = svgText("venn-onlyA", 0, Y + 5, String(VENN_A));
+    var tBoth = svgText("venn-both", CX, Y + 5, "0");
+    var tOnlyB = svgText("venn-onlyB", 0, Y + 5, String(VENN_B));
+    [tLabA, tLabB, tOnlyA, tBoth, tOnlyB].forEach(function (n) { svg.appendChild(n); });
+    stage.appendChild(svg);
+    root.appendChild(stage);
+
+    var xLine = el("div", "demo-count");
+    xLine.appendChild(biInline("兩樣都會：", "Do both:"));
+    var xTxt = el("span", "order-txt venn-x", "0");
+    xLine.appendChild(xTxt);
+    var minus = el("button", "btn btn-sm btn-ghost");
+    minus.setAttribute("type", "button");
+    minus.setAttribute("data-venn", "-1");
+    minus.textContent = "−";
+    var plus = el("button", "btn btn-sm btn-ghost");
+    plus.setAttribute("type", "button");
+    plus.setAttribute("data-venn", "1");
+    plus.textContent = "+";
+    xLine.appendChild(minus);
+    xLine.appendChild(plus);
+    root.appendChild(xLine);
+
+    var eq = el("div", "demo-eq");
+    var rowA = el("div", "eqrow eqrow-p");
+    rowA.appendChild(el("span", "eq eq-chain", "20 + 25 −"));
+    var boxX = el("span", "eqbox");
+    boxX.appendChild(el("span", "eq venn-x", "0"));
+    rowA.appendChild(boxX);
+    rowA.appendChild(el("span", "eq eq-chain", "="));
+    var boxT = el("span", "eqbox eq-total");
+    boxT.appendChild(el("span", "eq venn-total", "45"));
+    rowA.appendChild(boxT);
+    rowA.appendChild(biInline("（排球或籃球，總共幾人）", "(volleyball or basketball, in total)"));
+    var rowB = el("div", "eqrow eqrow-total");
+    var boxR = el("span", "eqbox eq-total");
+    boxR.appendChild(el("span", "eq", "10"));
+    rowB.appendChild(el("span", "eq eq-chain", "40 + 30 −"));
+    rowB.appendChild(el("span", "eqbox", "x"));
+    rowB.appendChild(el("span", "eq eq-chain", "= 60 → x ="));
+    rowB.appendChild(boxR);
+    rowB.appendChild(biInline("（已知總數，反求重疊）", "(total given, solve for the overlap)"));
+    eq.appendChild(rowA);
+    eq.appendChild(rowB);
+    root.appendChild(eq);
+    rowB.setAttribute("data-rev", "1");
+
+    var ctrl = el("div", "demo-ctrl");
+    var prev = button("btn-ghost", "上一步", "Previous", "←", "start");
+    var next = button("btn-primary", "下一步", "Next", "→", "end");
+    var replay = button("btn-ghost", "重播", "Replay");
+    ctrl.appendChild(prev);
+    ctrl.appendChild(next);
+    ctrl.appendChild(replay);
+    root.appendChild(ctrl);
+
+    var step = 0;
+    var x = 0;
+
+    function paint() {
+      var d = 140 - (x / VENN_MAX) * 60;          /* 重疊越多，兩圈越近 */
+      var ax = CX - d / 2, bx = CX + d / 2;
+      cA.setAttribute("cx", String(ax));
+      cB.setAttribute("cx", String(bx));
+      tLabA.setAttribute("x", String(ax - 40));
+      tLabB.setAttribute("x", String(bx + 30));
+      tOnlyA.setAttribute("x", String(ax - 26));
+      tOnlyB.setAttribute("x", String(bx + 26));
+      tOnlyA.textContent = String(VENN_A - x);
+      tBoth.textContent = String(x);
+      tOnlyB.textContent = String(VENN_B - x);
+      tBoth.setAttribute("data-x", String(x));
+      xTxt.textContent = String(x);
+      Array.prototype.slice.call(root.querySelectorAll(".venn-x")).forEach(function (n) {
+        n.textContent = String(x);
+      });
+      Array.prototype.slice.call(root.querySelectorAll(".venn-total")).forEach(function (n) {
+        n.textContent = String(VENN_A + VENN_B - x);
+      });
+      minus.disabled = step < 1 || x <= 0;
+      plus.disabled = step < 1 || x >= VENN_MAX;
+    }
+    function setX(v) {
+      x = Math.max(0, Math.min(VENN_MAX, v));
+      paint();
+    }
+    function setStep(n) {
+      step = Math.max(0, Math.min(VENN_STEPS, n | 0));
+      if (step === 0) x = 0;
+      if (step === 1 && x === 0) x = 15;
+      root.setAttribute("data-step", String(step));
+      stepTag.innerHTML = "";
+      stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (VENN_STEPS + 1) + " 步",
+        "Step " + (step + 1) + " / " + (VENN_STEPS + 1)));
+      guideTxt.innerHTML = "";
+      guideTxt.appendChild(bi(GUIDES[step][0], GUIDES[step][1]));
+      prev.disabled = step === 0;
+      next.disabled = step === VENN_STEPS;
+      paint();
+    }
+    minus.onclick = function () { setX(x - 1); };
+    plus.onclick = function () { setX(x + 1); };
+    prev.onclick = function () { setStep(step - 1); };
+    next.onclick = function () { setStep(step + 1); };
+    replay.onclick = function () { x = 0; setStep(0); };
+
+    host.appendChild(root);
+    setStep(o.step || 0);
+    return root;
+  }
+
+  /* ── 密碼逐位（code）：重複／不重複／首位限制 ───────────────────────────
+     學生按數字填 4 個位，下面即時顯示「這一位仲有幾個選擇」
+     步驟 1 · 可重複（0–9）→ 10 · 10 · 10 · 10 = 10^4 = 10000
+     步驟 2 · 不可重複 → 10 · 9 · 8 · 7 = 5040（用過就冇）
+     步驟 3 · 四位數（首位不可為 0）→ 9 · 10 · 10 · 10 = 9000
+     步驟 4 · 用 2、4、5、6、8、0（不可重複、首位不可為 0）→ 5 · 5 · 4 · 3 = 300
+     ───────────────────────────────────────────────────────────────────── */
+  var CODE_STEPS = 3;
+  var CODE_SLOTS = 4;
+  var CODE_DIGITS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  var CODE_MODES = [
+    { pool: CODE_DIGITS, repeat: true, lead: true,
+      eq: "10^4 = 10000", zh: "可以重複", en: "Repetition allowed" },
+    { pool: CODE_DIGITS, repeat: false, lead: true,
+      eq: "10 × 9 × 8 × 7 = 5040", zh: "不可以重複", en: "No repetition" },
+    { pool: CODE_DIGITS, repeat: true, lead: false,
+      eq: "9 × 10 × 10 × 10 = 9000", zh: "四位數：首位不可為 0", en: "4-digit number: the first digit cannot be 0" },
+    { pool: [0, 2, 4, 5, 6, 8], repeat: false, lead: false,
+      eq: "5 × 5 × 4 × 3 = 300", zh: "用 2、4、5、6、8、0 排四位數", en: "Digits 2, 4, 5, 6, 8, 0 for a 4-digit number" }
+  ];
+
+  function codeDemo(host, opts) {
+    var o = opts || {};
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "code");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("密碼逐位示範", "Digit-by-digit demo"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("一個 4 位密碼，每一位由 0 至 9 之中揀一個數字。試下按數字填落去。",
+      "A 4-digit password: each digit is one of 0–9. Try tapping digits to fill it in."));
+    root.appendChild(q);
+
+    var guide = el("div", "demo-guide");
+    var guideTxt = el("div", "guide-txt");
+    guide.appendChild(guideTxt);
+    root.appendChild(guide);
+    var GUIDES = [
+      ["可以重複：每一位都有 10 個選擇 → $10^4 = 10000$ 個密碼。",
+        "Repetition allowed: every position has 10 choices → $10^4 = 10000$ passwords."],
+      ["不可以重複：用了一個數字，下一位就少一個。第一位 10 個、之後 9、8、7 → $10 \\times 9 \\times 8 \\times 7 = 5040$。",
+        "No repetition: a digit already used cannot be used again. 10 choices, then 9, 8, 7 → $10 \\times 9 \\times 8 \\times 7 = 5040$."],
+      ["若是「四位數」（首位不可以是 0，可以重複）：首位只有 9 個選擇，其餘三位各 10 個 → $9 \\times 10 \\times 10 \\times 10 = 9000$。",
+        "For a 4-digit number (first digit not 0, repetition allowed): 9 choices first, then 10 each → $9 \\times 10 \\times 10 \\times 10 = 9000$."],
+      ["同一招用在題目：用 2、4、5、6、8、0 排四位數（不可重複、首位不可為 0）→ $5 \\times 5 \\times 4 \\times 3 = 300$。先處理有規限的首位。",
+        "Same idea in a question: form a 4-digit number from 2, 4, 5, 6, 8, 0 (no repetition, first digit not 0) → $5 \\times 5 \\times 4 \\times 3 = 300$. Handle the restricted first digit first."]
+    ];
+
+    var stage = el("div", "demo-stage stage-code");
+    var slots = el("div", "code-slots");
+    var slotEls = [];
+    for (var si = 0; si < CODE_SLOTS; si++) {
+      var s = el("button", "code-slot");
+      s.setAttribute("type", "button");
+      s.setAttribute("data-slot", String(si));
+      s.textContent = "–";
+      (function (idx, node) {
+        node.onclick = function () {
+          filled[idx] = null;
+          paint();
+        };
+      })(si, s);
+      slots.appendChild(s);
+      slotEls.push(s);
+    }
+    stage.appendChild(slots);
+    var pad = el("div", "code-pad");
+    var keyEls = {};
+    CODE_DIGITS.forEach(function (d) {
+      var b = el("button", "code-key", String(d));
+      b.setAttribute("type", "button");
+      b.setAttribute("data-key", String(d));
+      b.onclick = function () { tapDigit(d); };
+      pad.appendChild(b);
+      keyEls[d] = b;
+    });
+    stage.appendChild(pad);
+    root.appendChild(stage);
+
+    var countLine = el("div", "demo-count");
+    countLine.appendChild(biInline("每一位可揀幾個：", "Choices at each digit:"));
+    var counts = el("span", "code-counts");
+    var cEls = [];
+    for (var ci = 0; ci < CODE_SLOTS; ci++) {
+      if (ci) counts.appendChild(el("span", "code-dot", "·"));
+      var c = el("span", "code-c");
+      counts.appendChild(c);
+      cEls.push(c);
+    }
+    countLine.appendChild(counts);
+    root.appendChild(countLine);
+
+    var eq = el("div", "demo-eq");
+    var rowA = el("div", "eqrow eqrow-p");
+    var boxA = el("span", "eqbox");
+    var eqTxt = el("span", "eq", CODE_MODES[0].eq);
+    boxA.appendChild(eqTxt);
+    rowA.appendChild(boxA);
+    var modeNote = el("span", "code-mode");
+    rowA.appendChild(modeNote);
+    eq.appendChild(rowA);
+    root.appendChild(eq);
+
+    var ctrl = el("div", "demo-ctrl");
+    var prev = button("btn-ghost", "上一步", "Previous", "←", "start");
+    var next = button("btn-primary", "下一步", "Next", "→", "end");
+    var replay = button("btn-ghost", "重播", "Replay");
+    ctrl.appendChild(prev);
+    ctrl.appendChild(next);
+    ctrl.appendChild(replay);
+    root.appendChild(ctrl);
+
+    var step = 0;
+    var filled = [null, null, null, null];
+
+    function mode() { return CODE_MODES[step]; }
+    /* 這一位可揀幾個＝（這個位允許的數字數目）−（唔可以重複時，之前已用掉的位數）
+       → 可重複 10 · 10 · 10 · 10；不可重複 10 · 9 · 8 · 7；四位數 9 · 10 · 10 · 10；
+         用 2、4、5、6、8、0（不可重複、首位唔可以係 0）5 · 5 · 4 · 3 */
+    function countAt(i) {
+      var m = mode();
+      var n = m.pool.length;
+      if (!m.lead && i === 0 && m.pool.indexOf(0) >= 0) n--;   /* 首位唔可以係 0 */
+      if (!m.repeat) n -= i;                                   /* 之前每一位用掉一個 */
+      return n;
+    }
+    function tapDigit(d) {
+      var m = mode();
+      var idx = -1;
+      for (var i = 0; i < CODE_SLOTS; i++) { if (filled[i] == null) { idx = i; break; } }
+      if (idx < 0) idx = CODE_SLOTS - 1;
+      if (!m.lead && idx === 0 && d === 0) return;                       /* 首位唔可以係 0 */
+      if (!m.repeat && filled.indexOf(d) >= 0) return;                   /* 用過唔可以再用 */
+      filled[idx] = d;
+      paint();
+    }
+    function paint() {
+      var m = mode();
+      for (var i = 0; i < CODE_SLOTS; i++) {
+        slotEls[i].textContent = filled[i] == null ? "–" : String(filled[i]);
+        slotEls[i].className = "code-slot" + (filled[i] == null ? "" : " code-slot-on");
+        cEls[i].textContent = String(countAt(i));
+      }
+      var prod = 1;
+      for (var j = 0; j < CODE_SLOTS; j++) prod *= countAt(j);
+      root.setAttribute("data-prod", String(prod));
+      CODE_DIGITS.forEach(function (d) {
+        var inPool = m.pool.indexOf(d) >= 0;
+        var used = !m.repeat && filled.indexOf(d) >= 0;
+        var banned = !m.lead && d === 0 && filled[0] == null;
+        keyEls[d].className = "code-key" + (inPool ? "" : " code-key-out") +
+          (used || banned ? " code-key-off" : "");
+        keyEls[d].disabled = !inPool || used || banned;
+      });
+      eqTxt.textContent = m.eq;
+      modeNote.innerHTML = "";
+      modeNote.appendChild(biInline("（" + m.zh + "）", "(" + m.en + ")"));
+    }
+    function setStep(n) {
+      step = Math.max(0, Math.min(CODE_STEPS, n | 0));
+      /* 換模式就清空：唔清的話，上一個模式填過的數字可能唔在這個模式的數字池內 */
+      filled = [null, null, null, null];
+      root.setAttribute("data-step", String(step));
+      stepTag.innerHTML = "";
+      stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (CODE_STEPS + 1) + " 步",
+        "Step " + (step + 1) + " / " + (CODE_STEPS + 1)));
+      guideTxt.innerHTML = "";
+      guideTxt.appendChild(bi(GUIDES[step][0], GUIDES[step][1]));
+      prev.disabled = step === 0;
+      next.disabled = step === CODE_STEPS;
+      paint();
+    }
+    prev.onclick = function () { setStep(step - 1); };
+    next.onclick = function () { setStep(step + 1); };
+    replay.onclick = function () { filled = [null, null, null, null]; setStep(0); };
+
+    host.appendChild(root);
+    setStep(o.step || 0);
+    return root;
+  }
+
   global.S5A_DEMO = {
     types: {
       "tie-up": tieUp, "slot-in": slotIn, grouping: grouping,
-      combination: combination, path: pathDemo, complement: complement
+      combination: combination, path: pathDemo, complement: complement,
+      menu: menuDemo, venn: vennDemo, code: codeDemo
     },
     tieUp: tieUp,
     slotIn: slotIn,
@@ -1652,9 +2188,9 @@
     combination: combination,
     path: pathDemo,
     complement: complement,
-    tieUp: tieUp,
-    slotIn: slotIn,
-    grouping: grouping,
+    menu: menuDemo,
+    venn: vennDemo,
+    code: codeDemo,
     langBar: langBar,
     setLang: setLang
   };
