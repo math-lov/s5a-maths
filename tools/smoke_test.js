@@ -528,7 +528,8 @@ const vX = () => demoV.querySelector(".venn-x").textContent;
 const vTotal = () => demoV.querySelector(".venn-total").textContent;
 ok(demoV.getAttribute("data-step") === "0" && vX() === "0" && vTotal() === "45" &&
   vis171(demoV, ".demo-count") === "none", "第 1 步：未重疊 20 + 25 = 45（未顯示重疊控制）");
-ok(vNum("venn-onlyA") === "20" && vNum("venn-onlyB") === "25", "兩圈分別寫 20 與 25");
+ok(vNum("venn-onlyA") === "20" && vNum("venn-onlyB") === "25",
+  "表內「只排球」20、「只籃球」25");
 vBtns[1].click();
 ok(demoV.getAttribute("data-step") === "1" && vX() === "15" && vTotal() === "30" &&
   vNum("venn-both") === "15" && vNum("venn-onlyA") === "5" && vNum("venn-onlyB") === "10",
@@ -546,6 +547,17 @@ ok(vX() === "20" && vPlus.disabled && vTotal() === "25",
 vBtns[1].click();
 ok(demoV.getAttribute("data-step") === "2" && /−／＋/.test(demoV.querySelector(".demo-guide").textContent),
   "第 3 步：提醒可以自己改重疊人數");
+/* 用 2×2 表（唔用相交圓）：三格相加一定等於總數，唔會出現「唔相交但有共同元素」 */
+ok(!demoV.querySelector(".venn-svg") && !!demoV.querySelector(".venn-tbl"),
+  "重疊示範用 2×2 表，唔再用兩個圓");
+const vCell = (cls) => Number(demoV.querySelector("." + cls).textContent);
+ok(vCell("venn-both") + vCell("venn-onlyA") + vCell("venn-onlyB") === vCell("venn-total"),
+  "2×2 表三格相加 = 總數（5 + 15 + 10 = 30）");
+ok(demoV.querySelector(".venn-neither").textContent === "？",
+  "「兩樣都唔會」那格係 ？：未知道全隊人數就計唔到（反面計數的起點）");
+vMinus.click();
+ok(vCell("venn-both") + vCell("venn-onlyA") + vCell("venn-onlyB") === vCell("venn-total"),
+  "改變 x 之後，三格相加仍然等於總數（x = 13）");
 vBtns[1].click();
 ok(demoV.getAttribute("data-step") === "3" &&
   /40 \+ 30/.test(demoV.querySelector(".demo-eq").textContent) &&
@@ -553,6 +565,13 @@ ok(demoV.getAttribute("data-step") === "3" &&
   demoV.querySelector(".eqrow-total .eq-total").textContent === "10" &&
   vis171(demoV, ".eqrow-total") !== "none",
   "第 4 步：反求 40 + 30 − x = 60 → x = 10");
+ok(vCell("venn-sumA") === 40 && vCell("venn-sumB") === 30 && vCell("venn-both") === 10 &&
+  demoV.querySelector(".venn-neither").textContent === "0" &&
+  demoV.querySelector(".venn-neither").classList.contains("venn-zero"),
+  "第 4 步：2×2 表換成另一題（40／30），「兩樣都唔會」那格減到 0");
+ok(vis171(demoV, ".venn-case") !== "none", "第 4 步顯示另一題的說明");
+ok(vCell("venn-both") + vCell("venn-onlyA") + vCell("venn-onlyB") === vCell("venn-total"),
+  "第 4 步：三格相加 = 總數（10 + 30 + 20 = 60）");
 
 /* ── code 示範：可重複／不可重複／首位限制 ─────────────────────────────── */
 const demoK = C171d.$('.demo[data-demo="code"]');
@@ -587,6 +606,12 @@ ok(demoK.getAttribute("data-step") === "3" && kCounts() === "5·5·4·3" &&
   "第 4 步：用 2、4、5、6、8、0 → 5 · 5 · 4 · 3 = 300（跟 SM-31(a) 一致）");
 ok(kKey(1).disabled && kKey(3).disabled && kKey(0).disabled === false,
   "這一題的數字池只有 0、2、4、5、6、8（1、3 唔可以按）");
+
+/* 示範文字唔經 KaTeX：漏出 $ 或 \times 會原樣顯示（2026-09-30 修正過的顯示問題） */
+ok(!/[\\$]/.test(demoM.textContent + demoV.textContent + demoK.textContent),
+  "三個示範的文字冇 $ 或反斜線（唔會顯示 $20 + 25$、\\times 之類）");
+ok(C171d.$$(".cc .demo").every((n) => !/[\\$]/.test(n.textContent)),
+  "站內三張卡的所有示範文字同樣冇 $ 或反斜線");
 
 const C171 = boot("quiz.html", "?c=ch17-1&p=0");
 ok(C171.$$("#pagenav .pg").length === 38,

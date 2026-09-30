@@ -67,7 +67,7 @@
     "en": "- If groups A and B overlap, adding them counts the overlap twice, so subtract it once: {{math:0}}\n- Example: 20 players can play volleyball, 25 can play basketball and 15 can play both → the team has {{math:1}}\n- If the question says \"at least one\", count by complement: total minus the number belonging to neither group is usually quicker."
    },
    "math": [
-    "|A \\cup B| = |A| + |B| - |A \\cap B|",
+    "\\text{volleyball or basketball} ; = \\text{volleyball} + \\text{basketball} - \\text{both}",
     "20 + 25 - 15 = 30"
    ],
    "demo": {
@@ -1048,8 +1048,8 @@
        }
       ],
       "tip": {
-       "zh": "「both」＝重疊部分，公式是 $|A \\cup B| = |A| + |B| - |A \\cap B|$。",
-       "en": "\"Both\" is the overlap: $|A \\cup B| = |A| + |B| - |A \\cap B|$."
+       "zh": "「both」＝重疊部分：先把兩類相加，再減一次重疊。用文字寫就是「排球 or 籃球 ＝ 排球 ＋ 籃球 − both」。",
+       "en": "\"Both\" is the overlap: add the two groups, then subtract the overlap once - in words, \"volleyball or basketball = volleyball + basketball - both\"."
       }
      },
      "parts": [
@@ -1655,8 +1655,8 @@
        }
       ],
       "tip": {
-       "zh": "四大關係：$|A|$、$|B|$、$|A \\cap B|$、$|A \\cup B|$，知三求一，先列式再解。",
-       "en": "Four related quantities: $|A|$, $|B|$, $|A \\cap B|$ and $|A \\cup B|$. Given three, write an equation and solve for the fourth."
+       "zh": "四個數量：會排球、會籃球、兩樣都會（and）、至少一樣（or）—— 知三求一，先列式再解。",
+       "en": "Four quantities: volleyball, basketball, both (and) and at least one (or) — given any three, write an equation and solve for the fourth."
       }
      }
     },

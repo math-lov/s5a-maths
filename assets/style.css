@@ -1083,17 +1083,31 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .demo[data-demo="menu"][data-step="3"] .eqrow-total { display: flex; }
 .menu-plus { color: var(--muted); font-weight: 800; }
 
-/* ══ 兩類重疊示範（venn）：加完要減重複 ══════════════════════════════════ */
+/* ══ 兩類重疊示範（venn）：加完要減重複（2×2 表）════════════════════════ */
 .stage-venn { padding: 4px 0; }
-.venn-svg { width: 100%; max-width: 330px; height: auto; display: block; margin: 0 auto; }
-.venn-c { fill-opacity: .55; stroke-width: 2; }
-.venn-cA { fill: var(--primary-soft); stroke: var(--primary-line); }
-.venn-cB { fill: var(--accent-soft); stroke: var(--accent-line); }
-.venn-t { font-size: 13px; font-weight: 800; text-anchor: middle; fill: var(--text); }
-.venn-lab { font-size: 12px; font-weight: 800; fill: var(--muted); }
-.venn-onlyA { fill: var(--primary-ink); }
-.venn-onlyB { fill: var(--accent-ink); }
-.venn-both { fill: var(--text); }
+.venn-tbl {
+  width: 100%; max-width: 440px; margin: 0 auto; border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.venn-th, .venn-cell {
+  border: 1px solid var(--line-soft); padding: 8px 6px;
+  text-align: center; vertical-align: middle;
+}
+.venn-th { background: var(--chip-bg); font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.venn-th .l-zh, .venn-th .l-en { display: block; }
+.venn-th .l-zh + .l-en { margin-top: 1px; font-weight: 600; opacity: .85; }
+.venn-corner { background: var(--card); }
+.venn-cell { font-size: 16px; font-weight: 800; color: var(--text); background: var(--card); }
+.venn-both { background: var(--primary-soft); color: var(--primary-ink); }
+.venn-onlyA { color: var(--primary-ink); }
+.venn-onlyB { color: var(--accent-ink); }
+.venn-sumA, .venn-sumB { background: var(--chip-bg); font-size: 14px; }
+.venn-neither { border-style: dashed; color: var(--muted); }
+.venn-neither.venn-zero { border-style: solid; border-color: var(--ok); background: var(--ok-soft); color: var(--ok-dark); }
+.venn-blank { background: var(--chip-bg); }
+.venn-case { margin-top: var(--sp-2); font-size: 13px; color: var(--muted); display: none; }
+.venn-case .l-zh, .venn-case .l-en { display: block; }
+.demo[data-demo="venn"][data-step="3"] .venn-case { display: block; }
 .demo[data-demo="venn"] .demo-count { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .demo[data-demo="venn"][data-step="0"] .demo-count { display: none; }
 .demo[data-demo="venn"] .demo-count .btn { min-width: 44px; padding: 6px 12px; font-size: 16px; }

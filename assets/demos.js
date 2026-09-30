@@ -1683,12 +1683,12 @@
     var GUIDES = [
       ["先睇餐牌：前菜 2 款、主菜 4 款、飲品 3 款。按「下一步」開始砌套餐。",
         "Look at the menu: 2 appetizers, 4 main dishes, 3 drinks. Press Next to build a set."],
-      ["前菜配主菜：$2 \\times 4 = 8$ 種。試點一個前菜、一個主菜，睇下你砌咗邊一款。",
-        "Appetizer with main dish: $2 \\times 4 = 8$ ways. Tap one of each to see which set you have built."],
-      ["三樣都要揀（分步），所以一路乘落去：$8 \\times 3 = 24$ 款套餐。",
-        "All three courses are needed (steps), so keep multiplying: $8 \\times 3 = 24$ lunch sets."],
-      ["如果只買一樣（例如只買一杯飲品）就是分類，用加：$2 + 4 + 3 = 9$。同一份餐牌，問法唔同，原理就唔同。",
-        "If only one item is bought it is cases, so add: $2 + 4 + 3 = 9$. The same menu needs a different principle when the question changes."]
+      ["前菜配主菜：2 × 4 = 8 種。試點一個前菜、一個主菜，睇下你砌咗邊一款。",
+        "Appetizer with main dish: 2 × 4 = 8 ways. Tap one of each to see which set you have built."],
+      ["三樣都要揀（分步），所以一路乘落去：8 × 3 = 24 款套餐。",
+        "All three courses are needed (steps), so keep multiplying: 8 × 3 = 24 lunch sets."],
+      ["如果只買一樣（例如只買一杯飲品）就是分類，用加：2 + 4 + 3 = 9。同一份餐牌，問法唔同，原理就唔同。",
+        "If only one item is bought it is cases, so add: 2 + 4 + 3 = 9. The same menu needs a different principle when the question changes."]
     ];
 
     /* 舞台：三行選項（每行一個課程） */
@@ -1825,9 +1825,14 @@
      步驟 4 · 反求：40 + 30 − x = 60 → x = 10（知三求一）
      ───────────────────────────────────────────────────────────────────── */
   var VENN_STEPS = 3;
-  var VENN_A = 20;        /* 會排球 */
-  var VENN_B = 25;        /* 會籃球 */
-  var VENN_MAX = 20;      /* 重疊最多 = 排球那 20 人全部都識籃球 */
+  /* 用 2×2 表（唔用相交圓）：兩格相加、減去中間重疊格，就一定計得準，
+     唔會出現「兩個圓唔相交但仍然寫住有共同元素」的假象。
+     ① 20 人排球、25 人籃球，全隊人數未知 → 「兩樣都唔會」那格係 ？
+     ② 第 4 步反過來：40 人排球、30 人籃球、全隊 60 人 → x = 10 */
+  var VENN_CASES = [
+    { A: 20, B: 25, total: null },
+    { A: 40, B: 30, total: 60 }
+  ];
 
   function vennDemo(host, opts) {
     var o = opts || {};
@@ -1853,39 +1858,62 @@
     guide.appendChild(guideTxt);
     root.appendChild(guide);
     var GUIDES = [
-      ["兩類未重疊：$20 + 25 = 45$ 人。按「下一步」加入「兩樣都會」的人。",
-        "No overlap yet: $20 + 25 = 45$ players. Press Next to bring in the players who do both."],
-      ["15 人兩樣都會。他們在相加時被數了兩次，所以要減一次：$20 + 25 - 15 = 30$ 人。",
-        "15 players do both. They were counted twice by the sum, so subtract them once: $20 + 25 - 15 = 30$ players."],
-      ["按「−／＋」改變重疊人數：重疊越多，總數越少。任何 x 都是 $20 + 25 - x$（最多 20 人）。",
-        "Use −／+ to change the overlap: the bigger the overlap, the smaller the total. For any x it is $20 + 25 - x$ (at most 20)."],
-      ["反過來：已知全隊 60 人、會排球 40、會籃球 30，則 $40 + 30 - x = 60$，得 $x = 10$。同一個關係，知三求一。",
-        "The other way round: if the whole team is 60, with 40 volleyball and 30 basketball, then $40 + 30 - x = 60$ and $x = 10$. One relation, three knowns are enough."]
+      ["睇 2×2 表：會排球 20 人、會籃球 25 人，兩樣都唔會那格係「？」（未知）。按「下一步」加入「兩樣都會」的人。",
+        "Look at the 2×2 table: 20 play volleyball, 25 play basketball, and the \"neither\" cell is unknown (\"?\"). Press Next to bring in those who play both."],
+      ["15 人兩樣都會。他們在相加時被數了兩次，所以要減一次：20 + 25 - 15 = 30 人（＝表內三格相加）。",
+        "15 players do both. They were counted twice by the sum, so subtract once: 20 + 25 - 15 = 30 players — the three cells of the table added up."],
+      ["按「−／＋」改變兩樣都會的人數 x：三格（x、20 − x、25 − x）即時跟住變，總數就是 20 + 25 - x（x 最多 20）。",
+        "Use −／+ to change x, the number who play both: the three cells (x, 20 − x, 25 − x) change at once, and the total is 20 + 25 - x (x at most 20)."],
+      ["反過來同一條關係：40 人排球、30 人籃球、全隊 60 人。表內「兩樣都唔會」那格要係 0，即 40 + 30 - x = 60，得 x = 10。",
+        "Same relation the other way round: 40 volleyball, 30 basketball, 60 in the team. The \"neither\" cell must be 0, so 40 + 30 - x = 60 and x = 10."]
     ];
 
-    var R = 54, CX = 160, Y = 74;
     var stage = el("div", "demo-stage stage-venn");
-    var svg = svgEl("svg", { viewBox: "0 0 320 152", class: "venn-svg", role: "img" });
-    var cA = svgEl("circle", { cx: 0, cy: Y, r: R, class: "venn-c venn-cA" });
-    var cB = svgEl("circle", { cx: 0, cy: Y, r: R, class: "venn-c venn-cB" });
-    svg.appendChild(cA);
-    svg.appendChild(cB);
-    function svgText(cls, x, y, txt) {
-      var t = svgEl("text", { x: x, y: y, class: "venn-t " + cls });
-      t.textContent = txt;
-      return t;
+    var tbl = el("table", "venn-tbl");
+    function thCell(zh, en) {
+      var n = el("th", "venn-th");
+      n.appendChild(bi(zh, en));
+      return n;
     }
-    var tLabA = svgText("venn-lab", 0, 18, "A");
-    var tLabB = svgText("venn-lab", 0, 18, "B");
-    var tOnlyA = svgText("venn-onlyA", 0, Y + 5, String(VENN_A));
-    var tBoth = svgText("venn-both", CX, Y + 5, "0");
-    var tOnlyB = svgText("venn-onlyB", 0, Y + 5, String(VENN_B));
-    [tLabA, tLabB, tOnlyA, tBoth, tOnlyB].forEach(function (n) { svg.appendChild(n); });
-    stage.appendChild(svg);
+    function tdCell(cls, txt) {
+      var n = el("td", "venn-cell" + (cls ? " " + cls : ""));
+      n.textContent = txt;
+      return n;
+    }
+    var vr1 = el("tr", null);
+    vr1.appendChild(tdCell("venn-corner", ""));
+    vr1.appendChild(thCell("會打籃球", "Plays basketball"));
+    vr1.appendChild(thCell("唔會打籃球", "Not basketball"));
+    vr1.appendChild(thCell("合計", "Total"));
+    tbl.appendChild(vr1);
+    var vr2 = el("tr", null);
+    vr2.appendChild(thCell("會打排球", "Plays volleyball"));
+    var cBoth = tdCell("venn-both", "0");
+    var cOnlyA = tdCell("venn-onlyA", "20");
+    var cTotA = tdCell("venn-sumA", "20");
+    [cBoth, cOnlyA, cTotA].forEach(function (n) { vr2.appendChild(n); });
+    tbl.appendChild(vr2);
+    var vr3 = el("tr", null);
+    vr3.appendChild(thCell("唔會打排球", "Not volleyball"));
+    var cOnlyB = tdCell("venn-onlyB", "25");
+    var cNeither = tdCell("venn-neither", "？");
+    var cBlank1 = tdCell("venn-blank", "");
+    [cOnlyB, cNeither, cBlank1].forEach(function (n) { vr3.appendChild(n); });
+    tbl.appendChild(vr3);
+    var vr4 = el("tr", null);
+    vr4.appendChild(thCell("合計", "Total"));
+    var cTotB = tdCell("venn-sumB", "25");
+    var cBlank2 = tdCell("venn-blank", "");
+    var cBlank3 = tdCell("venn-blank", "");
+    [cTotB, cBlank2, cBlank3].forEach(function (n) { vr4.appendChild(n); });
+    tbl.appendChild(vr4);
+    stage.appendChild(tbl);
+    var caseLine = el("div", "venn-case");
+    stage.appendChild(caseLine);
     root.appendChild(stage);
 
     var xLine = el("div", "demo-count");
-    xLine.appendChild(biInline("兩樣都會：", "Do both:"));
+    xLine.appendChild(biInline("兩樣都會（表內中間那格）：", "Play both (the middle cell):"));
     var xTxt = el("span", "order-txt venn-x", "0");
     xLine.appendChild(xTxt);
     var minus = el("button", "btn btn-sm btn-ghost");
@@ -1902,7 +1930,8 @@
 
     var eq = el("div", "demo-eq");
     var rowA = el("div", "eqrow eqrow-p");
-    rowA.appendChild(el("span", "eq eq-chain", "20 + 25 −"));
+    var rowAChain = el("span", "eq eq-chain", "20 + 25 −");
+    rowA.appendChild(rowAChain);
     var boxX = el("span", "eqbox");
     boxX.appendChild(el("span", "eq venn-x", "0"));
     rowA.appendChild(boxX);
@@ -1936,37 +1965,50 @@
     var step = 0;
     var x = 0;
 
+    function caseNow() { return VENN_CASES[step >= VENN_STEPS ? 1 : 0]; }
+    function xMin() {
+      var c = caseNow();
+      return c.total == null ? 0 : Math.max(0, c.A + c.B - c.total);
+    }
+    function xMax() { var c = caseNow(); return Math.min(c.A, c.B); }
+
     function paint() {
-      var d = 140 - (x / VENN_MAX) * 60;          /* 重疊越多，兩圈越近 */
-      var ax = CX - d / 2, bx = CX + d / 2;
-      cA.setAttribute("cx", String(ax));
-      cB.setAttribute("cx", String(bx));
-      tLabA.setAttribute("x", String(ax - 40));
-      tLabB.setAttribute("x", String(bx + 30));
-      tOnlyA.setAttribute("x", String(ax - 26));
-      tOnlyB.setAttribute("x", String(bx + 26));
-      tOnlyA.textContent = String(VENN_A - x);
-      tBoth.textContent = String(x);
-      tOnlyB.textContent = String(VENN_B - x);
-      tBoth.setAttribute("data-x", String(x));
-      xTxt.textContent = String(x);
+      var c = caseNow();
+      var un = c.A + c.B - x;                       /* 會排球或會籃球的人數 */
+      cBoth.textContent = String(x);
+      cOnlyA.textContent = String(c.A - x);
+      cOnlyB.textContent = String(c.B - x);
+      cTotA.textContent = String(c.A);
+      cTotB.textContent = String(c.B);
+      if (c.total == null) {
+        cNeither.textContent = "？";
+        cNeither.className = "venn-cell venn-neither";
+      } else {
+        var neither = c.total - un;                 /* 兩樣都唔會：呢格係 0 就係答案 */
+        cNeither.textContent = String(neither);
+        cNeither.className = "venn-cell venn-neither" + (neither === 0 ? " venn-zero" : "");
+      }
+      rowAChain.textContent = c.A + " + " + c.B + " −";
       Array.prototype.slice.call(root.querySelectorAll(".venn-x")).forEach(function (n) {
         n.textContent = String(x);
       });
       Array.prototype.slice.call(root.querySelectorAll(".venn-total")).forEach(function (n) {
-        n.textContent = String(VENN_A + VENN_B - x);
+        n.textContent = String(un);
       });
-      minus.disabled = step < 1 || x <= 0;
-      plus.disabled = step < 1 || x >= VENN_MAX;
+      caseLine.innerHTML = "";
+      if (c.total != null) {
+        caseLine.appendChild(bi("另一題：排球 40、籃球 30、全隊 60 —— 表內「兩樣都唔會」那格要係 0。",
+          "Another question: 40 play volleyball, 30 play basketball, 60 in the team — the \"neither\" cell must be 0."));
+      }
+      minus.disabled = step < 1 || x <= xMin();
+      plus.disabled = step < 1 || x >= xMax();
     }
-    function setX(v) {
-      x = Math.max(0, Math.min(VENN_MAX, v));
-      paint();
-    }
+    function setX(v) { x = Math.max(xMin(), Math.min(xMax(), v)); paint(); }
     function setStep(n) {
       step = Math.max(0, Math.min(VENN_STEPS, n | 0));
       if (step === 0) x = 0;
-      if (step === 1 && x === 0) x = 15;
+      if (step === 1 && x < 15) x = 15;
+      if (step === VENN_STEPS) x = xMin();          /* 第 4 步：由 40 + 30 − x = 60 的起點開始 */
       root.setAttribute("data-step", String(step));
       stepTag.innerHTML = "";
       stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (VENN_STEPS + 1) + " 步",
@@ -2033,14 +2075,14 @@
     guide.appendChild(guideTxt);
     root.appendChild(guide);
     var GUIDES = [
-      ["可以重複：每一位都有 10 個選擇 → $10^4 = 10000$ 個密碼。",
-        "Repetition allowed: every position has 10 choices → $10^4 = 10000$ passwords."],
-      ["不可以重複：用了一個數字，下一位就少一個。第一位 10 個、之後 9、8、7 → $10 \\times 9 \\times 8 \\times 7 = 5040$。",
-        "No repetition: a digit already used cannot be used again. 10 choices, then 9, 8, 7 → $10 \\times 9 \\times 8 \\times 7 = 5040$."],
-      ["若是「四位數」（首位不可以是 0，可以重複）：首位只有 9 個選擇，其餘三位各 10 個 → $9 \\times 10 \\times 10 \\times 10 = 9000$。",
-        "For a 4-digit number (first digit not 0, repetition allowed): 9 choices first, then 10 each → $9 \\times 10 \\times 10 \\times 10 = 9000$."],
-      ["同一招用在題目：用 2、4、5、6、8、0 排四位數（不可重複、首位不可為 0）→ $5 \\times 5 \\times 4 \\times 3 = 300$。先處理有規限的首位。",
-        "Same idea in a question: form a 4-digit number from 2, 4, 5, 6, 8, 0 (no repetition, first digit not 0) → $5 \\times 5 \\times 4 \\times 3 = 300$. Handle the restricted first digit first."]
+      ["可以重複：每一位都有 10 個選擇 → 10^4 = 10000 個密碼。",
+        "Repetition allowed: every position has 10 choices → 10^4 = 10000 passwords."],
+      ["不可以重複：用了一個數字，下一位就少一個。第一位 10 個、之後 9、8、7 → 10 × 9 × 8 × 7 = 5040。",
+        "No repetition: a digit already used cannot be used again. 10 choices, then 9, 8, 7 → 10 × 9 × 8 × 7 = 5040."],
+      ["若是「四位數」（首位不可以是 0，可以重複）：首位只有 9 個選擇，其餘三位各 10 個 → 9 × 10 × 10 × 10 = 9000。",
+        "For a 4-digit number (first digit not 0, repetition allowed): 9 choices first, then 10 each → 9 × 10 × 10 × 10 = 9000."],
+      ["同一招用在題目：用 2、4、5、6、8、0 排四位數（不可重複、首位不可為 0）→ 5 × 5 × 4 × 3 = 300。先處理有規限的首位。",
+        "Same idea in a question: form a 4-digit number from 2, 4, 5, 6, 8, 0 (no repetition, first digit not 0) → 5 × 5 × 4 × 3 = 300. Handle the restricted first digit first."]
     ];
 
     var stage = el("div", "demo-stage stage-code");
