@@ -556,6 +556,10 @@ const firstBoy = boyAt()[0].getAttribute("data-boy");
 boyAt()[0].click();
 boyAt()[1].click();
 ok(boyAt()[1].getAttribute("data-boy") === firstBoy, "男生一樣可以點兩下互換位置");
+/* 號碼要跟「身份」：唔係嘅話換位後畫面完全一樣，學生以為冇反應 */
+const boyLabels = () => boyAt().map((u) => u.querySelector(".pnode").textContent).join(",");
+ok(boyLabels() === "2,1,3,4",
+  "男生的號碼跟住身份郁（實際 " + boyLabels() + "，唔會永遠 1,2,3,4）");
 ok(/打亂男生/.test(sGuide()), "第 2 步指示講明可以點男生換位或打亂");
 /* 打亂男生（自動動畫；jsdom 唔等 timer → 手動 tick） */
 const bSeq = () => boyAt().map((u) => u.getAttribute("data-boy")).join(",");

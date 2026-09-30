@@ -510,11 +510,12 @@
       });
     }
 
-    function boyUnit(id, i) {
+    function boyUnit(id) {
       var b = el("button", "unit");
       b.setAttribute("type", "button");
       b.setAttribute("data-boy", id);
-      b.appendChild(el("div", "pnode pnode-boy", String(i + 1)));
+      /* 號碼跟「身份」而唔係位置：換位／打亂時個號碼會跟住郁，學生先睇得到次序改變 */
+      b.appendChild(el("div", "pnode pnode-boy", id.replace(/^B/, "")));
       b.disabled = !canSwapBoys();
       if (canSwapBoys()) b.classList.add("unit-live");
       if (pickedBoy === id) {
@@ -581,7 +582,7 @@
       });
       for (var i = 0; i < boys.length; i++) {
         stage.appendChild(slotEl(i));
-        stage.appendChild(boyUnit(boys[i], i));
+        stage.appendChild(boyUnit(boys[i]));
       }
       stage.appendChild(slotEl(boys.length));
       holdRow.innerHTML = "";
@@ -689,6 +690,10 @@
       }
     }
     setStep(o.step || 0);
+    /* opts.shuffle = n：先打亂 n 次（獨立頁 ?shuffle=N 用，方便截圖或跳去已打亂的狀態） */
+    if (o.shuffle) {
+      for (var sk = 0; sk < o.shuffle; sk++) shuffleTick();
+    }
     return root;
   }
 
