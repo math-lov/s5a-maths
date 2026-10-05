@@ -791,8 +791,15 @@ ok(/二次方程/.test(rem172.body.zh) && /n = 6/.test(rem172.body.zh) && /正�
   "提醒卡示範與二次方程結合（n(n−1) = 30 → n² − n − 30 = 0 → n = 6，−5 不合）");
 ok(/甚麼都不排/.test(rem172.body.zh) && /多乘了兩個因數/.test(rem172.body.zh),
   "每個提醒都有推導邏輯（0! 的直觀意義、約簡只剩最大兩個因數）");
-ok(!!rem172.warn && /唔可以把 \$0!\$ 當成 0/.test(rem172.warn.zh),
-  "提醒卡附常見錯誤（0! 不可當 0；約簡要寫齊多出來的因數）");
+ok(!!rem172.warn && /唔可以把 \$0!\$ 當成 0/.test(rem172.warn.zh) &&
+  /除以 0（無定義）/.test(rem172.warn.zh) && /唔係等於 0/.test(rem172.warn.zh) &&
+  /P\^n_0\$ 本身是/.test(rem172.warn.zh) && /不涉及 \$0!\$/.test(rem172.warn.zh),
+  "提醒卡附常見錯誤，並講準：0! = 0 會令 C 的公式除以 0（無定義），而 nP0 本身不涉及 0!");
+ok(!/P\^n_0\$ 與 \$C\^n_n\$ 會全部變成 0/.test(rem172.warn.zh + rem172.warn.en),
+  "已移除錯誤陳述「nP0 與 nCn 會全部變成 0」");
+ok(/分母都會出現/.test(rem172.body.zh) && /\(n-n\)! = 0!/.test(rem172.body.zh) &&
+  /because \$0! = 1\$/.test(rem172.body.en),
+  "內文講明 C^n_n 與 P^n_n 的分母都會出現 0!（兩條公式靠 0! = 1 才計得通）");
 ok(!rem172.demo, "重要提醒卡係純文字（老師要求的快速複習卡），暫無互動示範");
 const rem172Card = c0.$$(".cc")[2];
 ok(rem172Card.querySelectorAll(".formula .katex").length === 8 && c0.$$(".katex-error").length === 0,
