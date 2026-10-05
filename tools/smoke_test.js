@@ -773,17 +773,42 @@ ok(c0.$$("#pagenav .pg").length === 37, "分頁列 = 總覽 + 36 題（實際 " 
 ok(c0.$$("#pagenav .pg-sec").length === 6, "分頁列有 6 個分段標題");
 ok(/課堂例題/.test(c0.$("#pagenav .pg-sec").textContent), "第一個分段寫「課堂例題」");
 ok(c0.$$("#quiz-body .btn").length >= 36, "總覽有跳去各題的按鈕");
-ok(c0.$$(".cc").length === 2, "17.2 總覽有 2 張教學卡（實際 " + c0.$$(".cc").length + "）");
+ok(c0.$$(".cc").length === 3, "17.2 總覽有 3 張教學卡（實際 " + c0.$$(".cc").length + "）");
 ok(/綑綁法/.test(c0.$(".cc .cc-title").textContent), "第一張教學卡是綑綁法");
 ok(/插空法/.test(c0.$$(".cc .cc-title")[1].textContent), "第二張教學卡是插空法");
+ok(/重要提醒/.test(c0.$$(".cc .cc-title")[2].textContent), "第三張是「重要提醒」（階乘與 P 的特別值）");
+/* 重要提醒卡（2026-10-05 老師指示）：快速複習用的特別值，附推導與應用 */
+const rem172Js = read("data/ch17-2.js");
+const rem172 = (JSON.parse(rem172Js.slice(rem172Js.indexOf("{"), rem172Js.lastIndexOf("}") + 1)).cards || [])
+  .filter((c) => c.id === "ch17-c04")[0] || {};
+const rem172math = (rem172.math || []).join(" | ");
+ok(/0! = 1 , 1! = 1/.test(rem172math) &&
+  /\\frac\{n!\}\{\(n-2\)!\} = n\(n-1\)/.test(rem172math) &&
+  /\\frac\{\(n\+3\)!\}\{\(n\+1\)!\} = \(n\+3\)\(n\+2\)/.test(rem172math) &&
+  /P\^n_0 = 1 , P\^n_1 = n , P\^n_n = n!/.test(rem172math),
+  "17.2 提醒卡：0! = 1、n!/(n−2)! = n(n−1)、(n+3)!/(n+1)! = (n+3)(n+2)、P^n_0／P^n_1／P^n_n");
+ok(/二次方程/.test(rem172.body.zh) && /n = 6/.test(rem172.body.zh) && /正整數/.test(rem172.body.zh),
+  "提醒卡示範與二次方程結合（n(n−1) = 30 → n² − n − 30 = 0 → n = 6，−5 不合）");
+ok(/甚麼都不排/.test(rem172.body.zh) && /多乘了兩個因數/.test(rem172.body.zh),
+  "每個提醒都有推導邏輯（0! 的直觀意義、約簡只剩最大兩個因數）");
+ok(!!rem172.warn && /唔可以把 \$0!\$ 當成 0/.test(rem172.warn.zh),
+  "提醒卡附常見錯誤（0! 不可當 0；約簡要寫齊多出來的因數）");
+ok(!rem172.demo, "重要提醒卡係純文字（老師要求的快速複習卡），暫無互動示範");
+const rem172Card = c0.$$(".cc")[2];
+ok(rem172Card.querySelectorAll(".formula .katex").length === 8 && c0.$$(".katex-error").length === 0,
+  "17.2 提醒卡的 4 條數式（中英各一）全部經 KaTeX 渲染成功（無 error node）");
+ok(rem172Card.querySelectorAll(".cc-ul li").length >= 10 &&
+  rem172Card.querySelector(".cc-title .l-en"),
+  "17.2 提醒卡用清單分行、中英兩版齊全");
 ok(!!c0.$(".cc .formula .katex"), "教學卡的 {{math:0}} 已代入並經 KaTeX 渲染");
 ok(!/\{\{math:/.test(c0.$("#quiz-body").textContent), "總覽沒有殘留 {{math:}} 佔位符");
-ok(c0.$$(".cc-warn").length === 2, "兩張卡都有「常犯錯誤」");
+ok(c0.$$(".cc-warn").length === 3, "三張卡都有「常犯錯誤」");
 ok(!!c0.$(".cc-vocab .cc-chip"), "教學卡有詞彙 chips");
 ok(!!c0.$(".cc .l-zh") && !!c0.$(".cc .l-en"), "教學卡有中英兩版");
 ok(c0.$$(".cc-ul").length >= 8, "步驟已分行：中英合共至少 8 個清單（實際 " + c0.$$(".cc-ul").length + "）");
 ok(/第一步/.test(c0.$(".cc-ul li").textContent), "第一個清單項目是「第一步 …」");
-ok(c0.$$(".cc .formula").length === 4, "兩張卡各自中英都有一個數式區（{{math}} 已代入）");
+ok(c0.$$(".cc .formula").length === 12,
+  "數式區已代入（兩張概念卡各 1 × 中英，提醒卡 4 × 中英；實際 " + c0.$$(".cc .formula").length + "）");
 ok(c0.$$(".cc-warn .cc-ul li").length >= 4, "常犯錯誤用清單逐項列出");
 
 /* 綑綁法互動示範（assets/demos.js）：資料 → DOM → 互動 */
@@ -1103,7 +1128,7 @@ ok(p173Questions.every((q) => q.solution.steps.every((st) => (st.highlight || []
   "17.3 每個步驟都有 highlight 重點框（資料層）");
 ok(p173Questions.filter((q) => (q.solution.alt || []).length > 0).map((q) => q.id).join(",") ===
   "ch17-3-sm-28,ch17-3-sm-29", "SMART Q28／Q29 有另一個做法（alt）");
-ok((P173_DATA.cards || []).length === 4, "17.3 有 4 張教學卡（資料層）");
+ok((P173_DATA.cards || []).length === 5, "17.3 有 5 張教學卡（資料層，含重要提醒）");
 const scEAns = ((p173Questions.find((q) => q.id === "ch17-3-sc") || {}).answers || [])[4] || {};
 ok(/35/.test(((scEAns.note || {}).zh) || "") && /unlabelled/.test(((scEAns.note || {}).en) || ""),
   "Section Check (e) 補充「兩隊不編號要除以 2!」");
@@ -1111,10 +1136,36 @@ const p173Overview = boot("quiz.html", "?c=ch17-3&p=0");
 ok(p173Overview.$$("#pagenav .pg").length === 36,
   "17.3 分頁列 = 總覽 + 35 題（實際 " + p173Overview.$$("#pagenav .pg").length + "）");
 const p173Cards = p173Overview.$$(".cc");
-ok(p173Cards.length === 4, "17.3 總覽有 4 張教學卡（實際 " + p173Cards.length + "）");
+ok(p173Cards.length === 5, "17.3 總覽有 5 張教學卡（實際 " + p173Cards.length + "）");
 ok(/組合/.test(p173Cards[0].textContent) && /至少/.test(p173Cards[1].textContent) &&
   /分組/.test(p173Cards[2].textContent) && /路徑/.test(p173Cards[3].textContent),
   "17.3 教學卡依次為組合、至少／至多、分組、路徑");
+ok(/重要提醒/.test(p173Cards[4].textContent) && /對稱/.test(p173Cards[4].textContent),
+  "第五張是「重要提醒」（C 的特別值與對稱）");
+/* 重要提醒卡（2026-10-05）：組合的特別值、對稱意義與化簡技巧 */
+const rem173Js = read("data/ch17-3.js");
+const rem173 = (JSON.parse(rem173Js.slice(rem173Js.indexOf("{"), rem173Js.lastIndexOf("}") + 1)).cards || [])
+  .filter((c) => c.id === "ch17-3-c05")[0] || {};
+const rem173math = (rem173.math || []).join(" | ");
+ok(/C\^n_0 = 1 , C\^n_1 = n , C\^n_n = 1/.test(rem173math) &&
+  /C\^n_r = C\^n_\{n-r\}/.test(rem173math) &&
+  /C\^\{10\}_8 = C\^\{10\}_2 = 45/.test(rem173math),
+  "17.3 提醒卡：C^n_0／C^n_1／C^n_n、對稱 C^n_r = C^n_(n−r)、C(10,8) = C(10,2) = 45");
+ok(/揀走 \$r\$ 件/.test(rem173.body.zh) && /邊界情況/.test(rem173.body.zh) &&
+  /0! = 1/.test(rem173.body.zh),
+  "對稱的文字意義、邊界情況處理、與 0! = 1 的接駁都寫明");
+ok(!!rem173.warn && /C\^n_r = C\^n_\{n-r\}/.test(rem173.warn.zh) && /n\$ 不變/.test(rem173.warn.zh),
+  "提醒卡附常見錯誤（對稱只在同一個 n 之下成立、化簡時 n 不變）");
+ok(p173Cards[4].querySelectorAll(".formula .katex").length === 6 &&
+  p173Overview.$$(".katex-error").length === 0,
+  "17.3 提醒卡的 3 條數式（中英各一）全部經 KaTeX 渲染成功（無 error node）");
+ok(p173Cards[4].querySelectorAll(".cc-ul li").length >= 10,
+  "17.3 提醒卡用清單分行（中英各 5 項以上）");
+/* 數式區後面唔可以再掛標點，否則會出現「只剩下一個。」的孤行（2026-10-05 修過） */
+const lonePunct = (rootNode) => Array.from(rootNode.querySelectorAll("p"))
+  .some((n) => !n.closest(".formula") && /^[。．.、,，]$/.test(n.textContent.trim()));
+ok(!lonePunct(rem172Card) && !lonePunct(p173Cards[4]),
+  "兩張提醒卡都沒有「只剩標點」的孤行（{{math:N}} 一定是每點最後）");
 
 /* 分組示範：有組名 vs 無組名；10 人分 4、4、2 只除 2! 而唔係 3! */
 const demoG = p173Overview.$('.demo[data-demo="grouping"]');
