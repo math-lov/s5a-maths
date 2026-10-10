@@ -204,5 +204,135 @@
       "zh": "情況 3（取 $k=13$ 為例，$k>9$）：對稱軸在 $x=3$ 右邊，由 $3$ 向右走函數會向下穿過 $x$ 軸 → 不合格。所以要 $\\Delta<0$，最後得 $k<9$。",
       "en": "Case 3 (example k = 13, i.e. k > 9): the axis is right of 3 and the graph dips below the x-axis for x ≥ 3, so it fails — this is why Δ < 0 is needed and the answer becomes k < 9."
     }
+  },
+  "ch18-1-l1-1": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "regions": { "aOnly": ["4", "6", "2"], "bOnly": ["1", "3"], "outside": ["5"] },
+    "caption": {
+      "zh": "長方形 $S$ 內有 $A$、$B$ 兩個圓：$A=\\{2, 4, 6\\}$、$B=\\{1, 3\\}$，而 $5$ 在兩圓之外（$5$ 不屬於 $A$ 也不屬於 $B$）。",
+      "en": "Inside the rectangle S there are two circles: A = {2, 4, 6} and B = {1, 3}, while 5 lies outside both circles (5 belongs to neither A nor B)."
+    }
+  },
+  "ch18-1-l1-2": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "regions": { "aOnly": ["6"], "both": ["1", "2"], "bOnly": ["4", "5"], "outside": ["7", "9"] },
+    "caption": {
+      "zh": "$1$ 與 $2$ 同時在 $A$、$B$ 之內（重疊部分）；$6$ 只在 $A$；$4$、$5$ 只在 $B$；$7$、$9$ 兩圓之外。",
+      "en": "1 and 2 lie in the overlap of A and B; 6 is in A only; 4 and 5 are in B only; 7 and 9 are outside both circles."
+    }
+  },
+  "ch18-1-l1-3": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "regions": { "aOnly": ["d", "f", "a"], "both": ["e"], "bOnly": ["b", "c"] },
+    "caption": {
+      "zh": "只屬於 $A$ 的元素是 $a$、$d$、$f$；$e$ 在重疊部分（$A$ 與 $B$ 都有）；只屬於 $B$ 的元素是 $b$、$c$。",
+      "en": "The elements in A only are a, d and f; e lies in the overlap (in both A and B); the elements in B only are b and c."
+    }
+  },
+  "ch18-1-l1-4": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "nest": "A",
+    "cLabel": "C",
+    "regions": { "cOnly": ["3", "9"], "aOnly": ["4", "6"], "bOnly": ["5", "2", "8"], "outside": ["1", "7"] },
+    "caption": {
+      "zh": "$C$ 整個在 $A$ 之內：$3$、$9$ 在 $C$ 內；$4$、$6$ 只在 $A$（不在 $C$）；$2$、$5$、$8$ 只在 $B$；$1$、$7$ 在兩圓之外。",
+      "en": "C lies completely inside A: 3 and 9 are in C; 4 and 6 are in A only (not in C); 2, 5 and 8 are in B only; 1 and 7 are outside both circles."
+    }
+  },
+  "ch18-1-l1-6": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "regions": { "aOnly": ["4"], "both": ["8"], "bOnly": ["1", "2", "3"], "outside": ["7", "9"] },
+    "caption": {
+      "zh": "$8$ 同時在 $A$、$B$（重疊部分）；$4$ 只在 $A$；$1$、$2$、$3$ 只在 $B$；$7$、$9$ 兩圓之外。",
+      "en": "8 lies in the overlap of A and B; 4 is in A only; 1, 2 and 3 are in B only; 7 and 9 are outside both circles."
+    }
+  },
+  "ch18-1-venn-ab": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "caption": {
+      "zh": "長方形 $S$ 內有兩個相交的圓 $A$、$B$（第 18.1 節著色題的底圖）。",
+      "en": "Two overlapping circles A and B inside the rectangle S (the starting diagram for the shading questions in 18.1)."
+    }
+  },
+  "ch18-1-l2-12a": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "shade": ["aOnly"],
+    "caption": {
+      "zh": "$A \\cap B'$：只塗 $A$ 圓之內、$B$ 圓之外的部分（在 $A$ 但不在 $B$）。",
+      "en": "$A \\cap B'$: shade the part inside A but outside B."
+    }
+  },
+  "ch18-1-l2-12b": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "shade": ["bOnly"],
+    "caption": {
+      "zh": "$A' \\cap B$：只塗 $B$ 圓之內、$A$ 圓之外的部分（在 $B$ 但不在 $A$）。",
+      "en": "$A' \\cap B$: shade the part inside B but outside A."
+    }
+  },
+  "ch18-1-l2-12c": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "shade": ["outside", "aOnly", "bOnly"],
+    "caption": {
+      "zh": "$A' \\cup B'$：除了兩圓重疊部分（$A \\cap B$）之外，全部塗上（亦即 $(A \\cap B)'$）。",
+      "en": "$A' \\cup B'$: shade everything except the overlap A ∩ B, i.e. the complement of A ∩ B."
+    }
+  },
+  "ch18-1-l2-12d": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "shade": ["outside"],
+    "caption": {
+      "zh": "$(A \\cup B)'$：只塗兩個圓之外的部分（既不在 $A$ 也不在 $B$）。",
+      "en": "$(A \\cup B)'$: shade only the part outside both circles (in neither A nor B)."
+    }
+  },
+  "ch18-1-l2-13": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["P", "Q"],
+    "regions": { "aOnly": ["a", "b", "f"], "both": ["d"], "bOnly": ["c", "e", "h"], "outside": ["g"] },
+    "caption": {
+      "zh": "$d$ 在 $P$、$Q$ 的交集；$a$、$b$、$f$ 只在 $P$；$c$、$e$、$h$ 只在 $Q$；$g$ 在框內但兩圓之外。",
+      "en": "d lies in the intersection of P and Q; a, b and f are in P only; c, e and h are in Q only; g is inside the rectangle but outside both circles."
+    }
+  },
+  "ch18-1-l2-19": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "caption": {
+      "zh": "未填數字的底圖：$A$＝選中學生修讀物理、$B$＝修讀化學（兩圓相交）。",
+      "en": "The blank diagram: A = the student studies Physics, B = the student studies Chemistry (two overlapping circles)."
+    }
+  },
+  "ch18-1-l2-19-ans": {
+    "type": "venn",
+    "frame": "S",
+    "sets": ["A", "B"],
+    "regions": { "aOnly": ["6"], "both": ["12"], "bOnly": ["3"], "outside": ["9"] },
+    "caption": {
+      "zh": "完成後的圖：只修物理 $18-12=6$ 人、兩科都修 $12$ 人、只修化學 $15-12=3$ 人、兩科都不修 $30-21=9$ 人。",
+      "en": "The completed diagram: Physics only 18 − 12 = 6, both 12, Chemistry only 15 − 12 = 3, neither 30 − 21 = 9."
+    }
   }
 }

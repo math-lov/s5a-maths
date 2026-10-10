@@ -8,3 +8,5 @@ __pycache__/
 *.pyc
 # 課本／試卷原文（出版商版權檔案）：留在本機參考，唔發佈上 GitHub Pages
 /source/
+# 轉檔暫存（WMF→PNG、逐頁 dump 等），只在本機使用
+/_tmp_ch18/

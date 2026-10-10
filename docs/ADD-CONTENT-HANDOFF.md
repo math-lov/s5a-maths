@@ -24,7 +24,7 @@
 |---|---|
 | `data/src/site.json` | ✅ 網站資料 ＋ 測驗清單（`parts`、`stats`） |
 | `data/src/<id>.json`（例 `ch10-test.json`） | ✅ 題目與題解（主要工作檔） |
-| `data/src/figures.json` | ✅ 圖形規格（`numline`／`graph`） |
+| `data/src/figures.json` | ✅ 圖形規格（`numline`／`graph`／`grid`／`venn`；`venn` 係第 18 章用嘅文氏圖，見 9.7） |
 | `data/src/prompt-templates.json` | ✅ AI 提問模板（改一次＝全站生效） |
 | `data/*.js`（`index.js`／`figures.js`／`<id>.js`） | ❌ **生成檔**，下次 build 會覆蓋 |
 | `data/raw/<id>-source.md` | ✅ 原文／官方評分／逐題驗算記錄 |
@@ -171,7 +171,7 @@ GitHub Pages 約 1 分鐘生效；學生第一次要 **Ctrl+F5**。
 
 ⚠️ **不要連去 `https://math-lov.github.io/daily.math/learn/`** —— 該站計劃砍掉重做。
 
-## 9. 目前狀態與待辦（2026-09-30）
+## 9. 目前狀態與待辦（2026-10-10）
 
 ### 9.1 內容進度
 
@@ -181,6 +181,8 @@ GitHub Pages 約 1 分鐘生效；學生第一次要 **Ctrl+F5**。
 | `ch17-2` 17.2 排列 | 已完成（36 題 · 185 分） | 課本 Exercise 17.2，含 Class Exercise／SC／L1／L2／SM／CT |
 | `ch17-3` 17.3 組合 | 已完成（35 題 · 102 分） | 課本 Exercise 17.3；2026-09-29 完成解釋修訂（見 9.2） |
 | `ch17-1` 17.1 計數基本原理 | 已完成（37 題 · 133 分） | 課本 Exercise 17.1；2026-09-30 上線，見 9.6 |
+| `ch18-1` 18.1 集合 | 已完成（21 題 · 87 分） | 課本 Exercise 18.1（SC／L1／L2／SMART CORNER）；2026-10-10 上線，見 9.7 |
+| `ch18-2`／`ch18-3`／`ch18-4` | 待做 | 第 18 章其餘三節；`site.json` 已列為「即將推出」 |
 
 ### 9.2 17.3 已拍板的處理（唔好再改返轉頭）
 
@@ -243,3 +245,28 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 **示範內文一律唔可以寫 `$…$` 或 LaTeX 指令**（`\times` 之類）：`demos.js` 的示範文字（`demo-q`／`demo-guide`／計數行）係純文字，唔經 KaTeX，會原樣顯示 `$20 + 25$`、`\times`。要用 `×`、`−`、`=` 直接寫。2026-09-30 已在 menu／venn／code 修正，`smoke_test.js` 有兩條斷言（示範文字冇 `$` 或反斜線）防止再犯。
 
 **中學生未學 `∪`／`∩`**：唔好用集合符號，文字一律用 or／and 表達，例如「排球 or 籃球 ＝ 排球 ＋ 籃球 − both」。17.1 的教學卡 math 與 tip 已全部改寫（原本 `|A \cup B| = |A| + |B| - |A \cap B|`）。
+（**2026-10-10 補充**：這條只適用於 **17.1**（計數原理，當時未學集合）。第 **18.1** 節本身就是教集合語言 —— 課本 Exercise 18.1 每一題都用 $S$、$A'$、$A \cap B$、$A \cup B$ —— 所以 18.1 一律照用集合符號，唔可以改寫成中文；18.2 之後（概率加／乘法）才逐步回到文字與四區講法。）
+
+### 9.7 18.1 集合（2026-10-10 上線）
+
+**來源**：`source/SMS_bkexe_5B18_e.docx` ＋ `source/SMS_sol_5B18_e.docx`（第 18 章 *More about Probability*）；逐題核實記錄在 `data/raw/ch18-1-source.md`。
+- DOCX 的集合符號係 Symbol 字型（`F0C7`／`F0C8`／`F0C6` ＝ ∩／∪／∅），分數係 WMF 圖 → 抽取時要先還原符號、再把圖轉 PNG 逐幅讀（`C:\temp\ch18\` 的臨時腳本，唔入 repo）。
+- 老師的 docx **冇 Class Exercise 18.1**（檔案由 Exercise 18.1 開始），所以呢節只有 SC／L1／L2／SMART CORNER。
+- 課本冇印 18.1–18.4 的節名 → 站上先用「18.1 集合／18.2 概率／18.3 概率的乘法／18.4 概率與計數」，18.2–18.4 標「即將推出」；之後拿到書就可以改 `site.json` 的節名。
+- **SC (a) 校正**：docx 原文寫「then $n(B) = 10$」，但官方答案以 $n(A) = 4$ 判錯，$B$ 亦只在 (b) 才定義 → 站上照官方答案改印「then $n(A) = 10$」，並在 raw notes 記錄（當係課本／docx 手民之誤）。
+
+**圖：新增 `venn` 類型（`tools/make_figures.py`）**，13 幅（`ch18-1-*`）。spec：
+
+```json
+{ "type": "venn", "frame": "S", "sets": ["A", "B"], "nest": "A", "cLabel": "C",
+  "regions": { "aOnly": ["4"], "both": ["8"], "bOnly": ["1"], "outside": ["7"], "cOnly": ["3"] },
+  "shade": ["aOnly"], "caption": { "zh": "…", "en": "…" } }
+```
+
+- 圓位固定（A 圓心 190,205、B 圓心 330,205、半徑 112；`nest` 時 C 圓心 168,240、半徑 52 完全在 A 內）；`regions` 的元素會自動排位：細網格逐點判斷區域，**跳過貼近圓周的灰帶**（A／B 距圓邊 22px、C 18px、圓外 12px），再按「同其他文字至少相距 44px」貪心放置，所以文字唔會壓住圓周或 S／A／B／C 標籤。唔夠位時會退回最近可用格（唔會漏字）。
+- `shade` 用 SVG `<mask>` 做：`aOnly`（A 減 B）、`bOnly`、`both`（雙 mask 疊）、`outside`、`cOnly`、`all`；唔改圖形只改填色，所以著色題（L2-12）四個答案可以直接用同一底圖出四個版本。
+- 排版用 `tools/preview_figures.py`（要 `pymupdf`）睇 PNG，再拼圖肉眼檢查；`smoke_test.js` 有斷言查圖數（27 幅）＋ 13 幅 18.1 圖。
+
+**教學卡**：4 張（集合符號／文氏圖四區／等可能求概率／空集與互斥提醒）。**現階段全部係靜態**（老師 2026-10-10 指示：動畫之後由老師加），所以 4 張卡都冇 `demo`，`smoke_test.js` 有一條斷言（`cards.every(c => !c.demo)`）——**日後加示範就要拆走呢條斷言**。
+- 內部已按「加卡必問示範」的規矩向老師提出建議（未拍板）：集合符號卡 → 逐格亮起 $A'$／$A \cap B$／$A \cup B$ 的成員；四區卡 → 2×2 表版（沿用 `venncalc` 的做法，唔用相交圓）；$P(A) = \frac{n(A)}{n(S)}$ 卡 → 抽卡機（n(S) 變 → 概率即時變）。
+- 呢節係**第一次用 `∪`／`∩`**（見上面 9.6 末的補充），所以教學卡 math 直接寫集合符號，唔再拆成 or／and。

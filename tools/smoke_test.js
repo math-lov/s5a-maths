@@ -400,7 +400,13 @@ ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")
   "每頁都有語言設定");
 
 const figs = JSON.parse(figuresJs.slice(figuresJs.indexOf("{"), figuresJs.lastIndexOf("}") + 1));
-ok(Object.keys(figs).length === 14, "圖共 14 幅（實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).length === 27, "圖共 27 幅（14 幅舊圖 ＋ 13 幅第 18.1 節文氏圖；實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length === 13,
+  "其中 13 幅屬於第 18.1 節（文氏圖；實際 " +
+  Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length + "）");
+ok(/<rect[^>]*stroke/.test(figs["ch18-1-l1-1"].svg) &&
+  Object.keys(figs).filter((k) => /<circle/.test(figs[k].svg)).length >= 13,
+  "文氏圖有長方形外框與圓（自動生成的 SVG）");
 ok(Object.keys(figs).every((k) => /<svg [^>]*viewBox/.test(figs[k].svg)),
   "每幅圖都是合法的 SVG（有 viewBox）");
 ok(Object.keys(figs).every((k) => (figs[k].caption || {}).zh && (figs[k].caption || {}).en),
@@ -1406,6 +1412,241 @@ ok(all173.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length
 ok(all173.every((t) => t.$$(".sol-card .hl").length > 0), "17.3 每題都顯示步驟重點框");
 ok(all173.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
   "17.3 所有題幹均有中英版本");
+
+/* ── 6c. 課本練習：第 18 章 → 18.1 集合 ──────────────────────────────── */
+console.log("\n== 第 18 章 · 18.1 集合（課本練習頁）==");
+const CH18 = CW_CHAPTERS.filter((c) => c.id === "ch18")[0] || {};
+ok(!!CH18 && (CH18.sections || []).length === 4, "首頁列出第 18 章，章內分 4 節");
+const ch18Page = boot("chapter.html", "?ch=ch18");
+ok(/第 18 章/.test((ch18Page.$("#chapter-name") || {}).textContent || ""),
+  "章節頁顯示第 18 章名稱");
+ok(ch18Page.$$("#chapter-body .part-btn").length === 4, "第 18 章章節頁列出 4 節");
+const live18 = ch18Page.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
+ok(ch18Page.$$("#chapter-body .part-btn[disabled]").length === 2 && live18.length === 2,
+  "18.3–18.4 標示「即將推出」，18.1 與 18.2 已上線（實際上線 " + live18.length + " 節）");
+ok(/18\.1/.test(live18[0].textContent) && /18\.2/.test(live18[1].textContent),
+  "上線的兩節依次是 18.1、18.2");
+live18[0].click();
+ok(/c=ch18-1/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
+  "按「18.1」會去 quiz.html?c=ch18-1");
+live18[1].click();
+ok(/c=ch18-2/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
+  "按「18.2」會去 quiz.html?c=ch18-2");
+
+const P181 = INDEX.parts.filter((p) => p.id === "ch18-1")[0] || {};
+ok(P181.stats && P181.stats.questions === 21 && P181.stats.marks === 87,
+  "18.1 共 21 題 · 87 分（實際 " +
+  (P181.stats ? P181.stats.questions + " 題 · " + P181.stats.marks + " 分" : "缺 stats") + "）");
+ok((P181.sections || []).length === 4 && (P181.qids || []).length === 21,
+  "18.1 分 4 段（判斷／L1／L2／挑戰）且 qids 數目正確");
+const P181_JS = read("data/ch18-1.js");
+const P181_DATA = JSON.parse(P181_JS.slice(P181_JS.indexOf("{"), P181_JS.lastIndexOf("}") + 1));
+const q181 = (id) => P181_DATA.sections
+  .reduce((a, s) => a.concat(s.questions || []), []).filter((q) => q.id === id)[0] || {};
+ok(P181_DATA.sections.map((s) => s.id).join(",") === "SC,L1,L2,SM",
+  "18.1 分段順序＝判斷題／L1／L2／挑戰題");
+ok((P181_DATA.cards || []).length === 4, "18.1 有 4 張教學卡");
+ok(P181_DATA.cards.every((c) => !c.demo),
+  "18.1 教學卡全部靜態（示範由老師後補，現階段不加 demo）");
+ok(P181_DATA.cards.every((c) => (c.math || []).length > 0 && c.warn && c.vocab),
+  "18.1 每張卡都有數式、常犯錯誤與詞彙 chips");
+
+/* 官方答案（source/SMS_sol_5B18_e.docx 逐題核對，見 data/raw/ch18-1-source.md） */
+const sc181 = q181("ch18-1-sc");
+ok(sc181.answers.filter((a) => a.tf === false).map((a) => a.part).join(",") === "(a),(c),(f)",
+  "判斷題：只有 (a)、(c)、(f) 是錯（實際錯 " +
+  sc181.answers.filter((a) => a.tf === false).length + " 項）");
+ok(q181("ch18-1-l1-1").answers[0].math === "A' = \\{1, 3, 5\\}" &&
+  q181("ch18-1-l1-1").answers[3].math === "A \\cup B = \\{1, 2, 3, 4, 6\\}",
+  "L1-1 官方答案 A′ = {1, 3, 5}、A ∪ B = {1, 2, 3, 4, 6}（5 不在聯集）");
+ok(q181("ch18-1-l1-3").answers[2].math === "B' = \\{a, d, f\\}" &&
+  q181("ch18-1-l1-3").answers[3].math === "A \\cap B = \\{e\\}",
+  "L1-3 官方答案 B′ = {a, d, f}、A ∩ B = {e}");
+ok(q181("ch18-1-l1-4").answers[1].math === "A' = \\{1, 2, 5, 7, 8\\}" &&
+  q181("ch18-1-l1-4").answers[3].math === "A \\cap C = \\{3, 9\\}",
+  "L1-4 官方答案 A′ = {1, 2, 5, 7, 8}、A ∩ C = {3, 9}（C 在 A 之內）");
+ok(q181("ch18-1-l1-9").answers[1].math === "n(A) = 26 - 5 = 21" &&
+  q181("ch18-1-l1-9").answers[2].math === "P(A) = \\frac{21}{26}",
+  "L1-9 官方答案 輔音 21 個、P(A) = 21/26");
+ok(q181("ch18-1-l1-10").answers[2].math === "P(E) = \\frac{5}{7} ,\\ P(F) = \\frac{2}{7}",
+  "L1-10 官方答案 P(E) = 5/7、P(F) = 2/7");
+ok(q181("ch18-1-l1-11").answers[1].math === "P(A) = \\frac{4}{52} = \\frac{1}{13}" &&
+  q181("ch18-1-l1-11").answers[2].math === "P(B) = \\frac{13}{52} = \\frac{1}{4}",
+  "L1-11 官方答案 P(A) = 1/13、P(B) = 1/4");
+ok(q181("ch18-1-l2-14").answers[1].math.indexOf("\\frac{3}{8}") > 0 &&
+  q181("ch18-1-l2-14").answers[2].math.indexOf("\\frac{7}{8}") > 0 &&
+  /\[8 - 1\] = 7/.test(q181("ch18-1-l2-14").solution.steps[2].zh),
+  "L2-14 官方答案 3/8、7/8（用 [8 − 1] = 7 寫明反面減一項）");
+ok(q181("ch18-1-l2-15").answers[2].math ===
+  "E \\cap F = \\{6, 7, 8\\} ,\\ P(E \\cap F) = \\frac{3}{12} = \\frac{1}{4}",
+  "L2-15 官方答案 E ∩ F = {6, 7, 8}、P = 1/4");
+ok(q181("ch18-1-l2-16").answers[0].math === "n(S) = 4 \\times 3 = 12" &&
+  q181("ch18-1-l2-16").answers[1].math === "n(E) = 3",
+  "L2-16 官方答案 n(S) = 12（分步相乘）、n(E) = 3");
+ok(q181("ch18-1-l2-17").answers[0].math.indexOf("C^5_2 = \\frac{5 \\times 4}{2} = 10") > 0 &&
+  q181("ch18-1-l2-17").answers[2].math === "P(E) = \\frac{3}{10}",
+  "L2-17 官方答案 C(5,2) = 10、P(E) = 3/10");
+ok(q181("ch18-1-l2-18").answers[2].math === "P(A \\cap B) = \\frac{1}{36}" &&
+  q181("ch18-1-l2-18").answers[3].math === "P(A \\cup B) = \\frac{10}{36} = \\frac{5}{18}" &&
+  /\[6 \+ 5\] - 1 = 10/.test(q181("ch18-1-l2-18").solution.steps[2].math),
+  "L2-18 官方答案 1/36、10/36 = 5/18（[6 + 5] − 1 寫明先加後減）");
+ok(q181("ch18-1-l2-19").answers[1].math === "P(A \\cap B) = \\frac{12}{30} = \\frac{2}{5}" &&
+  q181("ch18-1-l2-19").answers[2].math.indexOf("\\frac{21}{30} = \\frac{7}{10}") > 0,
+  "L2-19 官方答案 2/5、7/10（Venn 圖四區 6／12／3／9）");
+ok(q181("ch18-1-l2-19").solution.steps[0].figure === "ch18-1-l2-19-ans",
+  "L2-19 的解題步驟附完成後的文氏圖");
+ok(q181("ch18-1-sm-20").answers[0].math === "m = \\frac{3}{2}n" &&
+  /m = 3, n = 2/.test(q181("ch18-1-sm-20").answers[1].math),
+  "SM-20 官方答案 m = (3/2)n、兩組例子 (3, 2) 與 (6, 4)");
+ok(q181("ch18-1-l2-13").solution.steps[2].figure === "ch18-1-l2-13",
+  "L2-13(b) 畫文氏圖那一步有圖");
+ok(sc181.solution.steps.length === 6,
+  "判斷題 6 小題各有獨立步驟（實際 " + sc181.solution.steps.length + "）");
+
+/* 頁面渲染 ＋ 真 KaTeX */
+const c181 = boot("quiz.html", "?c=ch18-1&p=0");
+ok(c181.$$("#pagenav .pg").length === 22, "18.1 分頁列 = 總覽 + 21 題（實際 " + c181.$$("#pagenav .pg").length + "）");
+ok(c181.$$("#pagenav .pg-sec").length === 4, "18.1 分頁列有 4 個分段標題");
+ok(c181.$$(".cc").length === 4, "18.1 總覽渲染出 4 張教學卡");
+ok(c181.$$(".katex-error").length === 0, "18.1 教學卡全部數式 KaTeX 渲染成功");
+ok(!/\{\{math:/.test(c181.$("#quiz-body").textContent), "18.1 總覽沒有殘留 {{math:}} 佔位符");
+
+const q181sc = boot("quiz.html", "?c=ch18-1&p=1");
+ok(!!q181sc.$('.q-card[data-qid="ch18-1-sc"]') && q181sc.$$(".tf-item").length === 6,
+  "第 1 頁判斷題有 6 個互動小題");
+ok(q181sc.$$(".tf-opt").length === 12, "每小題有「正確／錯誤」兩按鈕");
+const sc181Item0 = q181sc.$$(".tf-item")[0];
+const sc181Ans = {};
+(sc181.answers || []).forEach((a) => { sc181Ans[a.part] = a.tf; });
+const sc181Btn = Array.prototype.slice.call(sc181Item0.querySelectorAll(".tf-opt"))
+  .filter((b) => b.dataset.tf === (sc181Ans["(a)"] ? "T" : "F"))[0];
+sc181Btn.click();
+ok(sc181Item0.querySelectorAll(".tf-opt[disabled]").length === 2,
+  "答對 (a)（n(A) = 4，不是 10）後鎖定該小題");
+
+const q181p2 = boot("quiz.html", "?c=ch18-1&p=2", null, "show");
+ok(!!q181p2.$('.q-card[data-qid="ch18-1-l1-1"]'), "第 2 頁是 L1-1");
+ok(!!q181p2.$(".q-card .fig svg") && q181p2.$$(".q-card .fig svg text").length >= 8,
+  "L1-1 題目附上文氏圖，圖內有 S／A／B 與元素文字（實際 " +
+  q181p2.$$(".q-card .fig svg text").length + " 個文字）");
+ok(q181p2.$$(".katex-error").length === 0, "L1-1 全部數式（含 { } ∩ ∪ 與補集撇號）渲染成功");
+ok(q181p2.$$(".answer-box .a-row").length === 4, "L1-1 答案欄有 (a)–(d) 四個答案");
+ok(q181p2.$$(".sol-card .steps .step").length === 4, "L1-1 有 4 個解題步驟（每小題 1A）");
+
+const q181shade = boot("quiz.html", "?c=ch18-1&p=13", null, "show");
+ok(!!q181shade.$('.q-card[data-qid="ch18-1-l2-12"]'), "第 13 頁是 L2-12 著色題");
+ok(q181shade.$$(".sol-card .steps .step .fig svg").length === 4,
+  "四個小題各有一幅填色後的文氏圖（實際 " +
+  q181shade.$$(".sol-card .steps .step .fig svg").length + "）");
+ok(q181shade.$$(".katex-error").length === 0, "L2-12 數式渲染成功");
+
+const q181sm = boot("quiz.html", "?c=ch18-1&p=21", null, "show");
+ok(!!q181sm.$('.q-card[data-qid="ch18-1-sm-20"]'), "最後一頁是挑戰題 SM-20");
+ok(q181sm.$$(".answer-box .katex").length >= 2 && q181sm.$$(".katex-error").length === 0,
+  "SM-20 答案欄以真 KaTeX 渲染（m = (3/2)n 與兩組數值），零渲染錯誤");
+const all181 = [];
+for (let i = 1; i <= 21; i++) all181.push(boot("quiz.html", "?c=ch18-1&p=" + i, null, "show"));
+ok(all181.every((t) => t.$$(".sol-card").length === 1 && t.$$(".sol-card .steps .step").length > 0),
+  "18.1 每題都有逐步題解");
+ok(all181.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
+  "18.1 每題都有技巧與常見錯誤");
+ok(all181.every((t) => t.$$(".katex-error").length === 0), "18.1 全部 21 題 KaTeX 零錯誤");
+ok(all181.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "18.1 所有題幹均有中英版本");
+ok(all181.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "18.1 題幹全部已渲染（無殘留 $）");
+ok(P181_DATA.sections.every((s) => s.questions.every((q) =>
+  q.solution.steps.every((st) => (st.highlight || []).length === 1))),
+  "18.1 每個步驟都有 1 個 highlight 重點框（資料層）");
+ok(P181_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).length >= 1 &&
+  q.parts.reduce((t, p) => t + p.marks, 0) === q.marks)),
+  "18.1 每題 parts 分數加總＝題目分數");
+ok(!LABEL_WORDS.some((w) => read("data/src/ch18-1.json").includes(w)),
+  "18.1 全部內容沒有標籤學生的字眼");
+
+/* ── 6d. 課本練習：第 18 章 → 18.2 概率的加法定律 ─────────────────────── */
+console.log("\n== 第 18 章 · 18.2 概率的加法定律（課本練習頁）==");
+const P182 = INDEX.parts.filter((p) => p.id === "ch18-2")[0] || {};
+ok(P182.stats && P182.stats.questions === 39 && P182.stats.marks === 146,
+  "18.2 共 39 題 · 146 分（實際 " +
+  (P182.stats ? P182.stats.questions + " 題 · " + P182.stats.marks + " 分" : "缺 stats") + "）");
+ok((P182.sections || []).length === 6 && (P182.qids || []).length === 39,
+  "18.2 分 6 段（課堂例題／判斷／L1／L2／挑戰／跨課題）且 qids 數目正確");
+const P182_JS = read("data/ch18-2.js");
+const P182_DATA = JSON.parse(P182_JS.slice(P182_JS.indexOf("{"), P182_JS.lastIndexOf("}") + 1));
+const q182 = (id) => P182_DATA.sections
+  .reduce((a, s) => a.concat(s.questions || []), []).filter((q) => q.id === id)[0] || {};
+ok(P182_DATA.sections.map((s) => s.id).join(",") === "CE,SC,L1,L2,SM,CT",
+  "18.2 分段順序＝課堂例題／判斷題／L1／L2／挑戰題／跨課題");
+ok(P182_DATA.sections.map((s) => s.marks).join(",") === "12,6,38,58,14,18",
+  "18.2 各段分數 12／6／38／58／14／18");
+ok((P182_DATA.cards || []).length === 3, "18.2 有 3 張教學卡");
+ok(P182_DATA.cards.every((c) => (c.math || []).length > 0 && c.warn && c.vocab),
+  "18.2 每張卡都有數式、常犯錯誤與詞彙 chips");
+
+/* 官方答案（source/SMS_sol_5B18_e.docx 逐題核對，見 data/raw/ch18-2-source.md） */
+const sc182 = q182("ch18-2-sc");
+ok(sc182.answers.filter((a) => a.tf === false).map((a) => a.part).join(",") === "(c),(f)",
+  "判斷題：只有 (c)、(f) 是錯（實際錯 " +
+  sc182.answers.filter((a) => a.tf === false).length + " 項）");
+ok(q182("ch18-2-l1-1").answers[0].math ===
+  "\\frac{6}{12} + \\frac{4}{12} - \\frac{2}{12} = \\frac{8}{12} = \\frac{2}{3}",
+  "L1-1 官方答案 2/3（大於 6 或 3 的倍數，交集 8、10）");
+ok(q182("ch18-2-l1-8").answers[1].math ===
+  "\\frac{8}{15} + \\frac{3}{15} - \\frac{0}{15} = \\frac{11}{15}",
+  "L1-8(b) 官方答案 11/15（交集為 0 仍然寫出，示範互斥情形的減項）");
+ok(q182("ch18-2-l2-26").answers[1].math === "[0.55 + 0.4] - 0.85 = 0.1",
+  "L2-26 官方答案 0.1（用 [0.55 + 0.4] − 0.85 反求交集，先加後減）");
+ok(q182("ch18-2-l2-25").answers[0].math === "\\frac{43 - 8}{75} = \\frac{35}{75} = \\frac{7}{15}",
+  "L2-25 依官方解答用分母 75（43 + 32 = 75），不是聯集 67");
+ok(q182("ch18-2-l2-27").answers[1].math ===
+  "\\frac{1}{4} + \\left(\\frac{2}{3} - \\frac{1}{4}\\right) = \\frac{2}{3}",
+  "L2-27(a)(ii) 官方答案 2/3（只其中一個社：兩個只區相加）");
+ok(q182("ch18-2-sm-31").answers[2].math ===
+  "\\frac{30}{36} + \\frac{3}{36} - \\frac{2}{36} = \\frac{31}{36}",
+  "SM-31(c) 官方答案 31/36（交集 (1,2)、(2,1) 共 2 個）");
+ok(q182("ch18-2-ct-32").answers[2].math === "\\frac{42}{63} = \\frac{2}{3}" &&
+  /1 - P\(\\text\{unmarried female\}\)/.test(q182("ch18-2-ct-32").solution.steps[5].zh),
+  "CT-32(c) 官方答案 2/3，主解法用反面 1 − P(未婚女職員)");
+ok(q182("ch18-2-ct-33").answers[1].math === "x = 2 ,\\ y = 6",
+  "CT-33(b) 官方答案 x = 2、y = 6（y = 3x 與 x + y = 8）");
+ok(q182("ch18-2-ct-34").answers[1].math === "m = 5 ,\\ n = 3",
+  "CT-34(b) 官方答案 m = 5、n = 3");
+ok(/5\^\{\\ast\\ast\}/.test(q182("ch18-2-l1-7").stem.zh) &&
+  !/\*\*/.test(read("data/src/ch18-2.json")),
+  "L1-7 的 DSE 5** 級用 KaTeX 上標 $5^{\\ast\\ast}$（前端沒有 Markdown）");
+
+/* 頁面渲染 ＋ 真 KaTeX */
+const c182 = boot("quiz.html", "?c=ch18-2&p=0");
+ok(c182.$$("#pagenav .pg").length === 40,
+  "18.2 分頁列 = 總覽 + 39 題（實際 " + c182.$$("#pagenav .pg").length + "）");
+ok(c182.$$("#pagenav .pg-sec").length === 6, "18.2 分頁列有 6 個分段標題");
+ok(c182.$$(".cc").length === 3, "18.2 總覽渲染出 3 張教學卡");
+ok(c182.$$(".katex-error").length === 0, "18.2 教學卡全部數式 KaTeX 渲染成功");
+ok(!/\{\{math:/.test(c182.$("#quiz-body").textContent), "18.2 總覽沒有殘留 {{math:}} 佔位符");
+
+const q182l1 = boot("quiz.html", "?c=ch18-2&p=6", null, "show");
+ok(!!q182l1.$('.q-card[data-qid="ch18-2-l1-1"]'),
+  "第 6 頁是 L1-1（總覽＋CE1–CE4＋判斷題之後）");
+ok(q182l1.$$(".katex-error").length === 0, "L1-1 全部數式（含 { } 分式）渲染成功");
+
+const all182 = [];
+for (let i = 1; i <= 39; i++) all182.push(boot("quiz.html", "?c=ch18-2&p=" + i, null, "show"));
+ok(all182.every((t) => t.$$(".sol-card").length === 1 && t.$$(".sol-card .steps .step").length > 0),
+  "18.2 每題都有逐步題解");
+ok(all182.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
+  "18.2 每題都有技巧與常見錯誤");
+ok(all182.every((t) => t.$$(".katex-error").length === 0), "18.2 全部 39 題 KaTeX 零錯誤");
+ok(all182.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "18.2 所有題幹均有中英版本");
+ok(all182.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "18.2 題幹全部已渲染（無殘留 $）");
+ok(P182_DATA.sections.every((s) => s.questions.every((q) =>
+  q.solution.steps.every((st) => (st.highlight || []).length >= 1))),
+  "18.2 每個步驟都有 highlight 重點框（資料層）");
+ok(P182_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).length >= 1 &&
+  q.parts.reduce((t, p) => t + p.marks, 0) === q.marks)),
+  "18.2 每題 parts 分數加總＝題目分數");
+ok(!LABEL_WORDS.some((w) => read("data/src/ch18-2.json").includes(w)),
+  "18.2 全部內容沒有標籤學生的字眼");
 
 /* ── 7. 進度記錄（新開頁面仍記得）────────────────────────────────────── */
 console.log("\n== 進度 ==");

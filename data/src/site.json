@@ -70,6 +70,32 @@
         "stats": { "questions": 35, "marks": 102, "bonus": 0 },
         "status": "ready",
         "source": { "zh": "課本 Exercise 17.3（Class Exercise 17.3 ＋ Exercise 17.3）", "en": "Textbook Exercise 17.3" }
+      },
+      {
+        "id": "ch18-1",
+        "group": "classwork",
+        "chapter": "ch18",
+        "code": "18.1",
+        "kind": { "zh": "課本練習", "en": "Book exercise" },
+        "unit": { "zh": "第 18 章 · 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
+        "title": { "zh": "18.1 集合 · 課本練習", "en": "18.1 Sets · Book Exercise" },
+        "meta": { "paper": "Book 5B · Exercise 18.1" },
+        "stats": { "questions": 21, "marks": 87, "bonus": 0 },
+        "status": "ready",
+        "source": { "zh": "課本 Exercise 18.1（Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER，Class Exercise 18.1 未收錄）", "en": "Textbook Exercise 18.1 (Section Check, Level 1, Level 2 and SMART CORNER; Class Exercise 18.1 not included)" }
+      },
+      {
+        "id": "ch18-2",
+        "group": "classwork",
+        "chapter": "ch18",
+        "code": "18.2",
+        "kind": { "zh": "課本練習", "en": "Book exercise" },
+        "unit": { "zh": "第 18 章 · 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
+        "title": { "zh": "18.2 概率的加法定律 · 課本練習", "en": "18.2 Addition Law of Probability · Book Exercise" },
+        "meta": { "paper": "Book 5B · Exercise 18.2" },
+        "stats": { "questions": 39, "marks": 146, "bonus": 0 },
+        "status": "ready",
+        "source": { "zh": "課本 Exercise 18.2（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER ＋ Cross Topics；Cross Topics 只收錄原書第 33、35、36 題）", "en": "Textbook Exercise 18.2 (Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics; only book Cross Topics Q33, Q35 and Q36 are included)" }
       }
     ],
     "classwork": {
@@ -92,12 +118,27 @@
             { "code": "17.2", "part": "ch17-2", "title": { "zh": "17.2 排列", "en": "17.2 Permutations" } },
             { "code": "17.3", "part": "ch17-3", "title": { "zh": "17.3 組合", "en": "17.3 Combinations" } }
           ]
+        },
+        {
+          "id": "ch18",
+          "short": { "zh": "第 18 章", "en": "Chapter 18" },
+          "title": { "zh": "第 18 章 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
+          "intro": {
+            "zh": "第 18 章分四節：18.1 集合、18.2 概率的加法定律、18.3 概率的乘法、18.4 概率與計數。18.1 與 18.2 的課本練習（Exercise 18.1、Exercise 18.2）已上線，18.3、18.4 整理好會陸續加入；各節標題以課本為準，有需要會再校正。",
+            "en": "Chapter 18 has four sections: 18.1 sets, 18.2 the addition law of probability, 18.3 multiplication of probabilities and 18.4 probability by counting. The 18.1 and 18.2 book exercises are online; 18.3 and 18.4 will follow. Section titles follow the textbook and may be adjusted later."
+          },
+          "sections": [
+            { "code": "18.1", "part": "ch18-1", "title": { "zh": "18.1 集合", "en": "18.1 Sets" } },
+            { "code": "18.2", "part": "ch18-2", "title": { "zh": "18.2 概率的加法定律", "en": "18.2 Addition Law of Probability" } },
+            { "code": "18.3", "part": null, "title": { "zh": "18.3 概率的乘法", "en": "18.3 Multiplication of probabilities" } },
+            { "code": "18.4", "part": null, "title": { "zh": "18.4 概率與計數", "en": "18.4 Probability by counting" } }
+          ]
         }
       ]
     },
     "comingSoon": {
-      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章的三節（17.1、17.2、17.3）已全部上線。",
-      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17 (17.1, 17.2 and 17.3) are now online."
+      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章三節已全部上線；第 18 章已上 18.1 與 18.2，18.3、18.4 整理中。",
+      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17 are online, and Chapter 18 now has 18.1 and 18.2 while 18.3 and 18.4 are being prepared."
     }
   }
 }

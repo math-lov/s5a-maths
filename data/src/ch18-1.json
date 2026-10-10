@@ -1,0 +1,3007 @@
+{
+ "id": "ch18-1",
+ "title": {
+  "zh": "18.1 集合 · 課本練習",
+  "en": "18.1 Sets · Book Exercise"
+ },
+ "intro": {
+  "zh": "本節按課本分為判斷題、基礎練習、進階練習及挑戰題。做集合題先認清三件事：樣本空間 $S$ 收集全部可能結果、事件 $A$、$B$ 都是 $S$ 的子集、而兩個事件會把 $S$ 分成四區（只在 $A$、只在 $B$、兩者都有、兩者都不是）。求概率時，只要每個結果出現的機會相同，就用 $P(A) = \\frac{n(A)}{n(S)}$；問「至少」的題目多數用反面（總數減去「完全沒有」）最快。",
+  "en": "This section follows the textbook and is grouped into Section Check, Level 1, Level 2 and SMART CORNER. For every set question, identify three things first: the sample space $S$ collects all possible outcomes, the events $A$ and $B$ are subsets of $S$, and two events split $S$ into four regions (in $A$ only, in $B$ only, in both, in neither). When every outcome is equally likely, use $P(A) = \\frac{n(A)}{n(S)}$; for \"at least\" questions, counting by complement (total minus \"none\") is usually the fastest."
+ },
+ "cards": [
+  {
+   "id": "ch18-1-c01",
+   "topic": "ch18-1",
+   "title": {
+    "zh": "集合的符號：屬於、補集、交集、聯集",
+    "en": "Set notation: belongs to, complement, intersection, union"
+   },
+   "body": {
+    "zh": "- 樣本空間 $S$ 收集全部可能結果，事件 $A$、$B$ 都是 $S$ 的子集；$n(A)$ 就是 $A$ 內元素的數目。\n- $x \\in A$ 讀作「$x$ 屬於 $A$」；$x \\notin A$ 就是「$x$ 不屬於 $A$」。\n- 補集 $A'$ 收集在 $S$ 之內但不屬於 $A$ 的元素，所以 {{math:0}}\n- 交集 $A \\cap B$ 只取兩邊都有的元素；聯集 $A \\cup B$ 兩邊的元素都要，重複的只寫一次。",
+    "en": "- The sample space $S$ collects all possible outcomes, and the events $A$ and $B$ are subsets of $S$; $n(A)$ is the number of elements in $A$.\n- $x \\in A$ reads \"$x$ belongs to $A$\"; $x \\notin A$ means it does not.\n- The complement $A'$ collects the elements of $S$ that are not in $A$, so {{math:0}}\n- The intersection $A \\cap B$ keeps only the elements in both; the union $A \\cup B$ takes the elements of either set, with repeats written once."
+   },
+   "math": [
+    "n(A) + n(A') = n(S)"
+   ],
+   "warn": {
+    "zh": "- 空集要寫 $\\varnothing$（或 $\\{\\}$），不要寫數字 $0$：$0$ 是一個數，不是一個集合。\n- $n(\\varnothing) = 0$ 但 $\\varnothing \\ne \\{0\\}$：$\\{0\\}$ 是一個含 0 的集合，元素數目是 1。\n- 補集、交集、聯集都以 $S$ 為範圍：寫之前先確定 $S$ 是甚麼。",
+    "en": "- Write the empty set as ∅ (or {}), never as the number 0: 0 is a number, not a set.\n- n(∅) = 0 but ∅ ≠ {0}: the set {0} contains one element.\n- Complement, intersection and union are all measured against S, so fix S first."
+   },
+   "vocab": [
+    {
+     "zh": "樣本空間",
+     "en": "Sample space"
+    },
+    {
+     "zh": "事件",
+     "en": "Event"
+    },
+    {
+     "zh": "補集",
+     "en": "Complement"
+    },
+    {
+     "zh": "交集",
+     "en": "Intersection"
+    },
+    {
+     "zh": "聯集",
+     "en": "Union"
+    }
+   ]
+  },
+  {
+   "id": "ch18-1-c02",
+   "topic": "ch18-1",
+   "title": {
+    "zh": "文氏圖四區：只 A、只 B、兩者、兩者都不是",
+    "en": "Four regions in a Venn diagram: A only, B only, both, neither"
+   },
+   "body": {
+    "zh": "- 兩個事件把樣本空間分成四區，四個數目加起來就是 $S$ 的總數：{{math:0}}\n- 「至少一個」＝只 $A$、只 $B$、兩者都有，三區相加；反面算法是用總數減去「兩者都不是」：{{math:1}}\n- 把數字直接寫在圖中對應區域，比只寫算式更容易看出有無漏掉或重複。\n- 已知總數時，最後一格通常用減法得出：$S$ 的總數減去另外三區。",
+    "en": "- Two events split the sample space into four regions; the four numbers add up to n(S): {{math:0}}\n- \"At least one\" means A only, B only and both, added together; the complement method takes the total and subtracts \"neither\": {{math:1}}\n- Writing the numbers straight into the regions makes any missing or double-counted group visible.\n- When the total is known, the last cell is found by subtraction: n(S) minus the other three regions."
+   },
+   "math": [
+    "\\text{only } A + \\text{only } B + n(A \\cap B) + \\text{neither} = n(S)",
+    "n(A \\cup B) = n(S) - \\text{neither}"
+   ],
+   "warn": {
+    "zh": "- 把 $n(A)$ 與 $n(B)$ 直接相加，會把「兩者都有」的人數計算兩次（第 18.2 節會學到要減一次）。\n- 「只在 $A$」不等於 $n(A)$：要在 $A$ 的人之中減去兩者都有的那些人。\n- 四區的數目加起來如果不等於 $n(S)$，就一定有一區漏了或重複了。",
+    "en": "- Adding n(A) and n(B) directly counts the \"both\" group twice (Section 18.2 shows how to subtract it once).\n- \"A only\" is not n(A): subtract the people who are in both from those in A.\n- If the four regions do not add up to n(S), one region is missing or counted twice."
+   },
+   "vocab": [
+    {
+     "zh": "文氏圖",
+     "en": "Venn diagram"
+    },
+    {
+     "zh": "互斥",
+     "en": "Mutually exclusive"
+    },
+    {
+     "zh": "兩者都不是",
+     "en": "Neither"
+    }
+   ]
+  },
+  {
+   "id": "ch18-1-c03",
+   "topic": "ch18-1",
+   "title": {
+    "zh": "等可能結果求概率：$P(A) = \\frac{n(A)}{n(S)}$",
+    "en": "Equally likely outcomes: P(A) = n(A) ÷ n(S)"
+   },
+   "body": {
+    "zh": "- 若每個結果出現的機會相同，事件 $A$ 的概率就是 {{math:0}}\n- $P(A)$ 一定在 0 與 1 之間：必然事件 $P(S) = 1$、不可能事件 $P(\\varnothing) = 0$。\n- 補集的概率＝「唔中」＝ 1 減去「中」：{{math:1}}\n- 數 $n(A)$ 時只數 $A$ 之內的結果，$n(S)$ 是全部可能結果的數目；兩者都要數對，分母才正確。",
+    "en": "- If every outcome is equally likely, the probability of event A is {{math:0}}\n- P(A) always lies between 0 and 1: the certain event has P(S) = 1 and the impossible event has P(∅) = 0.\n- The probability of the complement is 1 minus the probability of the event: {{math:1}}\n- Count n(A) as the outcomes inside A only, and n(S) as all possible outcomes; both counts must be right or the denominator is wrong."
+   },
+   "math": [
+    "P(A) = \\frac{n(A)}{n(S)}",
+    "P(A') = 1 - P(A)"
+   ],
+   "warn": {
+    "zh": "- 不要把「數目」當成「概率」：$n(A) = 4$ 只是數目，$P(A) = \\frac{4}{52}$ 才是概率。\n- 分母一定要用 $n(S)$（全部可能結果），不是用「剩下」或「題目提到的其他數字」。\n- 「至少一個」用反面：$P(\\text{at least one}) = 1 - P(\\text{none})$，比逐個情況加起來快。",
+    "en": "- Do not confuse a count with a probability: n(A) = 4 is a count, while P(A) = 4/52 is the probability.\n- The denominator must be n(S), not what is left over or any other number in the question.\n- \"At least one\" is a complement: P(at least one) = 1 − P(none), which is faster than adding the cases."
+   },
+   "vocab": [
+    {
+     "zh": "概率",
+     "en": "Probability"
+    },
+    {
+     "zh": "相等可能",
+     "en": "Equally likely"
+    },
+    {
+     "zh": "補集",
+     "en": "Complement"
+    }
+   ]
+  },
+  {
+   "id": "ch18-1-c04",
+   "topic": "ch18-1",
+   "title": {
+    "zh": "重要提醒：空集、互斥、包含關係",
+    "en": "Reminder: empty set, mutually exclusive events and subsets"
+   },
+   "body": {
+    "zh": "- 若 $A \\cap B = \\varnothing$，兩個事件不會同時發生，稱為互斥；此時可以直接相加：{{math:0}}\n- 若 $C$ 整個落在 $A$ 之內（$C \\subset A$），則 $A \\cap C = C$，而 $A \\cup C = A$：{{math:1}}\n- $A$ 與 $A'$ 既是互斥，合起來又正好是整個樣本空間：{{math:2}}\n- 互斥與「兩者都不是」是相反的兩種情況：互斥指「同時中」，兩者都不是指「兩個都不中」；兩者都會令文氏圖出現空格。",
+    "en": "- If A ∩ B = ∅ the two events cannot happen at the same time and are called mutually exclusive; then the counts may simply be added: {{math:0}}\n- If C lies completely inside A (C ⊂ A), then A ∩ C = C and A ∪ C = A: {{math:1}}\n- A and A′ are mutually exclusive and together they fill the whole sample space: {{math:2}}\n- \"Mutually exclusive\" and \"neither\" are opposites: the first means both at once, the second means neither one, and both leave a cell empty in the Venn diagram."
+   },
+   "warn": {
+    "zh": "- 互斥 ≠ 獨立：互斥只代表不能同時發生，不代表其中一個發生的機會不受另一個影響。\n- $A \\subset B$ 時 $A \\cup B = B$（不是 $A$）：包含關係下小集合被大集合「食掉」。\n- 看到 $\\subset$ 要先問「誰包含誰」，再判斷聯集與交集，否則很容易調轉答案。",
+    "en": "- Mutually exclusive is not the same as independent: it only says the events cannot happen together.\n- When A ⊂ B we get A ∪ B = B (not A): the larger set swallows the smaller one.\n- Seeing ⊂, ask first which set contains which before writing the union or intersection."
+   },
+   "vocab": [
+    {
+     "zh": "互斥",
+     "en": "Mutually exclusive"
+    },
+    {
+     "zh": "子集",
+     "en": "Subset"
+    },
+    {
+     "zh": "空集",
+     "en": "Empty set"
+    }
+   ],
+   "math": [
+    "n(A \\cup B) = n(A) + n(B) \\text{ when } A \\cap B = \\varnothing",
+    "C \\subset A \\implies A \\cap C = C ,\\ A \\cup C = A",
+    "A \\cap A' = \\varnothing ,\\ A \\cup A' = S"
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "id": "SC",
+   "short": {
+    "zh": "判斷題",
+    "en": "Section Check"
+   },
+   "title": {
+    "zh": "判斷題 · Section Check",
+    "en": "Section Check"
+   },
+   "marks": 6,
+   "questions": [
+    {
+     "id": "ch18-1-sc",
+     "code": "SC",
+     "type": "tf",
+     "marks": 6,
+     "difficulty": 2,
+     "stem": {
+      "en": "Determine whether each of the following is correct. Put a tick in the box if it is correct and a cross if it is not.",
+      "zh": "判斷下列各項是否正確：正確的畫上「✓」，不正確的畫上「✗」。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "If $A = \\{4, 6, 8, 10\\}$, then $n(A) = 10$.",
+       "zh": "若 $A = \\{4, 6, 8, 10\\}$，則 $n(A) = 10$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "If $B = \\{1, 3, 4, 7, 9\\}$, then $3 \\in B$.",
+       "zh": "若 $B = \\{1, 3, 4, 7, 9\\}$，則 $3 \\in B$。",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "If $P = \\{3, 5, 6\\}$ and $Q = \\{4, 5, 7\\}$, then $6 \\notin P \\cup Q$.",
+       "zh": "若 $P = \\{3, 5, 6\\}$、$Q = \\{4, 5, 7\\}$，則 $6 \\notin P \\cup Q$。",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "For any event $A$, $A \\cap A' = \\varnothing$.",
+       "zh": "對任何事件 $A$，$A \\cap A' = \\varnothing$。",
+       "marks": 1
+      },
+      {
+       "label": "(e)",
+       "en": "For any event $A$, $A \\cup A' = S$, where $S$ is the sample space.",
+       "zh": "對任何事件 $A$，$A \\cup A' = S$（$S$ 是樣本空間）。",
+       "marks": 1
+      },
+      {
+       "label": "(f)",
+       "en": "For any events $A$ and $B$, if $A \\subset B$, then $A \\cup B = A$.",
+       "zh": "對任何事件 $A$、$B$，若 $A \\subset B$，則 $A \\cup B = A$。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "tf": false,
+       "math": "\\text{Incorrect}",
+       "note": {
+        "zh": "應為 $n(A) = 4$",
+        "en": "It should be $n(A) = 4$"
+       }
+      },
+      {
+       "part": "(b)",
+       "tf": true,
+       "math": "\\text{Correct}",
+       "note": {
+        "zh": "正確（$3 \\in B$）",
+        "en": "Correct ($3 \\in B$)"
+       }
+      },
+      {
+       "part": "(c)",
+       "tf": false,
+       "math": "\\text{Incorrect}",
+       "note": {
+        "zh": "應為 $6 \\in P \\cup Q$",
+        "en": "It should be $6 \\in P \\cup Q$"
+       }
+      },
+      {
+       "part": "(d)",
+       "tf": true,
+       "math": "\\text{Correct}",
+       "note": {
+        "zh": "正確（$A \\cap A' = \\varnothing$）",
+        "en": "Correct ($A \\cap A' = \\varnothing$)"
+       }
+      },
+      {
+       "part": "(e)",
+       "tf": true,
+       "math": "\\text{Correct}",
+       "note": {
+        "zh": "正確（$A \\cup A' = S$）",
+        "en": "Correct ($A \\cup A' = S$)"
+       }
+      },
+      {
+       "part": "(f)",
+       "tf": false,
+       "math": "\\text{Incorrect}",
+       "note": {
+        "zh": "應為 $A \\cup B = B$",
+        "en": "It should be $A \\cup B = B$"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "數一數 $A$ 內有幾個元素",
+         "en": "Count the elements of A"
+        },
+        "math": "n(A) = 4",
+        "zh": "$A = \\{4, 6, 8, 10\\}$ 內有 $4$、$6$、$8$、$10$ 四個元素，所以 $n(A) = 4$。題目寫 $n(A) = 10$，是把元素本身當成數目，(a) 錯誤。",
+        "en": "The set $A = \\{4, 6, 8, 10\\}$ contains four elements, 4, 6, 8 and 10, so $n(A) = 4$. The claim $n(A) = 10$ mistakes the value of an element for a count, so (a) is incorrect.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(A) = 4"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "$3$ 真的在 $B$ 之內",
+         "en": "The number 3 is indeed in B"
+        },
+        "math": "3 \\in B",
+        "zh": "$B = \\{1, 3, 4, 7, 9\\}$ 之中有 $3$，所以 $3 \\in B$ 成立，(b) 正確。",
+        "en": "The element 3 appears in $B = \\{1, 3, 4, 7, 9\\}$, so $3 \\in B$ is true and (b) is correct.",
+        "marking": "(1A)",
+        "highlight": [
+         "3 \\in B"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "先寫出 $P \\cup Q$ 再判斷",
+         "en": "Write down P ∪ Q first"
+        },
+        "math": "P \\cup Q = \\{3, 4, 5, 6, 7\\}",
+        "zh": "把兩組的元素合起來：$P$ 的 $3$、$5$、$6$ 加上 $Q$ 的 $4$、$5$、$7$，重複的 $5$ 只寫一次，得 $P \\cup Q = \\{3, 4, 5, 6, 7\\}$。$6$ 在聯集之內，所以題目的 $6 \\notin P \\cup Q$ 錯，(c) 錯誤。",
+        "en": "Putting the elements together: 3, 5, 6 from P and 4, 5, 7 from Q, with the repeated 5 written once, gives $P \\cup Q = \\{3, 4, 5, 6, 7\\}$. Since 6 belongs to the union, the claim $6 \\notin P \\cup Q$ fails and (c) is incorrect.",
+        "marking": "(1A)",
+        "highlight": [
+         "P \\cup Q = \\{3, 4, 5, 6, 7\\}"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "一個元素不可能「在」又「不在」$A$",
+         "en": "No element can be both in and not in A"
+        },
+        "math": "A \\cap A' = \\varnothing",
+        "zh": "$A'$ 收集的是「不屬於 $A$」的元素，所以不可能有任何元素同時屬於 $A$ 與 $A'$，交集是空集，(d) 正確。",
+        "en": "The complement $A'$ collects exactly those elements that are not in A, so nothing can lie in both $A$ and $A'$; the intersection is empty and (d) is correct.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cap A' = \\varnothing"
+        ]
+       },
+       {
+        "part": "(e)",
+        "title": {
+         "zh": "$S$ 內每個元素都至少中一邊",
+         "en": "Every element of S falls on one side"
+        },
+        "math": "A \\cup A' = S",
+        "zh": "在 $S$ 之內任取一個元素：它若不是屬於 $A$，就一定屬於 $A'$。所以 $A \\cup A'$ 收齊 $S$ 的所有元素，(e) 正確。",
+        "en": "Take any element of S: it either belongs to A or it does not, in which case it belongs to A′. Hence $A \\cup A'$ contains every element of S and (e) is correct.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cup A' = S"
+        ]
+       },
+       {
+        "part": "(f)",
+        "title": {
+         "zh": "包含關係下聯集取大的一方",
+         "en": "Under a subset relation the union gives the larger set"
+        },
+        "math": "A \\cup B = B",
+        "zh": "$A \\subset B$ 代表 $A$ 的每個元素都在 $B$ 之內，所以把兩組合起來仍然是 $B$：$A \\cup B = B$。題目寫成 $= A$，只有在 $A = B$ 時才對，(f) 錯誤。",
+        "en": "The condition $A \\subset B$ says every element of A is already inside B, so the union is still B: $A \\cup B = B$. Writing $= A$ would only hold when $A = B$, so (f) is incorrect.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cup B = B"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "判斷題靠印象，不靠計算",
+        "labelEn": "Guessing instead of working it out",
+        "zh": "(a) 要數元素的數目、(c) 要真的寫出 $P \\cup Q$、(f) 要先想清楚誰包含誰。每一項都要算一次或舉出反例，才可以打勾或打叉。",
+        "en": "In (a) count the elements, in (c) actually write down P ∪ Q, and in (f) decide which set contains which. Work each item out or find a counter-example before ticking."
+       },
+       {
+        "label": "把空集當成 0",
+        "labelEn": "Treating the empty set as 0",
+        "zh": "(d) 的答案是空集 $\\varnothing$，不是數字 $0$；寫 $A \\cap A' = 0$ 是把集合與數目混為一談。",
+        "en": "In (d) the answer is the empty set ∅, not the number 0; writing $A \\cap A' = 0$ confuses a set with a count."
+       }
+      ],
+      "tip": {
+       "zh": "判斷題三步：① 這句在說哪一個集合？② 把它算出來（數元素、寫聯集、畫圖）；③ 比較題目的寫法與你的結果。",
+       "en": "For a true-or-false item: (1) which set is the statement about? (2) work it out (count, form the union, draw a diagram); (3) compare the claim with your result."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "L1",
+   "short": {
+    "zh": "基礎練習",
+    "en": "Level 1"
+   },
+   "title": {
+    "zh": "基礎練習 · Level 1",
+    "en": "Level 1"
+   },
+   "marks": 41,
+   "questions": [
+    {
+     "id": "ch18-1-l1-1",
+     "code": "1",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 1,
+     "stem": {
+      "en": "In the figure, $S = \\{1, 2, 3, 4, 5, 6\\}$, $A = \\{2, 4, 6\\}$ and $B = \\{1, 3\\}$. Find the following sets.",
+      "zh": "圖中 $S = \\{1, 2, 3, 4, 5, 6\\}$、$A = \\{2, 4, 6\\}$、$B = \\{1, 3\\}$。求下列各集合。"
+     },
+     "figures": [
+      "ch18-1-l1-1"
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$A'$",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "$B'$",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "$A \\cap B$",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "$A \\cup B$",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "A' = \\{1, 3, 5\\}",
+       "note": {
+        "zh": "在 $S$ 之內但不屬於 $A$ 的元素",
+        "en": "The elements of S that are not in A"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "B' = \\{2, 4, 5, 6\\}",
+       "note": {
+        "zh": "在 $S$ 之內但不屬於 $B$ 的元素",
+        "en": "The elements of S that are not in B"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "A \\cap B = \\varnothing",
+       "note": {
+        "zh": "兩組沒有共同元素，交集是空集",
+        "en": "The two sets share no element, so the intersection is empty"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "A \\cup B = \\{1, 2, 3, 4, 6\\}",
+       "note": {
+        "zh": "$5$ 兩邊都不屬，所以不在聯集之內",
+        "en": "5 belongs to neither set, so it is not in the union"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "補集＝由 $S$ 拿走 $A$",
+         "en": "Complement: remove A from S"
+        },
+        "math": "A' = \\{1, 3, 5\\}",
+        "zh": "由 $S = \\{1, 2, 3, 4, 5, 6\\}$ 拿走屬於 $A$ 的 $2$、$4$、$6$，剩下的 $1$、$3$、$5$ 就是 $A'$。圖中亦可以見到這三個數都在 $A$ 圈以外。",
+        "en": "Removing the elements of $A$, namely 2, 4 and 6, from $S = \\{1, 2, 3, 4, 5, 6\\}$ leaves 1, 3 and 5, so $A' = \\{1, 3, 5\\}$. In the figure these three numbers lie outside the circle A.",
+        "marking": "(1A)",
+        "highlight": [
+         "A' = \\{1, 3, 5\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "3 屬於 $B$，所以不在 $B'$ 之內",
+         "en": "3 is in B, so it is not in B′"
+        },
+        "math": "B' = \\{2, 4, 5, 6\\}",
+        "zh": "由 $S$ 拿走屬於 $B$ 的 $1$、$3$，剩下 $2$、$4$、$5$、$6$，所以 $B' = \\{2, 4, 5, 6\\}$。注意 $5$ 兩邊都不屬，所以它同時在 $A'$ 與 $B'$ 之內。",
+        "en": "Removing the elements of B, namely 1 and 3, from S leaves 2, 4, 5 and 6, so $B' = \\{2, 4, 5, 6\\}$. Notice that 5 belongs to neither set, so it is in both $A'$ and $B'$.",
+        "marking": "(1A)",
+        "highlight": [
+         "B' = \\{2, 4, 5, 6\\}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "交集只取兩邊都有的元素",
+         "en": "The intersection keeps only the common elements"
+        },
+        "math": "A \\cap B = \\varnothing",
+        "zh": "$A$ 內是 $2$、$4$、$6$，$B$ 內是 $1$、$3$，兩組完全沒有相同的元素，所以 $A \\cap B = \\varnothing$（空集）。圖中兩個圓沒有重疊部分，正好對應這個結果。",
+        "en": "Inside A we have 2, 4, 6 and inside B we have 1, 3, with no common element, so $A \\cap B = \\varnothing$. In the figure the two circles do not overlap, which matches this result.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cap B = \\varnothing"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "聯集把兩邊的元素合起來",
+         "en": "The union takes the elements of both sets"
+        },
+        "math": "A \\cup B = \\{1, 2, 3, 4, 6\\}",
+        "zh": "聯集收齊屬於 $A$ 或屬於 $B$ 的元素：$2$、$4$、$6$ 加上 $1$、$3$，得 $A \\cup B = \\{1, 2, 3, 4, 6\\}$。$5$ 兩邊都不屬，所以不在聯集之內（這一點最常漏）。",
+        "en": "The union collects everything in A or in B: 2, 4, 6 together with 1, 3 gives $A \\cup B = \\{1, 2, 3, 4, 6\\}$. The number 5 belongs to neither set, so it is not in the union — the step most often missed.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cup B = \\{1, 2, 3, 4, 6\\}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把聯集當成整個 $S$",
+        "labelEn": "Treating the union as the whole of S",
+        "zh": "(d) 只收屬於 $A$ 或 $B$ 的元素，$5$ 兩邊都不屬，所以 $A \\cup B$ 只有 5 個元素，不是 6 個。",
+        "en": "In (d) only elements of A or B are collected; since 5 is in neither, the union has five elements, not six."
+       },
+       {
+        "label": "把空集寫成 0",
+        "labelEn": "Writing the empty set as 0",
+        "zh": "(c) 的答案是 $\\varnothing$（或 $\\{\\}$），不是 $0$；$0$ 是一個數字，不是集合。",
+        "en": "The answer in (c) is ∅ (or {}), not 0; 0 is a number, not a set."
+       }
+      ],
+      "tip": {
+       "zh": "補集＝「$S$ 減去該集合」；交集只取兩邊都有的；聯集兩邊都要（重複的只寫一次）。寫完可以數一數：$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$。",
+       "en": "Complement = S minus the set; intersection keeps what is in both; union takes both (writing repeats once). As a check, $n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-2",
+     "code": "2",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 1,
+     "stem": {
+      "en": "In the figure, $S = \\{1, 2, 4, 5, 6, 7, 9\\}$, $A = \\{1, 2, 6\\}$ and $B = \\{1, 2, 4, 5\\}$. Find the following sets.",
+      "zh": "圖中 $S = \\{1, 2, 4, 5, 6, 7, 9\\}$、$A = \\{1, 2, 6\\}$、$B = \\{1, 2, 4, 5\\}$。求下列各集合。"
+     },
+     "figures": [
+      "ch18-1-l1-2"
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$A'$",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "$B'$",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "$A \\cap B$",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "$A \\cup B$",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "A' = \\{4, 5, 7, 9\\}",
+       "note": {
+        "zh": "拿走 $1$、$2$、$6$ 之後剩下的元素",
+        "en": "What is left after removing 1, 2 and 6"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "B' = \\{6, 7, 9\\}",
+       "note": {
+        "zh": "拿走 $1$、$2$、$4$、$5$ 之後剩下的元素",
+        "en": "What is left after removing 1, 2, 4 and 5"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "A \\cap B = \\{1, 2\\}",
+       "note": {
+        "zh": "重疊部分的兩個元素",
+        "en": "The two elements in the overlap"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "A \\cup B = \\{1, 2, 4, 5, 6\\}",
+       "note": {
+        "zh": "$7$、$9$ 兩邊都不屬",
+        "en": "7 and 9 belong to neither set"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先認清 $S$ 與 $A$",
+         "en": "Fix S and A first"
+        },
+        "math": "A' = \\{4, 5, 7, 9\\}",
+        "zh": "$S = \\{1, 2, 4, 5, 6, 7, 9\\}$、$A = \\{1, 2, 6\\}$。拿走 $1$、$2$、$6$ 之後，剩下 $4$、$5$、$7$、$9$，所以 $A' = \\{4, 5, 7, 9\\}$，共 4 個元素。",
+        "en": "Here $S = \\{1, 2, 4, 5, 6, 7, 9\\}$ and $A = \\{1, 2, 6\\}$. Removing 1, 2 and 6 leaves 4, 5, 7 and 9, so $A' = \\{4, 5, 7, 9\\}$, four elements.",
+        "marking": "(1A)",
+        "highlight": [
+         "A' = \\{4, 5, 7, 9\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "$4$、$5$ 屬於 $B$，不在 $B'$",
+         "en": "4 and 5 are in B, so not in B′"
+        },
+        "math": "B' = \\{6, 7, 9\\}",
+        "zh": "拿走 $B = \\{1, 2, 4, 5\\}$ 內的 $1$、$2$、$4$、$5$，剩下 $6$、$7$、$9$，所以 $B' = \\{6, 7, 9\\}$。$n(B) + n(B') = 4 + 3 = 7 = n(S)$，可以用來核對。",
+        "en": "Removing 1, 2, 4 and 5 — the elements of B — leaves 6, 7 and 9, so $B' = \\{6, 7, 9\\}$. As a check, $n(B) + n(B') = 4 + 3 = 7 = n(S)$.",
+        "marking": "(1A)",
+        "highlight": [
+         "B' = \\{6, 7, 9\\}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "交集＝兩個圓重疊的部分",
+         "en": "The intersection is the overlap of the two circles"
+        },
+        "math": "A \\cap B = \\{1, 2\\}",
+        "zh": "$A = \\{1, 2, 6\\}$、$B = \\{1, 2, 4, 5\\}$，兩組共同的元素是 $1$ 與 $2$，所以 $A \\cap B = \\{1, 2\\}$；圖中這兩個數正好寫在重疊區域。",
+        "en": "Since $A = \\{1, 2, 6\\}$ and $B = \\{1, 2, 4, 5\\}$, the common elements are 1 and 2, so $A \\cap B = \\{1, 2\\}$ — exactly the numbers written in the overlap of the figure.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cap B = \\{1, 2\\}"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "聯集＝兩個圓的全部",
+         "en": "The union is everything inside the two circles"
+        },
+        "math": "A \\cup B = \\{1, 2, 4, 5, 6\\}",
+        "zh": "把兩組合起來得 $\\{1, 2, 4, 5, 6\\}$（重複的 $1$、$2$ 只寫一次）。$7$、$9$ 在兩個圓之外，所以不在聯集之內。",
+        "en": "Combining the two sets gives $\\{1, 2, 4, 5, 6\\}$, with the repeated 1 and 2 written once. The numbers 7 and 9 lie outside both circles, so they are not in the union.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cup B = \\{1, 2, 4, 5, 6\\}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "補集漏掉「兩圓之外」的元素",
+        "labelEn": "Forgetting the elements outside both circles",
+        "zh": "$S$ 之內除了兩個圓，還有 $7$、$9$ 這類元素；求 $A'$ 或 $B'$ 時一定要在整個 $S$ 之中找。",
+        "en": "Inside S there are elements such as 7 and 9 that lie outside both circles; when finding A′ or B′ look through the whole of S."
+       }
+      ],
+      "tip": {
+       "zh": "核對公式：$n(A) + n(A') = n(S)$。這題 $3 + 4 = 7$、$4 + 3 = 7$，代表補集沒有漏元素。",
+       "en": "Check with $n(A) + n(A') = n(S)$: here $3 + 4 = 7$ and $4 + 3 = 7$, so no element was missed."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-3",
+     "code": "3",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 1,
+     "stem": {
+      "en": "Refer to the Venn diagram and find the following sets.",
+      "zh": "參考文氏圖，求下列各集合。"
+     },
+     "figures": [
+      "ch18-1-l1-3"
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$A$",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "$S$",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "$B'$",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "$A \\cap B$",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "A = \\{a, d, e, f\\}",
+       "note": {
+        "zh": "圓 $A$ 之內（包括重疊部分）的元素",
+        "en": "The elements inside circle A, including the overlap"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "S = \\{a, b, c, d, e, f\\}",
+       "note": {
+        "zh": "長方形之內的全部元素",
+        "en": "Every element inside the rectangle"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "B' = \\{a, d, f\\}",
+       "note": {
+        "zh": "在 $S$ 之內但不在圓 $B$ 之內",
+        "en": "In S but outside circle B"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "A \\cap B = \\{e\\}",
+       "note": {
+        "zh": "兩個圓重疊部分只有 $e$",
+        "en": "The overlap of the two circles contains only e"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "圓 $A$ 之內就是 $A$",
+         "en": "Everything inside circle A is the set A"
+        },
+        "math": "A = \\{a, d, e, f\\}",
+        "zh": "先看圓 $A$（藍圈）：圈內有 $d$、$f$、$a$，再加上與 $B$ 重疊部分內的 $e$，所以 $A = \\{a, d, e, f\\}$。重疊部分的元素同時屬於 $A$，不可以漏。",
+        "en": "Look at circle A: it contains d, f and a, and also e inside the overlap with B, so $A = \\{a, d, e, f\\}$. Elements in the overlap still belong to A and must not be left out.",
+        "marking": "(1A)",
+        "highlight": [
+         "A = \\{a, d, e, f\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "樣本空間＝長方形內全部元素",
+         "en": "The sample space is everything inside the rectangle"
+        },
+        "math": "S = \\{a, b, c, d, e, f\\}",
+        "zh": "長方形 $S$ 之內有 $a$、$b$、$c$、$d$、$e$、$f$ 六個字母，所以 $S = \\{a, b, c, d, e, f\\}$，$n(S) = 6$。",
+        "en": "The rectangle S contains the six letters a, b, c, d, e and f, so $S = \\{a, b, c, d, e, f\\}$ and $n(S) = 6$.",
+        "marking": "(1A)",
+        "highlight": [
+         "S = \\{a, b, c, d, e, f\\}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "$B'$ 就是圓 $B$ 以外",
+         "en": "B′ is everything outside circle B"
+        },
+        "math": "B' = \\{a, d, f\\}",
+        "zh": "圓 $B$ 之內只有 $b$、$c$、$e$，所以在 $S$ 之內而 $B$ 以外的元素是 $a$、$d$、$f$，即 $B' = \\{a, d, f\\}$。核對：$n(B) + n(B') = 3 + 3 = 6 = n(S)$。",
+        "en": "Circle B contains only b, c and e, so the elements of S that are not in B are a, d and f: $B' = \\{a, d, f\\}$. Check: $n(B) + n(B') = 3 + 3 = 6 = n(S)$.",
+        "marking": "(1A)",
+        "highlight": [
+         "B' = \\{a, d, f\\}"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "交集只看重疊那一格",
+         "en": "The intersection is the overlap cell"
+        },
+        "math": "A \\cap B = \\{e\\}",
+        "zh": "兩個圓只有一小塊重疊，那一格寫的是 $e$，所以 $A \\cap B = \\{e\\}$。$a$、$d$、$f$ 只在 $A$（不在 $B$），$b$、$c$ 只在 $B$。",
+        "en": "The two circles overlap in one small region containing e, so $A \\cap B = \\{e\\}$. The elements a, d and f are in A only, while b and c are in B only.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cap B = \\{e\\}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "讀圖時漏掉重疊部分的元素",
+        "labelEn": "Missing the elements in the overlap",
+        "zh": "(a) 的 $A$ 要包括重疊部分的 $e$；只寫「圓 $A$ 獨有的部分」會漏掉它。",
+        "en": "In (a) the set A includes e from the overlap; writing only the part exclusive to circle A would miss it."
+       },
+       {
+        "label": "把 $S$ 與 $A \\cup B$ 混淆",
+        "labelEn": "Confusing S with A ∪ B",
+        "zh": "$S$ 是長方形之內的全部元素，包括兩個圓之外的部分；$A \\cup B$ 只是兩個圓之內的元素。這題剛好 $S = A \\cup B$，但一般情況未必相等。",
+        "en": "S is everything inside the rectangle, including the region outside the circles, whereas A ∪ B covers only the two circles. Here S happens to equal A ∪ B, but in general they differ."
+       }
+      ],
+      "tip": {
+       "zh": "讀文氏圖的次序：先看長方形（$S$），再看每個圓（集合），最後看每一格（只 $A$／只 $B$／重疊）。",
+       "en": "Read a Venn diagram in order: the rectangle (S), then each circle (a set), then each cell (A only, B only, overlap)."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-4",
+     "code": "4",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Refer to the Venn diagram and find the following sets.",
+      "zh": "參考文氏圖，求下列各集合。"
+     },
+     "figures": [
+      "ch18-1-l1-4"
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$S$",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "$A'$",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "$A \\cup B$",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "$A \\cap C$",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "S = \\{1, 2, 3, 4, 5, 6, 7, 8, 9\\}",
+       "note": {
+        "zh": "長方形之內的全部數字",
+        "en": "All the numbers inside the rectangle"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "A' = \\{1, 2, 5, 7, 8\\}",
+       "note": {
+        "zh": "$A = \\{3, 4, 6, 9\\}$，補集就是其餘五個數",
+        "en": "Since A = {3, 4, 6, 9}, the complement is the other five numbers"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "A \\cup B = \\{2, 3, 4, 5, 6, 8, 9\\}",
+       "note": {
+        "zh": "$1$、$7$ 兩邊都不屬",
+        "en": "1 and 7 belong to neither set"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "A \\cap C = \\{3, 9\\}",
+       "note": {
+        "zh": "$C$ 整個在 $A$ 之內，交集就是 $C$ 本身",
+        "en": "C lies completely inside A, so the intersection is C itself"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "長方形內有 9 個數字",
+         "en": "The rectangle holds nine numbers"
+        },
+        "math": "S = \\{1, 2, 3, 4, 5, 6, 7, 8, 9\\}",
+        "zh": "沿長方形讀一圈：$1$、$2$、$5$、$8$ 在圓外，$4$、$6$ 只在 $A$，$3$、$9$ 在 $C$ 內，$7$ 在圓外，合起來就是 $S = \\{1, 2, 3, 4, 5, 6, 7, 8, 9\\}$，$n(S) = 9$。",
+        "en": "Reading the rectangle: 1, 2, 5 and 8 lie outside the circles, 4 and 6 are in A only, 3 and 9 are inside C, and 7 is outside the circles. Together $S = \\{1, 2, 3, 4, 5, 6, 7, 8, 9\\}$ with $n(S) = 9$.",
+        "marking": "(1A)",
+        "highlight": [
+         "S = \\{1, 2, 3, 4, 5, 6, 7, 8, 9\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "先寫出 $A$，再取補集",
+         "en": "Write A, then take the complement"
+        },
+        "math": "A' = \\{1, 2, 5, 7, 8\\}",
+        "zh": "圓 $A$ 之內有 $4$、$6$ 以及整個 $C$（即 $3$、$9$），所以 $A = \\{3, 4, 6, 9\\}$。由 $S$ 拿走這四個數，得 $A' = \\{1, 2, 5, 7, 8\\}$，核對：$4 + 5 = 9 = n(S)$。",
+        "en": "Circle A contains 4 and 6 together with the whole of C, namely 3 and 9, so $A = \\{3, 4, 6, 9\\}$. Removing these four numbers from S gives $A' = \\{1, 2, 5, 7, 8\\}$; check $4 + 5 = 9 = n(S)$.",
+        "marking": "(1A)",
+        "highlight": [
+         "A' = \\{1, 2, 5, 7, 8\\}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "聯集把兩個圓的元素合起來",
+         "en": "The union combines both circles"
+        },
+        "math": "A \\cup B = \\{2, 3, 4, 5, 6, 8, 9\\}",
+        "zh": "$A = \\{3, 4, 6, 9\\}$、$B = \\{2, 5, 8\\}$（$B$ 圓之內的三個數），合起來得 $A \\cup B = \\{2, 3, 4, 5, 6, 8, 9\\}$。$1$ 與 $7$ 在兩個圓之外，所以不在聯集之內。",
+        "en": "With $A = \\{3, 4, 6, 9\\}$ and $B = \\{2, 5, 8\\}$ — the three numbers inside circle B — the union is $A \\cup B = \\{2, 3, 4, 5, 6, 8, 9\\}$. The numbers 1 and 7 lie outside both circles and are therefore not in the union.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cup B = \\{2, 3, 4, 5, 6, 8, 9\\}"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "$C$ 在 $A$ 之內，交集就是 $C$",
+         "en": "C is inside A, so the intersection is C"
+        },
+        "math": "A \\cap C = \\{3, 9\\}",
+        "zh": "$C$ 圓整個畫在 $A$ 圓之內，所以 $C$ 的每個元素都同時屬於 $A$：$A \\cap C = C = \\{3, 9\\}$。如果題目問 $A \\cup C$，答案就是 $A$ 本身。",
+        "en": "Circle C is drawn entirely inside circle A, so every element of C also belongs to A: $A \\cap C = C = \\{3, 9\\}$. If the question asked for $A \\cup C$ the answer would simply be A.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cap C = \\{3, 9\\}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "看不見 $C$ 是「圈中圈」",
+        "labelEn": "Missing that C is a circle inside A",
+        "zh": "$C$ 在 $A$ 之內，因此 $3$、$9$ 同時屬於 $A$；把 $A$ 寫成 $\\{4, 6\\}$ 就會漏掉 $3$、$9$。",
+        "en": "Because C sits inside A, the numbers 3 and 9 also belong to A; writing $A = \\{4, 6\\}$ would miss them."
+       },
+       {
+        "label": "聯集時把圓外的數字也算進去",
+        "labelEn": "Including numbers outside the circles in the union",
+        "zh": "(c) 的 $A \\cup B$ 只包括兩個圓之內的數字，$1$、$7$ 不在其中。",
+        "en": "The union in (c) contains only numbers inside the two circles; 1 and 7 are not included."
+       }
+      ],
+      "tip": {
+       "zh": "看到「圈中圈」要先問：裡面那個圓是不是完全在外圈之內？是的話，交集就等於裡面那個集合。",
+       "en": "When you see a circle inside a circle, ask whether the inner circle lies completely inside the outer one; if so the intersection is just the inner set."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-5",
+     "code": "5",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 1,
+     "stem": {
+      "en": "It is given that $P = \\{1, 3, 5\\}$, $Q = \\{2, 3, 4, 5, 6\\}$ and $R = \\{6, 8\\}$. Find the following sets.",
+      "zh": "已知 $P = \\{1, 3, 5\\}$、$Q = \\{2, 3, 4, 5, 6\\}$、$R = \\{6, 8\\}$。求下列各集合。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$P \\cap Q$",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "$P \\cup Q$",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "$P \\cap R$",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "$P \\cup R$",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "P \\cap Q = \\{3, 5\\}",
+       "note": {
+        "zh": "兩組共同的元素",
+        "en": "The elements common to both sets"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "P \\cup Q = \\{1, 2, 3, 4, 5, 6\\}",
+       "note": {
+        "zh": "兩組全部元素（重複只寫一次）",
+        "en": "All elements of both sets, repeats written once"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "P \\cap R = \\varnothing",
+       "note": {
+        "zh": "兩組沒有共同元素",
+        "en": "The sets share no element"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "P \\cup R = \\{1, 3, 5, 6, 8\\}",
+       "note": {
+        "zh": "$6$ 兩組都有，只寫一次",
+        "en": "6 appears in both sets and is written once"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "一個一個檢查共同元素",
+         "en": "Check each element for membership in both"
+        },
+        "math": "P \\cap Q = \\{3, 5\\}",
+        "zh": "$P$ 內有 $1$、$3$、$5$：其中 $1$ 不在 $Q$，$3$ 與 $5$ 都在 $Q$，所以 $P \\cap Q = \\{3, 5\\}$。",
+        "en": "The set P contains 1, 3 and 5. The element 1 is not in Q, while 3 and 5 are, so $P \\cap Q = \\{3, 5\\}$.",
+        "marking": "(1A)",
+        "highlight": [
+         "P \\cap Q = \\{3, 5\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "聯集：兩組元素全部收齊",
+         "en": "Union: collect every element of both sets"
+        },
+        "math": "P \\cup Q = \\{1, 2, 3, 4, 5, 6\\}",
+        "zh": "把 $P = \\{1, 3, 5\\}$ 與 $Q = \\{2, 3, 4, 5, 6\\}$ 合起來，$3$、$5$ 只寫一次，得 $P \\cup Q = \\{1, 2, 3, 4, 5, 6\\}$，共 6 個元素。",
+        "en": "Combining $P = \\{1, 3, 5\\}$ with $Q = \\{2, 3, 4, 5, 6\\}$, and writing 3 and 5 once, gives $P \\cup Q = \\{1, 2, 3, 4, 5, 6\\}$, six elements.",
+        "marking": "(1A)",
+        "highlight": [
+         "P \\cup Q = \\{1, 2, 3, 4, 5, 6\\}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "$P$ 與 $R$ 完全沒有交集",
+         "en": "P and R have nothing in common"
+        },
+        "math": "P \\cap R = \\varnothing",
+        "zh": "$P = \\{1, 3, 5\\}$ 全部是奇數，$R = \\{6, 8\\}$ 全部是 $6$ 與 $8$，兩組沒有共同的元素，所以 $P \\cap R = \\varnothing$。",
+        "en": "Every element of $P = \\{1, 3, 5\\}$ is odd, while $R = \\{6, 8\\}$ contains 6 and 8, so the two sets share nothing and $P \\cap R = \\varnothing$.",
+        "marking": "(1A)",
+        "highlight": [
+         "P \\cap R = \\varnothing"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "聯集：$6$ 只寫一次",
+         "en": "Union: write the repeated 6 once"
+        },
+        "math": "P \\cup R = \\{1, 3, 5, 6, 8\\}",
+        "zh": "$P$ 提供 $1$、$3$、$5$，$R$ 提供 $6$、$8$（$6$ 不在 $P$ 之內，所以不會重複），合起來是 $P \\cup R = \\{1, 3, 5, 6, 8\\}$，共 5 個元素。",
+        "en": "P contributes 1, 3 and 5 while R contributes 6 and 8 (only 6 appears further; there is no repeat here), so $P \\cup R = \\{1, 3, 5, 6, 8\\}$, five elements.",
+        "marking": "(1A)",
+        "highlight": [
+         "P \\cup R = \\{1, 3, 5, 6, 8\\}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "交集與聯集符號調轉",
+        "labelEn": "Swapping the intersection and union symbols",
+        "zh": "$\\cap$ 是「兩邊都要有」（答案較短），$\\cup$ 是「兩邊的元素都要」（答案較長）。可以用元素數目核對：$n(P \\cap Q) = 2 < n(P \\cup Q) = 6$。",
+        "en": "∩ keeps what is in both (a shorter list) while ∪ takes everything (a longer list). Use the counts as a check: $n(P \\cap Q) = 2$ is smaller than $n(P \\cup Q) = 6$."
+       },
+       {
+        "label": "空集寫成 0",
+        "labelEn": "Writing the empty set as 0",
+        "zh": "(c) 的答案是 $\\varnothing$；寫 $P \\cap R = 0$ 是錯的，因為 $0$ 不是集合。",
+        "en": "The answer in (c) is ∅; writing $P \\cap R = 0$ is wrong because 0 is not a set."
+       }
+      ],
+      "tip": {
+       "zh": "兩個集合的關係可以用元素數目核對：$n(P \\cup Q) = n(P) + n(Q) - n(P \\cap Q)$，這題 $3 + 5 - 2 = 6$。",
+       "en": "Check with $n(P \\cup Q) = n(P) + n(Q) - n(P \\cap Q)$: here $3 + 5 - 2 = 6$."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-6",
+     "code": "6",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 1,
+     "stem": {
+      "en": "It is given that $S = \\{1, 2, 3, 4, 7, 8, 9\\}$, $A = \\{4, 8\\}$ and $B = \\{1, 2, 3, 8\\}$. Find the following sets.",
+      "zh": "已知 $S = \\{1, 2, 3, 4, 7, 8, 9\\}$、$A = \\{4, 8\\}$、$B = \\{1, 2, 3, 8\\}$。求下列各集合。"
+     },
+     "figures": [
+      "ch18-1-l1-6"
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$A'$",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "$B'$",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "$A \\cap B$",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "$A \\cup B$",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "A' = \\{1, 2, 3, 7, 9\\}",
+       "note": {
+        "zh": "拿走 $4$、$8$ 之後剩下的五個數",
+        "en": "The five numbers left after removing 4 and 8"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "B' = \\{4, 7, 9\\}",
+       "note": {
+        "zh": "拿走 $1$、$2$、$3$、$8$ 之後剩下的數",
+        "en": "What is left after removing 1, 2, 3 and 8"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "A \\cap B = \\{8\\}",
+       "note": {
+        "zh": "唯一同時屬於兩組的元素",
+        "en": "The only element in both sets"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "A \\cup B = \\{1, 2, 3, 4, 8\\}",
+       "note": {
+        "zh": "$7$、$9$ 兩邊都不屬",
+        "en": "7 and 9 belong to neither set"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "在 $S$ 之中拿走 $4$ 與 $8$",
+         "en": "Remove 4 and 8 from S"
+        },
+        "math": "A' = \\{1, 2, 3, 7, 9\\}",
+        "zh": "$S = \\{1, 2, 3, 4, 7, 8, 9\\}$、$A = \\{4, 8\\}$。拿走 $4$、$8$ 之後剩下 $1$、$2$、$3$、$7$、$9$，所以 $A' = \\{1, 2, 3, 7, 9\\}$，核對 $2 + 5 = 7 = n(S)$。",
+        "en": "Here $S = \\{1, 2, 3, 4, 7, 8, 9\\}$ and $A = \\{4, 8\\}$. Removing 4 and 8 leaves 1, 2, 3, 7 and 9, so $A' = \\{1, 2, 3, 7, 9\\}$; check $2 + 5 = 7 = n(S)$.",
+        "marking": "(1A)",
+        "highlight": [
+         "A' = \\{1, 2, 3, 7, 9\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "$B$ 有四個元素，補集有三個",
+         "en": "B has four elements, so its complement has three"
+        },
+        "math": "B' = \\{4, 7, 9\\}",
+        "zh": "$B = \\{1, 2, 3, 8\\}$，拿走這四個數之後，$S$ 內剩下 $4$、$7$、$9$，所以 $B' = \\{4, 7, 9\\}$。注意 $4$ 在 $A$ 之內但在 $B'$ 之內，兩者不矛盾。",
+        "en": "Since $B = \\{1, 2, 3, 8\\}$, removing these four numbers from S leaves 4, 7 and 9, so $B' = \\{4, 7, 9\\}$. Note that 4 is in A and also in B′; there is no contradiction.",
+        "marking": "(1A)",
+        "highlight": [
+         "B' = \\{4, 7, 9\\}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "$8$ 是唯一的共同元素",
+         "en": "The only common element is 8"
+        },
+        "math": "A \\cap B = \\{8\\}",
+        "zh": "$A = \\{4, 8\\}$、$B = \\{1, 2, 3, 8\\}$，兩組共同的元素只有 $8$，所以 $A \\cap B = \\{8\\}$；圖中 $8$ 正是寫在重疊區域。",
+        "en": "Since $A = \\{4, 8\\}$ and $B = \\{1, 2, 3, 8\\}$, the only element in both is 8, so $A \\cap B = \\{8\\}$ — exactly the number placed in the overlap of the figure.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cap B = \\{8\\}"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "聯集：兩個圓的全部",
+         "en": "Union: everything inside the two circles"
+        },
+        "math": "A \\cup B = \\{1, 2, 3, 4, 8\\}",
+        "zh": "把 $A$ 與 $B$ 的元素合起來：$4$、$8$ 加上 $1$、$2$、$3$（$8$ 只寫一次），得 $A \\cup B = \\{1, 2, 3, 4, 8\\}$。$7$、$9$ 只在 $S$ 之內，不在聯集之內。",
+        "en": "Combining the elements of A and B — 4 and 8 together with 1, 2 and 3, writing 8 once — gives $A \\cup B = \\{1, 2, 3, 4, 8\\}$. The numbers 7 and 9 lie in S only, not in the union.",
+        "marking": "(1A)",
+        "highlight": [
+         "A \\cup B = \\{1, 2, 3, 4, 8\\}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "補集只在 $A$、$B$ 兩個圓內找",
+        "labelEn": "Looking for the complement only inside the circles",
+        "zh": "求 $A'$、$B'$ 要在整個 $S$ 之中找，$7$、$9$ 這類在圓外的元素一樣要計算在內。",
+        "en": "To find A′ or B′ you search the whole of S, including elements such as 7 and 9 that lie outside the circles."
+       }
+      ],
+      "tip": {
+       "zh": "計完可以用兩條式核對：$n(A) + n(A') = n(S)$ 與 $n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$（這題 $2 + 4 - 1 = 5$）。",
+       "en": "Two useful checks: $n(A) + n(A') = n(S)$ and $n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$; here $2 + 4 - 1 = 5$."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-7",
+     "code": "7",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 1,
+     "stem": {
+      "en": "A number is randomly chosen from 1 to 20 inclusive. Use set notation to express the following events.",
+      "zh": "從 1 至 20（包括 1 與 20）隨機選出一個數。用集合記法表示下列事件。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Event $A$: The number chosen is greater than 16.",
+       "zh": "事件 $A$：選出的數大於 16。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Event $B$: The number chosen is a multiple of 4.",
+       "zh": "事件 $B$：選出的數是 4 的倍數。",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "Event $C$: The number chosen is a factor of 20.",
+       "zh": "事件 $C$：選出的數是 20 的因數。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "A = \\{17, 18, 19, 20\\}",
+       "note": {
+        "zh": "大於 16 即 17 至 20",
+        "en": "Greater than 16 means 17 to 20"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "B = \\{4, 8, 12, 16, 20\\}",
+       "note": {
+        "zh": "20 以內 4 的倍數共 5 個",
+        "en": "Five multiples of 4 up to 20"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "C = \\{1, 2, 4, 5, 10, 20\\}",
+       "note": {
+        "zh": "1 與 20 本身也是因數",
+        "en": "1 and 20 itself are also factors"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "「大於 16」＝ 17 起",
+         "en": "\"Greater than 16\" starts at 17"
+        },
+        "math": "A = \\{17, 18, 19, 20\\}",
+        "zh": "大於 $16$ 的數由 $17$ 開始，而題目只到 $20$，所以 $A = \\{17, 18, 19, 20\\}$。注意 $16$ 本身不符合「大於 16」。",
+        "en": "The numbers greater than 16 start at 17, and the range ends at 20, so $A = \\{17, 18, 19, 20\\}$. The number 16 itself is not greater than 16.",
+        "marking": "(1A)",
+        "highlight": [
+         "A = \\{17, 18, 19, 20\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "逐一列出 4 的倍數",
+         "en": "List the multiples of 4 one by one"
+        },
+        "math": "B = \\{4, 8, 12, 16, 20\\}",
+        "zh": "由 $4 \\times 1$ 起一直乘到 $4 \\times 5 = 20$：$4$、$8$、$12$、$16$、$20$，$4 \\times 6 = 24$ 已經超過 $20$，所以 $B = \\{4, 8, 12, 16, 20\\}$，共 5 個。",
+        "en": "From $4 \\times 1$ up to $4 \\times 5 = 20$ we get 4, 8, 12, 16 and 20; the next multiple $4 \\times 6 = 24$ is beyond 20. Hence $B = \\{4, 8, 12, 16, 20\\}$, five numbers.",
+        "marking": "(1A)",
+        "highlight": [
+         "B = \\{4, 8, 12, 16, 20\\}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "因數要「成對」找",
+         "en": "Find factors in pairs"
+        },
+        "math": "C = \\{1, 2, 4, 5, 10, 20\\}",
+        "zh": "把 $20$ 的因數成對寫出：$1 \\times 20$、$2 \\times 10$、$4 \\times 5$，所以 $C = \\{1, 2, 4, 5, 10, 20\\}$，共 6 個。別忘了 $1$ 與 $20$ 本身都是因數。",
+        "en": "Write the factors of 20 in pairs: $1 \\times 20$, $2 \\times 10$ and $4 \\times 5$, giving $C = \\{1, 2, 4, 5, 10, 20\\}$, six numbers. Remember that 1 and 20 itself are factors too.",
+        "marking": "(1A)",
+        "highlight": [
+         "C = \\{1, 2, 4, 5, 10, 20\\}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把「大於」寫成「大於或等於」",
+        "labelEn": "Reading \"greater than\" as \"greater than or equal to\"",
+        "zh": "(a) 大於 $16$ 不包含 $16$，所以答案由 $17$ 開始；如果是「不小於 16」就要包括 $16$。",
+        "en": "In (a) \"greater than 16\" excludes 16, so the set starts at 17; \"not less than 16\" would include 16."
+       },
+       {
+        "label": "因數只寫一半",
+        "labelEn": "Listing only half of the factors",
+        "zh": "(c) 常漏掉 $1$ 或 $20$。用「成對相乘等於 20」檢查就一目了然。",
+        "en": "In (c) students often miss 1 or 20; checking the pairs that multiply to 20 avoids this."
+       }
+      ],
+      "tip": {
+       "zh": "寫事件時先寫出範圍（1 至 20），再按條件逐個圈出符合的數，最後才寫成集合。",
+       "en": "Write down the range (1 to 20) first, pick out the numbers that satisfy the condition, and only then write the set."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-8",
+     "code": "8",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "A class monitor is randomly selected from 5 students: Alfred, Belle, Chloe, Daniel and Eden.",
+      "zh": "從 5 名學生（Alfred、Belle、Chloe、Daniel、Eden）中隨機選出一名班長。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Write down the sample space $S$.",
+       "zh": "寫出樣本空間 $S$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Use set notation to express the following events $A$ and $B$. Event $A$: Chloe is selected as the class monitor. Event $B$: Eden is not selected as the class monitor.",
+       "zh": "用集合記法表示下列事件 $A$ 與 $B$。事件 $A$：Chloe 被選為班長。事件 $B$：Eden 沒有被選為班長。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "S = \\{\\text{Alfred}, \\text{Belle}, \\text{Chloe}, \\text{Daniel}, \\text{Eden}\\}",
+       "note": {
+        "zh": "$n(S) = 5$，每個結果就是「誰當班長」",
+        "en": "n(S) = 5: each outcome says who becomes the monitor"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "A = \\{\\text{Chloe}\\}",
+       "note": {
+        "zh": "事件 $A$ 只有一個結果",
+        "en": "Event A has exactly one outcome"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "B = \\{\\text{Alfred}, \\text{Belle}, \\text{Chloe}, \\text{Daniel}\\}",
+       "note": {
+        "zh": "「Eden 不是班長」＝其餘四人都可以",
+        "en": "\"Eden is not selected\" means any of the other four"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "樣本空間＝全部可能結果",
+         "en": "The sample space lists every possible outcome"
+        },
+        "math": "S = \\{\\text{Alfred}, \\text{Belle}, \\text{Chloe}, \\text{Daniel}, \\text{Eden}\\}",
+        "zh": "選班長的結果只有「誰當選」這一項，5 名學生都可以當選，所以 $S$ 有 5 個元素，$n(S) = 5$。",
+        "en": "The only thing that varies is who is chosen, and any of the five students could be chosen, so S has five elements and $n(S) = 5$.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(S) = 5"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "事件 $A$：只有 Chloe 一個結果",
+         "en": "Event A: the single outcome Chloe"
+        },
+        "math": "A = \\{\\text{Chloe}\\}",
+        "zh": "「Chloe 被選為班長」只對應一個結果，所以 $A = \\{\\text{Chloe}\\}$，$n(A) = 1$。一個元素的集合仍然要寫大括號。",
+        "en": "\"Chloe is selected\" corresponds to exactly one outcome, so $A = \\{\\text{Chloe}\\}$ and $n(A) = 1$. A set with one element is still written with braces.",
+        "marking": "(1A)",
+        "highlight": [
+         "A = \\{\\text{Chloe}\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "事件 $B$：把 Eden 拿走",
+         "en": "Event B: remove Eden"
+        },
+        "math": "B = \\{\\text{Alfred}, \\text{Belle}, \\text{Chloe}, \\text{Daniel}\\}",
+        "zh": "「Eden 沒有被選為班長」＝ 當選的不是 Eden，其餘四人任何一個都可以，所以 $B$ 由 $S$ 拿走 Eden，$n(B) = 4$。",
+        "en": "\"Eden is not selected\" means the monitor is someone other than Eden, so B is S with Eden removed: four outcomes and $n(B) = 4$.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(B) = 4"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把「不是 Eden」寫成 $\\{\\text{Eden}\\}$",
+        "labelEn": "Writing \"not Eden\" as {Eden}",
+        "zh": "「Eden 沒有被選為班長」是「除了 Eden 之外」的四人，不是 Eden 本身；看清楚「是」與「不是」。",
+        "en": "\"Eden is not selected\" is the four students other than Eden, not Eden itself; read \"is\" and \"is not\" carefully."
+       }
+      ],
+      "tip": {
+       "zh": "樣本空間列出「所有可能結果」，事件則是「符合條件的那幾個結果」。先寫 $S$，再從 $S$ 之中圈出事件會更清楚。",
+       "en": "The sample space lists all possible outcomes; an event lists the outcomes that satisfy the condition. Write S first, then pick the event out of it."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-9",
+     "code": "9",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "A box contains 26 cards marked with the uppercase letters A to Z respectively. A card is randomly drawn from the box. Let $S$ be the sample space.",
+      "zh": "一個盒子內有 26 張卡，分別印上大寫字母 A 至 Z。從盒中隨機抽出一張卡。設 $S$ 為樣本空間。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find $n(S)$.",
+       "zh": "求 $n(S)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)(i)",
+       "en": "Let $A$ be the event that the letter on the card drawn is a consonant. Find $n(A)$.",
+       "zh": "設 $A$ 為「抽出的卡上的字母是輔音」的事件。求 $n(A)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "Hence, find $P(A)$.",
+       "zh": "由此，求 $P(A)$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "n(S) = 26",
+       "note": {
+        "zh": "A 至 Z 共 26 個字母",
+        "en": "There are 26 letters from A to Z"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "n(A) = 26 - 5 = 21",
+       "note": {
+        "zh": "減去 5 個元音（A、E、I、O、U）",
+        "en": "Subtract the five vowels A, E, I, O and U"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "P(A) = \\frac{21}{26}",
+       "note": {
+        "zh": "用 $\\frac{n(A)}{n(S)}$",
+        "en": "Use n(A) ÷ n(S)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "26 個字母就是 26 個結果",
+         "en": "Twenty-six letters give twenty-six outcomes"
+        },
+        "math": "n(S) = 26",
+        "zh": "抽出一張卡的可能結果就是抽到哪一個字母，由 A 到 Z 共 26 個，所以 $n(S) = 26$。",
+        "en": "The outcome is simply which letter is drawn, and there are 26 letters from A to Z, so $n(S) = 26$.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(S) = 26"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "先數元音，再用總數減",
+         "en": "Count the vowels, then subtract from the total"
+        },
+        "math": "n(A) = 26 - 5 = 21",
+        "zh": "26 個字母之中，元音有 A、E、I、O、U 共 5 個，其餘都是輔音，所以 $n(A) = 26 - 5 = 21$。",
+        "en": "Among the 26 letters there are five vowels, A, E, I, O and U; the rest are consonants, so $n(A) = 26 - 5 = 21$.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "n(A) = 26 - 5 = 21"
+        ]
+       },
+       {
+        "part": "(b)(ii)",
+        "title": {
+         "zh": "代入概率公式",
+         "en": "Substitute into the probability formula"
+        },
+        "math": "P(A) = \\frac{21}{26}",
+        "zh": "每個字母被抽中的機會相同，所以 $P(A) = \\frac{n(A)}{n(S)} = \\frac{21}{26}$。這個分數不能再約簡（26 是 2 與 13 的倍數，而 21 都不能被它們整除）。",
+        "en": "Every letter is equally likely, so $P(A) = \\frac{n(A)}{n(S)} = \\frac{21}{26}$. The fraction cannot be simplified, since 26 is a multiple of 2 and 13 while 21 is divisible by neither.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(A) = \\frac{21}{26}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "元音數錯",
+        "labelEn": "Miscounting the vowels",
+        "zh": "英文元音只有 A、E、I、O、U 五個（$Y$ 在本題算輔音），數錯元音就會連累 $n(A)$。",
+        "en": "There are only five vowels, A, E, I, O and U (Y counts as a consonant here); a wrong vowel count spoils n(A)."
+       },
+       {
+        "label": "用 5 當分子的概率",
+        "labelEn": "Using the number of vowels as the probability",
+        "zh": "$P(A) = \\frac{21}{26}$ 是「輔音」的概率；$\\frac{5}{26}$ 是「元音」的概率，兩者互為補集。",
+        "en": "P(A) = 21/26 is the probability of a consonant; 5/26 is the probability of a vowel, and the two are complements."
+       }
+      ],
+      "tip": {
+       "zh": "遇到「不是某某」的事件，用總數減去「某某」的數目通常最快：$n(A) = n(S) - n(A')$。",
+       "en": "For an event of the form \"not something\", the quickest route is $n(A) = n(S) - n(A')$."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-10",
+     "code": "10",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Stephy randomly selects one day from a week for practising volleyball.",
+      "zh": "Stephy 從一星期中隨機選一天練習排球。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Write down the sample space $S$ and find $n(S)$.",
+       "zh": "寫出樣本空間 $S$，並求 $n(S)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)(i)",
+       "en": "Let $E$ be the event that the day selected is a weekday and $F$ be the event that the day selected is on the weekend. Find $n(E)$ and $n(F)$.",
+       "zh": "設 $E$ 為「選出的日子是平日」的事件，$F$ 為「選出的日子是週末」的事件。求 $n(E)$ 與 $n(F)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "Hence, find $P(E)$ and $P(F)$.",
+       "zh": "由此，求 $P(E)$ 與 $P(F)$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "n(S) = 7",
+       "note": {
+        "zh": "星期一至星期日共 7 天",
+        "en": "Seven days from Monday to Sunday"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "n(E) = 5 ,\\ n(F) = 2",
+       "note": {
+        "zh": "平日 5 天、週末 2 天",
+        "en": "Five weekdays and two weekend days"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "P(E) = \\frac{5}{7} ,\\ P(F) = \\frac{2}{7}",
+       "note": {
+        "zh": "兩者相加等於 1",
+        "en": "The two probabilities add up to 1"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "$S$ 就是一星期的 7 天",
+         "en": "S is simply the seven days of a week"
+        },
+        "math": "S = \\{\\text{Mon}, \\text{Tue}, \\text{Wed}, \\text{Thu}, \\text{Fri}, \\text{Sat}, \\text{Sun}\\}\nn(S) = 7",
+        "zh": "一星期有 7 天，每一天都是一個結果，所以 $S$ 有 7 個元素，$n(S) = 7$。",
+        "en": "A week has seven days, and each day is one outcome, so S has seven elements and $n(S) = 7$.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(S) = 7"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "平日與週末各有幾天",
+         "en": "How many weekdays and weekend days"
+        },
+        "math": "n(E) = 5 ,\\ n(F) = 2",
+        "zh": "平日是星期一至五，共 5 天，所以 $n(E) = 5$；週末是星期六、日，共 2 天，所以 $n(F) = 2$。兩者互斥，合起來正好 7 天。",
+        "en": "Weekdays are Monday to Friday, five days, so $n(E) = 5$; the weekend is Saturday and Sunday, two days, so $n(F) = 2$. The two events are mutually exclusive and together make the seven days.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(E) = 5 ,\\ n(F) = 2"
+        ]
+       },
+       {
+        "part": "(b)(ii)",
+        "title": {
+         "zh": "用同一個分母 7",
+         "en": "Both probabilities share the denominator 7"
+        },
+        "math": "P(E) = \\frac{5}{7} ,\\ P(F) = \\frac{2}{7}",
+        "zh": "七天機會相同，所以 $P(E) = \\frac{n(E)}{n(S)} = \\frac{5}{7}$、$P(F) = \\frac{2}{7}$。核對：$\\frac{5}{7} + \\frac{2}{7} = 1$，因為「平日」與「週末」合起來就是全部可能。",
+        "en": "All seven days are equally likely, so $P(E) = \\frac{5}{7}$ and $P(F) = \\frac{2}{7}$. As a check $\\frac{5}{7} + \\frac{2}{7} = 1$, because weekdays and weekend days together cover every outcome.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "P(E) = \\frac{5}{7} ,\\ P(F) = \\frac{2}{7}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "週末寫成 1 天",
+        "labelEn": "Counting the weekend as one day",
+        "zh": "週末包括星期六與星期日，共 2 天；只寫 1 天會令 $P(F)$ 出錯。",
+        "en": "The weekend covers both Saturday and Sunday, so it has two days; taking one day would give a wrong P(F)."
+       }
+      ],
+      "tip": {
+       "zh": "互斥而合起來是整個 $S$ 的兩個事件，概率相加一定是 1，可以用來快速核對。",
+       "en": "If two events are mutually exclusive and together make up S, their probabilities must add to 1 — a quick check."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l1-11",
+     "code": "11",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "Chantel draws a card randomly from a pack of 52 playing cards. Let $A$ and $B$ be the events given below: Event $A$: A King is drawn. Event $B$: A heart is drawn.",
+      "zh": "Chantel 從一副 52 張的撲克牌中隨機抽出一張。設 $A$ 與 $B$ 為以下事件：事件 $A$：抽到 K。事件 $B$：抽到紅心。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find $n(A)$ and $n(B)$.",
+       "zh": "求 $n(A)$ 與 $n(B)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Hence, find $P(A)$ and $P(B)$.",
+       "zh": "由此，求 $P(A)$ 與 $P(B)$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "n(A) = 4 ,\\ n(B) = 13",
+       "note": {
+        "zh": "4 張 K、13 張紅心",
+        "en": "Four Kings and thirteen hearts"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "P(A) = \\frac{4}{52} = \\frac{1}{13}",
+       "note": {
+        "zh": "約簡後 $\\frac{1}{13}$",
+        "en": "Simplified to 1/13"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "P(B) = \\frac{13}{52} = \\frac{1}{4}",
+       "note": {
+        "zh": "四種花色之一",
+        "en": "One of the four suits"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "數 K 與紅心的數目",
+         "en": "Count the Kings and the hearts"
+        },
+        "math": "n(A) = 4 ,\\ n(B) = 13",
+        "zh": "一副牌有 4 種花色，每種花色一張 K，所以 $n(A) = 4$；每種花色有 13 張，紅心共 13 張，所以 $n(B) = 13$。",
+        "en": "A pack has four suits with one King each, so $n(A) = 4$; each suit has thirteen cards, so the hearts number $n(B) = 13$.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(A) = 4 ,\\ n(B) = 13"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "分母都是 52",
+         "en": "Both denominators are 52"
+        },
+        "math": "P(A) = \\frac{4}{52} = \\frac{1}{13}",
+        "zh": "全部可能結果是 52 張牌，所以 $P(A) = \\frac{n(A)}{n(S)} = \\frac{4}{52} = \\frac{1}{13}$。52 與 4 同時除以 4 就得 $\\frac{1}{13}$。",
+        "en": "There are 52 equally likely cards, so $P(A) = \\frac{4}{52} = \\frac{1}{13}$ after dividing the numerator and denominator by 4.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(A) = \\frac{4}{52} = \\frac{1}{13}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "紅心的概率",
+         "en": "The probability of a heart"
+        },
+        "math": "P(B) = \\frac{13}{52} = \\frac{1}{4}",
+        "zh": "$P(B) = \\frac{13}{52} = \\frac{1}{4}$。這個結果很合理：四種花色的機會相同，抽到紅心自然是四分之一。",
+        "en": "$P(B) = \\frac{13}{52} = \\frac{1}{4}$. This makes sense: the four suits are equally likely, so a heart occurs one time in four.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(B) = \\frac{13}{52} = \\frac{1}{4}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 13 當成 $n(A)$",
+        "labelEn": "Using 13 as n(A)",
+        "zh": "$K$ 只有 4 張，13 是每一種花色的張數（即事件 $B$ 的數目）。看清楚題目問的是「$K$」還是「紅心」。",
+        "en": "There are only four Kings; 13 is the number of cards in a suit, which belongs to event B. Check whether the question asks about Kings or hearts."
+       },
+       {
+        "label": "忘記約簡",
+        "labelEn": "Forgetting to simplify",
+        "zh": "$\\frac{4}{52}$ 與 $\\frac{1}{13}$ 都對，但一般會約簡；約簡後更容易看出大小。",
+        "en": "Both 4/52 and 1/13 are correct, but simplifying makes the size of the probability easier to see."
+       }
+      ],
+      "tip": {
+       "zh": "撲克牌題目要記住兩個數：一副 52 張、每種花色 13 張（其中 J、Q、K 各一張，數字牌 2 至 10 共 9 張）。",
+       "en": "Remember two numbers for card questions: 52 cards in a pack and 13 cards per suit (one each of J, Q, K and nine number cards from 2 to 10)."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "L2",
+   "short": {
+    "zh": "進階練習",
+    "en": "Level 2"
+   },
+   "title": {
+    "zh": "進階練習 · Level 2",
+    "en": "Level 2"
+   },
+   "marks": 36,
+   "questions": [
+    {
+     "id": "ch18-1-l2-12",
+     "code": "12",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "In each of the following, shade the region of the given set.",
+      "zh": "在下列各題中，把指定集合的區域塗上顏色。"
+     },
+     "figures": [
+      "ch18-1-venn-ab"
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$A \\cap B'$",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "$A' \\cap B$",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "$A' \\cup B'$",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "$(A \\cup B)'$",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "A \\cap B'",
+       "note": {
+        "zh": "只塗「只在 $A$」那一塊",
+        "en": "Shade the \"A only\" region"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "A' \\cap B",
+       "note": {
+        "zh": "只塗「只在 $B$」那一塊",
+        "en": "Shade the \"B only\" region"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "A' \\cup B'",
+       "note": {
+        "zh": "除了重疊部分，其餘全部塗上",
+        "en": "Shade everything except the overlap"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "(A \\cup B)'",
+       "note": {
+        "zh": "只塗兩個圓之外的部分",
+        "en": "Shade only the part outside both circles"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "$A$ 與 $B'$ 同時成立",
+         "en": "Inside A and outside B at the same time"
+        },
+        "math": "A \\cap B'",
+        "zh": "$B'$ 是 $B$ 圓以外的部分，再與 $A$ 取交集，就只剩下「在 $A$ 但不在 $B$」的那一塊（即 $A$ 圈左邊的月牙形）。",
+        "en": "The set $B'$ is everything outside circle B; intersecting it with A leaves the part that is in A but not in B — the crescent on the left of circle A.",
+        "marking": "(1A)",
+        "figure": "ch18-1-l2-12a",
+        "highlight": [
+         "A \\cap B'"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "$B$ 與 $A'$ 同時成立",
+         "en": "Inside B and outside A at the same time"
+        },
+        "math": "A' \\cap B",
+        "zh": "$A'$ 是 $A$ 圓以外的部分，與 $B$ 取交集後只剩「在 $B$ 但不在 $A$」的月牙形（$B$ 圈右邊那一塊）。",
+        "en": "The set $A'$ is everything outside circle A; intersecting with B leaves the crescent in B but not in A, on the right of circle B.",
+        "marking": "(1A)",
+        "figure": "ch18-1-l2-12b",
+        "highlight": [
+         "A' \\cap B"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "「不在 $A$」或「不在 $B$」",
+         "en": "\"Not in A\" or \"not in B\""
+        },
+        "math": "A' \\cup B'",
+        "zh": "一個元素屬於 $A' \\cup B'$，代表它「不在 $A$ 之內」或者「不在 $B$ 之內」。唯一不合格的是同時在 $A$ 與 $B$ 之內的元素（即重疊部分），所以把重疊部分留空、其餘全部塗上。",
+        "en": "An element belongs to $A' \\cup B'$ when it is not in A, or not in B. The only places ruled out are those inside both A and B — the overlap — so everything except the overlap is shaded.",
+        "marking": "(1A)",
+        "figure": "ch18-1-l2-12c",
+        "highlight": [
+         "A' \\cup B'"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "兩個圓之外的補集",
+         "en": "The complement of the two circles together"
+        },
+        "math": "(A \\cup B)'",
+        "zh": "$A \\cup B$ 是兩個圓的全部（包括重疊部分），補集就是在 $S$ 之內、兩個圓之外的部分，所以只塗框內的空白區域。",
+        "en": "The set $A \\cup B$ is everything inside the two circles including the overlap, so its complement is the part of S outside both circles: only the blank area of the rectangle is shaded.",
+        "marking": "(1A)",
+        "figure": "ch18-1-l2-12d",
+        "highlight": [
+         "(A \\cup B)'"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "$A' \\cup B'$ 與 $(A \\cup B)'$ 調轉",
+        "labelEn": "Confusing A′ ∪ B′ with (A ∪ B)′",
+        "zh": "(c) 只留空重疊部分，其餘全部塗上；(d) 只塗兩個圓之外。前者是「不是兩者同時中」，後者是「兩個都不中」。",
+        "en": "In (c) only the overlap stays blank and everything else is shaded; in (d) only the region outside both circles is shaded. The first means \"not both at once\", the second \"neither\"."
+       },
+       {
+        "label": "漏塗「只在 $A$」或「只在 $B$」的月牙形",
+        "labelEn": "Leaving out one of the crescents",
+        "zh": "(c) 的答案要包括兩個月牙形與圓外部分，共三塊；只塗圓外是 (d) 而不是 (c)。",
+        "en": "The answer to (c) covers three pieces: both crescents and the outside; shading only the outside gives (d), not (c)."
+       }
+      ],
+      "tip": {
+       "zh": "先按條件想「哪一塊不合格」，再塗其餘部分；或者反過來先圈出交集，再決定要不要塗。每個區域（只 $A$／只 $B$／重疊／兩者之外）都檢查一次就不會漏。",
+       "en": "Decide which region fails the condition, then shade the rest; or locate the intersection first. Checking all four regions (A only, B only, both, outside) prevents mistakes."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l2-13",
+     "code": "13",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "It is given that $S = \\{a, b, c, d, e, f, g, h\\}$, $P = \\{a, b, d, f\\}$ and $Q = \\{c, d, e, h\\}$.",
+      "zh": "已知 $S = \\{a, b, c, d, e, f, g, h\\}$、$P = \\{a, b, d, f\\}$、$Q = \\{c, d, e, h\\}$。"
+     },
+     "parts": [
+      {
+       "label": "(a)(i)",
+       "en": "Find $P \\cup Q$.",
+       "zh": "求 $P \\cup Q$。",
+       "marks": 1
+      },
+      {
+       "label": "(a)(ii)",
+       "en": "Find $P \\cap Q$.",
+       "zh": "求 $P \\cap Q$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Represent the relationship between the above sets in a Venn diagram.",
+       "zh": "用文氏圖表示上述各集合的關係。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)(i)",
+       "math": "P \\cup Q = \\{a, b, c, d, e, f, h\\}",
+       "note": {
+        "zh": "$d$ 兩邊都有，只寫一次",
+        "en": "d is in both sets and is written once"
+       }
+      },
+      {
+       "part": "(a)(ii)",
+       "math": "P \\cap Q = \\{d\\}",
+       "note": {
+        "zh": "唯一的共同元素",
+        "en": "The only common element"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "d \\in P \\cap Q",
+       "note": {
+        "zh": "圖中 $d$ 在重疊部分；$a$、$b$、$f$ 只在 $P$；$c$、$e$、$h$ 只在 $Q$；$g$ 在兩圓之外",
+        "en": "In the diagram d is in the overlap, a, b, f are in P only, c, e, h in Q only, and g outside both circles"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)(i)",
+        "title": {
+         "zh": "聯集＝兩組元素合起來",
+         "en": "Union: combine the two sets"
+        },
+        "math": "P \\cup Q = \\{a, b, c, d, e, f, h\\}",
+        "zh": "$P = \\{a, b, d, f\\}$、$Q = \\{c, d, e, h\\}$，把兩組合起來，$d$ 只寫一次，得 $P \\cup Q = \\{a, b, c, d, e, f, h\\}$，共 7 個元素（$g$ 兩邊都不屬）。",
+        "en": "With $P = \\{a, b, d, f\\}$ and $Q = \\{c, d, e, h\\}$, combining them and writing d once gives $P \\cup Q = \\{a, b, c, d, e, f, h\\}$, seven elements (g belongs to neither set).",
+        "marking": "(1A)",
+        "highlight": [
+         "P \\cup Q = \\{a, b, c, d, e, f, h\\}"
+        ]
+       },
+       {
+        "part": "(a)(ii)",
+        "title": {
+         "zh": "交集只有 $d$",
+         "en": "The intersection is only d"
+        },
+        "math": "P \\cap Q = \\{d\\}",
+        "zh": "$P$ 內是 $a$、$b$、$d$、$f$，$Q$ 內是 $c$、$d$、$e$、$h$，兩組只有 $d$ 相同，所以 $P \\cap Q = \\{d\\}$。核對：$4 + 4 - 1 = 7 = n(P \\cup Q)$。",
+        "en": "P contains a, b, d, f and Q contains c, d, e, h; the only common element is d, so $P \\cap Q = \\{d\\}$. Check: $4 + 4 - 1 = 7 = n(P \\cup Q)$.",
+        "marking": "(1A)",
+        "highlight": [
+         "P \\cap Q = \\{d\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "把七個元素放進對應的區域",
+         "en": "Place the seven elements in the right regions"
+        },
+        "math": "d \\in P \\cap Q",
+        "zh": "先畫長方形 $S$ 與兩個相交的圓 $P$、$Q$：$d$ 放在重疊部分；$a$、$b$、$f$ 只在 $P$；$c$、$e$、$h$ 只在 $Q$；最後 $g$ 放在兩個圓之外（因為 $g$ 不屬 $P$ 也不屬 $Q$）。",
+        "en": "Draw the rectangle S with two overlapping circles P and Q: put d in the overlap, a, b and f in P only, c, e and h in Q only, and finally g outside both circles because it belongs to neither set.",
+        "marking": "(1M)(1A)",
+        "figure": "ch18-1-l2-13",
+        "highlight": [
+         "d \\in P \\cap Q"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "畫圖時忘了 $g$",
+        "labelEn": "Forgetting g in the diagram",
+        "zh": "$g$ 在 $S$ 之內但不屬於 $P$ 或 $Q$，所以要寫在兩個圓之外；漏掉 $g$ 就不算完整的文氏圖。",
+        "en": "The element g lies in S but not in P or Q, so it must be drawn outside both circles; leaving it out makes the diagram incomplete."
+       },
+       {
+        "label": "把 $d$ 寫在兩個區域",
+        "labelEn": "Writing d in two regions",
+        "zh": "$d$ 只能寫在重疊部分一次；在「只在 $P$」與「只在 $Q$」各寫一次就重複計算了。",
+        "en": "The element d appears once, in the overlap; writing it again in P only and Q only would double-count it."
+       }
+      ],
+      "tip": {
+       "zh": "畫文氏圖的次序：寫 $S$ 的框 → 畫圓 → 先放交集 → 再放「只在」各圓的元素 → 最後把剩下的放框外。",
+       "en": "Order for a Venn diagram: rectangle S, circles, then the intersection first, then the \"only\" elements of each set, and finally the leftovers outside the circles."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l2-14",
+     "code": "14",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 2,
+     "stem": {
+      "en": "Karis sits an examination which consists of 3 parts. Let $P$ stands for a pass and $F$ stands for a fail.",
+      "zh": "Karis 參加一個分為 3 部分的考試。以 $P$ 代表合格、$F$ 代表不合格。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the sample space $S$.",
+       "zh": "求樣本空間 $S$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)(i)",
+       "en": "It is given that all the possible outcomes of the sample space $S$ in (a) are equally likely to occur. Find the probability that Karis passes exactly 1 part.",
+       "zh": "已知 (a) 中樣本空間 $S$ 的所有可能結果出現的機會相同。求 Karis 剛好合格 1 部分的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "Find the probability that Karis fails at least 1 part.",
+       "zh": "求 Karis 至少不合格 1 部分的概率。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "S = \\{PPP, PPF, PFP, FPP, PFF, FPF, FFP, FFF\\}",
+       "note": {
+        "zh": "每個部分 2 個可能，共 $2^3 = 8$ 個結果",
+        "en": "Two possibilities per part give $2^3 = 8$ outcomes"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "P(\\text{exactly 1 pass}) = \\frac{3}{8}",
+       "note": {
+        "zh": "合格的組合有 PPF、PFP、FPP 三個",
+        "en": "Three outcomes have exactly one pass: PPF, PFP, FPP"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "P(\\text{at least 1 fail}) = \\frac{7}{8}",
+       "note": {
+        "zh": "只有 PPP 沒有不合格",
+        "en": "Only PPP has no fail"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "逐個部分寫出 $P$ 或 $F$",
+         "en": "Write P or F for each part"
+        },
+        "math": "S = \\{PPP, PPF, PFP, FPP, PFF, FPF, FFP, FFF\\}",
+        "zh": "每個部分有 $P$、$F$ 兩個可能，三個部分要逐一列出，所以共有 $2 \\times 2 \\times 2 = 8$ 個結果。把 $P$ 較多的幾組先寫，較易檢查有無遺漏。",
+        "en": "Each part has two possibilities, P or F, and the three parts must all be listed, giving $2 \\times 2 \\times 2 = 8$ outcomes. Writing the outcomes with more P's first makes it easier to spot a missing one.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "S = \\{PPP, PPF, PFP, FPP, PFF, FPF, FFP, FFF\\}"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "只數「只有一個 P」的結果",
+         "en": "Count the outcomes with exactly one P"
+        },
+        "math": "P(\\text{exactly 1 pass}) = \\frac{3}{8}",
+        "zh": "「剛好合格 1 部分」的結果有 PPF、PFP、FPP 三個（注意次序不同是不同結果），所以 $n(E) = 3$，概率 $= \\frac{3}{8}$。",
+        "en": "The outcomes with exactly one pass are PPF, PFP and FPP — different orders count as different outcomes — so $n(E) = 3$ and the probability is $\\frac{3}{8}$.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "P(\\text{exactly 1 pass}) = \\frac{3}{8}"
+        ]
+       },
+       {
+        "part": "(b)(ii)",
+        "title": {
+         "zh": "「至少一次不合格」用反面",
+         "en": "Use the complement for \"at least one fail\""
+        },
+        "math": "P(\\text{at least 1 fail}) = \\frac{7}{8}",
+        "zh": "「至少不合格 1 部分」的反面是「三部分全部合格」，即只有 PPP 一個結果。所以合格的結果數目是 $[8 - 1] = 7$，概率 $= \\frac{7}{8}$。",
+        "en": "The complement of \"at least one fail\" is \"all three parts pass\", which happens only for PPP. So the number of favourable outcomes is $[8 - 1] = 7$ and the probability is $\\frac{7}{8}$.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(\\text{at least 1 fail}) = \\frac{7}{8}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "以為 PPF 與 PFP 是同一個結果",
+        "labelEn": "Treating PPF and PFP as the same outcome",
+        "zh": "三個部分有先後，PPF 是「第一、二部分合格、第三部分不合格」，與 PFP 不同，所以兩者都要算。",
+        "en": "The three parts come in order: PPF means parts 1 and 2 pass while part 3 fails, which differs from PFP, so both are counted."
+       },
+       {
+        "label": "「至少」逐個情況加",
+        "labelEn": "Adding every case for \"at least\"",
+        "zh": "(b)(ii) 用反面只要考慮 PPP 一個結果；逐個加 PFF、FPF 等容易漏。",
+        "en": "In (b)(ii) the complement reduces the work to the single outcome PPP; adding PFF, FPF and the rest case by case invites omissions."
+       }
+      ],
+      "tip": {
+       "zh": "每一部分有 $k$ 個可能、共 $m$ 部分，樣本空間就有 $k^m$ 個結果；問「至少」時先想反面。",
+       "en": "If each of m parts has k possibilities, the sample space has $k^m$ outcomes; for \"at least\" questions think of the complement first."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l2-15",
+     "code": "15",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 2,
+     "stem": {
+      "en": "A student is randomly chosen from the students with class numbers 1 to 12 inclusive. Let $S$ be the sample space.",
+      "zh": "從班號 1 至 12（包括 1 與 12）的學生中隨機選出一名學生。設 $S$ 為樣本空間。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find $n(S)$.",
+       "zh": "求 $n(S)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Use set notation to express events $E$ and $F$. (i) Event $E$: The student chosen has a class number less than 9. (ii) Event $F$: The student chosen has a class number greater than 5.",
+       "zh": "用集合記法表示事件 $E$ 與 $F$。(i) 事件 $E$：選出的學生班號小於 9。(ii) 事件 $F$：選出的學生班號大於 5。",
+       "marks": 2
+      },
+      {
+       "label": "(c)",
+       "en": "Find $E \\cap F$. Hence, find $P(E \\cap F)$.",
+       "zh": "求 $E \\cap F$。由此，求 $P(E \\cap F)$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "n(S) = 12",
+       "note": {
+        "zh": "班號 1 至 12",
+        "en": "Class numbers 1 to 12"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "E = \\{1, 2, 3, 4, 5, 6, 7, 8\\} ,\\ F = \\{6, 7, 8, 9, 10, 11, 12\\}",
+       "note": {
+        "zh": "「小於 9」不包括 9；「大於 5」不包括 5",
+        "en": "\"Less than 9\" excludes 9 and \"greater than 5\" excludes 5"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "E \\cap F = \\{6, 7, 8\\} ,\\ P(E \\cap F) = \\frac{3}{12} = \\frac{1}{4}",
+       "note": {
+        "zh": "同時符合兩個條件的班號",
+        "en": "The class numbers satisfying both conditions"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "班號 1 至 12 共 12 個結果",
+         "en": "Class numbers 1 to 12 give twelve outcomes"
+        },
+        "math": "n(S) = 12",
+        "zh": "由 1 數到 12 共 12 個班號，所以 $n(S) = 12$。",
+        "en": "Counting from 1 to 12 gives twelve class numbers, so $n(S) = 12$.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(S) = 12"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "兩個事件各有 8 與 7 個班號",
+         "en": "The two events hold eight and seven numbers"
+        },
+        "math": "E = \\{1, 2, 3, 4, 5, 6, 7, 8\\}\nF = \\{6, 7, 8, 9, 10, 11, 12\\}",
+        "zh": "「班號小於 9」＝ 1 至 8，所以 $E = \\{1, 2, 3, 4, 5, 6, 7, 8\\}$，$n(E) = 8$；「班號大於 5」＝ 6 至 12，所以 $F = \\{6, 7, 8, 9, 10, 11, 12\\}$，$n(F) = 7$。",
+        "en": "\"Class number less than 9\" gives 1 to 8, so $E = \\{1, 2, 3, 4, 5, 6, 7, 8\\}$ with $n(E) = 8$; \"greater than 5\" gives 6 to 12, so $F = \\{6, 7, 8, 9, 10, 11, 12\\}$ with $n(F) = 7$.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "n(E) = 8 ,\\ n(F) = 7"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "交集要同時滿足兩個條件",
+         "en": "The intersection needs both conditions"
+        },
+        "math": "E \\cap F = \\{6, 7, 8\\}",
+        "zh": "同時「小於 9」又「大於 5」的班號是 6、7、8，所以 $E \\cap F = \\{6, 7, 8\\}$，$n(E \\cap F) = 3$。",
+        "en": "The class numbers that are both less than 9 and greater than 5 are 6, 7 and 8, so $E \\cap F = \\{6, 7, 8\\}$ and $n(E \\cap F) = 3$.",
+        "marking": "(1M)",
+        "highlight": [
+         "E \\cap F = \\{6, 7, 8\\}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "用同一個分母 12",
+         "en": "Use the same denominator 12"
+        },
+        "math": "P(E \\cap F) = \\frac{3}{12} = \\frac{1}{4}",
+        "zh": "12 名學生機會相同，所以 $P(E \\cap F) = \\frac{n(E \\cap F)}{n(S)} = \\frac{3}{12} = \\frac{1}{4}$。",
+        "en": "All twelve students are equally likely, so $P(E \\cap F) = \\frac{3}{12} = \\frac{1}{4}$.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(E \\cap F) = \\frac{3}{12} = \\frac{1}{4}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "「小於」包含了該數",
+        "labelEn": "Including the boundary value",
+        "zh": "(b) 「小於 9」不包括 9，所以 $E$ 沒有 9；「大於 5」不包括 5，所以 $F$ 沒有 5。",
+        "en": "In (b) \"less than 9\" excludes 9, so E does not contain 9, and \"greater than 5\" excludes 5, so F does not contain 5."
+       },
+       {
+        "label": "把 $E \\cap F$ 與 $E \\cup F$ 混淆",
+        "labelEn": "Mixing up intersection and union",
+        "zh": "$E \\cap F$ 只有 3 個班號（6、7、8）；$E \\cup F$ 才是 1 至 12 全部。",
+        "en": "$E \\cap F$ has only three numbers (6, 7, 8); the union $E \\cup F$ would be all of 1 to 12."
+       }
+      ],
+      "tip": {
+       "zh": "「$\\cap$」＝同時符合兩個條件（數目較少），「$\\cup$」＝符合其中一個（數目較多）。用「較少／較多」可以即時檢查有無寫錯。",
+       "en": "∩ means both conditions hold (fewer elements) while ∪ means at least one holds (more elements) — a quick sanity check."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l2-16",
+     "code": "16",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Bag A contains four cards numbered 1, 2, 3 and 4 respectively while bag B contains three cards numbered 5, 6 and 7 respectively. A card is randomly drawn from each bag. Let $S$ be the sample space.",
+      "zh": "袋 A 內有四張卡，分別寫上 1、2、3、4；袋 B 內有三張卡，分別寫上 5、6、7。從每個袋各隨機抽出一張卡。設 $S$ 為樣本空間。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find $n(S)$.",
+       "zh": "求 $n(S)$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)(i)",
+       "en": "Let $E$ be the event that the sum of the numbers obtained is greater than 9. Find $n(E)$.",
+       "zh": "設 $E$ 為「兩個數的和大於 9」的事件。求 $n(E)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "Hence, find $P(E)$.",
+       "zh": "由此，求 $P(E)$。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "n(S) = 4 \\times 3 = 12",
+       "note": {
+        "zh": "每個配對（袋 A 的數，袋 B 的數）都是一個結果",
+        "en": "Each pair (A number, B number) is one outcome"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "n(E) = 3",
+       "note": {
+        "zh": "$(3, 7)$、$(4, 6)$、$(4, 7)$",
+        "en": "(3, 7), (4, 6) and (4, 7)"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "P(E) = \\frac{3}{12} = \\frac{1}{4}",
+       "note": {
+        "zh": "3 個結果之中 1 個…… 3 個合格結果",
+        "en": "Three favourable outcomes out of twelve"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "兩袋各抽一張＝分步相乘",
+         "en": "One card from each bag multiplies"
+        },
+        "math": "n(S) = 4 \\times 3 = 12",
+        "zh": "袋 A 有 4 個可能，袋 B 有 3 個可能，兩步都要完成，所以 $n(S) = 4 \\times 3 = 12$ 個結果（例如 $(1, 5)$、$(4, 7)$）。",
+        "en": "Bag A offers 4 possibilities and bag B offers 3, and both steps must happen, so $n(S) = 4 \\times 3 = 12$ outcomes such as (1, 5) and (4, 7).",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "n(S) = 4 \\times 3 = 12"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "逐個檢查「和數大於 9」",
+         "en": "Check the pairs whose sum exceeds 9"
+        },
+        "math": "E = \\{(3, 7), (4, 6), (4, 7)\\}",
+        "zh": "袋 B 的數最小是 5，所以袋 A 要夠大：$3 + 7 = 10$、$4 + 6 = 10$、$4 + 7 = 11$ 三個合格；$3 + 6 = 9$ 等於 9，不符合「大於 9」，所以不計。$n(E) = 3$。",
+        "en": "The smallest number in bag B is 5, so the number from A must be large enough: $3 + 7 = 10$, $4 + 6 = 10$ and $4 + 7 = 11$ qualify, while $3 + 6 = 9$ is not greater than 9 and is excluded. Hence $n(E) = 3$.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(E) = 3"
+        ]
+       },
+       {
+        "part": "(b)(ii)",
+        "title": {
+         "zh": "代入概率公式",
+         "en": "Substitute into the probability formula"
+        },
+        "math": "P(E) = \\frac{3}{12} = \\frac{1}{4}",
+        "zh": "12 個配對機會相同，其中 3 個合格，所以 $P(E) = \\frac{3}{12} = \\frac{1}{4}$。",
+        "en": "The twelve pairs are equally likely and three are favourable, so $P(E) = \\frac{3}{12} = \\frac{1}{4}$.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(E) = \\frac{3}{12} = \\frac{1}{4}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把「大於 9」當成「不小於 9」",
+        "labelEn": "Reading \"greater than 9\" as \"at least 9\"",
+        "zh": "$3 + 6 = 9$ 不符合「大於 9」，不要把它算入 $E$，否則 $n(E)$ 會多了 1。",
+        "en": "$3 + 6 = 9$ is not greater than 9 and must not be counted, or n(E) becomes one too large."
+       },
+       {
+        "label": "樣本空間用相加",
+        "labelEn": "Adding instead of multiplying for the sample space",
+        "zh": "(a) 是「從每袋各抽一張」（分步），所以用 $4 \\times 3$；$4 + 3$ 只是「只從其中一袋抽一張」的數目。",
+        "en": "In (a) one card comes from each bag, so the counts multiply; $4 + 3$ would describe drawing from one bag only."
+       }
+      ],
+      "tip": {
+       "zh": "有次序的配對（先袋 A 後袋 B）可以把兩個數寫成 $(a, b)$，逐一列出就不會漏；邊界值（等於 9）要逐個核對。",
+       "en": "For an ordered pair (A number, B number), list the outcomes one by one as $(a, b)$ so nothing is missed, and check boundary values such as a sum of exactly 9."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l2-17",
+     "code": "17",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "Two cards are randomly drawn at the same time from five cards numbered 1, 3, 5, 6 and 8 respectively. Let $S$ be the sample space.",
+      "zh": "從五張分別寫上 1、3、5、6、8 的卡中同時隨機抽出兩張。設 $S$ 為樣本空間。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find $n(S)$.",
+       "zh": "求 $n(S)$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)(i)",
+       "en": "Let $E$ be the event that the product of the numbers obtained is an odd number. Find $n(E)$.",
+       "zh": "設 $E$ 為「兩個數的積是奇數」的事件。求 $n(E)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "Hence, find $P(E)$.",
+       "zh": "由此，求 $P(E)$。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "n(S) = C^5_2 = \\frac{5 \\times 4}{2} = 10",
+       "note": {
+        "zh": "同時抽＝不計次序，用組合",
+        "en": "Drawing together means order does not matter, so use a combination"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "n(E) = 3",
+       "note": {
+        "zh": "$(1, 3)$、$(1, 5)$、$(3, 5)$",
+        "en": "(1, 3), (1, 5) and (3, 5)"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "P(E) = \\frac{3}{10}",
+       "note": {
+        "zh": "10 個結果之中 3 個合格",
+        "en": "Three favourable outcomes out of ten"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同時抽兩張＝組合",
+         "en": "Two cards at the same time means a combination"
+        },
+        "math": "n(S) = C^5_2 = \\frac{5 \\times 4}{2} = 10",
+        "zh": "同時抽出兩張卡，次序不重要（$(1, 3)$ 與 $(3, 1)$ 是同一次抽卡），所以用組合：由 5 張抽 2 張，$C^5_2 = \\frac{5 \\times 4}{2} = 10$ 個結果。",
+        "en": "When two cards are drawn together the order is irrelevant — (1, 3) and (3, 1) describe the same draw — so use a combination: choosing 2 cards from 5 gives $C^5_2 = \\frac{5 \\times 4}{2} = 10$ outcomes.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "n(S) = C^5_2 = \\frac{5 \\times 4}{2} = 10"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "奇數的積要兩張都是奇數",
+         "en": "An odd product needs two odd cards"
+        },
+        "math": "E = \\{(1, 3), (1, 5), (3, 5)\\}",
+        "zh": "兩個整數相乘要是奇數，必須兩個都是奇數（只要有一張是 $6$ 或 $8$，積就是偶數）。奇數卡只有 $1$、$3$、$5$ 三張，任取兩張：$(1, 3)$、$(1, 5)$、$(3, 5)$，所以 $n(E) = 3$。",
+        "en": "A product of two integers is odd only when both are odd (one even card such as 6 or 8 makes the product even). The odd cards are 1, 3 and 5, and choosing two of them gives (1, 3), (1, 5) and (3, 5), so $n(E) = 3$.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(E) = 3"
+        ]
+       },
+       {
+        "part": "(b)(ii)",
+        "title": {
+         "zh": "代入概率公式",
+         "en": "Substitute into the probability formula"
+        },
+        "math": "P(E) = \\frac{3}{10}",
+        "zh": "10 個結果機會相同，其中 3 個合格，所以 $P(E) = \\frac{3}{10}$。也可以用組合直接算：$\\frac{C^3_2}{C^5_2} = \\frac{3}{10}$。",
+        "en": "The ten outcomes are equally likely and three are favourable, so $P(E) = \\frac{3}{10}$. The same value comes from the ratio of combinations, $\\frac{C^3_2}{C^5_2} = \\frac{3}{10}$.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(E) = \\frac{3}{10}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "「同時抽」卻用了排列 $P^5_2$",
+        "labelEn": "Using a permutation for a simultaneous draw",
+        "zh": "同時抽兩張沒有先後之分，用 $P^5_2 = 20$ 會把每個配對數兩次，概率的分母就錯了。",
+        "en": "A simultaneous draw has no first or second card; using $P^5_2 = 20$ counts each pair twice and gives the wrong denominator."
+       },
+       {
+        "label": "以為積是奇數只要有一張奇數",
+        "labelEn": "Thinking one odd card is enough for an odd product",
+        "zh": "只要其中一張是 $6$ 或 $8$（偶數），積就是偶數，所以兩張都必須是奇數。",
+        "en": "If either card is 6 or 8 the product is even, so both cards must be odd."
+       }
+      ],
+      "tip": {
+       "zh": "「同時」＝組合（$C^n_r$）、「逐一」＝排列（$P^n_r$）；先確定要不要計次序，才去數樣本空間。",
+       "en": "\"At the same time\" suggests a combination $C^n_r$, while \"one by one\" suggests a permutation $P^n_r$; decide whether order matters before counting the sample space."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l2-18",
+     "code": "18",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "Two fair dice are thrown. Let $A$ and $B$ be the events given below: Event $A$: Throwing a double. Event $B$: The sum of the numbers on two dice is 6.",
+      "zh": "擲兩顆公平骰子。設 $A$ 與 $B$ 為以下事件：事件 $A$：擲出兩顆相同的點數。事件 $B$：兩顆骰子的點數和是 6。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Use set notation to express events $A$ and $B$.",
+       "zh": "用集合記法表示事件 $A$ 與 $B$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Hence, find $P(A \\cap B)$ and $P(A \\cup B)$.",
+       "zh": "由此，求 $P(A \\cap B)$ 與 $P(A \\cup B)$。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "A = \\{(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)\\}",
+       "note": {
+        "zh": "兩顆相同，共 6 個結果",
+        "en": "Six outcomes with the two dice equal"
+       }
+      },
+      {
+       "part": "(a)",
+       "math": "B = \\{(1, 5), (2, 4), (3, 3), (4, 2), (5, 1)\\}",
+       "note": {
+        "zh": "和是 6，共 5 個結果",
+        "en": "Five outcomes with sum 6"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "P(A \\cap B) = \\frac{1}{36}",
+       "note": {
+        "zh": "只有 $(3, 3)$ 同時符合",
+        "en": "Only (3, 3) satisfies both"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "P(A \\cup B) = \\frac{10}{36} = \\frac{5}{18}",
+       "note": {
+        "zh": "$[6 + 5] - 1 = 10$ 個結果",
+        "en": "$[6 + 5] - 1 = 10$ outcomes"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "把結果寫成有序數對",
+         "en": "Write the outcomes as ordered pairs"
+        },
+        "math": "A = \\{(1, 1), (2, 2), (3, 3), (4, 4), (5, 5), (6, 6)\\}\nB = \\{(1, 5), (2, 4), (3, 3), (4, 2), (5, 1)\\}",
+        "zh": "第一顆骰子的點數寫在前、第二顆寫在後：$A$ 是兩個數相同，共 6 個結果；$B$ 是和等於 6，由 $(1, 5)$ 到 $(5, 1)$ 共 5 個結果（$(6, 0)$ 不可能，所以只到 5）。",
+        "en": "Write the first die first and the second die second: A collects the six outcomes where both numbers agree, while B collects the five outcomes with sum 6, from (1, 5) to (5, 1) — there is no (6, 0).",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "B = \\{(1, 5), (2, 4), (3, 3), (4, 2), (5, 1)\\}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "$A \\cap B$：兩個條件同時成立",
+         "en": "A ∩ B: both conditions hold"
+        },
+        "math": "A \\cap B = \\{(3, 3)\\} ,\\ P(A \\cap B) = \\frac{1}{36}",
+        "zh": "同時「兩顆相同」又「和是 6」的只有 $(3, 3)$，所以 $n(A \\cap B) = 1$，$P(A \\cap B) = \\frac{1}{36}$（兩顆骰子共有 $6 \\times 6 = 36$ 個結果）。",
+        "en": "The only outcome that is both a double and a sum of 6 is (3, 3), so $n(A \\cap B) = 1$ and $P(A \\cap B) = \\frac{1}{36}$, with $6 \\times 6 = 36$ equally likely outcomes in total.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(A \\cap B) = \\frac{1}{36}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "$A \\cup B$：先加再減重複",
+         "en": "A ∪ B: add, then subtract the overlap"
+        },
+        "math": "n(A \\cup B) = [6 + 5] - 1 = 10\nP(A \\cup B) = \\frac{10}{36} = \\frac{5}{18}",
+        "zh": "$A$ 有 6 個結果、$B$ 有 5 個結果，但 $(3, 3)$ 同時被數了兩次，所以要減一次：$[6 + 5] - 1 = 10$ 個結果，$P(A \\cup B) = \\frac{10}{36} = \\frac{5}{18}$。",
+        "en": "The event A holds six outcomes and B holds five, but (3, 3) was counted twice, so subtract it once: $[6 + 5] - 1 = 10$ outcomes and $P(A \\cup B) = \\frac{10}{36} = \\frac{5}{18}$.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "P(A \\cup B) = \\frac{10}{36} = \\frac{5}{18}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "骰子有 36 個結果但寫成 21",
+        "labelEn": "Using 21 instead of 36 outcomes",
+        "zh": "兩顆骰子要分別看：$6 \\times 6 = 36$ 個結果。$21$ 是「不計次序」的組合數目，但 $(1, 5)$ 與 $(5, 1)$ 出現的機會是分開計算的。",
+        "en": "The two dice are distinguished, giving $6 \\times 6 = 36$ outcomes. The number 21 counts unordered pairs, but (1, 5) and (5, 1) are separate outcomes of the same total probability."
+       },
+       {
+        "label": "忘記減 $(3, 3)$",
+        "labelEn": "Forgetting to subtract (3, 3)",
+        "zh": "$6 + 5 = 11$ 會把 $(3, 3)$ 數兩次，答案會大了 1 個結果。",
+        "en": "$6 + 5 = 11$ counts (3, 3) twice and makes the answer one outcome too large."
+       }
+      ],
+      "tip": {
+       "zh": "「至少一個」用 $n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$：先加兩組，再把重複的交集減一次。",
+       "en": "For \"at least one\", use $n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$: add the two groups, then subtract the overlap once."
+      }
+     }
+    },
+    {
+     "id": "ch18-1-l2-19",
+     "code": "19",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "In a class of 30 students, 18 study Physics, 15 study Chemistry and 12 study both of these subjects. A student is randomly selected from the class. Let $A$ and $B$ be the events given below: Event $A$: The student selected studies Physics. Event $B$: The student selected studies Chemistry.",
+      "zh": "一班 30 名學生中，18 名修讀物理、15 名修讀化學、12 名兩科都修。從班上隨機選出一名學生。設 $A$ 與 $B$ 為以下事件：事件 $A$：選出的學生修讀物理。事件 $B$：選出的學生修讀化學。"
+     },
+     "figures": [
+      "ch18-1-l2-19"
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Complete the Venn diagram.",
+       "zh": "完成文氏圖。",
+       "marks": 2
+      },
+      {
+       "label": "(b)(i)",
+       "en": "Find $P(A \\cap B)$.",
+       "zh": "求 $P(A \\cap B)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "Find $P(A \\cup B)$.",
+       "zh": "求 $P(A \\cup B)$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "6 ,\\ 12 ,\\ 3 ,\\ 9",
+       "note": {
+        "zh": "只物理 6、兩科都修 12、只化學 3、兩科都不修 9",
+        "en": "Physics only 6, both 12, Chemistry only 3, neither 9"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "P(A \\cap B) = \\frac{12}{30} = \\frac{2}{5}",
+       "note": {
+        "zh": "兩科都修的 12 人",
+        "en": "The twelve students who study both"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "P(A \\cup B) = \\frac{21}{30} = \\frac{7}{10}",
+       "note": {
+        "zh": "$[6 + 12 + 3] = 21$ 人至少修一科",
+        "en": "$[6 + 12 + 3] = 21$ students take at least one subject"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "由交集開始填四區",
+         "en": "Fill the four regions starting from the overlap"
+        },
+        "math": "6 ,\\ 12 ,\\ 3 ,\\ 9",
+        "zh": "兩科都修的有 12 人，先寫在重疊部分（記住這 12 人已經包含在 18 與 15 之內）：只修物理 $18 - 12 = 6$ 人、只修化學 $15 - 12 = 3$ 人。最後兩科都不修的人數是 $30 - [6 + 12 + 3] = 30 - 21 = 9$ 人。",
+        "en": "The twelve students who study both go in the overlap first (these twelve are already counted inside 18 and 15): Physics only is $18 - 12 = 6$ and Chemistry only is $15 - 12 = 3$. The number studying neither is $30 - [6 + 12 + 3] = 30 - 21 = 9$.",
+        "marking": "(1M)(1A)",
+        "figure": "ch18-1-l2-19-ans",
+        "highlight": [
+         "6 ,\\ 12 ,\\ 3 ,\\ 9"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "交集就是重疊部分的 12 人",
+         "en": "The intersection is the twelve in the overlap"
+        },
+        "math": "P(A \\cap B) = \\frac{12}{30} = \\frac{2}{5}",
+        "zh": "$A \\cap B$ 是「同時修物理與化學」的學生，共 12 人，所以 $P(A \\cap B) = \\frac{12}{30} = \\frac{2}{5}$。",
+        "en": "The event $A \\cap B$ consists of the twelve students who study both subjects, so $P(A \\cap B) = \\frac{12}{30} = \\frac{2}{5}$.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(A \\cap B) = \\frac{12}{30} = \\frac{2}{5}"
+        ]
+       },
+       {
+        "part": "(b)(ii)",
+        "title": {
+         "zh": "聯集＝至少修讀一科",
+         "en": "The union is \"at least one subject\""
+        },
+        "math": "P(A \\cup B) = \\frac{[6 + 12 + 3]}{30} = \\frac{21}{30} = \\frac{7}{10}",
+        "zh": "$A \\cup B$ 包括只物理、兩科都修、只化學三區：$[6 + 12 + 3] = 21$ 人，所以 $P(A \\cup B) = \\frac{21}{30} = \\frac{7}{10}$。也可以想成「30 人減去兩科都不修的 9 人」：$30 - 9 = 21$。",
+        "en": "The union $A \\cup B$ covers the three regions Physics only, both and Chemistry only: $[6 + 12 + 3] = 21$ students, so $P(A \\cup B) = \\frac{21}{30} = \\frac{7}{10}$. Equivalently, subtract the nine students who take neither from the 30: $30 - 9 = 21$.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "P(A \\cup B) = \\frac{21}{30} = \\frac{7}{10}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "「只修物理」直接寫 18",
+        "labelEn": "Writing 18 for \"Physics only\"",
+        "zh": "18 人之中有 12 人同時修化學，所以只修物理是 $18 - 12 = 6$ 人；直接寫 18 會令四區相加超過 30。",
+        "en": "Twelve of the 18 also study Chemistry, so Physics only is $18 - 12 = 6$; writing 18 would make the four regions add up to more than 30."
+       },
+       {
+        "label": "(b)(ii) 用 $18 + 15$ 當分子",
+        "labelEn": "Using 18 + 15 as the numerator",
+        "zh": "$18 + 15 = 33 > 30$ 明顯不可能：兩科都修的 12 人被數了兩次，要先減一次才是 $21$。",
+        "en": "$18 + 15 = 33$ exceeds the class size, which is impossible: the twelve students who study both were counted twice and must be subtracted once to give 21."
+       }
+      ],
+      "tip": {
+       "zh": "填文氏圖的次序：先寫交集 → 再寫「只 A」「只 B」（用減法）→ 最後用總數減出「兩者都不是」，四區相加一定要等於總數。",
+       "en": "Fill a Venn diagram in order: the overlap first, then \"A only\" and \"B only\" by subtraction, and finally \"neither\" from the total. The four regions must add up to the total."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "SM",
+   "short": {
+    "zh": "挑戰題",
+    "en": "SMART CORNER"
+   },
+   "title": {
+    "zh": "挑戰題 · SMART CORNER",
+    "en": "SMART CORNER"
+   },
+   "marks": 4,
+   "questions": [
+    {
+     "id": "ch18-1-sm-20",
+     "code": "20",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "A bag contains $m$ blue balls and $n$ green balls. If a ball is randomly drawn from the bag, the probability of drawing a blue ball is $\\frac{3}{5}$.",
+      "zh": "一個袋內有 $m$ 個藍球和 $n$ 個綠球。若從袋中隨機抽出一個球，抽到藍球的概率是 $\\frac{3}{5}$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Express $m$ in terms of $n$.",
+       "zh": "以 $n$ 表示 $m$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Suggest two pairs of possible values of $m$ and $n$.",
+       "zh": "建議兩組 $m$ 與 $n$ 的可能值。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "m = \\frac{3}{2}n",
+       "note": {
+        "zh": "由 $5m = 3(m + n)$ 化簡得 $2m = 3n$",
+        "en": "From $5m = 3(m + n)$ we get $2m = 3n$"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "m = 3, n = 2 ;\\ m = 6, n = 4",
+       "note": {
+        "zh": "任何 $m : n = 3 : 2$ 的整數組合都可以",
+        "en": "Any integer pair with $m : n = 3 : 2$ works"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先寫出抽到藍球的概率",
+         "en": "Write the probability of a blue ball"
+        },
+        "math": "\\frac{m}{m + n} = \\frac{3}{5}",
+        "zh": "袋內共有 $m + n$ 個球，其中 $m$ 個是藍球，所以抽到藍球的概率是 $\\frac{m}{m + n}$。題目說這個概率等於 $\\frac{3}{5}$，得方程 $\\frac{m}{m + n} = \\frac{3}{5}$。",
+        "en": "The bag holds $m + n$ balls, of which m are blue, so the probability of a blue ball is $\\frac{m}{m + n}$. The question says this equals $\\frac{3}{5}$, giving $\\frac{m}{m + n} = \\frac{3}{5}$.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{m}{m + n} = \\frac{3}{5}"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "交叉相乘後化簡",
+         "en": "Cross-multiply and simplify"
+        },
+        "math": "5m = 3(m + n)\n5m = 3m + 3n\n2m = 3n\nm = \\frac{3}{2}n",
+        "zh": "交叉相乘得 $5m = 3(m + n)$，展開右邊：$5m = 3m + 3n$，兩邊同時減 $3m$ 得 $2m = 3n$，所以 $m = \\frac{3}{2}n$。",
+        "en": "Cross-multiplying gives $5m = 3(m + n)$; expanding the bracket, $5m = 3m + 3n$; subtracting 3m from both sides gives $2m = 3n$, so $m = \\frac{3}{2}n$.",
+        "marking": "(1A)",
+        "highlight": [
+         "m = \\frac{3}{2}n"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "取 $n$ 為 2 的倍數",
+         "en": "Take n as a multiple of 2"
+        },
+        "math": "n = 2 \\implies m = \\frac{3}{2}(2) = 3\nn = 4 \\implies m = \\frac{3}{2}(4) = 6",
+        "zh": "$m$ 與 $n$ 都是球的數目，一定是正整數。取 $n = 2$ 得 $m = 3$，取 $n = 4$ 得 $m = 6$；其實只要 $m : n = 3 : 2$（例如 9 與 6、12 與 8）都符合題意。",
+        "en": "Both m and n are numbers of balls, so they must be positive integers. Taking $n = 2$ gives $m = 3$ and taking $n = 4$ gives $m = 6$; in fact any pair with $m : n = 3 : 2$, such as 9 and 6 or 12 and 8, satisfies the condition.",
+        "marking": "(1M)(1A)",
+        "highlight": [
+         "m = 3, n = 2 ;\\ m = 6, n = 4"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 $m$ 當成一個具體數字",
+        "labelEn": "Treating m as a single number",
+        "zh": "(a) 要的是「以 $n$ 表示 $m$」的關係式 $m = \\frac{3}{2}n$，不是某一個答案；寫 $m = 3$ 並沒有回答 (a)。",
+        "en": "Part (a) asks for a relation, $m = \\frac{3}{2}n$, not a single number; writing $m = 3$ does not answer (a)."
+       },
+       {
+        "label": "取了不合比例的數值",
+        "labelEn": "Choosing values that break the ratio",
+        "zh": "(b) 的答案要滿足 $m : n = 3 : 2$，例如 $m = 3$、$n = 2$（3 個藍球 2 個綠球，概率 $\\frac{3}{5}$）；隨意取 $m = 3$、$n = 5$ 就不對。",
+        "en": "The pairs in (b) must satisfy $m : n = 3 : 2$, for example $m = 3$ and $n = 2$ (three blue and two green balls give probability $\\frac{3}{5}$); a random pair such as 3 and 5 would not."
+       }
+      ],
+      "tip": {
+       "zh": "概率是分數時，可以把分子、分母看成「份數」：$\\frac{m}{m + n} = \\frac{3}{5}$ 代表 $m$ 佔 3 份、$n$ 佔 2 份，所以 $m : n = 3 : 2$，即 $m = \\frac{3}{2}n$。",
+       "en": "When a probability is given as a fraction, read it as parts: $\\frac{m}{m + n} = \\frac{3}{5}$ means m takes 3 parts and n takes 2, so $m : n = 3 : 2$ and $m = \\frac{3}{2}n$."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}

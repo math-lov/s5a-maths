@@ -1,0 +1,4883 @@
+{
+ "id": "ch18-2",
+ "title": {
+  "zh": "18.2 概率的加法定律 · 課本練習",
+  "en": "18.2 Addition Law of Probability · Book Exercise"
+ },
+ "intro": {
+  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。求「$A$ 或 $B$」的概率，用加法定律：先加兩個概率，再把重複數了兩次的交集減一次，即 $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$。如果兩件事不可能同時發生（互斥），交集為 $0$，直接相加就可以；反過來，已知 $P(A \\cup B)$ 也可以反求交集。問「至少一項」的題目多數用反面最快：$1 - P(\\text{neither})$。",
+  "en": "This section follows the textbook and is grouped into Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. For \"A or B\", use the addition law: add the two probabilities and subtract the overlap once, because it was counted twice, i.e. $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$. If the two events cannot happen together (mutually exclusive) the intersection is 0, so the probabilities simply add; conversely, a known $P(A \\cup B)$ lets you recover the intersection. For \"at least one\", the complement is usually fastest: $1 - P(\\text{neither})$."
+ },
+ "cards": [
+  {
+   "id": "ch18-2-c01",
+   "topic": "ch18-2",
+   "title": {
+    "zh": "為甚麼要減一次交集",
+    "en": "Why the intersection is subtracted once"
+   },
+   "body": {
+    "zh": "- 兩個事件把樣本空間分成四區：只 $A$、只 $B$、兩者都是、兩者都不是。$P(A) + P(B)$ 把「兩者都是」那一區數了兩次，所以減一次才對：{{math:0}}\n- 驗算：四個數的總和一定等於 1；若果加起來超過 1，就是有區域被重複計算。\n- 互斥只是「交集 $= 0$」的特例：兩件事不可能同時發生時，加法定律就變成直接相加：{{math:1}}",
+    "en": "- Two events split the sample space into four regions: A only, B only, both, neither. The sum P(A) + P(B) counts the \"both\" region twice, so subtract it once: {{math:0}}\n- Check: the four regions must add up to 1; a total above 1 means a region was double-counted.\n- Mutually exclusive is just the case $P(A \\cap B) = 0$: the addition law then becomes a plain sum: {{math:1}}"
+   },
+   "math": [
+    "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+    "P(A \\cup B) = P(A) + P(B)"
+   ],
+   "warn": {
+    "zh": "- 最常見的錯：把 $P(A) + P(B)$ 當答案。以「32 人中有 18 人喜歡朱古力、23 人喜歡雪糕」為例，$18 + 23 = 41 > 32$ 已明顯不可能，因為 11 個兩樣都喜歡的人被數了兩次。\n- 只有題目講明「兩件事不會同時發生」才可以略去交集；沒有講明就要自己找交集（或證明它為 $0$）。\n- 減的是一個交集，不是減兩次；「只 $A$」與「只 $B$」已經各自扣過交集，寫的時候不要重複扣。",
+    "en": "- The classic mistake is answering with P(A) + P(B). With 18 chocolate-lovers and 23 ice-cream-lovers in a class of 32, the sum 41 already exceeds 32 because the 11 who like both were counted twice.\n- Only drop the intersection when the question says the events cannot happen together; otherwise find the intersection (or show it is 0) first.\n- Subtract the intersection exactly once: \"A only\" and \"B only\" already exclude it, so do not subtract again."
+   },
+   "vocab": [
+    {
+     "zh": "加法定律",
+     "en": "Addition law"
+    },
+    {
+     "zh": "交集",
+     "en": "Intersection"
+    },
+    {
+     "zh": "互斥",
+     "en": "Mutually exclusive"
+    }
+   ]
+  },
+  {
+   "id": "ch18-2-c02",
+   "topic": "ch18-2",
+   "title": {
+    "zh": "抽 n(A)、n(B)、n(A∩B) 與反求交集",
+    "en": "Reading n(A), n(B) and n(A∩B), and recovering the overlap"
+   },
+   "body": {
+    "zh": "- 數據通常用三種寫法給出：文字描述（「18 人喜歡朱古力、23 人喜歡雪糕、11 人兩樣都喜歡」）、$2 \\times 2$ 表（男／女 × 有／無兄弟姊妹）、以及「只 $A$」「只 $B$」的分區。\n- 每個概率都以總數為分母，交集就用「兩樣都有」的數目除以總數：{{math:0}}\n- 反求交集：已知 $P(A \\cup B)$ 時把公式反過來用，減法要放在最後：{{math:1}}",
+    "en": "- The data comes in three common shapes: a description (18 like chocolate, 23 like ice-cream, 11 like both), a 2 × 2 table (boy/girl × with/without siblings), or the split into \"A only\" and \"B only\".\n- Every probability uses the total as denominator, and the intersection is the \"both\" count over that total: {{math:0}}\n- To recover the overlap from P(A ∪ B), reverse the law, subtracting last: {{math:1}}"
+   },
+   "math": [
+    "P(A) = \\frac{n(A)}{n(S)}",
+    "P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)"
+   ],
+   "warn": {
+    "zh": "- 「喜歡朱古力或雪糕」的人數不是 $18 + 23$，而是 $[18 + 23] - 11 = 30$；「只喜歡雪糕」要在 23 人之中減去 11 人，得 12 人。\n- 表格題先寫總數（把每格的數目加起來），之後每個分母都用它；表格的「合計」格不要當成數據再數一次。\n- 反求交集時次序不可以掉亂：是「兩個概率相加」再減 $P(A \\cup B)$，不是先減後加。",
+    "en": "- \"Chocolate or ice-cream\" is not 18 + 23 but [18 + 23] − 11 = 30; \"ice-cream only\" takes 11 away from the 23, giving 12.\n- For a table, first add every cell to get the total and use it as the denominator throughout; the printed totals are not extra data.\n- When reversing the law, keep the order: add the two probabilities first, then subtract P(A ∪ B)."
+   },
+   "vocab": [
+    {
+     "zh": "樣本空間",
+     "en": "Sample space"
+    },
+    {
+     "zh": "兩樣都有",
+     "en": "Both"
+    },
+    {
+     "zh": "總數",
+     "en": "Total"
+    }
+   ]
+  },
+  {
+   "id": "ch18-2-c03",
+   "topic": "ch18-2",
+   "title": {
+    "zh": "「至少一項」用反面",
+    "en": "\"At least one\" by complement"
+   },
+   "body": {
+    "zh": "- 「至少一項」的反面是「兩者皆非」（圖中四個區域最外面那一區），所以：{{math:0}}\n- 先數「兩者皆非」往往比逐個情況相加容易：54 人之中 15 人兩種運動都不玩，就用 $1 - \\frac{15}{54}$。\n- 「不是紅」這一類寫法也是反面：把所有其他顏色的概率相加，或者用 $1$ 減去紅色的概率，兩種做法都可以。",
+    "en": "- The complement of \"at least one\" is \"neither\" (the region outside both circles), so: {{math:0}}\n- Counting \"neither\" is usually easier than adding case by case: if 15 of 54 students play neither sport, use $1 - \\frac{15}{54}$.\n- Phrases like \"not red\" are also complements: either add the probabilities of the other colours, or subtract the red probability from 1 — both are accepted."
+   },
+   "math": [
+    "P(\\text{at least one}) = 1 - P(\\text{none})"
+   ],
+   "warn": {
+    "zh": "- 「不是紅」不等於機率 $0$：要把紫、藍等其他顏色的概率加起來（或 $1$ 減紅色），不是當它不可能發生。\n- 「至少」與「至多」的方向相反：至多一項＝沒有或只有一項，用反面（$1$ 減「兩項都有」）會快很多。\n- 用反面之前先確認分母：$1 - \\frac{15}{54}$ 減的是「兩者皆非」那格，不是「兩者都是」那格。",
+    "en": "- \"Not red\" does not mean probability 0: add the other colours (or use 1 − red); it is not impossible.\n- \"At least\" and \"at most\" point in opposite directions: at most one means none or exactly one, and the complement (1 − both) is much quicker.\n- Before using the complement, check which region you subtract: 1 − 15/54 removes \"neither\", not \"both\"."
+   },
+   "vocab": [
+    {
+     "zh": "反面",
+     "en": "Complement"
+    },
+    {
+     "zh": "至少",
+     "en": "At least"
+    },
+    {
+     "zh": "兩者皆非",
+     "en": "Neither"
+    }
+   ]
+  }
+ ],
+ "sections": [
+  {
+   "id": "CE",
+   "short": {
+    "zh": "課堂例題",
+    "en": "Class Ex."
+   },
+   "title": {
+    "zh": "課堂例題 · Class Exercise 18.2",
+    "en": "Class Exercise 18.2"
+   },
+   "marks": 12,
+   "questions": [
+    {
+     "id": "ch18-2-ce1",
+     "code": "CE1",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 32 students in a class. 18 of them like chocolates, 23 of them like ice-cream and 11 of them like both chocolates and ice-cream. If a student is randomly chosen from the class, find the probability that the student chosen",
+      "zh": "一班有 32 名學生，其中 18 人喜歡朱古力、23 人喜歡雪糕、11 人兩樣都喜歡。若從班中隨機選出一名學生，求選出的學生"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "likes chocolates or ice-cream,",
+       "zh": "喜歡朱古力或雪糕的概率；",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "likes ice-cream only.",
+       "zh": "只喜歡雪糕的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{18}{32} + \\frac{23}{32} - \\frac{11}{32} = \\frac{30}{32} = \\frac{15}{16}",
+       "note": {
+        "zh": "先加後減，11 人兩樣都喜歡被數了兩次",
+        "en": "Add then subtract: the 11 who like both were counted twice"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{23 - 11}{32} = \\frac{12}{32} = \\frac{3}{8}",
+       "note": {
+        "zh": "在 23 人之中減去 11 人，得 12 人",
+        "en": "Take 11 away from the 23, leaving 12"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "用加法定律列式",
+         "en": "Set up the addition law"
+        },
+        "math": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)\n= \\frac{18}{32} + \\frac{23}{32} - \\frac{11}{32}",
+        "zh": "設 $A$ 為喜歡朱古力、$B$ 為喜歡雪糕。三個數目都以全班的 32 人為分母，最後一項 $\\frac{11}{32}$ 是補償：兩樣都喜歡的 11 人在前兩項中各被數了一次。",
+        "en": "Let A be \"likes chocolates\" and B be \"likes ice-cream\". All three counts are over the class of 32, and the last term compensates the 11 who like both, counted once in each of the first two terms.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先加後減，約簡",
+         "en": "Add, subtract, simplify"
+        },
+        "math": "\\frac{[18 + 23] - 11}{32} = \\frac{30}{32} = \\frac{15}{16}",
+        "zh": "分子 $[18 + 23] - 11 = 30$，所以概率是 $\\frac{30}{32}$；分子分母同時除以 2 得 $\\frac{15}{16}$。30 人少於全班 32 人，結果合理。",
+        "en": "The numerator is [18 + 23] − 11 = 30, giving 30/32; dividing top and bottom by 2 gives 15/16. Thirty people is fewer than the class of 32, so the answer is reasonable.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{30}{32} = \\frac{15}{16}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "只喜歡雪糕＝在 23 人之中扣去重疊",
+         "en": "Ice-cream only: take the overlap out of 23"
+        },
+        "math": "n = 23 - 11 = 12",
+        "zh": "「只喜歡雪糕」要在喜歡雪糕的 23 人之中，減去 11 個兩樣都喜歡的人，餘下 12 人。",
+        "en": "\"Ice-cream only\" means taking the 11 who like both out of the 23 ice-cream lovers, leaving 12.",
+        "marking": "(1M)",
+        "highlight": [
+         "23 - 11 = 12"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "寫成概率",
+         "en": "Write the probability"
+        },
+        "math": "\\frac{12}{32} = \\frac{3}{8}",
+        "zh": "分母仍然是全班的 32 人：$\\frac{12}{32} = \\frac{3}{8}$。",
+        "en": "The denominator is still the class of 32: 12/32 = 3/8.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{12}{32} = \\frac{3}{8}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把兩個概率直接相加",
+        "labelEn": "Adding the two probabilities",
+        "zh": "「喜歡朱古力或雪糕」不是 $\\frac{18}{32} + \\frac{23}{32} = \\frac{41}{32}$：超過 1 已經明顯不可能，因為 11 個兩樣都喜歡的人被數了兩次，要先減一次。",
+        "en": "\"Chocolate or ice-cream\" is not 18/32 + 23/32 = 41/32: a probability above 1 is impossible, because the 11 who like both were counted twice and must be subtracted once."
+       },
+       {
+        "label": "只喜歡雪糕用 23 人",
+        "labelEn": "Using 23 for ice-cream only",
+        "zh": "(b) 的答案是 12 人不是 23 人：要在喜歡雪糕的 23 人之中減去兩樣都喜歡的 11 人。",
+        "en": "Part (b) counts 12 people, not 23: subtract the 11 who like both from the 23 ice-cream lovers."
+       }
+      ],
+      "tip": {
+       "zh": "三組數（$A$、$B$、both）齊全時，先寫出四區：只 $A$ ＝ $18 - 11 = 7$、只 $B$ ＝ $23 - 11 = 12$、both ＝ $11$、neither ＝ $32 - [7 + 12 + 11] = 2$；四區加起來等於 32，就代表數對了。",
+       "en": "When A, B and both are given, write out the four regions: A only = 18 − 11 = 7, B only = 23 − 11 = 12, both = 11 and neither = 32 − [7 + 12 + 11] = 2. If they add up to 32 the counting is right."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-ce2",
+     "code": "CE2",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 1,
+     "stem": {
+      "en": "In a seminar, there are 6 male teachers and 10 female teachers. Among them, 3 male teachers and 4 female teachers teach in secondary schools. If a teacher is randomly chosen, find the probability that the teacher chosen",
+      "zh": "一個研討會上有 6 名男教師和 10 名女教師，其中 3 名男教師和 4 名女教師在中學任教。若隨機選出一名教師，求選出的教師"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "teaches in a secondary school,",
+       "zh": "在中學任教的概率；",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "is a male teacher or teaches in a secondary school.",
+       "zh": "是男教師或在中學任教的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{3 + 4}{16} = \\frac{7}{16}",
+       "note": {
+        "zh": "男、女在中學任教的都要計",
+        "en": "Count both male and female secondary teachers"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{6}{16} + \\frac{7}{16} - \\frac{3}{16} = \\frac{10}{16} = \\frac{5}{8}",
+       "note": {
+        "zh": "交集＝3 名男教師在中學任教",
+        "en": "The intersection is the 3 male secondary teachers"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先數總人數",
+         "en": "Count the total first"
+        },
+        "math": "6 + 10 = 16",
+        "zh": "教師共有 $6 + 10 = 16$ 人，這是所有小題共用的分母。",
+        "en": "There are 6 + 10 = 16 teachers in total, the denominator for every part.",
+        "marking": "(1M)",
+        "highlight": [
+         "6 + 10 = 16"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "在中學任教的人數",
+         "en": "How many teach in secondary schools"
+        },
+        "math": "\\frac{3 + 4}{16} = \\frac{7}{16}",
+        "zh": "在中學任教的有男 3 人加女 4 人，共 7 人，所以概率是 $\\frac{7}{16}$。",
+        "en": "The secondary teachers are 3 men plus 4 women, seven in all, so the probability is 7/16.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{7}{16}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "兩件事有重疊，用加法定律",
+         "en": "The events overlap: use the addition law"
+        },
+        "math": "\\frac{6}{16} + \\frac{7}{16} - \\frac{3}{16}",
+        "zh": "「是男教師」有 6 人，「在中學任教」有 7 人，但 3 名男教師同時屬於兩組，被數了兩次。用加法定律：$\\frac{6}{16} + \\frac{7}{16} - \\frac{3}{16}$。",
+        "en": "\"Male\" covers 6 teachers and \"secondary school\" covers 7, but the 3 male secondary teachers belong to both groups and were counted twice. Use the addition law: 6/16 + 7/16 − 3/16.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{6}{16} + \\frac{7}{16} - \\frac{3}{16}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "先加後減，約簡",
+         "en": "Add, subtract, simplify"
+        },
+        "math": "\\frac{[6 + 7] - 3}{16} = \\frac{10}{16} = \\frac{5}{8}",
+        "zh": "分子是 $[6 + 7] - 3 = 10$，所以所求概率為 $\\frac{10}{16}$，約簡後得 $\\frac{5}{8}$。",
+        "en": "The numerator is [6 + 7] − 3 = 10, giving 10/16 which simplifies to 5/8.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{10}{16} = \\frac{5}{8}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "忘記減交集",
+        "labelEn": "Forgetting to subtract the overlap",
+        "zh": "$\\frac{6}{16} + \\frac{7}{16}$ 會把 3 名男教師數兩次，答案偏大；先找出「兩組都會出現」的人，再減一次。",
+        "en": "6/16 + 7/16 counts the 3 male secondary teachers twice, making the answer too large; find the people in both groups and subtract them once."
+       },
+       {
+        "label": "(a) 只數其中一邊",
+        "labelEn": "Counting only one gender in (a)",
+        "zh": "(a) 要男 3 人加女 4 人共 7 人；只數 3 人（或只數 4 人）會漏掉另一半教師。",
+        "en": "Part (a) needs 3 men plus 4 women, seven in all; counting only 3 (or only 4) misses the other half."
+       }
+      ],
+      "tip": {
+       "zh": "「或」的題目先問一句「有沒有重疊？」——找出兩組都會出現的人（這裡是 3 名男教師）。沒有重疊＝互斥，才可以直接相加。",
+       "en": "For an \"or\" question, ask first whether the groups overlap — find the people in both (here the 3 male teachers). Only when there is no overlap (mutually exclusive) may you simply add."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-ce3",
+     "code": "CE3",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "There are 30 keys in a box, of which 5 are rusted. If a key is selected randomly from the box, find the probability that the key selected is",
+      "zh": "一個盒子內有 30 條鎖匙，其中 5 條生鏽。若從盒中隨機選出一條鎖匙，求選出的鎖匙"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "rusted,",
+       "zh": "生鏽的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "not rusted.",
+       "zh": "沒有生鏽的概率。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{5}{30} = \\frac{1}{6}",
+       "note": {
+        "zh": "5 條生鏽、共 30 條",
+        "en": "Five rusted keys out of thirty"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{1}{6} = \\frac{5}{6}",
+       "note": {
+        "zh": "反面：1 減去「生鏽」",
+        "en": "Complement: 1 minus P(rusted)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "數目除以總數",
+         "en": "Count over total"
+        },
+        "math": "\\frac{5}{30} = \\frac{1}{6}",
+        "zh": "30 條之中有 5 條生鏽，所以 $P(\\text{rusted}) = \\frac{5}{30}$，約簡為 $\\frac{1}{6}$。",
+        "en": "Five of the thirty keys are rusted, so P(rusted) = 5/30, which simplifies to 1/6.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{5}{30} = \\frac{1}{6}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "用反面：1 減生鏽的概率",
+         "en": "Use the complement"
+        },
+        "math": "1 - \\frac{1}{6} = \\frac{5}{6}",
+        "zh": "「沒有生鏽」是「生鏽」的反面：$1 - \\frac{1}{6} = \\frac{5}{6}$。直接數也可以：$30 - 5 = 25$ 條沒有生鏽，$\\frac{25}{30} = \\frac{5}{6}$。",
+        "en": "\"Not rusted\" is the complement of \"rusted\": 1 − 1/6 = 5/6. Counting directly agrees: 30 − 5 = 25 keys are not rusted, and 25/30 = 5/6.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{1}{6} = \\frac{5}{6}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "反面減錯一項",
+        "labelEn": "Subtracting the wrong quantity",
+        "zh": "反面是用 $1$ 減去「生鏽」的概率 $\\frac{5}{30}$；若減去「沒有生鏽」的 $\\frac{25}{30}$，就會算回「生鏽」的概率。",
+        "en": "The complement subtracts P(rusted) = 5/30 from 1; subtracting 25/30 instead would give back the probability of rusted."
+       }
+      ],
+      "tip": {
+       "zh": "凡問「不／沒有」的題目都可以用反面：$P(\\text{not } E) = 1 - P(E)$，一條減法就完成；但要先寫清楚 $E$ 是甚麼事件。",
+       "en": "Any \"not\" question can use the complement: P(not E) = 1 − P(E), a single subtraction — but write down what event E is first."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-ce4",
+     "code": "CE4",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "In a group of 50 customers, 21 customers order pancakes and 15 customers order waffles. Each customer orders only one type of desserts. If a customer is randomly chosen from the group, find the probability that the customer",
+      "zh": "一群 50 名顧客中，21 人點班戟、15 人點窩夫。每名顧客只點一款甜品。若隨機選出一名顧客，求選出的顧客"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "orders pancake or waffle,",
+       "zh": "點班戟或窩夫的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "neither orders pancake nor waffle.",
+       "zh": "兩樣都不點的概率。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{21}{50} + \\frac{15}{50} = \\frac{36}{50} = \\frac{18}{25}",
+       "note": {
+        "zh": "互斥，直接相加",
+        "en": "Mutually exclusive, so simply add"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{18}{25} = \\frac{7}{25}",
+       "note": {
+        "zh": "反面＝兩樣都不點",
+        "en": "Complement: neither dessert"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "互斥事件直接相加",
+         "en": "Mutually exclusive: just add"
+        },
+        "math": "\\frac{21}{50} + \\frac{15}{50} = \\frac{36}{50} = \\frac{18}{25}",
+        "zh": "題目講明每人只點一款甜品，「班戟」與「窩夫」不可能同時發生，交集是 $0$，所以直接相加：$\\frac{21}{50} + \\frac{15}{50} = \\frac{36}{50} = \\frac{18}{25}$。",
+        "en": "Each customer orders only one type, so \"pancake\" and \"waffle\" cannot happen together: the intersection is 0 and the probabilities simply add: 21/50 + 15/50 = 36/50 = 18/25.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{21}{50} + \\frac{15}{50} = \\frac{18}{25}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "反面：1 減去有點甜品",
+         "en": "Complement of ordering a dessert"
+        },
+        "math": "1 - \\frac{18}{25} = \\frac{7}{25}",
+        "zh": "「兩樣都不點」是「有點其中一款」的反面：$1 - \\frac{18}{25} = \\frac{7}{25}$。直接數：$50 - [21 + 15] = 14$ 人，$\\frac{14}{50} = \\frac{7}{25}$，與反面結果相同。",
+        "en": "\"Neither\" is the complement of \"orders one of them\": 1 − 18/25 = 7/25. Counting directly: 50 − [21 + 15] = 14 customers, and 14/50 = 7/25, matching the complement.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{18}{25} = \\frac{7}{25}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "互斥仍硬減交集",
+        "labelEn": "Subtracting an intersection that is zero",
+        "zh": "題目講明「每人只點一款」，交集是 $0$；不必再找「兩樣都點」的人。但要注意：只有題目真的講明互斥，才可以這樣直接相加。",
+        "en": "The question states each customer orders one type, so the intersection is 0 and there is no \"both\" group to subtract — but this shortcut is only allowed when the question really says the events are mutually exclusive."
+       },
+       {
+        "label": "(b) 用 36 做分母",
+        "labelEn": "Using 36 as the denominator in (b)",
+        "zh": "(b) 的分母仍是全部 50 名顧客，不是有點甜品的 36 人；$\\frac{50 - 36}{50} = \\frac{14}{50}$。",
+        "en": "In (b) the denominator is still all 50 customers, not the 36 who ordered a dessert: (50 − 36)/50 = 14/50."
+       }
+      ],
+      "tip": {
+       "zh": "互斥＝兩件事不會同時發生，交集為 $0$。題目出現「每人只選一款」「不會同時」等字眼，就是可以直接相加的提示。",
+       "en": "Mutually exclusive means the two events cannot happen together, so the intersection is 0. Phrases such as \"each customer orders only one type\" tell you the probabilities may simply be added."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "SC",
+   "short": {
+    "zh": "判斷題",
+    "en": "Sect. Check"
+   },
+   "title": {
+    "zh": "判斷題 · Section Check",
+    "en": "Section Check"
+   },
+   "marks": 6,
+   "questions": [
+    {
+     "id": "ch18-2-sc",
+     "code": "SC",
+     "type": "tf",
+     "marks": 6,
+     "difficulty": 2,
+     "stem": {
+      "en": "Determine whether each of the following is correct. Put a tick in the box if it is correct and a cross if it is not.",
+      "zh": "判斷下列各項是否正確：正確的畫上「✓」，不正確的畫上「✗」。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "For any two events $A$ and $B$, $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$.",
+       "zh": "對任何兩個事件 $A$、$B$，$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "A pet is randomly selected from 3 dogs, 4 cats and 5 rabbits. The probability of selecting a dog or a cat is $\\frac{3}{12} + \\frac{4}{12}$.",
+       "zh": "從 3 隻狗、4 隻貓和 5 隻兔之中隨機選出一隻寵物。選到狗或貓的概率是 $\\frac{3}{12} + \\frac{4}{12}$。",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "A number is randomly chosen from 1 to 20 inclusive. The probability that the number chosen is an odd number or a number less than 6 is $\\frac{10}{20} + \\frac{5}{20} = \\frac{3}{4}$.",
+       "zh": "從 1 至 20（包括首尾）中隨機選出一個數。選出的數是奇數或是小於 6 的數的概率是 $\\frac{10}{20} + \\frac{5}{20} = \\frac{3}{4}$。",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "A box contains 3 red balls, 1 blue ball and 4 green balls. A ball is randomly drawn from the box. The probability of drawing a red ball or a blue ball is the same as the probability of drawing a green ball.",
+       "zh": "一個盒內有 3 個紅球、1 個藍球和 4 個綠球。從盒中隨機抽出一個球。抽到紅球或藍球的概率，與抽到綠球的概率相同。",
+       "marks": 1
+      },
+      {
+       "label": "(e)",
+       "en": "There are 56 oranges in a box, in which 4 are rotten. If an orange is randomly selected from the box, the probability that it is not rotten is $1 - \\frac{4}{56} = \\frac{13}{14}$.",
+       "zh": "一個盒內有 56 個橙，其中 4 個腐爛。若從盒中隨機選出一個橙，它沒有腐爛的概率是 $1 - \\frac{4}{56} = \\frac{13}{14}$。",
+       "marks": 1
+      },
+      {
+       "label": "(f)",
+       "en": "A fair dice is thrown twice. The probability of getting the sum of the two numbers less than 11 is $1 - \\frac{1}{36} = \\frac{35}{36}$.",
+       "zh": "擲一枚均勻骰子兩次。兩個數之和小於 11 的概率是 $1 - \\frac{1}{36} = \\frac{35}{36}$。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "tf": true,
+       "math": "\\text{Correct}",
+       "note": {
+        "zh": "正確（加法定律）",
+        "en": "Correct (the addition law)"
+       }
+      },
+      {
+       "part": "(b)",
+       "tf": true,
+       "math": "\\text{Correct}",
+       "note": {
+        "zh": "正確（$\\frac{3}{12} + \\frac{4}{12} = \\frac{7}{12}$）",
+        "en": "Correct (3/12 + 4/12 = 7/12)"
+       }
+      },
+      {
+       "part": "(c)",
+       "tf": false,
+       "math": "\\text{Incorrect}",
+       "note": {
+        "zh": "應為 $\\frac{10}{20} + \\frac{5}{20} - \\frac{3}{20} = \\frac{3}{5}$",
+        "en": "It should be 10/20 + 5/20 − 3/20 = 3/5"
+       }
+      },
+      {
+       "part": "(d)",
+       "tf": true,
+       "math": "\\text{Correct}",
+       "note": {
+        "zh": "正確（兩個概率都是 $\\frac{1}{2}$）",
+        "en": "Correct (both probabilities equal 1/2)"
+       }
+      },
+      {
+       "part": "(e)",
+       "tf": true,
+       "math": "\\text{Correct}",
+       "note": {
+        "zh": "正確（$1 - \\frac{4}{56} = \\frac{13}{14}$）",
+        "en": "Correct (1 − 4/56 = 13/14)"
+       }
+      },
+      {
+       "part": "(f)",
+       "tf": false,
+       "math": "\\text{Incorrect}",
+       "note": {
+        "zh": "應為 $1 - \\frac{3}{36} = \\frac{11}{12}$",
+        "en": "It should be 1 − 3/36 = 11/12"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "這就是加法定律",
+         "en": "This is the addition law"
+        },
+        "math": "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)",
+        "zh": "$P(A) + P(B)$ 會把交集 $A \\cap B$ 那份數兩次，所以減一次才是 $P(A \\cup B)$。寫法和公式完全相同，(a) 正確。",
+        "en": "The sum P(A) + P(B) counts the overlap A ∩ B twice, so subtracting it once gives P(A ∪ B). The statement matches the law exactly, so (a) is correct.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(A \\cup B) = P(A) + P(B) - P(A \\cap B)"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "狗與貓不會重疊",
+         "en": "Dogs and cats do not overlap"
+        },
+        "math": "\\frac{3}{12} + \\frac{4}{12} = \\frac{7}{12}",
+        "zh": "寵物共 $3 + 4 + 5 = 12$ 隻；一隻寵物不會同時是狗又是貓（互斥），所以概率是 $\\frac{3}{12} + \\frac{4}{12} = \\frac{7}{12}$。題目的寫法正確，(b) 正確。",
+        "en": "There are 3 + 4 + 5 = 12 pets; a pet cannot be a dog and a cat at once (mutually exclusive), so the probability is 3/12 + 4/12 = 7/12. The statement is right, so (b) is correct.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{3}{12} + \\frac{4}{12} = \\frac{7}{12}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "奇數與小於 6 有重疊，要減一次",
+         "en": "Odd numbers and numbers below 6 overlap"
+        },
+        "math": "\\frac{10}{20} + \\frac{5}{20} - \\frac{3}{20} = \\frac{12}{20} = \\frac{3}{5}",
+        "zh": "1 至 20 之中有 10 個奇數、5 個小於 6 的數，但 $1$、$3$、$5$ 這 3 個數同時符合兩邊，被數了兩次。正確值是 $\\frac{10}{20} + \\frac{5}{20} - \\frac{3}{20} = \\frac{12}{20} = \\frac{3}{5}$；題目漏了減交集，(c) 錯誤。",
+        "en": "Among 1 to 20 there are 10 odd numbers and 5 numbers below 6, but 1, 3 and 5 satisfy both and were counted twice. The correct value is 10/20 + 5/20 − 3/20 = 12/20 = 3/5; the statement omitted the overlap, so (c) is incorrect.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{10}{20} + \\frac{5}{20} - \\frac{3}{20} = \\frac{3}{5}"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "兩個概率都等於一半",
+         "en": "Both probabilities equal one half"
+        },
+        "math": "\\frac{3}{8} + \\frac{1}{8} = \\frac{4}{8} = \\frac{1}{2}",
+        "zh": "共 $3 + 1 + 4 = 8$ 個球。紅或藍＝ $\\frac{3}{8} + \\frac{1}{8} = \\frac{4}{8} = \\frac{1}{2}$；綠球＝ $\\frac{4}{8} = \\frac{1}{2}$。兩者數值相同，(d) 正確（注意只是概率相同，事件本身不同）。",
+        "en": "There are 3 + 1 + 4 = 8 balls. Red or blue gives 3/8 + 1/8 = 4/8 = 1/2, and green gives 4/8 = 1/2. The probabilities agree, so (d) is correct (the events differ, only their probabilities match).",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{3}{8} + \\frac{1}{8} = \\frac{1}{2} = \\frac{4}{8}"
+        ]
+       },
+       {
+        "part": "(e)",
+        "title": {
+         "zh": "反面：1 減腐爛的概率",
+         "en": "Complement of rotten"
+        },
+        "math": "1 - \\frac{4}{56} = \\frac{52}{56} = \\frac{13}{14}",
+        "zh": "56 個之中 4 個腐爛，$P(\\text{rotten}) = \\frac{4}{56}$；沒有腐爛是它的反面：$1 - \\frac{4}{56} = \\frac{52}{56} = \\frac{13}{14}$。(e) 正確。",
+        "en": "Four of the 56 oranges are rotten, so P(rotten) = 4/56; not rotten is the complement: 1 − 4/56 = 52/56 = 13/14. So (e) is correct.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{4}{56} = \\frac{13}{14}"
+        ]
+       },
+       {
+        "part": "(f)",
+        "title": {
+         "zh": "和不小於 11 有三個結果",
+         "en": "Three outcomes give a sum of 11 or more"
+        },
+        "math": "1 - \\frac{3}{36} = \\frac{33}{36} = \\frac{11}{12}",
+        "zh": "兩次擲骰共有 36 個結果，「兩個數之和大於或等於 11」有 $(5, 6)$、$(6, 5)$、$(6, 6)$ 三個，所以反面要減 $\\frac{3}{36}$：$1 - \\frac{3}{36} = \\frac{33}{36} = \\frac{11}{12}$。題目只減了 $\\frac{1}{36}$（只數到「和是 12」一種情況），(f) 錯誤。",
+        "en": "Two throws have 36 outcomes, and \"sum of the two numbers at least 11\" covers (5, 6), (6, 5) and (6, 6), so the complement subtracts 3/36: 1 − 3/36 = 33/36 = 11/12. The statement subtracted only 1/36, counting just the sum of 12, so (f) is incorrect.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{3}{36} = \\frac{11}{12}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(c) 忘了減交集",
+        "labelEn": "(c) dropping the intersection",
+        "zh": "$\\frac{10}{20} + \\frac{5}{20}$ 把 $1$、$3$、$5$ 數了兩次；凡是兩組有共同成員，就要減一次交集。",
+        "en": "10/20 + 5/20 counts 1, 3 and 5 twice; whenever the two groups share members, subtract the intersection once."
+       },
+       {
+        "label": "(f) 反面只減一種結果",
+        "labelEn": "(f) subtracting only one outcome",
+        "zh": "「和大於或等於 11」不是只有 $(6, 6)$：$(5, 6)$ 與 $(6, 5)$ 同樣要數，共 3 個結果。",
+        "en": "\"Sum at least 11\" is not just (6, 6): (5, 6) and (6, 5) count as well, three outcomes in total."
+       },
+       {
+        "label": "(d) 把「概率相同」當成「事件相同」",
+        "labelEn": "(d) confusing equal probabilities with identical events",
+        "zh": "紅或藍與綠球的概率同為 $\\frac{1}{2}$，但兩件事完全不同；(d) 講的是概率相同，不是事件相同。",
+        "en": "\"Red or blue\" and \"green\" both have probability 1/2, yet they are different events; (d) only claims the probabilities are equal."
+       }
+      ],
+      "tip": {
+       "zh": "判斷題先自己算一次，再把算出的值與題目寫的值並排比較；特別檢查兩點：兩組是否有重疊（要不要減交集）、反面減的數目是否數齊。",
+       "en": "In a true-or-false item, work out the value yourself first and compare it side by side with the printed one; check two things in particular: whether the groups overlap (so an intersection must be subtracted) and whether the complement counts every excluded outcome."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "L1",
+   "short": {
+    "zh": "基礎練習",
+    "en": "Level 1"
+   },
+   "title": {
+    "zh": "基礎練習 · Level 1",
+    "en": "Level 1"
+   },
+   "marks": 38,
+   "questions": [
+    {
+     "id": "ch18-2-l1-1",
+     "code": "1",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 1,
+     "stem": {
+      "en": "A number is randomly chosen from the integers 1 to 12 inclusive.",
+      "zh": "從 1 至 12（包括首尾）的整數中隨機選出一個數。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find the probability that the number chosen is greater than 6 or a multiple of 3.",
+       "zh": "求選出的數大於 6 或是 3 的倍數的概率。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "math": "\\frac{6}{12} + \\frac{4}{12} - \\frac{2}{12} = \\frac{8}{12} = \\frac{2}{3}",
+       "note": {
+        "zh": "交集是 $\\{9, 12\\}$，要減一次",
+        "en": "The intersection is {9, 12}, subtracted once"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "列出兩組與交集",
+         "en": "List the two sets and the intersection"
+        },
+        "math": "n(A) = 6 ,\\ n(B) = 4 ,\\ n(A \\cap B) = 2",
+        "zh": "設 $A$ 為大於 6 的數、$B$ 為 3 的倍數。$A = \\{7, 8, 9, 10, 11, 12\\}$ 有 6 個；$B = \\{3, 6, 9, 12\\}$ 有 4 個；兩組都有的 $A \\cap B = \\{9, 12\\}$ 有 2 個。",
+        "en": "Let A be \"greater than 6\" and B be \"a multiple of 3\". A = {7, 8, 9, 10, 11, 12} has six members, B = {3, 6, 9, 12} has four, and their overlap A ∩ B = {9, 12} has two.",
+        "marking": "(1A)",
+        "highlight": [
+         "n(A) = 6 ,\\ n(B) = 4 ,\\ n(A \\cap B) = 2"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "用加法定律列式",
+         "en": "Set up the addition law"
+        },
+        "math": "P(A \\cup B) = \\frac{6}{12} + \\frac{4}{12} - \\frac{2}{12}",
+        "zh": "9 與 12 同時屬於兩組，在 $\\frac{6}{12}$ 與 $\\frac{4}{12}$ 中各被數了一次，所以要減去 $\\frac{2}{12}$。",
+        "en": "Both 9 and 12 belong to the two sets, counted once in 6/12 and once in 4/12, so 2/12 is subtracted.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(A \\cup B) = \\frac{6}{12} + \\frac{4}{12} - \\frac{2}{12}"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "先加後減，約簡",
+         "en": "Add, subtract, simplify"
+        },
+        "math": "\\frac{[6 + 4] - 2}{12} = \\frac{8}{12} = \\frac{2}{3}",
+        "zh": "分子是 $[6 + 4] - 2 = 8$，所以所求概率為 $\\frac{8}{12} = \\frac{2}{3}$。",
+        "en": "The numerator is [6 + 4] − 2 = 8, so the probability is 8/12 = 2/3.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{8}{12} = \\frac{2}{3}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "忘記減交集",
+        "labelEn": "Forgetting the intersection",
+        "zh": "只算 $\\frac{6}{12} + \\frac{4}{12} = \\frac{10}{12}$ 會把 9 與 12 各數兩次；兩組有共同成員就要減一次。",
+        "en": "Using only 6/12 + 4/12 = 10/12 counts 9 and 12 twice; shared members must be subtracted once."
+       },
+       {
+        "label": "交集找錯",
+        "labelEn": "Getting the intersection wrong",
+        "zh": "交集是 $\\{9, 12\\}$ 兩個數，不是只有 $\\{9\\}$：12 既大於 6，又是 3 的倍數。",
+        "en": "The intersection is {9, 12}, not just {9}: 12 is greater than 6 and also a multiple of 3."
+       }
+      ],
+      "tip": {
+       "zh": "兩組有重疊時，先把 $A$、$B$、$A \\cap B$ 三組成員寫出來，再代入加法定律；數目清楚了才不容易減錯。",
+       "en": "When the two sets overlap, write out the members of A, B and A ∩ B first, then substitute into the addition law; clear counts prevent wrong subtraction."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-2",
+     "code": "2",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 1,
+     "stem": {
+      "en": "In a class of 36 students, 15 of them can play the guitar, 21 of them can play the piano and 6 of them can play both the guitar and the piano.",
+      "zh": "一班有 36 名學生，其中 15 人會彈結他、21 人會彈鋼琴、6 人兩樣都會。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "If a student is randomly selected from the class, find the probability that the selected student can play the guitar or the piano.",
+       "zh": "若從班中隨機選出一名學生，求選出的學生會彈結他或鋼琴的概率。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "math": "\\frac{15}{36} + \\frac{21}{36} - \\frac{6}{36} = \\frac{30}{36} = \\frac{5}{6}",
+       "note": {
+        "zh": "6 名學生被數了兩次",
+        "en": "The six who play both were counted twice"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "先找出重疊的 6 人",
+         "en": "Identify the six who overlap"
+        },
+        "math": "n(A \\cap B) = 6",
+        "zh": "兩樣樂器都會的 6 名學生，在「會結他」與「會鋼琴」兩邊各被數了一次，他們就是交集。",
+        "en": "The six students who play both instruments were counted once in \"guitar\" and once in \"piano\", so they form the intersection.",
+        "marking": "(1M)",
+        "highlight": [
+         "n(A \\cap B) = 6"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "用加法定律列式",
+         "en": "Set up the addition law"
+        },
+        "math": "P(A \\cup B) = \\frac{15}{36} + \\frac{21}{36} - \\frac{6}{36}",
+        "zh": "全班 36 人是共同分母；先加兩個概率，再減去重複的 $\\frac{6}{36}$。",
+        "en": "The class of 36 is the common denominator: add the two probabilities, then subtract the repeated 6/36.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(A \\cup B) = \\frac{15}{36} + \\frac{21}{36} - \\frac{6}{36}"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "先加後減，約簡",
+         "en": "Add, subtract, simplify"
+        },
+        "math": "\\frac{[15 + 21] - 6}{36} = \\frac{30}{36} = \\frac{5}{6}",
+        "zh": "分子是 $[15 + 21] - 6 = 30$，所以所求概率為 $\\frac{30}{36} = \\frac{5}{6}$。",
+        "en": "The numerator is [15 + 21] − 6 = 30, giving 30/36 = 5/6.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{30}{36} = \\frac{5}{6}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "只加不減",
+        "labelEn": "Adding without subtracting",
+        "zh": "$\\frac{15}{36} + \\frac{21}{36} = \\frac{36}{36} = 1$ 代表「人人都至少會一種樂器」，與 6 人重複計算的事實矛盾。",
+        "en": "15/36 + 21/36 = 1 would say everyone plays at least one instrument, contradicting the six double-counted students."
+       },
+       {
+        "label": "把交集減兩次",
+        "labelEn": "Subtracting the intersection twice",
+        "zh": "6 人只在交集中出現一次，減一次就夠；減兩次會把他們完全剔出答案。",
+        "en": "The six students appear in the intersection once; subtract once — subtracting twice would remove them altogether."
+       }
+      ],
+      "tip": {
+       "zh": "「$A$ 或 $B$」＝ $A$ 的數目加 $B$ 的數目，再減去「兩者都是」一次；解題時先圈出「或」與「都會」兩個關鍵字。",
+       "en": "\"A or B\" is the count of A plus the count of B minus the \"both\" group once; circle the keywords \"or\" and \"both\" first."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-3",
+     "code": "3",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "A card is randomly drawn from a pack of 52 playing cards. Find the probability that it is",
+      "zh": "從一副 52 張的撲克牌中隨機抽出一張。求抽到以下牌的概率："
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "a J or a Q,",
+       "zh": "J 或 Q；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "a spade or a number card with a number less than 4.",
+       "zh": "葵扇或數字小於 4 的數字牌。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{4}{52} + \\frac{4}{52} = \\frac{8}{52} = \\frac{2}{13}",
+       "note": {
+        "zh": "J 與 Q 不會同時出現（互斥）",
+        "en": "A card cannot be J and Q at once"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{13}{52} + \\frac{8}{52} - \\frac{2}{52} = \\frac{19}{52}",
+       "note": {
+        "zh": "交集＝葵扇 2 與葵扇 3",
+        "en": "The intersection is the 2 and 3 of spades"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "J 與 Q 各有 4 張",
+         "en": "Four J and four Q"
+        },
+        "math": "\\frac{4}{52} + \\frac{4}{52} = \\frac{8}{52} = \\frac{2}{13}",
+        "zh": "四種花色各有一張 J、一張 Q，所以各有 4 張；一張牌不可能同時是 J 又是 Q（互斥），直接相加：$\\frac{4}{52} + \\frac{4}{52} = \\frac{8}{52} = \\frac{2}{13}$。",
+        "en": "Each suit has one J and one Q, so there are four of each; no card is both a J and a Q (mutually exclusive), so simply add: 4/52 + 4/52 = 8/52 = 2/13.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{4}{52} + \\frac{4}{52} = \\frac{2}{13}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "三組數目：葵扇 13、數字牌 8、重疊 2",
+         "en": "Three counts: 13 spades, 8 number cards, 2 in both"
+        },
+        "math": "13 ,\\ 8 ,\\ 2",
+        "zh": "葵扇有 13 張；「數字小於 4 的數字牌」是 2 與 3（A 不是數字牌），四個花色共 $2 \\times 4 = 8$ 張；重疊的是葵扇 2 與葵扇 3，共 2 張。",
+        "en": "There are 13 spades; the number cards below 4 are 2 and 3 (the ace is not a number card), giving 2 × 4 = 8 cards; the overlap is the 2 and 3 of spades, two cards.",
+        "marking": "(1M)",
+        "highlight": [
+         "13 ,\\ 8 ,\\ 2"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "用加法定律",
+         "en": "Apply the addition law"
+        },
+        "math": "\\frac{13}{52} + \\frac{8}{52} - \\frac{2}{52} = \\frac{19}{52}",
+        "zh": "分子 $[13 + 8] - 2 = 19$，所以概率是 $\\frac{19}{52}$（已是最簡）。",
+        "en": "The numerator is [13 + 8] − 2 = 19, so the probability is 19/52, already in lowest terms.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{13}{52} + \\frac{8}{52} - \\frac{2}{52} = \\frac{19}{52}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 A 當成數字牌",
+        "labelEn": "Treating the ace as a number card",
+        "zh": "「數字牌」指 2 至 10；A、J、Q、K 都不是數字牌，所以小於 4 的只有 2 與 3。",
+        "en": "\"Number card\" means 2 to 10; A, J, Q and K are not number cards, so only 2 and 3 are below 4."
+       },
+       {
+        "label": "(b) 忘記重疊的葵扇 2、3",
+        "labelEn": "(b) missing the 2 and 3 of spades",
+        "zh": "葵扇 2 與葵扇 3 同時符合兩個條件，在 13 與 8 中各被數了一次，要減 $\\frac{2}{52}$。",
+        "en": "The 2 and 3 of spades satisfy both conditions, counted once in 13 and once in 8, so 2/52 is subtracted."
+       }
+      ],
+      "tip": {
+       "zh": "撲克牌常數：一副 52 張、每種花色 13 張、每種點數 4 張；數字牌是 2 至 10（每花色 9 張）。",
+       "en": "Card facts to memorise: 52 cards, 13 per suit, 4 of each rank; number cards are 2 to 10 (nine per suit)."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-4",
+     "code": "4",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 1,
+     "stem": {
+      "en": "A lucky wheel has ten equal sectors, numbered 1 to 10 respectively. The pointer is equally likely to land on any sector. Tiffany spins the wheel once. Find the probability that the pointer lands on",
+      "zh": "一個幸運輪有十個相等的扇形，分別標上 1 至 10。指針停在每個扇形的機會相同。Tiffany 轉動輪盤一次，求指針停在以下數字的概率："
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "an odd number,",
+       "zh": "奇數；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "a prime number,",
+       "zh": "質數；",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "an odd number or a prime number.",
+       "zh": "奇數或質數。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{5}{10} = \\frac{1}{2}",
+       "note": {
+        "zh": "1、3、5、7、9",
+        "en": "1, 3, 5, 7, 9"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{4}{10} = \\frac{2}{5}",
+       "note": {
+        "zh": "2、3、5、7（1 不是質數）",
+        "en": "2, 3, 5, 7 (1 is not prime)"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "\\frac{5}{10} + \\frac{4}{10} - \\frac{3}{10} = \\frac{6}{10} = \\frac{3}{5}",
+       "note": {
+        "zh": "重疊的是 3、5、7",
+        "en": "The overlap is 3, 5, 7"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "數奇數",
+         "en": "Count the odd numbers"
+        },
+        "math": "\\frac{5}{10} = \\frac{1}{2}",
+        "zh": "1 至 10 之中的奇數是 1、3、5、7、9 共 5 個，所以概率是 $\\frac{5}{10} = \\frac{1}{2}$。",
+        "en": "The odd numbers from 1 to 10 are 1, 3, 5, 7 and 9, five of them, so the probability is 5/10 = 1/2.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{5}{10} = \\frac{1}{2}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "數質數（1 不算）",
+         "en": "Count the primes (not 1)"
+        },
+        "math": "\\frac{4}{10} = \\frac{2}{5}",
+        "zh": "1 至 10 之中的質數是 2、3、5、7 共 4 個；1 只有一個因數，不是質數。概率是 $\\frac{4}{10} = \\frac{2}{5}$。",
+        "en": "The primes from 1 to 10 are 2, 3, 5 and 7, four of them; 1 has a single factor and is not prime. The probability is 4/10 = 2/5.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{4}{10} = \\frac{2}{5}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "兩組重疊的是 3、5、7",
+         "en": "The overlap is 3, 5 and 7"
+        },
+        "math": "\\frac{5}{10} + \\frac{4}{10} - \\frac{3}{10} = \\frac{6}{10} = \\frac{3}{5}",
+        "zh": "3、5、7 既是奇數又是質數，在兩邊各被數了一次。用加法定律：$\\frac{5}{10} + \\frac{4}{10} - \\frac{3}{10} = \\frac{6}{10} = \\frac{3}{5}$。",
+        "en": "The numbers 3, 5 and 7 are both odd and prime, counted once in each group. The addition law gives 5/10 + 4/10 − 3/10 = 6/10 = 3/5.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{5}{10} + \\frac{4}{10} - \\frac{3}{10} = \\frac{3}{5}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 1 當成質數",
+        "labelEn": "Treating 1 as prime",
+        "zh": "1 只有一個因數（就是 1 本身），不是質數；(b) 的質數只有 2、3、5、7。",
+        "en": "1 has only one factor (itself) and is not prime; part (b) counts only 2, 3, 5 and 7."
+       },
+       {
+        "label": "(c) 忘減重疊",
+        "labelEn": "(c) forgetting the overlap",
+        "zh": "$\\frac{5}{10} + \\frac{4}{10} = \\frac{9}{10}$ 把 3、5、7 各數了兩次，正確答案是 $\\frac{6}{10}$。",
+        "en": "5/10 + 4/10 = 9/10 counts 3, 5 and 7 twice; the correct answer is 6/10."
+       }
+      ],
+      "tip": {
+       "zh": "質數要背：2、3、5、7、11、13…（1 不是質數）；「或」的題目先圈出兩組共同擁有的數，再考慮要不要減。",
+       "en": "Know the primes: 2, 3, 5, 7, 11, 13 … (1 is not prime). For an \"or\" question, circle the shared numbers first and decide whether to subtract."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-5",
+     "code": "5",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "The director of a movie is holding auditions for the leading actress. The probability of selecting Charlene is 0.4 and the probability of selecting Doris is 0.3.",
+      "zh": "一位電影導演正在為女主角進行試鏡。選中 Charlene 的概率是 0.4，選中 Doris 的概率是 0.3。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find the probability that the director selects Charlene or Doris as the leading actress of the movie.",
+       "zh": "求導演選中 Charlene 或 Doris 擔任女主角的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "math": "0.4 + 0.3 = 0.7",
+       "note": {
+        "zh": "女主角只有一位，兩人不可能同時入選",
+        "en": "There is only one leading actress, so the events cannot occur together"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "判斷兩件事是否互斥",
+         "en": "Check whether the events are mutually exclusive"
+        },
+        "math": "P(\\text{Charlene and Doris}) = 0",
+        "zh": "女主角只有一位，不可能同時是 Charlene 又是 Doris，所以兩件事互斥、交集為 $0$，不必再減任何東西。",
+        "en": "There is only one leading actress, so it cannot be both Charlene and Doris; the events are mutually exclusive with intersection 0, and nothing needs subtracting.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(\\text{Charlene and Doris}) = 0"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "直接相加",
+         "en": "Simply add"
+        },
+        "math": "0.4 + 0.3 = 0.7",
+        "zh": "所以 $P(\\text{Charlene or Doris}) = 0.4 + 0.3 = 0.7$，即是七成的機會。",
+        "en": "Hence P(Charlene or Doris) = 0.4 + 0.3 = 0.7.",
+        "marking": "(1A)",
+        "highlight": [
+         "0.4 + 0.3 = 0.7"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "用 1 減去兩個概率",
+        "labelEn": "Subtracting the probabilities from 1",
+        "zh": "$1 - 0.4 - 0.3 = 0.3$ 是「兩人都不入選」的概率，不是本題要的「選中其中一人」；問「或」就相加。",
+        "en": "1 − 0.4 − 0.3 = 0.3 is the probability that neither is chosen, not the \"or\" asked for here; for \"or\", add."
+       },
+       {
+        "label": "強行減交集",
+        "labelEn": "Forcing a subtraction",
+        "zh": "兩件事互斥，交集是 $0$；若再減一次「兩人都入選」，會多減了一個根本不存在的部分。",
+        "en": "The events are mutually exclusive with intersection 0; subtracting a \"both\" probability again removes something that does not exist."
+       }
+      ],
+      "tip": {
+       "zh": "「或」＝先相加；只有兩件事可能同時發生時才需要減交集。本題女主角只有一位，所以「只加不退」。",
+       "en": "\"Or\" means add first; subtract only when the two events can happen together. Here there is one leading actress, so add and do not subtract."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-6",
+     "code": "6",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "A letter is randomly selected from the word 'PREPARATION'.",
+      "zh": "從英文字 'PREPARATION' 中隨機選出一個字母。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that the letter selected is a 'P' or an 'R'.",
+       "zh": "求選出的字母是 'P' 或 'R' 的概率。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that the letter selected is a vowel or a repeated letter.",
+       "zh": "求選出的字母是母音或重複出現的字母的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{2}{11} + \\frac{2}{11} = \\frac{4}{11}",
+       "note": {
+        "zh": "P 有 2 個、R 有 2 個，共 11 個字母",
+        "en": "Two P, two R out of eleven letters"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{5}{11} + \\frac{6}{11} - \\frac{2}{11} = \\frac{9}{11}",
+       "note": {
+        "zh": "母音 5 個、重複字母 6 個、重疊 2 個（A、A）",
+        "en": "Five vowels, six repeated letters, two in both (the two A's)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先數 P 與 R 的數目",
+         "en": "Count the P's and R's"
+        },
+        "math": "\\frac{2}{11} + \\frac{2}{11} = \\frac{4}{11}",
+        "zh": "PREPARATION 共 11 個字母：P 有 2 個、R 有 2 個。同一位置不可能同時是 P 又是 R（互斥），所以直接相加：$\\frac{2}{11} + \\frac{2}{11} = \\frac{4}{11}$。",
+        "en": "PREPARATION has 11 letters: two P's and two R's. One position cannot be both a P and an R (mutually exclusive), so simply add: 2/11 + 2/11 = 4/11.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{2}{11} + \\frac{2}{11} = \\frac{4}{11}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "數母音、重複字母與重疊部分",
+         "en": "Count vowels, repeated letters and the overlap"
+        },
+        "math": "\\text{vowels} = 5 ,\\ \\text{repeated} = 6 ,\\ \\text{both} = 2",
+        "zh": "母音（E、A、A、I、O）共 5 個；重複出現的字母（P、P、R、R、A、A）共 6 個；兩邊都數到的（A、A）共 2 個。",
+        "en": "The vowels (E, A, A, I, O) number five; the repeated letters (P, P, R, R, A, A) number six; and the two A's belong to both groups.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\text{vowels} = 5 ,\\ \\text{repeated} = 6 ,\\ \\text{both} = 2"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "用加法定律",
+         "en": "Apply the addition law"
+        },
+        "math": "\\frac{5}{11} + \\frac{6}{11} - \\frac{2}{11} = \\frac{9}{11}",
+        "zh": "分子是 $[5 + 6] - 2 = 9$，所以所求概率為 $\\frac{9}{11}$。",
+        "en": "The numerator is [5 + 6] − 2 = 9, so the probability is 9/11.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{5}{11} + \\frac{6}{11} - \\frac{2}{11} = \\frac{9}{11}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "漏掉重疊的 A",
+        "labelEn": "Missing the overlapping A's",
+        "zh": "$A$ 既是母音又是重複字母，兩個 $A$ 就是交集；漏掉這 2 個字母就會把答案算成 $\\frac{11}{11}$。",
+        "en": "A is both a vowel and a repeated letter, and the two A's form the intersection; missing them would give 11/11."
+       },
+       {
+        "label": "分母用 9",
+        "labelEn": "Using 9 as the denominator",
+        "zh": "分母是全部 11 個字母（包括重複的 P、R、A），不是 9 個不同字母。",
+        "en": "The denominator is all 11 letters (repeated P, R and A included), not the nine distinct letters."
+       }
+      ],
+      "tip": {
+       "zh": "先寫出每個字母的次數：P2、R2、E1、A2、T1、I1、O1、N1；母音是 A、E、I、O、U，之後再處理「或」。",
+       "en": "Write the count of each letter first: P2, R2, E1, A2, T1, I1, O1, N1; vowels are A, E, I, O and U, then handle the \"or\"."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-7",
+     "code": "7",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "The table shows the HKDSE Mathematics examination results of 90 students in a school: level $5^{\\ast\\ast}$ — 6, 5 — 21, 4 — 36, 3 — 15, 2 — 10, 1 — 2. A student is randomly chosen.",
+      "zh": "下表顯示一所學校 90 名學生的 HKDSE 數學科成績：$5^{\\ast\\ast}$ 級 6 人、5 級 21 人、4 級 36 人、3 級 15 人、2 級 10 人、1 級 2 人。隨機選出一名學生。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that the student chosen obtains level 2 or level 3.",
+       "zh": "求選出的學生取得 2 級或 3 級的概率。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that the student chosen obtains level 4 or above.",
+       "zh": "求選出的學生取得 4 級或以上的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{10 + 15}{90} = \\frac{25}{90} = \\frac{5}{18}",
+       "note": {
+        "zh": "一個學生只會有一個等級（互斥）",
+        "en": "Each student has exactly one level"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{36 + 21 + 6}{90} = \\frac{63}{90} = \\frac{7}{10}",
+       "note": {
+        "zh": "4 級、5 級、$5^{\\ast\\ast}$ 級都要計",
+        "en": "Levels 4, 5 and $5^{\\ast\\ast}$ all count"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同一人不會有兩個等級",
+         "en": "No student has two levels"
+        },
+        "math": "\\frac{10 + 15}{90} = \\frac{25}{90} = \\frac{5}{18}",
+        "zh": "「2 級」與「3 級」互斥：一名學生只會有一個等級。所以直接相加：$\\frac{10 + 15}{90} = \\frac{25}{90} = \\frac{5}{18}$。",
+        "en": "\"Level 2\" and \"level 3\" are mutually exclusive because a student holds one level only, so simply add: (10 + 15)/90 = 25/90 = 5/18.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{10 + 15}{90} = \\frac{5}{18}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "把 4 級或以上的人數加起來",
+         "en": "Add the counts at level 4 and above"
+        },
+        "math": "36 + 21 + 6 = 63",
+        "zh": "「4 級或以上」＝ 4 級、5 級、$5^{\\ast\\ast}$ 級，人數 $36 + 21 + 6 = 63$。",
+        "en": "\"Level 4 or above\" covers levels 4, 5 and $5^{\\ast\\ast}$, i.e. 36 + 21 + 6 = 63 students.",
+        "marking": "(1M)",
+        "highlight": [
+         "36 + 21 + 6 = 63"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "除以總人數 90",
+         "en": "Divide by the total of 90"
+        },
+        "math": "\\frac{63}{90} = \\frac{7}{10}",
+        "zh": "分母仍是全校總人數 90，所以所求概率為 $\\frac{63}{90} = \\frac{7}{10}$。",
+        "en": "The denominator remains the total of 90: 63/90 = 7/10.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{63}{90} = \\frac{7}{10}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "分母跟着分子改",
+        "labelEn": "Changing the denominator",
+        "zh": "即使只關心 2 級與 3 級，分母仍然是全部 90 人（不是 25 人）；所有小題共用同一個樣本空間。",
+        "en": "Even when only levels 2 and 3 matter, the denominator is still all 90 students (not 25); every part shares the same sample space."
+       },
+       {
+        "label": "(b) 只數 4 級",
+        "labelEn": "(b) counting only level 4",
+        "zh": "「或以上」要包含 5 級與 $5^{\\ast\\ast}$ 級；只數 36 人會漏掉 27 名較高分的學生。",
+        "en": "\"Or above\" includes levels 5 and $5^{\\ast\\ast}$; counting only the 36 misses 27 higher-scoring students."
+       }
+      ],
+      "tip": {
+       "zh": "「或以上／或以下」把表格向那一邊的等級全部加起來；「或」而各等級互斥，所以直接相加，不必減。",
+       "en": "\"Or above / or below\" adds every level on that side of the table; the levels are mutually exclusive, so add directly without subtracting."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-8",
+     "code": "8",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "A jar contains 2 blue cubes, 6 blue spheres, 4 white cubes and 3 white prisms.",
+      "zh": "一個瓶內有 2 個藍色立方體、6 個藍色球體、4 個白色立方體和 3 個白色稜柱體。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "If an item is selected randomly from the jar, find the probability that it is a cube.",
+       "zh": "若從瓶中隨機選出一件物件，求它是立方體的概率。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that it is blue in colour or a prism.",
+       "zh": "求它是藍色或稜柱體的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{2 + 4}{15} = \\frac{6}{15} = \\frac{2}{5}",
+       "note": {
+        "zh": "藍色與白色的立方體都要計",
+        "en": "Both blue and white cubes count"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{8}{15} + \\frac{3}{15} - \\frac{0}{15} = \\frac{11}{15}",
+       "note": {
+        "zh": "藍色 8 件、稜柱 3 件，沒有重疊",
+        "en": "Eight blue items and three prisms, with no overlap"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "「立方體」看形狀，不看顏色",
+         "en": "\"Cube\" is about shape, not colour"
+        },
+        "math": "\\frac{2 + 4}{15} = \\frac{6}{15} = \\frac{2}{5}",
+        "zh": "物件共 $2 + 6 + 4 + 3 = 15$ 件；立方體有藍 2 個、白 4 個，共 6 個，所以概率是 $\\frac{6}{15} = \\frac{2}{5}$。",
+        "en": "There are 2 + 6 + 4 + 3 = 15 items; the cubes are two blue and four white, six in all, so the probability is 6/15 = 2/5.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{2 + 4}{15} = \\frac{2}{5}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "數藍色、數稜柱、找重疊",
+         "en": "Count blue, count prisms, find the overlap"
+        },
+        "math": "n = 8 ,\\ n = 3 ,\\ n = 0",
+        "zh": "藍色物件有 $2 + 6 = 8$ 件；稜柱體有 3 件（全部白色）；藍色稜柱體有 0 件，所以兩件事沒有重疊。",
+        "en": "There are 2 + 6 = 8 blue items and 3 prisms (all white); no item is both blue and a prism, so the events do not overlap.",
+        "marking": "(1M)",
+        "highlight": [
+         "n = 8 ,\\ n = 3 ,\\ n = 0"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "交集為 0，直接相加",
+         "en": "Zero intersection: simply add"
+        },
+        "math": "\\frac{8}{15} + \\frac{3}{15} = \\frac{11}{15}",
+        "zh": "兩種形狀的機會率直接相加，而交集是零：$\\frac{8}{15} + \\frac{3}{15} - \\frac{0}{15} = \\frac{11}{15}$。",
+        "en": "So the probability is 8/15 + 3/15 − 0/15 = 11/15.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{8}{15} + \\frac{3}{15} = \\frac{11}{15}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 只數藍色立方體",
+        "labelEn": "(a) counting only the blue cubes",
+        "zh": "「立方體」是形狀：藍色立方體 2 個加白色立方體 4 個，共 6 個；只數 2 個是漏了白色那批。",
+        "en": "\"Cube\" is a shape: two blue cubes plus four white cubes make six; counting only two misses the white ones."
+       },
+       {
+        "label": "把顏色與形狀混着數",
+        "labelEn": "Mixing colour and shape counts",
+        "zh": "$\\frac{8}{15}$（藍色）與 $\\frac{3}{15}$（稜柱）是兩個不同分類；稜柱全是白色，所以交集是 0，但不可以把「藍色」寫成 6 件（那是藍色球體的數目）。",
+        "en": "8/15 (blue) and 3/15 (prisms) come from two different classifications; every prism is white, so the intersection is 0 — but \"blue\" is not 6 (that is the count of blue spheres)."
+       }
+      ],
+      "tip": {
+       "zh": "物件有兩個分類維度（顏色、形狀）時，把四格寫出來：藍立方 2、藍球 6、白立方 4、白稜柱 3；任何事件都只是其中幾格相加。",
+       "en": "When items have two dimensions (colour and shape), write all four cells: blue cubes 2, blue spheres 6, white cubes 4, white prisms 3; any event is a sum of some cells."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-9",
+     "code": "9",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "The probability that Manson will buy a watch in a shop is 0.1.",
+      "zh": "Manson 在一間店買一隻手錶的概率是 0.1。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find the probability that he will not buy a watch in the shop.",
+       "zh": "求他不會在該店買手錶的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "math": "1 - 0.1 = 0.9",
+       "note": {
+        "zh": "「不會買」是「會買」的反面",
+        "en": "\"Not buy\" is the complement of \"buy\""
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "寫出反面的框架",
+         "en": "Write the complement frame"
+        },
+        "math": "P(\\text{not buy}) = 1 - P(\\text{buy})",
+        "zh": "「不會買」與「會買」是一對相反事件，兩者的概率加起來等於 $1$，所以用 $1$ 減去 $0.1$。",
+        "en": "\"Not buy\" and \"buy\" are complementary events whose probabilities add to 1, so subtract 0.1 from 1.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(\\text{not buy}) = 1 - P(\\text{buy})"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "代入數字",
+         "en": "Substitute the number"
+        },
+        "math": "1 - 0.1 = 0.9",
+        "zh": "$1 - 0.1 = 0.9$，所以他不會買手錶的概率是 $0.9$。",
+        "en": "1 − 0.1 = 0.9, so the probability that he does not buy a watch is 0.9.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - 0.1 = 0.9"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 0.1 當成答案",
+        "labelEn": "Answering 0.1",
+        "zh": "$0.1$ 是「會買」的概率；題目問「不會買」，要取反面 $1 - 0.1 = 0.9$。",
+        "en": "0.1 is the probability of buying; the question asks for \"not buy\", the complement 1 − 0.1 = 0.9."
+       }
+      ],
+      "tip": {
+       "zh": "看到「不會／不是」先在紙上寫 $1 - P(E)$，再代入數字；這樣就不會把原來的概率直接當答案。",
+       "en": "When you see \"not\", write down 1 − P(E) first and then substitute; this prevents quoting the original probability as the answer."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-10",
+     "code": "10",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "In a batch of 50 cans of tuna, 2 of them have gone bad.",
+      "zh": "一批 50 罐吞拿魚之中，有 2 罐已經變壞。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "If a can of tuna is selected randomly from the batch, find the probability that it has not gone bad.",
+       "zh": "若從該批吞拿魚中隨機選出一罐，求它沒有變壞的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "math": "1 - \\frac{2}{50} = \\frac{48}{50} = \\frac{24}{25}",
+       "note": {
+        "zh": "也可以直接數 $50 - 2 = 48$ 罐",
+        "en": "Or count 50 − 2 = 48 cans directly"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "先寫變壞的概率",
+         "en": "Write the probability of a bad can"
+        },
+        "math": "P(\\text{bad}) = \\frac{2}{50}",
+        "zh": "50 罐之中有 2 罐變壞，所以 $P(\\text{bad}) = \\frac{2}{50}$；「沒有變壞」是它的反面。",
+        "en": "Two of the fifty cans are bad, so P(bad) = 2/50; \"not bad\" is its complement.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(\\text{bad}) = \\frac{2}{50}"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "用 1 減去，再約簡",
+         "en": "Subtract from 1 and simplify"
+        },
+        "math": "1 - \\frac{2}{50} = \\frac{48}{50} = \\frac{24}{25}",
+        "zh": "$1 - \\frac{2}{50} = \\frac{48}{50} = \\frac{24}{25}$。直接數也可以：$50 - 2 = 48$ 罐沒有變壞，$\\frac{48}{50} = \\frac{24}{25}$。",
+        "en": "1 − 2/50 = 48/50 = 24/25. Counting directly agrees: 50 − 2 = 48 cans are good, and 48/50 = 24/25.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{2}{50} = \\frac{48}{50} = \\frac{24}{25}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "分母改用 48",
+        "labelEn": "Switching the denominator to 48",
+        "zh": "分母是全部 50 罐，不是「沒有變壞」的 48 罐；反面只改變分子。",
+        "en": "The denominator is all 50 cans, not the 48 good ones; the complement changes only the numerator."
+       }
+      ],
+      "tip": {
+       "zh": "反面題目：分母永遠是樣本空間的全部數目（50 罐），分子才是 $50 - 2 = 48$。",
+       "en": "For a complement, the denominator stays the whole sample space (50 cans); only the numerator becomes 50 − 2 = 48."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-11",
+     "code": "11",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "A bowl contains 5 sesame glutinous rice balls, 3 peanut glutinous rice balls and 2 red bean glutinous rice balls.",
+      "zh": "一個碗內有 5 粒芝麻湯圓、3 粒花生湯圓和 2 粒紅豆湯圓。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "If a rice ball is randomly selected from the bowl, find the probability that it is not a peanut glutinous rice ball.",
+       "zh": "若從碗中隨機選出一粒湯圓，求它不是花生湯圓的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "math": "1 - \\frac{3}{10} = \\frac{7}{10}",
+       "note": {
+        "zh": "反面＝芝麻加紅豆，共 7 粒",
+        "en": "The complement is sesame plus red bean, seven balls"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "先數總數與花生餡",
+         "en": "Count the total and the peanut ones"
+        },
+        "math": "5 + 3 + 2 = 10",
+        "zh": "湯圓共 $5 + 3 + 2 = 10$ 粒，其中花生餡 3 粒，所以 $P(\\text{peanut}) = \\frac{3}{10}$；題目問「不是花生」。",
+        "en": "There are 5 + 3 + 2 = 10 balls in all, three of them peanut, so P(peanut) = 3/10; the question asks for \"not peanut\".",
+        "marking": "(1M)",
+        "highlight": [
+         "5 + 3 + 2 = 10"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "反面：1 減花生餡",
+         "en": "Complement: 1 − P(peanut)"
+        },
+        "math": "1 - \\frac{3}{10} = \\frac{7}{10}",
+        "zh": "$1 - \\frac{3}{10} = \\frac{7}{10}$。直接數：芝麻 5 粒加紅豆 2 粒，$5 + 2 = 7$ 粒，$\\frac{7}{10}$，兩者一致。",
+        "en": "1 − 3/10 = 7/10. Counting directly: five sesame plus two red bean make seven, giving 7/10 as well.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{3}{10} = \\frac{7}{10}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "反面只數一款",
+        "labelEn": "Counting only one other type",
+        "zh": "「不是花生」要把芝麻與紅豆兩批都算進去（$5 + 2 = 7$）；只數芝麻的 5 粒會漏掉紅豆。",
+        "en": "\"Not peanut\" includes both sesame and red bean (5 + 2 = 7); counting only the five sesame balls misses the red bean."
+       }
+      ],
+      "tip": {
+       "zh": "反面是「其他所有類別」：先問自己「不是它」的話還有哪幾類，全部加起來（或用 $1$ 減）。",
+       "en": "The complement is \"all the other categories\": list which types remain, then add them all (or use 1 − P)."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-12",
+     "code": "12",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In a survey of 100 households, there are 15 upper class households and 55 middle class households. The rest are lower class households.",
+      "zh": "一項涵蓋 100 個住戶的調查中，有 15 個上層住戶和 55 箇中層住戶，其餘是下層住戶。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "If a household is randomly selected, find the probability that it is in the upper class or the middle class.",
+       "zh": "若隨機選出一個住戶，求它屬於上層或中層的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that the household selected is in the lower class.",
+       "zh": "求選出的住戶屬於下層的概率。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{15}{100} + \\frac{55}{100} = \\frac{70}{100} = \\frac{7}{10}",
+       "note": {
+        "zh": "一戶只屬一層（互斥）",
+        "en": "A household belongs to one class only"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{7}{10} = \\frac{3}{10}",
+       "note": {
+        "zh": "反面：其餘是下層，共 30 戶",
+        "en": "The rest are lower class: 30 households"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "上層與中層互斥，直接相加",
+         "en": "Upper and middle are mutually exclusive"
+        },
+        "math": "\\frac{15}{100} + \\frac{55}{100}",
+        "zh": "一個住戶只屬於一個階層，「上層」與「中層」不可能重疊，所以直接相加：$\\frac{15}{100} + \\frac{55}{100}$。",
+        "en": "A household belongs to exactly one class, so \"upper\" and \"middle\" cannot overlap; simply add: 15/100 + 55/100.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{15}{100} + \\frac{55}{100}"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算並約簡",
+         "en": "Evaluate and simplify"
+        },
+        "math": "\\frac{15 + 55}{100} = \\frac{70}{100} = \\frac{7}{10}",
+        "zh": "分子是 $15 + 55 = 70$，所以所求概率為 $\\frac{70}{100} = \\frac{7}{10}$。",
+        "en": "The numerator is 15 + 55 = 70, so the probability is 70/100 = 7/10.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{70}{100} = \\frac{7}{10}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "反面＝其餘的下層",
+         "en": "The rest are the complement"
+        },
+        "math": "1 - \\frac{7}{10} = \\frac{3}{10}",
+        "zh": "「下層」是「上層或中層」的反面：$1 - \\frac{7}{10} = \\frac{3}{10}$。直接數：$100 - [15 + 55] = 30$ 戶，$\\frac{30}{100} = \\frac{3}{10}$，結果相同。",
+        "en": "\"Lower class\" is the complement of \"upper or middle\": 1 − 7/10 = 3/10. Counting directly: 100 − [15 + 55] = 30 households, and 30/100 = 3/10, the same answer.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{7}{10} = \\frac{3}{10}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "以為漏了數據",
+        "labelEn": "Thinking data is missing",
+        "zh": "「其餘是下層」已經足夠：$100 - [15 + 55] = 30$ 戶；下層的數目是算出來的，不是漏印。",
+        "en": "\"The rest are lower class\" is enough data: 100 − [15 + 55] = 30 households; the lower-class count is computed, not missing."
+       },
+       {
+        "label": "(b) 用了錯的分子",
+        "labelEn": "Wrong numerator in (b)",
+        "zh": "(b) 問下層（30 戶），不是問上層（15 戶）或中層（55 戶）；三類加起來一定要等於 100%。",
+        "en": "Part (b) asks for the lower class (30), not the upper (15) or middle (55); the three classes must total 100%."
+       }
+      ],
+      "tip": {
+       "zh": "「其餘」＝總數減去已列出的各類；上層、中層、下層三類互斥，概率加起來一定是 1。",
+       "en": "\"The rest\" means the total minus the listed classes; the three classes are mutually exclusive, so their probabilities add to 1."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-13",
+     "code": "13",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "A drawer contains 2 blue towels, 6 white towels, 5 pink towels and 3 yellow towels.",
+      "zh": "一個抽屜內有 2 條藍色毛巾、6 條白色毛巾、5 條粉紅色毛巾和 3 條黃色毛巾。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "A towel is randomly selected from the drawer. Find the probability that it is white or yellow.",
+       "zh": "從抽屜中隨機選出一條毛巾，求它是白色或黃色的概率。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that it is neither white nor yellow.",
+       "zh": "求它既不是白色也不是黃色的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{6 + 3}{16} = \\frac{9}{16}",
+       "note": {
+        "zh": "毛巾共 16 條",
+        "en": "Sixteen towels in all"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{9}{16} = \\frac{7}{16}",
+       "note": {
+        "zh": "反面＝藍加粉紅，共 7 條",
+        "en": "The complement is blue plus pink: seven towels"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "數總數與白色、黃色",
+         "en": "Count the total, white and yellow"
+        },
+        "math": "\\frac{6 + 3}{16} = \\frac{9}{16}",
+        "zh": "毛巾共 $2 + 6 + 5 + 3 = 16$ 條；白色與黃色不可能重疊（一條毛巾只有一種顏色），所以 $\\frac{6 + 3}{16} = \\frac{9}{16}$。",
+        "en": "There are 2 + 6 + 5 + 3 = 16 towels; white and yellow cannot overlap (a towel has one colour), so the probability is (6 + 3)/16 = 9/16.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{6 + 3}{16} = \\frac{9}{16}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "反面：「白色或黃色」之外",
+         "en": "Complement of \"white or yellow\""
+        },
+        "math": "P(\\text{neither}) = 1 - P(\\text{white or yellow})",
+        "zh": "「既不是白色也不是黃色」是「白色或黃色」的反面，所以用 $1$ 減去 $\\frac{9}{16}$。",
+        "en": "\"Neither white nor yellow\" is the complement of \"white or yellow\", so subtract 9/16 from 1.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(\\text{neither}) = 1 - P(\\text{white or yellow})"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算，並用直接數法核對",
+         "en": "Evaluate and check by counting"
+        },
+        "math": "1 - \\frac{9}{16} = \\frac{7}{16}",
+        "zh": "$1 - \\frac{9}{16} = \\frac{7}{16}$。直接數：藍 2 條加粉紅 5 條，$2 + 5 = 7$ 條，也是 $\\frac{7}{16}$。",
+        "en": "1 − 9/16 = 7/16. Counting directly: two blue plus five pink give seven towels, again 7/16.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{9}{16} = \\frac{7}{16}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b) 只排除白色",
+        "labelEn": "(b) excluding only white",
+        "zh": "反面要同時排除白色與黃色兩批（$6 + 3 = 9$ 條）；只減白色 6 條會算錯。",
+        "en": "The complement excludes both white and yellow (6 + 3 = 9 towels); subtracting only the six white ones is wrong."
+       }
+      ],
+      "tip": {
+       "zh": "「neither $A$ nor $B$」＝ $1 - P(A$ 或 $B)$：先算好「$A$ 或 $B$」再取反面，一次完成兩種排除。",
+       "en": "\"Neither A nor B\" is 1 − P(A or B): work out \"A or B\" first, then take the complement to exclude both at once."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l1-14",
+     "code": "14",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In a talent show, there are 80 participants. 45 participants perform singing, 50 participants perform dancing and 20 participants perform both singing and dancing.",
+      "zh": "一個才藝表演有 80 名參加者，其中 45 人表演唱歌、50 人表演跳舞、20 人兩樣都表演。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "If a participant is randomly selected, find the probability that the participant selected performs singing or dancing.",
+       "zh": "若隨機選出一名參加者，求選出的參加者表演唱歌或跳舞的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that the participant selected performs neither singing nor dancing.",
+       "zh": "求選出的參加者兩樣都不表演的概率。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{45}{80} + \\frac{50}{80} - \\frac{20}{80} = \\frac{75}{80} = \\frac{15}{16}",
+       "note": {
+        "zh": "兩樣都表演的 20 人被數了兩次",
+        "en": "The 20 who do both were counted twice"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{15}{16} = \\frac{1}{16}",
+       "note": {
+        "zh": "兩者皆非：5 人",
+        "en": "Neither: five participants"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "用加法定律列式",
+         "en": "Set up the addition law"
+        },
+        "math": "\\frac{45}{80} + \\frac{50}{80} - \\frac{20}{80}",
+        "zh": "兩樣都表演的 20 人在「唱歌」與「跳舞」中各被數了一次，所以要減去 $\\frac{20}{80}$。",
+        "en": "The 20 who do both were counted once in \"singing\" and once in \"dancing\", so 20/80 is subtracted.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{45}{80} + \\frac{50}{80} - \\frac{20}{80}"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先加後減，約簡",
+         "en": "Add, subtract, simplify"
+        },
+        "math": "\\frac{[45 + 50] - 20}{80} = \\frac{75}{80} = \\frac{15}{16}",
+        "zh": "分子是 $[45 + 50] - 20 = 75$，所以所求概率為 $\\frac{75}{80} = \\frac{15}{16}$。",
+        "en": "The numerator is [45 + 50] − 20 = 75, giving 75/80 = 15/16.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{75}{80} = \\frac{15}{16}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "反面：1 減去有表演的人",
+         "en": "Complement of performing at all"
+        },
+        "math": "1 - \\frac{15}{16} = \\frac{1}{16}",
+        "zh": "「兩樣都不表演」是「有表演唱歌或跳舞」的反面：$1 - \\frac{15}{16} = \\frac{1}{16}$。直接數：$80 - 75 = 5$ 人，$\\frac{5}{80} = \\frac{1}{16}$，一致。",
+        "en": "\"Neither\" is the complement of \"performs at least one\": 1 − 15/16 = 1/16. Counting directly: 80 − 75 = 5 participants, and 5/80 = 1/16, the same.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{15}{16} = \\frac{1}{16}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b) 用兩次減法",
+        "labelEn": "(b) subtracting twice in a row",
+        "zh": "$80 - 45 - 50 = -15$ 是荒謬的：兩樣都表演的 20 人被減了兩次，要先加回一次，$80 - [45 + 50 - 20] = 5$。",
+        "en": "80 − 45 − 50 = −15 is absurd: the 20 who do both were subtracted twice, so add one back: 80 − [45 + 50 − 20] = 5."
+       },
+       {
+        "label": "(b) 分母用 75",
+        "labelEn": "(b) using 75 as the denominator",
+        "zh": "(b) 的分母仍是全部 80 名參加者（$\\frac{5}{80}$），不是有表演的 75 人。",
+        "en": "In (b) the denominator is still all 80 participants (5/80), not the 75 who perform."
+       }
+      ],
+      "tip": {
+       "zh": "有 $A$、$B$、both 三個數時：先算「$A$ 或 $B$」，再用 $1$ 減得「兩者皆非」；四區（只 $A$、只 $B$、both、neither）相加要等於總數。",
+       "en": "With A, B and both given: find \"A or B\" first, then subtract from 1 for \"neither\"; the four regions (A only, B only, both, neither) must add up to the total."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "L2",
+   "short": {
+    "zh": "進階練習",
+    "en": "Level 2"
+   },
+   "title": {
+    "zh": "進階練習 · Level 2",
+    "en": "Level 2"
+    },
+    "marks": 58,
+   "questions": [
+    {
+     "id": "ch18-2-l2-15",
+     "code": "15",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In a soccer game, the probabilities that team A scores no goals and 1 goal are 0.35 and 0.5 respectively.",
+      "zh": "在一場足球比賽中，A 隊入 0 球和入 1 球的概率分別是 0.35 和 0.5。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "If team A plays a soccer game once, find the probability that team A scores no goals or 1 goal.",
+       "zh": "若 A 隊比賽一場，求 A 隊入 0 球或入 1 球的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that team A scores at least 2 goals.",
+       "zh": "求 A 隊入至少 2 球的概率。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "0.35 + 0.5 = 0.85",
+       "note": {
+        "zh": "一場比賽只會有一個入球數（互斥）",
+        "en": "One match has a single number of goals"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - 0.85 = 0.15",
+       "note": {
+        "zh": "「至少 2 球」是「0 球或 1 球」的反面",
+        "en": "\"At least 2\" is the complement of \"0 or 1\""
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "兩件事互斥，直接相加",
+         "en": "Mutually exclusive: simply add"
+        },
+        "math": "0.35 + 0.5",
+        "zh": "A 隊在一場比賽只會有一個入球數目，「入 0 球」與「入 1 球」不可能同時發生，所以直接相加：$0.35 + 0.5$。",
+        "en": "Team A ends a match with exactly one number of goals, so \"0 goals\" and \"1 goal\" cannot both happen; simply add: 0.35 + 0.5.",
+        "marking": "(1M)",
+        "highlight": [
+         "0.35 + 0.5"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "0.35 + 0.5 = 0.85",
+        "zh": "$0.35 + 0.5 = 0.85$，所以入 0 球或 1 球的概率是 $0.85$。",
+        "en": "0.35 + 0.5 = 0.85, so the probability of scoring 0 or 1 goal is 0.85.",
+        "marking": "(1A)",
+        "highlight": [
+         "0.35 + 0.5 = 0.85"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "反面：1 減去 0 球或 1 球",
+         "en": "Complement of zero or one goal"
+        },
+        "math": "1 - 0.85 = 0.15",
+        "zh": "「至少 2 球」是「0 球或 1 球」的反面：$1 - 0.85 = 0.15$。",
+        "en": "\"At least 2 goals\" is the complement of \"0 or 1 goal\": 1 − 0.85 = 0.15.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - 0.85 = 0.15"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b) 只減一項",
+        "labelEn": "(b) subtracting only one term",
+        "zh": "反面要同時排除「0 球」與「1 球」：先把 (a) 的 $0.85$ 算好，再 $1 - 0.85$；用 $1 - 0.5$ 或 $1 - 0.35$ 都漏了一項。",
+        "en": "The complement excludes both 0 and 1 goal: use the 0.85 from (a) and subtract it; 1 − 0.5 or 1 − 0.35 would leave one case in."
+       },
+       {
+        "label": "把 0 球當成不可能",
+        "labelEn": "Treating zero goals as impossible",
+        "zh": "入 0 球的概率是 $0.35$，不可以當成 $0$；「至少」只是把「0 球」歸入反面而已。",
+        "en": "The probability of 0 goals is 0.35, not 0; \"at least\" merely puts the 0-goal case into the complement."
+       }
+      ],
+      "tip": {
+       "zh": "「至少」的反面是「少於」：至少 2 球 ⇔ 不是（0 球或 1 球）；先把反面各項加起來，再 $1$ 減。",
+       "en": "The complement of \"at least\" is \"fewer than\": at least 2 goals means not 0 or 1; add the complement cases first, then subtract from 1."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-16",
+     "code": "16",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Hazel throws a biased six-sided dice. The probability of getting a '5' is 0.2 and the probability of getting a '6' is 0.4.",
+      "zh": "Hazel 擲一枚不均勻的六面骰子。擲得 '5' 的概率是 0.2，擲得 '6' 的概率是 0.4。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability of getting a '5' or a '6'.",
+       "zh": "求擲得 '5' 或 '6' 的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "If all the other outcomes (i.e. '1', '2', '3' and '4') are equally likely, find the probability of getting an even number.",
+       "zh": "若其餘結果（即 '1'、'2'、'3' 和 '4'）出現的機會相同，求擲得偶數的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "0.2 + 0.4 = 0.6",
+       "note": {
+        "zh": "「5」與「6」互斥",
+        "en": "\"5\" and \"6\" are mutually exclusive"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "0.1 + 0.1 + 0.4 = 0.6",
+       "note": {
+        "zh": "其餘每個結果 $0.1$；偶數＝2、4、6",
+        "en": "Each other face has probability 0.1; even faces are 2, 4 and 6"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "一次只出一個結果",
+         "en": "One throw gives one face"
+        },
+        "math": "0.2 + 0.4 = 0.6",
+        "zh": "擲一次骰子只會出一個結果，「5」與「6」互斥，直接相加：$0.2 + 0.4 = 0.6$。",
+        "en": "A single throw lands on one face only, so \"5\" and \"6\" are mutually exclusive: 0.2 + 0.4 = 0.6.",
+        "marking": "(1M)",
+        "highlight": [
+         "0.2 + 0.4 = 0.6"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "寫出答案",
+         "en": "State the answer"
+        },
+        "math": "= 0.6",
+        "zh": "所以 $P(\\text{'5' or '6'}) = 0.6$，即擲得 5 或 6 的機會是六成。",
+        "en": "Hence P(\"5\" or \"6\") = 0.6.",
+        "marking": "(1A)",
+        "highlight": [
+         "0.2 + 0.4 = 0.6"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "補齊其餘四個結果",
+         "en": "Complete the other four faces"
+        },
+        "math": "\\frac{1 - 0.6}{4} = 0.1",
+        "zh": "全部結果的概率加起來等於 $1$，其餘四個結果合共 $1 - 0.6 = 0.4$；它們機會相同，所以每個是 $\\frac{0.4}{4} = 0.1$。",
+        "en": "All faces total probability 1, so the other four faces share 1 − 0.6 = 0.4; they are equally likely, giving 0.4 ÷ 4 = 0.1 each.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{1 - 0.6}{4} = 0.1"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "把偶數結果相加",
+         "en": "Add the even faces"
+        },
+        "math": "0.1 + 0.1 + 0.4 = 0.6",
+        "zh": "偶數是「2」、「4」、「6」，三者互斥所以直接相加：$0.1 + 0.1 + 0.4 = 0.6$。",
+        "en": "The even faces are 2, 4 and 6: 0.1 + 0.1 + 0.4 = 0.6.",
+        "marking": "(1A)",
+        "highlight": [
+         "0.1 + 0.1 + 0.4 = 0.6"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把骰子當成均勻",
+        "labelEn": "Treating the dice as fair",
+        "zh": "這枚骰子不均勻，每個結果不是 $\\frac{1}{6}$；一定要用題目給的概率，其餘的先用 $1$ 補齊。",
+        "en": "The dice is biased, so each face is not 1/6; use the given probabilities and complete the rest with 1."
+       },
+       {
+        "label": "(b) 忘了「6」是 0.4",
+        "labelEn": "(b) forgetting that \"6\" has probability 0.4",
+        "zh": "偶數要數「2」、「4」、「6」；「6」的概率是 $0.4$（不是 $0.1$），漏掉它或用 $0.1$ 都會錯。",
+        "en": "The even faces include \"6\", whose probability is 0.4 rather than 0.1; omitting it or using 0.1 is wrong."
+       }
+      ],
+      "tip": {
+       "zh": "不均勻骰子不可用「數結果 ÷ 6」；先用 $1$ 減去已知的結果求出剩下的概率，再按「或」相加。",
+       "en": "Never count outcomes over 6 for a biased dice; recover the remaining probabilities from 1 first, then add for \"or\"."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-17",
+     "code": "17",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "A number is randomly chosen from 1 to 60 inclusive.",
+      "zh": "從 1 至 60（包括首尾）中隨機選出一個數。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find the probability that the number chosen is divisible by 3 or divisible by 5.",
+       "zh": "求選出的數能被 3 整除或能被 5 整除的概率。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "math": "\\frac{20}{60} + \\frac{12}{60} - \\frac{4}{60} = \\frac{28}{60} = \\frac{7}{15}",
+       "note": {
+        "zh": "交集＝15 的倍數，共 4 個",
+        "en": "The intersection is the multiples of 15: four of them"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "數三組數目",
+         "en": "Count the three groups"
+        },
+        "math": "n = 20 ,\\ n = 12 ,\\ n = 4",
+        "zh": "1 至 60 之中，3 的倍數有 $60 \\div 3 = 20$ 個；5 的倍數有 $60 \\div 5 = 12$ 個；同時是兩者倍數（即 15 的倍數）有 $60 \\div 15 = 4$ 個。",
+        "en": "From 1 to 60, the multiples of 3 number 60 ÷ 3 = 20, the multiples of 5 number 60 ÷ 5 = 12, and the common multiples (multiples of 15) number 60 ÷ 15 = 4.",
+        "marking": "(1A)",
+        "highlight": [
+         "n = 20 ,\\ n = 12 ,\\ n = 4"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "用加法定律列式",
+         "en": "Set up the addition law"
+        },
+        "math": "\\frac{20}{60} + \\frac{12}{60} - \\frac{4}{60}",
+        "zh": "15、30、45、60 這 4 個數被數了兩次，要減去 $\\frac{4}{60}$。",
+        "en": "The four multiples of 15 (15, 30, 45, 60) were counted twice, so subtract 4/60.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{20}{60} + \\frac{12}{60} - \\frac{4}{60}"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "先加後減，約簡",
+         "en": "Add, subtract, simplify"
+        },
+        "math": "\\frac{[20 + 12] - 4}{60} = \\frac{28}{60} = \\frac{7}{15}",
+        "zh": "分子是 $[20 + 12] - 4 = 28$，所以所求概率為 $\\frac{28}{60} = \\frac{7}{15}$。",
+        "en": "The numerator is [20 + 12] − 4 = 28, giving 28/60 = 7/15.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{28}{60} = \\frac{7}{15}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "忘記減交集",
+        "labelEn": "Forgetting the intersection",
+        "zh": "$\\frac{20}{60} + \\frac{12}{60} = \\frac{32}{60}$ 把 15 的倍數數了兩次；正確是 $\\frac{28}{60}$。",
+        "en": "20/60 + 12/60 = 32/60 counts the multiples of 15 twice; the correct value is 28/60."
+       },
+       {
+        "label": "交集逐個數漏",
+        "labelEn": "Missing common multiples",
+        "zh": "同時能被 3 與 5 整除即能被 $15$ 整除，用 $60 \\div 15 = 4$ 最快；逐個列出容易漏掉 60。",
+        "en": "Divisible by both 3 and 5 means divisible by 15; 60 ÷ 15 = 4 is the quick way, while listing by hand may miss 60."
+       }
+      ],
+      "tip": {
+       "zh": "「同時能被 $a$ 與 $b$ 整除」＝「能被 LCM$(a, b)$ 整除」：這裡 $60 \\div 15 = 4$，比逐個列出快又準。",
+       "en": "\"Divisible by both a and b\" means \"divisible by lcm(a, b)\": here 60 ÷ 15 = 4, quicker and safer than listing."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-18",
+     "code": "18",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "A card is randomly drawn from a pack of 52 playing cards. Find the probability that it is",
+      "zh": "從一副 52 張的撲克牌中隨機抽出一張。求抽到以下牌的概率："
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "not a heart,",
+       "zh": "不是紅心；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "a red number card or a number card greater than 6,",
+       "zh": "紅色的數字牌或大於 6 的數字牌；",
+       "marks": 2
+      },
+      {
+       "label": "(c)",
+       "en": "neither a spade nor a J.",
+       "zh": "既不是葵扇也不是 J。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "1 - \\frac{13}{52} = \\frac{39}{52} = \\frac{3}{4}",
+       "note": {
+        "zh": "紅心 13 張，其餘 39 張",
+        "en": "Thirteen hearts, thirty-nine others"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{18}{52} + \\frac{16}{52} - \\frac{8}{52} = \\frac{26}{52} = \\frac{1}{2}",
+       "note": {
+        "zh": "三組數目：18、16、8",
+        "en": "Three counts: 18, 16, 8"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "1 - \\frac{[13 + 4] - 1}{52} = \\frac{36}{52} = \\frac{9}{13}",
+       "note": {
+        "zh": "葵扇或 J 共 16 張，取反面",
+        "en": "Spade or J covers 16 cards; take the complement"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "不是紅心＝取反面",
+         "en": "Not a heart: the complement"
+        },
+        "math": "1 - \\frac{13}{52} = \\frac{39}{52} = \\frac{3}{4}",
+        "zh": "紅心有 13 張，所以「不是紅心」＝ $1 - \\frac{13}{52} = \\frac{39}{52} = \\frac{3}{4}$；四種花色中佔其三，結果合理。",
+        "en": "There are thirteen hearts, so \"not a heart\" is 1 − 13/52 = 39/52 = 3/4 — three of the four suits, as expected.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{13}{52} = \\frac{3}{4}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "數紅色數字牌、大於 6 的數字牌與重疊",
+         "en": "Count red number cards, cards above 6, and the overlap"
+        },
+        "math": "n = 18 ,\\ n = 16 ,\\ n = 8",
+        "zh": "紅色數字牌＝紅心與方塊的 2 至 10，$2 \\times 9 = 18$ 張；大於 6 的數字牌（7、8、9、10）＝ $4 \\times 4 = 16$ 張；兩者重疊（紅色且大於 6）＝ $2 \\times 4 = 8$ 張。",
+        "en": "Red number cards are the 2–10 of hearts and diamonds: 2 × 9 = 18. Number cards above 6 (7, 8, 9, 10) give 4 × 4 = 16. The overlap (red and above 6) is 2 × 4 = 8.",
+        "marking": "(1M)",
+        "highlight": [
+         "n = 18 ,\\ n = 16 ,\\ n = 8"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "用加法定律",
+         "en": "Apply the addition law"
+        },
+        "math": "\\frac{18}{52} + \\frac{16}{52} - \\frac{8}{52} = \\frac{26}{52} = \\frac{1}{2}",
+        "zh": "分子是 $[18 + 16] - 8 = 26$，所以所求概率為 $\\frac{26}{52} = \\frac{1}{2}$。",
+        "en": "The numerator is [18 + 16] − 8 = 26, giving 26/52 = 1/2.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{26}{52} = \\frac{1}{2}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "先算「葵扇或 J」的聯集",
+         "en": "Find the union of \"spade or J\""
+        },
+        "math": "\\frac{[13 + 4] - 1}{52} = \\frac{16}{52}",
+        "zh": "葵扇 13 張、J 4 張，葵扇 J 1 張被數了兩次：$[13 + 4] - 1 = 16$ 張。",
+        "en": "Thirteen spades and four J's, with the J of spades counted twice: [13 + 4] − 1 = 16 cards.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{[13 + 4] - 1}{52} = \\frac{16}{52}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "「既不…也不…」＝取反面",
+         "en": "\"Neither … nor …\" is the complement"
+        },
+        "math": "1 - \\frac{16}{52} = \\frac{36}{52} = \\frac{9}{13}",
+        "zh": "「既不是葵扇也不是 J」＝ $1 - \\frac{16}{52} = \\frac{36}{52} = \\frac{9}{13}$。",
+        "en": "\"Neither a spade nor a J\" gives 1 − 16/52 = 36/52 = 9/13.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{16}{52} = \\frac{36}{52} = \\frac{9}{13}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 A 當數字牌",
+        "labelEn": "Counting the aces as number cards",
+        "zh": "數字牌是 2 至 10，每花樣 9 張；A、J、Q、K 都不是數字牌。",
+        "en": "Number cards are 2 to 10, nine per suit; A, J, Q and K are not number cards."
+       },
+       {
+        "label": "(c) 只做一次排除",
+        "labelEn": "(c) excluding only one thing",
+        "zh": "「既不…也不…」要同時排除葵扇與 J，中間的葵扇 J 只能排除一次：$1 - \\frac{16}{52}$，不是 $1 - \\frac{13}{52} - \\frac{4}{52}$。",
+        "en": "\"Neither\" excludes both spades and J's, but the J of spades must be excluded once only: 1 − 16/52, not 1 − 13/52 − 4/52."
+       }
+      ],
+      "tip": {
+       "zh": "「neither $A$ nor $B$」＝ $1 - P(A$ 或 $B)$：先算聯集（記得減交集），再取反面；比逐張數快很多。",
+       "en": "\"Neither A nor B\" is 1 − P(A or B): find the union first (subtracting the intersection), then take the complement — much faster than counting cards one by one."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-19",
+     "code": "19",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Austin, Beth, Camila and Daniel are students of the same class. The table shows the probabilities of choosing them as the class monitor: Austin 0.35, Beth 0.2, Camila x, Daniel 0.27, others 0.08. A class monitor is randomly chosen from the class.",
+      "zh": "Austin、Beth、Camila 和 Daniel 是同班同學。下表顯示他們獲選為班會主席的概率：Austin 0.35、Beth 0.2、Camila $x$、Daniel 0.27、其他 0.08。從班中隨機選出一位班會主席。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find x.",
+       "zh": "求 $x$。",
+       "marks": 1
+      },
+      {
+       "label": "(b)(i)",
+       "en": "Find the probability that Austin or Camila is chosen,",
+       "zh": "求 Austin 或 Camila 獲選的概率；",
+       "marks": 2
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "Find the probability that neither Beth nor Camila is chosen.",
+       "zh": "求 Beth 與 Camila 都沒有獲選的概率。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 1 - [0.35 + 0.2 + 0.27 + 0.08] = 0.1",
+       "note": {
+        "zh": "所有概率加起來等於 1",
+        "en": "All probabilities add up to 1"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "0.35 + 0.1 = 0.45",
+       "note": {
+        "zh": "只有一人當選（互斥）",
+        "en": "Only one student can be chosen"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "1 - [0.2 + 0.1] = 0.7",
+       "note": {
+        "zh": "也可加其餘三人：$0.35 + 0.27 + 0.08 = 0.7$",
+        "en": "Or add the other three: 0.35 + 0.27 + 0.08 = 0.7"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "用總和 1 反求 x",
+         "en": "Recover x from the total of 1"
+        },
+        "math": "x = 1 - [0.35 + 0.2 + 0.27 + 0.08] = 0.1",
+        "zh": "五個概率加起來等於 $1$，所以 $x = 1 - [0.35 + 0.2 + 0.27 + 0.08] = 1 - 0.9 = 0.1$。",
+        "en": "The five probabilities total 1, so x = 1 − [0.35 + 0.2 + 0.27 + 0.08] = 1 − 0.9 = 0.1.",
+        "marking": "(1A)",
+        "highlight": [
+         "x = 1 - [0.35 + 0.2 + 0.27 + 0.08] = 0.1"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "Austin 與 Camila 互斥",
+         "en": "Austin and Camila are mutually exclusive"
+        },
+        "math": "0.35 + 0.1",
+        "zh": "只會有一位主席，Austin 與 Camila 不可能同時獲選，所以直接相加：$0.35 + 0.1$。",
+        "en": "There is only one monitor, so Austin and Camila cannot both be chosen; simply add: 0.35 + 0.1.",
+        "marking": "(1M)",
+        "highlight": [
+         "0.35 + 0.1"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "0.35 + 0.1 = 0.45",
+        "zh": "$0.35 + 0.1 = 0.45$，所以 Austin 或 Camila 獲選的概率是 $0.45$。",
+        "en": "0.35 + 0.1 = 0.45, so the probability that Austin or Camila is chosen is 0.45.",
+        "marking": "(1A)",
+        "highlight": [
+         "0.35 + 0.1 = 0.45"
+        ]
+       },
+       {
+        "part": "(b)(ii)",
+        "title": {
+         "zh": "反面：1 減去兩人",
+         "en": "Complement: subtract both"
+        },
+        "math": "1 - [0.2 + 0.1] = 0.7",
+        "zh": "「不是 Beth 也不是 Camila」＝ $1 - [0.2 + 0.1] = 0.7$。直接加其餘三人也一致：$0.35 + 0.27 + 0.08 = 0.7$。",
+        "en": "\"Neither Beth nor Camila\" gives 1 − [0.2 + 0.1] = 0.7. Adding the other three agrees: 0.35 + 0.27 + 0.08 = 0.7.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - [0.2 + 0.1] = 0.7"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b)(ii) 只減一人",
+        "labelEn": "(b)(ii) subtracting only one person",
+        "zh": "「不是 Beth 也不是 Camila」要把兩人的概率一起減去：$1 - [0.2 + 0.1]$；只減 0.2 會把 Camila 留在答案內。",
+        "en": "\"Neither Beth nor Camila\" removes both probabilities at once: 1 − [0.2 + 0.1]; subtracting only 0.2 would leave Camila in."
+       },
+       {
+        "label": "把「其他」的 0.08 當成漏印",
+        "labelEn": "Ignoring the \"others\" entry",
+        "zh": "「其他」是未被點名的同學，求 $x$ 時要一併減去（$1 - 0.9 = 0.1$）；漏掉它會求出 $x = 0.18$。",
+        "en": "\"Others\" covers the unlisted classmates and must be subtracted when finding x (1 − 0.9 = 0.1); omitting it gives x = 0.18."
+       }
+      ],
+      "tip": {
+       "zh": "概率表第一步永遠是驗算加起來等於 $1$；這一檢驗同時幫你求出未知的一格。",
+       "en": "With a probability table, first check that the entries total 1; that check also produces the unknown entry."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-20",
+     "code": "20",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "The table shows the shape distribution of biscuits in a pack: circle y%, triangle 20%, square y%, star 30%. Joseph randomly draws a biscuit from the pack.",
+      "zh": "下表顯示一包餅乾的形狀分佈：圓形 $y\\%$、三角形 $20\\%$、正方形 $y\\%$、星形 $30\\%$。Joseph 從包中隨機抽出一塊餅乾。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find y.",
+       "zh": "求 $y$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)(i)",
+       "en": "Find the probability that the biscuit drawn is not a square,",
+       "zh": "求抽出的餅乾不是正方形的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "Find the probability that the biscuit drawn is neither a square nor a star.",
+       "zh": "求抽出的餅乾既不是正方形也不是星形的概率。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "2y\\% = 100\\% - 20\\% - 30\\% = 50\\% \\implies y = 25",
+       "note": {
+        "zh": "四類加起來 100%",
+        "en": "The four shapes total 100%"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "1 - 0.25 = 0.75",
+       "note": {
+        "zh": "正方形佔 25%",
+        "en": "Squares take 25%"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "1 - 0.25 - 0.3 = 0.45",
+       "note": {
+        "zh": "也可加圓形與三角形：$0.25 + 0.2 = 0.45$",
+        "en": "Or add circle and triangle: 0.25 + 0.2 = 0.45"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "四類百分比加起來等於 100%",
+         "en": "The four percentages total 100%"
+        },
+        "math": "y\\% + 20\\% + y\\% + 30\\% = 100\\%",
+        "zh": "圓形、三角形、正方形、星形四個百分比加起來等於 $100\\%$，列出方程。",
+        "en": "The four percentages — circle, triangle, square, star — add up to 100%, which gives the equation.",
+        "marking": "(1M)",
+        "highlight": [
+         "y\\% + 20\\% + y\\% + 30\\% = 100\\%"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "化簡求 y",
+         "en": "Simplify for y"
+        },
+        "math": "2y\\% = 50\\% \\implies y = 25",
+        "zh": "把圓形與正方形的百分比相加得 $2y\\%$，化簡得 $2y\\% = 50\\%$，所以 $y = 25$。",
+        "en": "This simplifies to 2y% = 100% − 50% = 50%, so y = 25.",
+        "marking": "(1A)",
+        "highlight": [
+         "2y\\% = 50\\% \\implies y = 25"
+        ]
+       },
+       {
+        "part": "(b)(i)",
+        "title": {
+         "zh": "不是正方形＝取反面",
+         "en": "Not a square: the complement"
+        },
+        "math": "1 - 0.25 = 0.75",
+        "zh": "正方形佔 $25\\%$，所以「不是正方形」＝ $1 - 0.25 = 0.75$。",
+        "en": "Squares take 25%, so \"not a square\" is 1 − 0.25 = 0.75.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - 0.25 = 0.75"
+        ]
+       },
+       {
+        "part": "(b)(ii)",
+        "title": {
+         "zh": "同時排除正方形與星形",
+         "en": "Exclude square and star together"
+        },
+        "math": "1 - 0.25 - 0.3 = 0.45",
+        "zh": "$1 - 0.25 - 0.3 = 0.45$；直接加圓形與三角形：$0.25 + 0.2 = 0.45$，一致。",
+        "en": "1 − 0.25 − 0.3 = 0.45; adding circle and triangle gives 0.25 + 0.2 = 0.45 as well.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - 0.25 - 0.3 = 0.45"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 y% 當成 y",
+        "labelEn": "Confusing y% with y",
+        "zh": "$y\\% = 25\\%$ 即 $y = 25$；寫 $y = 0.25$ 是把百分比與小數混為一談（兩者數值相同，但單位不同）。",
+        "en": "y% = 25% means y = 25; writing y = 0.25 confuses a percentage with a decimal value (same size, different unit)."
+       },
+       {
+        "label": "(b)(ii) 只排除一款",
+        "labelEn": "(b)(ii) excluding only one shape",
+        "zh": "「既不是正方形也不是星形」要同時排除 $25\\%$ 與 $30\\%$；只減 $0.25$ 或只減 $0.3$ 都不對。",
+        "en": "\"Neither square nor star\" removes both 25% and 30%; subtracting only 0.25 or only 0.3 is wrong."
+       }
+      ],
+      "tip": {
+       "zh": "百分比表先驗算總和 $100\\%$；「不是」與「既不…也不…」都是把要排除的百分比從 $1$ 減走。",
+       "en": "Check a percentage table totals 100% first; \"not\" and \"neither … nor\" both subtract the excluded percentages from 1."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-21",
+     "code": "21",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 2,
+     "stem": {
+      "en": "The table shows the numbers of students with or without siblings in a class: boys — with siblings 16, without siblings 4; girls — with siblings 10, without siblings 2. A student is randomly chosen from the class.",
+      "zh": "下表顯示一班學生有或沒有兄弟姊妹的數目：男生 — 有兄弟姊妹 16 人、沒有 4 人；女生 — 有兄弟姊妹 10 人、沒有 2 人。從班中隨機選出一名學生。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that the student chosen is a girl who has siblings,",
+       "zh": "求選出的學生是有兄弟姊妹的女生之概率；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "is a girl,",
+       "zh": "選出的學生是女生之概率；",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "has siblings,",
+       "zh": "選出的學生有兄弟姊妹之概率；",
+       "marks": 1
+      },
+      {
+       "label": "(d)",
+       "en": "is a girl or has siblings.",
+       "zh": "選出的學生是女生或有兄弟姊妹之概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{10}{32} = \\frac{5}{16}",
+       "note": {
+        "zh": "班中共 32 人",
+        "en": "Thirty-two students in the class"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{10 + 2}{32} = \\frac{12}{32} = \\frac{3}{8}",
+       "note": {
+        "zh": "女生＝有兄弟姊妹 10 加沒有 2",
+        "en": "Girls: 10 with siblings plus 2 without"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "\\frac{16 + 10}{32} = \\frac{26}{32} = \\frac{13}{16}",
+       "note": {
+        "zh": "有兄弟姊妹＝男生 16 加女生 10",
+        "en": "With siblings: 16 boys plus 10 girls"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "\\frac{12}{32} + \\frac{26}{32} - \\frac{10}{32} = \\frac{28}{32} = \\frac{7}{8}",
+       "note": {
+        "zh": "交集＝有兄弟姊妹的女生 10 人",
+        "en": "The intersection is the ten girls with siblings"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先數全班人數",
+         "en": "Count the class first"
+        },
+        "math": "16 + 4 + 10 + 2 = 32",
+        "zh": "全班共 $16 + 4 + 10 + 2 = 32$ 人，這是所有小題共用的分母。「有兄弟姊妹的女生」是表格相交那一格：10 人，所以概率是 $\\frac{10}{32} = \\frac{5}{16}$。",
+        "en": "The class has 16 + 4 + 10 + 2 = 32 students, the denominator for every part. \"A girl who has siblings\" is the intersecting cell: ten students, so the probability is 10/32 = 5/16.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{10}{32} = \\frac{5}{16}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "合併女生的兩格",
+         "en": "Combine the two girls' cells"
+        },
+        "math": "\\frac{10 + 2}{32} = \\frac{12}{32} = \\frac{3}{8}",
+        "zh": "女生＝有兄弟姊妹 10 人加沒有兄弟姊妹 2 人，共 12 人，所以概率是 $\\frac{12}{32} = \\frac{3}{8}$。",
+        "en": "Girls are ten with siblings plus two without, twelve in all, so the probability is 12/32 = 3/8.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{12}{32} = \\frac{3}{8}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "合併有兄弟姊妹的兩格",
+         "en": "Combine the two \"with siblings\" cells"
+        },
+        "math": "\\frac{16 + 10}{32} = \\frac{26}{32} = \\frac{13}{16}",
+        "zh": "有兄弟姊妹＝男生 16 人加女生 10 人，共 26 人，所以概率是 $\\frac{26}{32} = \\frac{13}{16}$。",
+        "en": "\"With siblings\" means sixteen boys plus ten girls, twenty-six in all, so the probability is 26/32 = 13/16.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{26}{32} = \\frac{13}{16}"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "用加法定律，交集是 10 人",
+         "en": "Addition law with an intersection of ten"
+        },
+        "math": "\\frac{12}{32} + \\frac{26}{32} - \\frac{10}{32}",
+        "zh": "「女生」有 12 人、「有兄弟姊妹」有 26 人，重疊的是「有兄弟姊妹的女生」10 人（被數了兩次），所以要減一次。",
+        "en": "\"Girl\" covers 12 students and \"with siblings\" covers 26, with the ten girls who have siblings counted twice — subtract them once.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{12}{32} + \\frac{26}{32} - \\frac{10}{32}"
+        ]
+       },
+       {
+        "part": "(d)",
+        "title": {
+         "zh": "先加後減，並用反面核對",
+         "en": "Add, subtract, and check by complement"
+        },
+        "math": "\\frac{[12 + 26] - 10}{32} = \\frac{28}{32} = \\frac{7}{8}",
+        "zh": "分子 $[12 + 26] - 10 = 28$，得 $\\frac{28}{32} = \\frac{7}{8}$。反面核對：不合的只有「沒有兄弟姊妹的男生」4 人，$1 - \\frac{4}{32} = \\frac{7}{8}$，一致。",
+        "en": "The numerator is [12 + 26] − 10 = 28, giving 28/32 = 7/8. Complement check: only the four boys without siblings fail, and 1 − 4/32 = 7/8, the same.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{28}{32} = \\frac{7}{8}"
+        ]
+       }
+     ],
+     "traps": [
+       {
+        "label": "(d) 忘減交集",
+        "labelEn": "(d) forgetting the intersection",
+        "zh": "$\\frac{12}{32} + \\frac{26}{32} = \\frac{38}{32}$ 超過 1，明顯有誤：10 名有兄弟姊妹的女生被數了兩次。",
+        "en": "12/32 + 26/32 = 38/32 exceeds 1, which signals the error: the ten girls with siblings were counted twice."
+       },
+       {
+        "label": "(a) 誤取整行或整列",
+        "labelEn": "(a) reading a whole row or column",
+        "zh": "(a) 要的是「女生」與「有兄弟姊妹」的交叉格（10 人）；用女生總數 12 人或用有兄弟姊妹總數 26 人都答錯了問題。",
+        "en": "Part (a) wants the intersecting cell (ten students), not the whole girls' row (12) nor the whole \"with siblings\" column (26)."
+       }
+      ],
+      "tip": {
+       "zh": "2×2 表先把總數寫在旁邊（這裡 32），每個概率都用它做分母；「$A$ 或 $B$」的交集就是兩個條件同時成立的那一格。",
+       "en": "In a 2 × 2 table write the total (32 here) beside it and use it as the denominator; for \"A or B\" the intersection is the cell where both conditions hold."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-22",
+     "code": "22",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 13 doctors and 32 nurses in a hospital, of which 6 doctors and 21 nurses are females.",
+      "zh": "一間醫院有 13 名醫生和 32 名護士，其中 6 名醫生和 21 名護士是女性。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "If a medical professional is selected from the hospital, find the probability that the person selected is a male nurse,",
+       "zh": "若從醫院選出一名醫護人員，求選出的人是男護士的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "is a male,",
+       "zh": "選出的人是男性的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "is a nurse or a male.",
+       "zh": "選出的人是護士或男性的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{32 - 21}{45} = \\frac{11}{45}",
+       "note": {
+        "zh": "男護士＝32 減 21；總數 45",
+        "en": "Male nurses: 32 − 21, out of 45"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{[13 - 6] + 11}{45} = \\frac{18}{45} = \\frac{2}{5}",
+       "note": {
+        "zh": "男性＝男醫生 7 加男護士 11",
+        "en": "Males: seven male doctors plus eleven male nurses"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "\\frac{32}{45} + \\frac{18}{45} - \\frac{11}{45} = \\frac{39}{45} = \\frac{13}{15}",
+       "note": {
+        "zh": "交集＝男護士 11 人",
+        "en": "The intersection is the eleven male nurses"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "總數與男護士",
+         "en": "The total and the male nurses"
+        },
+        "math": "13 + 32 = 45 ,\\ 32 - 21 = 11",
+        "zh": "醫護人員共 $13 + 32 = 45$ 人；男護士＝護士 32 人減去女護士 21 人，得 11 人，所以概率是 $\\frac{11}{45}$。",
+        "en": "There are 13 + 32 = 45 professionals; the male nurses are the 32 nurses minus the 21 female nurses, eleven of them, so the probability is 11/45.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{32 - 21}{45} = \\frac{11}{45}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "男性要兩邊都加",
+         "en": "Add the male doctors and male nurses"
+        },
+        "math": "\\frac{[13 - 6] + 11}{45} = \\frac{18}{45} = \\frac{2}{5}",
+        "zh": "男性＝男醫生 $13 - 6 = 7$ 人加男護士 11 人，共 18 人，所以概率是 $\\frac{18}{45} = \\frac{2}{5}$。",
+        "en": "Males are the 13 − 6 = 7 male doctors plus the 11 male nurses, eighteen in all, so the probability is 18/45 = 2/5.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{18}{45} = \\frac{2}{5}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "重疊的是男護士，用加法定律",
+         "en": "The overlap is the male nurses"
+        },
+        "math": "\\frac{32}{45} + \\frac{18}{45} - \\frac{11}{45}",
+        "zh": "「護士」有 32 人、「男性」有 18 人，男護士 11 人同時屬於兩邊，被數了兩次，所以要減一次。",
+        "en": "\"Nurse\" covers 32 and \"male\" covers 18, while the eleven male nurses belong to both and were counted twice — subtract them once.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{32}{45} + \\frac{18}{45} - \\frac{11}{45}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "先加後減，約簡",
+         "en": "Add, subtract, simplify"
+        },
+        "math": "\\frac{[32 + 18] - 11}{45} = \\frac{39}{45} = \\frac{13}{15}",
+        "zh": "分子是 $[32 + 18] - 11 = 39$，所以所求概率為 $\\frac{39}{45} = \\frac{13}{15}$。",
+        "en": "The numerator is [32 + 18] − 11 = 39, giving 39/45 = 13/15.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{39}{45} = \\frac{13}{15}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b) 只算男醫生",
+        "labelEn": "(b) counting only male doctors",
+        "zh": "「男性」包括男醫生與男護士；只算 $13 - 6 = 7$ 人會漏掉 11 名男護士。",
+        "en": "\"Male\" includes male doctors and male nurses; using only 13 − 6 = 7 misses the eleven male nurses."
+       },
+       {
+        "label": "(c) 減錯交集",
+        "labelEn": "(c) subtracting the wrong group",
+        "zh": "「護士」與「男性」的交集是男護士 11 人，不是女護士 21 人；減錯人會令答案偏小。",
+        "en": "The intersection of \"nurse\" and \"male\" is the eleven male nurses, not the twenty-one female nurses; subtracting the wrong group makes the answer too small."
+       }
+      ],
+      "tip": {
+       "zh": "雙重分類（職業 × 性別）先寫四格：男醫生 7、女醫生 6、男護士 11、女護士 21；任何事件都只是幾格相加。",
+       "en": "For two classifications (job × gender) write the four cells: male doctors 7, female doctors 6, male nurses 11, female nurses 21; any event is a sum of cells."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-23",
+     "code": "23",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "A fair coin is tossed 3 times.",
+      "zh": "擲一枚均勻硬幣 3 次。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability of getting 3 heads,",
+       "zh": "求取得 3 次正面的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "exactly two heads,",
+       "zh": "取得恰好兩次正面的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "at most one head.",
+       "zh": "取得至多一次正面的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{1}{8}",
+       "note": {
+        "zh": "8 個結果中只有 HHH",
+        "en": "Only HHH among the eight outcomes"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{3}{8}",
+       "note": {
+        "zh": "HHT、HTH、THH 三個結果",
+        "en": "HHT, HTH, THH — three outcomes"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "1 - \\frac{3}{8} - \\frac{1}{8} = \\frac{1}{2}",
+       "note": {
+        "zh": "反面＝沒有正面或只有一次正面",
+        "en": "Complement: no head or exactly one head"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "列出全部 8 個結果",
+         "en": "List all eight outcomes"
+        },
+        "math": "2^3 = 8",
+        "zh": "三次擲幣共有 $2^3 = 8$ 個結果：HHH、HHT、HTH、HTT、THH、THT、TTH、TTT。「三次都是正面」只有 HHH 一個，所以概率是 $\\frac{1}{8}$。",
+        "en": "Three tosses give 2³ = 8 outcomes: HHH, HHT, HTH, HTT, THH, THT, TTH, TTT. Only HHH has three heads, so the probability is 1/8.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{8}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "數恰好兩次正面",
+         "en": "Count exactly two heads"
+        },
+        "math": "\\frac{3}{8}",
+        "zh": "「恰好兩次正面」有 HHT、HTH、THH 三個結果，所以概率是 $\\frac{3}{8}$。",
+        "en": "\"Exactly two heads\" covers HHT, HTH and THH, three outcomes, so the probability is 3/8.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{3}{8}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "「至多一次」用反面",
+         "en": "\"At most one\" by complement"
+        },
+        "math": "1 - \\frac{3}{8} - \\frac{1}{8}",
+        "zh": "「至多一次正面」是「兩次正面或三次正面」的反面，用 $1$ 減去 (b) 與 (a) 兩項。",
+        "en": "\"At most one head\" is the complement of \"two or three heads\", so subtract parts (b) and (a) from 1.",
+        "marking": "(1M)",
+        "highlight": [
+         "1 - \\frac{3}{8} - \\frac{1}{8}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "計算，並用直接數法核對",
+         "en": "Evaluate and check by counting"
+        },
+        "math": "1 - \\frac{4}{8} = \\frac{1}{2}",
+        "zh": "$1 - \\frac{4}{8} = \\frac{1}{2}$。直接數：沒有正面（TTT）1 個，一次正面（HTT、THT、TTH）3 個，共 4 個，$\\frac{4}{8} = \\frac{1}{2}$，一致。",
+        "en": "1 − 4/8 = 1/2. Counting directly: no head (TTT) plus exactly one head (HTT, THT, TTH) makes four outcomes, and 4/8 = 1/2, the same.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{4}{8} = \\frac{1}{2}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(c) 把「至多」當「恰好」",
+        "labelEn": "(c) reading \"at most\" as \"exactly\"",
+        "zh": "「至多一次正面」包括零次正面（TTT）；只數「恰好一次」3 個結果會漏掉 TTT，答案變成 $\\frac{3}{8}$。",
+        "en": "\"At most one head\" includes zero heads (TTT); counting only the three \"exactly one\" outcomes misses TTT and gives 3/8."
+       },
+       {
+        "label": "分母不當",
+        "labelEn": "Wrong denominator",
+        "zh": "三次擲幣的樣本空間是 8 個結果，不是 6（骰子）也不是 3（次數）。",
+        "en": "The sample space of three tosses has eight outcomes — not six (as for a dice) and not three (the number of tosses)."
+       }
+      ],
+      "tip": {
+       "zh": "三次硬幣先寫出 $2^3 = 8$ 個結果（HHH 至 TTT）；「至多 $k$ 次」用反面（$1$ 減「多於 $k$ 次」）最快。",
+       "en": "For three tosses write the 2³ = 8 outcomes (HHH to TTT); \"at most k\" is fastest by complement (1 − P(more than k))."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-24",
+     "code": "24",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "There are two boxes. Each box contains 4 cards numbered 1, 2, 3 and 4 respectively. One card is drawn randomly from each box.",
+      "zh": "有兩個盒子，每個盒子內有 4 張分別標上 1、2、3、4 的卡。從每個盒子各隨機抽出一張卡。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that both numbers are even,",
+       "zh": "求兩個數都是偶數的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "the sum of the two numbers is 6,",
+       "zh": "兩個數之和是 6 的概率；",
+       "marks": 2
+      },
+      {
+       "label": "(c)",
+       "en": "both numbers are even or their sum is 6.",
+       "zh": "兩個數都是偶數或兩數之和是 6 的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{4}{16} = \\frac{1}{4}",
+       "note": {
+        "zh": "每個盒各有 2 個偶數",
+        "en": "Two even numbers in each box"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{3}{16}",
+       "note": {
+        "zh": "$(2, 4)$、$(3, 3)$、$(4, 2)$",
+        "en": "(2, 4), (3, 3), (4, 2)"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "\\frac{4}{16} + \\frac{3}{16} - \\frac{2}{16} = \\frac{5}{16}",
+       "note": {
+        "zh": "交集＝$(2, 4)$、$(4, 2)$",
+        "en": "The intersection is (2, 4) and (4, 2)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "樣本空間是 16 個有序對",
+         "en": "Sixteen ordered pairs"
+        },
+        "math": "4 \\times 4 = 16 ,\\ \\frac{2 \\times 2}{16} = \\frac{4}{16} = \\frac{1}{4}",
+        "zh": "從兩個盒各抽一張，共有 $4 \\times 4 = 16$ 個有序對；兩個數都是偶數＝每個盒都抽到 2 或 4，有 $2 \\times 2 = 4$ 個，所以概率是 $\\frac{4}{16} = \\frac{1}{4}$。",
+        "en": "Drawing one card from each box gives 4 × 4 = 16 ordered pairs; both even means 2 or 4 from each box, 2 × 2 = 4 pairs, so the probability is 4/16 = 1/4.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{4}{16} = \\frac{1}{4}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "逐個點名和是 6 的組合",
+         "en": "Name the pairs that sum to 6"
+        },
+        "math": "\\{(2, 4), (3, 3), (4, 2)\\} ,\\ n = 3",
+        "zh": "兩數之和是 6 的組合只有 $(2, 4)$、$(3, 3)$、$(4, 2)$ 三個（盒內只有 1 至 4，所以 $5 + 1$ 這類不存在）。",
+        "en": "The pairs summing to 6 are (2, 4), (3, 3) and (4, 2) only — the boxes hold just 1 to 4, so pairs like 5 + 1 do not exist.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\{(2, 4), (3, 3), (4, 2)\\} ,\\ n = 3"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "寫成概率",
+         "en": "Write the probability"
+        },
+        "math": "\\frac{3}{16}",
+        "zh": "分母仍是 16 個有序對，所以概率是 $\\frac{3}{16}$。",
+        "en": "The denominator stays the 16 ordered pairs, so the probability is 3/16.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{3}{16}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "找出兩件事的重疊",
+         "en": "Find the overlap of the two events"
+        },
+        "math": "\\{(2, 4), (4, 2)\\} ,\\ n = 2",
+        "zh": "「兩個都是偶數」且「和是 6」的組合：$(2, 4)$ 與 $(4, 2)$ 兩個（$(3, 3)$ 不是偶數）。",
+        "en": "Pairs that are both even and sum to 6 are (2, 4) and (4, 2) — two of them ((3, 3) is not even).",
+        "marking": "(1M)",
+        "highlight": [
+         "\\{(2, 4), (4, 2)\\} ,\\ n = 2"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "用加法定律",
+         "en": "Apply the addition law"
+        },
+        "math": "\\frac{4}{16} + \\frac{3}{16} - \\frac{2}{16} = \\frac{5}{16}",
+        "zh": "分子是 $[4 + 3] - 2 = 5$，所以所求概率為 $\\frac{5}{16}$。",
+        "en": "The numerator is [4 + 3] − 2 = 5, so the probability is 5/16.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{4}{16} + \\frac{3}{16} - \\frac{2}{16} = \\frac{5}{16}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(c) 忘減交集",
+        "labelEn": "(c) forgetting the intersection",
+        "zh": "$\\frac{4}{16} + \\frac{3}{16} = \\frac{7}{16}$ 把 $(2, 4)$ 與 $(4, 2)$ 各數了兩次；正確是 $\\frac{5}{16}$。",
+        "en": "4/16 + 3/16 = 7/16 counts (2, 4) and (4, 2) twice; the correct value is 5/16."
+       },
+       {
+        "label": "把 $(1, 5)$ 也算進和是 6",
+        "labelEn": "Including (1, 5) in the sum of 6",
+        "zh": "盒內只有 1 至 4，沒有 5、6，所以 $(1, 5)$ 與 $(5, 1)$ 都不是結果。",
+        "en": "The boxes hold only 1 to 4, so (1, 5) and (5, 1) are not outcomes."
+       }
+      ],
+      "tip": {
+       "zh": "兩個盒各抽一張＝有序對，樣本空間是 $4 \\times 4 = 16$；求交集時要逐對點名（這裡是 $(2, 4)$ 與 $(4, 2)$），不可以直接相乘。",
+       "en": "One card from each box gives ordered pairs with 4 × 4 = 16 outcomes; name the intersection pair by pair — here (2, 4) and (4, 2) — rather than multiplying counts."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-25",
+     "code": "25",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 43 choices of restaurants in food delivery app A and 32 choices of restaurants in food delivery app B. 8 choices of restaurants are offered in both food delivery apps A and B.",
+      "zh": "外賣 app A 有 43 間餐廳選擇，外賣 app B 有 32 間餐廳選擇，其中 8 間餐廳在兩個 app 都有提供。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "If Stella chooses a restaurant randomly from these restaurants, find the probability that the restaurant is offered in food delivery app A only.",
+       "zh": "若 Stella 從這些餐廳中隨機選擇一間，求它只在 app A 提供的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that the restaurant is offered in food delivery app B only.",
+       "zh": "求它只在 app B 提供的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{43 - 8}{75} = \\frac{35}{75} = \\frac{7}{15}",
+       "note": {
+        "zh": "樣本空間是兩個 app 的選擇：$43 + 32 = 75$",
+        "en": "The sample space is the app choices: 43 + 32 = 75"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{32 - 8}{75} = \\frac{24}{75} = \\frac{8}{25}",
+       "note": {
+        "zh": "B 的 32 個選擇減去共有的 8 個",
+        "en": "The 32 choices in B minus the 8 shared ones"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "只在 A 出現＝43 減 8",
+         "en": "A only: 43 minus 8"
+        },
+        "math": "43 - 8 = 35",
+        "zh": "app A 的 43 個選擇之中，有 8 個同時在 app B 出現；「只在 A 出現」＝ $43 - 8 = 35$ 個。",
+        "en": "Among the 43 choices in app A, eight also appear in app B; \"A only\" therefore covers 43 − 8 = 35 choices.",
+        "marking": "(1M)",
+        "highlight": [
+         "43 - 8 = 35"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "樣本空間是 75 個選擇",
+         "en": "The sample space is the 75 choices"
+        },
+        "math": "\\frac{35}{75} = \\frac{7}{15}",
+        "zh": "題目數的是兩個 app 的「選擇」：$43 + 32 = 75$ 個（同一間餐廳在兩個 app 各計一次），所以「只在 A」的概率是 $\\frac{35}{75} = \\frac{7}{15}$。",
+        "en": "The question counts the app choices: 43 + 32 = 75 (a restaurant in both apps appears once per app), so the probability of \"A only\" is 35/75 = 7/15.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{35}{75} = \\frac{7}{15}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "只在 B 出現＝32 減 8",
+         "en": "B only: 32 minus 8"
+        },
+        "math": "32 - 8 = 24",
+        "zh": "app B 的 32 個選擇減去共有的 8 個，得 24 個。",
+        "en": "The 32 choices in app B minus the eight shared ones leave 24.",
+        "marking": "(1M)",
+        "highlight": [
+         "32 - 8 = 24"
+        ]
+       },
+       {
+        "part": "(b)",
+         "title": {
+         "zh": "分母不變，約簡",
+         "en": "Same denominator, simplify"
+        },
+        "math": "\\frac{24}{75} = \\frac{8}{25}",
+        "zh": "分母仍然是 75，所以所求概率為 $\\frac{24}{75} = \\frac{8}{25}$。",
+        "en": "The denominator stays 75: 24/75 = 8/25.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{24}{75} = \\frac{8}{25}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 43 或 32 直接當分子",
+        "labelEn": "Using 43 or 32 as the numerator",
+        "zh": "「只在 A 出現」要把兩邊都有的 8 個減去（$43 - 8 = 35$）；直接寫 $\\frac{43}{75}$ 是把共有餐廳也當成「只在 A」。",
+        "en": "\"A only\" subtracts the eight shared choices (43 − 8 = 35); writing 43/75 would count shared restaurants as A-only."
+       },
+       {
+        "label": "分母用 67",
+        "labelEn": "Using 67 as the denominator",
+        "zh": "不同餐廳的總數是 $43 + 32 - 8 = 67$ 間；但題目用「choices」數兩個 app 的選擇，課本以 $43 + 32 = 75$ 為樣本空間。",
+        "en": "The number of distinct restaurants is 43 + 32 − 8 = 67; but the question counts app \"choices\", and the textbook takes 43 + 32 = 75 as the sample space."
+       }
+      ],
+      "tip": {
+       "zh": "「只在 A」＝ $n(A) - n(A \\cap B)$；留意題目用「choices」時，樣本空間可能是兩個 app 的選擇數目（75），而不是不同餐廳的總數（67）。",
+       "en": "\"A only\" is n(A) − n(A ∩ B); note that when the question says \"choices\", the sample space may be the app choices (75) rather than the number of distinct restaurants (67)."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-26",
+     "code": "26",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "A test consists of two papers, paper 1 and paper 2. The probabilities of Aiden passing paper 1 and paper 2 are 0.55 and 0.4 respectively. The probability of Aiden passing none of the two papers is 0.15.",
+      "zh": "一個測驗有卷一和卷二兩份試卷。Aiden 合格卷一和卷二的概率分別是 0.55 和 0.4。他兩份試卷都不合格的概率是 0.15。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that Aiden passes at least one of the two papers,",
+       "zh": "求 Aiden 至少合格一份試卷的概率；",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "both papers.",
+       "zh": "兩份試卷都合格的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "1 - 0.15 = 0.85",
+       "note": {
+        "zh": "反面：兩份都不合格是 0.15",
+        "en": "Complement: passing none is 0.15"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "[0.55 + 0.4] - 0.85 = 0.1",
+       "note": {
+        "zh": "反求交集",
+        "en": "Recover the intersection"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "「至少一份」用反面",
+         "en": "\"At least one\" by complement"
+        },
+        "math": "1 - 0.15",
+        "zh": "「至少合格一份」是「兩份都不合格」的反面，所以用 $1$ 減去 $0.15$。",
+        "en": "\"Passes at least one\" is the complement of \"passes none\", so subtract 0.15 from 1.",
+        "marking": "(1M)",
+        "highlight": [
+         "1 - 0.15"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "1 - 0.15 = 0.85",
+        "zh": "$1 - 0.15 = 0.85$，所以至少合格一份的概率是 $0.85$。",
+        "en": "1 − 0.15 = 0.85, so the probability of passing at least one paper is 0.85.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - 0.15 = 0.85"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "反求交集",
+         "en": "Recover the intersection"
+        },
+        "math": "P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)",
+        "zh": "兩個數都合格就是交集。已知 $P(\\text{卷一}) = 0.55$、$P(\\text{卷二}) = 0.4$，而 (a) 已求出聯集 $P(\\text{至少一份}) = 0.85$，把加法定律反過來用。",
+        "en": "Passing both papers is the intersection. With P(paper 1) = 0.55, P(paper 2) = 0.4 and the union P(at least one) = 0.85 from (a), reverse the addition law.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)"
+        ]
+       },
+       {
+        "part": "(b)",
+         "title": {
+         "zh": "先加後減",
+         "en": "Add first, then subtract"
+        },
+        "math": "[0.55 + 0.4] - 0.85 = 0.1",
+        "zh": "$[0.55 + 0.4] - 0.85 = 0.95 - 0.85 = 0.1$，所以兩份都合格的概率是 $0.1$。",
+        "en": "[0.55 + 0.4] − 0.85 = 0.95 − 0.85 = 0.1, so the probability of passing both papers is 0.1.",
+        "marking": "(1A)",
+        "highlight": [
+         "[0.55 + 0.4] - 0.85 = 0.1"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b) 直接相乘",
+        "labelEn": "(b) multiplying directly",
+        "zh": "兩份試卷的成績不一定獨立，$0.55 \\times 0.4$ 未必是「兩份都合格」；本題要用加法定律反求交集。",
+        "en": "The two papers need not be independent, so 0.55 × 0.4 need not be the probability of passing both; reverse the addition law instead."
+       },
+       {
+        "label": "(a) 把兩個概率相加",
+        "labelEn": "(a) adding the two probabilities",
+        "zh": "$0.55 + 0.4 = 0.95$ 把兩份都合格的人數了兩次；聯集要減交集，而交集正是 (b) 要求的 $0.1$。",
+        "en": "0.55 + 0.4 = 0.95 counts those passing both twice; the union subtracts the intersection, which is exactly the 0.1 found in (b)."
+       }
+      ],
+      "tip": {
+       "zh": "加法定律可以雙向使用：由兩個事件與聯集反求交集，$P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)$；先加後減的次序不要掉亂。",
+       "en": "The addition law works both ways: recover the intersection from the events and the union, P(A ∩ B) = [P(A) + P(B)] − P(A ∪ B); keep the order — add first, subtract second."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-27",
+     "code": "27",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "In a class, $\\frac{1}{2}$ of the students join the music club, $\\frac{2}{3}$ of the students join the sports club and $\\frac{1}{4}$ of the students join both clubs. A student is randomly selected from the class.",
+      "zh": "一班之中，$\\frac{1}{2}$ 的學生參加音樂社、$\\frac{2}{3}$ 的學生參加體育社、$\\frac{1}{4}$ 的學生兩個社都參加。從班中隨機選出一名學生。"
+     },
+     "parts": [
+      {
+       "label": "(a)(i)",
+       "en": "Find the probability that the student selected joins the music club but not the sports club,",
+       "zh": "求選出的學生參加音樂社但不參加體育社的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(a)(ii)",
+       "en": "joins either the music club or the sports club but not both.",
+       "zh": "選出的學生只參加其中一個社（不是兩個都參加）的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Jackie claims that all students in the class join the music club or the sports club or both clubs. Do you agree? Explain your answer.",
+       "zh": "Jackie 聲稱班上全部學生都參加音樂社、體育社或兩者。你是否同意？試解釋你的答案。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)(i)",
+       "math": "\\frac{1}{2} - \\frac{1}{4} = \\frac{1}{4}",
+       "note": {
+        "zh": "音樂社的概率減去兩社都參加的",
+        "en": "Music minus both clubs"
+       }
+      },
+      {
+       "part": "(a)(ii)",
+       "math": "\\frac{1}{4} + \\left(\\frac{2}{3} - \\frac{1}{4}\\right) = \\frac{2}{3}",
+       "note": {
+        "zh": "只音樂 ＋ 只體育",
+        "en": "Music only plus sports only"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{1}{2} + \\frac{2}{3} - \\frac{1}{4} = \\frac{11}{12} \\ne 1",
+       "note": {
+        "zh": "不同意：仍有 $\\frac{1}{12}$ 學生兩社都不參加",
+        "en": "Disagree: 1/12 of the class joins neither club"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)(i)",
+        "title": {
+         "zh": "「只音樂」＝音樂減交集",
+         "en": "Music only: music minus the overlap"
+        },
+        "math": "\\frac{1}{2} - \\frac{1}{4} = \\frac{1}{4}",
+        "zh": "參加音樂社的 $\\frac{1}{2}$ 之中，有 $\\frac{1}{4}$ 同時參加體育社，所以在音樂社但不參加體育社的是 $\\frac{1}{2} - \\frac{1}{4} = \\frac{1}{4}$。",
+        "en": "Of the 1/2 in the music club, 1/4 are also in the sports club, so \"music but not sports\" is 1/2 − 1/4 = 1/4.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{2} - \\frac{1}{4} = \\frac{1}{4}"
+        ]
+       },
+       {
+        "part": "(a)(ii)",
+        "title": {
+         "zh": "先求「只體育」",
+         "en": "Find \"sports only\" first"
+        },
+        "math": "\\frac{2}{3} - \\frac{1}{4} = \\frac{5}{12}",
+        "zh": "同理，「只參加體育社」＝ $\\frac{2}{3} - \\frac{1}{4} = \\frac{8}{12} - \\frac{3}{12} = \\frac{5}{12}$。",
+        "en": "Similarly, \"sports only\" is 2/3 − 1/4 = 8/12 − 3/12 = 5/12.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{2}{3} - \\frac{1}{4} = \\frac{5}{12}"
+        ]
+       },
+       {
+        "part": "(a)(ii)",
+        "title": {
+         "zh": "兩批相加（互斥）",
+         "en": "Add the two disjoint groups"
+        },
+        "math": "\\frac{1}{4} + \\frac{5}{12} = \\frac{8}{12} = \\frac{2}{3}",
+        "zh": "「只音樂」與「只體育」互斥，直接相加：$\\frac{1}{4} + \\frac{5}{12} = \\frac{3}{12} + \\frac{5}{12} = \\frac{8}{12} = \\frac{2}{3}$。",
+        "en": "\"Music only\" and \"sports only\" do not overlap, so add: 1/4 + 5/12 = 3/12 + 5/12 = 8/12 = 2/3.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{4} + \\frac{5}{12} = \\frac{2}{3}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算「至少一個社」的聯集",
+         "en": "Compute the union \"at least one club\""
+        },
+        "math": "\\frac{1}{2} + \\frac{2}{3} - \\frac{1}{4}",
+        "zh": "「參加音樂社或體育社（或兩者）」是聯集，用加法定律：$\\frac{1}{2} + \\frac{2}{3} - \\frac{1}{4}$。",
+        "en": "\"Music or sports (or both)\" is the union, given by the addition law: 1/2 + 2/3 − 1/4.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{1}{2} + \\frac{2}{3} - \\frac{1}{4}"
+        ]
+       },
+       {
+        "part": "(b)",
+         "title": {
+         "zh": "不等於 1，所以不同意",
+         "en": "Not equal to 1: disagree"
+        },
+        "math": "\\frac{6 + 8 - 3}{12} = \\frac{11}{12} \\ne 1",
+        "zh": "通分：$\\frac{11}{12} \\ne 1$，即仍有 $1 - \\frac{11}{12} = \\frac{1}{12}$ 的學生兩個社都不參加，所以不同意 Jackie 的說法。",
+        "en": "With denominator 12 this is 11/12 ≠ 1, so 1 − 11/12 = 1/12 of the class joins neither club and Jackie's claim is wrong.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{11}{12} \\ne 1"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b) 只答不同意，沒有計算",
+        "labelEn": "(b) disagreeing without evidence",
+        "zh": "「Do you agree? Explain」必須出示數值：算出聯集 $\\frac{11}{12} \\ne 1$，才證明有人兩社都不參加（還有 $\\frac{1}{12}$）。",
+        "en": "\"Do you agree? Explain\" requires a value: show that the union is 11/12 ≠ 1, so 1/12 of the class joins neither club."
+       },
+       {
+        "label": "(a)(ii) 忘減交集",
+        "labelEn": "(a)(ii) forgetting the overlap",
+        "zh": "$\\frac{1}{2} + \\frac{2}{3} = \\frac{7}{6}$ 超過 1，明顯有誤：兩個社都參加的 $\\frac{1}{4}$ 被數了兩次。",
+        "en": "1/2 + 2/3 = 7/6 exceeds 1, which signals the error: the 1/4 joining both clubs was counted twice."
+       }
+      ],
+      "tip": {
+       "zh": "三個關鍵動作：「只 $A$」＝ $P(A) - P(A \\cap B)$；「只其中一個」＝把兩個「只」相加；「全部都在內」要驗證聯集是否等於 $1$。",
+       "en": "Three moves: \"A only\" = P(A) − P(A ∩ B); \"exactly one\" adds the two \"only\" groups; \"everyone is included\" must be verified by checking the union equals 1."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-l2-28",
+     "code": "28",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "A bag contains some white blocks, some orange blocks and some yellow blocks. A block is randomly drawn from the bag. The probability of drawing a white block or an orange block is $\\frac{1}{2}$. The probability of drawing a white block or a yellow block is $\\frac{2}{3}$. Find the probability of drawing an orange block or a yellow block.",
+      "zh": "一個袋內有一些白色積木、一些橙色積木和一些黃色積木。從袋中隨機抽出一塊積木。抽到白色或橙色積木的概率是 $\\frac{1}{2}$，抽到白色或黃色積木的概率是 $\\frac{2}{3}$。求抽到橙色或黃色積木的概率。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find the probability of drawing an orange block or a yellow block.",
+       "zh": "求抽到橙色或黃色積木的概率。",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "math": "\\left(1 - \\frac{2}{3}\\right) + \\left(1 - \\frac{1}{2}\\right) = \\frac{5}{6}",
+       "note": {
+        "zh": "橙色 $\\frac{1}{3}$、黃色 $\\frac{1}{2}$，相加得 $\\frac{5}{6}$",
+        "en": "Orange 1/3, yellow 1/2, giving 5/6"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "反面求橙色的概率",
+         "en": "Orange by complement"
+        },
+        "math": "P(\\text{orange}) = 1 - \\frac{2}{3} = \\frac{1}{3}",
+        "zh": "袋中只有白、橙、黃三種顏色，「抽到白色或黃色」的反面就是「抽到橙色」：$1 - \\frac{2}{3} = \\frac{1}{3}$。",
+        "en": "The bag holds only white, orange and yellow, so the complement of \"white or yellow\" is \"orange\": 1 − 2/3 = 1/3.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(\\text{orange}) = 1 - \\frac{2}{3} = \\frac{1}{3}"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "反面求黃色的概率",
+         "en": "Yellow by complement"
+        },
+        "math": "P(\\text{yellow}) = 1 - \\frac{1}{2} = \\frac{1}{2}",
+        "zh": "同理，「抽到白色或橙色」的反面是「抽到黃色」：$1 - \\frac{1}{2} = \\frac{1}{2}$。",
+        "en": "Likewise the complement of \"white or orange\" is \"yellow\": 1 − 1/2 = 1/2.",
+        "marking": "(1M)",
+        "highlight": [
+         "P(\\text{yellow}) = 1 - \\frac{1}{2} = \\frac{1}{2}"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "橙色與黃色互斥，相加",
+         "en": "Orange and yellow are disjoint: add"
+        },
+        "math": "\\frac{1}{3} + \\frac{1}{2} = \\frac{2}{6} + \\frac{3}{6} = \\frac{5}{6}",
+        "zh": "橙色和黃色不可能同時出現（一塊積木只有一種顏色），直接相加：$\\frac{1}{3} + \\frac{1}{2} = \\frac{5}{6}$。",
+        "en": "A block has one colour, so orange and yellow cannot occur together; simply add: 1/3 + 1/2 = 5/6.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{3} + \\frac{1}{2} = \\frac{5}{6}"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "用白色概率核對",
+         "en": "Check with the white probability"
+        },
+        "math": "\\frac{1}{2} + \\frac{2}{3} = \\frac{7}{6} \\implies P(\\text{white}) = \\frac{1}{6}",
+        "zh": "核對：$\\frac{1}{2} + \\frac{2}{3} = \\frac{7}{6}$ 比 $1$ 多了 $\\frac{1}{6}$，多出的正是被數了兩次的白色，所以 $P(\\text{white}) = \\frac{1}{6}$，$P(\\text{orange or yellow}) = 1 - \\frac{1}{6} = \\frac{5}{6}$，與上面一致。",
+        "en": "Check: 1/2 + 2/3 = 7/6 exceeds 1 by 1/6, exactly the white probability counted twice, so P(white) = 1/6 and 1 − 1/6 = 5/6, matching the answer.",
+        "marking": "(1A)",
+        "highlight": [
+         "P(\\text{white}) = \\frac{1}{6}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把 $\\frac{1}{2} + \\frac{2}{3}$ 當答案",
+        "labelEn": "Answering with 1/2 + 2/3",
+        "zh": "$\\frac{1}{2} + \\frac{2}{3} = \\frac{7}{6}$ 超過 1：白色被數了兩次；題目要的是「橙色或黃色」。",
+        "en": "1/2 + 2/3 = 7/6 exceeds 1 because white was counted twice; the question asks for \"orange or yellow\"."
+       },
+       {
+        "label": "以為三種顏色機會相同",
+        "labelEn": "Assuming the three colours are equally likely",
+        "zh": "白、橙、黃的概率並不相同（這裡是 $\\frac{1}{6}$、$\\frac{1}{3}$、$\\frac{1}{2}$）；一切以題目給的兩個概率為依據。",
+        "en": "White, orange and yellow are not equally likely (here 1/6, 1/3 and 1/2); work only from the two given probabilities."
+       }
+      ],
+      "tip": {
+       "zh": "只有三種顏色時，「$A$ 或 $B$」的反面就是「$C$」：一條減法就得到第三種顏色的概率，再用「或」相加。",
+       "en": "With exactly three colours, the complement of \"A or B\" is simply \"C\": one subtraction gives the third colour's probability, then add for \"or\"."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "SM",
+   "short": {
+    "zh": "挑戰題",
+    "en": "SMART"
+   },
+   "title": {
+    "zh": "挑戰題 · SMART CORNER",
+    "en": "SMART CORNER"
+   },
+   "marks": 14,
+   "questions": [
+    {
+     "id": "ch18-2-sm-29",
+     "code": "29",
+     "type": "long",
+     "marks": 6,
+     "difficulty": 3,
+     "stem": {
+      "en": "$12ab$ is a 4-digit number, where $a$ and $b$ are integers from 0 to 9 inclusive.",
+      "zh": "$12ab$ 是一個四位數，其中 $a$  與 $b$  是 0 至 9（包括 0 和 9）的整數。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that the 4-digit number is divisible by 4,",
+       "zh": "求這個四位數能被 4 整除的概率；",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "divisible by 5,",
+       "zh": "能被 5 整除的概率；",
+       "marks": 2
+      },
+      {
+       "label": "(c)",
+       "en": "divisible by 4 or divisible by 5.",
+       "zh": "能被 4 整除或能被 5 整除的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{25}{100} = \\frac{1}{4}",
+       "note": {
+        "zh": "能被 4 整除的「$ab$」共 25 個",
+        "en": "Twenty-five endings are divisible by 4"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{20}{100} = \\frac{1}{5}",
+       "note": {
+        "zh": "末位是 0 或 5 的共 20 個",
+        "en": "Twenty endings end in 0 or 5"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "\\frac{1}{4} + \\frac{1}{5} - \\frac{1}{20} = \\frac{2}{5}",
+       "note": {
+        "zh": "交集＝能被 20 整除的 5 個",
+        "en": "The overlap is the five endings divisible by 20"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先數樣本空間",
+         "en": "Count the sample space"
+        },
+        "math": "n(S) = 10 \\times 10 = 100 ,\\ n(A) = 25",
+        "zh": "$a$、$b$ 各由 0 至 9 選（可以選 0），共 $10 \\times 10 = 100$ 個結果，所以分母是 100。「$ab$」能被 4 整除的數目：00、04、08、12、16、…、96，每 4 個一數，共 25 個。",
+        "en": "Each of a and b runs from 0 to 9, giving 10 × 10 = 100 outcomes, so the denominator is 100. The endings divisible by 4 are 00, 04, 08, 12, 16, …, 96 — twenty-five of them.",
+        "marking": "(1M)",
+        "highlight": [
+         "n(S) = 10 \\times 10 = 100 ,\\ n(A) = 25"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "寫成概率",
+         "en": "Write the probability"
+        },
+        "math": "\\frac{25}{100} = \\frac{1}{4}",
+        "zh": "所以 $P(\\text{divisible by } 4) = \\frac{25}{100} = \\frac{1}{4}$，即是四分之一的機會。",
+        "en": "P(divisible by 4) = 25/100 = 1/4.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{25}{100} = \\frac{1}{4}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "看末位數字",
+         "en": "Look at the last digit"
+        },
+        "math": "n(B) = 20",
+        "zh": "「$ab$」能被 5 整除，當且僅當末位是 0 或 5：00、05、10、15、…、95，共 20 個。",
+        "en": "\"ab\" is divisible by 5 exactly when its last digit is 0 or 5: 00, 05, 10, 15, …, 95 — twenty of them.",
+        "marking": "(1M)",
+        "highlight": [
+         "n(B) = 20"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "寫成概率",
+         "en": "Write the probability"
+        },
+        "math": "\\frac{20}{100} = \\frac{1}{5}",
+        "zh": "所以 $P(\\text{divisible by } 5) = \\frac{20}{100} = \\frac{1}{5}$，即是五分之一的機會。",
+        "en": "P(divisible by 5) = 20/100 = 1/5.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{20}{100} = \\frac{1}{5}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "交集：同時被 4 與 5 整除",
+         "en": "The overlap: divisible by 4 and 5"
+        },
+        "math": "\\{(00), (20), (40), (60), (80)\\} ,\\ n(A \\cap B) = 5",
+        "zh": "同時能被 4 與 5 整除，即能被 20 整除：00、20、40、60、80，共 5 個。",
+        "en": "Divisible by both 4 and 5 means divisible by 20: 00, 20, 40, 60, 80 — five of them.",
+        "marking": "(1M)",
+        "highlight": [
+         "n(A \\cap B) = 5"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "用加法定律",
+         "en": "Apply the addition law"
+        },
+        "math": "\\frac{1}{4} + \\frac{1}{5} - \\frac{1}{20}\n= \\frac{5}{20} + \\frac{4}{20} - \\frac{1}{20}\n= \\frac{8}{20} = \\frac{2}{5}",
+        "zh": "通分後 $[5 + 4] - 1 = 8$，所以概率是 $\\frac{8}{20} = \\frac{2}{5}$。",
+        "en": "With denominator 20, [5 + 4] − 1 = 8, so the probability is 8/20 = 2/5.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{8}{20} = \\frac{2}{5}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "樣本空間用 90",
+        "labelEn": "Using 90 as the sample space",
+        "zh": "$a$ 可以是 0（例如 1204、1214），所以共有 $10 \\times 10 = 100$ 個「$ab$」，不是 90 個。",
+        "en": "a may be 0 (for example 1204, 1214), so there are 10 × 10 = 100 endings, not 90."
+       },
+       {
+        "label": "(c) 忘減交集",
+        "labelEn": "(c) forgetting the overlap",
+        "zh": "$\\frac{1}{4} + \\frac{1}{5} = \\frac{9}{20}$ 把 00、20、40、60、80 數了兩次；正確是 $\\frac{2}{5}$。",
+        "en": "1/4 + 1/5 = 9/20 counts 00, 20, 40, 60 and 80 twice; the correct answer is 2/5."
+       }
+      ],
+      "tip": {
+       "zh": "「$ab$」是四位數的後兩位，不是字母相乘；能否被 4 整除看最後兩位，能被 5 整除看最後一位，同時被 4 與 5 整除就看能否被 20 整除。",
+       "en": "\"ab\" stands for the last two digits of the number, not a product of letters: divisibility by 4 uses the last two digits, by 5 the last digit, and by both 4 and 5 the multiples of 20."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-sm-30",
+     "code": "30",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "Bag P contains four balls numbered 2, 6, 7 and 8 respectively while bag Q contains five balls numbered 1, 3, 4, 5 and 9 respectively. If one ball is randomly drawn from each bag,",
+      "zh": "袋 P 內有四個分別標上 2、6、7、8 的球，袋 Q 內有五個分別標上 1、3、4、5、9 的球。若從每個袋各隨機抽出一個球，"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "find the probability that the sum of the two numbers drawn is greater than 15 or less than 5.",
+       "zh": "求兩個球的數字之和大於 15 或小於 5 的概率。",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "math": "\\frac{2 + 1}{20} = \\frac{3}{20}",
+       "note": {
+        "zh": "和大於 15：$(7, 9)$、$(8, 9)$；和小於 5：$(2, 1)$",
+        "en": "Sum above 15: (7, 9), (8, 9); sum below 5: (2, 1)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "",
+        "title": {
+         "zh": "樣本空間是 20 對",
+         "en": "Twenty ordered pairs"
+        },
+        "math": "4 \\times 5 = 20",
+        "zh": "從兩個袋各抽一球，共 $4 \\times 5 = 20$ 個有序結果，所以分母是 20。",
+        "en": "One ball from each bag gives 4 × 5 = 20 ordered results, so the denominator is 20.",
+        "marking": "(1M)",
+        "highlight": [
+         "4 \\times 5 = 20"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "列出和大於 15 的組合",
+         "en": "List the pairs with sum above 15"
+        },
+        "math": "\\{(7, 9), (8, 9)\\} ,\\ n = 2",
+        "zh": "P 袋最多是 8，所以只有 $(7, 9)$ 與 $(8, 9)$ 兩個組合的和大於 15（$(6, 9) = 15$ 剛好不算）。",
+        "en": "The largest ball in P is 8, so only (7, 9) and (8, 9) sum above 15 — (6, 9) = 15 does not count.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\{(7, 9), (8, 9)\\} ,\\ n = 2"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "列出和小於 5 的組合",
+         "en": "List the pairs with sum below 5"
+        },
+        "math": "\\{(2, 1)\\} ,\\ n = 1",
+        "zh": "和小於 5 的只有 $(2, 1)$：$(2, 3) = 5$ 剛好不算，$(6, 1) = 7$ 已超出。",
+        "en": "Only (2, 1) sums below 5: (2, 3) = 5 does not count, and (6, 1) = 7 is too large.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\{(2, 1)\\} ,\\ n = 1"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "兩批互斥，直接相加",
+         "en": "The two groups are disjoint: add"
+        },
+        "math": "\\frac{2}{20} + \\frac{1}{20} = \\frac{3}{20}",
+        "zh": "一個和不可能同時大於 15 又小於 5，兩件事互斥，所以直接相加：$\\frac{2}{20} + \\frac{1}{20} = \\frac{3}{20}$。",
+        "en": "One sum cannot be both above 15 and below 5, so the events are mutually exclusive and the probabilities simply add: 2/20 + 1/20 = 3/20.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{3}{20}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "把邊界值也算進去",
+        "labelEn": "Including the boundary values",
+        "zh": "「大於 15」不含 $6 + 9 = 15$，「小於 5」不含 $2 + 3 = 5$；把這兩對算進去會多算 2 個結果。",
+        "en": "\"Greater than 15\" excludes 6 + 9 = 15 and \"less than 5\" excludes 2 + 3 = 5; including them adds two results too many."
+       },
+       {
+        "label": "重複計算交疊",
+        "labelEn": "Double-counting the overlap",
+        "zh": "兩件事沒有交集，本題才可以直接相加；若忘記判斷互斥而套用加法定律，會錯減一個不存在交集。",
+        "en": "The two events have no intersection, which is why they may simply be added; subtracting a non-existent overlap would be wrong."
+       }
+      ],
+      "tip": {
+       "zh": "處理「大於／小於」先寫出剛好在邊界的組合（這裡是 15 與 5），再逐一剔除；兩批互斥時直接相加，不必減任何東西。",
+       "en": "For \"greater/less than\", first list the pairs landing exactly on the boundary (15 and 5 here) and discard them; when the two groups are disjoint, simply add."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-sm-31",
+     "code": "31",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "Two fair dice are thrown.",
+      "zh": "擲兩枚均勻骰子。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that the two numbers are the same,",
+       "zh": "求兩個數相同的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "the product of the two numbers is less than 3,",
+       "zh": "兩個數之積小於 3 的概率；",
+       "marks": 1
+      },
+      {
+       "label": "(c)",
+       "en": "the two numbers are different or their product is less than 3.",
+       "zh": "兩個數不同或兩數之積小於 3 的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{6}{36} = \\frac{1}{6}",
+       "note": {
+        "zh": "6 對對子，共 36 個結果",
+        "en": "Six doubles out of 36 outcomes"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{3}{36} = \\frac{1}{12}",
+       "note": {
+        "zh": "$(1, 1)$、$(1, 2)$、$(2, 1)$",
+        "en": "(1, 1), (1, 2), (2, 1)"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "\\frac{30}{36} + \\frac{3}{36} - \\frac{2}{36} = \\frac{31}{36}",
+       "note": {
+        "zh": "交集＝$(1, 2)$、$(2, 1)$",
+        "en": "The intersection is (1, 2) and (2, 1)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "數對子",
+         "en": "Count the doubles"
+        },
+        "math": "\\frac{6}{36} = \\frac{1}{6}",
+        "zh": "兩枚骰子共有 $6 \\times 6 = 36$ 個結果；兩個數相同的是 $(1, 1)$、$(2, 2)$、…、$(6, 6)$ 共 6 個，所以概率是 $\\frac{6}{36} = \\frac{1}{6}$。",
+        "en": "Two dice give 6 × 6 = 36 outcomes; the doubles (1, 1), (2, 2), …, (6, 6) number six, so the probability is 6/36 = 1/6.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{6}{36} = \\frac{1}{6}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "積小於 3 的組合",
+         "en": "Pairs whose product is below 3"
+        },
+        "math": "\\frac{3}{36} = \\frac{1}{12}",
+        "zh": "積小於 3 的只有 $(1, 1)$（積 1）、$(1, 2)$ 與 $(2, 1)$（積 2）三個，所以概率是 $\\frac{3}{36} = \\frac{1}{12}$。",
+        "en": "Only (1, 1) with product 1, and (1, 2) and (2, 1) with product 2 qualify, so the probability is 3/36 = 1/12.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{3}{36} = \\frac{1}{12}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "找交集",
+         "en": "Find the intersection"
+        },
+        "math": "\\{(1, 2), (2, 1)\\} ,\\ n = 2",
+        "zh": "「兩數不同」有 $36 - 6 = 30$ 個結果。兩件事同時成立的是 $(1, 2)$ 與 $(2, 1)$ 共 2 個（$(1, 1)$ 兩數相同，不算交集）。",
+        "en": "\"Different numbers\" covers 36 − 6 = 30 outcomes. The outcomes satisfying both are (1, 2) and (2, 1) — two of them, since (1, 1) has equal numbers.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\{(1, 2), (2, 1)\\} ,\\ n = 2"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "用加法定律",
+         "en": "Apply the addition law"
+        },
+        "math": "\\frac{30}{36} + \\frac{3}{36} - \\frac{2}{36} = \\frac{31}{36}",
+        "zh": "分子 $[30 + 3] - 2 = 31$，所以概率是 $\\frac{31}{36}$（已是最簡）。",
+        "en": "The numerator is [30 + 3] − 2 = 31, so the probability is 31/36, already in lowest terms.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{31}{36}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(c) 交集算錯",
+        "labelEn": "(c) getting the intersection wrong",
+        "zh": "交集是 $(1, 2)$ 與 $(2, 1)$ 兩個；$(1, 1)$ 的積雖然小於 3，但兩數相同，不在「不同」那一邊。",
+        "en": "The intersection is (1, 2) and (2, 1); although (1, 1) has product below 3, its numbers are equal, so it is not in the \"different\" group."
+       },
+       {
+        "label": "「兩數不同」數成 35",
+        "labelEn": "Counting 35 \"different\" pairs",
+        "zh": "不同的結果是 $36 - 6 = 30$ 個（減去 6 個對子），不是 35。",
+        "en": "\"Different\" covers 36 − 6 = 30 outcomes (the six doubles removed), not 35."
+       }
+      ],
+      "tip": {
+       "zh": "用加法定律前先逐對點名交集——同時符合 $A$ 與 $B$ 的結果（這裡只有 $(1, 2)$ 與 $(2, 1)$）；點名比憑感覺可靠。",
+       "en": "Before applying the addition law, name the intersection outcome by outcome — those satisfying both A and B (here only (1, 2) and (2, 1)); listing is more reliable than guessing."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "CT",
+   "short": {
+    "zh": "跨課題",
+    "en": "Cross"
+   },
+   "title": {
+    "zh": "跨課題 · Cross Topics",
+    "en": "Cross Topics"
+   },
+   "marks": 18,
+   "questions": [
+    {
+     "id": "ch18-2-ct-32",
+     "code": "32",
+     "type": "long",
+     "marks": 7,
+     "difficulty": 3,
+     "stem": {
+      "en": "In a company, there are 28 male staff members and 35 female staff members. 50% of the male staff members and 40% of the female staff members are married. If a staff member is chosen randomly, find the probability that the staff member chosen is",
+      "zh": "一間公司有 28 名男職員及 35 名女職員。50% 的男職員與 40% 的女職員已婚。隨機抽出一名職員，求抽中的職員"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "married.",
+       "zh": "已婚的概率。",
+       "marks": 3
+      },
+      {
+       "label": "(b)",
+       "en": "a female who is not married.",
+       "zh": "是未婚女職員的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(c)",
+       "en": "a male or is married.",
+       "zh": "是男職員或已婚的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{28}{63} = \\frac{4}{9}",
+       "note": {
+        "zh": "男職員與女職員的已婚人數要相加（互斥）",
+        "en": "Add the married males and married females (mutually exclusive)"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{21}{63} = \\frac{1}{3}",
+       "note": {
+        "zh": "未婚女職員是女職員的 $60\\%$",
+        "en": "Unmarried females are 60% of the females"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "\\frac{42}{63} = \\frac{2}{3}",
+       "note": {
+        "zh": "「男職員或已婚」= $1-$「未婚女職員」",
+        "en": "\"Male or married\" is 1 − \"unmarried female\""
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先求總人數與已婚男職員",
+         "en": "Total and the married males"
+        },
+        "math": "n(S) = 28 + 35 = 63 ,\\ n(\\text{married male}) = 28 \\times 50\\% = 14",
+        "zh": "全公司共有 $28 + 35 = 63$ 名職員，分母用 63。已婚男職員有 $28 \\times 50\\% = 14$ 名。",
+        "en": "There are 28 + 35 = 63 staff in all, so 63 is the denominator. Married males: 28 × 50% = 14.",
+        "marking": "(1M)",
+        "highlight": [
+         "n(S) = 28 + 35 = 63"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "已婚女職員與已婚總人數（互斥）",
+         "en": "Married females and the total (mutually exclusive)"
+        },
+        "math": "n(\\text{married female}) = 35 \\times 40\\% = 14 ,\\ n(\\text{married}) = 14 + 14 = 28",
+        "zh": "已婚女職員有 $35 \\times 40\\% = 14$ 名。一名職員不可能既是男又是女，所以「已婚男」與「已婚女」互斥，直接相加得 $14 + 14 = 28$ 名。",
+        "en": "Married females: 35 × 40% = 14. A staff member cannot be both male and female, so the two groups are mutually exclusive and simply add: 14 + 14 = 28.",
+        "marking": "(1M)",
+        "highlight": [
+         "n(\\text{married}) = 14 + 14 = 28"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "寫成概率",
+         "en": "Write the probability"
+        },
+        "math": "\\frac{28}{63} = \\frac{4}{9}",
+        "zh": "所以 $P(\\text{married}) = \\frac{28}{63} = \\frac{4}{9}$，概率為九分之四。",
+        "en": "P(married) = 28/63 = 4/9.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{4}{9}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "取未婚的百分比",
+         "en": "Take the unmarried percentage"
+        },
+        "math": "n(\\text{female, not married}) = 35 \\times (1 - 40\\%) = 21",
+        "zh": "女職員有 40% 已婚，所以未婚的佔 $1 - 40\\% = 60\\%$，人數為 $35 \\times 60\\% = 21$ 名。",
+        "en": "40% of the females are married, so the unmarried make up 1 − 40% = 60%, that is 35 × 60% = 21.",
+        "marking": "(1M)",
+        "highlight": [
+         "35 \\times (1 - 40\\%) = 21"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "寫成概率",
+         "en": "Write the probability"
+        },
+        "math": "\\frac{21}{63} = \\frac{1}{3}",
+        "zh": "所以 $P(\\text{unmarried female}) = \\frac{21}{63} = \\frac{1}{3}$，概率為三分之一。",
+        "en": "P(unmarried female) = 21/63 = 1/3.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{3}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "用反面：1 減去未婚女職員",
+         "en": "Use the complement"
+        },
+        "math": "P(\\text{male or married}) = 1 - \\frac{21}{63}",
+        "zh": "「男職員或已婚」的反面剛好是「未婚女職員」——既不是男職員，就一定是女職員；而不是已婚，就是未婚。所以用 $1 - P(\\text{unmarried female})$ 最快。",
+        "en": "The complement of \"male or married\" is exactly \"unmarried female\" — not male means female, and not married means unmarried. So use 1 − P(unmarried female).",
+        "marking": "(1M)",
+        "highlight": [
+         "1 - \\frac{21}{63}"
+        ]
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "1 - \\frac{21}{63} = \\frac{42}{63} = \\frac{2}{3}",
+        "zh": "計算得 $1 - \\frac{21}{63} = \\frac{42}{63} = \\frac{2}{3}$，概率為三分之二。",
+        "en": "1 − 21/63 = 42/63 = 2/3.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{2}{3}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 忘了女職員的已婚人數",
+        "labelEn": "(a) forgetting the married females",
+        "zh": "50% 與 40% 是分別以男、女職員人數為基準的，不可只算 $28 \\times 50\\%$。",
+        "en": "50% and 40% are based on the male and female headcounts separately; 28 × 50% alone is not enough."
+       },
+       {
+        "label": "(c) 直接把兩個概率相加",
+        "labelEn": "(c) just adding the two probabilities",
+        "zh": "若用加法定律，$P(\\text{男}) + P(\\text{已婚}) = \\frac{28}{63} + \\frac{28}{63} = \\frac{56}{63} > 1$，必須減去已婚男職員 $\\frac{14}{63}$ 才合理。",
+        "en": "With the addition law, P(male) + P(married) = 28/63 + 28/63 = 56/63 exceeds 1; subtract the married males 14/63."
+       },
+       {
+        "label": "(b) 分母用了 35",
+        "labelEn": "(b) using 35 as the denominator",
+        "zh": "抽的是「職員」（包括男女），分母是 $28 + 35 = 63$，不是女職員人數 35。",
+        "en": "A staff member of either gender can be chosen, so the denominator is 28 + 35 = 63, not 35."
+       }
+      ],
+      "tip": {
+       "zh": "跨課題提示：把男女與已婚與否排成 $2 \\times 2$ 表，四格的數目加起來就是分母。(c) 的「或」可用兩條路檢查——正面用加法定律減交集，反面用 $1 - P(\\text{未婚女職員})$，兩者答案應相同。",
+       "en": "Cross-topic: lay the data out as a 2 × 2 table (gender × married) and add the four cells for the denominator. Check (c) both ways — the addition law with the intersection subtracted, and the complement 1 − P(unmarried female) — the answers must agree."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-ct-33",
+     "code": "33",
+     "type": "long",
+     "marks": 6,
+     "difficulty": 3,
+     "stem": {
+      "en": "The table below shows the highest education attainments of 50 employees in a company.",
+      "zh": "下表顯示一間公司 50 名僱員的最高學歷。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that the highest education level of the employee chosen is primary or secondary.",
+       "zh": "若隨機抽出一名僱員，求其最高學歷為小學或中學的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "If the probability of choosing an employee whose highest education level is secondary is 3 times the probability of choosing an employee whose highest education level is primary, find the values of x and y.",
+       "zh": "若最高學歷為中學的概率是小學的 3 倍，求 x 與 y 的值。",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{8}{50} = \\frac{4}{25}",
+       "note": {
+        "zh": "由其餘三級用反面求出",
+        "en": "Found from the other three levels by the complement"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "x = 2 ,\\ y = 6",
+       "note": {
+        "zh": "$y = 3x$ 與 $x + y = 8$ 聯立",
+        "en": "Solve y = 3x together with x + y = 8"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "由其餘三級取反面",
+         "en": "Take the complement of the other three levels"
+        },
+        "math": "P(\\text{primary or secondary}) = 1 - \\frac{11+24+7}{50}",
+        "zh": "副學士 11 人、學士 24 人、碩士 7 人是「小學或中學」以外的三級，合計 $11 + 24 + 7 = 42$ 人。用反面：$1 - P(\\text{其餘三級})$。",
+        "en": "Associate degree 11, bachelor's 24 and master's 7 make up 11 + 24 + 7 = 42 of the other levels. Take the complement.",
+        "marking": "(1M)",
+        "highlight": [
+         "1 - \\frac{11+24+7}{50}"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "1 - \\frac{42}{50} = \\frac{8}{50} = \\frac{4}{25}",
+        "zh": "所以 $1 - \\frac{42}{50} = \\frac{8}{50} = \\frac{4}{25}$，即每 25 名僱員當中有 4 名。",
+        "en": "1 − 42/50 = 8/50 = 4/25.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{4}{25}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "由總人數得第一個關係式",
+         "en": "First relation from the total"
+        },
+        "math": "x + y + 11 + 24 + 7 = 50 \\implies x + y = 8",
+        "zh": "全部頻數加起來等於 50：$x + y + 11 + 24 + 7 = 50$，所以 $x + y = 8$。",
+        "en": "The frequencies total 50: x + y + 11 + 24 + 7 = 50, hence x + y = 8.",
+        "marking": "(1M)",
+        "highlight": [
+         "x + y = 8"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "由概率倍數得第二個關係式",
+         "en": "Second relation from the probability ratio"
+        },
+        "math": "\\frac{y}{50} = 3 \\times \\frac{x}{50} \\implies y = 3x",
+        "zh": "同一個分母 50，分子才可以直接比：$\\frac{y}{50} = 3 \\times \\frac{x}{50}$，即 $y = 3x$。",
+        "en": "The denominators are the same 50, so compare the numerators: y/50 = 3 × x/50, i.e. y = 3x.",
+        "marking": "(1M)",
+        "highlight": [
+         "y = 3x"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "聯立求解",
+         "en": "Solve the pair"
+        },
+        "math": "x + 3x = 8 \\implies x = 2",
+        "zh": "把 $y = 3x$ 代入第一式 $x + y = 8$：$x + 3x = 8$，$4x = 8$，所以 $x = 2$。",
+        "en": "Substitute y = 3x into x + y = 8: x + 3x = 8, so 4x = 8 and x = 2.",
+        "marking": "(1A)",
+        "highlight": [
+         "x = 2"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "回代求 y",
+         "en": "Back-substitute for y"
+        },
+        "math": "y = 3(2) = 6",
+        "zh": "回代得 $y = 3(2) = 6$。檢查各級頻數：$2 + 6 + 11 + 24 + 7 = 50$，符合總人數。",
+        "en": "y = 3(2) = 6. Check: 2 + 6 + 11 + 24 + 7 = 50, matching the total.",
+        "marking": "(1A)",
+        "highlight": [
+         "y = 6"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 把 x、y 當成已知",
+        "labelEn": "(a) treating x and y as known",
+        "zh": "(a) 不需要知道 $x$、$y$ 個別是多少，只要知道它們的和；直接用 $1 - \\frac{42}{50}$ 即可。",
+        "en": "(a) never needs x and y separately, only their sum; go straight to 1 − 42/50."
+       },
+       {
+        "label": "(b) 直接寫 x = 2y",
+        "labelEn": "(b) writing x = 2y",
+        "zh": "「中學是小學的 3 倍」是 $y = 3x$；寫反了會得出 $x = 6$、$y = 2$ 這組不合常理的答案（小學人數多過中學）。",
+        "en": "\"Secondary is 3 times primary\" means y = 3x; reversing it gives the implausible x = 6, y = 2 (more primaries than secondaries)."
+       },
+       {
+        "label": "(b) 忘了 x、y 是人數",
+        "labelEn": "(b) forgetting x and y are counts",
+        "zh": "它們是頻數（整數），不可以寫成概率；只在比較概率倍數時才用到分母 50。",
+        "en": "They are counts (integers), not probabilities; the denominator 50 appears only when comparing probabilities."
+       }
+      ],
+      "tip": {
+       "zh": "跨課題提示：表格題先寫「所有頻數加起來等於總人數」這一句，往往就得到一個關係式；「概率是 k 倍」因為分母相同，等價於「人數是 k 倍」，可以直接化成 $y = kx$。",
+       "en": "Cross-topic: write \"all frequencies sum to the total\" first — it usually gives one relation immediately. Since the denominator is shared, \"the probability is k times\" reduces to \"the count is k times\", i.e. y = kx."
+      }
+     }
+    },
+    {
+     "id": "ch18-2-ct-34",
+     "code": "34",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "A bag contains 7 red marbles, m blue marbles and n green marbles. A marble is randomly drawn from the bag. The probability of drawing a red or blue marble is 4/5. The probability of drawing a red or green marble is 2/3.",
+      "zh": "一個袋內有 7 顆紅色玻璃球、$m$ 顆藍色玻璃球及 $n$ 顆綠色玻璃球。從袋中隨機抽出一顆玻璃球，抽到紅色或藍色的概率是 $\\frac{4}{5}$，抽到紅色或綠色的概率是 $\\frac{2}{3}$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Set up simultaneous equations in m and n.",
+       "zh": "列出關於 m 及 n 的聯立方程組。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Hence, find the values of m and n.",
+       "zh": "由此，求 m 與 n 的值。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{7+m}{7+m+n} = \\frac{4}{5} ,\\ \\frac{7+n}{7+m+n} = \\frac{2}{3}",
+       "note": {
+        "zh": "三種顏色的總數就是分母",
+        "en": "The total of the three colours is the denominator"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "m = 5 ,\\ n = 3",
+       "note": {
+        "zh": "消去 $7+m+n$ 得 $m = 4n-7$、$n = 2m-7$",
+        "en": "Eliminating 7 + m + n gives m = 4n − 7 and n = 2m − 7"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "第一個方程",
+         "en": "First equation"
+        },
+        "math": "\\frac{7+m}{7+m+n} = \\frac{4}{5}",
+        "zh": "三種顏色的總數是 $7 + m + n$。「紅色或藍色」有 $7 + m$ 顆（兩種顏色互斥，直接相加），所以 $\\frac{7+m}{7+m+n} = \\frac{4}{5}$。",
+        "en": "The total is 7 + m + n. \"Red or blue\" covers 7 + m marbles (the two colours are mutually exclusive, so they add), giving (7 + m)/(7 + m + n) = 4/5.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{7+m}{7+m+n} = \\frac{4}{5}"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "第二個方程",
+         "en": "Second equation"
+        },
+        "math": "\\frac{7+n}{7+m+n} = \\frac{2}{3}",
+        "zh": "「紅色或綠色」有 $7 + n$ 顆，分母仍是總數 $7 + m + n$，所以 $\\frac{7+n}{7+m+n} = \\frac{2}{3}$。",
+        "en": "\"Red or green\" covers 7 + n marbles over the same total, so (7 + n)/(7 + m + n) = 2/3.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{7+n}{7+m+n} = \\frac{2}{3}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "去分母整理成兩個一次方程",
+         "en": "Clear the denominators"
+        },
+        "math": "5(7+m) = 4(7+m+n) \\implies m = 4n - 7 ,\\ 3(7+n) = 2(7+m+n) \\implies n = 2m - 7",
+        "zh": "第一式去分母：$5(7+m) = 4(7+m+n)$，$35 + 5m = 28 + 4m + 4n$，得 $m = 4n - 7$。第二式去分母：$3(7+n) = 2(7+m+n)$，$21 + 3n = 14 + 2m + 2n$，得 $n = 2m - 7$。",
+        "en": "First: 5(7 + m) = 4(7 + m + n) gives 35 + 5m = 28 + 4m + 4n, i.e. m = 4n − 7. Second: 3(7 + n) = 2(7 + m + n) gives 21 + 3n = 14 + 2m + 2n, i.e. n = 2m − 7.",
+        "marking": "(1M)",
+        "highlight": [
+         "m = 4n - 7",
+         "n = 2m - 7"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "代入消去 n",
+         "en": "Eliminate n"
+        },
+        "math": "m = 4(2m-7) - 7 = 8m - 35 \\implies 7m = 35 \\implies m = 5",
+        "zh": "把 $n = 2m - 7$ 代入第一式並化簡：$m = 4(2m - 7) - 7 = 8m - 35$，$35 = 7m$，所以 $m = 5$。",
+        "en": "Substitute n = 2m − 7 into the first: m = 4(2m − 7) − 7 = 8m − 35, so 35 = 7m and m = 5.",
+        "marking": "(1A)",
+        "highlight": [
+         "m = 5"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "回代求 n 並檢查",
+         "en": "Back-substitute and check"
+        },
+        "math": "n = 2(5) - 7 = 3",
+        "zh": "$n = 2(5) - 7 = 3$。檢查：玻璃球總數 $= 7 + 5 + 3 = 15$ 粒，$\\frac{7+5}{15} = \\frac{4}{5}$ ✓，$\\frac{7+3}{15} = \\frac{2}{3}$ ✓。",
+        "en": "n = 2(5) − 7 = 3. Check: total = 7 + 5 + 3 = 15, (7 + 5)/15 = 4/5 and (7 + 3)/15 = 2/3.",
+        "marking": "(1A)",
+        "highlight": [
+         "n = 3"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 分母只寫其中一種顏色",
+        "labelEn": "(a) using a one-colour denominator",
+        "zh": "抽的是「一顆玻璃球」，來自三種顏色，所以分母是 $7 + m + n$；寫成 $7 + m$ 或 $7 + n$ 都不對。",
+        "en": "A marble is drawn from all three colours, so the denominator is 7 + m + n; 7 + m or 7 + n alone is wrong."
+       },
+       {
+        "label": "(b) 直接加减两式",
+        "labelEn": "(b) just adding or subtracting the two equations",
+        "zh": "兩式的分母相同但比例不同，不可直接相減；應先各自去分母化成一次方程再消元。",
+        "en": "The two equations share a denominator but not a scale, so they cannot be combined directly; clear the denominators first."
+       },
+       {
+        "label": "(b) 得出負數或分數解",
+        "labelEn": "(b) getting a negative or fractional answer",
+        "zh": "$m$、$n$ 是玻璃球的數目，必須是正整數；得到 $m = 5$、$n = 3$ 才可以，若算出別的值應回頭檢查運算。",
+        "en": "m and n are numbers of marbles and must be positive integers; only m = 5, n = 3 is acceptable, so recheck the algebra otherwise."
+       }
+      ],
+      "tip": {
+       "zh": "跨課題提示：「或」代表聯集，分母永遠是整個樣本空間，所以兩個方程的分母相同——這正是可以用聯立方程求解的關鍵。去分母後逐項整理，把同一個未知數的係數集在一邊。",
+       "en": "Cross-topic: \"or\" means a union, so the denominator is always the whole sample space — that shared denominator is exactly what makes a pair of simultaneous equations possible. After clearing denominators, collect the coefficients of each unknown on one side."
+      }
+     }
+    }
+   ]
+  }
+ ]
+}
