@@ -17,21 +17,13 @@
     "en": "Probability = favourable count ÷ total count"
    },
    "body": {
-    "zh": "- 本節每一題都先問兩件事：「全部」有多少種？「合條件」有多少種？兩者相除就是概率：{{math:0}}\n- 「同時抽」或「一次抽幾個」＝次序不重要，用組合 $C$；「逐個抽」「排隊」「有先後」＝次序重要，用排列 $P$ 或逐步相乘。\n- 分子與分母要用同一種工具：兩個都用 $C$，或者兩個都用 $P$。例如從 $n$ 個之中取 $m$ 個再分給不同種類，分母與分子都可以寫成同類的乘積：{{math:1}}\n- 有些「合條件」要數 1 到 $n$ 之中 $x$ 的倍數：先做 $n \\div x$，再「下捨入」（向下取最接近的整數，不可以四捨五入）；例如 $62 \\div 3 = 20.66\\ldots$ 得 20 個（第 21 個 63 已經超出 62），見下面的示範：{{math:2}}\n- 數完之後檢查：分子的情況一定是分母的一部份，所以概率必定在 $0$ 與 $1$ 之間。算出大於 $1$ 就一定數錯了。",
-    "en": "- Every question here starts with two questions: how many outcomes are there in total, and how many are favourable? Divide one by the other: {{math:0}}\n- \"Drawn at the same time\" or \"select several at once\" ignores order, so use combinations $C$; \"one by one\", \"queue\" or \"in a particular order\" makes order matter, so use $P$ or multiply step by step.\n- Numerator and denominator must use the same tool — both $C$ or both $P$. When choosing from several groups at once, both can be written as similar products: {{math:1}}\n- Counting the favourable cases sometimes needs the multiples of $x$ from 1 to $n$: divide $n$ by $x$, then round down (take the nearest integer below — never round to the nearest); $62 \\div 3 = 20.66\\ldots$ gives 20, since the 21st multiple, 63, is already past 62. See the demo below: {{math:2}}\n- Check afterwards: the favourable cases are part of the total, so the probability must lie between 0 and 1. Anything above 1 is a counting error."
+    "zh": "- 本節每一題都先問兩件事：「全部」有多少種？「合條件」有多少種？兩者相除就是概率：{{math:0}}\n- 「同時抽」或「一次抽幾個」＝次序不重要，用組合 $C$；「逐個抽」「排隊」「有先後」＝次序重要，用排列 $P$ 或逐步相乘。\n- 分子與分母要用同一種工具：兩個都用 $C$，或者兩個都用 $P$。例如從 $n$ 個之中取 $m$ 個再分給不同種類，分母與分子都可以寫成同類的乘積：{{math:1}}\n- 數完之後檢查：分子的情況一定是分母的一部份，所以概率必定在 $0$ 與 $1$ 之間。算出大於 $1$ 就一定數錯了。",
+    "en": "- Every question here starts with two questions: how many outcomes are there in total, and how many are favourable? Divide one by the other: {{math:0}}\n- \"Drawn at the same time\" or \"select several at once\" ignores order, so use combinations $C$; \"one by one\", \"queue\" or \"in a particular order\" makes order matter, so use $P$ or multiply step by step.\n- Numerator and denominator must use the same tool — both $C$ or both $P$. When choosing from several groups at once, both can be written as similar products: {{math:1}}\n- Check afterwards: the favourable cases are part of the total, so the probability must lie between 0 and 1. Anything above 1 is a counting error."
    },
    "math": [
     "P = \\frac{n(A)}{n(S)}",
-    "P = \\frac{C^a_x \\times C^b_y}{C^n_k}",
-    "\\left\\lfloor \\frac{n}{x} \\right\\rfloor"
+    "P = \\frac{C^a_x \\times C^b_y}{C^n_k}"
    ],
-   "demo": {
-    "type": "floor",
-    "caption": {
-     "zh": "示範：62 ÷ 3 = 20.66… → ⌊62 ÷ 3⌋ = 20 個；最後一步可以自己改 n 同 x 即時試。",
-     "en": "Demo: 62 ÷ 3 = 20.66… → ⌊62 ÷ 3⌋ = 20; the last step lets you change n and x and try at once."
-    }
-   },
    "warn": {
     "zh": "- 分母用了 $C^{16}_4$（選 4 個的方法數），分子也要是「選 4 個」的數法；若分子寫成 $P$，答案一定錯。\n- 「至少」不要逐個情況加：先算反面 $1 - P(\\text{一件都沒有})$，通常快一半以上。\n- 逐個抽而不放回時，分母每一步都少 $1$；如果改用「一次過選」的組合寫法，就不用管次序，兩者答案必須相同。",
     "en": "- If the denominator uses $C^{16}_4$ (the number of ways of choosing 4), the numerator must also count ways of choosing 4; writing the numerator with $P$ guarantees a wrong answer.\n- Never add case by case for \"at least\": use the complement 1 − P(none), which is usually at least twice as fast.\n- When drawing one by one without replacement, the denominator drops by 1 each step; the equivalent \"choose all at once\" combination ignores order, and both must give the same answer."

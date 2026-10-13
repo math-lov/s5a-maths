@@ -51,13 +51,21 @@
     "en": "Reading n(A), n(B) and n(A∩B), and recovering the overlap"
    },
    "body": {
-    "zh": "- 數據通常用三種寫法給出：文字描述（「18 人喜歡朱古力、23 人喜歡雪糕、11 人兩樣都喜歡」）、$2 \\times 2$ 表（男／女 × 有／無兄弟姊妹）、以及「只 $A$」「只 $B$」的分區。\n- 每個概率都以總數為分母，交集就用「兩樣都有」的數目除以總數：{{math:0}}\n- 反求交集：已知 $P(A \\cup B)$ 時把公式反過來用，減法要放在最後：{{math:1}}",
-    "en": "- The data comes in three common shapes: a description (18 like chocolate, 23 like ice-cream, 11 like both), a 2 × 2 table (boy/girl × with/without siblings), or the split into \"A only\" and \"B only\".\n- Every probability uses the total as denominator, and the intersection is the \"both\" count over that total: {{math:0}}\n- To recover the overlap from P(A ∪ B), reverse the law, subtracting last: {{math:1}}"
+    "zh": "- 數據通常用三種寫法給出：文字描述（「18 人喜歡朱古力、23 人喜歡雪糕、11 人兩樣都喜歡」）、$2 \\times 2$ 表（男／女 × 有／無兄弟姊妹）、以及「只 $A$」「只 $B$」的分區。\n- 每個概率都以總數為分母，交集就用「兩樣都有」的數目除以總數：{{math:0}}\n- 反求交集：已知 $P(A \\cup B)$ 時把公式反過來用，減法要放在最後：{{math:1}}\n- 有時候 $n(A)$、$n(B)$ 要自己數：1 到 $n$ 之中 $x$ 的倍數＝先做 $n \\div x$，再「下捨入」（向下取最接近的整數，不可以四捨五入）。例如 $62 \\div 3 = 20.66\\ldots$ 得 20 個（第 21 個 63 已經超出 62）；若剛好整除（$60 \\div 3$）就直接除。見下面的示範：{{math:2}}",
+    "en": "- The data comes in three common shapes: a description (18 like chocolate, 23 like ice-cream, 11 like both), a 2 × 2 table (boy/girl × with/without siblings), or the split into \"A only\" and \"B only\".\n- Every probability uses the total as denominator, and the intersection is the \"both\" count over that total: {{math:0}}\n- To recover the overlap from P(A ∪ B), reverse the law, subtracting last: {{math:1}}\n- Sometimes n(A) or n(B) has to be counted by hand: the multiples of $x$ from 1 to $n$ come from dividing $n$ by $x$ and then rounding down (take the nearest integer below — never round to the nearest). For example $62 \\div 3 = 20.66\\ldots$ gives 20, since the 21st multiple, 63, is already past 62; when the division is exact ($60 \\div 3$) plain division is the answer. See the demo below: {{math:2}}"
    },
    "math": [
     "P(A) = \\frac{n(A)}{n(S)}",
-    "P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)"
+    "P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)",
+    "\\left\\lfloor \\frac{n}{x} \\right\\rfloor"
    ],
+   "demo": {
+    "type": "floor",
+    "caption": {
+     "zh": "示範：1 到 n 之中 x 的倍數＝⌊n ÷ x⌋；62 ÷ 3 = 20.66… → 20 個。最後一步可以自己改 n 同 x 即時試。",
+     "en": "Demo: the multiples of x from 1 to n are ⌊n ÷ x⌋; 62 ÷ 3 = 20.66… → 20. Change n and x yourself in the last step."
+    }
+   },
    "warn": {
     "zh": "- 「喜歡朱古力或雪糕」的人數不是 $18 + 23$，而是 $[18 + 23] - 11 = 30$；「只喜歡雪糕」要在 23 人之中減去 11 人，得 12 人。\n- 表格題先寫總數（把每格的數目加起來），之後每個分母都用它；表格的「合計」格不要當成數據再數一次。\n- 反求交集時次序不可以掉亂：是「兩個概率相加」再減 $P(A \\cup B)$，不是先減後加。",
     "en": "- \"Chocolate or ice-cream\" is not 18 + 23 but [18 + 23] − 11 = 30; \"ice-cream only\" takes 11 away from the 23, giving 12.\n- For a table, first add every cell to get the total and use it as the denominator throughout; the printed totals are not extra data.\n- When reversing the law, keep the order: add the two probabilities first, then subtract P(A ∪ B)."
