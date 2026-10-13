@@ -1174,6 +1174,59 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .vc-warn-on { display: block; }
 .vc-hint { font-size: 12.5px; color: var(--muted); }
 
+/* ══ 下捨入示範（.demo[data-demo="floor"]）════════════════════════════════
+   62 ÷ 3 = 20.66… → 只可以數到 20 個 3 的倍數（第 21 個 63 已經超出 62）。
+   舞台：除法行 → 倍數 chips（超出的一個＝灰、虛線、刪線，唔算數）→ 結論；
+   第 4 步換成計算器：改 n、x 即時睇 ⌊n ÷ x⌋。 */
+.df-stage { display: block; }
+.df-line { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; margin: 0 0 var(--sp-2); font-size: 14px; }
+.df-eq { font-weight: 800; font-size: 16.5px; color: var(--primary-ink); font-variant-numeric: tabular-nums; }
+.df-k { font-weight: 800; font-size: 18px; color: var(--ok-dark); font-variant-numeric: tabular-nums; }
+.df-chips { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.df-chip {
+  flex: none; min-width: 30px; height: 30px; padding: 0 7px; border-radius: 15px;
+  display: grid; place-items: center; font-weight: 800; font-size: 13.5px;
+  background: var(--primary-soft); color: var(--primary-ink); border: 2px solid var(--primary-line);
+  font-variant-numeric: tabular-nums;
+}
+/* 下一個倍數已經超出 n：唔可以數 */
+.df-chip-off {
+  background: var(--card); color: var(--muted); border: 2px dashed var(--line);
+  text-decoration: line-through;
+}
+.df-gap { color: var(--muted); font-weight: 800; }
+.df-verdict { margin-bottom: 0; font-size: 14px; color: var(--text); }
+
+/* 第 4 步：計算器 */
+.df-calc { margin-top: var(--sp-2); }
+.df-fields { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; }
+.df-field { display: flex; align-items: center; gap: 6px; font-weight: 800; font-size: 14.5px; color: var(--muted); }
+.df-input {
+  width: 78px; padding: 6px 8px; text-align: center; font: inherit; font-weight: 800; color: var(--text);
+  background: var(--card); border: 1px solid var(--line-soft); border-radius: var(--radius-sm);
+}
+.df-input:focus-visible { outline: 3px solid rgba(79, 70, 229, .35); outline-offset: 2px; }
+.df-presets { display: flex; gap: 6px; flex-wrap: wrap; margin-top: var(--sp-2); }
+.df-live { display: flex; flex-direction: column; gap: 6px; margin-top: var(--sp-3); }
+.df-rowline { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; font-size: 14px; }
+.df-counts { color: var(--text); }
+/* 「剛好整除」的提示：只在整除時出現 */
+.df-exact { display: none; font-size: 13px; font-weight: 800; color: var(--ok-dark); }
+.df-exact-on .df-exact { display: inline; }
+
+/* 每步只顯示相關的部分（跟其他示範一樣用 data-step 控制顯示） */
+.demo[data-demo="floor"] .df-div,
+.demo[data-demo="floor"] .df-countline,
+.demo[data-demo="floor"] .df-formula,
+.demo[data-demo="floor"] .df-verdict,
+.demo[data-demo="floor"] .df-calc { display: none; }
+.demo[data-demo="floor"][data-step="1"] .df-div,
+.demo[data-demo="floor"][data-step="2"] .df-div { display: flex; }
+.demo[data-demo="floor"][data-step="2"] .df-countline,
+.demo[data-demo="floor"][data-step="2"] .df-formula { display: flex; }
+.demo[data-demo="floor"][data-step="2"] .df-verdict { display: block; }
+.demo[data-demo="floor"][data-step="3"] .df-calc { display: block; }
+
 @media (prefers-reduced-motion: reduce) {
   .demo .unit-block, .demo .ichip, .demo .eqbox, .demo .slot { transition: none; }
   .demo .g-in, .demo .unit-moved { animation: none; }

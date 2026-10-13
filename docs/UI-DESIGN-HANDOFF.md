@@ -85,6 +85,7 @@
 | `combination` | 組合：5 選 3，點人移落隊伍列；同一隊 3! = 6 種寫法（可「打亂次序」再自動排返）→ 合併 → 60 ÷ 3! = 10 | `ch17-3` · `ch17-3-c01` | 4 | `demos/combination.html?step=N` |
 | `path` | 路徑：4 東 3 北 → 點格子自己砌路徑（要保持 4 東）→ C(7,4) = C(7,3) = 35 | `ch17-3` · `ch17-3-c04` | 4 | `demos/path.html?step=N` |
 | `complement` | 至少／至多：直接分類 4 cases（1260）vs 反面 2 cases（1287 − 6 − 21）；點 case 會亮起該 5 人 | `ch17-3` · `ch17-3-c02` | 4 | `demos/complement.html?step=N` |
+| `floor` | 下捨入：62 ÷ 3 = 20.66… → 只可以數到 20 個 3 的倍數（第 21 個 63 已經超出 62，畫成灰色刪線）；第 4 步計算器可改 n、x 即時睇 ⌊n ÷ x⌋ | `ch18-4` · `ch18-4-c01` | 4 | `demos/floor.html?step=N` |
 
 | 用法 | 位置 | 怎樣用 |
 |---|---|---|

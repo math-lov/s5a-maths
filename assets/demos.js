@@ -2425,11 +2425,270 @@
     return root;
   }
 
+  /* ── 下捨入（Floor）示範 ────────────────────────────────────────────────
+     步驟 0 · 題目：由 1 到 62 之中，3 的倍數有幾個？
+     步驟 1 · 先做除法：62 ÷ 3 = 20.66…（除唔盡）
+     步驟 2 · 逐個數：3、6、…、60 共 20 個；第 21 個 63 已經超出 62，唔可以數
+     步驟 3 · 計算器：改 n、x 即時睇 ⌊n ÷ x⌋
+     （數字跟 18.2 L2-17 與 18.4 教學卡一致：62 ÷ 3 → 20、60 ÷ 3 → 20、99 ÷ 5 → 19）
+     ───────────────────────────────────────────────────────────────────── */
+  var FLOOR_STEPS = 3;    /* 0..3，共 4 步 */
+  var FLOOR_CHIPS = 12;   /* 舞台最多顯示 12 個倍數，其餘用「…」再接最後一個 */
+
+  function floorDemo(host, opts) {
+    var o = opts || {};
+    var nVal = 62;        /* 計算器的 n（第 4 步可改） */
+    var xVal = 3;         /* 計算器的 x */
+    var step = 0;
+
+    var root = el("div", "demo");
+    root.setAttribute("data-demo", "floor");
+
+    var head = el("div", "demo-head");
+    var title = el("div", "demo-title");
+    title.appendChild(biInline("下捨入示範", "Rounding-down demo"));
+    head.appendChild(title);
+    var stepTag = el("div", "demo-step");
+    head.appendChild(stepTag);
+    root.appendChild(head);
+
+    var q = el("div", "demo-q");
+    q.appendChild(bi("1 到 62 之中，3 的倍數有幾個？62 ÷ 3 除唔盡 —— 唔可以話有 20.66… 個。",
+      "How many multiples of 3 lie from 1 to 62? 62 ÷ 3 is not exact — there cannot be 20.66… of them."));
+    root.appendChild(q);
+
+    var guide = el("div", "demo-guide");
+    var guideTxt = el("div", "guide-txt");
+    guide.appendChild(guideTxt);
+    root.appendChild(guide);
+    var GUIDES = [
+      ["按「下一步」，先做除法：62 ÷ 3 係幾多？",
+        "Press Next and do the division first: what is 62 ÷ 3?"],
+      ["62 ÷ 3 = 20.66…（除唔盡）。究竟當 20 個定 21 個？按「下一步」逐個數清楚。",
+        "62 ÷ 3 = 20.66… (not exact). Is it 20 or 21? Press Next and count them one by one."],
+      ["3、6、9、…、60 一共 20 個；第 21 個是 63，已經超出 62，唔可以數 —— 所以 ⌊62 ÷ 3⌋ = 20，唔好四捨五入。按「下一步」可以自己試其他數字。",
+        "3, 6, 9, …, 60 — 20 of them; the 21st is 63, already past 62 and cannot be counted, so ⌊62 ÷ 3⌋ = 20. Never round to the nearest. Press Next to try other numbers."],
+      ["改 n 或 x 即時睇結果，也可以按上面任何一個例子一按即試。若 n 剛好被 x 整除（例如 60 ÷ 3），下捨入同直接除一樣。",
+        "Change n or x to see the result at once, or tap any example above. When x divides n exactly (60 ÷ 3, say), rounding down agrees with plain division."]
+    ];
+
+    var stage = el("div", "df-stage");
+    root.appendChild(stage);
+
+    /* 第 2、3 步：除法行 */
+    var divLine = el("div", "df-line df-div");
+    divLine.setAttribute("aria-live", "polite");
+    divLine.appendChild(el("span", "df-eq", "62 ÷ 3 = 20.66…"));
+    divLine.appendChild(biInline("除唔盡，要決定當 20 個定 21 個", "not exact — 20 or 21?"));
+    stage.appendChild(divLine);
+
+    /* 第 3 步：逐個數（3、6、…、60；下一個 63 畫成灰色虛線，唔算數） */
+    var countLine = el("div", "df-line df-countline");
+    countLine.appendChild(biInline("3 的倍數：", "Multiples of 3:"));
+    var chips62 = el("div", "df-chips");
+    countLine.appendChild(chips62);
+    stage.appendChild(countLine);
+
+    /* 第 3 步：結論 —— 公式（語言中立）＋ 為甚麼不是 21 */
+    var formula = el("div", "df-line df-formula");
+    formula.setAttribute("aria-live", "polite");
+    formula.appendChild(el("span", "df-eq", "⌊62 ÷ 3⌋ ="));
+    formula.appendChild(el("span", "df-k", "20"));
+    stage.appendChild(formula);
+    var verdict = el("div", "df-verdict");
+    verdict.appendChild(bi("3 到 60 一共 20 個；第 21 個是 63，已經超出 62，唔可以數，所以唔好四捨五入成 21。",
+      "From 3 to 60 there are 20; the 21st, 63, is already past 62 and does not count, so never round up to 21."));
+    stage.appendChild(verdict);
+
+    /* 第 4 步：計算器（改 n、x 即時睇 ⌊n ÷ x⌋） */
+    var calc = el("div", "df-calc");
+    var fields = el("div", "df-fields");
+    var nLab = el("label", "df-field");
+    nLab.appendChild(el("span", "df-lab", "n ="));
+    var nIn = el("input", "df-input");
+    nIn.setAttribute("type", "number");
+    nIn.setAttribute("min", "1");
+    nIn.setAttribute("max", "999");
+    nIn.setAttribute("step", "1");
+    nIn.setAttribute("data-df", "n");
+    nIn.setAttribute("inputmode", "numeric");
+    nLab.appendChild(nIn);
+    fields.appendChild(nLab);
+    var xLab = el("label", "df-field");
+    xLab.appendChild(el("span", "df-lab", "x ="));
+    var xIn = el("input", "df-input");
+    xIn.setAttribute("type", "number");
+    xIn.setAttribute("min", "2");
+    xIn.setAttribute("max", "99");
+    xIn.setAttribute("step", "1");
+    xIn.setAttribute("data-df", "x");
+    xIn.setAttribute("inputmode", "numeric");
+    xLab.appendChild(xIn);
+    fields.appendChild(xLab);
+    calc.appendChild(fields);
+
+    var presets = el("div", "df-presets");
+    [[60, 3], [62, 3], [99, 5]].forEach(function (p) {
+      var b = el("button", "btn btn-sm btn-ghost");
+      b.setAttribute("type", "button");
+      b.setAttribute("data-preset", p[0] + "," + p[1]);
+      b.appendChild(el("span", null, p[0] + " ÷ " + p[1]));   /* 語言中立：唔使雙語 */
+      b.onclick = function () {
+        nIn.value = String(p[0]);
+        xIn.value = String(p[1]);
+        nVal = p[0];
+        xVal = p[1];
+        paintCalc();
+      };
+      presets.appendChild(b);
+    });
+    calc.appendChild(presets);
+
+    var live = el("div", "df-live");
+    live.setAttribute("aria-live", "polite");
+    var rowQ = el("div", "df-rowline");
+    rowQ.appendChild(biInline("先除：", "Divide:"));
+    var eqQ = el("span", "df-eq");
+    rowQ.appendChild(eqQ);
+    live.appendChild(rowQ);
+    var rowF = el("div", "df-rowline");
+    rowF.appendChild(biInline("再下捨入：", "Then round down:"));
+    var eqF = el("span", "df-eq");
+    rowF.appendChild(eqF);
+    var tagExact = el("span", "df-exact");
+    tagExact.appendChild(biInline("剛好整除：唔使捨，直接除就係答案", "divides exactly — nothing to discard"));
+    rowF.appendChild(tagExact);
+    live.appendChild(rowF);
+    var rowC = el("div", "df-rowline df-counts");
+    var sentC = bi("", "");
+    rowC.appendChild(sentC);
+    live.appendChild(rowC);
+    var chipsLive = el("div", "df-chips");
+    live.appendChild(chipsLive);
+    calc.appendChild(live);
+    stage.appendChild(calc);
+
+    var ctrl = el("div", "demo-ctrl");
+    var prev = button("btn-ghost", "上一步", "Previous", "←", "start");
+    var next = button("btn-primary", "下一步", "Next", "→", "end");
+    var replay = button("btn-ghost", "重播", "Replay");
+    ctrl.appendChild(prev);
+    ctrl.appendChild(next);
+    ctrl.appendChild(replay);
+    root.appendChild(ctrl);
+
+    /* ── 小工具 ─────────────────────────────────────────────────────── */
+    function setBi(node, zh, en) {
+      node.querySelector(".l-zh").textContent = zh;
+      node.querySelector(".l-en").textContent = en;
+    }
+    /* 商：整除就寫整數，除唔盡寫兩個小數位 ＋「…」（62 ÷ 3 → 20.66…） */
+    function quotText(n, x) {
+      if (n % x === 0) return String(n / x);
+      var s = (Math.floor((n * 100) / x) / 100).toFixed(2);
+      return s.replace(/0+$/, "").replace(/\.$/, "") + "…";
+    }
+    function chipNode(txt, off) {
+      var s = el("span", "df-chip" + (off ? " df-chip-off" : ""), String(txt));
+      if (off) s.setAttribute("data-off", "1");   /* 超出 n 的下一個倍數：唔算數 */
+      return s;
+    }
+    /* 畫出 x 的倍數：最多 12 個，其餘用「…」跳去最後一個；最後一定跟一個灰色「下一個」 */
+    function fillChips(row, n, x) {
+      var k = Math.floor(n / x);
+      var shown = Math.min(k, FLOOR_CHIPS);
+      var i;
+      row.innerHTML = "";
+      for (i = 1; i <= shown; i++) row.appendChild(chipNode(x * i, false));
+      if (k > shown) {
+        row.appendChild(el("span", "df-gap", "…"));
+        row.appendChild(chipNode(x * k, false));
+      }
+      row.appendChild(chipNode(x * (k + 1), true));
+      return k;
+    }
+    /* 一句講清楚數到幾多個（數字要跟 chips 一致） */
+    function countSentence(n, x, k) {
+      if (k === 0) {
+        return ["最小的倍數 " + x + " 已經大於 " + n + "，所以 0 個。",
+          "The smallest multiple, " + x + ", is already greater than " + n + ", so there are none."];
+      }
+      return ["由 " + x + " 到 " + x * k + "，共 " + k + " 個；下一個 " + x * (k + 1) + " 已經超出 " + n + "。",
+        "From " + x + " to " + x * k + " — " + k + " of them; the next, " + x * (k + 1) + ", is past " + n + "."];
+    }
+
+    /* ── 計算器 ─────────────────────────────────────────────────────── */
+    function paintCalc() {
+      var n = nVal, x = xVal;
+      var k = Math.floor(n / x);
+      var exact = (n % x === 0);
+      var qt = quotText(n, x);
+      eqQ.textContent = n + " ÷ " + x + " = " + qt;
+      eqF.textContent = "⌊" + qt + "⌋ = " + k;
+      calc.classList.toggle("df-exact-on", exact);
+      fillChips(chipsLive, n, x);
+      var s = countSentence(n, x, k);
+      setBi(sentC, s[0], s[1]);
+      root.setAttribute("data-n", String(n));
+      root.setAttribute("data-x", String(x));
+      root.setAttribute("data-k", String(k));
+      root.setAttribute("data-exact", exact ? "1" : "0");
+    }
+    /* 打字途中唔改寫格仔（唔好同學生搶）；只接受範圍內的數 */
+    function applyInput() {
+      var n = parseInt(nIn.value, 10);
+      var x = parseInt(xIn.value, 10);
+      var ok = false;
+      if (!isNaN(n) && n >= 1 && n <= 999) { nVal = n; ok = true; }
+      if (!isNaN(x) && x >= 2 && x <= 99) { xVal = x; ok = true; }
+      if (ok) paintCalc();
+    }
+    function normalize() {
+      nIn.value = String(nVal);
+      xIn.value = String(xVal);
+      paintCalc();
+    }
+    nIn.oninput = applyInput;
+    xIn.oninput = applyInput;
+    nIn.onchange = normalize;
+    xIn.onchange = normalize;
+
+    function setStep(n) {
+      step = Math.max(0, Math.min(FLOOR_STEPS, n | 0));
+      root.setAttribute("data-step", String(step));
+      stepTag.innerHTML = "";
+      stepTag.appendChild(biInline("第 " + (step + 1) + " / " + (FLOOR_STEPS + 1) + " 步",
+        "Step " + (step + 1) + " / " + (FLOOR_STEPS + 1)));
+      guideTxt.innerHTML = "";
+      guideTxt.appendChild(bi(GUIDES[step][0], GUIDES[step][1]));
+      prev.disabled = step === 0;
+      next.disabled = step === FLOOR_STEPS;
+      if (step === FLOOR_STEPS) paintCalc();
+    }
+    prev.onclick = function () { setStep(step - 1); };
+    next.onclick = function () { setStep(step + 1); };
+    replay.onclick = function () {
+      nVal = 62;
+      xVal = 3;
+      nIn.value = "62";
+      xIn.value = "3";
+      paintCalc();
+      setStep(0);
+    };
+
+    fillChips(chips62, 62, 3);   /* 第 3 步的固定例子 */
+    paintCalc();                 /* 計算器一開始（未顯示）已經準備好 62 ÷ 3 */
+    host.appendChild(root);
+    setStep(o.step || 0);
+    return root;
+  }
+
   global.S5A_DEMO = {
     types: {
       "tie-up": tieUp, "slot-in": slotIn, grouping: grouping,
       combination: combination, path: pathDemo, complement: complement,
-      menu: menuDemo, venn: vennDemo, code: codeDemo, venncalc: vennCalc
+      menu: menuDemo, venn: vennDemo, code: codeDemo, venncalc: vennCalc,
+      floor: floorDemo
     },
     tieUp: tieUp,
     slotIn: slotIn,
@@ -2441,6 +2700,7 @@
     venn: vennDemo,
     code: codeDemo,
     venncalc: vennCalc,
+    floor: floorDemo,
     langBar: langBar,
     setLang: setLang
   };

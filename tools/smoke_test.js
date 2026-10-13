@@ -1822,6 +1822,85 @@ ok(P184_DATA.sections.every((s) => s.questions.every((q) => stepMarks(q) === q.m
 ok(!LABEL_WORDS.some((w) => read("data/src/ch18-4.json").includes(w)),
   "18.4 全部內容沒有標籤學生的字眼");
 
+/* ── 下捨入示範：62 ÷ 3 除唔盡 → 只可以數到 20 個（18.4 c01）───────────── */
+console.log("\n== 18.4 · 下捨入示範 ==");
+const demoF = c184.$('.cc .demo-host .demo[data-demo="floor"]');
+ok(!!demoF, "18.4 c01（概率＝合條件的數法 ÷ 全部數法）有下捨入示範");
+ok(P184_DATA.cards[0].demo && P184_DATA.cards[0].demo.type === "floor" &&
+  P184_DATA.cards[0].math[2] === "\\left\\lfloor \\frac{n}{x} \\right\\rfloor" &&
+  P184_DATA.cards[0].body.zh.includes("62 \\div 3 = 20.66") &&
+  P184_DATA.cards[0].demo.caption.zh.includes("62 ÷ 3"),
+  "卡片寫 demo.type = floor；正文、數式與 caption 都用同一組例子（62 ÷ 3、⌊n ÷ x⌋）");
+const fBtns = demoF.querySelectorAll(".demo-ctrl .btn");
+const fIn = (id) => demoF.querySelector('[data-df="' + id + '"]');
+const fType = (id, val) => {
+  fIn(id).value = String(val);
+  fIn(id).dispatchEvent(new (c184.ctx.window.Event)("input", { bubbles: true }));
+};
+const fChips = () => Array.prototype.slice.call(demoF.querySelectorAll(".df-countline .df-chip"));
+ok(demoF.getAttribute("data-step") === "0" && fBtns.length === 3 &&
+  /下一步/.test(demoF.querySelector(".demo-guide").textContent) &&
+  /第 1 \/ 4 步/.test(demoF.querySelector(".demo-step").textContent),
+  "下捨入示範停在第 1 步（共 4 步），並叫學生按「下一步」");
+fBtns[1].click();
+ok(demoF.getAttribute("data-step") === "1" &&
+  /62 ÷ 3 = 20\.66…/.test(demoF.querySelector(".df-div").textContent),
+  "第 2 步：先做除法 62 ÷ 3 = 20.66…（除唔盡）");
+fBtns[1].click();
+ok(demoF.getAttribute("data-step") === "2" &&
+  demoF.querySelector(".df-formula").textContent.replace(/\s+/g, "") === "⌊62÷3⌋=20",
+  "第 3 步的結論：⌊62 ÷ 3⌋ = 20（唔係四捨五入的 21）");
+const fChipTxt = fChips().map((c) => c.textContent);
+ok(fChips().length === 14 &&
+  fChipTxt.slice(0, 12).join(",") === "3,6,9,12,15,18,21,24,27,30,33,36" &&
+  fChipTxt[12] === "60" && fChipTxt[13] === "63" &&
+  fChips()[13].getAttribute("data-off") === "1" &&
+  fChips().slice(0, 13).every((c) => !c.classList.contains("df-chip-off")),
+  "倍數 chips：3、6、…、60（畫 12 個＋「…」＋第 20 個 60），63 標成灰色的「唔算數」");
+fBtns[1].click();
+ok(demoF.getAttribute("data-step") === "3" && !!fIn("n") && !!fIn("x") &&
+  demoF.getAttribute("data-n") === "62" && demoF.getAttribute("data-x") === "3" &&
+  demoF.getAttribute("data-k") === "20" && demoF.getAttribute("data-exact") === "0",
+  "第 4 步：計算器預設 62 ÷ 3 → ⌊20.66…⌋ = 20");
+const fPreset = (n, x) => demoF.querySelector('[data-preset="' + n + "," + x + '"]').click();
+fPreset(60, 3);
+ok(demoF.getAttribute("data-k") === "20" && demoF.getAttribute("data-exact") === "1" &&
+  demoF.querySelector(".df-calc").classList.contains("df-exact-on"),
+  "按 60 ÷ 3：剛好整除 → 20 個，並亮起「唔使捨」提示");
+fPreset(99, 5);
+ok(demoF.getAttribute("data-n") === "99" && demoF.getAttribute("data-x") === "5" &&
+  demoF.getAttribute("data-k") === "19" &&
+  /99 ÷ 5 = 19\.8…/.test(demoF.querySelector(".df-live").textContent),
+  "按 99 ÷ 5 = 19.8… → 19 個（跟 18.2 L2-17 的例子一致）");
+fType("n", 100);
+ok(demoF.getAttribute("data-k") === "20" && demoF.getAttribute("data-exact") === "1" &&
+  /100 ÷ 5 = 20/.test(demoF.querySelector(".df-live").textContent),
+  "直接在格仔輸入 n = 100：即時更新（100 ÷ 5 = 20，剛好整除）");
+fType("x", 0);
+ok(demoF.getAttribute("data-x") === "5", "x 超出範圍（0）會被忽略，唔會搶學生的輸入");
+ok(!/[\\$]/.test(demoF.textContent), "下捨入示範的文字冇 $ 或反斜線（唔會原樣顯示）");
+ok(demoF.querySelector(".df-formula").getAttribute("aria-live") === "polite" &&
+  demoF.querySelector(".df-live").getAttribute("aria-live") === "polite",
+  "結論與計算器都用 aria-live 播報（螢幕閱讀器讀得到）");
+fBtns[2].click();
+ok(demoF.getAttribute("data-step") === "0" && demoF.getAttribute("data-n") === "62" &&
+  demoF.getAttribute("data-x") === "3", "「重播」回到第 1 步並還原 62 ÷ 3");
+/* 獨立頁（真 CSS）：每步只顯示相關的部分 */
+const fSel = '.demo[data-demo="floor"]';
+const fP2 = bootCss("demos/floor.html", "?step=2");
+fP2.ctx.window.S5A_DEMO.floor(fP2.$("#demo-slot"), { step: 2 });
+ok(cssDisp(fP2, fSel + " .df-countline") !== "none" &&
+  cssDisp(fP2, fSel + " .df-div") !== "none" &&
+  cssDisp(fP2, fSel + " .df-calc") === "none",
+  "獨立頁第 3 步：chips 與結論顯示、計算器收起");
+const fP3 = bootCss("demos/floor.html", "?step=3");
+fP3.ctx.window.S5A_DEMO.floor(fP3.$("#demo-slot"), { step: 3 });
+ok(cssDisp(fP3, fSel + " .df-calc") !== "none" &&
+  cssDisp(fP3, fSel + " .df-div") === "none" &&
+  cssDisp(fP3, fSel + " .df-verdict") === "none" &&
+  cssDisp(fP3, fSel + " .df-chip-off") !== "none",
+  "獨立頁第 4 步：只顯示計算器（除法行與 chips 收起），灰色的「唔算數」照樣看得到");
+
 /* ── 7. 進度記錄（新開頁面仍記得）────────────────────────────────────── */
 console.log("\n== 進度 ==");
 const saved = JSON.stringify({ done: { "ch10-A1": true, "ch10-A2": true }, picked: { "ch10-A1": "B" } });

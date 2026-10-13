@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>下捨入示範 · Rounding-down demo · 5A 數學溫習站</title>
+<meta name="description" content="1 到 62 之中 3 的倍數：62 ÷ 3 除唔盡，要下捨入 —— 3 到 60 共 20 個，第 21 個 63 已經超出 62。">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body data-page="demo" data-lang="both">
+
+<!-- 獨立外殼：與站內（教學卡）共用同一支 assets/demos.js 與同一份 style.css。
+     ?step=N 跳到第 N 步（0–3）。 -->
+
+<div class="topbar">
+  <div class="inner">
+    <a class="btn btn-sm btn-ghost" href="../index.html"><span class="arw" aria-hidden="true">←</span><span class="l-zh">主目錄</span><span class="l-en">Home</span></a>
+    <div class="spacer"></div>
+    <span id="lang-slot"></span>
+  </div>
+</div>
+
+<div class="demo-shell">
+  <h1><span class="l-zh">下捨入示範</span><span class="l-en">Rounding-down demo</span></h1>
+  <p class="lead">
+    <span class="l-zh">由 1 到 n 之中，x 的倍數數目＝⌊n ÷ x⌋：先除，再向下取最接近的整數。62 ÷ 3 = 20.66… 只得 20 個，因為第 21 個是 63，已經超出 62；若 n 剛好是 x 的倍數（60 ÷ 3 = 20）就直接除，唔使捨。</span>
+    <span class="l-en">The number of multiples of x from 1 to n is ⌊n ÷ x⌋: divide, then take the nearest integer below. 62 ÷ 3 = 20.66… gives 20, because the 21st multiple is 63, already past 62; when n is an exact multiple of x (60 ÷ 3 = 20) the division is already whole and nothing is discarded.</span>
+  </p>
+  <div class="card">
+    <div id="demo-slot"></div>
+  </div>
+  <p class="small muted">
+    <span class="l-zh">口訣：除完之後，小數部分一律捨去（唔可以四捨五入）。</span>
+    <span class="l-en">Rule of thumb: division first, then always drop the decimal part — never round to the nearest.</span>
+  </p>
+</div>
+
+<script src="../assets/demos.js"></script>
+<script>
+(function () {
+  var q = new URLSearchParams(location.search);
+  try {
+    var saved = localStorage.getItem("s5a-lang");
+    if (saved) document.body.setAttribute("data-lang", saved);
+  } catch (e) { /* 私密模式：用預設值 */ }
+  var bar = window.S5A_DEMO.langBar();
+  document.getElementById("lang-slot").appendChild(bar);
+  if (bar.__paint) bar.__paint();
+  var step = parseInt(q.get("step") || "0", 10);
+  window.S5A_DEMO.floor(document.getElementById("demo-slot"),
+    { step: isNaN(step) ? 0 : step });
+})();
+</script>
+</body>
+</html>
