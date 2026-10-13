@@ -3470,8 +3470,8 @@
          "en": "Subtract from 1"
         },
         "math": "1 - \\frac{13}{68} = \\frac{55}{68}",
-        "zh": "概率 $= 1 - \\frac{13}{68} = \\frac{55}{68}$。",
-        "en": "The probability is 1 − 13/68 = 55/68.",
+        "zh": "所求概率 $= 1 - \\frac{13}{68} = \\frac{55}{68}$。核對一下：$\\frac{13}{68} + \\frac{55}{68} = 1$，正面（2 粒或 3 粒榛子）與反面（不多於 1 粒）的概率相加必定是 1。",
+        "en": "The probability is 1 − 13/68 = 55/68. As a check, 13/68 + 55/68 = 1: the direct cases (2 or 3 hazelnuts) and the complement (not more than 1) must add to 1.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{55}{68}"
@@ -3762,7 +3762,7 @@
          "en": "Divide by multiplying the reciprocal"
         },
         "math": "\\frac{280}{783} \\div \\frac{253}{261} = \\frac{280}{783} \\times \\frac{261}{253} = \\frac{280}{759}",
-        "zh": "$\\frac{280}{783} \\times \\frac{261}{253}$。留意 $783 = 3 \\times 261$，約簡後得 $\\frac{280}{3 \\times 253} = \\frac{280}{759}$。",
+        "zh": "$\\frac{280}{783} \\times \\frac{261}{253}$。留意 $783 = 3 \\times 261$，先把 783 與 261 約掉，餘下 $\\frac{280}{3 \\times 253} = \\frac{280}{759}$。約簡之後分母只是 759，比硬乘出 $783 \\times 253$ 再約簡快得多，也不易出錯。",
         "en": "280/783 × 261/253. Since 783 = 3 × 261, cancelling gives 280/(3 × 253) = 280/759.",
         "marking": "(1A)",
         "highlight": [
@@ -4186,7 +4186,7 @@
        }
       ],
       "tip": {
-       "zh": "夫婦題有兩件事要分清：**以人計**（分母）與**以對計**（分子的第一步）。分子通常是「先選幾對、再每對取幾人」；「最少」的部分用反面最快。",
+       "zh": "夫婦題有兩件事要分清：「以人計」（分母）與「以對計」（分子的第一步）。分子通常是「先選幾對、再每對取幾人」；「最少」的部分用反面最快。",
        "en": "In couple problems keep two units apart: people (the denominator) and couples (the first step of the numerator). The numerator is usually \"choose the couples, then choose within them\", and \"at least\" is quickest via the complement."
       }
      }
@@ -4352,7 +4352,7 @@
        {
         "label": "(a) 只綁紅色",
         "labelEn": "(a) bundling only the reds",
-        "zh": "題目說「紅一起」**而且**「白一起」，所以白色也要綁成一件，件數變成 6，不是 7。",
+        "zh": "題目說「紅一起」而且「白一起」，所以白色也要綁成一件，件數變成 6，不是 7。",
         "en": "Part (a) asks for the reds together and the whites together, so the whites form a bundle as well: 6 items, not 7."
        },
        {
@@ -4529,7 +4529,7 @@
          "en": "Row by row: 1, then 2 ordered, then 3"
         },
         "math": "P^3_1 \\times P^3_2 \\times 3! = 3 \\times 6 \\times 6 = 108",
-        "zh": "分配好顏色後逐層填：上層 1 個位從該色 3 隻選 1 隻（$P^3_1 = 3$）；中層 2 個位從該色 3 隻選 2 隻**再排位**（$P^3_2 = 3 \\times 2 = 6$）；下層餘下 3 隻排 3 個位（$3! = 6$）。一個顏色分配有 $3 \\times 6 \\times 6 = 108$ 種。",
+        "zh": "分配好顏色後逐層填：上層 1 個位從該色 3 隻選 1 隻（$P^3_1 = 3$）；中層 2 個位從該色 3 隻選 2 隻，再排位（$P^3_2 = 3 \\times 2 = 6$）；下層餘下 3 隻排 3 個位（$3! = 6$）。一個顏色分配有 $3 \\times 6 \\times 6 = 108$ 種。",
         "en": "Once the colours are assigned, fill the rows: 1 of the top colour's 3 cups for the top position (P(3,1) = 3); 2 of the middle colour's 3 chosen and ordered (P(3,2) = 3 × 2 = 6); the remaining 3 cups arranged in the bottom row (3! = 6). One colour assignment gives 3 × 6 × 6 = 108 stacks.",
         "marking": "(1M)",
         "highlight": [

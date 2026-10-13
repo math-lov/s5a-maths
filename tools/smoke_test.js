@@ -1422,11 +1422,11 @@ ok(/第 18 章/.test((ch18Page.$("#chapter-name") || {}).textContent || ""),
   "章節頁顯示第 18 章名稱");
 ok(ch18Page.$$("#chapter-body .part-btn").length === 4, "第 18 章章節頁列出 4 節");
 const live18 = ch18Page.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
-ok(ch18Page.$$("#chapter-body .part-btn[disabled]").length === 1 && live18.length === 3,
-  "18.4 標示「即將推出」，18.1 至 18.3 已上線（實際上線 " + live18.length + " 節）");
+ok(ch18Page.$$("#chapter-body .part-btn[disabled]").length === 0 && live18.length === 4,
+  "四節全部上線（沒有「即將推出」；實際上線 " + live18.length + " 節）");
 ok(/18\.1/.test(live18[0].textContent) && /18\.2/.test(live18[1].textContent) &&
-  /18\.3/.test(live18[2].textContent),
-  "上線的三節依次是 18.1、18.2、18.3");
+  /18\.3/.test(live18[2].textContent) && /18\.4/.test(live18[3].textContent),
+  "四節依次是 18.1、18.2、18.3、18.4");
 live18[0].click();
 ok(/c=ch18-1/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
   "按「18.1」會去 quiz.html?c=ch18-1");
@@ -1436,6 +1436,9 @@ ok(/c=ch18-2/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
 live18[2].click();
 ok(/c=ch18-3/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
   "按「18.3」會去 quiz.html?c=ch18-3");
+live18[3].click();
+ok(/c=ch18-4/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
+  "按「18.4」會去 quiz.html?c=ch18-4");
 
 const P181 = INDEX.parts.filter((p) => p.id === "ch18-1")[0] || {};
 ok(P181.stats && P181.stats.questions === 21 && P181.stats.marks === 87,
@@ -1727,6 +1730,84 @@ ok(P183_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).leng
   "18.3 每題 parts 分數加總＝題目分數");
 ok(!LABEL_WORDS.some((w) => read("data/src/ch18-3.json").includes(w)),
   "18.3 全部內容沒有標籤學生的字眼");
+
+/* ── 6f. 課本練習：第 18 章 → 18.4 概率與計數 ─────────────────────────── */
+console.log("\n== 第 18 章 · 18.4 概率與計數（課本練習頁）==");
+const P184 = INDEX.parts.filter((p) => p.id === "ch18-4")[0] || {};
+ok(P184.stats && P184.stats.questions === 36 && P184.stats.marks === 140,
+  "18.4 共 36 題 · 140 分（實際 " +
+  (P184.stats ? P184.stats.questions + " 題 · " + P184.stats.marks + " 分" : "缺 stats") + "）");
+ok((P184.sections || []).length === 5 && (P184.qids || []).length === 36,
+  "18.4 分 5 段（課堂例題／判斷／L1／L2／挑戰）且 qids 數目正確");
+const P184_JS = read("data/ch18-4.js");
+const P184_DATA = JSON.parse(P184_JS.slice(P184_JS.indexOf("{"), P184_JS.lastIndexOf("}") + 1));
+const q184 = (id) => P184_DATA.sections
+  .reduce((a, s) => a.concat(s.questions || []), []).filter((q) => q.id === id)[0] || {};
+ok(P184_DATA.sections.map((s) => s.id).join(",") === "CE,SC,L1,L2,SM",
+  "18.4 分段順序＝課堂例題／判斷題／L1／L2／挑戰題（沒有跨課題段）");
+ok((P184_DATA.cards || []).length === 3, "18.4 有 3 張教學卡");
+ok(P184_DATA.cards.every((c) => (c.math || []).length > 0 && c.warn && c.vocab),
+  "18.4 每張卡都有數式、常犯錯誤與詞彙 chips");
+
+/* 官方解答逐題核對，見 data/raw/ch18-4-source.md */
+ok(q184("ch18-4-sc").answers.filter((a) => a.tf === false).map((a) => a.part).join(",") === "(b),(e)",
+  "判斷題：錯的是 (b)、(e)（(b) 漏了一奇一偶、(e) 漏乘中間四位的 4!）");
+ok(q184("ch18-4-l1-13").answers[0].math.indexOf("\\frac{1}{143}") > 0,
+  "L1-13(a) 官方答案 1/143（9 / 1287）");
+ok(q184("ch18-4-l1-16").answers[0].math.indexOf("\\frac{7}{33}") > 0 &&
+  q184("ch18-4-l1-16").answers[1].math.indexOf("\\frac{8}{33}") > 0,
+  "L1-16 官方答案 7/33、8/33（藍或黑合併成 7 把；三色各一 4 × 5 × 2）");
+ok(q184("ch18-4-l2-21").answers[1].math.indexOf("\\frac{1}{14}") > 0,
+  "L2-21(b) 官方答案 1/14（首位 8 配末位 4；首位 9 配末位 4 或 8）");
+ok(q184("ch18-4-l2-25").answers[2].math.indexOf("\\frac{280}{759}") > 0,
+  "L2-25(b) 官方答案 280/759（條件概率：分子用 (a)(i)、分母用 (a)(ii)）");
+ok(q184("ch18-4-l2-28").answers[2].math.indexOf("\\frac{31}{143}") > 0,
+  "L2-28(c) 官方答案 31/143（反面是 0 對與恰好 1 對夫婦）");
+ok(q184("ch18-4-sm-29").answers[1].math.indexOf("\\frac{1}{15015}") > 0,
+  "SM-29(b) 官方答案 1/15015（紅綁一件 ＋ 2 個白共 3 件，4 個金插入 4 個空隙）");
+ok(q184("ch18-4-sm-30").answers[0].math.indexOf("60480") > 0 &&
+  q184("ch18-4-sm-30").answers[1].math.indexOf("\\frac{9}{28}") > 0 &&
+  q184("ch18-4-sm-30").answers[2].math.indexOf("\\frac{3}{280}") > 0,
+  "SM-30 官方答案 60480 種、9/28、3/280（分母是 P(9,6)）");
+ok(q184("ch18-4-sm-31").answers[1].math.includes("\\frac{n}{2^n}") &&
+  q184("ch18-4-sm-31").answers[2].math.includes("_{n-1}") &&
+  q184("ch18-4-sm-31").answers[2].math.includes("C^n_1"),
+  "SM-31 官方答案 n/2^n，並同意（C(n,1) = C(n,n−1)）");
+ok(!/\*\*/.test(read("data/src/ch18-4.json")),
+  "18.4 不用 Markdown **（前端不支援）");
+
+/* 頁面渲染 ＋ 真 KaTeX */
+const c184 = boot("quiz.html", "?c=ch18-4&p=0");
+ok(c184.$$("#pagenav .pg").length === 37,
+  "18.4 分頁列 = 總覽 + 36 題（實際 " + c184.$$("#pagenav .pg").length + "）");
+ok(c184.$$("#pagenav .pg-sec").length === 5, "18.4 分頁列有 5 個分段標題");
+ok(c184.$$(".cc").length === 3, "18.4 總覽渲染出 3 張教學卡");
+ok(c184.$$(".katex-error").length === 0, "18.4 教學卡全部數式 KaTeX 渲染成功");
+ok(!/\{\{math:/.test(c184.$("#quiz-body").textContent), "18.4 總覽沒有殘留 {{math:}} 佔位符");
+
+const all184 = [];
+for (let i = 1; i <= 36; i++) all184.push(boot("quiz.html", "?c=ch18-4&p=" + i, null, "show"));
+ok(all184.every((t) => t.$$(".sol-card").length === 1 && t.$$(".sol-card .steps .step").length > 0),
+  "18.4 每題都有逐步題解");
+ok(all184.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
+  "18.4 每題都有技巧與常見錯誤");
+ok(all184.every((t) => t.$$(".katex-error").length === 0), "18.4 全部 36 題 KaTeX 零錯誤");
+ok(all184.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "18.4 所有題幹均有中英版本");
+ok(all184.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "18.4 題幹全部已渲染（無殘留 $）");
+ok(P184_DATA.sections.every((s) => s.questions.every((q) =>
+  q.solution.steps.every((st) => (st.highlight || []).length >= 1))),
+  "18.4 每個步驟都有 highlight 重點框（資料層）");
+ok(P184_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).length >= 1 &&
+  q.parts.reduce((t, p) => t + p.marks, 0) === q.marks)),
+  "18.4 每題 parts 分數加總＝題目分數");
+/* 步驟分：共用分母的步驟可以沒有標記，但加總要等於題目分數 */
+const markTokens = (m) => ((m || "").match(/\d*[MA]/g) || []).length;
+const stepMarks = (q) => q.solution.steps.reduce((t, st) => t + markTokens(st.marking), 0);
+ok(P184_DATA.sections.every((s) => s.questions.every((q) => stepMarks(q) === q.marks)),
+  "18.4 每題 steps 的 (1M)/(1A) 加總＝題目分數");
+ok(!LABEL_WORDS.some((w) => read("data/src/ch18-4.json").includes(w)),
+  "18.4 全部內容沒有標籤學生的字眼");
 
 /* ── 7. 進度記錄（新開頁面仍記得）────────────────────────────────────── */
 console.log("\n== 進度 ==");

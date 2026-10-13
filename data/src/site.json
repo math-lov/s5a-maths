@@ -109,6 +109,19 @@
         "stats": { "questions": 39, "marks": 143, "bonus": 0 },
         "status": "ready",
         "source": { "zh": "課本 Exercise 18.3（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER ＋ Cross Topics；Cross Topics 只收錄原書第 46、47、49 題）", "en": "Textbook Exercise 18.3 (Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics; only book Cross Topics Q46, Q47 and Q49 are included)" }
+      },
+      {
+        "id": "ch18-4",
+        "group": "classwork",
+        "chapter": "ch18",
+        "code": "18.4",
+        "kind": { "zh": "課本練習", "en": "Book exercise" },
+        "unit": { "zh": "第 18 章 · 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
+        "title": { "zh": "18.4 概率與計數 · 課本練習", "en": "18.4 Probability by Counting · Book Exercise" },
+        "meta": { "paper": "Book 5B · Exercise 18.4" },
+        "stats": { "questions": 36, "marks": 140, "bonus": 0 },
+        "status": "ready",
+        "source": { "zh": "課本 Exercise 18.4（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER；18.4 沒有跨課題部分）", "en": "Textbook Exercise 18.4 (Class Exercise, Section Check, Level 1, Level 2 and SMART CORNER; 18.4 has no Cross Topics)" }
       }
     ],
     "classwork": {
@@ -137,21 +150,21 @@
           "short": { "zh": "第 18 章", "en": "Chapter 18" },
           "title": { "zh": "第 18 章 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
           "intro": {
-            "zh": "第 18 章分四節：18.1 集合、18.2 概率的加法定律、18.3 概率的乘法、18.4 概率與計數。18.1 至 18.3 的課本練習（Exercise 18.1、18.2、18.3）已上線，18.4 整理好會加入；各節標題以課本為準，有需要會再校正。",
-            "en": "Chapter 18 has four sections: 18.1 sets, 18.2 the addition law of probability, 18.3 multiplication of probabilities and 18.4 probability by counting. The 18.1 to 18.3 book exercises are online; 18.4 will follow. Section titles follow the textbook and may be adjusted later."
+            "zh": "第 18 章分四節：18.1 集合、18.2 概率的加法定律、18.3 概率的乘法、18.4 概率與計數。四節的課本練習（Exercise 18.1 至 18.4）已全部上線；各節標題以課本為準，有需要會再校正。",
+            "en": "Chapter 18 has four sections: 18.1 sets, 18.2 the addition law of probability, 18.3 multiplication of probabilities and 18.4 probability by counting. The book exercises for all four sections (Exercise 18.1 to 18.4) are now online. Section titles follow the textbook and may be adjusted later."
           },
           "sections": [
             { "code": "18.1", "part": "ch18-1", "title": { "zh": "18.1 集合", "en": "18.1 Sets" } },
             { "code": "18.2", "part": "ch18-2", "title": { "zh": "18.2 概率的加法定律", "en": "18.2 Addition Law of Probability" } },
             { "code": "18.3", "part": "ch18-3", "title": { "zh": "18.3 概率的乘法", "en": "18.3 Multiplication of Probabilities" } },
-            { "code": "18.4", "part": null, "title": { "zh": "18.4 概率與計數", "en": "18.4 Probability by counting" } }
+            { "code": "18.4", "part": "ch18-4", "title": { "zh": "18.4 概率與計數", "en": "18.4 Probability by counting" } }
           ]
         }
       ]
     },
     "comingSoon": {
-      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章三節已全部上線；第 18 章已上 18.1 至 18.3，18.4 整理中。",
-      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17 are online, and Chapter 18 now has 18.1 to 18.3 while 18.4 is being prepared."
+      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章三節、第 18 章四節已全部上線。",
+      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17 and all four sections of Chapter 18 are online."
     }
   }
 }
