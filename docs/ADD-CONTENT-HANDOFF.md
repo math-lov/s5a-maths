@@ -160,16 +160,13 @@ git add -A; git commit -m "ch11：加第 11 章測驗檢討"; git push
 
 GitHub Pages 約 1 分鐘生效；學生第一次要 **Ctrl+F5**。
 
-## 8. 四個站的關係（首頁有互相跳轉列）
+## 8. 三個站的關係（首頁有互相跳轉列）
 
 | 站 | 網址 |
 |---|---|
-| 每日三題 Daily 3 | `https://math-lov.github.io/daily.math/` |
 | 自學追上站 DSE Pass | `https://math-lov.github.io/dse-pass/` |
 | **5A 數學溫習站**（本站） | `https://math-lov.github.io/s5a-maths/` |
 | Endeavour 研習站 | `https://math-lov.github.io/endeavour/` |
-
-⚠️ **不要連去 `https://math-lov.github.io/daily.math/learn/`** —— 該站計劃砍掉重做。
 
 ## 9. 目前狀態與待辦（2026-10-10）
 

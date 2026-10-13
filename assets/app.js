@@ -251,7 +251,7 @@
     try { window.scrollTo(0, Math.max(0, y)); } catch (e) {}
   }
 
-  /* ── 數學渲染（沿用每日三題站的兩路機制）────────────────────────────── */
+  /* ── 數學渲染（兩路機制）────────────────────────────────────────── */
   function tex(node, src, display) {
     if (!src) { node.textContent = "—"; return; }
     node.setAttribute("data-tex", src);
