@@ -2407,12 +2407,25 @@
        {
         "part": "",
         "title": {
-         "zh": "數三組數目",
-         "en": "Count the three groups"
+         "zh": "先講工具：1 到 n 之中有幾個 x 的倍數",
+         "en": "The tool first: how many multiples of x lie from 1 to n"
+        },
+        "math": "\\left\\lfloor \\frac{n}{x} \\right\\rfloor",
+        "zh": "由 1 到 $n$ 之中能被 $x$ 整除的數目＝$\\left\\lfloor \\frac{n}{x} \\right\\rfloor$，即先做 $n \\div x$，再「下捨入」（向下取最接近的整數）。例如 $62 \\div 3 = 20.66\\ldots$，只得 20 個 3 的倍數，因為第 21 個是 $63$，已經超出 62；同理 $99 \\div 5 = 19.8$ 得 19 個。當 $n$ 剛好是 $x$ 的倍數，下捨入與直接除相同；當未整除，就要把小數部分捨去，不可四捨五入。",
+        "en": "The number of values from 1 to n divisible by x is $\\left\\lfloor \\frac{n}{x} \\right\\rfloor$: divide n by x, then round down — take the nearest integer below. For example $62 \\div 3 = 20.66\\ldots$ gives 20 multiples of 3, because the 21st is $63$, already past 62; in the same way $99 \\div 5 = 19.8$ gives 19. When n is an exact multiple of x, rounding down agrees with plain division; when it is not, the decimal part is discarded rather than rounded to the nearest.",
+        "highlight": [
+         "\\left\\lfloor \\frac{n}{x} \\right\\rfloor"
+        ]
+       },
+       {
+        "part": "",
+        "title": {
+         "zh": "數三組數目（三組都剛好整除）",
+         "en": "Count the three groups (all divide exactly)"
         },
         "math": "n = 20 ,\\ n = 12 ,\\ n = 4",
-        "zh": "1 至 60 之中，3 的倍數有 $60 \\div 3 = 20$ 個；5 的倍數有 $60 \\div 5 = 12$ 個；同時是兩者倍數（即 15 的倍數）有 $60 \\div 15 = 4$ 個。",
-        "en": "From 1 to 60, the multiples of 3 number 60 ÷ 3 = 20, the multiples of 5 number 60 ÷ 5 = 12, and the common multiples (multiples of 15) number 60 ÷ 15 = 4.",
+        "zh": "本題三個數目都剛好整除，所以下捨入與直接除相同：1 至 60 之中，3 的倍數有 $60 \\div 3 = 20$ 個；5 的倍數有 $60 \\div 5 = 12$ 個；同時是兩者倍數（即 15 的倍數）有 $60 \\div 15 = 4$ 個。",
+        "en": "All three divide exactly here, so rounding down is the same as plain division: from 1 to 60 the multiples of 3 number 60 ÷ 3 = 20, the multiples of 5 number 60 ÷ 5 = 12, and the common multiples (multiples of 15) number 60 ÷ 15 = 4.",
         "marking": "(1A)",
         "highlight": [
          "n = 20 ,\\ n = 12 ,\\ n = 4"
@@ -2459,11 +2472,23 @@
         "labelEn": "Missing common multiples",
         "zh": "同時能被 3 與 5 整除即能被 $15$ 整除，用 $60 \\div 15 = 4$ 最快；逐個列出容易漏掉 60。",
         "en": "Divisible by both 3 and 5 means divisible by 15; 60 ÷ 15 = 4 is the quick way, while listing by hand may miss 60."
+       },
+       {
+        "label": "未整除時四捨五入",
+        "labelEn": "Rounding to the nearest instead of down",
+        "zh": "當 $n$ 不是 $x$ 的倍數時必須下捨入：$62 \\div 3 = 20.66\\ldots$ 只得 20 個 3 的倍數（第 21 個是 $63$，已超出 62）。若四捨五入會得 21，多算一個。",
+        "en": "When n is not a multiple of x the count must be rounded down: $62 \\div 3 = 20.66\\ldots$ gives 20 multiples of 3, since the 21st is $63$ and already past 62. Rounding to the nearest would give 21 — one too many."
+       },
+       {
+        "label": "由 m 到 n 忘記減去前面的倍數",
+        "labelEn": "Forgetting the multiples below m",
+        "zh": "範圍不是由 1 開始時，要把 $m$ 之前的倍數減去：由 $m$ 到 $n$ 的數目是 $\\left\\lfloor \\frac{n}{x} \\right\\rfloor - \\left\\lfloor \\frac{m-1}{x} \\right\\rfloor$。例如 100 到 200 之中 3 的倍數是 $66 - 33 = 33$ 個；只寫 $200 \\div 3 = 66$ 會把 100 之前的 33 個也數進去。",
+        "en": "When the range does not start at 1, subtract the multiples below m: the count from m to n is $\\left\\lfloor \\frac{n}{x} \\right\\rfloor - \\left\\lfloor \\frac{m-1}{x} \\right\\rfloor$. The multiples of 3 from 100 to 200 number 66 − 33 = 33, while writing only $200 \\div 3 = 66$ also counts the 33 multiples below 100."
        }
       ],
       "tip": {
-       "zh": "「同時能被 $a$ 與 $b$ 整除」＝「能被 LCM$(a, b)$ 整除」：這裡 $60 \\div 15 = 4$，比逐個列出快又準。",
-       "en": "\"Divisible by both a and b\" means \"divisible by lcm(a, b)\": here 60 ÷ 15 = 4, quicker and safer than listing."
+       "zh": "$\\left\\lfloor \\frac{n}{x} \\right\\rfloor$ 就是「1 到 $n$ 之中 $x$ 的倍數數目」：先除，再下捨入。若範圍不是由 1 開始，由 $m$ 到 $n$ 就是 $\\left\\lfloor \\frac{n}{x} \\right\\rfloor - \\left\\lfloor \\frac{m-1}{x} \\right\\rfloor$（減去 $m$ 之前那些）。例：100 到 200 之中 3 的倍數＝$\\left\\lfloor \\frac{200}{3} \\right\\rfloor - \\left\\lfloor \\frac{99}{3} \\right\\rfloor = 66 - 33 = 33$ 個。另外，「同時能被 $a$ 與 $b$ 整除」＝「能被 LCM$(a, b)$ 整除」：這裡 $60 \\div 15 = 4$，比逐個列出快又準。",
+       "en": "$\\left\\lfloor \\frac{n}{x} \\right\\rfloor$ is exactly the number of multiples of x from 1 to n: divide, then round down. If the range does not start at 1, the count from m to n is $\\left\\lfloor \\frac{n}{x} \\right\\rfloor - \\left\\lfloor \\frac{m-1}{x} \\right\\rfloor$ — subtract the multiples below m. Example: the multiples of 3 from 100 to 200 are $\\left\\lfloor \\frac{200}{3} \\right\\rfloor - \\left\\lfloor \\frac{99}{3} \\right\\rfloor = 66 - 33 = 33$. Also, \"divisible by both a and b\" means \"divisible by lcm(a, b)\": here 60 ÷ 15 = 4, quicker and safer than listing."
       }
      }
     },

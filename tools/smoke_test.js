@@ -1621,6 +1621,19 @@ ok(q182("ch18-2-ct-34").answers[1].math === "m = 5 ,\\ n = 3",
 ok(/5\^\{\\ast\\ast\}/.test(q182("ch18-2-l1-7").stem.zh) &&
   !/\*\*/.test(read("data/src/ch18-2.json")),
   "L1-7 的 DSE 5** 級用 KaTeX 上標 $5^{\\ast\\ast}$（前端沒有 Markdown）");
+/* 2026-10-13（回應學生提問）：L2-17 加入「下捨入」的推廣 —— 未整除的例子與 m 到 n 的做法 */
+const rd217 = q182("ch18-2-l2-17");
+ok(rd217.solution.steps[0].math.includes("\\left\\lfloor") &&
+  rd217.solution.steps[0].zh.includes("62 \\div 3 = 20.66") &&
+  rd217.solution.steps[0].zh.includes("99 \\div 5 = 19.8") &&
+  !rd217.solution.steps[0].marking,
+  "L2-17 第一步先教 ⌊n/x⌋（下捨入），附 62÷3、99÷5 未整除的例子，且該步不佔步驟分");
+ok(rd217.solution.tip.zh.includes("66 - 33 = 33") &&
+  rd217.solution.tip.en.includes("66 - 33 = 33") &&
+  rd217.solution.traps.length === 4 &&
+  rd217.solution.traps.some((t) => /四捨五入/.test(t.zh)) &&
+  rd217.solution.traps.some((t) => /100 到 200/.test(t.zh)),
+  "L2-17 tip 推廣到 m 到 n（100 到 200 得 33 個），並補「四捨五入」與「忘記減前面」兩個陷阱");
 
 /* 頁面渲染 ＋ 真 KaTeX */
 const c182 = boot("quiz.html", "?c=ch18-2&p=0");
