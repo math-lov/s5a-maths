@@ -423,8 +423,16 @@ ok(chPage.$$("#chapter-body .part-btn").length === (CH17.sections || []).length,
   chPage.$$("#chapter-body .part-btn").length + "）");
 const soonBtns = chPage.$$("#chapter-body .part-btn[disabled]");
 const liveBtns = chPage.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
-ok(soonBtns.length === 0 && liveBtns.length === 3,
-  "三節全部上線（沒有「即將推出」；實際上線 " + liveBtns.length + " 節）");
+ok(soonBtns.length === 0 && liveBtns.length === 4,
+  "三節課本練習 ＋「17 測前溫習」全部上線（沒有「即將推出」；實際上線 " + liveBtns.length + " 項）");
+ok(/17 測前溫習/.test(chPage.$("#chapter-body").textContent) &&
+  /測前溫習/.test((CH17.intro || {}).zh || "") &&
+  /Pre-test Revision/.test((CH17.intro || {}).en || ""),
+  "第 17 章章節頁有「17 測前溫習」入口，章首簡介亦提到它");
+const revBtn = liveBtns.filter((b) => /17 測前溫習/.test(b.textContent))[0];
+revBtn.click();
+ok(/c=ch17-test/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
+  "按章節頁的「17 測前溫習」會去 quiz.html?c=ch17-test");
 const secBtn = (n) => liveBtns.filter((b) => new RegExp("17\\." + n).test(b.textContent))[0];
 secBtn(1).click();
 ok(/c=ch17-1/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
@@ -1412,6 +1420,69 @@ ok(all173.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length
 ok(all173.every((t) => t.$$(".sol-card .hl").length > 0), "17.3 每題都顯示步驟重點框");
 ok(all173.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
   "17.3 所有題幹均有中英版本");
+
+/* ── 6b. 測前溫習：第 17 章「17 測前溫習」（改編自 EPH WS22）────────── */
+console.log("\n== 第 17 章 · 17 測前溫習（測驗頁）==");
+const tPart = INDEX.parts.find((p) => p.id === "ch17-test");
+ok(!!tPart && tPart.group === "quiz" && tPart.kind.zh === "測前溫習" &&
+  /第 17 章/.test(tPart.unit.zh),
+  "首頁「測驗檢討」有「17 測前溫習」，unit 標明第 17 章");
+ok(tPart.stats.questions === 10 && tPart.stats.marks === 30 && tPart.meta.marks === 30 &&
+  tPart.meta.sections.map((s) => s.marks).join("+") === "8+22",
+  "17 測前溫習：10 題 30 分（甲部 8 分 ＋ 乙部 22 分）");
+ok(/WS22/.test(tPart.source.zh) && /WS22/.test(tPart.source.en),
+  "課題註明來源：EPH WS22 工作紙＋官方答案");
+
+const T_JS = read("data/ch17-test.js");
+const T_DATA = JSON.parse(T_JS.slice(T_JS.indexOf("{"), T_JS.lastIndexOf("}") + 1));
+const T_QS = T_DATA.sections.reduce((a, s) => a.concat(s.questions || []), []);
+ok(T_DATA.sections.map((s) => s.id).join(",") === "A,B" &&
+  T_DATA.sections[0].questions.length === 4 && T_DATA.sections[1].questions.length === 6,
+  "甲部 4 題 MC、乙部 6 題長題");
+ok(T_QS.filter((q) => q.type === "mc").map((q) => q.answer).join("") === "CDAD",
+  "4 題 MC 的答案＝C、D、A、D（48／10 010／34 902／75 354 180）");
+ok(T_QS.filter((q) => q.type === "long").reduce((a, q) => a + q.marks, 0) === 22 &&
+  T_QS.filter((q) => q.type === "long").map((q) => q.marks).join(",") === "3,3,4,5,3,4",
+  "長題分數 3、3、4、5、3、4，合共 22 分");
+const tTraps = T_QS.filter((q) => q.type === "mc").reduce((a, q) => a.concat(q.solution.traps), []);
+ok(tTraps.length >= 2 && tTraps.every((t) => t.opt && t.opt !== T_QS.filter((q) => q.type === "mc")
+  .map((q) => q.answer)[tTraps.indexOf(t)]), "MC 陷阱都指向真實選項，而且不會指向正確答案");
+ok(T_QS.filter((q) => q.type === "long").every((q) =>
+  (q.solution.steps || []).length >= q.parts.length &&
+  q.parts.reduce((a, pp) => a + pp.marks, 0) === q.marks),
+  "長題：每題步驟不少於小問數，parts 分數加總＝題目分數");
+/* 難度星號只得 3 顆：difficulty 大過 3 會令 "☆".repeat(3 - difficulty) 拋 RangeError */
+ok(T_QS.every((q) => q.difficulty >= 1 && q.difficulty <= 3),
+  "difficulty 只可以用 1–3（網站最多畫 3 顆星）");
+
+const tOv = boot("quiz.html", "?c=ch17-test&p=0");
+const tOvPg = tOv.$$("#pagenav .pg").length;
+const tOvSec = tOv.$$("#pagenav .pg-sec").length;
+const tOvKatex = tOv.$$(".katex-error").length;
+ok(/17 測前溫習/.test((tOv.$("#quiz-name") || {}).textContent || "") &&
+  tOvPg === 11 && tOvSec === 2 && tOvKatex === 0,
+  "總覽頁顯示課題名「17 測前溫習」、10 題（＋總覽）、甲部／乙部兩個分隔、KaTeX 零錯誤（實際 " +
+  tOvPg + " 頁／" + tOvSec + " 分隔／" + tOvKatex + " error）");
+const tA1 = boot("quiz.html", "?c=ch17-test&p=1", null, "show");
+ok(!!tA1.$('.q-card[data-qid="ch17-A1"]') && tA1.$$(".opt").length === 4 &&
+  tA1.$$(".sol-card .trap").length === 2,
+  "A1 渲染 MC 卡：4 個選項、2 個陷阱提示");
+const tB4 = boot("quiz.html", "?c=ch17-test&p=8", null, "show");
+ok(!!tB4.$('.q-card[data-qid="ch17-B4"]') && tB4.$$(".q-parts li").length === 2 &&
+  tB4.$$(".sol-card .steps .step").length === 5 &&
+  tB4.$$(".step .marking").length === 5 && tB4.$$(".sol-card .hl").length > 0,
+  "B4（綑綁＋插空）：(a)(b) 兩小問、5 個步驟都有 (1M)/(1A) 分數同重點框");
+const allT = [];
+for (let i = 1; i <= 10; i++) allT.push(boot("quiz.html", "?c=ch17-test&p=" + i, null, "show"));
+ok(allT.every((t) => t.$$(".sol-card .steps .step").length > 0 && !!t.$(".sol-card .tip")),
+  "10 題都有逐步題解與「帶得走的技巧」");
+ok(allT.every((t) => t.$$(".sol-card .trap").length > 0), "10 題都有常見錯誤提示");
+ok(allT.every((t) => t.$$(".katex-error").length === 0 &&
+  !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "17 測前溫習全部 10 題 KaTeX 零錯誤，題幹全部中英對照");
+ok(fs.existsSync("docs/worksheets/ch17-test-worksheet.docx") &&
+  /data"?, ?"src|data\/src/.test(read("tools/make_worksheet_docx.py")),
+  "Word 工作紙已生成（docs/worksheets/ch17-test-worksheet.docx），由網站資料檔經 tools/make_worksheet_docx.py 產生");
 
 /* ── 6c. 課本練習：第 18 章 → 18.1 集合 ──────────────────────────────── */
 console.log("\n== 第 18 章 · 18.1 集合（課本練習頁）==");
