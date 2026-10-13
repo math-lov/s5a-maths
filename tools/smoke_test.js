@@ -1422,16 +1422,20 @@ ok(/第 18 章/.test((ch18Page.$("#chapter-name") || {}).textContent || ""),
   "章節頁顯示第 18 章名稱");
 ok(ch18Page.$$("#chapter-body .part-btn").length === 4, "第 18 章章節頁列出 4 節");
 const live18 = ch18Page.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
-ok(ch18Page.$$("#chapter-body .part-btn[disabled]").length === 2 && live18.length === 2,
-  "18.3–18.4 標示「即將推出」，18.1 與 18.2 已上線（實際上線 " + live18.length + " 節）");
-ok(/18\.1/.test(live18[0].textContent) && /18\.2/.test(live18[1].textContent),
-  "上線的兩節依次是 18.1、18.2");
+ok(ch18Page.$$("#chapter-body .part-btn[disabled]").length === 1 && live18.length === 3,
+  "18.4 標示「即將推出」，18.1 至 18.3 已上線（實際上線 " + live18.length + " 節）");
+ok(/18\.1/.test(live18[0].textContent) && /18\.2/.test(live18[1].textContent) &&
+  /18\.3/.test(live18[2].textContent),
+  "上線的三節依次是 18.1、18.2、18.3");
 live18[0].click();
 ok(/c=ch18-1/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
   "按「18.1」會去 quiz.html?c=ch18-1");
 live18[1].click();
 ok(/c=ch18-2/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
   "按「18.2」會去 quiz.html?c=ch18-2");
+live18[2].click();
+ok(/c=ch18-3/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
+  "按「18.3」會去 quiz.html?c=ch18-3");
 
 const P181 = INDEX.parts.filter((p) => p.id === "ch18-1")[0] || {};
 ok(P181.stats && P181.stats.questions === 21 && P181.stats.marks === 87,
@@ -1647,6 +1651,82 @@ ok(P182_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).leng
   "18.2 每題 parts 分數加總＝題目分數");
 ok(!LABEL_WORDS.some((w) => read("data/src/ch18-2.json").includes(w)),
   "18.2 全部內容沒有標籤學生的字眼");
+
+/* ── 6e. 課本練習：第 18 章 → 18.3 概率的乘法 ─────────────────────────── */
+console.log("\n== 第 18 章 · 18.3 概率的乘法（課本練習頁）==");
+const P183 = INDEX.parts.filter((p) => p.id === "ch18-3")[0] || {};
+ok(P183.stats && P183.stats.questions === 39 && P183.stats.marks === 143,
+  "18.3 共 39 題 · 143 分（實際 " +
+  (P183.stats ? P183.stats.questions + " 題 · " + P183.stats.marks + " 分" : "缺 stats") + "）");
+ok((P183.sections || []).length === 6 && (P183.qids || []).length === 39,
+  "18.3 分 6 段（課堂例題／判斷／L1／L2／挑戰／跨課題）且 qids 數目正確");
+const P183_JS = read("data/ch18-3.js");
+const P183_DATA = JSON.parse(P183_JS.slice(P183_JS.indexOf("{"), P183_JS.lastIndexOf("}") + 1));
+const q183 = (id) => P183_DATA.sections
+  .reduce((a, s) => a.concat(s.questions || []), []).filter((q) => q.id === id)[0] || {};
+ok(P183_DATA.sections.map((s) => s.id).join(",") === "CE,SC,L1,L2,SM,CT",
+  "18.3 分段順序＝課堂例題／判斷題／L1／L2／挑戰題／跨課題");
+ok(P183_DATA.sections.map((s) => s.marks).join(",") === "12,6,45,55,14,11",
+  "18.3 各段分數 12／6／45／55／14／11");
+ok((P183_DATA.cards || []).length === 3, "18.3 有 3 張教學卡");
+ok(P183_DATA.cards.every((c) => (c.math || []).length > 0 && c.warn && c.vocab),
+  "18.3 每張卡都有數式、常犯錯誤與詞彙 chips");
+
+/* 官方解答逐題核對，見 data/raw/ch18-3-source.md */
+ok(q183("ch18-3-sc").answers.filter((a) => a.tf === false).map((a) => a.part).join(",") === "(a),(b),(e)",
+  "判斷題：錯的是 (a)、(b)、(e)（漏情況、反面寫錯、約簡出錯）");
+ok(q183("ch18-3-l1-1").answers[0].math === "\\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}",
+  "L1-1 官方答案 1/12（硬幣 × 骰子，獨立事件相乘）");
+ok(q183("ch18-3-l1-19").answers[1].math === "\\frac{7}{13} \\times \\frac{6}{12} = \\frac{7}{26}",
+  "L1-19(b) 官方答案 7/26（不放回，分母由 13 變 12）");
+ok(q183("ch18-3-l2-5").answers[0].math ===
+  "0.2 \\times 0.7 \\times 0.1 + 0.2 \\times 0.3 \\times 0.9 + 0.8 \\times 0.7 \\times 0.9 = 0.572",
+  "L2-5(a) 官方答案 0.572（恰好兩人遲到的三種情況）");
+ok(q183("ch18-3-l2-9").answers[1].math === "1 - \\frac{12}{65} - \\frac{4}{91} = \\frac{27}{35}",
+  "L2-9(b) 官方答案 27/35（反面是全朱古力或全牛油，兩種都要減）");
+ok(q183("ch18-3-l2-11").answers[1].math ===
+  "2 \\times \\left(\\frac{2}{12} \\times \\frac{10}{11}\\right) \\times \\frac{1}{10} = \\frac{1}{33}",
+  "L2-11(b) 官方答案 1/33（前兩人中一金，第三位抽到剩下的 1 條金）");
+ok(q183("ch18-3-sm-31").answers[0].math ===
+  "\\frac{3}{8} + \\frac{5}{8} \\times \\frac{4}{7} \\times \\frac{3}{6} + \\frac{5}{8} \\times \\frac{4}{7} \\times \\frac{3}{6} \\times \\frac{2}{5} \\times \\frac{3}{4} = \\frac{17}{28}" &&
+  q183("ch18-3-sm-31").answers[1].math === "\\frac{11}{28} < \\frac{17}{28}",
+  "SM-31 官方答案 17/28 對 11/28（Helena 可在第 1、3、5 次抽中，先手確實較有利）");
+ok(q183("ch18-3-ct-34").answers[1].math ===
+  "56 \\times \\frac{1}{14} + 14 \\times \\frac{1}{7} + 0 \\times \\frac{11}{14} = 6 \\text{ dollars}",
+  "CT-34(b) 官方期望收益 6 元（同時抽兩張用組合，28 種）");
+const ct34 = q183("ch18-3-ct-34");
+ok(!/\*\*/.test(read("data/src/ch18-3.json")),
+  "18.3 不用 Markdown **（前端不支援）");
+ok(!ct34.stem.en.includes("$") && ct34.parts.every((p) => !(p.en || "").includes("$")),
+  "CT-34 金額寫成 dollars，不用 $ 符號（會撞 KaTeX 的數學分界）");
+
+/* 頁面渲染 ＋ 真 KaTeX */
+const c183 = boot("quiz.html", "?c=ch18-3&p=0");
+ok(c183.$$("#pagenav .pg").length === 40,
+  "18.3 分頁列 = 總覽 + 39 題（實際 " + c183.$$("#pagenav .pg").length + "）");
+ok(c183.$$("#pagenav .pg-sec").length === 6, "18.3 分頁列有 6 個分段標題");
+ok(c183.$$(".cc").length === 3, "18.3 總覽渲染出 3 張教學卡");
+ok(c183.$$(".katex-error").length === 0, "18.3 教學卡全部數式 KaTeX 渲染成功");
+ok(!/\{\{math:/.test(c183.$("#quiz-body").textContent), "18.3 總覽沒有殘留 {{math:}} 佔位符");
+
+const all183 = [];
+for (let i = 1; i <= 39; i++) all183.push(boot("quiz.html", "?c=ch18-3&p=" + i, null, "show"));
+ok(all183.every((t) => t.$$(".sol-card").length === 1 && t.$$(".sol-card .steps .step").length > 0),
+  "18.3 每題都有逐步題解");
+ok(all183.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
+  "18.3 每題都有技巧與常見錯誤");
+ok(all183.every((t) => t.$$(".katex-error").length === 0), "18.3 全部 39 題 KaTeX 零錯誤");
+ok(all183.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "18.3 所有題幹均有中英版本");
+ok(all183.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "18.3 題幹全部已渲染（無殘留 $）");
+ok(P183_DATA.sections.every((s) => s.questions.every((q) =>
+  q.solution.steps.every((st) => (st.highlight || []).length >= 1))),
+  "18.3 每個步驟都有 highlight 重點框（資料層）");
+ok(P183_DATA.sections.every((s) => s.questions.every((q) => (q.parts || []).length >= 1 &&
+  q.parts.reduce((t, p) => t + p.marks, 0) === q.marks)),
+  "18.3 每題 parts 分數加總＝題目分數");
+ok(!LABEL_WORDS.some((w) => read("data/src/ch18-3.json").includes(w)),
+  "18.3 全部內容沒有標籤學生的字眼");
 
 /* ── 7. 進度記錄（新開頁面仍記得）────────────────────────────────────── */
 console.log("\n== 進度 ==");
