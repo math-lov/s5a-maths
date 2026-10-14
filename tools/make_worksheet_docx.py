@@ -3,7 +3,7 @@
 
 用法：
     python -X utf8 tools/make_worksheet_docx.py                      # 預設 ch17-test
-    python -X utf8 tools/make_worksheet_docx.py --part ch17-qc
+    python -X utf8 tools/make_worksheet_docx.py --part ch18-1
     python -X utf8 tools/make_worksheet_docx.py --part ch17-test --out docs/worksheets/xxx.docx
 
 為甚麼由資料檔生成：工作紙與網站題目共用同一份 data/src/<part>.json，
@@ -316,7 +316,6 @@ def answer_sheet(doc, qs):
 
 
 def add_mc(doc, sec, qs):
-    answer_sheet(doc, qs)
     title = en(sec.get("title")) or "Multiple choice"
     section_heading(doc, title, sec.get("marks") or sum(q["marks"] for q in qs))
     for q in qs:
@@ -428,6 +427,11 @@ def main():
     add_footer(sec)
 
     header_block(doc, data, site_part)
+    # 全份一張作答格（卷頭）：所有選擇題一齊列，填數字的題目有輸入格所以唔入
+    answer_sheet(doc, [q for s in data.get("sections", [])
+                       for q in s.get("questions", [])
+                       if s.get("questions") and s["questions"][0]["type"] == "mc"
+                       and not (q.get("quick") or {}).get("input")])
     for s in data.get("sections", []):
         qs = s.get("questions", [])
         if not qs:

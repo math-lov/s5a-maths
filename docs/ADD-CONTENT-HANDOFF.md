@@ -180,8 +180,8 @@ GitHub Pages 約 1 分鐘生效；學生第一次要 **Ctrl+F5**。
 | `ch17-1` 17.1 計數基本原理 | 已完成（37 題 · 133 分） | 課本 Exercise 17.1；2026-09-30 上線，見 9.6 |
 | `ch18-1` 18.1 集合 | 已完成（21 題 · 87 分） | 課本 Exercise 18.1（SC／L1／L2／SMART CORNER）；2026-10-10 上線，見 9.7 |
 | `ch18-2`／`ch18-3`／`ch18-4` | 已完成（146／143／140 分） | 第 18 章其餘三節（39／39／36 題）已上線；18.2 c02 另有下捨入示範，見 9.8 |
-| `ch17-test` 17 測前溫習 | 已完成（10 題 · 30 分） | 改編自 EPH WS22（4 MC ＋ 6 長題），2026-10-13 上線，見 9.9 |
-| `ch17-qc` 17 快測 | 已完成（5 題 · 5 分） | 老師自擬快測（即時回饋／填數／表格多選），2026-10-14 上線，排喺 `ch17-test` 之前，見 9.10 |
+| `ch17-test` 17 測前溫習 | 已完成（15 題 · 35 分） | 卷頭 5 題快測（老師自擬，即時對錯）＋ 4 MC ＋ 6 長題（改編自 EPH WS22），2026-10-13 上線，2026-10-14 併入快測，見 9.9／9.10 |
+
 
 ### 9.2 17.3 已拍板的處理（唔好再改返轉頭）
 
@@ -307,21 +307,27 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 
 **上架方式**
 
-- 新課題 `ch17-test`：`group: "quiz"`、`kind: 測前溫習`、`unit: 第 17 章 · 排列與組合`；`site.json` 的 `parts` 加多一條，`site.classwork.chapters[ch17].sections` 再加一條 `{ "code": "17R", "part": "ch17-test", … }`，所以**第 17 章章節頁**同**首頁「測驗檢討」**兩邊都見到（加咗 `ch17-qc` 之後，章節頁統計係 5 節 · 123 題 · 455 分）。章首簡介已加一句講明「17 快測」同「17 測前溫習」。
+- 新課題 `ch17-test`：`group: "quiz"`、`kind: 測前溫習`、`unit: 第 17 章 · 排列與組合`；`site.json` 的 `parts` 加多一條，`site.classwork.chapters[ch17].sections` 再加一條 `{ "code": "17R", "part": "ch17-test", … }`，所以**第 17 章章節頁**同**首頁「測驗檢討」**兩邊都見到（章節頁統計係 4 節 · 118 題 · 450 分）。章首簡介已加一句講明「17 測前溫習」。
 - 資料檔結構要跟 build.py：`sections[].questions[]`（唔可以將題目放在頂層）。
 
 **Word 工作紙（實體列印 · 全英）**
 
-- `tools/make_worksheet_docx.py` **由 `data/src/<part>.json` 生成** `docs/worksheets/<part>-worksheet.docx`：`python -X utf8 tools/make_worksheet_docx.py --part ch17-test`（或 `--part ch17-qc`）。改題目只要改 JSON 再跑一次，網站同工作紙永遠一致。
+- `tools/make_worksheet_docx.py` **由 `data/src/<part>.json` 生成** `docs/worksheets/<part>-worksheet.docx`：`python -X utf8 tools/make_worksheet_docx.py --part ch17-test`。改題目只要改 JSON 再跑一次，網站同工作紙永遠一致。
 - **全英，唔中英對照**（2026-10-14 老師要求）：生成器完全唔讀 `zh` 欄（smoke 斷言會檢查 `make_worksheet_docx.py` 內冇 `"zh"`），抬頭、Name／Class／Date／Score、section 標題、題幹、分數、書寫格、公式頁、頁碼全部英文；選項如果係「插空法 Slot-in」咁中英混排，會用 `ascii_only()` 洗走中文（網站仍然中英對照）。
-- 內容：抬頭（英文課題名、Total marks、Name/Class/Date/Score）、卷頭獨立作答格（Answer sheet，單選 ○／多選 ☐）、MC 題目與選項、長題目＋小問＋書寫橫線、尾頁 Formula sheet and common traps、頁碼 Page N。引言只印第一句；同一題同表格唔會跨頁分斷（`keep_with_next` ＋ `w:cantSplit`）。
+- 內容：抬頭（英文課題名、Total marks、Name/Class/Date/Score）、**全份一張作答格**（Answer sheet 印喺卷頭，收集所有選擇題；單選 ○／多選 ☐）、MC 題目與選項、長題目＋小問＋書寫橫線、尾頁 Formula sheet and common traps、頁碼 Page N。引言只印第一句；同一題同表格唔會跨頁分斷（`keep_with_next` ＋ `w:cantSplit`）。
 - 快測題（`question.quick`）特別支援：`input` → 印 `Number of arrangements: ______` 填數格（唔入 Answer sheet）；`rows` → 印紅／藍／剔表格，每行一個 ☐（`head` 最後一欄係剔欄就自動當作打勾欄）。
 - 環境：本機已裝 `python-docx`（`python -m pip install python-docx`）。檢查版面用 Word COM 匯出 PDF 再用 pymupdf 轉圖（`tools/_preview/*.png`）。
 - KaTeX → 純文字轉換器 `plain()` 喺同一個檔案（處理 `$`、`\,`、`\times`、`\div`、上下標、`\lfloor` 等）。
 
-### 9.10 第 17 章「17 快測 · 5 題」（2026-10-14）
+### 9.10 第 17 章卷頭「快測 · 5 題」（2026-10-14）
 
-**用途**：老師指定喺「17 測前溫習」**之前**加 5 題快測（每題 1 分，共 5 分），用作排列／組合嘅 warming up。做成獨立課題 `ch17-qc`，排喺 `site.json` 的 `parts` 同章節 `sections` 入面都係 `ch17-test` **之前**（章節代碼 `17Q`，`ch17-test` 仍然係 `17R`）。
+**用途**：老師要求喺「17 測前溫習」卷**最前面**加 5 題快測（每題 1 分，共 5 分）做 warming up：**同學做完快測（有即時對錯）之後，跟住的甲部、乙部就自己做**。
+
+**已經合併入 `ch17-test`（唔係獨立課題）**
+- `data/src/ch17-test.json` 的第一節就係快測：`sections[0].id = "Q"`（`marks: 5`，5 條題全部有 `quick`），跟住 `"A"`（4 MC 8 分）、`"B"`（6 長題 22 分）。全卷 **15 題 35 分**，課題標題改成「17 測前溫習 · 快測 ＋ 精選題」。
+- **冇 `ch17-qc` 呢個課題**（已刪 `data/src/ch17-qc.json`、`data/ch17-qc.js`、`docs/worksheets/ch17-qc-worksheet.docx`），首頁卡片同章節頁（`17R`）都只得一個入口；smoke 有斷言守住 `data/index.js` 唔可以再出現 `ch17-qc`。
+- 工作紙只有一份 `ch17-test-worksheet.docx`：卷頭一張 Answer sheet（Q1、Q2、Q5、Ａ1–Ａ4），再依次印快測、甲部、乙部。
+- 網站總覽頁：16 頁（總覽 ＋ 15 題），三個分隔（快測／甲部／乙部）。
 
 | 題 | 內容 | 互動 | 答案 |
 |---|---|---|---|
