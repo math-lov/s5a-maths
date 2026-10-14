@@ -181,6 +181,7 @@ GitHub Pages 約 1 分鐘生效；學生第一次要 **Ctrl+F5**。
 | `ch18-1` 18.1 集合 | 已完成（21 題 · 87 分） | 課本 Exercise 18.1（SC／L1／L2／SMART CORNER）；2026-10-10 上線，見 9.7 |
 | `ch18-2`／`ch18-3`／`ch18-4` | 已完成（146／143／140 分） | 第 18 章其餘三節（39／39／36 題）已上線；18.2 c02 另有下捨入示範，見 9.8 |
 | `ch17-test` 17 測前溫習 | 已完成（10 題 · 30 分） | 改編自 EPH WS22（4 MC ＋ 6 長題），2026-10-13 上線，見 9.9 |
+| `ch17-qc` 17 快測 | 已完成（5 題 · 5 分） | 老師自擬快測（即時回饋／填數／表格多選），2026-10-14 上線，排喺 `ch17-test` 之前，見 9.10 |
 
 ### 9.2 17.3 已拍板的處理（唔好再改返轉頭）
 
@@ -306,12 +307,36 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 
 **上架方式**
 
-- 新課題 `ch17-test`：`group: "quiz"`、`kind: 測前溫習`、`unit: 第 17 章 · 排列與組合`；`site.json` 的 `parts` 加多一條（`ch17-test` 之後），`site.classwork.chapters[ch17].sections` 再加一條 `{ "code": "17R", "part": "ch17-test", … }`，所以**第 17 章章節頁**同**首頁「測驗檢討」**兩邊都見到（章節頁統計會變 4 節 · 118 題 · 450 分）。章首簡介已加一句講明「17 測前溫習」。
+- 新課題 `ch17-test`：`group: "quiz"`、`kind: 測前溫習`、`unit: 第 17 章 · 排列與組合`；`site.json` 的 `parts` 加多一條，`site.classwork.chapters[ch17].sections` 再加一條 `{ "code": "17R", "part": "ch17-test", … }`，所以**第 17 章章節頁**同**首頁「測驗檢討」**兩邊都見到（加咗 `ch17-qc` 之後，章節頁統計係 5 節 · 123 題 · 455 分）。章首簡介已加一句講明「17 快測」同「17 測前溫習」。
 - 資料檔結構要跟 build.py：`sections[].questions[]`（唔可以將題目放在頂層）。
 
-**Word 工作紙（實體列印）**
+**Word 工作紙（實體列印 · 全英）**
 
-- `tools/make_worksheet_docx.py` **由 `data/src/<part>.json` 生成** `docs/worksheets/ch17-test-worksheet.docx`：改題目只要改 JSON 再跑一次，網站同工作紙永遠一致。
-- 內容：抬頭（中英課題名、姓名／班別／日期／得分、滿分）、甲部 4 題 MC ＋ 獨立作答格（○ 形）、乙部 6 題長題 ＋ 書寫橫線、尾頁公式速查與常犯陷阱、頁碼。引言只印第一句；同一題唔會跨頁分斷（`keep_with_next`）。
-- 環境：本機已裝 `python-docx`（`python -m pip install python-docx`）。檢查版面用 Word COM 匯出 PDF 再用 pymupdf 轉圖。
+- `tools/make_worksheet_docx.py` **由 `data/src/<part>.json` 生成** `docs/worksheets/<part>-worksheet.docx`：`python -X utf8 tools/make_worksheet_docx.py --part ch17-test`（或 `--part ch17-qc`）。改題目只要改 JSON 再跑一次，網站同工作紙永遠一致。
+- **全英，唔中英對照**（2026-10-14 老師要求）：生成器完全唔讀 `zh` 欄（smoke 斷言會檢查 `make_worksheet_docx.py` 內冇 `"zh"`），抬頭、Name／Class／Date／Score、section 標題、題幹、分數、書寫格、公式頁、頁碼全部英文；選項如果係「插空法 Slot-in」咁中英混排，會用 `ascii_only()` 洗走中文（網站仍然中英對照）。
+- 內容：抬頭（英文課題名、Total marks、Name/Class/Date/Score）、卷頭獨立作答格（Answer sheet，單選 ○／多選 ☐）、MC 題目與選項、長題目＋小問＋書寫橫線、尾頁 Formula sheet and common traps、頁碼 Page N。引言只印第一句；同一題同表格唔會跨頁分斷（`keep_with_next` ＋ `w:cantSplit`）。
+- 快測題（`question.quick`）特別支援：`input` → 印 `Number of arrangements: ______` 填數格（唔入 Answer sheet）；`rows` → 印紅／藍／剔表格，每行一個 ☐（`head` 最後一欄係剔欄就自動當作打勾欄）。
+- 環境：本機已裝 `python-docx`（`python -m pip install python-docx`）。檢查版面用 Word COM 匯出 PDF 再用 pymupdf 轉圖（`tools/_preview/*.png`）。
 - KaTeX → 純文字轉換器 `plain()` 喺同一個檔案（處理 `$`、`\,`、`\times`、`\div`、上下標、`\lfloor` 等）。
+
+### 9.10 第 17 章「17 快測 · 5 題」（2026-10-14）
+
+**用途**：老師指定喺「17 測前溫習」**之前**加 5 題快測（每題 1 分，共 5 分），用作排列／組合嘅 warming up。做成獨立課題 `ch17-qc`，排喺 `site.json` 的 `parts` 同章節 `sections` 入面都係 `ch17-test` **之前**（章節代碼 `17Q`，`ch17-test` 仍然係 `17R`）。
+
+| 題 | 內容 | 互動 | 答案 |
+|---|---|---|---|
+| Q1 | 30 人揀 3 人做班長／副班長／財政 | MC，即時回饋 | B `P³⁰ = 24 360` |
+| Q2 | 30 人揀 3 人組成數學壁報小組 | MC，即時回饋 | A `C³⁰ = 4 060` |
+| Q3 | 5 男 3 女排一列，兩男必須相鄰 | 揀方法 ＋ 填數 → 提交 | B 綑綁法，`7!×2! = 10 080` |
+| Q4 | 5 男 3 女排一列，女的不能相鄰 | 揀方法 ＋ 填數 → 提交 | A 插空法，`5!×P⁶₃ = 14 400` |
+| Q5 | 5 紅 4 藍抽 3 粒，至少 1 粒紅 | 表格多選 → 提交 | A、B、C（`C⁹₃−C⁴₃ = 80`） |
+
+**`question.quick` 欄位（前端機制）**
+
+- `mode: "instant"`：一揀即出對錯（MC 用）；`mode: "submit"`：要按「提交答案」先評。
+- `input: { answer, label }`：加一個填數格，數字會 `replace(/[\s,]/g,"")` 正規化（`10080`、`10 080`、`14,400` 全部接受）。有輸入格就唔可以用 `instant`（build.py 會報錯）。
+- `multi: true` + `head` + `rows`：表格多選（紅／藍／剔），`answer` 寫成 `["A","B","C"]`；build.py 會檢查 `rows` 剛好覆蓋 A–D。`head` 冇「剔」欄時前端會自動補 `UI.quickTick`。
+- 提交按鈕一開始係停用，揀完選項或者填到數先解封；錯兩次就鎖住並顯示正確答案（`[data-feedback="ok"|"bad"]`）。
+- 回饋副標：方法啱數字錯＝`quickMethodOnly`、數字啱方法錯＝`quickNumberOnly`、兩樣都錯＝`quickMissBoth`、純選擇題＝`fbRetrySub`（唔會講「數字」）。
+- build.py 對 MC 選項數目的例外：`quick` 題可以只有 A／B 兩個（例如插空法／綑綁法），其餘 MC 一律要 A–D。
+- 樣式：`assets/style.css` 的 `.quick-in / .quick-lab / .quick-field`、`.opts.multi .opt .letter`（圓→方）、`.quick-grid`、`.opt.cell`。

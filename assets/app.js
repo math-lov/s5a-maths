@@ -96,6 +96,14 @@
     pmCopyFail: { zh: "複製失敗，請手動選取下面的文字複製", en: "Copy failed — please select the text below and copy manually" },
     /* P1：Khan Academy 式「檢查答案」與回饋 */
     check: { zh: "檢查答案", en: "Check answer" },
+    /* 快測（ch17-qc）：即時回饋／提交後回饋、輸入框與多選格 */
+    quickSubmit: { zh: "提交答案", en: "Submit answer" },
+    quickMultiHint: { zh: "可多選：把所有符合條件的組合都剔上。", en: "Multiple answers: tick every combination that satisfies the condition." },
+    quickNeedPick: { zh: "先揀答案（數字可以自己填），再按提交。", en: "Choose an answer (you may type a number), then submit." },
+    quickMethodOnly: { zh: "方法揀啱，數字再諗多次。", en: "Right method — have another go at the number." },
+    quickNumberOnly: { zh: "數量啱，但用錯咗方法。", en: "Right number, but the wrong method." },
+    quickMissBoth: { zh: "兩樣都未啱，睇清楚提示再試。", en: "Both are off — read the hint and try again." },
+    quickTick: { zh: "剔", en: "Tick" },
     fbCorrect: { zh: "正確！", en: "Correct!" },
     fbCorrectSub: {
       zh: "做得好 —— 向下睇題解，確認自己每一步都真係明。",
@@ -1114,7 +1122,194 @@
 
     /* MC 選項：先選一個 → 按「檢查答案」→ 綠／紅回饋橫幅（KA 式）
        題解仍然同頁顯示（學生亦可以先睇題解，兩者不衝突） */
-    if (q.type === "mc") {
+    /* 快測題（`quick`）：單選即時回饋；輸入／多選要按「提交」先出對錯 */
+    if (q.quick) {
+      var qMulti = !!q.quick.multi;
+      var qAns = qMulti ? [].concat(q.answer || []) : [q.answer];
+      var qstate = { picked: [], locked: false, tries: 0 };
+      var qopts = el("div", "opts" + (qMulti ? " multi" : ""));
+      var qfb = el("div");
+      var qinput = null;
+      var qsubmit = null;
+
+      function markQuick() {
+        qsa(".opt", card).forEach(function (b) {
+          b.classList.toggle("picked", qstate.picked.indexOf(b.dataset.opt) >= 0);
+        });
+      }
+      function armSubmit() {
+        if (!qsubmit) return;
+        qsubmit.disabled = !(qstate.picked.length || (qinput && qinput.value.trim()));
+      }
+      function lockQuick() {
+        qstate.locked = true;
+        qsa(".opt", card).forEach(function (b) {
+          b.disabled = true;
+          b.classList.remove("picked");
+          if (qAns.indexOf(b.dataset.opt) >= 0) b.classList.add("correct");
+          else if (qstate.picked.indexOf(b.dataset.opt) >= 0) b.classList.add("wrong");
+        });
+        if (qinput) qinput.disabled = true;
+        if (qsubmit) qsubmit.disabled = true;
+      }
+      function quickFb(ok, revealed, optOk, inOk) {
+        qfb.innerHTML = "";
+        var box = el("div", "feedback " + (ok ? "ok" : "bad"));
+        box.setAttribute("data-feedback", ok ? "ok" : "bad");
+        box.appendChild(el("span", "fb-icon", ok ? "✅" : "✖"));
+        var txt = el("div");
+        var main = el("div");
+        main.appendChild(pairSpan(ok ? UI.fbCorrect : UI.fbWrong));
+        txt.appendChild(main);
+        var subEl = el("span", "fb-sub");
+        var sub;
+        if (ok) sub = UI.fbCorrectSub;
+        else if (revealed) sub = UI.fbRevealSub;
+        else if (!qinput) sub = UI.fbRetrySub;          /* 純選擇題：淨係「再試一次」 */
+        else sub = optOk ? UI.quickMethodOnly
+          : inOk ? UI.quickNumberOnly
+            : UI.quickMissBoth;
+        subEl.appendChild(pairSpan(sub));
+        txt.appendChild(subEl);
+        box.appendChild(txt);
+        qfb.appendChild(box);
+      }
+      function gradeQuick() {
+        var optOk = qstate.picked.slice().sort().join("") === qAns.slice().sort().join("");
+        var txt = qinput ? qinput.value.replace(/[\s,]/g, "") : "";
+        var inOk = !qinput || txt === String((q.quick.input || {}).answer).replace(/[\s,]/g, "");
+        var ok = optOk && inOk;
+        qstate.tries++;
+        if (ok) {
+          store.done[q.id] = true;
+          store.picked[q.id] = qstate.picked.join("");
+          saveStore();
+          lockQuick();
+          quickFb(true, false, true, true);
+          var curBtn = qs("#pagenav .pg.current");
+          if (curBtn) curBtn.classList.add("done");
+          setProgress(qs("#quiz-progress"), PART);
+        } else {
+          delete store.done[q.id];
+          saveStore();
+          if (qstate.tries >= 2) {
+            lockQuick();
+            quickFb(false, true, optOk, inOk);
+          } else {
+            qstate.picked = [];
+            if (qinput) qinput.value = "";
+            markQuick();
+            armSubmit();
+            quickFb(false, false, optOk, inOk);
+          }
+        }
+      }
+      function onPick(L) {
+        if (qstate.locked) return;
+        if (qMulti) {
+          var i = qstate.picked.indexOf(L);
+          if (i >= 0) qstate.picked.splice(i, 1); else qstate.picked.push(L);
+          markQuick();
+        } else {
+          qstate.picked = [L];
+          markQuick();
+          if ((q.quick.mode || "submit") === "instant") { gradeQuick(); return; }
+        }
+        armSubmit();
+      }
+
+      if (q.quick.rows) {
+        /* 表格式多選（例如「紅、藍」的各種組合） */
+        var grid = el("table", "quick-grid");
+        var hr = el("tr");
+        ((q.quick.head) || []).forEach(function (h) {
+          var th = el("th");
+          th.appendChild(pairSpan(h));
+          hr.appendChild(th);
+        });
+        /* head 冇「剔」欄就自己補，方便老師只列紅／藍欄 */
+        var cellCols = ((q.quick.rows || [])[0] || {}).cells || [];
+        if (hr.childNodes.length === cellCols.length) {
+          var tht = el("th");
+          tht.appendChild(pairSpan(UI.quickTick));
+          hr.appendChild(tht);
+        }
+        grid.appendChild(hr);
+        (q.quick.rows || []).forEach(function (row) {
+          var tr = el("tr");
+          ((row.cells) || []).forEach(function (c) {
+            var td = el("td");
+            td.appendChild(pairSpan(c));
+            tr.appendChild(td);
+          });
+          var td = el("td", "tick");
+          var b = el("button", "opt cell");
+          b.dataset.opt = row.opt;
+          b.setAttribute("aria-label", row.opt);
+          b.onclick = function () { onPick(row.opt); };
+          td.appendChild(b);
+          tr.appendChild(td);
+          grid.appendChild(tr);
+        });
+        card.appendChild(grid);
+        card.appendChild(el("p", "small muted quick-hint")).appendChild(pairSpan(UI.quickMultiHint));
+      } else {
+        ["A", "B", "C", "D"].forEach(function (L) {
+          var val = (q.options || {})[L];
+          if (val === undefined) return;
+          var b = el("button", "opt");
+          b.dataset.opt = L;
+          b.appendChild(el("span", "letter", L));
+          var v = el("span", "val");
+          if (val && typeof val === "object") {
+            var vz = el("div", "l-zh");
+            mathInto(vz, val.zh || val.en || "");
+            var ve = el("div", "l-en");
+            mathInto(ve, val.en || "");
+            v.appendChild(vz);
+            v.appendChild(ve);
+          } else {
+            mathInto(v, val);
+          }
+          b.appendChild(v);
+          b.onclick = function () { onPick(L); };
+          qopts.appendChild(b);
+        });
+        card.appendChild(qopts);
+      }
+
+      if (q.quick.input) {
+        var irow = el("div", "quick-in");
+        var lab = el("label", "quick-lab");
+        lab.appendChild(pairSpan(q.quick.input.label || UI.quickSubmit));
+        qinput = el("input", "quick-field");
+        qinput.setAttribute("type", "text");
+        qinput.setAttribute("inputmode", "numeric");
+        qinput.setAttribute("data-quick-input", "1");
+        qinput.id = "quick-in-" + q.id;
+        lab.setAttribute("for", qinput.id);
+        qinput.oninput = armSubmit;
+        lab.appendChild(qinput);
+        irow.appendChild(lab);
+        card.appendChild(irow);
+      }
+      var crow = el("div", "check-row");
+      if ((q.quick.mode || "submit") !== "instant") {
+        qsubmit = el("button", "btn btn-primary");
+        qsubmit.setAttribute("data-quick-submit", "1");
+        setPair(qsubmit, UI.quickSubmit);
+        qsubmit.disabled = true;
+        qsubmit.onclick = function () {
+          if (qstate.locked) return;
+          if (!qstate.picked.length) { toast(UI.quickNeedPick, "!"); return; }
+          gradeQuick();
+        };
+        crow.appendChild(qsubmit);
+      }
+      crow.appendChild(qfb);
+      card.appendChild(crow);
+      if (store.done[q.id]) lockQuick();
+    } else if (q.type === "mc") {
       var opts = el("div", "opts");
       var state = { picked: null, locked: false, tries: 0 };
       ["A", "B", "C", "D"].forEach(function (L) {
@@ -1260,7 +1455,7 @@
       if (q.type === "mc") {
         var t = el("span");
         t.style.fontWeight = "700";
-        t.textContent = q.answer + ".";
+        t.textContent = (Array.isArray(q.answer) ? q.answer.join(", ") : q.answer) + ".";
         row.appendChild(t);
       }
       var m = el("span");

@@ -72,6 +72,23 @@
         "source": { "zh": "課本 Exercise 17.3（Class Exercise 17.3 ＋ Exercise 17.3）", "en": "Textbook Exercise 17.3" }
       },
       {
+        "id": "ch17-qc",
+        "group": "quiz",
+        "kind": { "zh": "快測", "en": "Quick check" },
+        "unit": { "zh": "第 17 章 · 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
+        "title": { "zh": "17 快測 · 5 題", "en": "Chapter 17 Quick Check · 5 Questions" },
+        "meta": {
+          "paper": "S.5 Mathematics · Chapter 17 Quick Check",
+          "marks": 5,
+          "sections": [
+            { "id": "Q", "marks": 5, "title": { "zh": "快測 · 5 題", "en": "Quick check · 5 questions" } }
+          ]
+        },
+        "stats": { "questions": 5, "marks": 5, "mc": 5, "long": 0, "bonus": 0 },
+        "status": "ready",
+        "source": { "zh": "老師自擬快測：排列與組合判斷與熱身（排列 vs 組合、綑綁法 vs 插空法、至少與反面）", "en": "Teacher-made quick check on permutation versus combination, tie-up versus slot-in, and at-least with the complement" }
+      },
+      {
         "id": "ch17-test",
         "group": "quiz",
         "kind": { "zh": "測前溫習", "en": "Pre-test revision" },
@@ -154,13 +171,14 @@
           "short": { "zh": "第 17 章", "en": "Chapter 17" },
           "title": { "zh": "第 17 章 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
           "intro": {
-            "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。三節的課本練習都已提供逐步題解：先學「分類用加、分步用乘」，再學排列（有次序），最後學組合（不計次序）。章末另有「17 測前溫習」：4 題多項選擇 ＋ 6 題長題目（30 分），改編自 EPH《Level 5 Assurance Pack》WS22 工作紙，考前可以用來總溫習。",
-            "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. All three sections now have step-by-step solutions: first add for cases and multiply for steps, then permutations (order matters) and finally combinations (order ignored). There is also '17 Pre-test Revision' at the end of the chapter: 4 multiple-choice and 6 conventional questions (30 marks), adapted from the EPH Level 5 Assurance Pack WS22 worksheet for final revision before the test."
+            "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。三節的課本練習都已提供逐步題解：先學「分類用加、分步用乘」，再學排列（有次序），最後學組合（不計次序）。章末另有「17 快測」（5 題，即時對錯）同「17 測前溫習」（4 題多項選擇 ＋ 6 題長題目，共 30 分，改編自 EPH《Level 5 Assurance Pack》WS22 工作紙），考前可以用來總溫習。",
+            "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. All three sections now have step-by-step solutions: first add for cases and multiply for steps, then permutations (order matters) and finally combinations (order ignored). At the end of the chapter there are also '17 Quick Check' (5 questions with instant feedback) and '17 Pre-test Revision' (4 multiple-choice and 6 conventional questions, 30 marks), adapted from the EPH Level 5 Assurance Pack WS22 worksheet, for final revision before the test."
           },
           "sections": [
             { "code": "17.1", "part": "ch17-1", "title": { "zh": "17.1 計數基本原理", "en": "17.1 Basic counting principles" } },
             { "code": "17.2", "part": "ch17-2", "title": { "zh": "17.2 排列", "en": "17.2 Permutations" } },
             { "code": "17.3", "part": "ch17-3", "title": { "zh": "17.3 組合", "en": "17.3 Combinations" } },
+            { "code": "17Q", "part": "ch17-qc", "title": { "zh": "17 快測 · 5 題", "en": "17 Quick Check · 5 Questions" } },
             { "code": "17R", "part": "ch17-test", "title": { "zh": "17 測前溫習 · 精選題", "en": "17 Pre-test Revision · Selected Questions" } }
           ]
         },

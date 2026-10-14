@@ -403,6 +403,40 @@ body[data-lang="both"] .mchip .l-en { font-size: 11px; opacity: .8; }
 .opt.wrong .letter { background: var(--err); color: #fff; }
 .opt[disabled] { cursor: default; }
 
+/* ── 快測題（ch17-qc）：輸入格、多選格、表格剔選 ─────────────────────── */
+.quick-in { display: flex; align-items: center; gap: var(--sp-2); margin-top: 12px; flex-wrap: wrap; }
+.quick-lab { display: flex; align-items: center; gap: var(--sp-2); font-weight: 800; font-size: 14.5px; color: var(--muted); }
+.quick-field {
+  width: 160px; padding: 9px 12px; font: inherit; font-weight: 800; color: var(--text);
+  background: var(--card); border: 2px solid var(--line); border-radius: var(--btn-radius);
+  font-variant-numeric: tabular-nums;
+}
+.quick-field:focus-visible { outline: 3px solid rgba(79, 70, 229, .35); outline-offset: 2px; }
+.quick-field:disabled { background: var(--chip-bg); color: var(--muted); }
+
+/* 多選：字母格變方框，可以同時剔幾格 */
+.opts.multi .opt .letter { border-radius: 8px; background: var(--card); border: 2px solid var(--line); color: var(--muted); }
+.opts.multi .opt.picked .letter { background: var(--primary); border-color: var(--primary); color: #fff; }
+
+/* 表格剔選（例如「紅、藍」的各種組合） */
+.quick-grid { width: 100%; margin-top: 12px; border-collapse: separate; border-spacing: 0 6px; }
+.quick-grid th { font-size: 13px; color: var(--muted); font-weight: 800; text-align: left; padding: 0 10px; }
+.quick-grid td { background: var(--card); border: 2px solid var(--line-soft); padding: 8px 10px; font-size: 14.5px; }
+.quick-grid tr td:first-child { border-radius: var(--radius-sm) 0 0 var(--radius-sm); }
+.quick-grid tr td:last-child { border-radius: 0 var(--radius-sm) var(--radius-sm) 0; width: 66px; text-align: center; }
+.opt.cell {
+  display: inline-grid; place-items: center; width: 30px; height: 30px; min-height: 0;
+  padding: 0; border-radius: 8px; border: 2px solid var(--line); background: var(--card);
+}
+.opt.cell::before { content: "□"; font-size: 17px; font-weight: 800; color: var(--muted); line-height: 1; }
+.opt.cell.picked { border-color: var(--primary); background: var(--primary-soft); }
+.opt.cell.picked::before { content: "✓"; color: var(--primary); }
+.opt.cell.correct { border-color: var(--ok); background: var(--ok-soft); }
+.opt.cell.correct::before { content: "✓"; color: var(--ok); }
+.opt.cell.wrong { border-color: var(--err); background: var(--err-soft); }
+.opt.cell.wrong::before { content: "✗"; color: var(--err); }
+.quick-hint { margin: 10px 0 0; }
+
 /* ── 判斷題（True / False）：每小題都可以像 MC 一樣點選 ──────────────── */
 .tf-parts { display: grid; gap: 14px; margin: 10px 0 0; }
 .tf-item {

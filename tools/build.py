@@ -173,12 +173,13 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
     traps = sol.get("traps") or []
     if not traps:
         warn("S4 %s：沒有 traps（可以接受，但弱生較難知道錯在哪一步）" % tag)
+    ans_set = set(q.get("answer")) if isinstance(q.get("answer"), list) else {q.get("answer")}
     for tr in traps:
         if q["type"] == "mc":
             opt = tr.get("opt")
             if opt not in (q.get("options") or {}):
                 err("S4 %s：trap 指向不存在的選項 %s" % (tag, opt))
-            elif opt == q.get("answer"):
+            elif opt in ans_set:
                 err("S4 %s：trap 不可指向正確答案 %s" % (tag, opt))
         else:
             if not tr.get("label"):
@@ -198,16 +199,38 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
 
     if q["type"] == "mc":
         opts = q.get("options") or {}
+        quick = q.get("quick") or {}
         if sorted(opts.keys()) != ["A", "B", "C", "D"]:
-            err("S3 %s：選項必須剛好是 A、B、C、D（現時：%s）" % (tag, sorted(opts.keys())))
+            # 快測「揀方法」題可以得兩個選項（例如插空法／綑綁法），其餘 MC 一律要 A–D
+            two = sorted(opts.keys()) == ["A", "B"] and bool(quick)
+            if not two:
+                err("S3 %s：選項必須剛好是 A、B、C、D（現時：%s）" % (tag, sorted(opts.keys())))
         for L, v in opts.items():
             if isinstance(v, dict):
                 check_text("%s option %s.en" % (tag, L), v.get("en", ""))
                 check_text("%s option %s.zh" % (tag, L), v.get("zh", ""), need_zh=True)
             else:
                 check_text("%s option %s" % (tag, L), v)
-        if q.get("answer") not in opts:
+        if q.get("answer") is None:
+            err("S3 %s：缺少 answer" % tag)
+        elif isinstance(q.get("answer"), list):
+            # 快測多選題：answer 係代碼列表（quick.multi = true），每一個都要係真選項
+            if not ((q.get("quick") or {}).get("multi")):
+                err("S3 %s：answer 係列表就必須 quick.multi = true" % tag)
+            if not q["answer"] or any(a not in opts for a in q["answer"]):
+                err("S3 %s：多選題的 answer 必須全部係 A–D（現時 %r）" % (tag, q["answer"]))
+        elif q.get("answer") not in opts:
             err("S3 %s：answer 必須是 A–D 之一（現時 %r）" % (tag, q.get("answer")))
+        if quick.get("input"):
+            pin = quick["input"]
+            if not pin.get("answer"):
+                err("S3 %s：quick.input 要有 answer（學生要填的數字）" % tag)
+            if pin.get("mode") == "instant" or quick.get("mode") == "instant":
+                err("S3 %s：有輸入框就唔可以用 instant（即時回饋）" % tag)
+        if quick.get("rows"):
+            ropts = [r.get("opt") for r in quick["rows"]]
+            if sorted(str(o) for o in ropts) != ["A", "B", "C", "D"]:
+                err("S3 %s：quick.rows 要剛好覆蓋 A、B、C、D（現時 %r）" % (tag, ropts))
         if not (q.get("answers") or []):
             err("S9 %s：缺少 answers（答案欄）" % tag)
     else:

@@ -423,12 +423,19 @@ ok(chPage.$$("#chapter-body .part-btn").length === (CH17.sections || []).length,
   chPage.$$("#chapter-body .part-btn").length + "）");
 const soonBtns = chPage.$$("#chapter-body .part-btn[disabled]");
 const liveBtns = chPage.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
-ok(soonBtns.length === 0 && liveBtns.length === 4,
-  "三節課本練習 ＋「17 測前溫習」全部上線（沒有「即將推出」；實際上線 " + liveBtns.length + " 項）");
+ok(soonBtns.length === 0 && liveBtns.length === 5,
+  "三節課本練習 ＋「17 快測」＋「17 測前溫習」全部上線（沒有「即將推出」；實際上線 " + liveBtns.length + " 項）");
 ok(/17 測前溫習/.test(chPage.$("#chapter-body").textContent) &&
+  /17 快測/.test(chPage.$("#chapter-body").textContent) &&
+  /快測/.test((CH17.intro || {}).zh || "") &&
   /測前溫習/.test((CH17.intro || {}).zh || "") &&
+  /Quick Check/.test((CH17.intro || {}).en || "") &&
   /Pre-test Revision/.test((CH17.intro || {}).en || ""),
-  "第 17 章章節頁有「17 測前溫習」入口，章首簡介亦提到它");
+  "第 17 章章節頁有「17 快測」同「17 測前溫習」入口，章首簡介亦提到它們");
+const qcBtn = liveBtns.filter((b) => /17 快測/.test(b.textContent))[0];
+qcBtn.click();
+ok(/c=ch17-qc/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
+  "按章節頁的「17 快測」會去 quiz.html?c=ch17-qc");
 const revBtn = liveBtns.filter((b) => /17 測前溫習/.test(b.textContent))[0];
 revBtn.click();
 ok(/c=ch17-test/.test(chPage.ctx.window.__S5A_LAST_NAV || ""),
@@ -1483,6 +1490,140 @@ ok(allT.every((t) => t.$$(".katex-error").length === 0 &&
 ok(fs.existsSync("docs/worksheets/ch17-test-worksheet.docx") &&
   /data"?, ?"src|data\/src/.test(read("tools/make_worksheet_docx.py")),
   "Word 工作紙已生成（docs/worksheets/ch17-test-worksheet.docx），由網站資料檔經 tools/make_worksheet_docx.py 產生");
+
+/* ── 6b-2. 快測：第 17 章「17 快測 · 5 題」（排在 17 測前溫習之前）─────── */
+console.log("\n== 第 17 章 · 17 快測（即時回饋／輸入／多選）==");
+const qcPart = INDEX.parts.find((p) => p.id === "ch17-qc");
+ok(!!qcPart && qcPart.group === "quiz" && qcPart.kind.zh === "快測" &&
+  /第 17 章/.test(qcPart.unit.zh) && qcPart.stats.questions === 5 &&
+  qcPart.stats.marks === 5 && qcPart.meta.marks === 5,
+  "首頁「測驗檢討」有「17 快測」：5 題 5 分，unit 標明第 17 章");
+const qcQuizIds = INDEX.parts.filter((p) => p.group === "quiz").map((p) => p.id);
+const qcSecParts = (CH17.sections || []).map((s) => s.part).join(",");
+ok(qcQuizIds.indexOf("ch17-qc") + 1 === qcQuizIds.indexOf("ch17-test") &&
+  qcSecParts.indexOf("ch17-qc") < qcSecParts.indexOf("ch17-test"),
+  "快測排在「17 測前溫習」之前（首頁卡片與章節頁都是）");
+const QC_JS = read("data/ch17-qc.js");
+const QC_DATA = JSON.parse(QC_JS.slice(QC_JS.indexOf("{"), QC_JS.lastIndexOf("}") + 1));
+const QC_QS = QC_DATA.sections.reduce((a, s) => a.concat(s.questions || []), []);
+ok(QC_QS.map((q) => q.code).join(",") === "Q1,Q2,Q3,Q4,Q5" &&
+  QC_QS.every((q) => q.marks === 1),
+  "快測 5 題（Q1–Q5），每題 1 分，合共 5 分");
+ok(QC_QS.slice(0, 4).map((q) => q.answer).join("") === "BABA" &&
+  JSON.stringify(QC_QS[4].answer) === '["A","B","C"]',
+  "答案：Q1 B（24 360）、Q2 A（4060）、Q3 B、Q4 A；Q5 多選 A、B、C");
+ok(QC_QS[0].quick.mode === "instant" && QC_QS[1].quick.mode === "instant" &&
+  QC_QS[2].quick.mode === "submit" && QC_QS[3].quick.mode === "submit" &&
+  QC_QS[4].quick.multi === true && QC_QS[4].quick.mode === "submit",
+  "Q1／Q2 係即時回饋；Q3／Q4／Q5 要按「提交答案」先出對錯");
+ok(QC_QS[2].quick.input.answer === "10080" && QC_QS[3].quick.input.answer === "14400",
+  "Q3 輸入格答案 10080、Q4 輸入格答案 14400");
+ok(QC_QS[4].quick.rows.map((r) => r.opt).join("") === "ABCD" &&
+  QC_QS[4].quick.head.length === 3 && QC_QS[4].quick.rows[3].cells.length === 2,
+  "Q5 表格有紅／藍／剔三欄，四行組合 (3,0)(2,1)(1,2)(0,3)");
+ok(QC_QS.every((q) => q.difficulty >= 1 && q.difficulty <= 3),
+  "快測 difficulty 只可以用 1–3");
+ok(QC_QS.every((q) => (q.solution.steps || []).length >= 2 && !!q.solution.tip &&
+  (q.solution.traps || []).length >= 1),
+  "5 題都有逐步題解、技巧同常見錯誤");
+
+const qcOv = boot("quiz.html", "?c=ch17-qc&p=0");
+ok(/17 快測/.test((qcOv.$("#quiz-name") || {}).textContent || "") &&
+  qcOv.$$("#pagenav .pg").length === 6 && qcOv.$$("#pagenav .pg-sec").length === 1 &&
+  qcOv.$$(".katex-error").length === 0,
+  "總覽頁顯示「17 快測」、5 題（＋總覽）、KaTeX 零錯誤（實際 " +
+  qcOv.$$("#pagenav .pg").length + " 頁／" + qcOv.$$("#pagenav .pg-sec").length + " 分隔）");
+const qcAll = [];
+for (let i = 1; i <= 5; i++) qcAll.push(boot("quiz.html", "?c=ch17-qc&p=" + i, null, "show"));
+ok(qcAll.every((t) => t.$$(".katex-error").length === 0 &&
+  t.$$(".sol-card .steps .step").length >= 2 && !!t.$(".sol-card .tip") &&
+  !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "快測 5 題 KaTeX 零錯誤，全部有題解、技巧同中英題幹");
+ok(/A, B, C/.test(qcAll[4].$(".answer-box").textContent),
+  "Q5 多選答案在答案欄顯示為 A, B, C");
+
+const qcFb = (t) => {
+  const n = t.$("[data-feedback]");
+  return n ? n.getAttribute("data-feedback") : null;
+};
+const qcSub = (t) => t.$("[data-quick-submit]");
+const qcType = (t, v) => {
+  const n = t.$("[data-quick-input]");
+  n.value = v;
+  n.dispatchEvent(new (t.ctx.window.Event)("input", { bubbles: true }));
+};
+
+/* Q1：MC 一按即知對錯 */
+const qc1 = boot("quiz.html", "?c=ch17-qc&p=1");
+ok(qc1.$$(".opt").length === 4 && !qcSub(qc1) && !qc1.$("[data-quick-input]"),
+  "Q1 渲染 4 個選項，冇提交按鈕、冇輸入格（即時回饋題）");
+qc1.$('.opt[data-opt="A"]').click();
+ok(qcFb(qc1) === "bad" && !qc1.$('.opt[data-opt="A"]').disabled && !qc1.$(".opt[disabled]"),
+  "Q1 揀錯 A：即時回饋「唔啱」，而且可以再揀");
+qc1.$('.opt[data-opt="B"]').click();
+ok(qcFb(qc1) === "ok" && qc1.$('.opt[data-opt="B"]').classList.contains("correct") &&
+  qc1.$$(".opt[disabled]").length === 4,
+  "Q1 揀 B：即時顯示正確並鎖住四個選項");
+/* Q2：同一組選項，答案反轉（排列 vs 組合） */
+const qc2 = boot("quiz.html", "?c=ch17-qc&p=2");
+qc2.$('.opt[data-opt="A"]').click();
+ok(qcFb(qc2) === "ok", "Q2 揀 A（C³⁰）即時正確，與 Q1 分別在次序有冇分別");
+
+/* Q3：揀方法 ＋ 填數，按提交先評 */
+const qc3 = boot("quiz.html", "?c=ch17-qc&p=3");
+ok(!!qcSub(qc3) && !!qc3.$("[data-quick-input]") && qcSub(qc3).disabled === true &&
+  qc3.$$(".opt").length === 2 && /排列方法數/.test(qc3.$(".quick-lab").textContent),
+  "Q3 有輸入格同提交按鈕（未填時停用），方法選項只得 A／B 兩個");
+qc3.$('.opt[data-opt="A"]').click();
+ok(qcSub(qc3).disabled === false, "揀咗方法之後提交按鈕先解封");
+qcType(qc3, "10 080");
+qcSub(qc3).click();
+ok(qcFb(qc3) === "bad" && /數量啱/.test(qc3.$(".feedback").textContent) &&
+  qc3.$('.opt[data-opt="A"]').disabled === false,
+  "Q3 數字啱（10 080 忽略空格）但方法錯：提示「數量啱，但用錯咗方法」，可以再試（實際 " +
+  qcFb(qc3) + "／「" + qc3.$(".feedback").textContent.trim().slice(0, 24) + "」／A 停用=" +
+  qc3.$('.opt[data-opt="A"]').disabled + "）");
+qc3.$('.opt[data-opt="B"]').click();
+qcType(qc3, "10080");
+qcSub(qc3).click();
+ok(qcFb(qc3) === "ok" && qc3.$$(".opt[disabled]").length === 2 &&
+  qc3.$("[data-quick-input]").disabled === true,
+  "Q3 再揀 B ＋ 填 10080：提交後顯示正確並鎖住（綑綁法 7!×2!）");
+
+/* Q4：插空法 */
+const qc4 = boot("quiz.html", "?c=ch17-qc&p=4");
+qc4.$('.opt[data-opt="B"]').click();
+qcType(qc4, "1440");
+qcSub(qc4).click();
+ok(qcFb(qc4) === "bad" && /兩樣都未啱/.test(qc4.$(".feedback").textContent),
+  "Q4 方法錯（應該插空法）＋ 數字錯：提示「兩樣都未啱」再試（實際 " +
+  qcFb(qc4) + "／「" + (qc4.$(".feedback") || { textContent: "冇 feedback" }).textContent.trim().slice(0, 24) + "」）");
+qc4.$('.opt[data-opt="A"]').click();
+qcType(qc4, "14,400");
+qcSub(qc4).click();
+ok(qcFb(qc4) === "ok", "Q4 揀 A ＋ 填 14,400（忽略千分位逗號）：正確");
+
+/* Q5：表格多選 */
+const qc5 = boot("quiz.html", "?c=ch17-qc&p=5");
+ok(qc5.$$(".quick-grid tr").length === 5 && qc5.$$(".quick-grid th").length === 3 &&
+  qc5.$$(".quick-grid .opt.cell").length === 4 && !qc5.$(".opts") && !!qcSub(qc5),
+  "Q5 用紅／藍／剔表格（表頭 3 欄、4 行可剔格），唔係普通選項");
+qc5.$('.opt.cell[data-opt="A"]').click();
+qc5.$('.opt.cell[data-opt="C"]').click();
+qcSub(qc5).click();
+ok(qcFb(qc5) === "bad" && /再試一次/.test(qc5.$(".feedback").textContent) &&
+  !/數量/.test(qc5.$(".feedback").textContent),
+  "Q5 只剔 A、C → 錯；純多選題唔會講「數字」，只提示再試一次");
+["A", "B", "C"].forEach((L) => qc5.$('.opt.cell[data-opt="' + L + '"]').click());
+qcSub(qc5).click();
+ok(qcFb(qc5) === "ok" && qc5.$$(".opt.cell.correct").length === 3 &&
+  qc5.$$(".opt.cell[disabled]").length === 4,
+  "Q5 剔齊 A、B、C：顯示正確，D 唔會被當成答案，全部格鎖住");
+
+ok(fs.existsSync("docs/worksheets/ch17-qc-worksheet.docx") &&
+  fs.existsSync("docs/worksheets/ch17-test-worksheet.docx") &&
+  !/["']zh["']/.test(read("tools/make_worksheet_docx.py")),
+  "兩份 Word 工作紙已生成，而且生成器完全冇讀 zh 欄（工作紙全英，唔中英對照）");
 
 /* ── 6c. 課本練習：第 18 章 → 18.1 集合 ──────────────────────────────── */
 console.log("\n== 第 18 章 · 18.1 集合（課本練習頁）==");
