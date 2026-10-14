@@ -5,8 +5,8 @@
   "en": "18.2 Addition Law of Probability · Book Exercise"
  },
  "intro": {
-  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。求「$A$ 或 $B$」的概率，用加法定律：先加兩個概率，再把重複數了兩次的交集減一次，即 $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$。如果兩件事不可能同時發生（互斥），交集為 $0$，直接相加就可以；反過來，已知 $P(A \\cup B)$ 也可以反求交集。問「至少一項」的題目多數用反面最快：$1 - P(\\text{neither})$。",
-  "en": "This section follows the textbook and is grouped into Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. For \"A or B\", use the addition law: add the two probabilities and subtract the overlap once, because it was counted twice, i.e. $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$. If the two events cannot happen together (mutually exclusive) the intersection is 0, so the probabilities simply add; conversely, a known $P(A \\cup B)$ lets you recover the intersection. For \"at least one\", the complement is usually fastest: $1 - P(\\text{neither})$."
+  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。",
+  "en": "This section follows the textbook: Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics."
  },
  "cards": [
   {
@@ -2152,8 +2152,8 @@
    "title": {
     "zh": "進階練習 · Level 2",
     "en": "Level 2"
-    },
-    "marks": 58,
+   },
+   "marks": 58,
    "questions": [
     {
      "id": "ch18-2-l2-15",
@@ -3061,8 +3061,8 @@
          "\\frac{28}{32} = \\frac{7}{8}"
         ]
        }
-     ],
-     "traps": [
+      ],
+      "traps": [
        {
         "label": "(d) 忘減交集",
         "labelEn": "(d) forgetting the intersection",
@@ -3589,7 +3589,7 @@
        },
        {
         "part": "(b)",
-         "title": {
+        "title": {
          "zh": "分母不變，約簡",
          "en": "Same denominator, simplify"
         },
@@ -3710,7 +3710,7 @@
        },
        {
         "part": "(b)",
-         "title": {
+        "title": {
          "zh": "先加後減",
          "en": "Add first, then subtract"
         },
@@ -3859,7 +3859,7 @@
        },
        {
         "part": "(b)",
-         "title": {
+        "title": {
          "zh": "不等於 1，所以不同意",
          "en": "Not equal to 1: disagree"
         },
@@ -4911,6 +4911,20 @@
      }
     }
    ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "求「$A$ 或 $B$」用加法定律：$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$，交集重複數了兩次，要減一次。",
+   "en": "For ‘A or B’ use the addition law: $P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$; the overlap was counted twice, so subtract it once."
+  },
+  {
+   "zh": "兩件事不可能同時發生（互斥）時交集為 $0$，直接相加；反過來，已知 $P(A \\cup B)$ 也可以反求交集。",
+   "en": "If the two events cannot happen together (mutually exclusive) the intersection is 0, so the probabilities simply add; conversely, a known $P(A \\cup B)$ lets you recover the intersection."
+  },
+  {
+   "zh": "問「至少一項」的題目多數用反面最快：$1 - P(\\text{neither})$。",
+   "en": "For ‘at least one’, the complement is usually fastest: $1 - P(\\text{neither})$."
   }
  ]
 }

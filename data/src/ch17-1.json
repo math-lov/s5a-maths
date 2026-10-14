@@ -5,8 +5,8 @@
   "en": "17.1 Basic Counting Principles · Book Exercise"
  },
  "intro": {
-  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。做每一題先問兩件事：這題是「分類」（幾類之中揀一類，用加）還是「分步」（幾個步驟都要完成，用乘）？兩類有沒有重疊要減？有位置受限制（例如首位不可為 0、數字可否重複）就先處理它。",
-  "en": "This section follows the textbook and is grouped into Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. For every question ask two things first: is it \"cases\" (choose one of several groups → add) or \"steps\" (all steps must be done → multiply)? Do the groups overlap, so that something must be subtracted? If a position is restricted (leading digit cannot be 0, repetition allowed or not), deal with that position first."
+  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。做每一題先問兩件事。",
+  "en": "This section follows the textbook: Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. Ask two questions before every problem."
  },
  "cards": [
   {
@@ -3200,6 +3200,20 @@
      ]
     }
    ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "這題是「分類」（幾類之中揀一類，用加）還是「分步」（幾個步驟都要完成，用乘）？",
+   "en": "Is it ‘cases’ (choose one of several groups → add) or ‘steps’ (every step must be done → multiply)?"
+  },
+  {
+   "zh": "兩類有沒有重疊，要唔要減？",
+   "en": "Do the groups overlap, so that something has to be subtracted?"
+  },
+  {
+   "zh": "有位置受限制（例如首位不可為 0、數字可否重複）就先處理它。",
+   "en": "If a position is restricted (leading digit cannot be 0, repetition allowed or not), deal with that position first."
   }
  ]
 }

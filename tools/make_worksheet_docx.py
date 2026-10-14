@@ -215,6 +215,19 @@ def header_block(doc, part, site_part):
     intro = first_sentence(en(part.get("intro")).replace("{{math:0}}", ""))
     if intro:
         para(doc, intro, size=9.5, color=GREY, space_before=6, space_after=10)
+    steps = part.get("introSteps") or []
+    if steps:
+        para(doc, "How to work through this paper", size=10.5, bold=True,
+             space_before=2, space_after=2, keep=True)
+        for i, st in enumerate(steps, 1):
+            text = ascii_only(plain(en(st)))
+            head, _, rest = text.partition("\n")
+            p = para(doc, "", size=9.5, indent=0.4, space_after=1, keep=True)
+            style_run(p.add_run("%d. %s" % (i, head.strip())), 9.5, True, INK)
+            for line in (rest.split("\n") if rest.strip() else []):
+                lp = para(doc, "", size=9.5, indent=0.9, space_after=1, keep=True)
+                style_run(lp.add_run(line.strip()), 9.5, False, GREY)
+        para(doc, "", size=6, space_after=0)
 
 
 def section_heading(doc, text_en, marks):

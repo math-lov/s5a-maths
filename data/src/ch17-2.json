@@ -5,8 +5,8 @@
   "en": "17.2 Permutations · Book Exercise"
  },
  "intro": {
-  "zh": "這一節是課本 17.2「排列」。全部題目按課本原文分成六個部分：課堂例題、判斷題、基礎練習（Level 1）、進階練習（Level 2）、挑戰題（SMART CORNER）及跨課題。每題一頁，先嘗試自己作答，再參閱逐步題解，掌握思路與關鍵技巧。",
-  "en": "This section covers Textbook 17.2, Permutations. The questions follow the textbook and are grouped into six parts: Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. One question per page — try it yourself first, then read the step-by-step explanation to understand the method clearly."
+  "zh": "這一節是課本 17.2「排列」，全部題目按課本原文分成六個部分。",
+  "en": "This section covers Textbook 17.2, Permutations. The questions follow the textbook and are grouped into six parts."
  },
  "cards": [
   {
@@ -3472,6 +3472,20 @@
      }
     }
    ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "六個部分：課堂例題、判斷題、基礎練習（Level 1）、進階練習（Level 2）、挑戰題（SMART CORNER）及跨課題。",
+   "en": "The six parts: Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics."
+  },
+  {
+   "zh": "每題一頁，方便逐題做。",
+   "en": "One question per page."
+  },
+  {
+   "zh": "先嘗試自己作答，再參閱逐步題解，掌握思路與關鍵技巧。",
+   "en": "Try it yourself first, then read the step-by-step explanation to understand the method clearly."
   }
  ]
 }

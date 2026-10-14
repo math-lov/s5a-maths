@@ -5,8 +5,8 @@
   "en": "Chapter 17 Pre-test Revision · Quick Check + Selected Questions"
  },
  "intro": {
-  "zh": "全卷 15 題、35 分。先做卷頭「快測」5 題（5 分）：第 1、2 題一按即知對錯；第 3、4 題要揀方法（插空法／綑綁法）再自己填排列方法數；第 5 題要在表內剔晒所有符合條件的組合，最後按「提交答案」。做完快測之後，之後的題目要自己做：甲部 4 題多項選擇（每題 2 分，共 8 分）同乙部 6 題長題目（共 22 分）。長題目改編自 EPH《Level 5 Assurance Pack》WS22（22.1 排列與組合）工作紙及官方答案，覆蓋全課重點：計數基本原理（分類用加、分步用乘、避免重複計算）、排列（n!、P(n,r)、相鄰、相間、位置限制）、組合（C(n,r)、至少／至多、分類相加、反面）。建議先限時做卷，再逐題對答案並細讀陷阱提示。",
-  "en": "15 questions, 35 marks in all. Start with the 5-question quick check (5 marks): Q1 and Q2 show right or wrong the moment you choose; for Q3 and Q4 choose the method (slot-in or tie-up) and type the number of arrangements yourself; for Q5 tick every combination in the table that satisfies the condition, then press Submit. After the quick check, work on the rest on your own: Section A has 4 multiple-choice questions (2 marks each, 8 marks) and Section B has 6 conventional questions (22 marks). The conventional questions are adapted from the EPH Level 5 Assurance Pack WS22 worksheet (22.1 Permutation and Combination) and its official solutions, covering the whole chapter: the counting principles (add for cases, multiply for steps, avoid double counting), permutations (n!, P(n,r), adjacent, alternating and position restrictions) and combinations (C(n,r), at least/at most, case splitting, complement). Work through the paper against the clock first, then check each question and read the trap notes."
+  "zh": "全卷 15 題、35 分。卷頭 5 題快測有即時對錯；做完之後，甲部同乙部要自己做。",
+  "en": "15 questions, 35 marks in all. The 5-question quick check at the front gives you instant feedback; after that, Sections A and B are for you to work on your own."
  },
  "sections": [
   {
@@ -1538,6 +1538,24 @@
      }
     }
    ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "先做卷頭「快測」5 題（5 分）\n· Q1、Q2：揀個答案即刻知對錯。\n· Q3、Q4：先揀方法（插空法／綑綁法），再喺輸入格填排列方法數，最後按「提交答案」。\n· Q5：喺紅／藍表格剔晒所有符合「至少有 1 粒紅波」嘅組合，再按「提交答案」。",
+   "en": "Start with the 5-question quick check (5 marks)\n· Q1 and Q2: choose an option and you know straight away whether it is right.\n· Q3 and Q4: choose the method (slot-in or tie-up), type the number of arrangements in the box, then press Submit.\n· Q5: tick every red/blue combination in the table that satisfies 'at least 1 red marble', then press Submit."
+  },
+  {
+   "zh": "做完快測就停一停，之後嘅題目要自己做\n甲部 4 題多項選擇（每題 2 分，共 8 分）；乙部 6 題長題目（共 22 分），每題都有 (a)(b) 細問，寫低步驟先對答案。",
+   "en": "When the quick check is done, work on the rest on your own\nSection A: 4 multiple-choice questions (2 marks each, 8 marks). Section B: 6 conventional questions (22 marks), each split into (a), (b) parts - write your working before you check."
+  },
+  {
+   "zh": "乙部改編自 EPH《Level 5 Assurance Pack》WS22 工作紙（22.1 排列與組合），答案對過官方答案檔\n覆蓋：分類用加／分步用乘、避免重複計算、$n!$ 與 $P(n,r)$、相鄰、相間、位置限制、$C(n,r)$、至少／至多、分類相加、反面。",
+   "en": "Section B is adapted from the EPH Level 5 Assurance Pack WS22 worksheet (22.1 Permutation and Combination) and checked against its official solutions\nIt covers: add for cases and multiply for steps, avoiding double counting, $n!$ and $P(n,r)$, adjacent, alternating and position restrictions, $C(n,r)$, at least / at most, case splitting and the complement."
+  },
+  {
+   "zh": "建議先限時做完整份卷，再逐題睇題解\n每題都有逐步題解、常見錯誤（陷阱）同「帶得走的技巧」。",
+   "en": "Try the whole paper against the clock first, then read the solutions question by question\nEvery question has step-by-step worked solutions, the traps that catch people out, and a take-away tip."
   }
  ]
 }

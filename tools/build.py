@@ -291,6 +291,31 @@ DEMO_TYPES = ("tie-up", "slot-in", "grouping", "combination", "path", "complemen
               "menu", "venn", "code", "venncalc", "floor")
 
 
+def check_intro(data: dict, where: str) -> None:
+    """S16 總覽頁引言：一句摘要 + introSteps[] 編號步驟（唔好寫成一大段）"""
+    intro = data.get("intro") or {}
+    for lang in ("zh", "en"):
+        s = intro.get(lang, "")
+        if not s:
+            continue
+        check_text("%s intro.%s" % (where, lang), s)
+        if len(s) > 200 and not data.get("introSteps"):
+            warn("S16 %s intro.%s 太長（%d 字）：總覽頁會變一大段，"
+                 "建議 intro 收成一句摘要，內容搬去 introSteps[]" % (where, lang, len(s)))
+    steps = data.get("introSteps")
+    if steps is None:
+        return
+    if not isinstance(steps, list) or not steps:
+        err("S16 %s：introSteps 必須是非空陣列" % where)
+        return
+    if len(steps) > 8:
+        err("S16 %s：introSteps 最多 8 條（現時 %d）" % (where, len(steps)))
+    for i, st in enumerate(steps, 1):
+        st = st or {}
+        check_text("%s introStep %d.zh" % (where, i), st.get("zh", ""), min_len=8, need_zh=True)
+        check_text("%s introStep %d.en" % (where, i), st.get("en", ""), min_len=20)
+
+
 def check_cards(cards, where: str) -> None:
     """S14 教學卡：顯示在該節的總覽頁（p=0）"""
     if cards is None:
@@ -430,6 +455,7 @@ def main() -> int:
             continue
         data = load(fname)
         check_cards(data.get("cards"), pid)
+        check_intro(data, pid)
         total_q = 0
         for sec in data.get("sections", []):
             for q in sec.get("questions", []):

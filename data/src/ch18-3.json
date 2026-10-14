@@ -5,8 +5,8 @@
   "en": "18.3 Multiplication of Probabilities · Book Exercise"
  },
  "intro": {
-  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。18.2 的加法定律處理「或」，本節處理「而且」：兩件事都要發生時，如果彼此獨立，就把概率相乘，即 $P(A \\cap B) = P(A) \\times P(B)$。若第二件事的機會被第一件事影響（不放回抽取、把球轉移到另一個袋、盒子被換掉），就要改用條件概率 $P(A \\cap B) = P(A) \\times P(B \\mid A)$，而且第二個分母要跟住改（已經抽走了一個）。問「至少一件」的乘法題通常用反面最快：$1 - P(\\text{一件都沒有})$。",
-  "en": "This section follows the textbook and is grouped into Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. Section 18.2 handled \"or\" with the addition law; this section handles \"and\": when both events must happen and they are independent, multiply the probabilities, i.e. $P(A \\cap B) = P(A) \\times P(B)$. If the second event's chance is affected by the first (drawing without replacement, transferring a ball into another bag, a box being swapped), use the conditional form $P(A \\cap B) = P(A) \\times P(B \\mid A)$ instead, and remember the second denominator changes too. For \"at least one\", the complement is usually fastest: $1 - P(\\text{none})$."
+  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。18.2 處理「或」，本節處理「而且」。",
+  "en": "This section follows the textbook: Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. Section 18.2 handled ‘or’; this section handles ‘and’."
  },
  "cards": [
   {
@@ -1249,29 +1249,29 @@
         "part": "(a)",
         "title": {
          "zh": "兩個都食早餐：相乘並計算",
-                 "en": "Both eat: multiply and evaluate"
-                 },
-                 "math": "0.9 \\times 0.4 = 0.36",
-                 "zh": "Leslie 吃早餐的機會是 $0.9$，Kenny 是 $0.4$。題目說兩人的決定獨立，所以「兩個都吃」是 $0.9 \\times 0.4 = 0.36$。",
-                 "en": "Leslie has breakfast with probability 0.9 and Kenny with probability 0.4. The decisions are independent, so \"both\" is 0.9 × 0.4 = 0.36.",
-                 "marking": "(1A)",
-                 "highlight": [
-                  "0.9 \\times 0.4 = 0.36"
-                 ]
+         "en": "Both eat: multiply and evaluate"
+        },
+        "math": "0.9 \\times 0.4 = 0.36",
+        "zh": "Leslie 吃早餐的機會是 $0.9$，Kenny 是 $0.4$。題目說兩人的決定獨立，所以「兩個都吃」是 $0.9 \\times 0.4 = 0.36$。",
+        "en": "Leslie has breakfast with probability 0.9 and Kenny with probability 0.4. The decisions are independent, so \"both\" is 0.9 × 0.4 = 0.36.",
+        "marking": "(1A)",
+        "highlight": [
+         "0.9 \\times 0.4 = 0.36"
+        ]
        },
        {
         "part": "(b)",
         "title": {
          "zh": "兩個都不食：失敗率相乘並計算",
-                 "en": "Neither: multiply the failure rates and evaluate"
-                 },
-                 "math": "\\left(1 - 0.4\\right) \\times \\left(1 - 0.9\\right) = 0.6 \\times 0.1 = 0.06",
-                 "zh": "Leslie 不吃的機會是 $1 - 0.9 = 0.1$，Kenny 不吃的機會是 $1 - 0.4 = 0.6$。兩個都不吃就是兩個失敗同時發生：$0.6 \\times 0.1 = 0.06$。",
-                 "en": "Leslie skips with probability 1 − 0.9 = 0.1 and Kenny with probability 1 − 0.4 = 0.6. \"Neither\" is both failures together: 0.6 × 0.1 = 0.06.",
-                 "marking": "(1A)",
-                 "highlight": [
-                  "\\left(1 - 0.4\\right) \\times \\left(1 - 0.9\\right) = 0.6 \\times 0.1 = 0.06"
-                 ]
+         "en": "Neither: multiply the failure rates and evaluate"
+        },
+        "math": "\\left(1 - 0.4\\right) \\times \\left(1 - 0.9\\right) = 0.6 \\times 0.1 = 0.06",
+        "zh": "Leslie 不吃的機會是 $1 - 0.9 = 0.1$，Kenny 不吃的機會是 $1 - 0.4 = 0.6$。兩個都不吃就是兩個失敗同時發生：$0.6 \\times 0.1 = 0.06$。",
+        "en": "Leslie skips with probability 1 − 0.9 = 0.1 and Kenny with probability 1 − 0.4 = 0.6. \"Neither\" is both failures together: 0.6 × 0.1 = 0.06.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\left(1 - 0.4\\right) \\times \\left(1 - 0.9\\right) = 0.6 \\times 0.1 = 0.06"
+        ]
        },
        {
         "part": "(c)",
@@ -1686,15 +1686,15 @@
         "part": "(a)",
         "title": {
          "zh": "兩種情況互斥，相加並計算",
-                 "en": "Two mutually exclusive cases: add and evaluate"
-                 },
-                 "math": "\\frac{1}{6} \\times \\frac{1}{4} + \\frac{3}{6} \\times \\frac{1}{4} = \\frac{1}{24} + \\frac{3}{24} = \\frac{1}{6}",
-                 "zh": "配成 I：'MIRROR' 中 I 佔 $\\frac{1}{6}$，'FIRE' 中 I 佔 $\\frac{1}{4}$。配成 R：'MIRROR' 中 R 有 3 個佔 $\\frac{3}{6}$，'FIRE' 中 R 佔 $\\frac{1}{4}$。兩種配法互斥，所以相加：$\\frac{1}{6} \\times \\frac{1}{4} + \\frac{3}{6} \\times \\frac{1}{4} = \\frac{1}{24} + \\frac{3}{24} = \\frac{1}{6}$。",
-                 "en": "Matching I: 1/6 of MIRROR and 1/4 of FIRE. Matching R: 3/6 of MIRROR and 1/4 of FIRE. The two matchings are mutually exclusive, so add: 1/6 × 1/4 + 3/6 × 1/4 = 1/24 + 3/24 = 1/6.",
-                 "marking": "(1A)",
-                 "highlight": [
-                  "\\frac{1}{6} \\times \\frac{1}{4} + \\frac{3}{6} \\times \\frac{1}{4} = \\frac{1}{24} + \\frac{3}{24} = \\frac{1}{6}"
-                 ]
+         "en": "Two mutually exclusive cases: add and evaluate"
+        },
+        "math": "\\frac{1}{6} \\times \\frac{1}{4} + \\frac{3}{6} \\times \\frac{1}{4} = \\frac{1}{24} + \\frac{3}{24} = \\frac{1}{6}",
+        "zh": "配成 I：'MIRROR' 中 I 佔 $\\frac{1}{6}$，'FIRE' 中 I 佔 $\\frac{1}{4}$。配成 R：'MIRROR' 中 R 有 3 個佔 $\\frac{3}{6}$，'FIRE' 中 R 佔 $\\frac{1}{4}$。兩種配法互斥，所以相加：$\\frac{1}{6} \\times \\frac{1}{4} + \\frac{3}{6} \\times \\frac{1}{4} = \\frac{1}{24} + \\frac{3}{24} = \\frac{1}{6}$。",
+        "en": "Matching I: 1/6 of MIRROR and 1/4 of FIRE. Matching R: 3/6 of MIRROR and 1/4 of FIRE. The two matchings are mutually exclusive, so add: 1/6 × 1/4 + 3/6 × 1/4 = 1/24 + 3/24 = 1/6.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{6} \\times \\frac{1}{4} + \\frac{3}{6} \\times \\frac{1}{4} = \\frac{1}{24} + \\frac{3}{24} = \\frac{1}{6}"
+        ]
        },
        {
         "part": "(b)",
@@ -2461,8 +2461,14 @@
   },
   {
    "id": "L2",
-   "short": { "zh": "進階練習", "en": "Level 2" },
-   "title": { "zh": "進階練習 · Level 2", "en": "Level 2" },
+   "short": {
+    "zh": "進階練習",
+    "en": "Level 2"
+   },
+   "title": {
+    "zh": "進階練習 · Level 2",
+    "en": "Level 2"
+   },
    "marks": 55,
    "questions": [
     {
@@ -2879,7 +2885,7 @@
       }
      }
     },
-   {
+    {
      "id": "ch18-3-l2-5",
      "code": "19",
      "type": "long",
@@ -3415,7 +3421,7 @@
       }
      }
     },
-   {
+    {
      "id": "ch18-3-l2-9",
      "code": "23",
      "type": "long",
@@ -3951,7 +3957,7 @@
       }
      }
     },
-   {
+    {
      "id": "ch18-3-l2-13",
      "code": "27",
      "type": "long",
@@ -4203,8 +4209,14 @@
   },
   {
    "id": "SM",
-   "short": { "zh": "挑戰題", "en": "SMART" },
-   "title": { "zh": "挑戰題 · SMART CORNER", "en": "SMART CORNER" },
+   "short": {
+    "zh": "挑戰題",
+    "en": "SMART"
+   },
+   "title": {
+    "zh": "挑戰題 · SMART CORNER",
+    "en": "SMART CORNER"
+   },
    "marks": 14,
    "questions": [
     {
@@ -4404,12 +4416,12 @@
         "part": "(b)",
         "title": {
          "zh": "母音可出現在兩個位置：相乘並計算",
-                 "en": "The vowel can be in either position: multiply and evaluate"
-                         },
-                         "math": "2 \\times \\frac{2}{11} \\times \\frac{9}{10} = \\frac{36}{110} = \\frac{18}{55}",
-                         "zh": "要總共 $2$ 個母音，餘下兩塊之中必須恰有一個母音。母音可以先出現也可以後出現，共 $2$ 種次序，所以\n\n$P = 2 \\times \\frac{2}{11} \\times \\frac{9}{10} = \\frac{36}{110} = \\frac{18}{55}$。\n\n用組合核對：$\\frac{\\binom{2}{1}\\binom{9}{1}}{\\binom{11}{2}} = \\frac{18}{55}$，一致。",
-                        "en": "To have two vowels in total, exactly one of the remaining two must be a vowel. The vowel may come first or second, so\n\nP = 2 × 2/11 × 9/10 = 36/110 = 18/55.\n\nCheck by combinations: C(2,1)C(9,1)/C(11,2) = 18/55, which agrees.",
-                        "marking": "(1A)",
+         "en": "The vowel can be in either position: multiply and evaluate"
+        },
+        "math": "2 \\times \\frac{2}{11} \\times \\frac{9}{10} = \\frac{36}{110} = \\frac{18}{55}",
+        "zh": "要總共 $2$ 個母音，餘下兩塊之中必須恰有一個母音。母音可以先出現也可以後出現，共 $2$ 種次序，所以\n\n$P = 2 \\times \\frac{2}{11} \\times \\frac{9}{10} = \\frac{36}{110} = \\frac{18}{55}$。\n\n用組合核對：$\\frac{\\binom{2}{1}\\binom{9}{1}}{\\binom{11}{2}} = \\frac{18}{55}$，一致。",
+        "en": "To have two vowels in total, exactly one of the remaining two must be a vowel. The vowel may come first or second, so\n\nP = 2 × 2/11 × 9/10 = 36/110 = 18/55.\n\nCheck by combinations: C(2,1)C(9,1)/C(11,2) = 18/55, which agrees.",
+        "marking": "(1A)",
         "highlight": [
          "\\frac{18}{55}"
         ]
@@ -4517,7 +4529,7 @@
         "part": "(b)",
         "title": {
          "zh": "用同樣方法求 Kathy，並與 (a) 比較",
-                 "en": "Compute Kathy's chance the same way and compare with (a)"
+         "en": "Compute Kathy's chance the same way and compare with (a)"
         },
         "math": "P(\\text{Kathy}) = \\frac{15}{56} + \\frac{6}{56} + \\frac{1}{56} = \\frac{11}{28}",
         "zh": "Kathy 在第 $2$、$4$、$6$ 次抽取，所以\n\n$P(\\text{Kathy}) = \\frac{15}{56} + \\frac{6}{56} + \\frac{1}{56} = \\frac{22}{56} = \\frac{11}{28}$。\n\n檢查：$\\frac{17}{28} + \\frac{11}{28} = 1$，兩者相加剛好是 $1$。",
@@ -4572,8 +4584,14 @@
   },
   {
    "id": "CT",
-   "short": { "zh": "跨課題", "en": "Cross" },
-   "title": { "zh": "跨課題 · Cross Topics", "en": "Cross Topics" },
+   "short": {
+    "zh": "跨課題",
+    "en": "Cross"
+   },
+   "title": {
+    "zh": "跨課題 · Cross Topics",
+    "en": "Cross Topics"
+   },
    "marks": 11,
    "questions": [
     {
@@ -4924,6 +4942,24 @@
      }
     }
    ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "兩件事都要發生、而且彼此獨立：把概率相乘，$P(A \\cap B) = P(A) \\times P(B)$。",
+   "en": "When both must happen and they are independent, multiply: $P(A \\cap B) = P(A) \\times P(B)$."
+  },
+  {
+   "zh": "第二件事的機會被第一件事影響（不放回抽取、把球轉移到另一個袋、盒子被換掉），就要改用條件概率 $P(A \\cap B) = P(A) \\times P(B \\mid A)$。",
+   "en": "If the second event's chance is affected by the first (drawing without replacement, transferring a ball into another bag, a box being swapped), use the conditional form $P(A \\cap B) = P(A) \\times P(B \\mid A)$."
+  },
+  {
+   "zh": "用條件概率時，第二個分母要跟住改（已經抽走了一個）。",
+   "en": "With the conditional form, remember the second denominator changes too (one has already been drawn)."
+  },
+  {
+   "zh": "問「至少一件」的乘法題通常用反面最快：$1 - P(\\text{一件都沒有})$。",
+   "en": "For ‘at least one’, the complement is usually fastest: $1 - P(\\text{none})$."
   }
  ]
 }

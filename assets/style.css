@@ -171,6 +171,19 @@ body[data-lang="both"] .hero h1 .l-en {
 .how-t { flex: 1; min-width: 0; font-size: 15.5px; line-height: 1.65; max-width: 64ch; }
 .how-t .l-zh, .how-t .l-en { display: block; }
 .how-t .l-zh + .l-en { margin-top: 4px; }
+/* 總覽頁的「點做這份卷」：同首屏用法步驟同一套視覺，但排得緊一啲、字細一級 */
+.how-paper {
+  margin-top: var(--sp-4); gap: var(--sp-2); padding: 14px 16px;
+  background: #faf8f5; border: 1px solid var(--line-soft); border-radius: var(--radius-sm);
+}
+.how-label {
+  font-size: 12.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--primary-ink);
+}
+.how-label .l-zh, .how-label .l-en { letter-spacing: .12em; }
+.how-paper .how-row { gap: var(--sp-2); }
+.how-paper .how-n { width: 22px; height: 22px; font-size: 12.5px; margin-top: 3px; }
+.how-paper .how-t { font-size: 14.5px; line-height: 1.55; max-width: 78ch; }
 
 /* ── 語言切換 ─────────────────────────────────────────────────────────── */
 .langbar { display: inline-flex; border: 1px solid var(--line); border-radius: 999px; background: var(--card); overflow: hidden; }

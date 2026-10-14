@@ -5,8 +5,8 @@
   "en": "18.1 Sets · Book Exercise"
  },
  "intro": {
-  "zh": "本節按課本分為判斷題、基礎練習、進階練習及挑戰題。做集合題先認清三件事：樣本空間 $S$ 收集全部可能結果、事件 $A$、$B$ 都是 $S$ 的子集、而兩個事件會把 $S$ 分成四區（只在 $A$、只在 $B$、兩者都有、兩者都不是）。求概率時，只要每個結果出現的機會相同，就用 $P(A) = \\frac{n(A)}{n(S)}$；問「至少」的題目多數用反面（總數減去「完全沒有」）最快。",
-  "en": "This section follows the textbook and is grouped into Section Check, Level 1, Level 2 and SMART CORNER. For every set question, identify three things first: the sample space $S$ collects all possible outcomes, the events $A$ and $B$ are subsets of $S$, and two events split $S$ into four regions (in $A$ only, in $B$ only, in both, in neither). When every outcome is equally likely, use $P(A) = \\frac{n(A)}{n(S)}$; for \"at least\" questions, counting by complement (total minus \"none\") is usually the fastest."
+  "zh": "本節按課本分為判斷題、基礎練習、進階練習及挑戰題。做集合題先認清三件事。",
+  "en": "This section follows the textbook: Section Check, Level 1, Level 2 and SMART CORROW. Identify three things first in every set question."
  },
  "cards": [
   {
@@ -3002,6 +3002,28 @@
      }
     }
    ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "樣本空間 $S$ 收集全部可能結果。",
+   "en": "The sample space $S$ collects all possible outcomes."
+  },
+  {
+   "zh": "事件 $A$ 同 $B$ 都係 $S$ 嘅子集。",
+   "en": "The events $A$ and $B$ are subsets of $S$."
+  },
+  {
+   "zh": "兩個事件會把 $S$ 分成四區：只在 $A$、只在 $B$、兩者都有、兩者都不是。",
+   "en": "Two events split $S$ into four regions: in $A$ only, in $B$ only, in both, in neither."
+  },
+  {
+   "zh": "每個結果出現的機會相同，就用 $P(A) = \\frac{n(A)}{n(S)}$。",
+   "en": "When every outcome is equally likely, use $P(A) = \\frac{n(A)}{n(S)}$."
+  },
+  {
+   "zh": "問「至少」的題目多數用反面（總數減去「完全沒有」）最快。",
+   "en": "For ‘at least’ questions, counting by complement (total minus ‘none’) is usually the fastest."
   }
  ]
 }

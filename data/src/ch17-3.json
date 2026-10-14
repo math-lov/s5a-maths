@@ -5,8 +5,8 @@
   "en": "17.3 Combinations · Book Exercise"
  },
  "intro": {
-  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。先判斷題目只要求選出一組，還是要安排位置或角色：前者用組合，後者須計算次序。",
-  "en": "This section follows the textbook and is grouped into Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics. First decide whether the task only selects a group or assigns positions or roles: use combinations for the former, and count order for the latter."
+  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習、挑戰題及跨課題。",
+  "en": "This section follows the textbook: Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics."
  },
  "cards": [
   {
@@ -3324,6 +3324,16 @@
      }
     }
    ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "先判斷題目只要求選出一組，還是要安排位置或角色？",
+   "en": "First decide whether the task only selects a group, or assigns positions or roles."
+  },
+  {
+   "zh": "只選出一組用組合 $C$；安排位置或角色要計算次序，用排列 $P$。",
+   "en": "Selecting a group uses combinations $C$; assigning positions or roles counts order, so use permutations $P$."
   }
  ]
 }

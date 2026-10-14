@@ -346,3 +346,22 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 - 回饋副標：方法啱數字錯＝`quickMethodOnly`、數字啱方法錯＝`quickNumberOnly`、兩樣都錯＝`quickMissBoth`、純選擇題＝`fbRetrySub`（唔會講「數字」）。
 - build.py 對 MC 選項數目的例外：`quick` 題可以只有 A／B 兩個（例如插空法／綑綁法），其餘 MC 一律要 A–D。
 - 樣式：`assets/style.css` 的 `.quick-in / .quick-lab / .quick-field`、`.opts.multi .opt .letter`（圓→方）、`.quick-grid`、`.opt.cell`。
+
+### 9.11 總覽頁引言可讀性：摘要 ＋ introSteps（2026-10-14）
+
+**問題**：總覽頁（`quiz.html?c=<part>&p=0`）原本只得一整段 `intro`，1719 章嘅引言長到 500–700 字，變成一大段「牆」，學生根本讀唔晒，而且工作紙只印得到第一句。
+
+**做法**：每個課題嘅 `data/src/<part>.json` 都改成
+- `intro`：**一句摘要**（中英各 ≤ 200 字，實務 30–60 字）。
+- `introSteps: [{ zh, en }]`：原本嘅內容拆成 **2–5 個編號步驟**（中英各一行，\n 會變成第二行）。字串裏可以用 `·` 做子項。
+
+**前端**：`renderOverview()` 見到 `introSteps` 就喺引言下面出 `.how-paper` 區塊——沿用首頁「用法步驟」嘅視覺（編號圓點 ＋ 中英兩行），標題用 `UI.paperHowTo`（點做這份卷／How to work through this paper）。樣式係 `assets/style.css` 嘅 `.how-paper / .how-label`（字細一級、淺米色底、圓角框）。
+
+**build.py（規則 S16 `check_intro`）**
+- `intro` 或 `introSteps` 中英都唔准空、唔准用 Markdown `**`。
+- `intro` 過 200 字而冇 `introSteps` → **警告**（CI 要 0 警，所以寫長引言會被擋）。
+- `introSteps` 必須係非空陣列、最多 8 條，每條 zh ≥ 8 中文字、en ≥ 20 字。
+
+**工作紙**：`make_worksheet_docx.py` 的 `header_block()` 會印 `How to work through this paper` ＋ 編號步驟（只有英文，`\n` 後嘅子項縮排成灰色小行），所以紙本同網站講法一致。
+
+**現況**：9 個課題全部有 `introSteps`（ch17-test 4 步、ch18-1 5 步、其餘 2–4 步），smoke 有 6 條斷言守住（渲染、編號、中英兩行、全部課題都有、build 規則、工作紙都有列印）。

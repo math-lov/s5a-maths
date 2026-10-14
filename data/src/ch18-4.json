@@ -5,8 +5,8 @@
   "en": "18.4 Probability by Counting · Book Exercise"
  },
  "intro": {
-  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習及挑戰題（18.4 沒有跨課題部分）。這是第 17 章排列組合的應用：分母是「全部可能的結果數」，分子是「合符條件的情況數」。同時抽或一次抽幾個，次序不重要，用組合 $C$；逐個抽、有先後次序，就要用排列 $P$ 或逐步相乘。分子與分母必須用同一種工具。很多題目其實不必逐個數——隨機排列的對稱性（$n$ 個人之中某一位在某處的機會是 $\\frac{1}{n}$）往往一步就得到答案。",
-  "en": "This section follows the textbook and is grouped into Class Exercise, Section Check, Level 1, Level 2 and SMART CORNER (18.4 has no Cross Topics). It applies the permutations and combinations of Chapter 17: the denominator counts every possible outcome and the numerator counts the favourable ones. Draws made at the same time ignore order, so use combinations $C$; draws made one by one, where order matters, need permutations $P$ or a product step by step. Numerator and denominator must use the same tool. Many questions need no listing at all — the symmetry of a random arrangement (one particular person is in a given place with probability $\\frac{1}{n}$) settles it in one step."
+  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習及挑戰題（18.4 沒有跨課題部分）。這是第 17 章排列組合的應用。",
+  "en": "This section follows the textbook: Class Exercise, Section Check, Level 1, Level 2 and SMART CORNER (18.4 has no Cross Topics). It applies the permutations and combinations of Chapter 17."
  },
  "cards": [
   {
@@ -4739,6 +4739,24 @@
      }
     }
    ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "分母是「全部可能的結果數」，分子是「合符條件的情況數」，兩者必須用同一種工具。",
+   "en": "The denominator counts every possible outcome and the numerator counts the favourable ones; both must use the same tool."
+  },
+  {
+   "zh": "同時抽或一次抽幾個，次序不重要，用組合 $C$。",
+   "en": "Draws made at the same time ignore order, so use combinations $C$."
+  },
+  {
+   "zh": "逐個抽、有先後次序，就要用排列 $P$ 或逐步相乘。",
+   "en": "Draws made one by one, where order matters, need permutations $P$ or a product step by step."
+  },
+  {
+   "zh": "很多題目其實不必逐個數：隨機排列的對稱性（$n$ 個人之中某一位在某處的機會是 $\\frac{1}{n}$）往往一步就得到答案。",
+   "en": "Many questions need no listing at all — the symmetry of a random arrangement (one particular person is in a given place with probability $\\frac{1}{n}$) settles it in one step."
   }
  ]
 }

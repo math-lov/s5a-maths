@@ -1516,6 +1516,35 @@ ok(QC_QS.every((q) => (q.solution.steps || []).length >= 2 && !!q.solution.tip &
 ok(!/ch17-qc/.test(read("data/index.js")),
   "快測已經合併入 ch17-test（唔再有獨立課題 ch17-qc）");
 
+/* ── 總覽頁可讀性：引言一句摘要 ＋ 編號步驟（唔再係一大段）────────────── */
+console.log("\n== 總覽頁引言（摘要 ＋ 編號步驟）==");
+ok(T_DATA.introSteps && T_DATA.introSteps.length === 4 &&
+  T_DATA.intro.zh.length < 80 && T_DATA.intro.en.length < 200 &&
+  T_DATA.introSteps.every((s) => s.zh && s.en),
+  "17 測前溫習：intro 收成一句摘要，內容搬去做 4 條 introSteps");
+const tHow = tOv.$(".how-paper");
+const howAll = (sel) => Array.prototype.slice.call(tHow.querySelectorAll(sel));
+ok(!!tHow && howAll(".how-row").length === 4 &&
+  howAll(".how-n").map((n) => n.textContent).join("") === "1234" &&
+  /點做這份卷/.test(tHow.querySelector(".how-label").textContent),
+  "總覽頁渲染「點做這份卷」編號清單（4 步，1–4 編號）");
+ok(howAll(".how-t .l-zh").length === 4 && howAll(".how-t .l-en").length === 4 &&
+  howAll(".katex-error").length === 0 &&
+  /即刻知對錯/.test(tHow.textContent),
+  "每一步都有中英兩行，數式冇 KaTeX 錯誤");
+ok(/Quick Check/.test(tOv.$("#quiz-name").textContent),
+  "課題名係短句「快測 ＋ 精選題」，唔再霸成一大段");
+/* 每個課題都用同一個機制（build.py S16 會警告長引言，所以資料必須齊） */
+const allParts = INDEX.parts.filter((p) => p.dataFile);
+ok(allParts.every((p) => {
+  const f = read(p.dataFile);
+  const d = JSON.parse(f.slice(f.indexOf("{"), f.lastIndexOf("}") + 1));
+  return (d.introSteps || []).length >= 2 &&
+    (d.intro.zh || "").length < 200 && (d.intro.en || "").length < 200;
+}), "全部課題（" + allParts.length + " 個）都有 introSteps，intro 都短過 200 字");
+ok(/How to work through this paper/.test(read("tools/make_worksheet_docx.py")),
+  "Word 工作紙都會列印「How to work through this paper」編號步驟");
+
 const qcAll = [];
 for (let i = 1; i <= 5; i++) qcAll.push(boot("quiz.html", "?c=ch17-test&p=" + i, null, "show"));
 ok(qcAll.every((t) => t.$$(".katex-error").length === 0 &&

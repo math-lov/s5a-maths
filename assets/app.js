@@ -98,6 +98,7 @@
     check: { zh: "檢查答案", en: "Check answer" },
     /* 快測（ch17-qc）：即時回饋／提交後回饋、輸入框與多選格 */
     quickSubmit: { zh: "提交答案", en: "Submit answer" },
+    paperHowTo: { zh: "點做這份卷", en: "How to work through this paper" },
     quickMultiHint: { zh: "可多選：把所有符合條件的組合都剔上。", en: "Multiple answers: tick every combination that satisfies the condition." },
     quickNeedPick: { zh: "先揀答案（數字可以自己填），再按提交。", en: "Choose an answer (you may type a number), then submit." },
     quickMethodOnly: { zh: "方法揀啱，數字再諗多次。", en: "Right method — have another go at the number." },
@@ -883,6 +884,22 @@
     head.appendChild(oc);
     card.appendChild(head);
     if (part.intro) card.appendChild(pair(part.intro, "div", "bi"));
+    /* 引言太長會變成一大段：資料可以用 introSteps[] 拆成幾個編號步驟 */
+    if ((part.introSteps || []).length) {
+      var how = el("div", "how how-paper");
+      var hlab = el("div", "how-label");
+      hlab.appendChild(pairSpan(UI.paperHowTo));
+      how.appendChild(hlab);
+      part.introSteps.forEach(function (st, i) {
+        var row = el("div", "how-row");
+        row.appendChild(el("div", "how-n", String(i + 1)));
+        var tx = el("div", "how-t");
+        tx.appendChild(pairSpan(st));
+        row.appendChild(tx);
+        how.appendChild(row);
+      });
+      card.appendChild(how);
+    }
     var meta = part.meta || {};
     var ul = el("div", "small muted");
     ul.style.marginTop = "10px";
