@@ -1495,6 +1495,48 @@ ok(fs.existsSync("docs/worksheets/ch17-test-worksheet.docx") &&
   !fs.existsSync("docs/worksheets/ch17-qc-worksheet.docx"),
   "Word 工作紙已生成（docs/worksheets/ch17-test-worksheet.docx，15 題），由網站資料檔經 tools/make_worksheet_docx.py 產生");
 
+/* ── 6b-1b. 拆句層（question.parse）：一句一句讀英文原題 ────────────────── */
+console.log("\n== 拆句層（question.parse）==");
+const tB1 = boot("quiz.html", "?c=ch17-test&p=10", null, "show");
+const pBox = tB1.$(".parse-box");
+ok(!!pBox && pBox.tagName === "DETAILS" && pBox.open === false,
+  "B1 有拆句層，用 <details> 收起（預設合上，先自己讀題）");
+ok(!!pBox && /拆句/.test(pBox.querySelector("summary").textContent) &&
+  /Sentence by sentence/.test(pBox.querySelector("summary").textContent),
+  "拆句層標題中英齊全");
+const pHeads = tB1.$$(".parse-head");
+ok(pHeads.length === 3 && /題幹/.test(pHeads[0].textContent) &&
+  /\(a\)/.test(pHeads[1].textContent) && /\(b\)/.test(pHeads[2].textContent),
+  "拆句層分 3 組：題幹 2 句 ＋ (a) ＋ (b)（順序跟資料）");
+const pRows = tB1.$$(".parse-row");
+ok(pRows.length === 4 && pRows.every((r) => r.querySelector(".parse-src") &&
+  r.querySelector(".parse-zh") && r.querySelector(".parse-move")),
+  "4 句拆句每行都有：英文原句、中文意思、這句要做的數學動作");
+ok(tB1.$$(".parse-n").map((n) => n.textContent).join("") === "1211",
+  "句號每組由 1 重新數起（題幹 1,2、(a) 1、(b) 1）");
+ok(tB1.$$(".parse-step").length === 2 &&
+  /題解第 1 步/.test(tB1.$$(".parse-step")[0].textContent) &&
+  /題解第 2 步/.test(tB1.$$(".parse-step")[1].textContent),
+  "(a) 指向題解第 1 步、(b) 指向第 2 步（重複計算那步）");
+ok(tB1.$$(".parse-move .parse-move-v .l-en").length === 4 &&
+  tB1.$$(".parse-move .parse-move-v .l-zh").length === 4,
+  "「要做」中英兩版齊全（.parse-move-v 入面，唔會同「要做」標籤撈亂）");
+ok(tB1.$$(".katex-error").length === 0 && !!tB1.$(".sol-card .steps .step"),
+  "拆句層的 $ 數式渲染成功（KaTeX 零錯誤），題解照樣在下面");
+ok(!!tB1.$(".parse-card") && pBox.closest(".card") === tB1.$(".parse-card") &&
+  tB1.$(".parse-card") !== tB1.$(".q-card"),
+  "拆句層是獨立卡片，不會混入題目卡");
+ok(boot("quiz.html", "?c=ch17-test&p=11", null, "show").$(".parse-box") === null,
+  "冇 parse 資料的題目不會出現空的拆句層");
+ok(allT.every((t) => {
+  const b = t.$(".parse-box");
+  return !b || (b.open === false && t.$$(".parse-row").length > 0);
+}),
+  "全卷有拆句層的題目都係預設收起＋至少拆出一句（唔會出現空盒子）");
+ok(/\.parse-box\s*>?\s*summary/.test(cssText) && /\.parse-row\b/.test(cssText) &&
+  /\.parse-step\b/.test(cssText),
+  "style.css 有拆句層樣式（summary／每行／步驟標籤）");
+
 /* ── 6b-2. 卷頭快測（ch17-test 的 Q 節）：即時回饋／輸入／多選 ────────── */
 console.log("\n== 第 17 章 · 17 測前溫習 · 卷頭快測（即時回饋／輸入／多選）==");
 const QC_QS = T_QS.filter((q) => q.quick);
@@ -1614,6 +1656,37 @@ ok(qAll.every((t) => t.$$(".sol-card .hl").length > 0),
 ok(qAll.filter((t) => t.$$(".sol-card .traps").length > 0).length === 11 &&
   !/Chapter 10|第 10 章/.test(read("data/ch17-quiz.js")),
   "第 17 章測驗檢討只包含第 17 章內容（冇混入第 10 章）");
+
+/* ── 6b-5. 全班集體誤區（2026-10 講評）：把本班真實錯法寫入「常見錯誤」── */
+console.log("\n== 第 17 章測驗檢討 · 全班集體誤區（講評跟進）==");
+const qz = (code) => Q_QS.filter((q) => q.code === code)[0] || {};
+const qzTraps = (code) => (qz(code).solution || {}).traps || [];
+const qzText = (code) => JSON.stringify(qzTraps(code));
+ok(qzTraps("B1").length === 5 && /4! = 24/.test(qzText("B1")) && /256/.test(qzText("B1")),
+  "Q6(a) 可重複選擇：補上「當作排次序 4! = 24／C(4,2) = 6」與「當成四步 4×4×4×4 = 256」");
+ok(/畫對/.test(qzText("A2")),
+  "Q2 視覺化→算式斷層：點明「畫對了兩排線，落計數機卻按 8!」");
+ok(qzTraps("B3").length === 8 && /欽點/.test(qzText("B3")) && /綑綁/.test(qzText("B3")) &&
+  /respectively/.test(qzText("B3")),
+  "Q8 特定對象 vs 任選、固定位置：補上 2!×6!、2!×7!、respectively、多乘 8!/C(8,3)");
+ok(qzTraps("B4").length === 5 && /385/.test(qzText("B4")) && /210/.test(qzText("B4")) &&
+  /302400/.test(qzText("B4")),
+  "Q9 連續抽取不放回：(a) 補上「每次都由 10 人重新抽 385」與「只看見 4 和 10 → C(10,4) = 210」，(b) 補上「只答 4! = 24／4 × 4 = 16」");
+ok(qzTraps("B5").length === 7 && /邊界/.test(qzText("B5")) && /208/.test(qzText("B5")) &&
+  /用加號/.test(qzText("B5")),
+  "Q10 組別邊界／加乘：補上「合併 A、B 兩組」、「13 × 16 = 208」與 (a) 加號 56");
+ok(/525/.test(qzText("Bonus")),
+  "加分題 Q11：點出「第 9 題那種都除 4! 會錯得 525」，與本題必須除 4! 對比");
+ok(!/學號|座號|班別/.test(read("data/src/ch17-quiz.json")) && !/學號/.test(Q_JS),
+  "誤區只寫做法，冇寫學號等個人資料（符合內容規則：不標籤學生）");
+ok([["A2", 2, 3], ["B1", 6, 5], ["B3", 8, 8], ["B4", 9, 5], ["B5", 10, 7], ["bonus", 11, 3]]
+  .every(([c, p, n]) => {
+    const t = boot("quiz.html", "?c=ch17-quiz&p=" + p, null, "show");
+    return !!t.$('.q-card[data-qid="ch17-quiz-' + c + '"]') &&
+      t.$$(".sol-card .trap").length === n && t.$$(".sol-card .trap .l-en").length === n * 2 &&
+      t.$$(".katex-error").length === 0;
+  }),
+  "六題的補充誤區都在頁面渲染（中英齊全、KaTeX 零錯誤）");
 
 /* ── 總覽頁可讀性：引言一句摘要 ＋ 編號步驟（唔再係一大段）────────────── */
 console.log("\n== 總覽頁引言（摘要 ＋ 編號步驟）==");

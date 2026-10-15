@@ -899,10 +899,50 @@
        "en": "a '7' or a heart.",
        "zh": "一張『7』或一張紅桃。",
        "marks": 2
-      }
-     ],
-     "answers": [
-      {
+       }
+       ],
+       "parse": [
+       {
+       "from": "",
+       "en": "A card is chosen from a deck of 52 playing cards.",
+       "zh": "從一副 52 張的扑克牌中抽一張。",
+       "move": {
+        "zh": "認清「抽一張」＝數法數：唔使排次序，只要數有幾多個可能的結果。",
+        "en": "Read “chosen” as counting ways — order does not matter, just count the possible outcomes."
+       }
+       },
+       {
+       "from": "",
+       "en": "Find the number of ways of choosing",
+       "zh": "求「揀法」的數目（答案係一個整數）。",
+       "move": {
+        "zh": "把題目要求的牌分類，逐類數有幾多張，再決定幾時加、幾時減。",
+        "en": "Split the required cards into classes, count each class, then decide when to add and when to subtract."
+       }
+       },
+       {
+       "from": "(a)",
+       "en": "a '4', a '6' or a '9',",
+       "zh": "一張『4』、一張『6』或一張『9』。",
+       "move": {
+        "zh": "「或」＝分類相加；先檢查三類有冇重疊（冇一張牌同時係 4 又係 6），所以直接加。",
+        "en": "“Or” means adding the classes — first check they do not overlap (no card is both a 4 and a 6), so simply add."
+       },
+       "step": 1
+       },
+       {
+       "from": "(b)",
+       "en": "a '7' or a heart.",
+       "zh": "一張『7』或一張紅桃。",
+       "move": {
+        "zh": "『7』同『紅桃』有交集（7♥）：相加之後要減返交集一次。",
+        "en": "The 7s and the hearts overlap (the 7♥): add, then subtract the overlap once."
+       },
+       "step": 2
+       }
+       ],
+       "answers": [
+       {
        "math": "4 + 4 + 4 = 12",
        "note": {
         "zh": "(a) 12 種",

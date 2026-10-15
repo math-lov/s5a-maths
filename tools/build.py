@@ -19,6 +19,9 @@
   S13 solution.alt（另一個做法／參考）：每項要有 name，中英解說齊全（zh ≥ 8 字）
   S14 教學卡（part 的 cards[]）：中英標題與內文，{{math:N}} 要對得上 math[]，
       數式不可有 $、不可有中文（規則 1）
+  S17 拆句層（question 的 parse[]）：每列要有英文原句、中文意思、這句要做的
+      數學動作（中英）；同一段（題幹或某個 part）的 en 串起來要一字不差等於原文，
+      所以改了題目一定要同步改拆句；step 要指向真存在的題解步驟
 """
 
 from __future__ import annotations
@@ -280,6 +283,86 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
             err("S13 %s：alt 缺少 name" % a_tag)
         check_text(a_tag + ".zh", a.get("zh", ""), min_len=8, need_zh=True)
         check_text(a_tag + ".en", a.get("en", ""))
+
+    check_parse(q, tag)
+
+
+# ── 拆句層（逐句讀題）──────────────────────────────────────────────────────
+# 串接拆句時：下一行由標點開頭（例如 ","）就唔補空格，其餘補一個，
+# 令「行尾有冇打空格」唔會影響驗證結果。
+_NO_SPACE_BEFORE = ",.;:!?)]}%"
+
+
+def _flat_join(rows) -> str:
+    out = ""
+    for r in rows:
+        s = r.get("en", "")
+        if (out and s and not out[-1:].isspace() and not s[:1].isspace()
+                and s[:1] not in _NO_SPACE_BEFORE):
+            out += " "
+        out += s
+    return " ".join(out.split())
+
+
+def check_parse(q: dict, tag: str) -> None:
+    """S17 question.parse[]：英文原句 → 中文意思 → 這句要做的數學動作 → 第幾步。
+
+    最重要的守門是「串接」：同一段（題幹，或某一個 part）的所有 en 順序串起來，
+    要逐字等於該段原文（行與行之間的空格唔計，見 _flat_join）。改了題目而忘了
+    改拆句就會立刻在這裡爆出來，而且每一段都必須有覆蓋（唔可以只拆一半）。
+    """
+    rows = q.get("parse")
+    if rows is None:
+        return
+    if not isinstance(rows, list) or not rows:
+        err("S17 %s：parse 要是非空陣列（唔要拆句就成個欄位刪掉）" % tag)
+        return
+
+    parts = q.get("parts") or []
+    sources = {"": (q.get("stem") or {}).get("en", "")}
+    for p in parts:
+        sources[p.get("label") or ""] = p.get("en", "")
+    groups = dict((k, []) for k in sources)
+
+    n_steps = len((q.get("solution") or {}).get("steps") or [])
+    for i, row in enumerate(rows, 1):
+        r_tag = "%s parse %d" % (tag, i)
+        if not isinstance(row, dict):
+            err("S17 %s：每一列都要是物件" % r_tag)
+            continue
+        src = row.get("from", "")
+        if src not in groups:
+            err("S17 %s：from 只可以是題幹（留空）或其中一個 part 標籤"
+                "（現時 %r；題目有 %r）" % (r_tag, src, [k for k in sources if k]))
+            continue
+        groups[src].append(row)
+        check_text(r_tag + ".en", row.get("en", ""))
+        if row.get("en", "").count("$") % 2:
+            err("S17 %s：en 的 `$` 不成對（唔可以喺一條數式中間切開）" % r_tag)
+        check_text(r_tag + ".zh", row.get("zh", ""), min_len=2, need_zh=True)
+        mv = row.get("move") or {}
+        if not isinstance(mv, dict):
+            err("S17 %s：move 要是 {zh, en} 物件" % r_tag)
+        else:
+            check_text(r_tag + ".move.zh", mv.get("zh", ""), min_len=4, need_zh=True)
+            check_text(r_tag + ".move.en", mv.get("en", ""))
+        st = row.get("step")
+        if st is not None and (not isinstance(st, int) or isinstance(st, bool)
+                               or not 1 <= st <= n_steps):
+            err("S17 %s：step 要係 1–%d 的整數（現時 %r）" % (r_tag, n_steps, st))
+
+    for label, text in sources.items():
+        joined = _flat_join(groups[label])
+        want = " ".join((text or "").split())
+        if joined == want:
+            continue
+        d = 0
+        while d < min(len(joined), len(want)) and joined[d] == want[d]:
+            d += 1
+        err("S17 %s 拆句[%s]：en 串起來（%d 字）要等於原文（%d 字；行間空格唔計）；"
+            "第 %d 個字起唔同 —— 拆句 %r vs 原文 %r"
+            % (tag, label or "題幹", len(joined), len(want), d + 1,
+               joined[d:d + 24], want[d:d + 24]))
 
 
 # ── 教學卡（part 的 cards[]）────────────────────────────────────────────────

@@ -208,8 +208,8 @@
        },
        {
         "opt": "D",
-        "zh": "D（$40320$）＝$8!$，把 8 面獎牌當成一排全部一起排。題目分成上下兩行：銀牌只在上行、金牌只在下行，不能混在一起。",
-        "en": "D (40320) = 8!, arranging all 8 medals in one single line. The medals are in two separate rows: silver in the upper row, gold in the lower row."
+        "zh": "D（$40320$）＝$8!$，把 8 面獎牌當成一排全部一起排。題目分成上下兩行：銀牌只在上行、金牌只在下行，不能混在一起。這一題不少人其實畫對了圖：紙上明明有上下兩排橫線（5 條、3 條），落計數機時卻直接按了 $8!$。畫好圖之後要把算式寫出來（$5! \\times 3!$），唔好靠感覺跳步。",
+        "en": "D (40320) = 8!, arranging all 8 medals in one single line. The medals are in two separate rows: silver in the upper row, gold in the lower row. Many papers show the right picture — two rows of dashes (5 and 3) drawn beside the question — yet 8! still appears on the calculator. Once the picture is drawn, write the expression down (5! × 3!) instead of jumping straight to the calculator."
        }
       ],
       "tip": {
@@ -652,6 +652,18 @@
         "en": "The question only says she enters once and leaves once; the two choices are independent and the same entrance may be used twice, giving 4 × 4 = 16. Adding an extra 'must be different' restriction gives the wrong 4 × 3 = 12."
        },
        {
+        "label": "(a) 把四個出入口拿去排次序（4! = 24）",
+        "labelEn": "(a) Putting the four entrances in order (4! = 24)",
+        "zh": "四次「入／出」唔係四樣要排次序的東西：入有 4 個選擇、出又有 4 個選擇，兩步獨立，所以是 $4 \\times 4 = 16$。寫成 $4! = 24$ 是把出入口排次序；寫成 $C^4_2 = 6$ 就係只從 4 個之中揀 2 個、仲當兩個一定要不同。全份卷都在考階乘、$P$ 和 $C$，這一題反而只要數「每一步有幾個選擇」。",
+        "en": "The four entrances are not four things to put in order: there are 4 choices for entering and 4 for leaving, independently, giving 4 × 4 = 16. Writing 4! = 24 orders the entrances; writing C(4,2) = 6 picks 2 of the 4 and assumes they must differ. The rest of the paper is full of factorials, P and C — this question only asks how many choices each step has."
+       },
+       {
+        "label": "(a) 把四個出入口當成四個步驟（4 × 4 × 4 × 4 = 256）",
+        "labelEn": "(a) Treating the four entrances as four steps (4 × 4 × 4 × 4 = 256)",
+        "zh": "行程只有兩步：進入一次、離開一次，每步 4 個選擇。$4 \\times 4 \\times 4 \\times 4 = 256$ 係「四個出入口每次都要用到」的意思，題目沒有這個限制。",
+        "en": "There are only two steps — enter once and leave once — with 4 choices each. 4 × 4 × 4 × 4 = 256 would mean all four entrances must be used, which the question never says."
+       },
+       {
         "label": "(b) 兩個條件互相污染",
         "labelEn": "(b) Letting one condition affect the other step",
         "zh": "「不經 A 或 D 進入」只在「進入」那一步扣 2 個；「不由 C 離開」只在「離開」那一步扣 1 個。若把兩個條件都套在兩步之上（例如兩邊都減 2），就會得出 $2 \\times 2 = 4$ 這個常見錯答。",
@@ -981,10 +993,34 @@
         "en": "The first two positions are different (1st and 2nd), so choosing the 2 actors needs P(5,2) = 20, not C(5,2) = 10. Using C halves the answer to 7200."
        },
        {
+        "label": "(b)(i) 把首兩位男生當成欽點好的兩個人（2! × 6! = 1440）",
+        "labelEn": "(b)(i) Treating the first two men as two named people (2! × 6! = 1440)",
+        "zh": "首兩位唔係「指定的兩個人」，而係「由 5 位男演員之中揀 2 位排上去」：$P^5_2 = 20$，再乘其餘 6 位的 $6! = 720$，得 $20 \\times 720 = 14400$。寫成 $2! \\times 6! = 1440$ 就係把第 7(a) 題那種「兩人已經欽點好」的讀法照搬過來，漏了「從 5 位之中選 2 位」這一步：「指定的對象」不用選，「任選 2 位」一定要選。",
+        "en": "The first two places are not two named people but 'choose 2 of the 5 male actors and put them there': P(5,2) = 20, times 6! = 720 for the rest, giving 20 × 720 = 14 400. Writing 2! × 6! = 1440 copies the 'the two people are already named' reading of Question 7(a) and drops the choosing step: named people need no choosing, 'any 2 of the 5' always does."
+       },
+       {
+        "label": "(b)(i) 用「綑綁法」綁住首兩位男演員（2! × 7! = 10080）",
+        "labelEn": "(b)(i) Tying the first two men together (2! × 7! = 10 080)",
+        "zh": "「綑綁」只用來表達「必須相鄰」；這一題要求兩人佔住第 1、2 位。綁成一塊之後，這一塊可以滑去任何位置（第 2、3 位、第 3、4 位…），所以 $2! \\times 7!$（甚至 $7!$）已經唔係「首兩位」。要鎖死位置，就要把 2 位男生直接放入第 1、2 位，而不是綁成一塊再全排。",
+        "en": "Tying a block only says 'must be adjacent'; here the two men must occupy positions 1 and 2 exactly. Once tied into one block it can slide anywhere (positions 2–3, 3–4, …), so 2! × 7! (or just 7!) no longer means 'the first two'. To pin a position, place the two actors straight into positions 1 and 2 instead of tying and permuting."
+       },
+       {
         "label": "(b)(ii) 位置數錯（最後一位＝第 8 位）",
         "labelEn": "(b)(ii) Miscounting the positions (last = 8th)",
         "zh": "「最後一位」是第 8 位，不是第 7 位。第 2、5、8 位放 3 位女演員，餘下第 1、3、4、6、7 位才是 5 位男演員的位置。",
         "en": "The last performer is the 8th, not the 7th. Positions 2, 5 and 8 hold the actresses, leaving positions 1, 3, 4, 6 and 7 for the 5 actors."
+       },
+       {
+        "label": "(b)(ii) 以為 respectively 連出場次序都鎖死（只寫 5! = 120）",
+        "labelEn": "(b)(ii) Reading 'respectively' as fixing the running order as well (5! = 120 only)",
+        "zh": "「respectively」只鎖死「哪位女演員在哪個位」（第 2、5、8 位各有一位），三位女演員之間仍然可以互相調位，有 $3! = 6$ 種。只寫 $5! = 120$ 就是少了這 $3!$，得 $120$ 而不是 $720$；$5! \\times 3! = 120 \\times 6 = 720$。",
+        "en": "'Respectively' only fixes which actress goes to which named position (2nd, 5th, 8th); the three of them can still swap among themselves in 3! = 6 ways. Writing only 5! = 120 drops that 3!, giving 120 instead of 720: 5! × 3! = 120 × 6 = 720."
+       },
+       {
+        "label": "(b)(ii) 畫好八格之後又多乘 8! 或 C(8,3)",
+        "labelEn": "(b)(ii) Multiplying by 8! or C(8,3) after drawing the eight slots",
+        "zh": "八個位置已經被題目鎖定（女演員在第 2、5、8 位），唔需要再「選位」或「全排」。多乘 $C^8_3 = 56$（從 8 位之中揀 3 位放女演員）或 $8! = 40320$ 都會把已經固定的位置重新打亂。",
+        "en": "The eight positions are already fixed by the question (actresses in the 2nd, 5th and 8th). Nothing is left to choose or permute: multiplying by C(8,3) = 56 (choosing 3 of the 8 slots) or by 8! = 40 320 re-opens decisions the question has already made."
        }
       ],
       "tip": {
@@ -1108,10 +1144,22 @@
         "en": "Within a group the order does not matter, so use C, not P. Using P(10,1)P(9,2)P(7,3)P(4,4) = 3 628 800 = 10! is wrong: it treats every member as occupying an ordered position."
        },
        {
+        "label": "(a) 每一次都由 10 人重新抽（385）",
+        "labelEn": "(a) Drawing from all 10 people every time (385)",
+        "zh": "抽走的人唔會再出現，所以每一次的人數都要逐步扣：$C^{10}_1 \\times C^9_2 \\times C^7_3 \\times C^4_4 = 12600$。四個組合都寫 10（$C^{10}_1 + C^{10}_2 + C^{10}_3 + C^{10}_4 = 385$，或者四個相乘）就係冇把「已經抽走的人」扣出來；1 人組抽完之後只剩 9 人、再抽 2 人之後只剩 7 人。",
+        "en": "People already drawn cannot be drawn again, so the pool shrinks at every step: C(10,1) × C(9,2) × C(7,3) × C(4,4) = 12 600. Using 10 in all four factors (C(10,1) + C(10,2) + C(10,3) + C(10,4) = 385, or the same four multiplied) never removes the people already chosen: after the group of 1 only 9 remain, and after the pair only 7."
+       },
+       {
+        "label": "(a) 只看見 4 和 10 就寫 C(10,4) = 210",
+        "labelEn": "(a) Seeing only '4' and '10' and writing C(10,4) = 210",
+        "zh": "「分成 1、2、3、4 人的四組」唔係「從 10 人之中揀 4 人」：$C^{10}_4 = 210$ 只揀了 4 個人，而且冇分成四組。要按每組的人數逐組抽：先抽 1 人，再從剩下 9 人抽 2 人，如此類推。",
+        "en": "'Divided into 4 groups of 1, 2, 3 and 4 members' is not 'choose 4 of the 10': C(10,4) = 210 picks four people and forms no groups at all. Draw one group at a time — 1 person first, then 2 from the remaining 9, and so on."
+       },
+       {
         "label": "(b) 只乘 4 或忘記乘 4!",
         "labelEn": "(b) Multiplying by 4 only, or forgetting to multiply by 4!",
-        "zh": "4 項任務不同，4 組派去 4 個任務是「全排列」$4! = 24$，不是 $4$（乘 4 會得 $50400$），也不能不乘（不乘只得 $12600$，即正確數目的 $\\frac{1}{24}$）。",
-        "en": "The four tasks are different, so assigning the four groups to them is a full permutation, 4! = 24 — not 4 (which gives 50 400), and it cannot be skipped (skipping leaves 12 600, under-counting by a factor of 24)."
+        "zh": "4 項任務不同，4 組派去 4 個任務是「全排列」$4! = 24$，不是 $4$（乘 4 會得 $50400$），也不能不乘（不乘只得 $12600$，即正確數目的 $\\frac{1}{24}$）。這一題最常見的兩種寫法：只答 $4! = 24$（即忘了把 (a) 的 $12600$ 乘入去：$12600 \\times 4! = 302400$），或者把「4 組派 4 個任務」當成 $4 \\times 4 = 16$。",
+        "en": "The four tasks are different, so assigning the four groups to them is a full permutation, 4! = 24 — not 4 (which gives 50 400), and it cannot be skipped (skipping leaves 12 600, under-counting by a factor of 24). The two commonest answers on the paper were 4! = 24 on its own (forgetting to multiply in the 12 600 from (a): 12 600 × 4! = 302 400) and treating '4 groups into 4 tasks' as 4 × 4 = 16."
        }
       ],
       "tip": {
@@ -1291,10 +1339,28 @@
         "en": "When adding the cases directly, the two single-sex cases are the easiest to miss: 4 males and 0 females (150 ways) and 0 males and 4 females (3 ways)."
        },
        {
+        "label": "(c) 無視 A、B 兩組的邊界",
+        "labelEn": "(c) Ignoring the boundary between groups A and B",
+        "zh": "題目規定「每組各抽 2 人」，所以 A、B 兩組的邊界一定要保留。把兩組合成 11 男 5 女再抽 4 人，就會出現「A 組抽 3 人、B 組抽 1 人」這類題目唔准許的選法。合併之後無論用 $C$ 定係分類相加，答案都唔會對。",
+        "en": "'2 employees from each group' fixes how many come from A and from B, so the boundary must stay. Merging the two groups into 11 males and 5 females and then choosing 4 can produce selections such as 3 from A and 1 from B, which the question does not allow — the total will be wrong however it is counted."
+       },
+       {
+        "label": "(c) 誤解成「每組內部不可以 1 男 1 女」（13 × 16 = 208）",
+        "labelEn": "(c) Misreading it as 'no group may be 1 male + 1 female' (13 × 16 = 208)",
+        "zh": "把「男女人數不同」讀成「兩組都唔可以 1 男 1 女」：A 組「唔係 1 男 1 女」有 $C^5_2 + C^3_2 = 10 + 3 = 13$ 種，B 組有 $C^6_2 + C^2_2 = 15 + 1 = 16$ 種，相乘得 $13 \\times 16 = 208$。但題目講的是 4 人合起來的男女總數：A 組 1 男 1 女、B 組 2 男（合共 3 男 1 女）其實符合題意，208 漏了這一類；而 A 組 2 男、B 組 2 女（合共 2 男 2 女）唔符合，208 又把它算進去了。",
+        "en": "Reading 'different numbers of males and females' as 'neither group may be 1 male + 1 female': group A has C(5,2) + C(3,2) = 10 + 3 = 13 such selections, group B has C(6,2) + C(2,2) = 15 + 1 = 16, giving 13 × 16 = 208. But the condition is on the total across the four people: 1 male + 1 female from A together with 2 males from B (3 males, 1 female) does satisfy it and is missing from 208, while 2 males from A with 2 females from B (2 males, 2 females) breaks it and should not be there."
+       },
+       {
         "label": "(a) 用 $P$ 而不是 $C$",
         "labelEn": "(a) Using P instead of C",
         "zh": "選人去培訓是一組人，不計次序，要用 $C^8_2 = 28$。用 $P^8_2 = 56$ 會得 $56 \\times 56 = 3136$。",
         "en": "Selecting employees for training is a set of people, so order does not matter: use C(8,2) = 28. Using P(8,2) = 56 wrongly gives 56 × 56 = 3136."
+       },
+       {
+        "label": "(a) 兩組之間用加號（56）",
+        "labelEn": "(a) Joining the two groups with a plus sign (56)",
+        "zh": "「A 組抽 2 人 而且 B 組抽 2 人」兩步都要做，所以相乘：$28 \\times 28 = 784$。用加號（$C^8_2 + C^8_2 = 28 + 28 = 56$）就變成「A 組或者 B 組」，概念調轉了。留意 56 這個數：用 $P$ 而不用 $C$ 都會得到 56，兩個錯法的答案一樣，但成因不同。",
+        "en": "Two are drawn from A and also two from B — both steps happen, so multiply: 28 × 28 = 784. A plus sign (C(8,2) + C(8,2) = 28 + 28 = 56) turns it into 'A or B'. Note the number 56: using P instead of C also gives 56 — the same wrong answer from a different mistake."
        },
        {
         "label": "(b) 兩組之間用加而不是乘",
@@ -1397,8 +1463,8 @@
        {
         "label": "把「不用除」的情況搞混（與第 9 題比較）",
         "labelEn": "Confusing this with a case that needs no division (compare Question 9)",
-        "zh": "第 9 題的四組人數是 $1$、$2$、$3$、$4$，組別可以憑人數分辨，所以不用除。本題 4 組都是 5 人，互換之後完全一樣，所以必須除以 $4!$。",
-        "en": "In Question 9 the groups have 1, 2, 3 and 4 members, so they are distinguishable by size and no division is needed. Here all four groups have 5 children and swapping them changes nothing, so division by 4! is required."
+        "zh": "第 9 題的四組人數是 $1$、$2$、$3$、$4$，組別可以憑人數分辨，所以不用除。本題 4 組都是 5 人，互換之後完全一樣，所以必須除以 $4!$。把第 9 題那種（$1$、$2$、$3$、$4$ 人）都除 $4!$，就會得到錯的 $12600 \\div 4! = 525$ —— 同一條公式，用在唔同大小嘅組就會錯。",
+        "en": "In Question 9 the groups have 1, 2, 3 and 4 members, so they are distinguishable by size and no division is needed. Here all four groups have 5 children and swapping them changes nothing, so division by 4! is required. Dividing the Question 9 answer (groups of 1, 2, 3 and 4) by 4! wrongly gives 12 600 ÷ 4! = 525: the same rule misapplied to groups of different sizes."
        },
        {
         "label": "只答「不同意」而沒有解釋",

@@ -43,6 +43,11 @@
     tfAll: { zh: "這一題全部小題都答對了", en: "All parts of this question are correct" },
     /* solution.alt：另一個做法（參考），預設收起，不作為第一解法 */
     altMore: { zh: "另一個做法（參考）", en: "Another approach (reference)" },
+    /* question.parse 拆句層：英文原句 → 中文意思 → 這句要做的數學動作（預設收起） */
+    parseMore: { zh: "拆句：一句一句讀", en: "Sentence by sentence" },
+    parseStem: { zh: "題幹", en: "Question stem" },
+    parseMeaning: { zh: "意思", en: "Meaning" },
+    parseMove: { zh: "要做", en: "Do this" },
     /* 教學卡（part.cards，顯示在該節的總覽頁） */
     cards: { zh: "教學卡", en: "Concept cards" },
     cardWarn: { zh: "常犯錯誤", en: "Common pitfall" },
@@ -1434,6 +1439,72 @@
     return card;
   }
 
+  /* 拆句層（question.parse）：一句英文原句 → 中文意思 → 這句要做的數學動作，
+     必要時標埋佢餵給題解哪一步。同一段（題幹或某個 part）的 en 串起來要一字不差
+     等於原文（tools/build.py S17 把關），所以題目一改，拆句唔改就過唔到 build。
+     預設用 <details> 收起：先自己讀題，讀唔明才逐句拆開。 */
+  function parseCard(q) {
+    var rows = (q && q.parse) || [];
+    if (!rows.length) return null;
+    var card = el("div", "card parse-card");
+    var box = el("details", "parse-box");
+    var sm = el("summary");
+    sm.appendChild(pairSpan(UI.parseMore));
+    box.appendChild(sm);
+    /* 按 from 分組（""＝題幹，其餘＝該小題的 label），跟資料出現次序排 */
+    var groups = {}, order = [];
+    rows.forEach(function (r) {
+      r = r || {};
+      var key = r.from || "";
+      if (!groups[key]) { groups[key] = []; order.push(key); }
+      groups[key].push(r);
+    });
+    order.forEach(function (key) {
+      var head = el("div", "parse-head");
+      head.appendChild(pairSpan(key ? { zh: "小題 " + key, en: "Part " + key } : UI.parseStem));
+      box.appendChild(head);
+      groups[key].forEach(function (r, i) {
+        var row = el("div", "parse-row");
+        row.appendChild(el("div", "parse-n", String(i + 1)));
+        var t = el("div", "parse-t");
+        var src = el("div", "parse-src");
+        richInto(src, r.en || "");
+        autoRender(src);
+        t.appendChild(src);
+        var mz = el("div", "parse-zh");
+        mz.appendChild(parseLab(UI.parseMeaning));
+        var mv = el("span", "parse-zh-v");
+        richInto(mv, r.zh || "");
+        mz.appendChild(mv);
+        autoRender(mz);
+        t.appendChild(mz);
+        if (r.move && (r.move.zh || r.move.en)) {
+          var mm = el("div", "parse-move");
+          mm.appendChild(parseLab(UI.parseMove));
+          mm.appendChild(pair(r.move, "span", "parse-move-v"));
+          if (r.step) {
+            var sp = el("span", "parse-step");
+            sp.appendChild(pairSpan({
+              zh: "→ 題解第 " + r.step + " 步",
+              en: "→ solution step " + r.step
+            }));
+            mm.appendChild(sp);
+          }
+          t.appendChild(mm);
+        }
+        row.appendChild(t);
+        box.appendChild(row);
+      });
+    });
+    card.appendChild(box);
+    return card;
+  }
+  function parseLab(obj) {
+    var b = el("b", "parse-lab");
+    b.appendChild(pairSpan(obj));
+    return b;
+  }
+
   function lockOptions(q, picked, opts) {
     qsa(".opt", opts).forEach(function (b) {
       b.disabled = true;
@@ -1673,6 +1744,8 @@
     function redraw() { renderPage(pages, cur, id, part); }
     refreshCurrent = redraw;
     body.appendChild(qc);
+    var pc = parseCard(q);
+    if (pc) body.appendChild(pc);
     body.appendChild(solutionCard(q, p.sec, redraw));
 
     var foot = el("div", "card foot-nav");
