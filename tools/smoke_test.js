@@ -1516,6 +1516,105 @@ ok(QC_QS.every((q) => (q.solution.steps || []).length >= 2 && !!q.solution.tip &
 ok(!/ch17-qc/.test(read("data/index.js")),
   "快測已經合併入 ch17-test（唔再有獨立課題 ch17-qc）");
 
+/* ── 6b-3. 第 17 章測驗檢討（原卷第 1–11 題，官方題解）────────────────── */
+console.log("\n== 第 17 章 · 測驗檢討（Chapter 17 Quiz Review）==");
+const qPart = INDEX.parts.find((p) => p.id === "ch17-quiz");
+ok(!!qPart && qPart.group === "quiz" && qPart.kind.zh === "測驗檢討" &&
+  qPart.title.en === "Chapter 17 Quiz Review" && /第 17 章/.test(qPart.unit.zh),
+  "首頁「測驗檢討」有「第 17 章 測驗檢討」（Chapter 17 Quiz Review）");
+ok(qPart.stats.questions === 11 && qPart.stats.marks === 37 && qPart.stats.bonus === 3 &&
+  qPart.stats.mc === 5 && qPart.stats.long === 6 && qPart.meta.marks === 37 &&
+  qPart.meta.date === "15 / 10 / 2026" &&
+  qPart.meta.sections.map((s) => s.marks).join("+") === "10+27",
+  "第 17 章測驗檢討：11 題 37 分（甲部 10 分 ＋ 乙部 27 分）＋ 3 分加分題，卷面日期 15 / 10 / 2026");
+ok(/2026-10-15/.test(qPart.source.zh) && /Chapter 17/.test(qPart.source.en),
+  "課題註明來源：校本 Chapter Quiz 第 17 章（2026-10-15）＋ 官方題解");
+
+const Q_JS = read("data/ch17-quiz.js");
+const Q_DATA = JSON.parse(Q_JS.slice(Q_JS.indexOf("{"), Q_JS.lastIndexOf("}") + 1));
+const Q_QS = Q_DATA.sections.reduce((a, s) => a.concat(s.questions || []), []);
+const Q_MC = Q_QS.filter((q) => q.type === "mc");
+const Q_LONG = Q_QS.filter((q) => q.type === "long" && !q.bonus);
+const Q_BONUS = Q_QS.filter((q) => q.bonus);
+ok(Q_DATA.sections.map((s) => s.id).join(",") === "A,B" &&
+  Q_DATA.sections.map((s) => s.questions.length).join(",") === "5,6",
+  "甲部 5 題 MC、乙部 5 條長題 ＋ 1 題加分題（共 11 題）");
+ok(Q_MC.map((q) => q.answer).join("") === "CCABD" && Q_MC.every((q) => q.marks === 2),
+  "甲部官方答案＝C、C、A、B、D（1106／720／4620／37 128／604 800，每題 2 分）");
+ok(Q_LONG.map((q) => q.marks).join(",") === "4,4,8,4,7" &&
+  Q_LONG.reduce((a, q) => a + q.marks, 0) === 27 &&
+  Q_BONUS.length === 1 && Q_BONUS[0].marks === 3,
+  "乙部長題 4、4、8、4、7（合共 27 分）＋ 3 分加分題（不分別計入 37 分）");
+const qNorm = (id) => ((Q_QS.find((q) => q.id === id) || {}).answers || [])
+  .map((a) => a.math.replace(/\\times/g, "×").replace(/[\\{},\s]/g, "")).join("|");
+ok(qNorm("ch17-quiz-B1") === "4×4=16|(4-2)×(4-1)=2×3=6",
+  "B1（商場出入口）：(a) 16、(b) 6");
+ok(qNorm("ch17-quiz-B2") === "6!×2!=1440|7!-1440=3600",
+  "B2（7 人拍照）：(a) 6! × 2! = 1 440（綑綁）、(b) 7! − 1440 = 3 600");
+ok(qNorm("ch17-quiz-B3") ===
+  "8!=40320|5!×P^6_3=14400|P^5_2×6!=14400|3!×5!=720",
+  "B3（5 男 3 女演員）：40 320／5! × P(6,3)／P(5,2) × 6!／3! × 5! = 720");
+ok(qNorm("ch17-quiz-B4") ===
+  "C^10_1×C^9_2×C^7_3×C^4_4=12600|12600×4!=302400",
+  "B4（10 人分 1／2／3／4 人組）：(a) C(10,1)C(9,2)C(7,3)C(4,4) = 12 600、(b) × 4! = 302 400");
+ok(qNorm("ch17-quiz-B5") ===
+  "C^8_2×C^8_2=28×28=784|C^5_1C^3_1×C^6_1C^2_1=15×12=180|" +
+  "784-180-C^5_2C^2_2-C^3_2C^6_2=784-180-10-45=549",
+  "B5（A／B 兩組各選 2 人）：784／180／549（反面扣走三種 2 男 2 女）");
+ok(Q_LONG.find((q) => q.id === "ch17-quiz-B5").solution.alt.length === 1 &&
+  /549/.test(Q_LONG.find((q) => q.id === "ch17-quiz-B5").solution.alt[0].zh),
+  "B5 附「方法二 · 直接數六個情況」作進階／參考解法（549）");
+ok(qNorm("ch17-quiz-bonus").indexOf("488864376") >= 0 &&
+  qNorm("ch17-quiz-bonus").indexOf("11732745024") >= 0 &&
+  Q_BONUS[0].answers[0].note.zh.indexOf("不同意") >= 0,
+  "加分題：不同意聲稱的 11 732 745 024，正確是 488 864 376（÷ 4!）");
+const qMarkSum = (q) => (q.solution.steps || []).reduce((a, s) =>
+  a + ((s.marking || "").match(/\d*[MA]/g) || [])
+    .reduce((b, t) => b + (parseInt(t, 10) || 1), 0), 0);
+ok(Q_LONG.concat(Q_BONUS).every((q) => qMarkSum(q) === q.marks &&
+  q.parts.reduce((a, pp) => a + pp.marks, 0) === q.marks),
+  "長題與加分題：parts 分數加總、steps 的 (1M)/(1A) 加總都＝題目分數");
+ok(Q_QS.every((q) => q.difficulty >= 1 && q.difficulty <= 3),
+  "第 17 章測驗檢討：difficulty 都在 1–3");
+ok(/原卷第 6 至 10 題/.test(Q_DATA.introSteps[0].zh) &&
+  /A1–A5/.test(Q_DATA.introSteps[1].zh),
+  "總覽步驟寫明網站題號與原卷題號的對應（A1–A5／B1–B5／Bonus）");
+
+const qOv = boot("quiz.html", "?c=ch17-quiz&p=0");
+ok(/第 17 章 測驗檢討/.test((qOv.$("#quiz-name") || {}).textContent || "") &&
+  qOv.$$("#pagenav .pg").length === 12 && qOv.$$("#pagenav .pg-sec").length === 2 &&
+  qOv.$$(".katex-error").length === 0,
+  "第 17 章測驗檢討總覽：11 題（＋總覽）、甲／乙部兩個分隔、KaTeX 零錯誤");
+ok(qOv.$$(".how-paper .how-row").length === Q_DATA.introSteps.length &&
+  qOv.$$(".how-paper .how-row .l-en").length === Q_DATA.introSteps.length,
+  "總覽頁以編號步驟列「點做這份卷」（" + Q_DATA.introSteps.length + " 步，中英齊全）");
+const qA1 = boot("quiz.html", "?c=ch17-quiz&p=1", null, "show");
+ok(!!qA1.$('.q-card[data-qid="ch17-quiz-A1"]') && qA1.$$(".opt").length === 4 &&
+  qA1.$$(".sol-card .trap").length === 3,
+  "A1（至少兩個藍球）渲染 MC 卡：4 個選項、3 個「為甚麼會選錯」");
+const qB5 = boot("quiz.html", "?c=ch17-quiz&p=10", null, "show");
+ok(!!qB5.$('.q-card[data-qid="ch17-quiz-B5"]') && qB5.$$(".q-parts li").length === 3 &&
+  qB5.$$(".sol-card .steps .step").length === 7 &&
+  qB5.$$(".step .marking").length === 7 && qB5.$$(".sol-card .alt-box").length === 1,
+  "B5 渲染：(a)(b)(c) 三個小問、7 個步驟（都有分數）、1 個參考解法摺疊");
+const qBonus = boot("quiz.html", "?c=ch17-quiz&p=11", null, "show");
+ok(!!qBonus.$('.q-card[data-qid="ch17-quiz-bonus"]') && qBonus.$$(".q-bonus").length === 1,
+  "加分題一頁，卡頭顯示「加分題」標籤");
+const qAll = [];
+for (let i = 1; i <= 11; i++) qAll.push(boot("quiz.html", "?c=ch17-quiz&p=" + i, null, "show"));
+ok(qAll.every((t) => t.$$(".sol-card .steps .step").length > 0 &&
+  !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
+  "11 題都有逐步題解、「帶得走的技巧」與常見錯誤提示");
+ok(qAll.every((t) => t.$$(".katex-error").length === 0 &&
+  !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en") &&
+  !/\$/.test(t.$(".q-stem").textContent)),
+  "第 17 章測驗檢討全部 11 題 KaTeX 零錯誤，題幹中英對照且已渲染");
+ok(qAll.every((t) => t.$$(".sol-card .hl").length > 0),
+  "第 17 章測驗檢討每題都顯示步驟重點框（答案一眼睇到）");
+ok(qAll.filter((t) => t.$$(".sol-card .traps").length > 0).length === 11 &&
+  !/Chapter 10|第 10 章/.test(read("data/ch17-quiz.js")),
+  "第 17 章測驗檢討只包含第 17 章內容（冇混入第 10 章）");
+
 /* ── 總覽頁可讀性：引言一句摘要 ＋ 編號步驟（唔再係一大段）────────────── */
 console.log("\n== 總覽頁引言（摘要 ＋ 編號步驟）==");
 ok(T_DATA.introSteps && T_DATA.introSteps.length === 4 &&

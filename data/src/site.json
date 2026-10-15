@@ -33,6 +33,25 @@
         "source": { "zh": "校本 Chapter Quiz（2026-09-25）", "en": "School chapter quiz (25 Sep 2026)" }
       },
       {
+        "id": "ch17-quiz",
+        "group": "quiz",
+        "kind": { "zh": "測驗檢討", "en": "Quiz review" },
+        "unit": { "zh": "第 17 章 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
+        "title": { "zh": "第 17 章 測驗檢討", "en": "Chapter 17 Quiz Review" },
+        "meta": {
+          "paper": "S.5 Mathematics · Chapter Quiz",
+          "date": "15 / 10 / 2026",
+          "marks": 37,
+          "sections": [
+            { "id": "A", "marks": 10, "title": { "zh": "甲部 · 多項選擇題", "en": "Section A · Multiple choice" } },
+            { "id": "B", "marks": 27, "title": { "zh": "乙部 · 長題目", "en": "Section B · Conventional questions" } }
+          ]
+        },
+        "stats": { "questions": 11, "marks": 37, "mc": 5, "long": 6, "bonus": 3 },
+        "status": "ready",
+        "source": { "zh": "校本 Chapter Quiz 第 17 章（2026-10-15）＋ 官方題解", "en": "School chapter quiz, Chapter 17 (15 Oct 2026), with the official solutions" }
+      },
+      {
         "id": "ch17-1",
         "group": "classwork",
         "chapter": "ch17",
