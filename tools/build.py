@@ -25,7 +25,8 @@
   S18 常見錯誤（traps）的次序：MC 依選項 A→B→C→D，長題依小題 (a)→(b)→(c)；
       冇標籤的（整題性）提示唔受限，但慣例排最後
   S19 長題的「可核對數字答案」：data/src/site.json 的 parts[] 該項寫 "answerInput": true 就開；
-      每小題的答案會自動由 answers[].math 最後一段抽出（該段只有一個數才抽得準），
+      每小題的答案會自動由 answers[].math 最後一段抽出（該段只有一個數、而且冇未知數
+      才抽得準；不等式／代數式例如 "x\\le -5"、"\\frac{n}{2^n}" 一律抽唔到），
       抽唔到就要明寫 answers[].input（唔設輸入格就寫 null）；input 的數字要對得上 math
 """
 
@@ -149,13 +150,34 @@ def trap_order_label(tr: dict) -> str:
 
 
 # ── 可核對數字答案（S19）：答案由 math 自動抽 ───────────────────────────────
+TEXT_GROUP_RE = re.compile(r"\\(?:text|mathrm|mathbf)\s*\{[^{}]*\}")   # \text{dollars} 之類
+CMD_RE = re.compile(r"\\[a-zA-Z]+")
+LETTER_RE = re.compile(r"[A-Za-z]")
+
+
+def seg_is_numeric(seg: str) -> bool:
+    """最後一段係唔係「單一數值」（2026-10-16 加嚴）？
+
+    丟走 \\text{…}（單位／說明）同 LaTeX 指令名之後，如果仍有英文字母（x、n、k），
+    即係符號式答案 —— 裡面就算有數字，都唔係「學生打得出的答案」：
+    例 "x\\le -5"（抽 5 會連負號都唔見）、"m = \\frac{3}{2}n"、"\\frac{n}{2^n}"（抽 2 或 1/2 都錯）。
+    呢類一定要作者明寫 answers[].input，唔想有輸入格就寫 null。
+    """
+    s = TEXT_GROUP_RE.sub("", seg)
+    s = CMD_RE.sub("", s)
+    return not LETTER_RE.search(s)
+
+
 def derive_input(mathstr: str):
     """抽「學生可以打出來的答案」：只看最後一個 = 之後那一段。
 
-    該段只有一個數字（或一個 \\frac）才抽得準；有歧義（例如 "488864376 \\ne 1173274502"、
-    "n = 5, 6, 7, 8, 9"）就回 None，要求作者在 answers[].input 明寫。
+    該段只有一個數字（或一個 \\frac）**而且冇未知數**才抽得準；有歧義（例如
+    "488864376 \\ne 11732745024"、"n = 5, 6, 7, 8, 9"）或符號式答案（見 seg_is_numeric）
+    就回 None，要求作者在 answers[].input 明寫。
     """
     seg = mathstr.split("=")[-1].replace("\\,", "").replace("\\!", "")
+    if not seg_is_numeric(seg):
+        return None
     fracs = re.findall(r"\\frac\s*\{([0-9]+)\}\s*\{([0-9]+)\}", seg)
     if fracs:
         return "%s/%s" % fracs[-1] if len(fracs) == 1 else None

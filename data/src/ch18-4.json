@@ -4631,6 +4631,7 @@
       {
        "part": "(a)(i)",
        "math": "\\left(\\frac{1}{2}\\right)^n = \\frac{1}{2^n}",
+       "input": null,
        "note": {
         "zh": "n 次都是正面，每次 1/2",
         "en": "n heads in a row, each with probability 1/2"
@@ -4639,6 +4640,7 @@
       {
        "part": "(a)(ii)",
        "math": "C^n_{n-1} \\left(\\frac{1}{2}\\right)^{n-1} \\left(\\frac{1}{2}\\right) = \\frac{n}{2^n}",
+       "input": null,
        "note": {
         "zh": "先選哪一次是反面（n 種），再乘概率",
         "en": "Choose which toss is the tail (n ways), then multiply"
@@ -4647,6 +4649,7 @@
       {
        "part": "(b)",
        "math": "C^n_1 \\left(\\frac{1}{2}\\right)^n = \\frac{n}{2^n} = C^n_{n-1} \\left(\\frac{1}{2}\\right)^n",
+       "input": null,
        "note": {
         "zh": "同意：$C^n_1 = C^n_{n-1}$，兩者都是 n/2^n",
         "en": "Agree: $C^n_1 = C^n_{n-1}$, both equal n/2^n"

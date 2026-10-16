@@ -1914,6 +1914,55 @@ ok(!boot("quiz.html", "?c=ch17-test&p=6", null, "hide").$(".ans-card"),
 ok(boot("quiz.html", "?c=ch18-1&p=1", null, "hide").$(".ans-card") === null,
   "未開 answerInput 的課題（18.1）維持原狀，唔會有輸入卡");
 
+/* ── 6b-6. 第 18 章 18.2／18.3／18.4 開輸入答案核對（2026-10-16）────────────
+   18.1 係集合題，答案唔係數字，所以唔開。 ─────────────────────────────── */
+console.log("\n== 第 18 章 · 輸入答案核對（18.2／18.3／18.4）==");
+const c18data = {};
+["ch18-2", "ch18-3", "ch18-4"].forEach((pid) => {
+  const js = read("data/" + pid + ".js");
+  c18data[pid] = JSON.parse(js.slice(js.indexOf("{"), js.lastIndexOf("}") + 1));
+});
+const c18long = Object.keys(c18data).reduce((all, pid) => all.concat(
+  c18data[pid].sections.reduce((a, s) => a.concat(s.questions || []), [])), [])
+  .filter((q) => q.type === "long");
+ok(["ch18-2", "ch18-3", "ch18-4"].every(
+  (pid) => (INDEX.parts.filter((p) => p.id === pid)[0] || {}).answerInput === true) &&
+  !(INDEX.parts.filter((p) => p.id === "ch18-1")[0] || {}).answerInput,
+  "18.2／18.3／18.4 開了 answerInput，18.1（集合）冇開");
+ok(c18long.length === 111 && c18long.every((q) =>
+  (q.answers || []).length === (q.parts || []).length &&
+  q.answers.every((a) => a.input === null || typeof a.input === "string")),
+  "18 章三節 111 條長題：answers 與 parts 一對一，每個答案都有 input（或明寫 null）");
+ok(boot("quiz.html", "?c=ch18-4&p=36", null, "hide").$(".ans-card") === null,
+  "18.4 SM 31（答案係 \\frac{n}{2^n}）三小題都寫了 null → 冇輸入卡");
+const c3sm = boot("quiz.html", "?c=ch18-3&p=36", null, "hide");
+ok(c3sm.$$(".ans-row").length === 1 && c3sm.$$(".ans-part")[0].textContent === "(a)",
+  "18.3 SM 31 只有 (a) 有輸入格（(b) 係判斷＋比較式，寫了 null）");
+const c3e1 = boot("quiz.html", "?c=ch18-3&p=1", null, "hide");
+ok(c3e1.$$(".ans-row").length === 2 &&
+  c3e1.$$(".ans-part").map((n) => n.textContent).join("") === "(a)(b)",
+  "18.3 CE1 兩小題各一格");
+
+/* 答案比對（2026-10-16）：字串相同 → 精確等值 → 準確至 3 位有效數字（整數要準確） */
+const ansPass = (part, page, i, v) => {
+  const t = boot("quiz.html", "?c=" + part + "&p=" + page, null, "hide");
+  ansType(t, i, v);
+  ansSub(t).click();
+  return t.$$(".ans-row.ok").length >= 1;
+};
+ok(ansPass("ch18-3", 1, 0, "1/6") && ansPass("ch18-3", 1, 0, "2/12") &&
+  ansPass("ch18-3", 1, 0, "0.167"),
+  "18.3 CE1(a)＝1/6：1/6、2/12（等值未約簡）、0.167（3 位有效數字）都當對");
+ok(!ansPass("ch18-3", 1, 0, "1/7") && !ansPass("ch18-3", 1, 0, "0.166") &&
+  !ansPass("ch18-3", 1, 0, "0.17"),
+  "18.3 CE1(a)：1/7、0.166（截尾）、0.17（只 2 位有效數字）都當錯");
+ok(ansPass("ch18-2", 1, 0, "30/32") && ansPass("ch18-2", 1, 0, "0.938") &&
+  !ansPass("ch18-2", 1, 0, "0.93"),
+  "18.2 CE1(a)＝15/16：30/32（等值）、0.938（3 位有效數字）當對；0.93 當錯");
+ok(ansPass("ch17-test", 10, 0, "12") && !ansPass("ch17-test", 10, 0, "12.04") &&
+  !ansPass("ch17-test", 10, 0, "11.9"),
+  "整數答案（17 測前 B1(a)＝12）要準確：12 對；12.04（3 位有效數字一樣）、11.9 都當錯");
+
 /* ── 6c. 課本練習：第 18 章 → 18.1 集合 ──────────────────────────────── */
 console.log("\n== 第 18 章 · 18.1 集合（課本練習頁）==");
 const CH18 = CW_CHAPTERS.filter((c) => c.id === "ch18")[0] || {};

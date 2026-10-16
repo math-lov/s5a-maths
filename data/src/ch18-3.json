@@ -4489,6 +4489,7 @@
       {
        "part": "(b)",
        "math": "\\frac{11}{28} < \\frac{17}{28}",
+       "input": null,
        "note": {
         "zh": "同意：先手確實較有利",
         "en": "Agree: the first player is indeed better off"

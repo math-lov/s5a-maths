@@ -106,8 +106,8 @@
     /* 長題：在題目最後輸入每小題的數字答案，提交後逐格顯示對錯 */
     ansTitle: { zh: "輸入答案核對", en: "Check your answers" },
     ansHint: {
-      zh: "做完先在這裡填每小題的答案（填數字，分數寫 a/b），按「提交答案」才知對唔對。",
-      en: "After working it out, type each part's answer here (a number; write fractions as a/b), then press submit to check."
+      zh: "做完先在這裡填每小題的答案（填數字；分數寫 a/b，或者寫同一個數值、準確至 3 位有效數字的小數），按「提交答案」才知對唔對。",
+      en: "After working it out, type each part's answer here (a number; write fractions as a/b, or the same value as a decimal correct to 3 significant figures), then press submit to check."
     },
     ansNeedFill: { zh: "先填答案，再按提交。", en: "Fill in your answers first, then submit." },
     ansAllOk: {
@@ -1604,11 +1604,43 @@
         .replace(/[^0-9./]/g, "")
         .replace(/\.$/, "");
     }
+    /* 值比對（2026-10-16 老師指示）：除咗同一個字串，亦接受
+       ① 精確等值 —— 0.25 = 1/4、4/52 = 1/13（有冇約簡都算對）；
+       ② 準確至 3 位有效數字 —— 1/3 收 0.333、93/182 收 0.511（0.33 唔收）。
+       整數答案（例如 14400、120）唔可以用 ②：數數目的答案一定要準確。 */
+    function value(s) {              // "1/4"｜"0.25"｜"14400" → 分數 {n, d}；唔合法回 null
+      var m = /^(\d+(?:\.\d+)?)(?:\/(\d+(?:\.\d+)?))?$/.exec(s);
+      if (!m) return null;
+      function part(t) {
+        var p = t.split(".");
+        return [Number(p[0] + (p[1] || "")), p[1] ? Math.pow(10, p[1].length) : 1];
+      }
+      var a = part(m[1]);
+      var b = m[2] ? part(m[2]) : [1, 1];
+      return b[0] ? { n: a[0] * b[1], d: a[1] * b[0] } : null;
+    }
+    function sameValue(p, q) {
+      return !!p && !!q && p.n * q.d === q.n * p.d;
+    }
+    function same3sf(p, q) {
+      if (!p || !q || p.n % p.d === 0 || q.n % q.d === 0) return false;
+      function rnd(v) {
+        var x = v.n / v.d;
+        var f = Math.pow(10, Math.floor(Math.log10(x)) - 2);
+        return Math.round(x / f) * f;
+      }
+      return rnd(p) === rnd(q);
+    }
     function isOk(a, typed) {
       var got = norm(typed);
       if (!got) return false;
       var want = [a.input].concat(a.inputAlt || []).map(norm);
-      return want.indexOf(got) >= 0;
+      if (want.indexOf(got) >= 0) return true;
+      var g = value(got);
+      return want.some(function (w) {
+        var v = value(w);
+        return sameValue(g, v) || same3sf(g, v);
+      });
     }
     /* 幾時可以按提交：只有「完全未動手」（一格都未對、而且一格都未填）才停用。
        提交過之後按鈕唔會變灰 —— 學生補填／改完可以再按，重新核對一次
