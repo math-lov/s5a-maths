@@ -1879,6 +1879,28 @@ ansSub(tB2i).click();
 ok(tB2i.$$(".ans-row.ok").length === 1 && tB2i.$$(".ans-row.bad").length === 0 &&
   qcFb(tB2i) === "bad",
   "B2 改成 362 880（空格唔計）轉 ✓；第 2 格未填，成題仍未算完成");
+/* 2026-10-16 老師指示：提交完唔可以變灰 —— 要可以再按，重新核對一次 */
+const tB1a = boot("quiz.html", "?c=ch17-test&p=10", null, "hide");
+ansType(tB1a, 0, "12");
+ansSub(tB1a).click();
+ok(tB1a.$$(".ans-row.ok").length === 1 && tB1a.$$(".ans-input[disabled]").length === 1 &&
+  ansSub(tB1a).disabled === false && qcFb(tB1a) === "bad",
+  "B1 只填 (a)：提交後 (a) 轉 ✓，提交按鈕仍然可以按（唔會變灰）");
+ansSub(tB1a).click();
+ok(ansSub(tB1a).disabled === false && tB1a.$$(".ans-mark")[1].textContent === "" &&
+  /先填答案/.test(tB1a.$(".feedback").textContent) && qcFb(tB1a) === "bad",
+  "再按一次（冇填新答案）：重新核對；(b) 未填唔會誤標 ✗，改為提示先填答案");
+ansType(tB1a, 1, "16");
+ansSub(tB1a).click();
+ok(tB1a.$$(".ans-row.ok").length === 2 && qcFb(tB1a) === "ok" &&
+  !!tB1a.$("#pagenav .pg.done"),
+  "補填 (b) 16 再提交：兩格都 ✓，成題完成");
+const tB1r = boot("quiz.html", "?c=ch17-test&p=10",
+  JSON.stringify({ done: {}, picked: {}, hints: {}, tf: {}, ans: { "ch17-B1/(a)": "12" } }),
+  "hide");
+ok(tB1r.$$(".ans-input")[0].value === "12" && ansSub(tB1r).disabled === false &&
+  !tB1r.$("[data-feedback]"),
+  "重開同樣一題（進度已存 (a) 的答案）：提交按鈕一樣可以按，未核對過就冇回饋");
 const ce1i = boot("quiz.html", "?c=ch17-1&p=1", null, "hide");
 ok(ce1i.$$(".ans-input").length === 2 && /輸入答案核對/.test(ce1i.$(".ans-card").textContent),
   "17.1 CE1（兩小題）一樣有輸入答案卡");

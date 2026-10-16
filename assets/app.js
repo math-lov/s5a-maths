@@ -1610,10 +1610,15 @@
       var want = [a.input].concat(a.inputAlt || []).map(norm);
       return want.indexOf(got) >= 0;
     }
+    /* 幾時可以按提交：只有「完全未動手」（一格都未對、而且一格都未填）才停用。
+       提交過之後按鈕唔會變灰 —— 學生補填／改完可以再按，重新核對一次
+       （2026-10-16 老師指示：唔好提交完就撳唔到）。 */
     function arm() {
-      btn.disabled = !items.some(function (it) { return !it.ok && it.inp.value.trim(); });
+      btn.disabled = items.every(function (it) {
+        return !it.ok && !it.inp.value.trim();
+      });
     }
-    function feedback(ok) {
+    function feedback(ok, subText) {
       fbHost.innerHTML = "";
       var box = el("div", "feedback " + (ok ? "ok" : "bad"));
       box.setAttribute("data-feedback", ok ? "ok" : "bad");
@@ -1622,7 +1627,7 @@
       var main = el("div");
       main.appendChild(pairSpan(ok ? UI.fbCorrect : UI.fbWrong));
       var sub = el("span", "fb-sub");
-      sub.appendChild(pairSpan(ok ? UI.ansAllOk : UI.ansSomeBad));
+      sub.appendChild(pairSpan(ok ? UI.ansAllOk : (subText || UI.ansSomeBad)));
       txt.appendChild(main);
       txt.appendChild(sub);
       box.appendChild(txt);
@@ -1637,9 +1642,11 @@
     }
     btn.onclick = function () {
       if (btn.disabled) return;
+      var anyTyped = false;
       items.forEach(function (it) {
         if (it.ok) return;
         var typed = it.inp.value.trim();
+        if (typed) anyTyped = true;
         store.ans[it.key] = typed;
         it.row.classList.remove("bad");
         it.mark.textContent = "";
@@ -1660,7 +1667,9 @@
         if (curBtn) curBtn.classList.add("done");
         setProgress(qs("#quiz-progress"), PART);
       } else {
-        feedback(false);
+        /* 冇填過新答案（例如第一次只填了其中一格）就唔好講「有幾格唔啱」，
+           改為提示先填答案（UI.ansNeedFill）。 */
+        feedback(false, anyTyped ? null : UI.ansNeedFill);
       }
       arm();
     };
