@@ -169,7 +169,7 @@
         "zh": "即選項 C",
         "en": "Option C"
        }
-       }
+      }
      ],
      "solution": {
       "steps": [
@@ -256,7 +256,7 @@
         "zh": "即選項 A",
         "en": "Option A"
        }
-       }
+      }
      ],
      "solution": {
       "steps": [
@@ -361,7 +361,7 @@
         "zh": "即選項 B",
         "en": "Option B"
        }
-       }
+      }
      ],
      "solution": {
       "steps": [
@@ -407,6 +407,11 @@
       ],
       "traps": [
        {
+        "opt": "A",
+        "zh": "A（$17160$）不是三個正確情況的數目（$20475$、$13650$、$3003$），也不是反面「老師少過學生」（$C^{15}_2 C^{10}_3 + C^{15}_1 C^{10}_4 + C^{15}_0 C^{10}_5 = 12600 + 3150 + 252 = 16002$）。它通常來自情況分類出錯或漏計某個情況。只要老實把三個互斥情況列出來相加，就會得到 $37128$（B）。",
+        "en": "A (17 160) matches none of the valid case counts (20 475, 13 650, 3003) nor the opposite 'fewer teachers than students' total (12 600 + 3150 + 252 = 16 002). It usually comes from mis-splitting or mis-evaluating the cases. Listing the three mutually exclusive cases and adding gives 37 128 (B)."
+       },
+       {
         "opt": "C",
         "zh": "C（$53130$）＝$C^{25}_5$，這是 25 人（15 ＋ 10）中任選 5 人的總數，完全沒有考慮「老師多過學生」這個限制。",
         "en": "C (53 130) = C(25,5), the total number of ways to choose any 5 of the 25 people, ignoring the 'more teachers than students' condition."
@@ -415,11 +420,6 @@
         "opt": "D",
         "zh": "D（$20475$）＝$C^{15}_3 C^{10}_2$，只計了「3 位老師、2 位學生」這一個情況。$T > 2.5$ 代表 $T$ 可以是 3、4 或 5，三種都要計。",
         "en": "D (20 475) = C(15,3)C(10,2), only the '3 teachers, 2 students' case. Since T > 2.5, T can be 3, 4 or 5 — all three cases count."
-       },
-       {
-        "opt": "A",
-        "zh": "A（$17160$）不是三個正確情況的數目（$20475$、$13650$、$3003$），也不是反面「老師少過學生」（$C^{15}_2 C^{10}_3 + C^{15}_1 C^{10}_4 + C^{15}_0 C^{10}_5 = 12600 + 3150 + 252 = 16002$）。它通常來自情況分類出錯或漏計某個情況。只要老實把三個互斥情況列出來相加，就會得到 $37128$（B）。",
-        "en": "A (17 160) matches none of the valid case counts (20 475, 13 650, 3003) nor the opposite 'fewer teachers than students' total (12 600 + 3150 + 252 = 16 002). It usually comes from mis-splitting or mis-evaluating the cases. Listing the three mutually exclusive cases and adding gives 37 128 (B)."
        }
       ],
       "tip": {
@@ -466,7 +466,7 @@
         "zh": "即選項 D",
         "en": "Option D"
        }
-       }
+      }
      ],
      "solution": {
       "steps": [
@@ -783,6 +783,16 @@
         ]
        }
       ],
+      "alt": [
+       {
+        "name": {
+         "zh": "方法二 · 插空法（先排其餘 5 人，再插入 2 人）",
+         "en": "Method 2 · Insertion method (arrange the other 5 first, then slot the 2 in)"
+        },
+        "zh": "先不理兩位指定同學，把其餘 5 位同學排好：$5! = 120$ 種。5 個人的前後及之間一共有 $5 + 1 = 6$ 個空隙（最前、最後各 1 個，加上他們之間的 4 個）。要令兩位指定同學不相鄰，只要把他們放入 6 個空隙之中不同的 2 個；空隙有先後之別（哪位站在較前的位置唔同），所以用 $P^6_2 = 6 \\times 5 = 30$。分步相乘：$5! \\times P^6_2 = 120 \\times 30 = 3600$，與反面做法（$7! - 1440 = 3600$）相同 —— 考試用插空法一樣拿滿分。\n用插空法還有個好處：唔需要靠 (a) 的答案，就算 (a) 做錯了，(b) 都照樣可以獨立計對。",
+        "en": "Ignore the 2 particular students first and arrange the other 5: 5! = 120 ways. These 5 create 5 + 1 = 6 gaps (one at each end plus the 4 between them). To keep the 2 particular students apart, slot them into 2 different gaps; which gap comes first matters, so this is P(6,2) = 6 × 5 = 30. Multiply the two steps: 5! × P(6,2) = 120 × 30 = 3600 — the same as the complement method (7! − 1440 = 3600), and the insertion method also earns full marks.\nThe insertion method has one more advantage: it does not depend on the answer to (a), so (b) can be done correctly even if (a) went wrong."
+       }
+      ],
       "traps": [
        {
         "label": "(a) 忘記塊內再排（漏乘 2!）",
@@ -1069,7 +1079,7 @@
      ],
      "answers": [
       {
-        "part": "(a)",
+       "part": "(a)",
        "math": "C^{10}_1 \\times C^9_2 \\times C^7_3 \\times C^4_4 = 12600"
       },
       {
@@ -1327,6 +1337,24 @@
       ],
       "traps": [
        {
+        "label": "(a) 用 $P$ 而不是 $C$",
+        "labelEn": "(a) Using P instead of C",
+        "zh": "選人去培訓是一組人，不計次序，要用 $C^8_2 = 28$。用 $P^8_2 = 56$ 會得 $56 \\times 56 = 3136$。",
+        "en": "Selecting employees for training is a set of people, so order does not matter: use C(8,2) = 28. Using P(8,2) = 56 wrongly gives 56 × 56 = 3136."
+       },
+       {
+        "label": "(a) 兩組之間用加號（56）",
+        "labelEn": "(a) Joining the two groups with a plus sign (56)",
+        "zh": "「A 組抽 2 人 而且 B 組抽 2 人」兩步都要做，所以相乘：$28 \\times 28 = 784$。用加號（$C^8_2 + C^8_2 = 28 + 28 = 56$）就變成「A 組或者 B 組」，概念調轉了。留意 56 這個數：用 $P$ 而不用 $C$ 都會得到 56，兩個錯法的答案一樣，但成因不同。",
+        "en": "Two are drawn from A and also two from B — both steps happen, so multiply: 28 × 28 = 784. A plus sign (C(8,2) + C(8,2) = 28 + 28 = 56) turns it into 'A or B'. Note the number 56: using P instead of C also gives 56 — the same wrong answer from a different mistake."
+       },
+       {
+        "label": "(b) 兩組之間用加而不是乘",
+        "labelEn": "(b) Adding the two groups instead of multiplying",
+        "zh": "「每組各 1 男 1 女」＝ A 組的 $15$ 種配上 B 組的 $12$ 種，是分步相乘：$15 \\times 12 = 180$。寫成 $15 + 12 = 27$ 是錯的。",
+        "en": "'One male and one female from each group' pairs the 15 ways of group A with the 12 ways of group B, so multiply: 15 × 12 = 180. Writing 15 + 12 = 27 is wrong."
+       },
+       {
         "label": "(c) 只減去 (b) 的 180",
         "labelEn": "(c) Subtracting only the 180 from (b)",
         "zh": "「2 男 2 女」不止「每組各 1 男 1 女」這一種：還有「A 組 2 男、B 組 2 女」（$10$ 種）及「A 組 2 女、B 組 2 男」（$45$ 種）。只減 $180$ 會得 $604$，是常見錯答。",
@@ -1349,24 +1377,6 @@
         "labelEn": "(c) Misreading it as 'no group may be 1 male + 1 female' (13 × 16 = 208)",
         "zh": "把「男女人數不同」讀成「兩組都唔可以 1 男 1 女」：A 組「唔係 1 男 1 女」有 $C^5_2 + C^3_2 = 10 + 3 = 13$ 種，B 組有 $C^6_2 + C^2_2 = 15 + 1 = 16$ 種，相乘得 $13 \\times 16 = 208$。但題目講的是 4 人合起來的男女總數：A 組 1 男 1 女、B 組 2 男（合共 3 男 1 女）其實符合題意，208 漏了這一類；而 A 組 2 男、B 組 2 女（合共 2 男 2 女）唔符合，208 又把它算進去了。",
         "en": "Reading 'different numbers of males and females' as 'neither group may be 1 male + 1 female': group A has C(5,2) + C(3,2) = 10 + 3 = 13 such selections, group B has C(6,2) + C(2,2) = 15 + 1 = 16, giving 13 × 16 = 208. But the condition is on the total across the four people: 1 male + 1 female from A together with 2 males from B (3 males, 1 female) does satisfy it and is missing from 208, while 2 males from A with 2 females from B (2 males, 2 females) breaks it and should not be there."
-       },
-       {
-        "label": "(a) 用 $P$ 而不是 $C$",
-        "labelEn": "(a) Using P instead of C",
-        "zh": "選人去培訓是一組人，不計次序，要用 $C^8_2 = 28$。用 $P^8_2 = 56$ 會得 $56 \\times 56 = 3136$。",
-        "en": "Selecting employees for training is a set of people, so order does not matter: use C(8,2) = 28. Using P(8,2) = 56 wrongly gives 56 × 56 = 3136."
-       },
-       {
-        "label": "(a) 兩組之間用加號（56）",
-        "labelEn": "(a) Joining the two groups with a plus sign (56)",
-        "zh": "「A 組抽 2 人 而且 B 組抽 2 人」兩步都要做，所以相乘：$28 \\times 28 = 784$。用加號（$C^8_2 + C^8_2 = 28 + 28 = 56$）就變成「A 組或者 B 組」，概念調轉了。留意 56 這個數：用 $P$ 而不用 $C$ 都會得到 56，兩個錯法的答案一樣，但成因不同。",
-        "en": "Two are drawn from A and also two from B — both steps happen, so multiply: 28 × 28 = 784. A plus sign (C(8,2) + C(8,2) = 28 + 28 = 56) turns it into 'A or B'. Note the number 56: using P instead of C also gives 56 — the same wrong answer from a different mistake."
-       },
-       {
-        "label": "(b) 兩組之間用加而不是乘",
-        "labelEn": "(b) Adding the two groups instead of multiplying",
-        "zh": "「每組各 1 男 1 女」＝ A 組的 $15$ 種配上 B 組的 $12$ 種，是分步相乘：$15 \\times 12 = 180$。寫成 $15 + 12 = 27$ 是錯的。",
-        "en": "'One male and one female from each group' pairs the 15 ways of group A with the 12 ways of group B, so multiply: 15 × 12 = 180. Writing 15 + 12 = 27 is wrong."
        }
       ],
       "tip": {

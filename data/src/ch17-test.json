@@ -579,14 +579,14 @@
       ],
       "traps": [
        {
-        "opt": "D",
-        "zh": "$6! = 720$ 當成「六個數字任意排一次」，但題目限定咗首四位只可以用 1、2、3、4，末兩位只可以用 8、9。",
-        "en": "6! = 720 treats the six digits as freely arranged, but the first four may only be 1, 2, 3, 4 and the last two only 8, 9."
-       },
-       {
         "opt": "B",
         "zh": "$26$ 係把次序唔緊要咁計（例如 $C^4_2$ 一類），但密碼一定要有次序，所以唔可以用組合。",
         "en": "26 ignores the order (a combination-style count), but a password must have a fixed order, so combinations do not apply."
+       },
+       {
+        "opt": "D",
+        "zh": "$6! = 720$ 當成「六個數字任意排一次」，但題目限定咗首四位只可以用 1、2、3、4，末兩位只可以用 8、9。",
+        "en": "6! = 720 treats the six digits as freely arranged, but the first four may only be 1, 2, 3, 4 and the last two only 8, 9."
        }
       ],
       "tip": {
@@ -666,6 +666,11 @@
       ],
       "traps": [
        {
+        "opt": "A",
+        "zh": "$729 = 9^3$ 用了「可重複」的計法；排列與組合都係唔可以重複。",
+        "en": "729 = 9³ uses a repetition-style count; neither permutations nor combinations allow repeats."
+       },
+       {
         "opt": "B",
         "zh": "$2002 = C^{14}_5$ 只係「揀 5 個人」，漏咗隊長這個職位。",
         "en": "2002 = C(14,5) only selects 5 members and forgets that one of them is the captain."
@@ -674,11 +679,6 @@
         "opt": "C",
         "zh": "$14 \\times 2 \\times C^{13}_3 = 8008$：多乘咗一個 $2$，而且把 4 名球員當成 3 名。",
         "en": "14 × 2 × C(13,3) = 8008 has an extra factor of 2 and uses 3 players instead of 4."
-       },
-       {
-        "opt": "A",
-        "zh": "$729 = 9^3$ 用了「可重複」的計法；排列與組合都係唔可以重複。",
-        "en": "729 = 9³ uses a repetition-style count; neither permutations nor combinations allow repeats."
        }
       ],
       "tip": {
@@ -754,14 +754,14 @@
       ],
       "traps": [
        {
-        "opt": "D",
-        "zh": "$225\\,629\\,712 = C^{22}_5 \\times C^{18}_5$ 用咗乘法：兩段之內要相乘，但「A 班或 B 班」係互斥分類，應該相加。",
-        "en": "225 629 712 = C(22,5) × C(18,5) multiplies, but 'S5A or S5B' is an exclusive split, so add."
-       },
-       {
         "opt": "B",
         "zh": "$658\\,008 = C^{40}_5$ 當成 40 人任揀 5 人，冇理會「同班」這個限制。",
         "en": "658 008 = C(40,5) ignores the condition that all five must be from the same class."
+       },
+       {
+        "opt": "D",
+        "zh": "$225\\,629\\,712 = C^{22}_5 \\times C^{18}_5$ 用咗乘法：兩段之內要相乘，但「A 班或 B 班」係互斥分類，應該相加。",
+        "en": "225 629 712 = C(22,5) × C(18,5) multiplies, but 'S5A or S5B' is an exclusive split, so add."
        }
       ],
       "tip": {
@@ -899,10 +899,10 @@
        "en": "a '7' or a heart.",
        "zh": "一張『7』或一張紅桃。",
        "marks": 2
-       }
-       ],
-       "parse": [
-       {
+      }
+     ],
+     "parse": [
+      {
        "from": "",
        "en": "A card is chosen from a deck of 52 playing cards.",
        "zh": "從一副 52 張的扑克牌中抽一張。",
@@ -910,8 +910,8 @@
         "zh": "認清「抽一張」＝數法數：唔使排次序，只要數有幾多個可能的結果。",
         "en": "Read “chosen” as counting ways — order does not matter, just count the possible outcomes."
        }
-       },
-       {
+      },
+      {
        "from": "",
        "en": "Find the number of ways of choosing",
        "zh": "求「揀法」的數目（答案係一個整數）。",
@@ -919,8 +919,8 @@
         "zh": "把題目要求的牌分類，逐類數有幾多張，再決定幾時加、幾時減。",
         "en": "Split the required cards into classes, count each class, then decide when to add and when to subtract."
        }
-       },
-       {
+      },
+      {
        "from": "(a)",
        "en": "a '4', a '6' or a '9',",
        "zh": "一張『4』、一張『6』或一張『9』。",
@@ -929,8 +929,8 @@
         "en": "“Or” means adding the classes — first check they do not overlap (no card is both a 4 and a 6), so simply add."
        },
        "step": 1
-       },
-       {
+      },
+      {
        "from": "(b)",
        "en": "a '7' or a heart.",
        "zh": "一張『7』或一張紅桃。",
@@ -939,10 +939,10 @@
         "en": "The 7s and the hearts overlap (the 7♥): add, then subtract the overlap once."
        },
        "step": 2
-       }
-       ],
-       "answers": [
-       {
+      }
+     ],
+     "answers": [
+      {
        "math": "4 + 4 + 4 = 12",
        "note": {
         "zh": "(a) 12 種",
@@ -1355,16 +1355,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 用 8! − 6! × 3!",
-        "labelEn": "(b) using 8! − 6! × 3!",
-        "zh": "$40\\,320 - 4\\,320 = 36\\,000$ 計嘅係「三人唔會連住坐埋一齊」，唔等於「三人兩兩唔相鄰」；真正要保證每人一個空隙。",
-        "en": "40 320 − 4 320 = 36 000 counts 'the three are not all together', which is not 'no two of them adjacent'; each must take a separate gap."
-       },
-       {
         "label": "(a) 漏咗 3!",
         "labelEn": "(a) forgetting the 3!",
         "zh": "綑成一件之後一定要把框內 3 人的排列乘返（$3! = 6$），否則只得 $6! = 720$。",
         "en": "After tying the block, multiply back the 3! orders inside it; otherwise only 6! = 720."
+       },
+       {
+        "label": "(b) 用 8! − 6! × 3!",
+        "labelEn": "(b) using 8! − 6! × 3!",
+        "zh": "$40\\,320 - 4\\,320 = 36\\,000$ 計嘅係「三人唔會連住坐埋一齊」，唔等於「三人兩兩唔相鄰」；真正要保證每人一個空隙。",
+        "en": "40 320 − 4 320 = 36 000 counts 'the three are not all together', which is not 'no two of them adjacent'; each must take a separate gap."
        },
        {
         "label": "空隙數目數錯",

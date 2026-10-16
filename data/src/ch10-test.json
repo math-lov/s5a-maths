@@ -293,11 +293,6 @@
       ],
       "traps": [
        {
-        "opt": "C",
-        "zh": "選 C「無解」＝把「or」（或）當成「and」（且）。如果題目是「$6-\\frac{x}{2}<x$ and $-3x>-12$」，就要同時 $x>4$ 及 $x<4$，那才真的無解。",
-        "en": "C means you treated 'or' as 'and'. If the question were '$6-\\frac{x}{2}<x$ and $-3x>-12$', you would need both $x>4$ and $x<4$, which has no solution."
-       },
-       {
         "opt": "A",
         "zh": "A 只解了前半句。兩個不等式之間是「or」，不是二選一。",
         "en": "A only solves the first part; the two inequalities are joined by 'or', so both parts matter."
@@ -306,6 +301,11 @@
         "opt": "B",
         "zh": "B 把 $-3x>-12$ 解得 $x<-4$：正確是除 $-3$ 之後得 $x<4$，$4$ 不是 $-4$。",
         "en": "B turns $-3x>-12$ into $x<-4$. Dividing by $-3$ gives $x<4$ — the boundary is 4, not $-4$."
+       },
+       {
+        "opt": "C",
+        "zh": "選 C「無解」＝把「or」（或）當成「and」（且）。如果題目是「$6-\\frac{x}{2}<x$ and $-3x>-12$」，就要同時 $x>4$ 及 $x<4$，那才真的無解。",
+        "en": "C means you treated 'or' as 'and'. If the question were '$6-\\frac{x}{2}<x$ and $-3x>-12$', you would need both $x>4$ and $x<4$, which has no solution."
        }
       ],
       "tip": {
@@ -392,14 +392,14 @@
       ],
       "traps": [
        {
-        "opt": "C",
-        "zh": "C 是直接照圖回答「兩根之間」，但忘記題目問的式前面多了一個負號：$-ax^{2}+bx+c$ 與圖中的 $y$ 剛好相反，所以答案要在根的「外面」。",
-        "en": "C copies the graph but ignores the minus sign: $-ax^{2}+bx+c$ is the negative of the graphed $y$, so the answer is outside the roots."
-       },
-       {
         "opt": "B",
         "zh": "B 用了「$\\le$」及「$\\ge$」。在 $x=p$ 與 $x=q$ 時 $ax^{2}-bx-c=0$，即 $-ax^{2}+bx+c=0$，不是「$<0$」，所以端點不包括，要用嚴格的「$<$」「$>$」。",
         "en": "B uses $\\le$ and $\\ge$. At $x=p$ and $x=q$ the value is 0, not $<0$, so the endpoints are not included."
+       },
+       {
+        "opt": "C",
+        "zh": "C 是直接照圖回答「兩根之間」，但忘記題目問的式前面多了一個負號：$-ax^{2}+bx+c$ 與圖中的 $y$ 剛好相反，所以答案要在根的「外面」。",
+        "en": "C copies the graph but ignores the minus sign: $-ax^{2}+bx+c$ is the negative of the graphed $y$, so the answer is outside the roots."
        },
        {
         "opt": "D",
@@ -1223,12 +1223,6 @@
       ],
       "traps": [
        {
-        "label": "把最低點當成 y 截距",
-        "zh": "$(2,\\ -6)$ 是頂點，不是 $y$ 截距。$y$ 截距是 $x=0$ 時的函數值，即常數項 $c=-2$。",
-        "en": "$(2,\\ -6)$ is the vertex, not the y-intercept. The y-intercept is the value at $x=0$, which corresponds to the constant term $c=-2$.",
-        "labelEn": "Mistaking the minimum point for the y-intercept"
-       },
-       {
         "label": "(b)(i) 誤將不等式的解寫成方程的根",
         "zh": "解二次不等式必須給出變數 $x$ 的範圍區間 $2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}$。考生常習慣寫成方程根 $x = 2\\pm\\sqrt{6}$，這在文憑試會被扣除答案分。同時題目指明以根式表示，切勿寫成小數。",
         "en": "Solving an inequality requires stating the interval $2-\\sqrt{6}\\le x\\le 2+\\sqrt{6}$. Writing the equation roots $x=2\\pm\\sqrt{6}$ loses the answer mark in the DSE. Furthermore, leave answers in exact surd form as instructed.",
@@ -1239,6 +1233,12 @@
         "zh": "在 $-0.449$ 至 $4.449$ 之間的整數包括 $0,\\ 1,\\ 2,\\ 3,\\ 4$。常見直覺：只列出正整數，容易漏掉 $0$。另外不等式帶有等號，若端點剛好是整數也必須納入。",
         "en": "The integers inside $[-0.449, 4.449]$ are $0,\\ 1,\\ 2,\\ 3,\\ 4$. Students frequently overlook 0 and only list positive integers. Also ensure endpoints are checked if they happen to be integers.",
         "labelEn": "(b)(ii) Forgetting 0 when listing integers"
+       },
+       {
+        "label": "把最低點當成 y 截距",
+        "zh": "$(2,\\ -6)$ 是頂點，不是 $y$ 截距。$y$ 截距是 $x=0$ 時的函數值，即常數項 $c=-2$。",
+        "en": "$(2,\\ -6)$ is the vertex, not the y-intercept. The y-intercept is the value at $x=0$, which corresponds to the constant term $c=-2$.",
+        "labelEn": "Mistaking the minimum point for the y-intercept"
        }
       ],
       "tip": {

@@ -919,16 +919,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 寫成 1/4",
-        "labelEn": "(b) answering 1/4",
-        "zh": "「最矮的排第一」是 $\\frac{1}{4}$，但題目要的是「四人由矮到高全部依次排好」，四個位置同時符合，所以是 $\\frac{1}{24}$。",
-        "en": "\"The shortest is first\" is 1/4, but the question wants all four in height order at once, so the answer is 1/24."
-       },
-       {
         "label": "(a) 用 C 而不用 P",
         "labelEn": "(a) using combinations",
         "zh": "排隊次序重要，所以是 $4!$（排列）。若用了 $C^4_4 = 1$ 就把所有排法當成同一種。",
         "en": "Order matters in a queue, so it is 4! (a permutation). Using $C^4_4 = 1$ would treat every queue as the same."
+       },
+       {
+        "label": "(b) 寫成 1/4",
+        "labelEn": "(b) answering 1/4",
+        "zh": "「最矮的排第一」是 $\\frac{1}{4}$，但題目要的是「四人由矮到高全部依次排好」，四個位置同時符合，所以是 $\\frac{1}{24}$。",
+        "en": "\"The shortest is first\" is 1/4, but the question wants all four in height order at once, so the answer is 1/24."
        }
       ],
       "tip": {
@@ -1184,6 +1184,12 @@
       ],
       "traps": [
        {
+        "label": "(b) 用 1 減去 (a)",
+        "labelEn": "(b) subtracting (a) from 1",
+        "zh": "$1 - \\frac{1}{21} = \\frac{20}{21}$ 是「至少一個輔音」的機會，不是「兩個都是輔音」。",
+        "en": "1 − 1/21 = 20/21 is the probability of \"at least one consonant\", not \"both consonants\"."
+       },
+       {
         "label": "把 Y 當元音",
         "labelEn": "treating Y as a vowel",
         "zh": "'FRIENDS' 之中沒有 Y；即使有，在中學數學裡通常也只把 A、E、I、O、U 當元音。",
@@ -1194,12 +1200,6 @@
         "labelEn": "miscounting the letters",
         "zh": "F-R-I-E-N-D-S 共 7 個字母，不是 6 個。先把字母逐一寫出來數一次最穩妥。",
         "en": "F-R-I-E-N-D-S is 7 letters, not 6. Writing them out once is the safest way to count."
-       },
-       {
-        "label": "(b) 用 1 減去 (a)",
-        "labelEn": "(b) subtracting (a) from 1",
-        "zh": "$1 - \\frac{1}{21} = \\frac{20}{21}$ 是「至少一個輔音」的機會，不是「兩個都是輔音」。",
-        "en": "1 − 1/21 = 20/21 is the probability of \"at least one consonant\", not \"both consonants\"."
        }
       ],
       "tip": {
@@ -1455,16 +1455,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 用組合 $C^7_3$",
-        "labelEn": "(b) using combinations",
-        "zh": "戲服分配給不同的人，是有次序的排列。若用 $C^7_3 = 35$，就漏了 3 位朋友之間的 $3!$ 種分配。",
-        "en": "Costumes are assigned to named people, so this is a permutation. Using $C^7_3 = 35$ loses the $3!$ assignments among the three friends."
-       },
-       {
         "label": "(a) 用 C^9_5",
         "labelEn": "(a) using $C^9_5$",
         "zh": "$C^9_5 = 126$ 只是「選出 5 套戲服」，沒有把 5 套分給 5 個人。",
         "en": "$C^9_5 = 126$ only selects five costumes; it does not hand them out to five people."
+       },
+       {
+        "label": "(b) 用組合 $C^7_3$",
+        "labelEn": "(b) using combinations",
+        "zh": "戲服分配給不同的人，是有次序的排列。若用 $C^7_3 = 35$，就漏了 3 位朋友之間的 $3!$ 種分配。",
+        "en": "Costumes are assigned to named people, so this is a permutation. Using $C^7_3 = 35$ loses the $3!$ assignments among the three friends."
        },
        {
         "label": "(b) 分子仍用 9 而沒有減 2",
@@ -1774,16 +1774,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 答 1/42",
-        "labelEn": "(b) answering 1/42",
-        "zh": "$\\frac{1}{42}$ 是「Macy 第一、Natalie 最後」。 (b) 只要求兩人相鄰且次序固定，寬鬆得多，所以是 $\\frac{1}{7}$。",
-        "en": "1/42 fixes both ends. Part (b) only asks the two to be adjacent in a fixed order, which is far less restrictive: 1/7."
-       },
-       {
         "label": "(a) 忘記其餘 5 人仍可排列",
         "labelEn": "(a) forgetting the other five still arrange",
         "zh": "合條件的次序不只 1 種：其餘 5 人可以互換位置，所以是 $5!$ 種。",
         "en": "There is more than one favourable order: the other five students can permute, giving $5!$ orders."
+       },
+       {
+        "label": "(b) 答 1/42",
+        "labelEn": "(b) answering 1/42",
+        "zh": "$\\frac{1}{42}$ 是「Macy 第一、Natalie 最後」。 (b) 只要求兩人相鄰且次序固定，寬鬆得多，所以是 $\\frac{1}{7}$。",
+        "en": "1/42 fixes both ends. Part (b) only asks the two to be adjacent in a fixed order, which is far less restrictive: 1/7."
        }
       ],
       "tip": {
@@ -2150,12 +2150,6 @@
       ],
       "traps": [
        {
-        "label": "(c) 反面只減兩項",
-        "labelEn": "(c) stopping short in the complement",
-        "zh": "「至少 3 張」的反面是「0、1、2 張」，三項都要減。只減兩項會得到一個偏大的答案。",
-        "en": "The complement of \"at least 3\" is 0, 1 or 2 — all three terms. Subtracting only two gives an answer that is too large."
-       },
-       {
         "label": "(a) 寫成 C^4_4 C^9_5",
         "labelEn": "(a) writing $C^4_4 C^9_5$",
         "zh": "只選 5 張照片，4 張合照之外只剩 1 個名額，所以是 $C^9_1 = 9$ 而不是 $C^9_5 = 126$。",
@@ -2166,6 +2160,12 @@
         "labelEn": "(b) leaving out the individual photos",
         "zh": "5 張之中 3 張是合照，另外 2 張一定要從 9 張個人照中選，不可漏。",
         "en": "If three of the five are group photos, the other two must come from the nine individual photos."
+       },
+       {
+        "label": "(c) 反面只減兩項",
+        "labelEn": "(c) stopping short in the complement",
+        "zh": "「至少 3 張」的反面是「0、1、2 張」，三項都要減。只減兩項會得到一個偏大的答案。",
+        "en": "The complement of \"at least 3\" is 0, 1 or 2 — all three terms. Subtracting only two gives an answer that is too large."
        }
       ],
       "tip": {
@@ -2263,16 +2263,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 逐項加「恰好 1 個」與「恰好 2 個」",
-        "labelEn": "(b) adding the one-prize and two-prize cases",
-        "zh": "這樣做也可以（$\\frac{C^2_1 C^{14}_2 + C^2_2 C^{14}_1}{560} = \\frac{182 + 14}{560} = \\frac{7}{20}$），但多花一倍時間。反面只需一步。",
-        "en": "That works too — $(C^2_1 C^{14}_2 + C^2_2 C^{14}_1)/560 = (182 + 14)/560 = 7/20$ — but takes twice as long. The complement is one step."
-       },
-       {
         "label": "(a) 用 C^{16}_3 減 C^2_1",
         "labelEn": "(a) subtracting a single term",
         "zh": "「沒有大獎」是把兩個大獎完全排除在外，所以分子由 14 個球入手，而不是「總數減去甚麼」。",
         "en": "\"No grand prize\" excludes both prizes completely, so the numerator starts from the 14 consolation balls rather than subtracting something."
+       },
+       {
+        "label": "(b) 逐項加「恰好 1 個」與「恰好 2 個」",
+        "labelEn": "(b) adding the one-prize and two-prize cases",
+        "zh": "這樣做也可以（$\\frac{C^2_1 C^{14}_2 + C^2_2 C^{14}_1}{560} = \\frac{182 + 14}{560} = \\frac{7}{20}$），但多花一倍時間。反面只需一步。",
+        "en": "That works too — $(C^2_1 C^{14}_2 + C^2_2 C^{14}_1)/560 = (182 + 14)/560 = 7/20$ — but takes twice as long. The complement is one step."
        },
        {
         "label": "把「逐個抽」當成有次序而寫錯分母",
@@ -3480,12 +3480,6 @@
       ],
       "traps": [
        {
-        "label": "分子忘了把兩類合併",
-        "labelEn": "forgetting to merge the two other kinds",
-        "zh": "「非榛子」＝腰果 9 + 杏仁 5 = 14 粒。若寫成 $C^9_2$ 就把杏仁完全漏掉。",
-        "en": "\"Not hazelnut\" means 9 cashews plus 5 almonds, i.e. 14. Writing $C^9_2$ leaves the almonds out entirely."
-       },
-       {
         "label": "(c) 漏了一類",
         "labelEn": "(c) missing a case",
         "zh": "「不多於 1 粒」的反面只有兩類（2 粒、3 粒），兩類都要減；只減一項會得到偏大的答案。",
@@ -3496,6 +3490,12 @@
         "labelEn": "(c) arithmetic slip when combining fractions",
         "zh": "$\\frac{3}{17} = \\frac{12}{68}$，通分之後才可相加。",
         "en": "3/17 equals 12/68; the fractions must share a denominator before adding."
+       },
+       {
+        "label": "分子忘了把兩類合併",
+        "labelEn": "forgetting to merge the two other kinds",
+        "zh": "「非榛子」＝腰果 9 + 杏仁 5 = 14 粒。若寫成 $C^9_2$ 就把杏仁完全漏掉。",
+        "en": "\"Not hazelnut\" means 9 cashews plus 5 almonds, i.e. 14. Writing $C^9_2$ leaves the almonds out entirely."
        }
       ],
       "tip": {
@@ -3772,6 +3772,12 @@
       ],
       "traps": [
        {
+        "label": "(a)(ii) 逐類相加漏項",
+        "labelEn": "(a)(ii) losing cases when adding",
+        "zh": "正面要分 1、2、3、4、5 位女生五類，很容易漏；反面只有一類。",
+        "en": "The direct route needs five cases (1 to 5 girls) and invites omissions; the complement has only one."
+       },
+       {
         "label": "(b) 重新由頭數一次",
         "labelEn": "(b) starting the counting from scratch",
         "zh": "(b) 只是把新的條件放在分母：分子用 (a)(i)，分母用 (a)(ii)。$A \\cap B = A$ 這個觀察是關鍵，可以省掉大量計算。",
@@ -3782,12 +3788,6 @@
         "labelEn": "(b) inverting the ratio",
         "zh": "「已知 $B$，求 $A$」＝$\\frac{P(A \\cap B)}{P(B)}$，條件事件一定在分母。算出來的答案必定大於原來的 $P(A)$（此題 $\\frac{280}{759} > \\frac{280}{783}$），可以用來核對。",
         "en": "\"Given B, find A\" is P(A ∩ B)/P(B); the condition always sits in the denominator. The answer must exceed the original P(A) — here 280/759 > 280/783 — which serves as a check."
-       },
-       {
-        "label": "(a)(ii) 逐類相加漏項",
-        "labelEn": "(a)(ii) losing cases when adding",
-        "zh": "正面要分 1、2、3、4、5 位女生五類，很容易漏；反面只有一類。",
-        "en": "The direct route needs five cases (1 to 5 girls) and invites omissions; the complement has only one."
        }
       ],
       "tip": {
@@ -4012,12 +4012,6 @@
       ],
       "traps": [
        {
-        "label": "分母忘記乘 2",
-        "labelEn": "wrong total number of attendees",
-        "zh": "6 支隊 × 每隊 2 人 = 12 人，分母是 $C^{12}_5$，不是 $C^6_5$。",
-        "en": "Six teams of two make 12 attendees, so the denominator is C(12,5), not C(6,5)."
-       },
-       {
         "label": "(a) 漏了 $2^5$",
         "labelEn": "(a) omitting the 2⁵",
         "zh": "選好 5 支隊之後，每隊都有 2 位球員可選，所以每隊都要 ×2，共 $2^5$。",
@@ -4028,6 +4022,12 @@
         "labelEn": "(b) adding the cases for \"at most 4\"",
         "zh": "正面要分「4 支、3 支、2 支……」，反面只有一類，直接用 $1 - \\frac{8}{33}$。",
         "en": "The direct route needs 4, 3, 2 … teams; the complement is a single case, so use 1 − 8/33."
+       },
+       {
+        "label": "分母忘記乘 2",
+        "labelEn": "wrong total number of attendees",
+        "zh": "6 支隊 × 每隊 2 人 = 12 人，分母是 $C^{12}_5$，不是 $C^6_5$。",
+        "en": "Six teams of two make 12 attendees, so the denominator is C(12,5), not C(6,5)."
        }
       ],
       "tip": {
@@ -4167,12 +4167,6 @@
       ],
       "traps": [
        {
-        "label": "以「對」為單位數人數",
-        "labelEn": "counting in couples instead of people",
-        "zh": "分母是從 16 人中選 6 人（$C^{16}_6$），不是從 8 對中選 6 對。",
-        "en": "The denominator chooses 6 of 16 people, C(16,6), not 6 of 8 couples."
-       },
-       {
         "label": "(b) 第二個組合用 C^8_4 或 C^8_5",
         "labelEn": "(b) choosing from the wrong pool",
         "zh": "已被選中的那對夫婦不能再出現，所以餘下 4 人從「其餘 7 對」中選 4 對，即 $C^7_4$。",
@@ -4183,6 +4177,12 @@
         "labelEn": "(b) omitting the 2⁴",
         "zh": "「4 對各取一人」每對都有 2 種取法，所以要乘 $2^4$。",
         "en": "\"One person from each of 4 couples\" gives 2 choices per couple, hence the factor 2⁴."
+       },
+       {
+        "label": "以「對」為單位數人數",
+        "labelEn": "counting in couples instead of people",
+        "zh": "分母是從 16 人中選 6 人（$C^{16}_6$），不是從 8 對中選 6 對。",
+        "en": "The denominator chooses 6 of 16 people, C(16,6), not 6 of 8 couples."
        }
       ],
       "tip": {

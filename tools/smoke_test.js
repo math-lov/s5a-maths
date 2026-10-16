@@ -1675,6 +1675,20 @@ ok(qzTraps("B4").length === 5 && /385/.test(qzText("B4")) && /210/.test(qzText("
 ok(qzTraps("B5").length === 7 && /邊界/.test(qzText("B5")) && /208/.test(qzText("B5")) &&
   /用加號/.test(qzText("B5")),
   "Q10 組別邊界／加乘：補上「合併 A、B 兩組」、「13 × 16 = 208」與 (a) 加號 56");
+/* 常見錯誤的次序（2026-10-16 老師指示）：長題 (a)→(b)→(c)、MC A→B→C→D */
+const trapToken = (t) => {
+  const m = (t.label || "").match(/^\(([a-z])\)/);
+  if (m) return m[1];
+  return /^[A-Z]$/.test(t.opt || "") ? t.opt : "";
+};
+ok(Q_QS.every((q) => {
+  const seq = (q.solution.traps || []).map(trapToken).filter(Boolean);
+  return seq.join("") === seq.slice().sort().join("");
+}),
+  "全份卷的常見錯誤都按小題 (a)→(b)→(c)／選項 A→B→C→D 排好（build.py S18 把關）");
+const b5Labs = qB5.$$(".sol-card .trap > b").map((b) => (b.textContent.match(/^\s*\(([a-z])\)/) || [])[1]);
+ok(b5Labs.join("") === "aabcccc",
+  "Q10 頁面顯示的常見錯誤次序 = (a)(a)(b)(c)(c)(c)(c)（實際 " + b5Labs.join("") + "）");
 ok(/525/.test(qzText("Bonus")),
   "加分題 Q11：點出「第 9 題那種都除 4! 會錯得 525」，與本題必須除 4! 對比");
 ok(!/學號|座號|班別/.test(read("data/src/ch17-quiz.json")) && !/學號/.test(Q_JS),
@@ -1687,6 +1701,19 @@ ok([["A2", 2, 3], ["B1", 6, 5], ["B3", 8, 8], ["B4", 9, 5], ["B5", 10, 7], ["bon
       t.$$(".katex-error").length === 0;
   }),
   "六題的補充誤區都在頁面渲染（中英齊全、KaTeX 零錯誤）");
+
+/* Q7(b)（長題「不相鄰」）除了反面，仲要教插空法（老師 2026-10 指示） */
+const b2AltSrc = JSON.stringify((qz("B2").solution || {}).alt || []);
+ok(b2AltSrc.indexOf("插空法") >= 0 && b2AltSrc.indexOf("P^6_2") >= 0 &&
+  b2AltSrc.indexOf("3600") >= 0 && b2AltSrc.indexOf("C^6_2") < 0,
+  "Q7(b) 的插空法寫在 solution.alt：$5! \\times P^6_2 = 120 \\times 30 = 3600$（空隙有先後 → 用 P 不用 C）");
+const qB2 = boot("quiz.html", "?c=ch17-quiz&p=7", null, "show");
+const b2Alt = qB2.$(".sol-card .alt-box");
+ok(!!b2Alt && b2Alt.tagName === "DETAILS" && b2Alt.open === false &&
+  /插空法/.test(b2Alt.textContent) && /3600/.test(b2Alt.textContent) &&
+  b2Alt.querySelectorAll("br").length >= 1 && qB2.$$(".katex-error").length === 0 &&
+  !!qB2.$(".sol-card .alt-box .l-en"),
+  "Q7(b) 頁面顯示「另一個做法（參考）」摺疊區（預設收起、有分段、中英齊全、KaTeX 零錯誤）");
 
 /* ── 總覽頁可讀性：引言一句摘要 ＋ 編號步驟（唔再係一大段）────────────── */
 console.log("\n== 總覽頁引言（摘要 ＋ 編號步驟）==");

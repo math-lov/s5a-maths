@@ -441,6 +441,12 @@
       ],
       "traps": [
        {
+        "label": "(b) 分母用 20 或用 15",
+        "labelEn": "(b) using 20 or 15 as the second denominator",
+        "zh": "第二個分母是「剩下的可選椅子總數」$19$，不是 $20$（房間總數）也不是 $15$（好椅數）；分母與分子必須來自同一個縮小後的樣本空間。",
+        "en": "The second denominator is the 19 chairs still available, not 20 and not 15; the numerator and denominator must come from the same shrunken sample space."
+       },
+       {
         "label": "第二個分母仍寫 20",
         "labelEn": "Keeping the second denominator at 20",
         "zh": "兩人「各自隨機坐一張」，坐完就不能再坐，所以總數由 20 變 19。若寫 $\\frac{5}{20} \\times \\frac{4}{20}$ 便算錯。",
@@ -451,12 +457,6 @@
         "labelEn": "Assuming the two are independent",
         "zh": "獨立才可以寫 $\\frac{5}{20} \\times \\frac{5}{20}$；但 Jennifer 的機會被 Howard 影響，所以不是獨立，要用 $\\frac{5}{20} \\times P(\\text{爛椅} \\mid \\text{Howard 先坐})$。",
         "en": "Only independent events give 5/20 × 5/20. Jennifer's chance is affected by Howard, so write 5/20 × P(broken | Howard sat first)."
-       },
-       {
-        "label": "(b) 分母用 20 或用 15",
-        "labelEn": "(b) using 20 or 15 as the second denominator",
-        "zh": "第二個分母是「剩下的可選椅子總數」$19$，不是 $20$（房間總數）也不是 $15$（好椅數）；分母與分子必須來自同一個縮小後的樣本空間。",
-        "en": "The second denominator is the 19 chairs still available, not 20 and not 15; the numerator and denominator must come from the same shrunken sample space."
        }
       ],
       "tip": {
@@ -568,16 +568,16 @@
       ],
       "traps": [
        {
-        "label": "(c) 以為是獨立事件",
-        "labelEn": "(c) treating the draws as independent",
-        "zh": "轉入的球會改變袋 B 的組成，所以第二步依賴第一步；不可寫 $\\frac{5}{8} \\times \\frac{5}{9}$ 之類的式子。",
-        "en": "The transferred ball changes bag B, so the second draw depends on the first; expressions like 5/8 × 5/9 are wrong."
-       },
-       {
         "label": "(a)(b) 分母忘記加 1",
         "labelEn": "(a)(b) forgetting the +1 in the denominator",
         "zh": "袋 B 原本 8 個球，轉入一個後變 9 個；分母應該是 $9$，不是 $8$。",
         "en": "Bag B starts with 8 balls and becomes 9 after the transfer; the denominator is 9, not 8."
+       },
+       {
+        "label": "(c) 以為是獨立事件",
+        "labelEn": "(c) treating the draws as independent",
+        "zh": "轉入的球會改變袋 B 的組成，所以第二步依賴第一步；不可寫 $\\frac{5}{8} \\times \\frac{5}{9}$ 之類的式子。",
+        "en": "The transferred ball changes bag B, so the second draw depends on the first; expressions like 5/8 × 5/9 are wrong."
        },
        {
         "label": "(c) 忘了乘 $P(\\text{袋 A})$",
@@ -1163,6 +1163,12 @@
       ],
       "traps": [
        {
+        "label": "(b) 忘了 Asha 的機會率不是 $\\frac{2}{3}$",
+        "labelEn": "(b) forgetting Asha's rate is 1/2, not 2/3",
+        "zh": "Asha 的成功率是 $\\frac{1}{2}$，所以失敗率是 $\\frac{1}{2}$；$\\frac{2}{3}$ 是 Luna 的失敗率，不要兩格都用。",
+        "en": "Asha's success rate is 1/2 so her failure rate is 1/2; 2/3 is Luna's failure rate — do not use it twice."
+       },
+       {
         "label": "以為 (a) 與 (b) 相等",
         "labelEn": "Assuming (a) and (b) are equal",
         "zh": "$\\frac{1}{2} \\times \\frac{2}{3} = \\frac{1}{3}$ 而 $\\frac{1}{3} \\times \\frac{1}{2} = \\frac{1}{6}$，兩個都對但答案不同；乘法交換律不能改變「誰的成功率乘誰的失敗率」。",
@@ -1173,12 +1179,6 @@
         "labelEn": "Using 1/3 as Luna's failure rate",
         "zh": "$\\frac{1}{3}$ 是 Luna 成功（答對）的概率；失敗率是 $1 - \\frac{1}{3} = \\frac{2}{3}$。",
         "en": "1/3 is Luna's success rate; her failure rate is 1 − 1/3 = 2/3."
-       },
-       {
-        "label": "(b) 忘了 Asha 的機會率不是 $\\frac{2}{3}$",
-        "labelEn": "(b) forgetting Asha's rate is 1/2, not 2/3",
-        "zh": "Asha 的成功率是 $\\frac{1}{2}$，所以失敗率是 $\\frac{1}{2}$；$\\frac{2}{3}$ 是 Luna 的失敗率，不要兩格都用。",
-        "en": "Asha's success rate is 1/2 so her failure rate is 1/2; 2/3 is Luna's failure rate — do not use it twice."
        }
       ],
       "tip": {
@@ -1310,16 +1310,16 @@
         "en": "\"Neither\" needs the failure rates: (1 − 0.9)(1 − 0.4) = 0.06; using 0.9 × 0.4 = 0.36 repeats part (a)."
        },
        {
-        "label": "(c) 只減一項",
-        "labelEn": "(c) subtracting only one term",
-        "zh": "「只有一個」的反面有兩種情況（兩個都食、兩個都唔食），要減兩項，寫成 $1 - 0.36$ 會得到 $0.64$。",
-        "en": "\"Exactly one\" has two cases in its complement (both, neither), so two terms must be subtracted; 1 − 0.36 alone gives 0.64."
-       },
-       {
         "label": "(b) 以為次序重要",
         "labelEn": "(b) thinking the order matters",
         "zh": "在 (b) 兩個因子都是失敗率，$\\left(1 - 0.4\\right) \\times \\left(1 - 0.9\\right)$ 寫成相反次序也對；但在「只有 A」那種題目次序就有意義。",
         "en": "In (b) both factors are failure rates, so the reversed order also works; but in \"only A\" questions the order does carry meaning."
+       },
+       {
+        "label": "(c) 只減一項",
+        "labelEn": "(c) subtracting only one term",
+        "zh": "「只有一個」的反面有兩種情況（兩個都食、兩個都唔食），要減兩項，寫成 $1 - 0.36$ 會得到 $0.64$。",
+        "en": "\"Exactly one\" has two cases in its complement (both, neither), so two terms must be subtracted; 1 − 0.36 alone gives 0.64."
        }
       ],
       "tip": {
@@ -2207,6 +2207,12 @@
       ],
       "traps": [
        {
+        "label": "(a) 忘了題目其實是同一個藍色方塊",
+        "labelEn": "(a) forgetting the same block may be drawn",
+        "zh": "放回抽取可以抽到同一個方塊兩次，所以 $\\frac{49}{169}$ 已經包含這種情況，不需要扣減。",
+        "en": "With replacement the very same block may be drawn twice, so 49/169 already covers that case and nothing must be subtracted."
+       },
+       {
         "label": "(b) 只改分母不改分子",
         "labelEn": "(b) shrinking only the denominator",
         "zh": "抽走一個藍色方塊，藍色數目由 $7$ 變 $6$，所以分子也要減；只寫 $\\frac{7}{12}$ 便錯了。",
@@ -2217,12 +2223,6 @@
         "labelEn": "(b) assuming the two chances are equal",
         "zh": "兩次都是藍色的機會在放回時才是 $\\left(\\frac{7}{13}\\right)^2$；不放回時第二次一定比第一次難，所以 (b) 的答案應該小於 (a)：$\\frac{7}{26} \\approx 0.27 < 0.29$。",
         "en": "Only with replacement gives (7/13)²; without replacement the second blue is harder, so (b) must be smaller than (a): 7/26 ≈ 0.27 < 0.29."
-       },
-       {
-        "label": "(a) 忘了題目其實是同一個藍色方塊",
-        "labelEn": "(a) forgetting the same block may be drawn",
-        "zh": "放回抽取可以抽到同一個方塊兩次，所以 $\\frac{49}{169}$ 已經包含這種情況，不需要扣減。",
-        "en": "With replacement the very same block may be drawn twice, so 49/169 already covers that case and nothing must be subtracted."
        }
       ],
       "tip": {
@@ -2760,16 +2760,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 寫成 $3 \\times \\frac{2}{6}$",
-        "labelEn": "Writing 3 × 2/6 in (b)",
-        "zh": "$\\frac{2}{6}$ 是「某一次出現 $5$ 或 $6$」的機率，$3 \\times \\frac{2}{6} = 1$ 顯然不對。這是 18.2 的加法定律，但三個事件「第一次是 $5$ 或 $6$」互相重疊，不能直接相加。",
-        "en": "2/6 is the probability for one specified throw, and 3 × 2/6 = 1 is obviously wrong. This is the addition law, but the three events \"the first throw is 5 or 6\" overlap and cannot simply be added."
-       },
-       {
         "label": "(a) 把 $\\left(\\frac{4}{6}\\right)^{3}$ 寫成 $\\frac{4}{6} \\times \\frac{4}{6}$（漏了一次）",
         "labelEn": "Missing one factor in (a)",
         "zh": "擲了 $3$ 次就有 $3$ 個因子。寫完乘法後數一數因子數目等於次數。",
         "en": "Three throws means three factors. Count the factors after writing the product to check it matches the number of throws."
+       },
+       {
+        "label": "(b) 寫成 $3 \\times \\frac{2}{6}$",
+        "labelEn": "Writing 3 × 2/6 in (b)",
+        "zh": "$\\frac{2}{6}$ 是「某一次出現 $5$ 或 $6$」的機率，$3 \\times \\frac{2}{6} = 1$ 顯然不對。這是 18.2 的加法定律，但三個事件「第一次是 $5$ 或 $6$」互相重疊，不能直接相加。",
+        "en": "2/6 is the probability for one specified throw, and 3 × 2/6 = 1 is obviously wrong. This is the addition law, but the three events \"the first throw is 5 or 6\" overlap and cannot simply be added."
        }
       ],
       "tip": {
@@ -3002,6 +3002,12 @@
       ],
       "traps": [
        {
+        "label": "(b) 寫成 $1 - 0.572$",
+        "labelEn": "Writing 1 − 0.572 in (b)",
+        "zh": "$0.572$ 是「恰好兩人」的機率，它的相反是「零或一人遲到」與「三人全遲到」的聯集，並不等於 (b)。",
+        "en": "0.572 is \"exactly two late\"; its complement is \"fewer than two or all three\", which is not (b)."
+       },
+       {
         "label": "漏掉其中一種情況",
         "labelEn": "Missing one of the cases",
         "zh": "「恰好 $k$ 人」在 $n$ 人中有 $\\binom{n}{k}$ 種情況。三人之中恰好兩人就有 $\\binom{3}{2} = 3$ 種，寫答案前先寫出這 $3$ 種並逐一標名。",
@@ -3012,12 +3018,6 @@
         "labelEn": "Forgetting to complement the on-time rates",
         "zh": "例如情況三誤寫成 $0.2 \\times 0.7 \\times 0.9 = 0.126$，等於說 Nika 也遲到，那是三人全遲到。寫乘法前先檢查每個因子對應誰、遲到還是準時。",
         "en": "For example, writing 0.2 × 0.7 × 0.9 = 0.126 for case 3 means Nika is also late — that is all three late. Check who each factor belongs to and whether it is late or on time."
-       },
-       {
-        "label": "(b) 寫成 $1 - 0.572$",
-        "labelEn": "Writing 1 − 0.572 in (b)",
-        "zh": "$0.572$ 是「恰好兩人」的機率，它的相反是「零或一人遲到」與「三人全遲到」的聯集，並不等於 (b)。",
-        "en": "0.572 is \"exactly two late\"; its complement is \"fewer than two or all three\", which is not (b)."
        }
       ],
       "tip": {
@@ -3143,16 +3143,16 @@
       ],
       "traps": [
        {
-        "label": "(c) 用 $\\frac{20+30}{150}$ 或 $\\frac{20+30}{48+30}$",
-        "labelEn": "Using (20+30)/150 or (20+30)/48+30",
-        "zh": "條件是「是女生」，分母必須是女生那一行的總數 $75$。這是本節最常見的錯誤：分子分母用了不同的條件範圍。",
-        "en": "The condition is \"is a girl\", so the denominator must be the girl row total 75. This is the most common error: numerator and denominator from different conditions."
-       },
-       {
         "label": "(b) 寫成 $\\frac{20}{150}$",
         "labelEn": "Writing 20/150 in (b)",
         "zh": "「已知喜愛夏季」已經把範圍縮小到夏季，分母不能再用 $150$。",
         "en": "\"Given that the season is summer\" has already narrowed the range; the denominator can no longer be 150."
+       },
+       {
+        "label": "(c) 用 $\\frac{20+30}{150}$ 或 $\\frac{20+30}{48+30}$",
+        "labelEn": "Using (20+30)/150 or (20+30)/48+30",
+        "zh": "條件是「是女生」，分母必須是女生那一行的總數 $75$。這是本節最常見的錯誤：分子分母用了不同的條件範圍。",
+        "en": "The condition is \"is a girl\", so the denominator must be the girl row total 75. This is the most common error: numerator and denominator from different conditions."
        },
        {
         "label": "在 (c) 用加法定律後忘記除以總人數",
@@ -3792,6 +3792,12 @@
       ],
       "traps": [
        {
+        "label": "(a) 分母寫成 $\\frac{10}{11} \\times \\frac{9}{10}$",
+        "labelEn": "Writing 10/11 × 9/10 in (a)",
+        "zh": "雖然數值巧合地算出 $\\frac{2}{12}\\times\\frac{10}{11}\\times\\frac{1}{10}$，但 $\\frac{9}{10}$ 是錯的：抽走一條之後分母是 $11$ 而非 $10$。用文字寫「而家盒內有……」最安全。",
+        "en": "9/10 is wrong: after one bar is removed the denominator is 11, not 10. Writing \"the box now contains ...\" in words is the safest habit."
+       },
+       {
         "label": "(b) 分母用 $\\frac{2}{10}$",
         "labelEn": "Using 2/10 as the third factor in (b)",
         "zh": "前兩位之中已經有人抽走一條金條，剩下只有 $1$ 條，所以是 $\\frac{1}{10}$。寫每個因子前先檢查之前有沒有金條已被取走。",
@@ -3802,12 +3808,6 @@
         "labelEn": "Forgetting the factor 2 in (b)",
         "zh": "「前兩人中一金一銅」包含兩種次序。金條在前或在後是不同的事件，概率相同但要乘 $2$。",
         "en": "\"One gold among the first two\" has two orders. Gold-first and gold-second are different events of equal probability, so multiply by 2."
-       },
-       {
-        "label": "(a) 分母寫成 $\\frac{10}{11} \\times \\frac{9}{10}$",
-        "labelEn": "Writing 10/11 × 9/10 in (a)",
-        "zh": "雖然數值巧合地算出 $\\frac{2}{12}\\times\\frac{10}{11}\\times\\frac{1}{10}$，但 $\\frac{9}{10}$ 是錯的：抽走一條之後分母是 $11$ 而非 $10$。用文字寫「而家盒內有……」最安全。",
-        "en": "9/10 is wrong: after one bar is removed the denominator is 11, not 10. Writing \"the box now contains ...\" in words is the safest habit."
        }
       ],
       "tip": {
@@ -3933,16 +3933,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 寫成 $1 - \\frac{11}{70}$",
-        "labelEn": "Writing 1 − 11/70 in (b)",
-        "zh": "$\\frac{11}{70}$ 是「恰好 $3$ 次」，它的反面是「不是 $3$ 次」，即 $1$、$2$、$4$、$5$、$6$ 次全部包括在內，並不等於「至多 $3$ 次」。",
-        "en": "11/70 is \"exactly 3\"; its complement includes 1, 2, 4, 5 and 6 draws, which is not \"at most 3\"."
-       },
-       {
         "label": "(a) 最後一個因子寫成 $\\frac{4}{16}$",
         "labelEn": "Using 4/16 as the last factor in (a)",
         "zh": "前兩次抽走的都是非黃色卡，黃色卡仍是 $4$ 張，但總數已減至 $14$，所以是 $\\frac{4}{14}$。",
         "en": "The first two cards were non-yellow, so all 4 yellow cards remain, but the total has fallen to 14, so it is 4/14."
+       },
+       {
+        "label": "(b) 寫成 $1 - \\frac{11}{70}$",
+        "labelEn": "Writing 1 − 11/70 in (b)",
+        "zh": "$\\frac{11}{70}$ 是「恰好 $3$ 次」，它的反面是「不是 $3$ 次」，即 $1$、$2$、$4$、$5$、$6$ 次全部包括在內，並不等於「至多 $3$ 次」。",
+        "en": "11/70 is \"exactly 3\"; its complement includes 1, 2, 4, 5 and 6 draws, which is not \"at most 3\"."
        },
        {
         "label": "(b) 漏掉其中一種次數",
@@ -4046,16 +4046,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 寫成 $\\frac{2}{7} + \\frac{5}{7}$",
-        "labelEn": "Writing 2/7 + 5/7 in (b)",
-        "zh": "這是「在袋 $A$ 抽到卡通」或「在袋 $B$ 抽到卡通」的條件概率，但漏了選袋那一步。選袋與抽貼紙是兩個獨立事件，要用乘法。",
-        "en": "That is the conditional probability given a bag, but the bag choice itself is missing. Choosing a bag and drawing from it are two independent events, so multiply."
-       },
-       {
         "label": "(a) 寫成 $\\frac{1}{7}$ 或 $\\frac{1}{2} \\times \\frac{1}{6}$",
         "labelEn": "Writing 1/7 or 1/2 × 1/6",
         "zh": "$\\frac{1}{7}$ 漏了選袋的 $\\frac{1}{2}$；$\\frac{1}{6}$ 是另一個袋 $B$ 的張數，題目沒有要求。寫完後檢查概率不應大於 $\\frac{1}{2}$。",
         "en": "1/7 omits the 1/2 for the bag; 1/6 uses the size of the other bag, which is irrelevant. Check that the answer cannot exceed 1/2."
+       },
+       {
+        "label": "(b) 寫成 $\\frac{2}{7} + \\frac{5}{7}$",
+        "labelEn": "Writing 2/7 + 5/7 in (b)",
+        "zh": "這是「在袋 $A$ 抽到卡通」或「在袋 $B$ 抽到卡通」的條件概率，但漏了選袋那一步。選袋與抽貼紙是兩個獨立事件，要用乘法。",
+        "en": "That is the conditional probability given a bag, but the bag choice itself is missing. Choosing a bag and drawing from it are two independent events, so multiply."
        }
       ],
       "tip": {
@@ -4181,12 +4181,6 @@
       ],
       "traps": [
        {
-        "label": "轉入後仍用盒 $B$ 原本的 $\\frac{2}{6}$",
-        "labelEn": "Still using the old 2/6",
-        "zh": "轉移之後盒 $B$ 有 $7$ 隻杯，不是 $6$ 隻。這是本題的核心：先更新組成，再寫條件概率。",
-        "en": "After the transfer box B has 7 cups, not 6. This is the heart of the problem: update the contents first, then write the conditional probability."
-       },
-       {
         "label": "(a) 寫成 $\\frac{5}{8} \\times \\frac{3}{7}$",
         "labelEn": "Writing only 5/8 × 3/7 in (a)",
         "zh": "漏了「轉入白杯」的情況。兩種互斥情況都要列出。",
@@ -4197,6 +4191,12 @@
         "labelEn": "Writing 5/8 × 4/7 + 3/8 × 5/7 in (b)",
         "zh": "轉入白杯之後盒 $B$ 的黑杯仍然是 $2$ 隻（原本 $2$ 隻），不是 $5$ 隻；$5$ 是白杯的數目。寫每個因子前先問「而家盒 $B$ 有幾多隻這種顏色的杯」。",
         "en": "After a white cup is transferred box B still has 2 black cups, not 5; 5 is the number of white cups. Always ask how many of that colour box B holds now."
+       },
+       {
+        "label": "轉入後仍用盒 $B$ 原本的 $\\frac{2}{6}$",
+        "labelEn": "Still using the old 2/6",
+        "zh": "轉移之後盒 $B$ 有 $7$ 隻杯，不是 $6$ 隻。這是本題的核心：先更新組成，再寫條件概率。",
+        "en": "After the transfer box B has 7 cups, not 6. This is the heart of the problem: update the contents first, then write the conditional probability."
        }
       ],
       "tip": {
@@ -4556,6 +4556,12 @@
       ],
       "traps": [
        {
+        "label": "(b) 只比較而不求 Kathy 的概率就下結論",
+        "labelEn": "Concluding in (b) without computing Kathy",
+        "zh": "要說服別人，必須把兩邊的機率都算出來。加上 $\\frac{17}{28} + \\frac{11}{28} = 1$ 這個檢查，論據才完整。",
+        "en": "To justify a claim you must compute both sides. Adding the check 17/28 + 11/28 = 1 makes the argument complete."
+       },
+       {
         "label": "以為遊戲一定在第 $6$ 次結束，忘記 Helena 也可能在第 $5$ 次才中",
         "labelEn": "Forgetting that Helena can also win on draw 5",
         "zh": "雖然遊戲最遲第 $6$ 次結束，但 Helena 的最後一次機會是第 $5$ 次。要先數清楚每位玩家有哪些回合，再逐一計算。",
@@ -4566,12 +4572,6 @@
         "labelEn": "Writing 1/2 or 3/8",
         "zh": "$\\frac{3}{8}$ 只是「第一次就中」的機率，漏了第 $3$、$5$ 次的情況；$\\frac{1}{2}$ 則是誤以為兩人對稱。",
         "en": "3/8 counts only winning on the very first draw and misses turns 3 and 5; 1/2 wrongly assumes the two players are symmetric."
-       },
-       {
-        "label": "(b) 只比較而不求 Kathy 的概率就下結論",
-        "labelEn": "Concluding in (b) without computing Kathy",
-        "zh": "要說服別人，必須把兩邊的機率都算出來。加上 $\\frac{17}{28} + \\frac{11}{28} = 1$ 這個檢查，論據才完整。",
-        "en": "To justify a claim you must compute both sides. Adding the check 17/28 + 11/28 = 1 makes the argument complete."
        }
       ],
       "tip": {
@@ -4790,6 +4790,12 @@
       ],
       "traps": [
        {
+        "label": "(a) 把兩個比例相加",
+        "labelEn": "Adding the two shares in (a)",
+        "zh": "「是男性」與「是右撇子」不是互斥的（男性也可以是左撇子），不能用 18.2 加法定律，要用乘法。",
+        "en": "\"Is male\" and \"is right-handed\" are not disjoint (a male may be left-handed), so the addition law is invalid — multiply instead."
+       },
+       {
         "label": "(b) 寫成 $0.4 \\times 0.85 = 0.34$",
         "labelEn": "Writing 0.4 × 0.85 in (b)",
         "zh": "那是「右撇子的女性」，方向錯了。(b) 問左撇子，必須先把 $85\\%$ 取反面。",
@@ -4800,12 +4806,6 @@
         "labelEn": "Using 0.6 in (b)",
         "zh": "$0.6$ 是男性的比例，(b) 要女性，應用 $1 - 0.6 = 0.4$。",
         "en": "0.6 is the male share; (b) asks for females, so use 1 − 0.6 = 0.4."
-       },
-       {
-        "label": "(a) 把兩個比例相加",
-        "labelEn": "Adding the two shares in (a)",
-        "zh": "「是男性」與「是右撇子」不是互斥的（男性也可以是左撇子），不能用 18.2 加法定律，要用乘法。",
-        "en": "\"Is male\" and \"is right-handed\" are not disjoint (a male may be left-handed), so the addition law is invalid — multiply instead."
        }
       ],
       "tip": {
@@ -4917,6 +4917,12 @@
       ],
       "traps": [
        {
+        "label": "(b) 期望值寫成 $\\frac{1}{14} + \\frac{1}{7} + \\frac{11}{14}$",
+        "labelEn": "Adding only the probabilities in (b)",
+        "zh": "那是把三個概率相加，不是期望值。期望值必須「結果 × 概率」，所以 56 元那一項要乘 56。",
+        "en": "That just adds the probabilities. The expected value multiplies each outcome by its probability, so the 56 dollars term is multiplied by 56."
+       },
+       {
         "label": "把總結果數寫成 $8 \\times 7 = 56$",
         "labelEn": "Using 8 × 7 = 56 outcomes",
         "zh": "題目寫的是「同時」抽兩張，沒有次序。若用 $8 \\times 7 = 56$，每一對都被計算兩次，所有概率都會多一倍。",
@@ -4927,12 +4933,6 @@
         "labelEn": "Counting a sum of 16",
         "zh": "最大的和是 $7 + 8 = 15$。列出組合時先確認上限。",
         "en": "The largest sum is 7 + 8 = 15. Check the upper bound before listing pairs."
-       },
-       {
-        "label": "(b) 期望值寫成 $\\frac{1}{14} + \\frac{1}{7} + \\frac{11}{14}$",
-        "labelEn": "Adding only the probabilities in (b)",
-        "zh": "那是把三個概率相加，不是期望值。期望值必須「結果 × 概率」，所以 56 元那一項要乘 56。",
-        "en": "That just adds the probabilities. The expected value multiplies each outcome by its probability, so the 56 dollars term is multiplied by 56."
        }
       ],
       "tip": {

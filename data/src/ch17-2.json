@@ -456,16 +456,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 忘記塊內排列",
-        "zh": "「綑綁成一塊」只處理了相鄰問題，塊內 5 個母音仍可互換次序，因此必須再乘 $5!$；若只寫 $5!$，便會少算成 120。",
-        "en": "Bundling the vowels together only ensures that they stay adjacent; the 5 vowels inside the block can still be arranged in different orders, so we must multiply by $5!$. Writing only $5!$ would undercount badly.",
-        "labelEn": "(b) Forgetting the order inside the block"
-       },
-       {
         "label": "(a) 把母音數目算錯",
         "zh": "'EDUCATION' 的母音為 E, U, A, I, O，共 5 個，不是 4 個；若漏算一個，就會得到 $4 \\times 8!$，答案錯誤。",
         "en": "'EDUCATION' has 5 vowels: E, U, A, I, O, not 4. Missing one vowel gives $4 \\times 8!$, which is incorrect.",
         "labelEn": "(a) Miscounting the vowels"
+       },
+       {
+        "label": "(b) 忘記塊內排列",
+        "zh": "「綑綁成一塊」只處理了相鄰問題，塊內 5 個母音仍可互換次序，因此必須再乘 $5!$；若只寫 $5!$，便會少算成 120。",
+        "en": "Bundling the vowels together only ensures that they stay adjacent; the 5 vowels inside the block can still be arranged in different orders, so we must multiply by $5!$. Writing only $5!$ would undercount badly.",
+        "labelEn": "(b) Forgetting the order inside the block"
        }
       ],
       "tip": {
@@ -584,16 +584,16 @@
       ],
       "traps": [
        {
-        "label": "(c) 忘記乘 2",
-        "zh": "交替排列有兩種男女位置花款（男先或女先），若漏乘 2，答案會變成 14400，少了一半。",
-        "en": "An alternating arrangement can begin with either a man or a woman, so there are 2 patterns. Omitting the factor 2 gives 14400, exactly half the correct answer.",
-        "labelEn": "(c) Missing the factor 2"
-       },
-       {
         "label": "(b) 把兩組混合排列",
         "zh": "(b) 已規定男儐相在左、女儐相在右，因此不能再把 10 個人整體混合排列；若寫成 $10!$，就會把不符合條件的排列也計算進去。",
         "en": "In (b), the men are fixed on the left and the women on the right, so the 10 people should not be treated as one mixed group. Writing $10!$ would incorrectly include arrangements that violate the condition.",
         "labelEn": "(b) Permuting both groups together"
+       },
+       {
+        "label": "(c) 忘記乘 2",
+        "zh": "交替排列有兩種男女位置花款（男先或女先），若漏乘 2，答案會變成 14400，少了一半。",
+        "en": "An alternating arrangement can begin with either a man or a woman, so there are 2 patterns. Omitting the factor 2 gives 14400, exactly half the correct answer.",
+        "labelEn": "(c) Missing the factor 2"
        }
       ],
       "tip": {
@@ -1604,16 +1604,16 @@
       ],
       "traps": [
        {
-        "label": "把「放回」當成「不放回」",
-        "zh": "(b)(ii) 有「放回」，所以每次都是 5 個選擇，用 $5^4$；若誤用 $P^5_4 = 120$ 就差很遠。",
-        "en": "Part (b)(ii) uses replacement, so every draw has 5 choices and $5^4$ applies; using $P^5_4 = 120$ is far off.",
-        "labelEn": "Treating 'with replacement' as 'without replacement'"
-       },
-       {
         "label": "(b)(i) 以為要乘 4!",
         "zh": "(b)(i) 選卡與排序是同一個「依次取卡」的過程，已含次序，不必再另乘 $4!$。",
         "en": "In (b)(i) choosing and ordering are the same 'taking in turn' process, so the order is already included; do not multiply by $4!$ again.",
         "labelEn": "(b)(i) Multiplying by $4!$ again"
+       },
+       {
+        "label": "把「放回」當成「不放回」",
+        "zh": "(b)(ii) 有「放回」，所以每次都是 5 個選擇，用 $5^4$；若誤用 $P^5_4 = 120$ 就差很遠。",
+        "en": "Part (b)(ii) uses replacement, so every draw has 5 choices and $5^4$ applies; using $P^5_4 = 120$ is far off.",
+        "labelEn": "Treating 'with replacement' as 'without replacement'"
        }
       ],
       "tip": {
@@ -1932,16 +1932,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 多乘了 2!",
-        "zh": "「緊接其前」只允許 C 先 D 後一種次序，所以不可以再乘 2!；若乘了就變成 725760。",
-        "en": "'Right before' allows only the order C then D, so no extra factor of 2! should be added; including it gives 725760.",
-        "labelEn": "(b) Adding an extra 2!"
-       },
-       {
         "label": "(a) 把 Shown 次序當成可換",
         "zh": "(a) 已寫明 Cassy 第 1、Debby 第 2，不可再乘 $2!$。",
         "en": "(a) states Cassy is first and Debby second, so no factor of $2!$ is allowed.",
         "labelEn": "(a) Treating the fixed order as swappable"
+       },
+       {
+        "label": "(b) 多乘了 2!",
+        "zh": "「緊接其前」只允許 C 先 D 後一種次序，所以不可以再乘 2!；若乘了就變成 725760。",
+        "en": "'Right before' allows only the order C then D, so no extra factor of 2! should be added; including it gives 725760.",
+        "labelEn": "(b) Adding an extra 2!"
        }
       ],
       "tip": {
@@ -2434,6 +2434,12 @@
       ],
       "traps": [
        {
+        "label": "(c) 把「不小於 8000」誤當成「大於 8000」",
+        "zh": "「不小於」＝大於或等於；首位為 8 時數值正好是 8000 多，故 8 與 9 都合資格。",
+        "en": "'Not smaller than' means greater than or equal to; a leading 8 gives a number from 8000 up, so both 8 and 9 qualify.",
+        "labelEn": "(c) Misreading 'not smaller than' as 'greater than'"
+       },
+       {
         "label": "忘記首位不可為 0",
         "zh": "(a) 若把首位也當成 6 個選擇，會得 360，把 0 開頭的「三位數」也算進去。",
         "en": "In (a), treating the leading digit as having 6 choices gives 360, wrongly counting numbers that start with 0.",
@@ -2444,12 +2450,6 @@
         "zh": "(b) 中 8 也是偶數，只算末位 0 會得 60，漏了末位 8 的 48。",
         "en": "In (b) 8 is also even, so counting only last digit 0 gives 60 and misses the 48 for last digit 8.",
         "labelEn": "(b) Counting only one even digit"
-       },
-       {
-        "label": "(c) 把「不小於 8000」誤當成「大於 8000」",
-        "zh": "「不小於」＝大於或等於；首位為 8 時數值正好是 8000 多，故 8 與 9 都合資格。",
-        "en": "'Not smaller than' means greater than or equal to; a leading 8 gives a number from 8000 up, so both 8 and 9 qualify.",
-        "labelEn": "(c) Misreading 'not smaller than' as 'greater than'"
        }
       ],
       "tip": {
@@ -2658,16 +2658,16 @@
       ],
       "traps": [
        {
-        "label": "(c) 忘記頭尾的空隙",
-        "zh": "5 隻白兔形成 $5 + 1 = 6$ 個空隙（包含最左與最右），只數中間的 4 個就會漏算。",
-        "en": "Five white rabbits create $5 + 1 = 6$ gaps (including the two ends); counting only the 4 internal gaps misses cases.",
-        "labelEn": "(c) Forgetting the two end gaps"
-       },
-       {
         "label": "(b) 漏乘兩塊的交換數",
         "zh": "白兔一塊、灰兔一塊可前後調換，漏乘 2 就會得 240。",
         "en": "The white block and grey block can swap, so omitting the factor 2 gives 240.",
         "labelEn": "(b) Missing the swap of the two blocks"
+       },
+       {
+        "label": "(c) 忘記頭尾的空隙",
+        "zh": "5 隻白兔形成 $5 + 1 = 6$ 個空隙（包含最左與最右），只數中間的 4 個就會漏算。",
+        "en": "Five white rabbits create $5 + 1 = 6$ gaps (including the two ends); counting only the 4 internal gaps misses cases.",
+        "labelEn": "(c) Forgetting the two end gaps"
        }
       ],
       "tip": {
@@ -2967,16 +2967,16 @@
         "labelEn": "(a) Using only one of the two factorials"
        },
        {
-        "label": "(c) 忘記「哪一端是紅」有 2 種",
-        "zh": "紅黃兩端可以左右互換，漏乘 2 就會得 10800。",
-        "en": "The red and yellow ends can swap left and right; omitting the factor 2 gives 10800.",
-        "labelEn": "(c) Missing the factor 2 for the two ends"
-       },
-       {
         "label": "(b) 把黃寶石當成相同",
         "zh": "寶石形狀都不同，所以黃寶石放入空隙時有次序，要用 $P^6_3$ 而不是 $C^6_3$。",
         "en": "The gems have different shapes, so placing the yellow gems in the gaps is ordered: use $P^6_3$, not $C^6_3$.",
         "labelEn": "(b) Treating the yellow gems as identical"
+       },
+       {
+        "label": "(c) 忘記「哪一端是紅」有 2 種",
+        "zh": "紅黃兩端可以左右互換，漏乘 2 就會得 10800。",
+        "en": "The red and yellow ends can swap left and right; omitting the factor 2 gives 10800.",
+        "labelEn": "(c) Missing the factor 2 for the two ends"
        }
       ],
       "tip": {
@@ -3161,16 +3161,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 漏數頭尾的空隙",
-        "zh": "8 條非黑裙形成 $8 + 1 = 9$ 個空隙（含最左、最右），只數中間 7 個就會漏算。",
-        "en": "The 8 non-black dresses create $8 + 1 = 9$ gaps (including both ends); counting only the 7 internal ones misses cases.",
-        "labelEn": "(b) Forgetting the two end gaps"
-       },
-       {
         "label": "(a) 漏乘色塊之間的 3!",
         "zh": "三個色塊本身可以調換先後，共 $3! = 6$ 種；漏乘會少算 6 倍。",
         "en": "The three colour blocks can be reordered among themselves in $3! = 6$ ways; omitting that loses a factor of 6.",
         "labelEn": "(a) Missing the 3! between the colour blocks"
+       },
+       {
+        "label": "(b) 漏數頭尾的空隙",
+        "zh": "8 條非黑裙形成 $8 + 1 = 9$ 個空隙（含最左、最右），只數中間 7 個就會漏算。",
+        "en": "The 8 non-black dresses create $8 + 1 = 9$ gaps (including both ends); counting only the 7 internal ones misses cases.",
+        "labelEn": "(b) Forgetting the two end gaps"
        }
       ],
       "tip": {

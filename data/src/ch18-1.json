@@ -2862,16 +2862,16 @@
       ],
       "traps": [
        {
-        "label": "「只修物理」直接寫 18",
-        "labelEn": "Writing 18 for \"Physics only\"",
-        "zh": "18 人之中有 12 人同時修化學，所以只修物理是 $18 - 12 = 6$ 人；直接寫 18 會令四區相加超過 30。",
-        "en": "Twelve of the 18 also study Chemistry, so Physics only is $18 - 12 = 6$; writing 18 would make the four regions add up to more than 30."
-       },
-       {
         "label": "(b)(ii) 用 $18 + 15$ 當分子",
         "labelEn": "Using 18 + 15 as the numerator",
         "zh": "$18 + 15 = 33 > 30$ 明顯不可能：兩科都修的 12 人被數了兩次，要先減一次才是 $21$。",
         "en": "$18 + 15 = 33$ exceeds the class size, which is impossible: the twelve students who study both were counted twice and must be subtracted once to give 21."
+       },
+       {
+        "label": "「只修物理」直接寫 18",
+        "labelEn": "Writing 18 for \"Physics only\"",
+        "zh": "18 人之中有 12 人同時修化學，所以只修物理是 $18 - 12 = 6$ 人；直接寫 18 會令四區相加超過 30。",
+        "en": "Twelve of the 18 also study Chemistry, so Physics only is $18 - 12 = 6$; writing 18 would make the four regions add up to more than 30."
        }
       ],
       "tip": {

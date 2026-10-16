@@ -282,7 +282,7 @@
       ],
       "traps": [
        {
-        "label": "（b）直接相加，忘記減重複",
+        "label": "(b) 直接相加，忘記減重複",
         "labelEn": "Adding in (b) without removing the overlap",
         "zh": "同時學兩種棋的 15 人已經包含在 36 與 54 之內，相加後他們被數了兩次，答案會大了 15。",
         "en": "The 15 who learn both are already inside 36 and inside 54, so after adding they are counted twice and the answer is 15 too large."

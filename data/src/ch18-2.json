@@ -356,16 +356,16 @@
       ],
       "traps": [
        {
-        "label": "忘記減交集",
-        "labelEn": "Forgetting to subtract the overlap",
-        "zh": "$\\frac{6}{16} + \\frac{7}{16}$ 會把 3 名男教師數兩次，答案偏大；先找出「兩組都會出現」的人，再減一次。",
-        "en": "6/16 + 7/16 counts the 3 male secondary teachers twice, making the answer too large; find the people in both groups and subtract them once."
-       },
-       {
         "label": "(a) 只數其中一邊",
         "labelEn": "Counting only one gender in (a)",
         "zh": "(a) 要男 3 人加女 4 人共 7 人；只數 3 人（或只數 4 人）會漏掉另一半教師。",
         "en": "Part (a) needs 3 men plus 4 women, seven in all; counting only 3 (or only 4) misses the other half."
+       },
+       {
+        "label": "忘記減交集",
+        "labelEn": "Forgetting to subtract the overlap",
+        "zh": "$\\frac{6}{16} + \\frac{7}{16}$ 會把 3 名男教師數兩次，答案偏大；先找出「兩組都會出現」的人，再減一次。",
+        "en": "6/16 + 7/16 counts the 3 male secondary teachers twice, making the answer too large; find the people in both groups and subtract them once."
        }
       ],
       "tip": {
@@ -536,16 +536,16 @@
       ],
       "traps": [
        {
-        "label": "互斥仍硬減交集",
-        "labelEn": "Subtracting an intersection that is zero",
-        "zh": "題目講明「每人只點一款」，交集是 $0$；不必再找「兩樣都點」的人。但要注意：只有題目真的講明互斥，才可以這樣直接相加。",
-        "en": "The question states each customer orders one type, so the intersection is 0 and there is no \"both\" group to subtract — but this shortcut is only allowed when the question really says the events are mutually exclusive."
-       },
-       {
         "label": "(b) 用 36 做分母",
         "labelEn": "Using 36 as the denominator in (b)",
         "zh": "(b) 的分母仍是全部 50 名顧客，不是有點甜品的 36 人；$\\frac{50 - 36}{50} = \\frac{14}{50}$。",
         "en": "In (b) the denominator is still all 50 customers, not the 36 who ordered a dessert: (50 − 36)/50 = 14/50."
+       },
+       {
+        "label": "互斥仍硬減交集",
+        "labelEn": "Subtracting an intersection that is zero",
+        "zh": "題目講明「每人只點一款」，交集是 $0$；不必再找「兩樣都點」的人。但要注意：只有題目真的講明互斥，才可以這樣直接相加。",
+        "en": "The question states each customer orders one type, so the intersection is 0 and there is no \"both\" group to subtract — but this shortcut is only allowed when the question really says the events are mutually exclusive."
        }
       ],
       "tip": {
@@ -767,16 +767,16 @@
         "en": "10/20 + 5/20 counts 1, 3 and 5 twice; whenever the two groups share members, subtract the intersection once."
        },
        {
-        "label": "(f) 反面只減一種結果",
-        "labelEn": "(f) subtracting only one outcome",
-        "zh": "「和大於或等於 11」不是只有 $(6, 6)$：$(5, 6)$ 與 $(6, 5)$ 同樣要數，共 3 個結果。",
-        "en": "\"Sum at least 11\" is not just (6, 6): (5, 6) and (6, 5) count as well, three outcomes in total."
-       },
-       {
         "label": "(d) 把「概率相同」當成「事件相同」",
         "labelEn": "(d) confusing equal probabilities with identical events",
         "zh": "紅或藍與綠球的概率同為 $\\frac{1}{2}$，但兩件事完全不同；(d) 講的是概率相同，不是事件相同。",
         "en": "\"Red or blue\" and \"green\" both have probability 1/2, yet they are different events; (d) only claims the probabilities are equal."
+       },
+       {
+        "label": "(f) 反面只減一種結果",
+        "labelEn": "(f) subtracting only one outcome",
+        "zh": "「和大於或等於 11」不是只有 $(6, 6)$：$(5, 6)$ 與 $(6, 5)$ 同樣要數，共 3 個結果。",
+        "en": "\"Sum at least 11\" is not just (6, 6): (5, 6) and (6, 5) count as well, three outcomes in total."
        }
       ],
       "tip": {
@@ -1072,16 +1072,16 @@
       ],
       "traps": [
        {
-        "label": "把 A 當成數字牌",
-        "labelEn": "Treating the ace as a number card",
-        "zh": "「數字牌」指 2 至 10；A、J、Q、K 都不是數字牌，所以小於 4 的只有 2 與 3。",
-        "en": "\"Number card\" means 2 to 10; A, J, Q and K are not number cards, so only 2 and 3 are below 4."
-       },
-       {
         "label": "(b) 忘記重疊的葵扇 2、3",
         "labelEn": "(b) missing the 2 and 3 of spades",
         "zh": "葵扇 2 與葵扇 3 同時符合兩個條件，在 13 與 8 中各被數了一次，要減 $\\frac{2}{52}$。",
         "en": "The 2 and 3 of spades satisfy both conditions, counted once in 13 and once in 8, so 2/52 is subtracted."
+       },
+       {
+        "label": "把 A 當成數字牌",
+        "labelEn": "Treating the ace as a number card",
+        "zh": "「數字牌」指 2 至 10；A、J、Q、K 都不是數字牌，所以小於 4 的只有 2 與 3。",
+        "en": "\"Number card\" means 2 to 10; A, J, Q and K are not number cards, so only 2 and 3 are below 4."
        }
       ],
       "tip": {
@@ -1193,16 +1193,16 @@
       ],
       "traps": [
        {
-        "label": "把 1 當成質數",
-        "labelEn": "Treating 1 as prime",
-        "zh": "1 只有一個因數（就是 1 本身），不是質數；(b) 的質數只有 2、3、5、7。",
-        "en": "1 has only one factor (itself) and is not prime; part (b) counts only 2, 3, 5 and 7."
-       },
-       {
         "label": "(c) 忘減重疊",
         "labelEn": "(c) forgetting the overlap",
         "zh": "$\\frac{5}{10} + \\frac{4}{10} = \\frac{9}{10}$ 把 3、5、7 各數了兩次，正確答案是 $\\frac{6}{10}$。",
         "en": "5/10 + 4/10 = 9/10 counts 3, 5 and 7 twice; the correct answer is 6/10."
+       },
+       {
+        "label": "把 1 當成質數",
+        "labelEn": "Treating 1 as prime",
+        "zh": "1 只有一個因數（就是 1 本身），不是質數；(b) 的質數只有 2、3、5、7。",
+        "en": "1 has only one factor (itself) and is not prime; part (b) counts only 2, 3, 5 and 7."
        }
       ],
       "tip": {
@@ -1485,16 +1485,16 @@
       ],
       "traps": [
        {
-        "label": "分母跟着分子改",
-        "labelEn": "Changing the denominator",
-        "zh": "即使只關心 2 級與 3 級，分母仍然是全部 90 人（不是 25 人）；所有小題共用同一個樣本空間。",
-        "en": "Even when only levels 2 and 3 matter, the denominator is still all 90 students (not 25); every part shares the same sample space."
-       },
-       {
         "label": "(b) 只數 4 級",
         "labelEn": "(b) counting only level 4",
         "zh": "「或以上」要包含 5 級與 $5^{\\ast\\ast}$ 級；只數 36 人會漏掉 27 名較高分的學生。",
         "en": "\"Or above\" includes levels 5 and $5^{\\ast\\ast}$; counting only the 36 misses 27 higher-scoring students."
+       },
+       {
+        "label": "分母跟着分子改",
+        "labelEn": "Changing the denominator",
+        "zh": "即使只關心 2 級與 3 級，分母仍然是全部 90 人（不是 25 人）；所有小題共用同一個樣本空間。",
+        "en": "Even when only levels 2 and 3 matter, the denominator is still all 90 students (not 25); every part shares the same sample space."
        }
       ],
       "tip": {
@@ -1915,16 +1915,16 @@
       ],
       "traps": [
        {
-        "label": "以為漏了數據",
-        "labelEn": "Thinking data is missing",
-        "zh": "「其餘是下層」已經足夠：$100 - [15 + 55] = 30$ 戶；下層的數目是算出來的，不是漏印。",
-        "en": "\"The rest are lower class\" is enough data: 100 − [15 + 55] = 30 households; the lower-class count is computed, not missing."
-       },
-       {
         "label": "(b) 用了錯的分子",
         "labelEn": "Wrong numerator in (b)",
         "zh": "(b) 問下層（30 戶），不是問上層（15 戶）或中層（55 戶）；三類加起來一定要等於 100%。",
         "en": "Part (b) asks for the lower class (30), not the upper (15) or middle (55); the three classes must total 100%."
+       },
+       {
+        "label": "以為漏了數據",
+        "labelEn": "Thinking data is missing",
+        "zh": "「其餘是下層」已經足夠：$100 - [15 + 55] = 30$ 戶；下層的數目是算出來的，不是漏印。",
+        "en": "\"The rest are lower class\" is enough data: 100 − [15 + 55] = 30 households; the lower-class count is computed, not missing."
        }
       ],
       "tip": {
@@ -2365,16 +2365,16 @@
       ],
       "traps": [
        {
-        "label": "把骰子當成均勻",
-        "labelEn": "Treating the dice as fair",
-        "zh": "這枚骰子不均勻，每個結果不是 $\\frac{1}{6}$；一定要用題目給的概率，其餘的先用 $1$ 補齊。",
-        "en": "The dice is biased, so each face is not 1/6; use the given probabilities and complete the rest with 1."
-       },
-       {
         "label": "(b) 忘了「6」是 0.4",
         "labelEn": "(b) forgetting that \"6\" has probability 0.4",
         "zh": "偶數要數「2」、「4」、「6」；「6」的概率是 $0.4$（不是 $0.1$），漏掉它或用 $0.1$ 都會錯。",
         "en": "The even faces include \"6\", whose probability is 0.4 rather than 0.1; omitting it or using 0.1 is wrong."
+       },
+       {
+        "label": "把骰子當成均勻",
+        "labelEn": "Treating the dice as fair",
+        "zh": "這枚骰子不均勻，每個結果不是 $\\frac{1}{6}$；一定要用題目給的概率，其餘的先用 $1$ 補齊。",
+        "en": "The dice is biased, so each face is not 1/6; use the given probabilities and complete the rest with 1."
        }
       ],
       "tip": {
@@ -2631,16 +2631,16 @@
       ],
       "traps": [
        {
-        "label": "把 A 當數字牌",
-        "labelEn": "Counting the aces as number cards",
-        "zh": "數字牌是 2 至 10，每花樣 9 張；A、J、Q、K 都不是數字牌。",
-        "en": "Number cards are 2 to 10, nine per suit; A, J, Q and K are not number cards."
-       },
-       {
         "label": "(c) 只做一次排除",
         "labelEn": "(c) excluding only one thing",
         "zh": "「既不…也不…」要同時排除葵扇與 J，中間的葵扇 J 只能排除一次：$1 - \\frac{16}{52}$，不是 $1 - \\frac{13}{52} - \\frac{4}{52}$。",
         "en": "\"Neither\" excludes both spades and J's, but the J of spades must be excluded once only: 1 − 16/52, not 1 − 13/52 − 4/52."
+       },
+       {
+        "label": "把 A 當數字牌",
+        "labelEn": "Counting the aces as number cards",
+        "zh": "數字牌是 2 至 10，每花樣 9 張；A、J、Q、K 都不是數字牌。",
+        "en": "Number cards are 2 to 10, nine per suit; A, J, Q and K are not number cards."
        }
       ],
       "tip": {
@@ -2901,16 +2901,16 @@
       ],
       "traps": [
        {
-        "label": "把 y% 當成 y",
-        "labelEn": "Confusing y% with y",
-        "zh": "$y\\% = 25\\%$ 即 $y = 25$；寫 $y = 0.25$ 是把百分比與小數混為一談（兩者數值相同，但單位不同）。",
-        "en": "y% = 25% means y = 25; writing y = 0.25 confuses a percentage with a decimal value (same size, different unit)."
-       },
-       {
         "label": "(b)(ii) 只排除一款",
         "labelEn": "(b)(ii) excluding only one shape",
         "zh": "「既不是正方形也不是星形」要同時排除 $25\\%$ 與 $30\\%$；只減 $0.25$ 或只減 $0.3$ 都不對。",
         "en": "\"Neither square nor star\" removes both 25% and 30%; subtracting only 0.25 or only 0.3 is wrong."
+       },
+       {
+        "label": "把 y% 當成 y",
+        "labelEn": "Confusing y% with y",
+        "zh": "$y\\% = 25\\%$ 即 $y = 25$；寫 $y = 0.25$ 是把百分比與小數混為一談（兩者數值相同，但單位不同）。",
+        "en": "y% = 25% means y = 25; writing y = 0.25 confuses a percentage with a decimal value (same size, different unit)."
        }
       ],
       "tip": {
@@ -3064,16 +3064,16 @@
       ],
       "traps": [
        {
-        "label": "(d) 忘減交集",
-        "labelEn": "(d) forgetting the intersection",
-        "zh": "$\\frac{12}{32} + \\frac{26}{32} = \\frac{38}{32}$ 超過 1，明顯有誤：10 名有兄弟姊妹的女生被數了兩次。",
-        "en": "12/32 + 26/32 = 38/32 exceeds 1, which signals the error: the ten girls with siblings were counted twice."
-       },
-       {
         "label": "(a) 誤取整行或整列",
         "labelEn": "(a) reading a whole row or column",
         "zh": "(a) 要的是「女生」與「有兄弟姊妹」的交叉格（10 人）；用女生總數 12 人或用有兄弟姊妹總數 26 人都答錯了問題。",
         "en": "Part (a) wants the intersecting cell (ten students), not the whole girls' row (12) nor the whole \"with siblings\" column (26)."
+       },
+       {
+        "label": "(d) 忘減交集",
+        "labelEn": "(d) forgetting the intersection",
+        "zh": "$\\frac{12}{32} + \\frac{26}{32} = \\frac{38}{32}$ 超過 1，明顯有誤：10 名有兄弟姊妹的女生被數了兩次。",
+        "en": "12/32 + 26/32 = 38/32 exceeds 1, which signals the error: the ten girls with siblings were counted twice."
        }
       ],
       "tip": {
@@ -3725,16 +3725,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 直接相乘",
-        "labelEn": "(b) multiplying directly",
-        "zh": "兩份試卷的成績不一定獨立，$0.55 \\times 0.4$ 未必是「兩份都合格」；本題要用加法定律反求交集。",
-        "en": "The two papers need not be independent, so 0.55 × 0.4 need not be the probability of passing both; reverse the addition law instead."
-       },
-       {
         "label": "(a) 把兩個概率相加",
         "labelEn": "(a) adding the two probabilities",
         "zh": "$0.55 + 0.4 = 0.95$ 把兩份都合格的人數了兩次；聯集要減交集，而交集正是 (b) 要求的 $0.1$。",
         "en": "0.55 + 0.4 = 0.95 counts those passing both twice; the union subtracts the intersection, which is exactly the 0.1 found in (b)."
+       },
+       {
+        "label": "(b) 直接相乘",
+        "labelEn": "(b) multiplying directly",
+        "zh": "兩份試卷的成績不一定獨立，$0.55 \\times 0.4$ 未必是「兩份都合格」；本題要用加法定律反求交集。",
+        "en": "The two papers need not be independent, so 0.55 × 0.4 need not be the probability of passing both; reverse the addition law instead."
        }
       ],
       "tip": {
@@ -3874,16 +3874,16 @@
       ],
       "traps": [
        {
-        "label": "(b) 只答不同意，沒有計算",
-        "labelEn": "(b) disagreeing without evidence",
-        "zh": "「Do you agree? Explain」必須出示數值：算出聯集 $\\frac{11}{12} \\ne 1$，才證明有人兩社都不參加（還有 $\\frac{1}{12}$）。",
-        "en": "\"Do you agree? Explain\" requires a value: show that the union is 11/12 ≠ 1, so 1/12 of the class joins neither club."
-       },
-       {
         "label": "(a)(ii) 忘減交集",
         "labelEn": "(a)(ii) forgetting the overlap",
         "zh": "$\\frac{1}{2} + \\frac{2}{3} = \\frac{7}{6}$ 超過 1，明顯有誤：兩個社都參加的 $\\frac{1}{4}$ 被數了兩次。",
         "en": "1/2 + 2/3 = 7/6 exceeds 1, which signals the error: the 1/4 joining both clubs was counted twice."
+       },
+       {
+        "label": "(b) 只答不同意，沒有計算",
+        "labelEn": "(b) disagreeing without evidence",
+        "zh": "「Do you agree? Explain」必須出示數值：算出聯集 $\\frac{11}{12} \\ne 1$，才證明有人兩社都不參加（還有 $\\frac{1}{12}$）。",
+        "en": "\"Do you agree? Explain\" requires a value: show that the union is 11/12 ≠ 1, so 1/12 of the class joins neither club."
        }
       ],
       "tip": {
@@ -4157,16 +4157,16 @@
       ],
       "traps": [
        {
-        "label": "樣本空間用 90",
-        "labelEn": "Using 90 as the sample space",
-        "zh": "$a$ 可以是 0（例如 1204、1214），所以共有 $10 \\times 10 = 100$ 個「$ab$」，不是 90 個。",
-        "en": "a may be 0 (for example 1204, 1214), so there are 10 × 10 = 100 endings, not 90."
-       },
-       {
         "label": "(c) 忘減交集",
         "labelEn": "(c) forgetting the overlap",
         "zh": "$\\frac{1}{4} + \\frac{1}{5} = \\frac{9}{20}$ 把 00、20、40、60、80 數了兩次；正確是 $\\frac{2}{5}$。",
         "en": "1/4 + 1/5 = 9/20 counts 00, 20, 40, 60 and 80 twice; the correct answer is 2/5."
+       },
+       {
+        "label": "樣本空間用 90",
+        "labelEn": "Using 90 as the sample space",
+        "zh": "$a$ 可以是 0（例如 1204、1214），所以共有 $10 \\times 10 = 100$ 個「$ab$」，不是 90 個。",
+        "en": "a may be 0 (for example 1204, 1214), so there are 10 × 10 = 100 endings, not 90."
        }
       ],
       "tip": {
@@ -4595,16 +4595,16 @@
         "en": "50% and 40% are based on the male and female headcounts separately; 28 × 50% alone is not enough."
        },
        {
-        "label": "(c) 直接把兩個概率相加",
-        "labelEn": "(c) just adding the two probabilities",
-        "zh": "若用加法定律，$P(\\text{男}) + P(\\text{已婚}) = \\frac{28}{63} + \\frac{28}{63} = \\frac{56}{63} > 1$，必須減去已婚男職員 $\\frac{14}{63}$ 才合理。",
-        "en": "With the addition law, P(male) + P(married) = 28/63 + 28/63 = 56/63 exceeds 1; subtract the married males 14/63."
-       },
-       {
         "label": "(b) 分母用了 35",
         "labelEn": "(b) using 35 as the denominator",
         "zh": "抽的是「職員」（包括男女），分母是 $28 + 35 = 63$，不是女職員人數 35。",
         "en": "A staff member of either gender can be chosen, so the denominator is 28 + 35 = 63, not 35."
+       },
+       {
+        "label": "(c) 直接把兩個概率相加",
+        "labelEn": "(c) just adding the two probabilities",
+        "zh": "若用加法定律，$P(\\text{男}) + P(\\text{已婚}) = \\frac{28}{63} + \\frac{28}{63} = \\frac{56}{63} > 1$，必須減去已婚男職員 $\\frac{14}{63}$ 才合理。",
+        "en": "With the addition law, P(male) + P(married) = 28/63 + 28/63 = 56/63 exceeds 1; subtract the married males 14/63."
        }
       ],
       "tip": {

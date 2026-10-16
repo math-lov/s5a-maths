@@ -22,6 +22,8 @@
   S17 拆句層（question 的 parse[]）：每列要有英文原句、中文意思、這句要做的
       數學動作（中英）；同一段（題幹或某個 part）的 en 串起來要一字不差等於原文，
       所以改了題目一定要同步改拆句；step 要指向真存在的題解步驟
+  S18 常見錯誤（traps）的次序：MC 依選項 A→B→C→D，長題依小題 (a)→(b)→(c)；
+      冇標籤的（整題性）提示唔受限，但慣例排最後
 """
 
 from __future__ import annotations
@@ -126,6 +128,23 @@ def check_prompt_templates(tpl) -> None:
             err("S11 prompt 模板 %s 的 focusStep 必須包含 {n}（步驟編號）" % lang)
 
 
+# ── 常見錯誤（traps）的排序：S18 用 ─────────────────────────────────────────
+_TRAP_PART_RE = re.compile(r"^\(([a-z])\)")
+
+
+def trap_order_key(tr: dict):
+    """MC 睇選項字母，長題睇 label 開頭的 (a)／(b)／(c)…；整題性提示回 None。"""
+    opt = tr.get("opt")
+    if isinstance(opt, str) and len(opt) == 1 and opt.isalpha():
+        return ord(opt.upper()) - 65
+    m = _TRAP_PART_RE.match(tr.get("label") or "")
+    return ord(m.group(1)) - 97 if m else None
+
+
+def trap_order_label(tr: dict) -> str:
+    return tr.get("opt") or (tr.get("label") or "")[:14]
+
+
 # ── 單題檢查 ────────────────────────────────────────────────────────────────
 def check_question(q: dict, where: str, fig_ids: set) -> None:
     qid = q.get("id") or "?"
@@ -177,6 +196,7 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
     if not traps:
         warn("S4 %s：沒有 traps（可以接受，但弱生較難知道錯在哪一步）" % tag)
     ans_set = set(q.get("answer")) if isinstance(q.get("answer"), list) else {q.get("answer")}
+    last_key, last_lab = None, ""
     for tr in traps:
         if q["type"] == "mc":
             opt = tr.get("opt")
@@ -191,6 +211,17 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
                 err("S4 %s：長題 trap 缺 labelEn（全站雙語）" % tag)
         check_text(tag + " trap.zh", tr.get("zh", ""), min_len=6, need_zh=True)
         check_text(tag + " trap.en", tr.get("en", ""))
+
+        # S18：常見錯誤的次序要跟題目（MC 跟選項 A→B→C→D，長題跟小題 (a)→(b)→(c)）；
+        # 冇標籤的（整題性）提示不限，但慣例排在最後。
+        cur_key = trap_order_key(tr)
+        if cur_key is not None:
+            if last_key is not None and cur_key < last_key:
+                err("S18 %s：traps 次序不對 —— %s 排在 %s 後面；要按 %s 次序排"
+                    % (tag, trap_order_label(tr), last_lab,
+                       "選項 A→B→C→D" if q["type"] == "mc" else "小題 (a)→(b)→(c)"))
+            last_key = cur_key
+            last_lab = trap_order_label(tr)
 
     tip = sol.get("tip") or {}
     check_text(tag + " tip.zh", tip.get("zh", ""), min_len=6, need_zh=True)
