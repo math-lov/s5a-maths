@@ -24,7 +24,7 @@
       所以改了題目一定要同步改拆句；step 要指向真存在的題解步驟
   S18 常見錯誤（traps）的次序：MC 依選項 A→B→C→D，長題依小題 (a)→(b)→(c)；
       冇標籤的（整題性）提示唔受限，但慣例排最後
-  S19 長題的「可核對數字答案」：data/src/<part>.json 頂層寫 "answerInput": true 就開；
+  S19 長題的「可核對數字答案」：data/src/site.json 的 parts[] 該項寫 "answerInput": true 就開；
       每小題的答案會自動由 answers[].math 最後一段抽出（該段只有一個數才抽得準），
       抽唔到就要明寫 answers[].input（唔設輸入格就寫 null）；input 的數字要對得上 math
 """

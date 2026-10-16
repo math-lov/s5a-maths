@@ -1840,7 +1840,7 @@ ok(fs.existsSync("docs/worksheets/ch17-test-worksheet.docx") &&
   !/["']zh["']/.test(read("tools/make_worksheet_docx.py")),
   "工作紙生成器完全冇讀 zh 欄（工作紙全英，唔中英對照）");
 
-/* ── 6b-3. 長題：輸入答案核對（answers[].input，build.py S19）────────────── */
+/* ── 6b-4. 長題：輸入答案核對（answers[].input，build.py S19）────────────── */
 console.log("\n== 長題 · 輸入答案核對（17 課全開）==");
 const ansSub = (t) => t.$("[data-ans-submit]");
 const ansType = (t, i, v) => {
