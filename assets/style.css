@@ -492,6 +492,30 @@ body[data-lang="both"] .mchip .l-en { font-size: 11px; opacity: .8; }
 .alt-item .alt-name { font-weight: 800; font-size: 14.5px; color: var(--primary-ink); margin-bottom: 4px; }
 .alt-item .bi { font-size: 15.5px; }
 
+/* ── 長題的輸入答案核對（answers[].input，build.py S19）──────────────────── */
+.ans-card { padding: 14px 16px; }
+.ans-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; }
+.ans-head b { font-size: 14px; font-weight: 800; color: var(--primary-ink); }
+.ans-hint { font-size: 13px; color: var(--muted); }
+.ans-rows { margin-top: var(--sp-2); display: grid; gap: 8px; }
+.ans-row { display: flex; align-items: center; gap: 8px; }
+.ans-part {
+  flex: 0 0 auto; min-width: 34px; font-size: 13px; font-weight: 800; color: var(--primary-ink);
+}
+.ans-input {
+  flex: 0 1 168px; min-width: 0; padding: 7px 10px; font: inherit; font-size: 15px;
+  border: 1px solid var(--line); border-radius: var(--radius-sm); background: var(--card);
+  color: var(--text);
+}
+.ans-input:focus { outline: 2px solid var(--primary-line); outline-offset: 1px; }
+.ans-input:disabled { background: var(--ok-soft); border-color: var(--ok); color: var(--ok-dark); }
+.ans-row.bad .ans-input { border-color: var(--err); background: var(--err-soft); }
+.ans-mark { font-size: 15px; font-weight: 800; }
+.ans-row.ok .ans-mark { color: var(--ok-dark); }
+.ans-row.bad .ans-mark { color: #a11c0c; }
+.ans-card .check-row { margin-top: var(--sp-2); }
+.ans-card .feedback { margin-top: var(--sp-2); }
+
 /* ── 拆句層（question.parse）：英文原句 → 中文意思 → 這句要做的數學動作 ──────
    預設收起：先自己讀題，讀唔明才逐句拆開；同 .alt-box 一樣屬「參考」層。 */
 .parse-card { padding: 14px 16px; }

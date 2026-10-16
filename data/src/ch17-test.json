@@ -24,7 +24,7 @@
      "marks": 1,
      "difficulty": 1,
      "quick": {
-      "mode": "instant"
+      "mode": "submit"
      },
      "stem": {
       "en": "From a class of 30 students, 3 students are chosen to be the class monitor, the vice monitor and the treasurer. How many ways can this be done?",
@@ -106,7 +106,7 @@
      "marks": 1,
      "difficulty": 1,
      "quick": {
-      "mode": "instant"
+      "mode": "submit"
      },
      "stem": {
       "en": "From a class of 30 students, 3 students are chosen to form the Mathematics board display team. How many ways can this be done?",

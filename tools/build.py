@@ -24,6 +24,9 @@
       所以改了題目一定要同步改拆句；step 要指向真存在的題解步驟
   S18 常見錯誤（traps）的次序：MC 依選項 A→B→C→D，長題依小題 (a)→(b)→(c)；
       冇標籤的（整題性）提示唔受限，但慣例排最後
+  S19 長題的「可核對數字答案」：data/src/<part>.json 頂層寫 "answerInput": true 就開；
+      每小題的答案會自動由 answers[].math 最後一段抽出（該段只有一個數才抽得準），
+      抽唔到就要明寫 answers[].input（唔設輸入格就寫 null）；input 的數字要對得上 math
 """
 
 from __future__ import annotations
@@ -145,8 +148,25 @@ def trap_order_label(tr: dict) -> str:
     return tr.get("opt") or (tr.get("label") or "")[:14]
 
 
+# ── 可核對數字答案（S19）：答案由 math 自動抽 ───────────────────────────────
+def derive_input(mathstr: str):
+    """抽「學生可以打出來的答案」：只看最後一個 = 之後那一段。
+
+    該段只有一個數字（或一個 \\frac）才抽得準；有歧義（例如 "488864376 \\ne 1173274502"、
+    "n = 5, 6, 7, 8, 9"）就回 None，要求作者在 answers[].input 明寫。
+    """
+    seg = mathstr.split("=")[-1].replace("\\,", "").replace("\\!", "")
+    fracs = re.findall(r"\\frac\s*\{([0-9]+)\}\s*\{([0-9]+)\}", seg)
+    if fracs:
+        return "%s/%s" % fracs[-1] if len(fracs) == 1 else None
+    nums = re.findall(r"\d[\d,]*(?:\.\d+)?", seg)
+    if len(nums) != 1:
+        return None
+    return nums[0].replace(",", "")
+
+
 # ── 單題檢查 ────────────────────────────────────────────────────────────────
-def check_question(q: dict, where: str, fig_ids: set) -> None:
+def check_question(q: dict, where: str, fig_ids: set, need_input: bool = False) -> None:
     qid = q.get("id") or "?"
     tag = "%s / %s" % (where, qid)
     for key in ("id", "code", "type", "marks"):
@@ -290,6 +310,48 @@ def check_question(q: dict, where: str, fig_ids: set) -> None:
     for a in q.get("answers") or []:
         if not a.get("math"):
             err("S9 %s：answers[].math 不可空" % tag)
+
+    # S19 長題每小題的「可核對數字答案」：學生做完要自己輸入數字才知道對唔對。
+    #   answers[].input 明寫最好；冇寫就由 math 最後一段自動抽（只有一個數才抽得準）。
+    if q["type"] == "long":
+        ans_list = q.get("answers") or []
+        parts_list = q.get("parts") or []
+        if need_input and len(ans_list) != len(parts_list):
+            err("S19 %s：開了 answerInput 就要 answers 與 parts 一對一（現在 %d 對 %d）"
+                % (tag, len(ans_list), len(parts_list)))
+        for i, a in enumerate(ans_list, 1):
+            # 冇寫 part 就按次序由 parts[i].label 補上（輸入格與答案欄都要知道屬哪一小題）
+            if need_input and not a.get("part") and len(ans_list) == len(parts_list):
+                label = parts_list[i - 1].get("label") or ""
+                if label:
+                    a["part"] = label
+            if "input" in a:
+                val = a["input"]
+                if val is None or val is False:
+                    continue                       # 明示：這小題唔設輸入格
+                if not isinstance(val, str) or not val.strip():
+                    err("S19 %s：answers %d 的 input 要係非空字串（唔設輸入格就寫 null）" % (tag, i))
+                    continue
+                if "$" in val or "\\" in val or re.search(r"[\u4e00-\u9fff]", val):
+                    err("S19 %s：answers %d 的 input 只可以有數字同 . , / 空格"
+                        "（唔可以 LaTeX／中文；現時 %r）" % (tag, i, val))
+                elif not re.search(r"\d", val):
+                    err("S19 %s：answers %d 的 input 要有數字（現時 %r）" % (tag, i, val))
+            elif need_input:
+                got = derive_input(a.get("math", ""))
+                if got is None:
+                    err("S19 %s：answers %d 抽唔到答案數字 —— 要見到最后一段只有一個數，"
+                        "否則明寫 \"input\": \"…\"（唔設輸入格就寫 null）：%r"
+                        % (tag, i, a.get("math", "")))
+                    continue
+                a["input"] = got
+            else:
+                continue
+            val = a.get("input")
+            if isinstance(val, str) and val:
+                if re.sub(r"[^0-9]", "", val) not in re.sub(r"[^0-9]", "", a.get("math", "")):
+                    err("S19 %s：answers %d 的 input（%r）在 math（%r）裡面搵唔到，"
+                        "數字一定要對得上" % (tag, i, val, a.get("math", "")))
 
     if q["type"] == "tf":
         ans_by_part = {}
@@ -573,7 +635,8 @@ def main() -> int:
         total_q = 0
         for sec in data.get("sections", []):
             for q in sec.get("questions", []):
-                check_question(q, "%s %s" % (pid, sec.get("id")), fig_ids)
+                check_question(q, "%s %s" % (pid, sec.get("id")), fig_ids,
+                               bool(part.get("answerInput")))
                 total_q += 1
         if total_q != part["stats"]["questions"]:
             err("S1 課題 %s：實際題數 %d ≠ site.json 的 %d" % (pid, total_q, part["stats"]["questions"]))

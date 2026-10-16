@@ -34,6 +34,7 @@
       },
       {
         "id": "ch17-quiz",
+        "answerInput": true,
         "group": "quiz",
         "kind": { "zh": "測驗檢討", "en": "Quiz review" },
         "unit": { "zh": "第 17 章 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
@@ -53,6 +54,7 @@
       },
       {
         "id": "ch17-1",
+        "answerInput": true,
         "group": "classwork",
         "chapter": "ch17",
         "code": "17.1",
@@ -66,6 +68,7 @@
       },
       {
         "id": "ch17-2",
+        "answerInput": true,
         "group": "classwork",
         "chapter": "ch17",
         "code": "17.2",
@@ -79,6 +82,7 @@
       },
       {
         "id": "ch17-3",
+        "answerInput": true,
         "group": "classwork",
         "chapter": "ch17",
         "code": "17.3",
@@ -92,6 +96,7 @@
       },
       {
         "id": "ch17-test",
+        "answerInput": true,
         "group": "quiz",
         "kind": { "zh": "測前溫習", "en": "Pre-test revision" },
         "unit": { "zh": "第 17 章 · 排列與組合", "en": "Chapter 17 · Permutation and Combination" },

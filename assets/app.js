@@ -67,8 +67,8 @@
       en: "Solutions are hidden — try it on paper first, then press 'Show solutions' at the top right to check."
     },
     usage: {
-      zh: "每題一頁，題解預設收起 —— 先自己動手做一次（可以按選項即時對答案），完成後按右上角「顯示題解」核對步驟。",
-      en: "One question per page, with solutions hidden by default — try it yourself first (click an option to check instantly), then press 'Show solutions' at the top right to check the steps."
+      zh: "每題一頁，答案與題解預設收起 —— 先自己動手做一次：選擇題揀好選項再按「提交答案」；長題把每小題的答案填在輸入格再提交。做完才按右上角「顯示題解」核對步驟。",
+      en: "One question per page, with answers and solutions hidden by default — do it yourself first: for MC pick an option then press 'Submit answer'; for long questions type each part's answer and submit. Only then press 'Show solutions' at the top right."
     },
     usageLabel: { zh: "用法：", en: "How to use: " },
     resetAsk: {
@@ -99,10 +99,25 @@
     pmClose: { zh: "關閉", en: "Close" },
     pmCopied: { zh: "已複製 —— 可以貼去 AI 再問", en: "Copied — paste it into your AI" },
     pmCopyFail: { zh: "複製失敗，請手動選取下面的文字複製", en: "Copy failed — please select the text below and copy manually" },
-    /* P1：Khan Academy 式「檢查答案」與回饋 */
-    check: { zh: "檢查答案", en: "Check answer" },
+    /* MC：揀好選項之後按這個才對答案（唔會一點即對） */
+    check: { zh: "提交答案", en: "Submit answer" },
     /* 快測（ch17-qc）：即時回饋／提交後回饋、輸入框與多選格 */
     quickSubmit: { zh: "提交答案", en: "Submit answer" },
+    /* 長題：在題目最後輸入每小題的數字答案，提交後逐格顯示對錯 */
+    ansTitle: { zh: "輸入答案核對", en: "Check your answers" },
+    ansHint: {
+      zh: "做完先在這裡填每小題的答案（填數字，分數寫 a/b），按「提交答案」才知對唔對。",
+      en: "After working it out, type each part's answer here (a number; write fractions as a/b), then press submit to check."
+    },
+    ansNeedFill: { zh: "先填答案，再按提交。", en: "Fill in your answers first, then submit." },
+    ansAllOk: {
+      zh: "全部答對 —— 可以按右上角「顯示題解」核對步驟。",
+      en: "All correct — press 'Show solutions' at the top right to check the steps."
+    },
+    ansSomeBad: {
+      zh: "有幾格唔啱，改一改再提交（未對的格可以再試）。",
+      en: "Some answers are off — fix them and submit again (the ones not yet correct stay open)."
+    },
     paperHowTo: { zh: "點做這份卷", en: "How to work through this paper" },
     quickMultiHint: { zh: "可多選：把所有符合條件的組合都剔上。", en: "Multiple answers: tick every combination that satisfies the condition." },
     quickNeedPick: { zh: "先揀答案（數字可以自己填），再按提交。", en: "Choose an answer (you may type a number), then submit." },
@@ -143,9 +158,10 @@
       s.picked = s.picked || {};  // { qid: "A" | "B" | ... }
       s.hints = s.hints || {};    // { qid: 已顯示的提示步數 }
       s.tf = s.tf || {};          // 判斷題逐小題：{ "qid/(a)": true }
+      s.ans = s.ans || {};        // 長題輸入答案：{ "qid/(a)": "1440" }
       return s;
     } catch (e) {
-      return { done: {}, picked: {}, hints: {}, tf: {} };
+      return { done: {}, picked: {}, hints: {}, tf: {}, ans: {} };
     }
   }
   var store = loadStore();
@@ -1505,30 +1521,6 @@
     return b;
   }
 
-  function lockOptions(q, picked, opts) {
-    qsa(".opt", opts).forEach(function (b) {
-      b.disabled = true;
-      if (b.dataset.opt === q.answer) b.classList.add("correct");
-      else if (b.dataset.opt === picked) b.classList.add("wrong");
-    });
-  }
-  function pickOption(q, L, opts) {
-    var correct = L === q.answer;
-    store.picked[q.id] = L;
-    if (correct) store.done[q.id] = true;
-    saveStore();
-    lockOptions(q, L, opts);
-    if (correct) {
-      toast(UI.okToast, "✓");
-      var curBtn = qs("#pagenav .pg.current");
-      if (curBtn) curBtn.classList.add("done");
-    } else {
-      toast(UI.missToast);
-    }
-    var stat = qs("#quiz-progress");
-    setProgress(stat, PART);
-  }
-
   function answerBox(q) {
     /* .sol-answer：收起題解時一律隱藏（連曾答對過的題目都不可洩露答案）；
        學生要按「顯示答案」才加上 .on 揭曉（只記在本次瀏覽，不寫入 localStorage）*/
@@ -1553,6 +1545,135 @@
       box.appendChild(row);
     });
     return box;
+  }
+
+  /* 長題：輸入答案核對（2026-10 老師指示）—— 每小題一個輸入格，按「提交答案」才
+     逐格顯示對錯；答案來自 answers[].input（build.py S19 由 answers[].math 自動抽出，
+     或作者明寫）。放在題目卡之後、題解卡之前：學生一定要先自己計出數字。 */
+  function answerInputCard(q) {
+    if (!q || q.type !== "long") return null;
+    var rows = (q.answers || []).filter(function (a) {
+      return a && typeof a.input === "string" && a.input;
+    });
+    if (!rows.length) return null;
+    var card = el("div", "card ans-card");
+    var head = el("div", "ans-head");
+    var h = el("b");
+    h.appendChild(pairSpan(UI.ansTitle));
+    head.appendChild(h);
+    var hint = el("span", "ans-hint");
+    hint.appendChild(pairSpan(UI.ansHint));
+    head.appendChild(hint);
+    card.appendChild(head);
+
+    var items = [];
+    var rowsHost = el("div", "ans-rows");
+    rows.forEach(function (a, i) {
+      var row = el("div", "ans-row");
+      if (a.part) row.appendChild(el("span", "ans-part", a.part));
+      var inp = el("input", "ans-input");
+      inp.setAttribute("type", "text");
+      inp.setAttribute("inputmode", "decimal");
+      inp.setAttribute("autocomplete", "off");
+      inp.setAttribute("data-ans", a.part || String(i));
+      inp.value = store.ans[q.id + "/" + (a.part || i)] || "";
+      row.appendChild(inp);
+      var mk = el("span", "ans-mark", "");
+      row.appendChild(mk);
+      rowsHost.appendChild(row);
+      items.push({ a: a, key: q.id + "/" + (a.part || i), row: row, inp: inp, mark: mk, ok: false });
+    });
+    card.appendChild(rowsHost);
+
+    var bar = el("div", "check-row");
+    var btn = el("button", "btn btn-primary");
+    btn.setAttribute("data-ans-submit", "1");
+    btn.appendChild(pairSpan(UI.quickSubmit));
+    btn.disabled = true;
+    var fbHost = el("div");
+    bar.appendChild(btn);
+    bar.appendChild(fbHost);
+    card.appendChild(bar);
+
+    /* 對答案：只保留數字、小數點與分數斜線，逗號／空格／%／單位一律唔計 */
+    function norm(s) {
+      return String(s || "")
+        .replace(/[\uff10-\uff19]/g, function (c) {
+          return String.fromCharCode(c.charCodeAt(0) - 0xfee0);
+        })
+        .replace(/[^0-9./]/g, "")
+        .replace(/\.$/, "");
+    }
+    function isOk(a, typed) {
+      var got = norm(typed);
+      if (!got) return false;
+      var want = [a.input].concat(a.inputAlt || []).map(norm);
+      return want.indexOf(got) >= 0;
+    }
+    function arm() {
+      btn.disabled = !items.some(function (it) { return !it.ok && it.inp.value.trim(); });
+    }
+    function feedback(ok) {
+      fbHost.innerHTML = "";
+      var box = el("div", "feedback " + (ok ? "ok" : "bad"));
+      box.setAttribute("data-feedback", ok ? "ok" : "bad");
+      box.appendChild(el("span", "fb-icon", ok ? "✅" : "✖"));
+      var txt = el("div");
+      var main = el("div");
+      main.appendChild(pairSpan(ok ? UI.fbCorrect : UI.fbWrong));
+      var sub = el("span", "fb-sub");
+      sub.appendChild(pairSpan(ok ? UI.ansAllOk : UI.ansSomeBad));
+      txt.appendChild(main);
+      txt.appendChild(sub);
+      box.appendChild(txt);
+      fbHost.appendChild(box);
+    }
+    function lockRow(it) {
+      it.ok = true;
+      it.inp.disabled = true;
+      it.row.classList.remove("bad");
+      it.row.classList.add("ok");
+      it.mark.textContent = "✓";
+    }
+    btn.onclick = function () {
+      if (btn.disabled) return;
+      items.forEach(function (it) {
+        if (it.ok) return;
+        var typed = it.inp.value.trim();
+        store.ans[it.key] = typed;
+        it.row.classList.remove("bad");
+        it.mark.textContent = "";
+        if (!typed) return;
+        if (isOk(it.a, typed)) lockRow(it);
+        else {
+          it.row.classList.add("bad");
+          it.mark.textContent = "✗";
+        }
+      });
+      var allOk = items.every(function (it) { return it.ok; });
+      if (allOk) store.done[q.id] = true;
+      else delete store.done[q.id];
+      saveStore();
+      if (allOk) {
+        feedback(true);
+        var curBtn = qs("#pagenav .pg.current");
+        if (curBtn) curBtn.classList.add("done");
+        setProgress(qs("#quiz-progress"), PART);
+      } else {
+        feedback(false);
+      }
+      arm();
+    };
+    items.forEach(function (it) { it.inp.oninput = arm; });
+    /* 之前全部答對過 → 回到這一題時直接顯示已核對 */
+    if (store.done[q.id]) {
+      items.forEach(function (it) {
+        if (isOk(it.a, store.ans[it.key] || "")) lockRow(it);
+      });
+      if (items.every(function (it) { return it.ok; })) feedback(true);
+    }
+    arm();
+    return card;
   }
 
   function solutionCard(q, sec, refresh) {
@@ -1744,6 +1865,8 @@
     function redraw() { renderPage(pages, cur, id, part); }
     refreshCurrent = redraw;
     body.appendChild(qc);
+    var ac = answerInputCard(q);
+    if (ac) body.appendChild(ac);
     var pc = parseCard(q);
     if (pc) body.appendChild(pc);
     body.appendChild(solutionCard(q, p.sec, redraw));

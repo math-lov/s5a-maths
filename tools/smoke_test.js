@@ -1543,10 +1543,8 @@ const QC_QS = T_QS.filter((q) => q.quick);
 ok(QC_QS.map((q) => q.code).join(",") === "Q1,Q2,Q3,Q4,Q5" &&
   QC_QS.every((q) => q.marks === 1),
   "快測 5 題（Q1–Q5），每題 1 分，合共 5 分");
-ok(QC_QS[0].quick.mode === "instant" && QC_QS[1].quick.mode === "instant" &&
-  QC_QS[2].quick.mode === "submit" && QC_QS[3].quick.mode === "submit" &&
-  QC_QS[4].quick.multi === true && QC_QS[4].quick.mode === "submit",
-  "Q1／Q2 係即時回饋；Q3／Q4／Q5 要按「提交答案」先出對錯");
+ok(QC_QS.every((q) => q.quick.mode === "submit") && QC_QS[4].quick.multi === true,
+  "快測 5 題全部要按「提交答案」先出對錯（2026-10-16 老師指示：唔再三點即對）");
 ok(QC_QS[2].quick.input.answer === "10080" && QC_QS[3].quick.input.answer === "14400",
   "Q3 輸入格答案 10080、Q4 輸入格答案 14400");
 ok(QC_QS[4].quick.rows.map((r) => r.opt).join("") === "ABCD" &&
@@ -1764,21 +1762,28 @@ const qcType = (t, v) => {
   n.dispatchEvent(new (t.ctx.window.Event)("input", { bubbles: true }));
 };
 
-/* Q1：MC 一按即知對錯 */
+/* Q1：揀選項之後要按提交才對答案 */
 const qc1 = boot("quiz.html", "?c=ch17-test&p=1");
-ok(qc1.$$(".opt").length === 4 && !qcSub(qc1) && !qc1.$("[data-quick-input]"),
-  "Q1 渲染 4 個選項，冇提交按鈕、冇輸入格（即時回饋題）");
+ok(qc1.$$(".opt").length === 4 && !!qcSub(qc1) && qcSub(qc1).disabled === true &&
+  !qc1.$("[data-quick-input]") && !qcFb(qc1),
+  "Q1 渲染 4 個選項 ＋ 提交按鈕（未揀之前停用、未有任何回饋）");
 qc1.$('.opt[data-opt="A"]').click();
+ok(!qcFb(qc1) && !qc1.$(".opt[disabled]"),
+  "Q1 揀 A 但未提交：唔會出對錯，亦未鎖住");
+qcSub(qc1).click();
 ok(qcFb(qc1) === "bad" && !qc1.$('.opt[data-opt="A"]').disabled && !qc1.$(".opt[disabled]"),
-  "Q1 揀錯 A：即時回饋「唔啱」，而且可以再揀");
+  "Q1 提交 A：顯示「唔啱」，而且可以再揀");
 qc1.$('.opt[data-opt="B"]').click();
+qcSub(qc1).click();
 ok(qcFb(qc1) === "ok" && qc1.$('.opt[data-opt="B"]').classList.contains("correct") &&
   qc1.$$(".opt[disabled]").length === 4,
-  "Q1 揀 B：即時顯示正確並鎖住四個選項");
+  "Q1 改揀 B 再提交：顯示正確並鎖住四個選項");
 /* Q2：同一組選項，答案反轉（排列 vs 組合） */
 const qc2 = boot("quiz.html", "?c=ch17-test&p=2");
 qc2.$('.opt[data-opt="A"]').click();
-ok(qcFb(qc2) === "ok", "Q2 揀 A（C³⁰）即時正確，與 Q1 分別在次序有冇分別");
+ok(!qcFb(qc2), "Q2 揀 A 未提交：仍然未出對錯");
+qcSub(qc2).click();
+ok(qcFb(qc2) === "ok", "Q2 提交 A（C³⁰）正確，與 Q1 分別在次序有冇分別");
 
 /* Q3：揀方法 ＋ 填數，按提交先評 */
 const qc3 = boot("quiz.html", "?c=ch17-test&p=3");
@@ -1834,6 +1839,58 @@ ok(qcFb(qc5) === "ok" && qc5.$$(".opt.cell.correct").length === 3 &&
 ok(fs.existsSync("docs/worksheets/ch17-test-worksheet.docx") &&
   !/["']zh["']/.test(read("tools/make_worksheet_docx.py")),
   "工作紙生成器完全冇讀 zh 欄（工作紙全英，唔中英對照）");
+
+/* ── 6b-3. 長題：輸入答案核對（answers[].input，build.py S19）────────────── */
+console.log("\n== 長題 · 輸入答案核對（17 課全開）==");
+const ansSub = (t) => t.$("[data-ans-submit]");
+const ansType = (t, i, v) => {
+  const n = t.$$(".ans-input")[i];
+  n.value = v;
+  n.dispatchEvent(new (t.ctx.window.Event)("input", { bubbles: true }));
+};
+ok(["ch17-1", "ch17-2", "ch17-3", "ch17-test", "ch17-quiz"].every(
+  (pid) => (INDEX.parts.filter((p) => p.id === pid)[0] || {}).answerInput === true),
+  "17 課五個課題都開了 answerInput（長題最後要輸入答案核對）");
+ok(T_QS.filter((q) => q.type === "long").every((q) =>
+  (q.answers || []).length > 0 &&
+  q.answers.every((a) => a.input === null || typeof a.input === "string")),
+  "17 測前溫習：全部長題的 answers 都有可核對的 input（build.py 自動抽出）");
+const tB1i = boot("quiz.html", "?c=ch17-test&p=10", null, "hide");
+ok(tB1i.$$(".ans-row").length === 2 && ansSub(tB1i).disabled === true &&
+  tB1i.$$(".ans-row .ans-part").map((n) => n.textContent).join("") === "(a)(b)" &&
+  !tB1i.$("[data-feedback]"),
+  "B1（扑克牌）：兩個小題各一格，未填時提交停用、未有回饋");
+ansType(tB1i, 0, "12");
+ok(ansSub(tB1i).disabled === false, "填了第 1 格之後提交按鈕解封");
+ansType(tB1i, 1, "16");
+ansSub(tB1i).click();
+ok(tB1i.$$(".ans-row.ok").length === 2 && tB1i.$$(".ans-mark")[0].textContent === "✓" &&
+  tB1i.$$(".ans-input[disabled]").length === 2 && qcFb(tB1i) === "ok" &&
+  !!tB1i.$("#pagenav .pg.done"),
+  "B1 填 12／16：兩格都對（✓、鎖住輸入格、頁碼標已掌握）");
+const tB2i = boot("quiz.html", "?c=ch17-test&p=11", null, "hide");
+ansType(tB2i, 0, "12345");
+ansSub(tB2i).click();
+ok(tB2i.$$(".ans-row.bad").length === 1 && tB2i.$$(".ans-mark")[0].textContent === "✗" &&
+  tB2i.$$(".ans-input[disabled]").length === 0 && qcFb(tB2i) === "bad",
+  "B2 第 1 格填錯：標 ✗ 提示再試，輸入格唔會鎖住");
+ansType(tB2i, 0, "362 880");
+ansSub(tB2i).click();
+ok(tB2i.$$(".ans-row.ok").length === 1 && tB2i.$$(".ans-row.bad").length === 0 &&
+  qcFb(tB2i) === "bad",
+  "B2 改成 362 880（空格唔計）轉 ✓；第 2 格未填，成題仍未算完成");
+const ce1i = boot("quiz.html", "?c=ch17-1&p=1", null, "hide");
+ok(ce1i.$$(".ans-input").length === 2 && /輸入答案核對/.test(ce1i.$(".ans-card").textContent),
+  "17.1 CE1（兩小題）一樣有輸入答案卡");
+ansType(ce1i, 0, "９０");        // 全形數字
+ansType(ce1i, 1, "75");
+ansSub(ce1i).click();
+ok(ce1i.$$(".ans-row.ok").length === 2,
+  "17.1 CE1 填「９０」（全形）／75 都當正確（自動轉半形）");
+ok(!boot("quiz.html", "?c=ch17-test&p=6", null, "hide").$(".ans-card"),
+  "MC 題（A1）唔會有輸入答案卡，只靠揀選項");
+ok(boot("quiz.html", "?c=ch18-1&p=1", null, "hide").$(".ans-card") === null,
+  "未開 answerInput 的課題（18.1）維持原狀，唔會有輸入卡");
 
 /* ── 6c. 課本練習：第 18 章 → 18.1 集合 ──────────────────────────────── */
 console.log("\n== 第 18 章 · 18.1 集合（課本練習頁）==");
