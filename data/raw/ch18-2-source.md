@@ -119,28 +119,46 @@ Total: **39 questions, 146 marks** (the Section Check counts as one question wit
   showing the arithmetic.
 - Every fraction was re-rendered with real KaTeX (`throwOnError`) — 819 expressions, 0 errors.
 
-### Tree diagrams drawn in KaTeX (L2 Q23 and L2 Q26, revised 2026-10-20)
+### Tree diagrams (L2 Q23 and L2 Q26, revised 2026-10-20)
 
-- Both solutions were rewritten at the teacher's request so that a **tree diagram** explains *why* the
-  complement is subtracted once or twice. No new figure type was added: the tree is a KaTeX
-  `array` whose cells contain `\diagup` / `\diagdown` (they render as the characters ╱ and ╲), and
-  `\checkmark` / `\times` for pass and fail. `data/src/figures.json` still has no `ch18-2` entries.
-- **Empty cells must be genuinely empty.** A first attempt filled the blank cells with `,` as
-  padding; KaTeX renders a comma as a real `<mo>` element, so the tree came out as rows of dots.
-  Blank cells are now `&&` only. `tools/smoke_test.js` asserts no comma appears inside the
-  `{array} … \end{array}` part of the three tree steps.
-- The three-toss tree needs **16 columns** (8 leaves at the even columns, one `\diagup` +
-  `\diagdown` in each odd column). Every row must have exactly 16 cells or KaTeX warns
-  "Too few columns specified in the {array} column argument".
-- **The teaching point is now the contrast between the two questions:**
-  - Q23 (three tosses) — the complement of "at most one head" is *two separate groups* on the
-    tree (HHH alone, and HHT / HTH / THH), so `1 − 1/8 − 3/8`: two subtractions.
-  - Q26 (two papers) — "passing none" is a *single leaf* (fail, fail) on the tree, and the question
-    gives it as 0.15, so `1 − 0.15`: one subtraction.
+- Both solutions were rewritten at the teacher's request so that a **tree diagram** explains *why*
+  the complement is subtracted once or twice. **First attempt: the tree was drawn in KaTeX**
+  (`\begin{array}` with `\diagup` / `\diagdown`). It rendered without errors but the diagonals did
+  not line up — a KaTeX array gives every cell the same width, so the branches drifted away from
+  the nodes and the picture was unreadable. Two extra bugs showed up on the way:
+  - **Empty cells must be genuinely empty.** A first version used `,` as padding; KaTeX renders a
+    comma as a real `<mo>` element, so the tree came out as rows of dots.
+  - The three-toss tree needs **16 columns** and every row must have exactly that many cells, or
+    KaTeX warns "Too few columns specified in the {array} column argument".
+- **Final answer: the trees are generated SVG figures**, drawn by a new `tree` type in
+  `tools/make_figures.py` and specified in `data/src/figures.json`
+  (`ch18-2-l2-23-tree`, `ch18-2-l2-26-tree`). They are attached with `steps[].figure`, the same
+  mechanism the 18.1 Venn diagrams use. `.fig-wide` (660 → 700px) gives them room; the SVG scales,
+  so mobile just gets a smaller tree.
+- **The trees read from left to right**, and each branch carries its probability
+  (`"1/2"` is typeset as a real fraction, decimals such as `0.55` are printed as-is). The rightmost
+  column gives the outcome plus a count in words — `HHH 3 HEADS`, `HHT 2 HEADS 1 TAIL`,
+  `HTT 1 HEAD 2 TAILS`, `TTT 3 TAILS` — which is what makes the "count the leaves in each group"
+  step visible. `steps` in `figures.json` is just the eight outcomes; the tree shape and the
+  HEAD/TAIL wording are generated.
+- Spec formats supported by `_tree_root()`: `steps` (flat list of equal-length outcomes, for
+  repeated identical trials), `groups` (explicit two-level tree with per-edge probabilities, used
+  by Q26), `branches` (fully nested, for anything harder). `hl: true` highlights one branch and
+  leaf — Q26 uses it for the "passing none" leaf so students can see it is a **single** leaf.
+- **Do not use `paint-order` for text halos.** Not every SVG renderer supports it and the glyph
+  ends up white-on-white; `make_figures._txt()` draws an explicit white `<rect>` instead.
+- **The teaching point is the contrast between the two questions:**
+  - Q23 (three tosses) — the complement of "at most one head" is *two separate groups* on the tree
+    (HHH alone, and HHT / HTH / THH), so `1 − 1/8 − 3/8`: two subtractions.
+  - Q26 (two papers) — "passing none" is a *single leaf* on the tree, given as 0.15, so
+    `1 − 0.15`: one subtraction.
   Each solution states the rule in words — the number of subtractions is decided by how many groups
   the complement occupies on the tree, not by the words "at least" / "at most" — and cross-refers
   to the other question. A trap was added to each question for the opposite mistake.
 - Marks are unchanged: both questions stay at 4 marks with four `(1M)`/`(1A)` steps each.
+- To eyeball a figure: `python tools/preview_figures.py` writes a 2× PNG of every figure into
+  `tools/_preview/` (needs `pip install pymupdf`). This is how the alignment and the label
+  collisions above were found — worth doing after any change to `make_figures.py`.
 
 
 ## Marks

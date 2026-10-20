@@ -400,7 +400,7 @@ ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")
   "每頁都有語言設定");
 
 const figs = JSON.parse(figuresJs.slice(figuresJs.indexOf("{"), figuresJs.lastIndexOf("}") + 1));
-ok(Object.keys(figs).length === 27, "圖共 27 幅（14 幅舊圖 ＋ 13 幅第 18.1 節文氏圖；實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).length === 29, "圖共 29 幅（14 幅舊圖 ＋ 13 幅第 18.1 節文氏圖 ＋ 2 幅第 18.2 節樹狀圖；實際 " + Object.keys(figs).length + "）");
 ok(Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length === 13,
   "其中 13 幅屬於第 18.1 節（文氏圖；實際 " +
   Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length + "）");
@@ -2172,43 +2172,47 @@ ok(/5\^\{\\ast\\ast\}/.test(q182("ch18-2-l1-7").stem.zh) &&
   !/\*\*/.test(read("data/src/ch18-2.json")),
   "L1-7 的 DSE 5** 級用 KaTeX 上標 $5^{\\ast\\ast}$（前端沒有 Markdown）");
 
-/* 2026-10-20（老師要求）：L2-23 與 L2-26 的解法改用樹狀圖解釋「反面要減幾次」——
-   樹用 KaTeX array + diagup/diagdown 畫成，不需另加圖檔；減的次數由反面在樹上佔幾組決定。 */
+/* 2026-10-20（老師要求）：L2-23 與 L2-26 的解法改用樹狀圖解釋「反面要減幾次」。
+   樹由 tools/make_figures.py 的 tree 類型畫成 SVG（figures.json 的 steps／groups 規格），
+   由 step.figure 引用；減的次數由反面在樹上佔幾組決定。 */
 const tr23 = q182("ch18-2-l2-23").solution.steps;
 const tr26 = q182("ch18-2-l2-26").solution.steps;
-ok(/\\begin\{array\}\{cccccccccccccccc\}/.test(tr23[0].math) &&
-  tr23[0].math.indexOf("\\diagup") > 0 && tr23[0].math.indexOf("\\diagdown") > 0 &&
-  /2\^3|8/.test(tr23[0].zh),
-  "L2-23 先畫樹狀圖（三次擲幣 16 欄陣列，8 個葉）");
-ok(tr23[0].math.split("\\diagup").length === 11 &&
-  tr23[0].math.split("\\diagdown").length === 11,
-  "L2-23 樹狀圖有 10 條分支（頭兩條分出 H／T，另外八條各通向一個葉）");
+const FIGSRC = JSON.parse(read("data/src/figures.json"));
+ok(tr23[0].figure === "ch18-2-l2-23-tree" && tr23[2].figure === "ch18-2-l2-23-tree" &&
+  !/diagup|begin\{array\}/.test(JSON.stringify(tr23)),
+  "L2-23 兩步引用樹狀圖 ch18-2-l2-23-tree（不再是 KaTeX 陣列）");
+ok(tr26[0].figure === "ch18-2-l2-26-tree" && !/checkmark/.test(JSON.stringify(tr26)),
+  "L2-26(a) 引用樹狀圖 ch18-2-l2-26-tree");
+const t23spec = FIGSRC["ch18-2-l2-23-tree"];
+const t26spec = FIGSRC["ch18-2-l2-26-tree"];
+ok(!!t23spec && t23spec.type === "tree" && t23spec.wide === true &&
+  t23spec.steps.length === 8 && t23spec.steps[0] === "HHH" &&
+  t23spec.steps[7] === "TTT" && t23spec.edgeProb === "1/2",
+  "18.2 Q23 的樹狀圖規格：type=tree、八條結果由左至右、每條分支 1/2、寬版");
+ok(!!t26spec && t26spec.type === "tree" && t26spec.groups.length === 2 &&
+  t26spec.groups[1].items[1].hl === true && /none/.test(t26spec.groups[1].items[1].note),
+  "18.2 Q26 的樹狀圖規格：兩組試卷，hl 標示唯一「兩份都不合格」的葉");
 ok(/\\underbrace\{\\frac\{1\}\{8\}\}_\{\\text\{3 次正面\}\}/.test(tr23[3].math) &&
   /\\underbrace\{\\frac\{3\}\{8\}\}_\{\\text\{恰好 2 次正面\}\}/.test(tr23[3].math),
   "L2-23(c) 反面兩組分別 underbrace：1 − 3 次正面 − 恰好 2 次正面");
-ok(/\\begin\{array\}\{cccccccc\}/.test(tr26[0].math) &&
-  tr26[0].math.includes("\\checkmark") && tr26[0].math.includes("\\times") &&
-  /2 \\times 2 = 4/.test(tr26[0].math),
-  "L2-26(a) 兩份試卷的樹狀圖（4 個葉，check／cross 分合格與否）");
 ok(/\\underbrace\{\\text\{不過、不過\}\}/.test(tr26[1].math) &&
-  /1 - 0\.15 = 0\.85/.test(tr26[1].math) &&
-  /Q23/.test(tr26[1].zh),
+  /1 - 0\.15 = 0\.85/.test(tr26[1].math) && /Q23/.test(tr26[1].zh),
   "L2-26(a)「兩份都不合格」只有一個葉 → 只減一次，並與 Q23 的兩組對照");
-ok(tr23[3].marking === "(1A)" &&
-  tr23.reduce((t, st) => t + (/^\(1[MA]\)$/.test(st.marking) ? 1 : 0), 0) === 4 &&
+ok(tr23.reduce((t, st) => t + (/^\(1[MA]\)$/.test(st.marking) ? 1 : 0), 0) === 4 &&
   tr26.reduce((t, st) => t + (/^\(1[MA]\)$/.test(st.marking) ? 1 : 0), 0) === 4,
   "L2-23 與 L2-26 仍是 4 個步驟 (1M)/(1A) 加總 4 分（改寫解法不改分數）");
-/* 樹狀圖用空白格排版：空白格內不能有逗號，否則 KaTeX 會把逗號當字元畫出來 */
-const arrBody = (m) => m.slice(m.indexOf("{array}"), m.indexOf("\\end{array}"));
-ok(!arrBody(tr23[0].math).includes(",") && !arrBody(tr23[2].math).includes(",") &&
-  !arrBody(tr26[0].math).includes(","),
-  "兩張樹狀圖的空白格沒有殘留逗號（逗號會被 KaTeX 畫成一個一個的點）");
 const treePage23 = boot("quiz.html", "?c=ch18-2&p=28", null, "show");
 const treePage26 = boot("quiz.html", "?c=ch18-2&p=31", null, "show");
-ok(treePage23.$$(".katex-error").length === 0 && treePage26.$$(".katex-error").length === 0 &&
-  /╱|╲/.test(treePage23.$("#quiz-body").textContent || "") &&
-  /✓|✗|╳/.test(treePage26.$("#quiz-body").textContent || ""),
-  "兩題的樹狀圖在頁面上真的畫出來（分支斜線＋合格／不合格記號）");
+ok(treePage23.$$(".fig svg").length >= 2 && treePage26.$$(".fig svg").length >= 1,
+  "兩題的樹狀圖在頁面上真的畫出來（.fig 內有 SVG）");
+const t23svg = treePage23.$$(".fig svg").map((s) => s.innerHTML).join("");
+const t26svg = treePage26.$$(".fig svg").map((s) => s.innerHTML).join("");
+ok(/3 HEADS/.test(t23svg) && /1 HEAD 2 TAILS/.test(t23svg) && /3 TAILS/.test(t23svg) &&
+  (t23svg.match(/<circle/g) || []).length >= 15,
+  "Q23 樹狀圖最右一欄有 8 個結果同「N HEADS / N TAILS」的說明");
+ok(/the only/.test(t26svg) && /0\.55/.test(t26svg) && /0\.6/.test(t26svg) &&
+  /#F6E05E/i.test(t26svg),
+  "Q26 樹狀圖標出唯一「兩份都不合格」的葉（重點色）與各分支概率");
 /* 2026-10-13（回應學生提問）：L2-17 加入「下捨入」的推廣 —— 未整除的例子與 m 到 n 的做法 */
 const rd217 = q182("ch18-2-l2-17");
 ok(rd217.solution.steps[0].math.includes("\\left\\lfloor") &&

@@ -703,7 +703,7 @@ body[data-sol="show"] .hint-row { display: none; }
   text-align: center; overflow-x: auto;
 }
 .fig svg { display: inline-block; width: 100%; max-width: 470px; height: auto; }
-.fig.fig-wide svg { max-width: 660px; }
+.fig.fig-wide svg { max-width: 700px; }
 .fig-cap { text-align: center; font-size: 13.5px; color: var(--muted); margin: 2px 0 14px; }
 
 /* 陷阱與貼士：陷阱＝橙（要留意）；貼士＝綠（可以用得着） */

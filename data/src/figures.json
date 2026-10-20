@@ -334,5 +334,49 @@
       "zh": "完成後的圖：只修物理 $18-12=6$ 人、兩科都修 $12$ 人、只修化學 $15-12=3$ 人、兩科都不修 $30-21=9$ 人。",
       "en": "The completed diagram: Physics only 18 − 12 = 6, both 12, Chemistry only 15 − 12 = 3, neither 30 − 21 = 9."
     }
+  },
+  "ch18-2-l2-23-tree": {
+    "type": "tree",
+    "wide": true,
+    "width": 940,
+    "height": 340,
+    "fontSize": 19,
+    "labelWidth": 260,
+    "levelLabels": ["第 1 次 toss 1", "第 2 次 toss 2", "第 3 次 toss 3"],
+    "edgeProb": "1/2",
+    "steps": ["HHH", "HHT", "HTH", "HTT", "THH", "THT", "TTH", "TTT"],
+    "caption": {
+      "zh": "三次擲一枚均勻硬幣的樹狀圖（由左至右）。每條分支的概率都是 $\\frac{1}{2}$；最右一行是完整結果，再加正面、反面的次數。",
+      "en": "Tree diagram for three tosses of a fair coin, read from left to right. Every branch has probability 1/2. The rightmost column gives the full sequence together with the number of heads and tails."
+    }
+  },
+  "ch18-2-l2-26-tree": {
+    "type": "tree",
+    "wide": true,
+    "width": 800,
+    "height": 250,
+    "fontSize": 17,
+    "labelWidth": 300,
+    "rootLabel": "Aiden",
+    "groups": [
+      {
+        "label": "卷一 Paper 1",
+        "items": [
+          { "label": "合格 Pass", "prob": "0.55", "leaf": "卷一合格", "note": "pass paper 1" },
+          { "label": "不合格 Fail", "prob": "0.45", "leaf": "卷一不合格", "note": "fail paper 1" }
+        ]
+      },
+      {
+        "label": "卷二 Paper 2",
+        "items": [
+          { "label": "合格 Pass", "prob": "0.4", "leaf": "卷二合格", "note": "pass paper 2" },
+          { "label": "不合格 Fail", "prob": "0.6", "hl": true, "leaf": "卷二不合格", "note": "the only \"none\" leaf" }
+        ]
+      }
+    ],
+    "caption": {
+      "zh": "兩份試卷的樹狀圖（由左至右）。「兩份都不合格」在樹上只有右下角一個葉（黃色），題目給它的概率是 $0.15$，所以它的反面只需減一次。",
+      "en": "Tree diagram for the two papers, read from left to right. \"Passing none\" is the single bottom-right leaf (highlighted); the question gives its probability as 0.15, so its complement needs only one subtraction."
+    }
   }
 }

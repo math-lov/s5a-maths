@@ -3281,12 +3281,13 @@
          "zh": "先畫樹狀圖：三次擲幣共 8 個葉",
          "en": "Draw the tree first: eight leaves for three tosses"
         },
-        "math": "\\begin{gathered}\\begin{array}{cccccccccccccccc}&&&H&&&&&&&&&T&&&\\\\&&&\\diagup&&\\diagdown&&&&&\\diagup&&\\diagdown&&\\\\&H&&&&&T&&&H&&&&&T&\\\\\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown\\\\H&&T&&H&&T&&H&&T&&H&&T&\\end{array} \\\\ [14pt] \\text{每個葉} = \\frac{1}{2} \\times \\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{8}\\end{gathered}",
-        "zh": "先畫樹狀圖，之後全部答案都在樹上讀。每次擲幣分 $H$（正面）與 $T$（反面）兩條分支，各佔 $\\frac{1}{2}$；擲三次之後樹底有 $2^3 = 8$ 個葉，每個葉就是一條完整結果（例如 $HHT$），概率是 $\\frac{1}{2}\\times\\frac{1}{2}\\times\\frac{1}{2} = \\frac{1}{8}$。「三次都是正面」只有最左邊的 $HHH$ 一個葉，所以概率是 $\\frac{1}{8}$。",
-        "en": "Draw the tree first — every later answer is read off it. Each toss splits into an H branch and a T branch, each of probability 1/2; after three tosses there are 2³ = 8 leaves at the bottom, each one a complete sequence (for example HHT) with probability 1/2 × 1/2 × 1/2 = 1/8. Only the leftmost leaf HHH has three heads, so the probability is 1/8.",
+        "math": "2^3 = 8",
+        "figure": "ch18-2-l2-23-tree",
+        "zh": "先畫樹狀圖，之後全部答案都在樹上讀。每次擲幣分 $H$（正面）與 $T$（反面）兩條分支，各佔 $\\frac{1}{2}$；擲三次之後樹底有 $2^3 = 8$ 個葉，每個葉就是一條完整結果（例如 $HHT$），概率是 $\\frac{1}{2}\\times\\frac{1}{2}\\times\\frac{1}{2} = \\frac{1}{8}$。「三次都是正面」只有最上面的 $HHH$ 一個葉，所以概率是 $\\frac{1}{8}$。",
+        "en": "Draw the tree first — every later answer is read off it. Each toss splits into an H branch and a T branch, each of probability 1/2; after three tosses there are 2³ = 8 leaves at the right, each one a complete sequence (for example HHT) with probability 1/2 × 1/2 × 1/2 = 1/8. Only the top leaf HHH has three heads, so the probability is 1/8.",
         "marking": "(1A)",
         "highlight": [
-         "\\text{每個葉} = \\frac{1}{2} \\times \\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{8}"
+         "\\frac{1}{8}"
         ]
         },
         {
@@ -3309,13 +3310,14 @@
          "zh": "看樹：反面是分開的兩組，要減兩次",
          "en": "From the tree: the complement is two separate groups"
         },
-        "math": "\\begin{array}{cccccccccccccccc}&&&H&&&&&&&&&T&&&\\\\&&&\\diagup&&\\diagdown&&&&&\\diagup&&\\diagdown&&\\\\&H&&&&&T&&&H&&&&&T&\\\\\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown\\\\H&&T&&H&&T&&H&&T&&H&&T&\\end{array}",
-        "zh": "再看一次樹：「至多一次正面」是 $HTT$、$THT$、$TTH$、$TTT$ 這 $4$ 個葉。反過來說，反面「兩次或三次正面」在樹上分成兩組 ——「$3$ 次正面」是 $HHH$ 一個葉（第一組），「恰好 $2$ 次正面」是 $HHT$、$HTH$、$THH$（第二組）。因為兩組是分開的，反面不能用一個分數代表，所以要用 $1$ 減兩次，即減 (b) 再減 (a)。",
-        "en": "Look at the tree again: \"at most one head\" is the four leaves HTT, THT, TTH and TTT. Put the other way round, the complement \"two or three heads\" splits into two groups on the tree — three heads is the single leaf HHH (one group), and exactly two heads is HHT, HTH and THH (a second group). Because the two groups are separate, the complement cannot be written as one single probability, so we subtract twice from 1: part (b) first, then part (a).",
+        "math": "\\text{至多一次正面} : 4 \\text{ 個葉} = \\frac{4}{8}",
+        "figure": "ch18-2-l2-23-tree",
+        "zh": "再看一次樹：「至多一次正面」是 $HTT$、$THT$、$TTH$、$TTT$ 這 $4$ 個葉（圖最右一欄標著 1 HEAD 2 TAILS 與 3 TAILS 的四行）。反過來說，反面「兩次或三次正面」在樹上分成兩組 ——「$3$ 次正面」是 $HHH$ 一個葉（第一組），「恰好 $2$ 次正面」是 $HHT$、$HTH$、$THH$（第二組，圖上標著 2 HEADS 1 TAIL 的三行）。因為兩組是分開的，反面不能用一個分數代表，所以要用 $1$ 減兩次，即減 (b) 再減 (a)。",
+        "en": "Look at the tree again: \"at most one head\" is the four leaves HTT, THT, TTH and TTT (the four rows marked 1 HEAD 2 TAILS and 3 TAILS on the right). Put the other way round, the complement \"two or three heads\" splits into two groups on the tree — three heads is the single leaf HHH (group 1), and exactly two heads is HHT, HTH and THH (group 2, the three rows marked 2 HEADS 1 TAIL). Because the two groups are separate, the complement cannot be written as one single probability, so we subtract twice from 1: part (b) first, then part (a).",
         "marking": "(1M)",
         "highlight": [
-         "H ,  , T ,  , H ,  , T ,  , H ,  , T ,  , H ,  , T"
-        ]
+        "\\text{至多一次正面} : 4 \\text{ 個葉} = \\frac{4}{8}"
+       ]
         },
         {
         "part": "(c)",
@@ -3678,12 +3680,13 @@
          "zh": "先畫樹狀圖：兩份試卷共 4 個葉",
          "en": "Draw the tree first: four leaves for the two papers"
         },
-        "math": "\\begin{gathered}\\begin{array}{cccccccc}&&&\\text{試卷}&&&&\\\\&&&\\diagup&&\\diagdown&&\\\\&&\\text{卷一}&&&&\\text{卷二}&\\\\&\\diagup&&\\diagdown&&\\diagup&&\\diagdown\\\\\\checkmark&&\\times&&\\checkmark&&\\times&\\end{array} \\\\ [12pt] \\checkmark = \\text{合格},\\quad \\times = \\text{不合格},\\quad 2 \\times 2 = 4 \\text{ 個葉}\\end{gathered}",
-        "zh": "先畫樹狀圖，之後的答案都在樹上讀。卷一分「合格／不合格」兩條分支，卷二也分兩條，兩個事件合起來共 $2 \\times 2 = 4$ 個葉：過過、過不過、不通過、不通不過。（樹上 $\\checkmark$ 表示合格，$\\times$ 表示不合格。）",
-        "en": "Draw the tree first — every later answer is read off it. Paper 1 splits into pass and fail, and so does paper 2, giving 2 × 2 = 4 leaves: pass-pass, pass-fail, fail-pass, fail-fail. (On the tree ✓ means pass and × means fail.)",
+        "math": "2 \\times 2 = 4",
+        "figure": "ch18-2-l2-26-tree",
+        "zh": "先畫樹狀圖，之後的答案都在樹上讀。卷一分「合格／不合格」兩條分支（$0.55$ 與 $0.45$），卷二也分兩條（$0.4$ 與 $0.6$），兩個事件合起來共 $2 \\times 2 = 4$ 個葉：過過、過不過、不通過、不通不過。",
+        "en": "Draw the tree first — every later answer is read off it. Paper 1 splits into pass (0.55) and fail (0.45), and so does paper 2 (0.4 and 0.6), giving 2 × 2 = 4 leaves: pass-pass, pass-fail, fail-pass, fail-fail.",
         "marking": "(1M)",
         "highlight": [
-         "2 \\times 2 = 4 \\text{ 個葉}"
+         "2 \\times 2 = 4"
         ]
        },
        {

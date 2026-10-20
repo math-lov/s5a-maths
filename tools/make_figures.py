@@ -6,6 +6,8 @@
   graph    二次函數圖像（拋物線、對稱軸、頂點、根、螢光標示）
   grid     方格圖（座標平面上的格數，第 17.3 節路徑題用）
   venn     文氏圖（兩個相交圓、可加一個內圈 C、可填色與放元素）
+  tree     樹狀圖（由左至右的probability tree：分支寫概率，最右寫結果與
+           結果的說明，例如 HHT　2 HEADS 1 TAIL）
 所有座標都是「數學座標」，由這裡換算成像素，所以調範圍不會走位。
 箭嘴用實心三角形自己畫（不用 SVG marker），確保任何渲染器都看到。
 """
@@ -239,6 +241,236 @@ def grid(spec) -> str:
     return "".join(out)
 
 
+# ── 樹狀圖（由左至右的 probability tree）────────────────────────────────────
+def _esc(s: str) -> str:
+    return (str(s).replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
+
+
+def _tw(s, size):
+    """粗略估算一段文字的寬度（中日韓字元約 1em，英文數字約 0.55em）。"""
+    w = 0.0
+    for ch in str(s):
+        w += size * (1.0 if ord(ch) > 0x2E80 else 0.55)
+    return w
+
+
+def _txt(x, y, s, size=17, fill=INK, anchor="middle", weight="400", halo=False):
+    """一段文字；halo=True 時在字後墊一個白色方塊，壓在線上也看得清楚。
+
+    不要用 paint-order（部分 SVG 渲染器不支援，會變成白字）；自己畫方塊較可靠。
+    """
+    out = []
+    if halo:
+        w, h = _tw(s, size) + size * 0.5, size * 1.2
+        x0 = x - (w / 2 if anchor == "middle" else (w if anchor == "end" else 0))
+        out.append('<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="#FFFFFF"/>'
+                   % (x0, y - size * 0.95, w, h))
+    out.append('<text x="%.1f" y="%.1f" fill="%s" font-size="%s" font-family="%s" '
+               'text-anchor="%s" font-weight="%s">%s</text>'
+               % (x, y, fill, size, FONT, anchor, weight, _esc(s)))
+    return "".join(out)
+
+
+def _ptxt(cx, cy, s, size=15, fill=INK, weight="400"):
+    """以 (cx, cy) 為中心排一段文字（分數用：分子在中線上、分母在下）。"""
+    if "/" in s:
+        a, b = s.split("/", 1)
+        return (_txt(cx, cy - 1, a, size, fill, "middle", weight) +
+                _txt(cx, cy + size + 1, b, size, fill, "middle", weight) +
+                '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="1.2"/>'
+                % (cx - size * 0.62, cy + 3.2, cx + size * 0.62, cy + 3.2, fill))
+    return _txt(cx, cy + size * 0.36, s, size, fill, "middle", weight)
+
+
+def _levels(root):
+    """把巢狀節點拉成 levels[d] = 該層由左至右的節點串列，並回傳總層數。"""
+    acc = []
+
+    def walk(node, d):
+        while len(acc) <= d:
+            acc.append([])
+        acc[d].append(node)
+        for kid in (node.get("to") or []):
+            walk(kid, d + 1)
+
+    walk(root, 0)
+    return acc, len(acc) - 1
+
+
+def _ht_note(seq, word_h="HEAD", word_t="TAIL"):
+    """HHHT 之類的結果 → 「1 HEAD 2 TAILS」那樣的說明。"""
+    h = seq.count("H")
+    t = len(seq) - h
+    if h == 0:
+        return "%d %sS" % (t, word_t)
+    if t == 0:
+        return "%d %sS" % (h, word_h)
+    if h == 1:
+        return "1 %s %d %sS" % (word_h, t, word_t)
+    return "%d %sS %d %s" % (h, word_h, t, word_t)
+
+
+def _tree_root(spec):
+    """把 figures.json 的簡寫轉成巢狀 branches。
+
+    steps   等長結果字串的清單（例 ["HHH","HHT",…]），edgeProb 給每條分支的概率，
+            autoNote="ht" 會自動在結果旁加「1 HEAD 2 TAILS」那種說明
+    groups  兩層：[{label, prob, items:[{label, prob, leaf, note, hl}]}]
+    branches 已經是巢狀（進階用）
+    """
+    if spec.get("branches"):
+        return {"label": spec.get("rootLabel", ""), "to": spec["branches"]}
+
+    if spec.get("steps"):
+        steps = [str(s) for s in spec["steps"]]
+        p = spec.get("edgeProb", "")
+        L = max(len(s) for s in steps)
+        wh = spec.get("wordHead", "HEAD")
+        wt = spec.get("wordTail", "TAIL")
+
+        def build(prefix):
+            d = len(prefix)
+            if d >= L:
+                return []
+            labels = []
+            for s in steps:
+                if s.startswith(prefix) and s[d] not in labels:
+                    labels.append(s[d])
+            kids = []
+            for ch in labels:
+                node = {"label": ch, "p": p}
+                np_ = prefix + ch
+                if len(np_) < L:
+                    node["to"] = build(np_)
+                else:
+                    node["leaf"] = np_
+                    node["note"] = _ht_note(np_, wh, wt)
+                kids.append(node)
+            return kids
+
+        return {"label": spec.get("rootLabel", ""), "to": build("")}
+
+    if spec.get("groups"):
+        kids = []
+        for g in spec["groups"]:
+            node = {"label": g.get("label", ""), "p": g.get("prob", "")}
+            items = []
+            for it in g.get("items") or []:
+                leaf = {"label": it.get("label", ""), "p": it.get("prob", ""),
+                        "leaf": it.get("leaf", ""), "note": it.get("note", "")}
+                if it.get("hl"):
+                    leaf["hl"] = True
+                items.append(leaf)
+            node["to"] = items
+            kids.append(node)
+        return {"label": spec.get("rootLabel", ""), "to": kids}
+
+    raise ValueError("tree 圖需要 steps／groups／branches 其中之一")
+
+
+def tree(spec) -> str:
+    """由左至右的樹狀圖（probability tree）。
+
+    規格見 _tree_root()：steps（等長結果清單）／groups（兩層）／branches（巢狀）。
+    每條分支上寫概率（"1/2" 會排成真分數），最右寫結果同結果的說明。
+    """
+    root = _tree_root(spec)
+    levels, depth = _levels(root)
+    levels[0] = [root]
+
+    n_leaf = len(levels[-1])
+    W = float(spec.get("width", 900))
+    H = float(spec.get("height", 340))
+    pad_t, pad_b = 58.0, 34.0
+    lab_pad = float(spec.get("labelPad", 16))
+    label_w = float(spec.get("labelWidth", 250))
+    x0 = 24.0
+    x_leaf = W - label_w
+
+    ys = {}
+    if n_leaf == 1:
+        ys[id(levels[-1][0])] = H / 2.0
+    else:
+        step = (H - pad_t - pad_b) / (n_leaf - 1)
+        for i, nd in enumerate(levels[-1]):
+            ys[id(nd)] = pad_t + i * step
+    for d in range(depth - 1, -1, -1):
+        for nd in levels[d]:
+            ch = [ys[id(k)] for k in (nd.get("to") or [])]
+            ys[id(nd)] = sum(ch) / len(ch)
+
+    xs = {}
+    for d in range(depth + 1):
+        xs[d] = x_leaf if d == depth else x0 + (x_leaf - x0) * d / max(depth, 1)
+
+    out = ['<svg viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg" role="img">' % (W, H)]
+    out.append('<rect x="0" y="0" width="%.0f" height="%.0f" fill="#FFFFFF"/>' % (W, H))
+
+    size = float(spec.get("fontSize", 17))
+
+    # 分支線 + 分支上的概率
+    for d in range(depth):
+        for nd in levels[d]:
+            px_, py_ = xs[d], ys[id(nd)]
+            for kid in (nd.get("to") or []):
+                cx_, cy_ = xs[d + 1], ys[id(kid)]
+                hot = bool(kid.get("hl"))
+                col = HL if hot else INK
+                out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" '
+                           'stroke-width="%.1f" stroke-linecap="round"/>'
+                           % (px_, py_, cx_, cy_, col, 2.6 if hot else 1.7))
+                if kid.get("label"):
+                    mx = px_ + (cx_ - px_) * 0.60
+                    my = py_ + (cy_ - py_) * 0.60
+                    dy = -15.0 if cy_ < py_ else 15.0
+                    out.append(_txt(mx, my + dy, kid["label"], size - 1, col, "middle", "600", True))
+                if kid.get("p"):
+                    lx = px_ + (cx_ - px_) * 0.26
+                    ly = py_ + (cy_ - py_) * 0.26 + (-12.0 if cy_ < py_ else 12.0)
+                    out.append('<g>' + _ptxt(lx, ly, kid["p"], size - 3, col) + '</g>')
+
+    # 節點
+    for d in range(depth + 1):
+        for nd in levels[d]:
+            cx_, cy_ = xs.get(d, x_leaf), ys[id(nd)]
+            r = 4.6 if d == 0 else 3.6
+            if d == depth:
+                hot = bool(nd.get("hl"))
+                out.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="%s"/>'
+                           % (cx_, cy_, r + 0.8, HL if hot else INK))
+                if nd.get("hl"):
+                    out.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="none" stroke="%s" '
+                               'stroke-width="2"/>' % (cx_, cy_, r + 5.5, HL))
+            else:
+                out.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="#FFFFFF" stroke="%s" '
+                           'stroke-width="1.8"/>' % (cx_, cy_, r, INK))
+
+    # 根的標題
+    if root.get("label"):
+        out.append(_txt(xs[0] - 2, ys[id(root)] + 30, root["label"], size - 3, MUTED, "middle"))
+
+    # 最右：結果 + 說明
+    for nd in levels[-1]:
+        y = ys[id(nd)]
+        hot = bool(nd.get("hl"))
+        col = INK
+        tx = x_leaf + lab_pad
+        out.append(_txt(tx, y + size * 0.36, nd.get("leaf", ""), size, col, "start", "700"))
+        if nd.get("note"):
+            nx = tx + _tw(nd.get("leaf", ""), size) + 16
+            out.append(_txt(nx, y + size * 0.36, nd["note"], size - 3.5,
+                            "#2B6CB0" if hot else MUTED, "start", "600" if hot else "400"))
+
+    # 每層頂部的標題（次數之類）
+    for i, cap in enumerate(spec.get("levelLabels") or []):
+        if i in xs:
+            out.append(_txt((xs[i] + (xs[i + 1] if i + 1 in xs else x_leaf)) / 2.0,
+                            pad_t - 26, cap, size - 4, MUTED, "middle", "600"))
+
+    out.append("</svg>")
+    return "".join(out)
+
+
 # ── 文氏圖 ──────────────────────────────────────────────────────────────────
 def venn(spec) -> str:
     """兩個相交圓（可加一個完全在 A 之內的 C）、可填色、可在各區域放元素。
@@ -403,6 +635,11 @@ def render(fig_id: str, spec) -> dict:
         svg = grid(spec)
     elif kind == "venn":
         svg = venn(spec)
+    elif kind == "tree":
+        svg = tree(spec)
     else:
         raise ValueError("未知圖形類型：%s（%s）" % (kind, fig_id))
-    return {"id": fig_id, "svg": svg, "caption": spec.get("caption", {})}
+    out = {"id": fig_id, "svg": svg, "caption": spec.get("caption", {})}
+    if spec.get("wide"):
+        out["wide"] = True
+    return out
