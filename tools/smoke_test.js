@@ -2558,6 +2558,18 @@ ok(/三人相鄰/.test(q184("ch18-4-ce3").parts[0].zh) &&
 ok(q184("ch18-4-ce3").solution.steps[0].math === "6! \\times 2" &&
   !/\\frac\{2\}\{6\}/.test(JSON.stringify(q184("ch18-4-ce3").solution.steps)),
   "CE3(a) 題解不再出現 2/6 = 1/3（那是「不必相鄰」的答案，與 1/28 矛盾）");
+/* 老師指定：CE3(b)「不相鄰」用插空法，6! × P(7,2) / 8! = 3/4 */
+const ce3b = q184("ch18-4-ce3").solution.steps.filter((st) => st.part === "(b)");
+ok(ce3b.length === 2 && ce3b[0].math === "6! \\times P^7_2" &&
+  /7\$ 個空隙/.test(ce3b[0].zh) && /6 \+ 1 = 7/.test(ce3b[0].zh) &&
+  /P\^7_2/.test(ce3b[0].zh),
+  "CE3(b) 主解法是插空法：先排其餘 6 人，6 + 1 = 7 個空隙，放進 2 人用 P(7,2)");
+ok(q184("ch18-4-ce3").answers[1].math === "\\frac{6! \\times P^7_2}{8!} = \\frac{3}{4}" &&
+  /1 - \\frac\{2 \\times 7!\}\{8!\}/.test(ce3b[1].zh),
+  "CE3(b) 答案 6!×P(7,2)/8! = 3/4，並保留反面法作核對");
+ok(/空隙數漏了兩端/.test(q184("ch18-4-ce3").solution.traps[1].label) &&
+  /binom\{7\}\{2\}/.test(q184("ch18-4-ce3").solution.traps[2].zh),
+  "CE3(b) 陷阱針對插空法：漏了兩端空隙、用 C(7,2) 忘了 2!");
 ok(/6\$ 個單位/.test(q184("ch18-4-l1-10").solution.steps[2].zh) &&
   /\\frac\{6!\}\{7!\}/.test(q184("ch18-4-l1-10").solution.steps[2].zh),
   "L1-10(b) 2 人綁成 1 件後只剩 6 個單位（6!/7! = 1/7），不是 7 個單位");

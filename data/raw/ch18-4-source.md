@@ -151,6 +151,23 @@ Card `c02`'s bullet "B is in the middle of three = 1/3" was also qualified with
 one block leave **6 units**, and a block of length 2 in a row of 7 has only **6** starting
 positions. The answer $\frac{1}{7}$ was right; the step now reads $6!$ favourable out of $7!$.
 
+### CE3(b) switched to gap insertion (teacher's choice)
+
+(b) used the complement ($1 - \frac{2\times7!}{8!} = \frac34$). The teacher asked for the gap
+insertion (插空法) method instead, which also demonstrates the template added to card `c03`:
+
+- Arrange the 6 children other than Abby and Benny (Celia + the other 5): $6!$.
+- Six people make $6 + 1 = 7$ gaps — one before the first, one after the last, one between each
+  pair. Counting only the gaps *between* them gives 5 and loses both ends.
+- The pair must go into **two different** gaps: 7 choices for the first, 6 for the second, so
+  $P^7_2 = 42$ (not $\binom{7}{2} = 21$ — whoever takes which gap matters; if you use $C$, multiply
+  back by $2!$).
+- $P = \frac{6! \times P^7_2}{8!} = \frac{42}{8\times 7} = \frac34$ — the same answer as before.
+
+The complement is kept as a one-line check inside the final step, and the two (b) traps were
+rewritten for the new method (missing the two end gaps; $C(7,2)$ without the $2!$). Verified
+numerically: $720 \times 42 = 30240$ and $30240/40320 = 0.75$.
+
 ### Wording
 
 - CE1, L1-2, L1-3, L1-5, L1-6 and L1-9 had a single part reading only "Find the required

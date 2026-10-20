@@ -366,10 +366,10 @@
       },
       {
        "part": "(b)",
-       "math": "1 - \\frac{2 \\times 7!}{8!} = \\frac{3}{4}",
+       "math": "\\frac{6! \\times P^7_2}{8!} = \\frac{3}{4}",
        "note": {
-        "zh": "反面＝兩人相鄰（綁成一件）",
-        "en": "The complement is the two of them adjacent (tied into one block)"
+        "zh": "插空法：先排其餘 6 人（$6!$），7 個空隙放進 2 人（$P^7_2$）",
+        "en": "Gap insertion: arrange the other 6 (6!), then 2 different gaps for the pair (P(7,2))"
        }
       }
      ],
@@ -406,26 +406,26 @@
        {
         "part": "(b)",
         "title": {
-         "zh": "反面：兩人相鄰＝綁成一件",
-         "en": "Complement: tie the pair into one block"
+         "zh": "插空法：先排其餘 6 人，再插進空隙",
+         "en": "Gap insertion: arrange the other 6, then use the gaps"
         },
-        "math": "\\frac{2 \\times 7!}{8!} = \\frac{1}{4}",
-        "zh": "「不相鄰」的反面是「相鄰」。把 Abby 與 Benny 綁成一件，與其餘 6 人一起排，有 $7!$ 種；兩人本身可以左右對調，所以相鄰的排法有 $2 \\times 7!$ 種，機會是 $\\frac{2 \\times 7!}{8!} = \\frac{2}{8} = \\frac{1}{4}$。",
-        "en": "The complement of \"not next to each other\" is \"next to each other\". Tie Abby and Benny into one block and arrange it with the other six: $7!$ ways; the pair can swap left and right, so adjacent orders number $2 \\times 7!$, giving 2 × 7!/8! = 2/8 = 1/4.",
+        "math": "6! \\times P^7_2",
+        "zh": "先把 Abby 與 Benny 以外的 $6$ 人（Celia 與另外 $5$ 位小孩）排好，有 $6!$ 種排法。這 $6$ 人前後與彼此之間一共產生 $6 + 1 = 7$ 個空隙。要 Abby 與 Benny 不相鄰，就把他們放進 $2$ 個不同的空隙：第一位有 $7$ 個空隙可選、第二位只剩 $6$ 個，共 $P^7_2 = 7 \\times 6 = 42$ 種。所以符合條件的排法有 $6! \\times P^7_2$ 種。",
+        "en": "First arrange the 6 children other than Abby and Benny (Celia plus the other 5): 6! ways. These 6 create 6 + 1 = 7 gaps — before the first, between each pair, and after the last. To keep Abby and Benny apart, put them into 2 different gaps: 7 choices for the first and 6 for the second, i.e. P(7,2) = 7 × 6 = 42. So the favourable count is 6! × P(7,2).",
         "marking": "(1M)",
         "highlight": [
-         "2 \\times 7!"
+         "6! \\times P^7_2"
         ]
        },
        {
         "part": "(b)",
         "title": {
-         "zh": "1 減去相鄰的機會",
-         "en": "Subtract from 1"
+         "zh": "計算概率（可用反面核對）",
+         "en": "Evaluate (check with the complement)"
         },
-        "math": "1 - \\frac{1}{4} = \\frac{3}{4}",
-        "zh": "所求概率 $= 1 - \\frac{1}{4} = \\frac{3}{4}$。直覺檢查：8 個人之中，某人的鄰位只有 2 個，所以「不相鄰」佔大多數，$\\frac{3}{4}$ 合理。",
-        "en": "The probability is 1 − 1/4 = 3/4. A sanity check: each person has only two neighbouring places out of seven, so \"not adjacent\" should indeed be the large majority.",
+        "math": "\\frac{6! \\times P^7_2}{8!} = \\frac{42}{8 \\times 7} = \\frac{3}{4}",
+        "zh": "全部排法有 $8!$ 種，所以概率 $= \\frac{6! \\times P^7_2}{8!} = \\frac{42}{8 \\times 7} = \\frac{3}{4}$。用反面核對：相鄰的排法有 $2 \\times 7!$ 種（綁成一件，件內 $2$ 種左右對調），$1 - \\frac{2 \\times 7!}{8!} = 1 - \\frac{1}{4} = \\frac{3}{4}$，與插空法一致。",
+        "en": "There are 8! orders in total, so the probability is 6! × P(7,2)/8! = 42/(8 × 7) = 3/4. Check with the complement: adjacent orders number 2 × 7! (tie the pair together, 2 internal orders), and 1 − 2 × 7!/8! = 1 − 1/4 = 3/4 — the same answer.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{3}{4}"
@@ -440,21 +440,21 @@
         "en": "With the three adjacent and Benny in the middle, Abby and Celia can still swap sides, so the block has 2 internal orders. Writing only 6!/8! gives 1/56 — half the answer."
        },
        {
-        "label": "(b) 只寫 2 × 7! 未除以 8!",
-        "labelEn": "(b) stopping at 2 × 7!",
-        "zh": "$2 \\times 7!$ 是相鄰的排法數目，題目要的是概率，要再除以 $8!$。",
-        "en": "$2 \\times 7!$ is the number of adjacent arrangements; the question asks for a probability, so divide by $8!$."
+        "label": "(b) 空隙數漏了兩端",
+        "labelEn": "(b) forgetting the two end gaps",
+        "zh": "$6$ 人排好之後產生 $6 + 1 = 7$ 個空隙 —— 最前與最後各有一個，中間每兩人之間一個。只數中間就只得 $5$ 個，兩端的位置就漏掉了。",
+        "en": "Six people create 6 + 1 = 7 gaps — one before the first, one after the last, and one between each pair. Counting only the gaps between them misses both ends."
        },
        {
-        "label": "(b) 忘了 × 2",
-        "labelEn": "(b) forgetting the factor 2",
-        "zh": "綁成一件之後，兩人在件內仍可以左右對調，所以是 $2 \\times 7!$，不是 $7!$。",
-        "en": "After tying the pair into a block, the two can still swap inside it, so it is $2 \\times 7!$, not $7!$."
+        "label": "(b) 用 $\\binom{7}{2}$ 但忘了乘 $2!$",
+        "labelEn": "(b) using C(7,2) without the factor 2!",
+        "zh": "把 Abby 與 Benny 放進 $2$ 個不同空隙時，「誰去哪一個空隙」有分別，所以是 $P^7_2 = 7 \\times 6 = 42$；只寫 $\\binom{7}{2} = 21$ 會少一半。若用 $\\binom{7}{2}$，記得補回 $2!$。",
+        "en": "When Abby and Benny go into 2 different gaps, which person takes which gap matters, so it is P(7,2) = 7 × 6 = 42; C(7,2) = 21 alone halves it. If you use C(7,2), multiply back by 2!."
        }
       ],
       "tip": {
-       "zh": "先分清「在…之間」與「剛好在…之間」：前者不必相鄰，只看三人的相對次序（$\\frac{2}{6} = \\frac{1}{3}$）；後者要三人相鄰，用捆綁法（$\\frac{6! \\times 2}{8!} = \\frac{1}{28}$）。一字之差，答案差很遠。",
-       "en": "Tell \"between\" from \"immediately between\": the first needs no adjacency and only the relative order of the three matters (2/6 = 1/3); the second needs all three adjacent, so bundle them ((6! × 2)/8! = 1/28). One word changes the answer."
+       "zh": "先分清「在…之間」與「剛好在…之間」：前者不必相鄰，只看三人的相對次序（$\\frac{2}{6} = \\frac{1}{3}$）；後者要三人相鄰，用捆綁法（$\\frac{6! \\times 2}{8!} = \\frac{1}{28}$）。一字之差，答案差很遠。（b）「不相鄰」用插空法：先排除受限制的兩人，數出空隙（人數 $+ 1$），再用 $P$ 把他們放進不同空隙。",
+       "en": "Tell \"between\" from \"immediately between\": the first needs no adjacency and only the relative order of the three matters (2/6 = 1/3); the second needs all three adjacent, so bundle them ((6! × 2)/8! = 1/28). One word changes the answer. For (b) \"not adjacent\" use gap insertion: arrange the restricted pair last, count the gaps (people + 1), then place them into different gaps with P."
       }
      }
     },
