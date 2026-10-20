@@ -1526,6 +1526,134 @@
      }
     },
     {
+     "id": "ch18-3-l1-7",
+     "code": "7",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Watch box X contains 6 men's watches and 4 women's watches. Watch box Y contains 3 men's watches and 5 women's watches. Oscar randomly selects a watch from watch box X and Polly randomly selects a watch from watch box Y. Find the probability that",
+      "zh": "錶盒 X 內有 6 隻男裝手錶和 4 隻女裝手錶，錶盒 Y 內有 3 隻男裝手錶和 5 隻女裝手錶。Oscar 隨機從錶盒 X 抽出一隻手錶，Polly 隨機從錶盒 Y 抽出一隻手錶。求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "both of them select men's watches.",
+       "zh": "兩人都抽得男裝手錶。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Oscar selects a men's watch and Polly selects a women's watch.",
+       "zh": "Oscar 抽得男裝手錶，而 Polly 抽得女裝手錶。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{6}{10} \\times \\frac{3}{8} = \\frac{9}{40}",
+       "note": {
+        "zh": "盒 X 共 $6+4=10$ 隻，盒 Y 共 $3+5=8$ 隻",
+        "en": "Box X has 6 + 4 = 10 watches, box Y has 3 + 5 = 8"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{6}{10} \\times \\frac{5}{8} = \\frac{3}{8}",
+       "note": {
+        "zh": "Oscar 那邊要男裝 $\\frac{6}{10}$，Polly 那邊要女裝 $\\frac{5}{8}$",
+        "en": "Oscar's side is men's: 6/10; Polly's side is women's: 5/8"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先在每個盒寫出「抽得男裝」的概率",
+         "en": "Write P(a men's watch) for each box"
+        },
+        "math": "\\frac{6}{10} = \\frac{3}{5}, \\quad \\frac{3}{8}",
+        "zh": "Oscar 在盒 X 抽，盒 X 共 $6+4=10$ 隻，其中男裝 $6$ 隻，所以男裝的概率是 $\\frac{6}{10}=\\frac{3}{5}$。Polly 在盒 Y 抽，盒 Y 共 $3+5=8$ 隻，其中男裝 $3$ 隻，所以男裝的概率是 $\\frac{3}{8}$。",
+        "en": "Oscar draws from box X, which holds 6 + 4 = 10 watches and 6 of them are men's, so P(men's) = 6/10 = 3/5. Polly draws from box Y, which holds 3 + 5 = 8 watches and 3 of them are men's, so P(men's) = 3/8.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{3}{5}",
+         "\\frac{3}{8}"
+        ]
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "兩個盒互不影響：相乘",
+         "en": "The two boxes are independent: multiply"
+        },
+        "math": "\\frac{3}{5} \\times \\frac{3}{8} = \\frac{9}{40}",
+        "zh": "兩隻手錶分別從兩個盒抽出，一邊抽到甚麼都不影響另一邊，所以「兩個都是男裝」＝兩邊的概率相乘：$\\frac{3}{5} \\times \\frac{3}{8} = \\frac{9}{40}$。",
+        "en": "The two watches come from two separate boxes and neither draw affects the other, so \"both men's\" is the product: 3/5 × 3/8 = 9/40.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{9}{40}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "先決定每一步要男裝還是女裝",
+         "en": "Decide men's or women's for each step"
+        },
+        "math": "\\frac{6}{10} \\times \\frac{5}{8}",
+        "zh": "這一小題要求 Oscar 抽男裝、Polly 抽女裝。Oscar 那邊仍然是「10 隻之中 6 隻男裝」，即 $\\frac{6}{10}$；Polly 那邊要女裝，盒 Y 的 $8$ 隻之中有 $5$ 隻女裝，即 $\\frac{5}{8}$。所以是 $\\frac{6}{10} \\times \\frac{5}{8}$。",
+        "en": "This part asks for Oscar men's and Polly women's. Oscar's side is still \"6 men's out of 10\", i.e. 6/10; Polly's side needs a women's watch, and box Y has 5 of them out of 8, i.e. 5/8. Hence 6/10 × 5/8.",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{6}{10} \\times \\frac{5}{8}"
+        ]
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "\\frac{6}{10} \\times \\frac{5}{8} = \\frac{30}{80} = \\frac{3}{8}",
+        "zh": "$\\frac{6}{10} \\times \\frac{5}{8} = \\frac{30}{80} = \\frac{3}{8}$。分子 $6 \\times 5$ 數的是「Oscar 的男裝」配「Polly 的女裝」有多少種配搭，分母 $10 \\times 8 = 80$ 是兩盒合起來的全部抽法。",
+        "en": "6/10 × 5/8 = 30/80 = 3/8. The numerator 6 × 5 counts the men's-from-X with women's-from-Y pairings, and the denominator 10 × 8 = 80 counts all pairings of the two boxes.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{3}{8}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 分母用了 $3$ 或 $5$",
+        "labelEn": "(a) using 3 or 5 as the denominator",
+        "zh": "盒 Y 的總數是 $3+5=8$，不是 $3$ 或 $5$。寫成 $\\frac{6}{10} \\times \\frac{3}{5}$ 就是把盒 Y 的女裝數當成總數。",
+        "en": "Box Y holds 3 + 5 = 8 watches, not 3 or 5. Writing 6/10 × 3/5 treats the number of women's watches in Y as its total."
+       },
+       {
+        "label": "(b) 兩邊都用了男裝",
+        "labelEn": "(b) using the men's count on both sides",
+        "zh": "$\\frac{6}{10} \\times \\frac{3}{8} = \\frac{9}{40}$ 是 $(a)$ 的答案。Polly 那邊要女裝，分子應該是 $5$。",
+        "en": "6/10 × 3/8 = 9/40 is the answer to part (a). Polly's side needs a women's watch, so its numerator should be 5."
+       },
+       {
+        "label": "(b) 以為要考慮次序而乘 $2$",
+        "labelEn": "(b) doubling for order",
+        "zh": "Oscar 只抽盒 X、Polly 只抽盒 Y，角色已經固定，「Oscar 男、Polly 女」只有一種配搭，不用乘 $2$，也不需要另加「Oscar 女、Polly 男」。",
+        "en": "Oscar only draws from X and Polly only from Y, so the roles are fixed: \"Oscar men's, Polly women's\" is a single pairing — no factor of 2 and no second case to add."
+       }
+      ],
+      "tip": {
+       "zh": "兩個盒＝兩個獨立步驟，每一步的分母都是「自己那個盒的總數」（$10$ 和 $8$），分子就是該步要的款式數目。做完可以檢查四種情況：男男 $\\frac{9}{40}$、男女 $\\frac{3}{8}$、女男 $\\frac{3}{20}$、女女 $\\frac{1}{4}$，相加剛好是 $1$。",
+       "en": "Two boxes mean two independent steps: each denominator is the total in that box (10 and 8) and each numerator is the number of the required type in that box. As a check, the four cases (men–men 9/40, men–women 3/8, women–men 3/20, women–women 1/4) add up to exactly 1."
+      }
+     }
+    },
+    {
      "id": "ch18-3-l1-8",
      "code": "8",
      "type": "long",

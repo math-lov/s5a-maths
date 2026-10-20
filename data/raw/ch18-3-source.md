@@ -24,14 +24,14 @@
 |---|---|---|---|
 | Class Exercise | CE1–CE4 | Class Exercise 18.3 | 12 |
 | Section Check | SC | Section Check 18.3 (a)–(f) | 6 |
-| Level 1 | 1–14 | Exercise 18.3 Level 1 Q1, 2, 3, 4, 5, 6, 8, 10, 12, 13, 14, 19, 20, 21 | 45 |
+| Level 1 | 1–15 | Exercise 18.3 Level 1 Q1, 2, 3, 4, 5, 6, 7, 8, 10, 12, 13, 14, 19, 20, 21 | 49 |
 | Level 2 | 15–28 | Exercise 18.3 Level 2 Q22, 23, 24, 27, 28, 29, 30, 31, 33, 34, 35, 36, 38, 40 | 55 |
 | SMART CORNER | 29–31 | Exercise 18.3 SMART CORNER Q42, 44, 45 | 14 |
 | Cross Topics | 32–34 | Exercise 18.3 Cross Topics Q46, 47, 49 | 11 |
 
-Total: **39 questions, 143 marks** (the Section Check counts as one question with six parts).
+Total: **40 questions, 147 marks** (the Section Check counts as one question with six parts).
 
-* The printed Level 1 set is Q1–Q21 and Level 2 is Q22–Q41; 14 from each were selected so that
+* The printed Level 1 set is Q1–Q21 and Level 2 is Q22–Q41; 15 from Level 1 and 14 from Level 2 were selected so that
   every structural type of the section appears at least once (independent repeated trials, with /
   without replacement, given-that conditional probability, tables, transfers, "at least / at most",
   "exactly k of n", "repeat until …").
@@ -63,6 +63,7 @@ Total: **39 questions, 143 marks** (the Section Check counts as one question wit
 | L1-4 | Asha $\frac{1}{2}$, Luna $\frac{1}{3}$; (a) only Asha $\frac{1}{3}$; (b) only Luna $\frac{1}{6}$ |
 | L1-5 | (a) $0.9\times0.4=0.36$; (b) $0.6\times0.1=0.06$; (c) $1-0.36-0.06=0.58$ |
 | L1-6 | (a) $0.5\times0.6=0.3$; (b) $0.5\times0.4+0.5\times0.6=0.5$; (c) $0.3+0.5=0.8$ |
+| L1-7 | (a) $\frac{6}{10}\times\frac{3}{8}=\frac{9}{40}$; (b) $\frac{6}{10}\times\frac{5}{8}=\frac{3}{8}$ |
 | L1-8 | (a) $\frac{1}{6}\times\frac{6}{9}=\frac{1}{9}$; (b) $\frac{3}{6}\times\frac{6}{9}=\frac{1}{3}$; (c) $1-\frac{1}{3}=\frac{2}{3}$ |
 | L1-10 | (a) $\frac{1}{6}\times\frac{1}{4}+\frac{3}{6}\times\frac{1}{4}=\frac{1}{6}$; (b) $\frac{5}{6}$ |
 | L1-12 | (a) $\frac{9}{13}$; (b) $\frac{9}{36}=\frac{1}{4}$ |

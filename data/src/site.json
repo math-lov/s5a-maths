@@ -151,7 +151,7 @@
         "unit": { "zh": "第 18 章 · 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
         "title": { "zh": "18.3 概率的乘法 · 課本練習", "en": "18.3 Multiplication of Probabilities · Book Exercise" },
         "meta": { "paper": "Book 5B · Exercise 18.3" },
-        "stats": { "questions": 39, "marks": 143, "bonus": 0 },
+        "stats": { "questions": 40, "marks": 147, "bonus": 0 },
         "status": "ready",
         "source": { "zh": "課本 Exercise 18.3（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER ＋ Cross Topics；Cross Topics 只收錄原書第 46、47、49 題）", "en": "Textbook Exercise 18.3 (Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics; only book Cross Topics Q46, Q47 and Q49 are included)" }
       },
