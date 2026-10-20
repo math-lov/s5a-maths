@@ -168,6 +168,19 @@ figures therefore use the fully nested `branches` form:
 root → 試卷 1 的結果 → 試卷 2 的結果 → leaf (one combination)
 ```
 
+### `levelLabels` is indexed by branch layer, not by node layer
+
+`levelLabels[i]` is drawn midway between `xs[i]` and `xs[i + 1]`, so it labels the **branches
+going from level i to level i + 1**. Index 0 is therefore the *first* layer (the branches leaving
+the root), and a tree of depth `d` has exactly `d` captions.
+
+All three 18.3 figures were first written as `["", "試卷 1　Paper 1", "試卷 2　Paper 2"]` with a
+leading placeholder — that shifted every caption one layer to the right, so Paper 1 sat over the
+second layer. Fixed to `["試卷 1　Paper 1", "試卷 2　Paper 2"]` and `["Asha", "Luna"]`.
+(`ch18-2-l2-23-tree` was already correct: `["第 1 次 toss 1", "第 2 次 toss 2", "第 3 次 toss 3"]`.)
+`tools/smoke_test.js` now asserts `levelLabels.length === 2 && levelLabels[0] !== ""` for the
+18.3 trees so the placeholder cannot creep back in.
+
 ### Renderer extensions made for this
 
 - `tree`: `pathProb` on a leaf prints the whole-path product in the right-hand column

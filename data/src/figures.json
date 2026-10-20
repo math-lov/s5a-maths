@@ -387,7 +387,7 @@
     "fontSize": 18,
     "labelWidth": 330,
     "rootLabel": "考試",
-    "levelLabels": ["", "試卷 1　Paper 1", "試卷 2　Paper 2"],
+    "levelLabels": ["試卷 1　Paper 1", "試卷 2　Paper 2"],
     "branches": [
       {
         "label": "試卷 1 合格",
@@ -419,7 +419,7 @@
     "fontSize": 18,
     "labelWidth": 330,
     "rootLabel": "考試",
-    "levelLabels": ["", "試卷 1　Paper 1", "試卷 2　Paper 2"],
+    "levelLabels": ["試卷 1　Paper 1", "試卷 2　Paper 2"],
     "branches": [
       {
         "label": "試卷 1 合格",
@@ -451,7 +451,7 @@
     "fontSize": 18,
     "labelWidth": 330,
     "rootLabel": "作答",
-    "levelLabels": ["", "Asha", "Luna"],
+    "levelLabels": ["Asha", "Luna"],
     "branches": [
       {
         "label": "Asha 成功",

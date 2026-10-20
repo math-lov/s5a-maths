@@ -486,7 +486,10 @@ def tree(spec) -> str:
             out.append(_txt(nx, y + size * 0.36, nd["note"], size - 3.5,
                             "#2B6CB0" if hot else MUTED, "start", "600" if hot else "400"))
 
-    # 每層頂部的標題（次數之類）
+    # 每層頂部的標題（次數之類）。
+    # levelLabels[i] 標示的是「由第 i 層走到第 i + 1 層」那一段分支，畫在 xs[i] 與
+    # xs[i + 1] 之間的正上方 —— 所以 index 0 = 第一層（由根出發），不要在前面加
+    # 空字串佔位，否則全部標題會錯位一層。深度 depth 的樹共有 depth 段分支。
     for i, cap in enumerate(spec.get("levelLabels") or []):
         if i in xs:
             out.append(_txt((xs[i] + (xs[i + 1] if i + 1 in xs else x_leaf)) / 2.0,

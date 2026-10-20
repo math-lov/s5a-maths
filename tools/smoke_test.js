@@ -2396,7 +2396,7 @@ ok(!!t183un && t183un.branches[0].p === "0.75" && t183un.branches[1].p === "0.25
   leavesOf(t183un).map((l) => l.pathProb).join("|") ===
   "0.75 × 0.6 = 0.45|0.75 × 0.4 = 0.3|0.25 × 0.6 = 0.15|0.25 × 0.4 = 0.1",
   "18.3 非等機會樹：0.75／0.25 × 0.6／0.4，四條路徑 0.45／0.3／0.15／0.1 各不相同");
-ok(!!t183as && t183as.levelLabels[1] === "Asha" && t183as.levelLabels[2] === "Luna" &&
+ok(!!t183as && t183as.levelLabels[0] === "Asha" && t183as.levelLabels[1] === "Luna" &&
   t183as.branches[1].to[1].p === "2/3" &&
   leavesOf(t183as)[1].leaf === "只有 Asha 成功" && leavesOf(t183as)[1].hl === true &&
   leavesOf(t183as)[1].pathProb === "1/2 × 2/3 = 1/3" &&
@@ -2406,6 +2406,15 @@ ok(!!t183as && t183as.levelLabels[1] === "Asha" && t183as.levelLabels[2] === "Lu
 ok(leavesOf(t183un).map((l) => parseFloat(l.pathProb.split("= ")[1]))
   .reduce((t, v) => t + v, 0).toFixed(2) === "1.00",
   "非等機會樹四條路徑機會加起來剛好是 1（可作學生的自我檢查）");
+/* levelLabels[i] 標示第 i 層（xs[i] → xs[i+1] 的分支），不是第 i + 1 層。
+   兩段分支的樹（根 → 試卷 1 的結果 → 試卷 2 的結果 → 葉）要兩個標題；
+   在前面加一個 "" 佔位會令全部標題錯位一層。 */
+const twoBranchLevels = (sp) =>
+  sp.branches.length === 2 && sp.branches.every((b) =>
+    (b.to || []).length === 2 && (b.to || []).every((k) => !(k.to || []).length));
+ok([t183eq, t183un, t183as].every((sp) =>
+  twoBranchLevels(sp) && sp.levelLabels.length === 2 && sp.levelLabels[0] !== ""),
+  "18.3 三幅樹的 levelLabels 剛好兩個，由第一層（根出發）開始排，不會錯位");
 
 /* 官方解答逐題核對，見 data/raw/ch18-3-source.md */
 ok(q183("ch18-3-sc").answers.filter((a) => a.tf === false).map((a) => a.part).join(",") === "(a),(b),(e)",
