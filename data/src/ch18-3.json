@@ -1795,6 +1795,133 @@
      }
     },
     {
+     "id": "ch18-3-l1-9",
+     "code": "9",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "In a kitchen, there are two ovens A and B. Each oven has 9 apple pies and 6 chocolate pies. If one pie is selected randomly from each oven, find the probability that",
+      "zh": "廚房內有兩個焗爐 A 和 B，每個焗爐各有 9 個蘋果批和 6 個朱古力批。若從每個焗爐各隨機取出一個批，求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "2 chocolate pies are selected.",
+       "zh": "取出 2 個朱古力批。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "2 pies of the same flavour are selected.",
+       "zh": "取出的 2 個批味道相同。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{6}{15} \\times \\frac{6}{15} = \\frac{4}{25}",
+       "note": {
+        "zh": "每個焗爐共 $9+6=15$ 個批，其中朱古力 $6$ 個",
+        "en": "Each oven has 9 + 6 = 15 pies, 6 of them chocolate"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{9}{15} \\times \\frac{9}{15} + \\frac{6}{15} \\times \\frac{6}{15} = \\frac{13}{25}",
+       "note": {
+        "zh": "「同味」＝兩個蘋果或兩個朱古力，兩種互斥",
+        "en": "\"Same flavour\" = both apple or both chocolate, two disjoint cases"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先在每個焗爐寫出「抽到朱古力」的概率",
+         "en": "Write P(chocolate) for each oven"
+        },
+        "math": "\\frac{6}{15}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{6}{15}"
+        ],
+        "zh": "每個焗爐有 $9+6=15$ 個批，其中朱古力 $6$ 個，所以在一個焗爐抽到朱古力的概率是 $\\frac{6}{15}$（即 $\\frac{2}{5}$）。",
+        "en": "Each oven holds 9 + 6 = 15 pies, 6 of them chocolate, so P(chocolate) = 6/15 = 2/5 in each oven."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "兩個焗爐互不影響：相乘",
+         "en": "The two ovens are independent: multiply"
+        },
+        "math": "\\frac{6}{15} \\times \\frac{6}{15} = \\frac{36}{225} = \\frac{4}{25}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{4}{25}"
+        ],
+        "zh": "兩個批分別來自兩個焗爐，所以「兩個都是朱古力」＝兩邊相乘：$\\frac{6}{15} \\times \\frac{6}{15} = \\frac{36}{225} = \\frac{4}{25}$。",
+        "en": "The two pies come from separate ovens, so \"both chocolate\" is the product: 6/15 × 6/15 = 36/225 = 4/25."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "「同味」分成兩種情況",
+         "en": "Split \"same flavour\" into two cases"
+        },
+        "math": "\\frac{9}{15} \\times \\frac{9}{15} + \\frac{6}{15} \\times \\frac{6}{15}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{9}{15} \\times \\frac{9}{15}"
+        ],
+        "zh": "「味道相同」＝「兩個都是蘋果」或「兩個都是朱古力」，兩種情況互斥，所以分別相乘再相加：$\\frac{9}{15}\\times\\frac{9}{15} + \\frac{6}{15}\\times\\frac{6}{15}$。",
+        "en": "\"Same flavour\" means both apple or both chocolate, and the two cases are disjoint: multiply each and add, 9/15 × 9/15 + 6/15 × 6/15."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{81}{225} + \\frac{36}{225} = \\frac{117}{225} = \\frac{13}{25}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{13}{25}"
+        ],
+        "zh": "$\\frac{81}{225} + \\frac{36}{225} = \\frac{117}{225} = \\frac{13}{25}$。順帶檢查：同味與不同味互補，不同味是 $\\frac{12}{25}$，相加等於 $1$。",
+        "en": "81/225 + 36/225 = 117/225 = 13/25. As a check, \"different flavours\" is 12/25 and the two add to 1."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 分母用 $9$ 或 $6$",
+        "labelEn": "(a) using 9 or 6 as the denominator",
+        "zh": "每個焗爐共有 $15$ 個批，分母是 $15$，不是蘋果數 $9$ 或朱古力數 $6$。",
+        "en": "Each oven holds 15 pies, so the denominator is 15, not 9 or 6."
+       },
+       {
+        "label": "(b) 只算了一種味道",
+        "labelEn": "(b) counting only one flavour",
+        "zh": "只寫 $\\frac{9}{15}\\times\\frac{9}{15} = \\frac{9}{25}$ 就漏了「兩個朱古力」的 $\\frac{4}{25}$；「同味」是兩種情況的總和。",
+        "en": "Writing only 9/15 × 9/15 = 9/25 leaves out \"both chocolate\" (4/25); \"same flavour\" is the sum of both cases."
+       },
+       {
+        "label": "(b) 把兩種情況相乘",
+        "labelEn": "(b) multiplying the two cases",
+        "zh": "兩種情況是「或」的關係，要相加；相乘會變成「既是蘋果又是朱古力」，不可能發生。",
+        "en": "The two cases are joined by \"or\", so add them; multiplying would mean \"apple and chocolate at once\", which cannot happen."
+       }
+      ],
+      "tip": {
+       "zh": "兩個容器＝兩步，分母永遠是自己容器的總數。「同味」「同色」這類字眼，先問有幾種味道（顏色），再逐種相乘、最後相加。",
+       "en": "Two containers mean two steps, and each denominator is the total in that container. For \"same flavour\" or \"same colour\", list how many flavours (colours) there are, multiply case by case and then add."
+      }
+     }
+    },
+    {
      "id": "ch18-3-l1-10",
      "code": "10",
      "type": "long",
@@ -1904,6 +2031,105 @@
       "tip": {
        "zh": "「選一個字母」是抽樣，不是等可能：重複出現的字母概率較大。寫之前先列出兩句話裏各字母的個數，並圈出共有的字母，「相同」的答案就只由這些共有字母貢獻。",
        "en": "\"Choose a letter\" is sampling, not a uniform draw: repeated letters are more likely. List the letter counts of both words first and circle the shared letters; only those contribute to \"the same\"."
+      }
+     }
+    },
+    {
+     "id": "ch18-3-l1-11",
+     "code": "11",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "Ricky has 8 white cards and 2 gold cards. Sweetie has 5 white cards and 3 gold cards. If they exchange one card randomly at the same time and their decisions are independent of each other, find the probability that the numbers of white cards and gold cards they have are unchanged after the exchange.",
+      "zh": "Ricky 有 8 張白卡和 2 張金卡，Sweetie 有 5 張白卡和 3 張金卡。若兩人同時各自隨機交換一張卡，並假設兩人的選擇互相獨立，求交換後兩人手上的白卡和金卡數目不變的概率。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "the numbers of white cards and gold cards they have are unchanged after the exchange.",
+       "zh": "交換後兩人手上的白卡和金卡數目不變。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{8}{10} \\times \\frac{5}{8} + \\frac{2}{10} \\times \\frac{3}{8} = \\frac{1}{2} + \\frac{3}{40} = \\frac{23}{40}",
+       "note": {
+        "zh": "數目不變＝兩人交換的卡顏色相同（白換白 或 金換金）",
+        "en": "Counts are unchanged only when the two cards exchanged share a colour"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "「數目不變」是甚麼情況",
+         "en": "What \"unchanged\" means"
+        },
+        "math": "\\frac{8}{10} \\times \\frac{5}{8}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{8}{10} \\times \\frac{5}{8}"
+        ],
+        "zh": "Ricky 交出一張白卡（$\\frac{8}{10}$）而 Sweetie 也交出白卡（$\\frac{5}{8}$），兩人手上的數目就不變。反過來「金換金」也一樣，所以答案是兩種情況之和。",
+        "en": "If Ricky gives a white card (8/10) and Sweetie also gives a white card (5/8), both keep the same counts. The same holds for gold-gold, so the answer is the sum of the two cases."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "白換白＋金換金",
+         "en": "White-white plus gold-gold"
+        },
+        "math": "= \\frac{1}{2} + \\frac{2}{10} \\times \\frac{3}{8}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{2}{10} \\times \\frac{3}{8}"
+        ],
+        "zh": "白換白：$\\frac{8}{10}\\times\\frac{5}{8} = \\frac{40}{80} = \\frac{1}{2}$；金換金：$\\frac{2}{10}\\times\\frac{3}{8} = \\frac{6}{80} = \\frac{3}{40}$。兩種情況都要計算。",
+        "en": "White-white: 8/10 × 5/8 = 40/80 = 1/2. Gold-gold: 2/10 × 3/8 = 6/80 = 3/40."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "相加",
+         "en": "Add"
+        },
+        "math": "= \\frac{20}{40} + \\frac{3}{40} = \\frac{23}{40}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{23}{40}"
+        ],
+        "zh": "兩種情況互斥，相加：$\\frac{20}{40} + \\frac{3}{40} = \\frac{23}{40}$。",
+        "en": "The cases are disjoint, so add: 20/40 + 3/40 = 23/40."
+       }
+      ],
+      "traps": [
+       {
+        "label": "只算「白換白」",
+        "labelEn": "counting only white-white",
+        "zh": "只寫 $\\frac{1}{2}$ 就漏了「金換金」的 $\\frac{3}{40}$。",
+        "en": "Writing only 1/2 leaves out the gold-gold case (3/40)."
+       },
+       {
+        "label": "把「白換金」也算入",
+        "labelEn": "including white-gold exchanges",
+        "zh": "白換金或金換白之後，兩人的數目會改變，不符合「數目不變」。",
+        "en": "A white-for-gold exchange changes both counts, so it does not satisfy \"unchanged\"."
+       },
+       {
+        "label": "用 $\\frac{8}{10} \\times \\frac{3}{8}$",
+        "labelEn": "using 8/10 × 3/8",
+        "zh": "這是「Ricky 交白、Sweetie 交金」，交換後數目會變；要同色才對。",
+        "en": "That is Ricky white with Sweetie gold, which changes the counts; the colours must match."
+       }
+      ],
+      "tip": {
+       "zh": "「交換後不變」先寫出「不變」的條件（同色互換），再逐個情況相乘、最後相加。分母永遠是自己手上卡片的總數（$10$ 和 $8$）。",
+       "en": "For \"unchanged after exchanging\", first state the condition (same colour exchanged), then multiply case by case and add. Each denominator is the number of cards that person holds (10 and 8)."
       }
      }
     },
@@ -2271,6 +2497,466 @@
       "tip": {
        "zh": "條件概率配上不放回抽取，標準做法是兩步：① 算出「已知條件發生之後」袋內還剩甚麼（分母）；② 分子是剩下來的當中有多少符合要求。每次抽走一個，分母就減 1，題目說抽了 $k$ 個就減 $k$。",
        "en": "Conditional probability plus drawing without replacement has a standard two-step routine: (1) work out what is left in the bag once the given condition has happened (the denominator); (2) the numerator counts how many of those remain qualify. Each draw removes one, so the denominator drops by 1, or by k after k draws."
+      }
+     }
+    },
+    {
+     "id": "ch18-3-l1-15",
+     "code": "15",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "The probability that it will rain tomorrow is 0.4. Given that it rains on a certain day, the probability that Harvey stays at home is 0.8. Find the probability that it will rain tomorrow and Harvey will stay at home.",
+      "zh": "明天下雨的機率是 0.4。已知某天下雨，Harvey 留在家中的概率是 0.8。求明天下雨而 Harvey 留在家中的概率。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "it will rain tomorrow and Harvey will stay at home.",
+       "zh": "明天下雨而 Harvey 留在家中。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "0.4 \\times 0.8 = 0.32",
+       "note": {
+        "zh": "$P(\\text{雨且留家}) = P(\\text{雨}) \\times P(\\text{留家}\\mid\\text{雨})$",
+        "en": "P(rain and stay home) = P(rain) × P(stay home | rain)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "條件概率的乘法",
+         "en": "Multiplying with a conditional probability"
+        },
+        "math": "0.4 \\times 0.8",
+        "marking": "(1M)",
+        "highlight": [
+         "0.4 \\times 0.8"
+        ],
+        "zh": "「已知下雨，留家的概率是 $0.8$」是條件概率，不是「下雨而且留家」的概率。要求「下雨而留家」，就是先下雨（$0.4$），再在下雨之下留家（$0.8$）：$P(A\\cap B) = P(A) \\times P(B\\mid A)$。",
+        "en": "\"Given that it rains, the probability of staying home is 0.8\" is a conditional probability, not the probability of \"rain and stay home\". For both to happen, take rain first (0.4) and then stay home given rain (0.8): P(A ∩ B) = P(A) × P(B | A)."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= 0.32",
+        "marking": "(1A)",
+        "highlight": [
+         "0.32"
+        ],
+        "zh": "$0.4 \\times 0.8 = 0.32$。明天下雨而且留在家中，就是把兩個概率相乘。",
+        "en": "0.4 × 0.8 = 0.32."
+       }
+      ],
+      "traps": [
+       {
+        "label": "直接寫 $0.8$",
+        "labelEn": "writing 0.8 as the answer",
+        "zh": "$0.8$ 是「已知下雨」之下的條件概率，不是「下雨而且留家」；還要乘以下雨的 $0.4$。",
+        "en": "0.8 is conditional on rain, not the probability of rain and staying home; it still needs multiplying by 0.4."
+       },
+       {
+        "label": "把 $0.4$ 和 $0.8$ 相加",
+        "labelEn": "adding 0.4 and 0.8",
+        "zh": "$0.4 + 0.8 = 1.2 > 1$，已不可能；「而且」用乘、不是加。",
+        "en": "0.4 + 0.8 = 1.2 exceeds 1, which is impossible; \"and\" calls for multiplication, not addition."
+       }
+      ],
+      "tip": {
+       "zh": "看到「已知…，…的概率是」就是條件概率 $P(B\\mid A)$；要「A 而且 B」就寫 $P(A) \\times P(B\\mid A)$，先發生的事放前面。",
+       "en": "\"Given ..., the probability is\" signals a conditional probability P(B | A). For \"A and B\", write P(A) × P(B | A), with the earlier event first."
+      }
+     }
+    },
+    {
+     "id": "ch18-3-l1-16",
+     "code": "16",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "A bag contains 8 sweet candies and 4 sour candies. Polly randomly draws 2 candies from the bag one by one without replacement. Find the probability that",
+      "zh": "一個袋內有 8 粒甜糖和 4 粒酸糖。Polly 從袋中逐一隨機抽出 2 粒糖，抽出後不放回。求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "the 1st candy drawn is sweet and the 2nd candy drawn is sour,",
+       "zh": "第 1 粒抽出的是甜糖，而第 2 粒抽出的是酸糖。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "one sweet candy and one sour candy are selected.",
+       "zh": "抽出一粒甜糖和一粒酸糖。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{8}{12} \\times \\frac{4}{11} = \\frac{8}{33}",
+       "note": {
+        "zh": "不放回：抽出甜糖後只剩 11 粒，其中 4 粒酸",
+        "en": "No replacement: after a sweet candy, 11 candies remain with 4 sour"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "2 \\times \\frac{8}{12} \\times \\frac{4}{11} = \\frac{16}{33}",
+       "note": {
+        "zh": "「一甜一酸」有兩種次序：甜酸、酸甜",
+        "en": "\"One sweet, one sour\" has two orders: sweet-sour and sour-sweet"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "第一粒",
+         "en": "First candy"
+        },
+        "math": "\\frac{8}{12}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{8}{12}"
+        ],
+        "zh": "袋中共 $8+4=12$ 粒，甜糖 $8$ 粒，所以第一粒是甜糖的概率是 $\\frac{8}{12}$。",
+        "en": "The bag holds 8 + 4 = 12 candies, 8 of them sweet, so P(sweet) = 8/12."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "第二粒：分母減 1",
+         "en": "Second candy: denominator drops by 1"
+        },
+        "math": "\\frac{8}{12} \\times \\frac{4}{11} = \\frac{32}{132} = \\frac{8}{33}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{8}{33}"
+        ],
+        "zh": "第一粒拿走後不放回，袋中只剩 $11$ 粒，酸糖仍是 $4$ 粒，所以 $P(\\text{酸}\\mid\\text{甜}) = \\frac{4}{11}$。兩步相乘：$\\frac{8}{12}\\times\\frac{4}{11} = \\frac{32}{132} = \\frac{8}{33}$。",
+        "en": "The first candy is not replaced, so 11 remain and all 4 sour candies are still there: P(sour | sweet) = 4/11. Multiply: 8/12 × 4/11 = 32/132 = 8/33."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "「一甜一酸」有兩個次序",
+         "en": "\"One sweet, one sour\" has two orders"
+        },
+        "math": "\\frac{8}{12} \\times \\frac{4}{11} + \\frac{4}{12} \\times \\frac{8}{11}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{4}{12} \\times \\frac{8}{11}"
+        ],
+        "zh": "可以是「先甜後酸」，也可以是「先酸後甜」。先酸後甜是 $\\frac{4}{12}\\times\\frac{8}{11}$，兩種都要算。",
+        "en": "The order can be sweet then sour, or sour then sweet. The sour-then-sweet case is 4/12 × 8/11, and both must be counted."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= 2 \\times \\frac{32}{132} = \\frac{64}{132} = \\frac{16}{33}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{16}{33}"
+        ],
+        "zh": "兩種情況的數值一樣（都是 $\\frac{32}{132}$），所以直接乘 $2$：$\\frac{64}{132} = \\frac{16}{33}$。",
+        "en": "Both orders give the same value (32/132), so double it: 64/132 = 16/33."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 第二粒仍用 12 作分母",
+        "labelEn": "(a) keeping 12 as the second denominator",
+        "zh": "不放回，第二粒的分母是 $11$（袋中只剩 $11$ 粒），不是 $12$。",
+        "en": "Without replacement the second denominator is 11 (only 11 candies left), not 12."
+       },
+       {
+        "label": "(b) 漏了「先酸後甜」",
+        "labelEn": "(b) missing the sour-then-sweet order",
+        "zh": "只寫 $\\frac{8}{33}$ 就漏了一半；題目沒有指定次序，兩個次序都要算。",
+        "en": "Writing only 8/33 counts half the cases; the question fixes no order, so both orders count."
+       },
+       {
+        "label": "(b) 用 $\\frac{8}{12} \\times \\frac{8}{11}$",
+        "labelEn": "(b) using 8/12 × 8/11",
+        "zh": "那是「兩粒都是甜」，不是「一甜一酸」。",
+        "en": "That is \"both sweet\", not \"one sweet and one sour\"."
+       }
+      ],
+      "tip": {
+       "zh": "無放回的第二粒，分母一定少 1。「一甜一酸」這類沒有指定次序的字眼，先算一種次序，再乘 2（若兩種次序數值不同，就要分開相加）。",
+       "en": "Without replacement, the second denominator is one less. When no order is specified (\"one sweet and one sour\"), work out one order and double it — unless the two orders differ in value, in which case add them separately."
+      }
+     }
+    },
+    {
+     "id": "ch18-3-l1-17",
+     "code": "17",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 6 black socks and 10 white socks in a drawer. Gary randomly draws 2 socks from the drawer at the same time. Find the probability that",
+      "zh": "抽屜內有 6 隻黑襪和 10 隻白襪。Gary 同時從抽屜中隨機抽出 2 隻襪。求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "both socks are white,",
+       "zh": "兩隻襪都是白色。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "the two socks are of the same colour.",
+       "zh": "兩隻襪顏色相同。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{10}{16} \\times \\frac{9}{15} = \\frac{3}{8}",
+       "note": {
+        "zh": "同時抽＝逐一抽、不放回",
+        "en": "\"At the same time\" behaves like drawing one by one without replacement"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{10}{16} \\times \\frac{9}{15} + \\frac{6}{16} \\times \\frac{5}{15} = \\frac{3}{8} + \\frac{1}{8} = \\frac{1}{2}",
+       "note": {
+        "zh": "同色＝兩白 或 兩黑",
+        "en": "Same colour = both white or both black"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同時抽 2 隻＝先後抽而無放回",
+         "en": "Two at once = two in turn without replacement"
+        },
+        "math": "\\frac{10}{16}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{10}{16}"
+        ],
+        "zh": "抽屜共 $6+10=16$ 隻襪。第一隻抽到白襪的概率是 $\\frac{10}{16}$。",
+        "en": "The drawer holds 6 + 10 = 16 socks, so P(white) = 10/16 on the first draw."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "第二隻：分母 15",
+         "en": "Second sock: denominator 15"
+        },
+        "math": "\\frac{10}{16} \\times \\frac{9}{15} = \\frac{90}{240} = \\frac{3}{8}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{3}{8}"
+        ],
+        "zh": "已拿走一隻白襪，剩 $15$ 隻，其中白襪 $9$ 隻，所以 $\\frac{9}{15}$。相乘：$\\frac{10}{16}\\times\\frac{9}{15} = \\frac{90}{240} = \\frac{3}{8}$。",
+        "en": "One white sock is gone, leaving 15 socks with 9 white, so the second factor is 9/15. Multiply: 10/16 × 9/15 = 90/240 = 3/8."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "「同色」＝兩白 或 兩黑",
+         "en": "\"Same colour\" = both white or both black"
+        },
+        "math": "\\frac{10}{16} \\times \\frac{9}{15} + \\frac{6}{16} \\times \\frac{5}{15}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{6}{16} \\times \\frac{5}{15}"
+        ],
+        "zh": "兩種情況互斥：兩白是 $\\frac{10}{16}\\times\\frac{9}{15}$，兩黑是 $\\frac{6}{16}\\times\\frac{5}{15}$。",
+        "en": "The cases are disjoint: both white is 10/16 × 9/15 and both black is 6/16 × 5/15."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{3}{8} + \\frac{1}{8} = \\frac{1}{2}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{2}"
+        ],
+        "zh": "$\\frac{6}{16}\\times\\frac{5}{15} = \\frac{30}{240} = \\frac{1}{8}$，即兩隻黑襪的概率是八分之一；所以同色 $= \\frac{3}{8} + \\frac{1}{8} = \\frac{1}{2}$。",
+        "en": "6/16 × 5/15 = 30/240 = 1/8, so same colour = 3/8 + 1/8 = 1/2."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 分母一直用 16",
+        "labelEn": "(a) keeping 16 throughout",
+        "zh": "同時抽 2 隻等於不放回，第二隻的分母是 $15$。",
+        "en": "Two socks at once means no replacement, so the second denominator is 15."
+       },
+       {
+        "label": "(b) 只算白色",
+        "labelEn": "(b) counting white only",
+        "zh": "「同色」還包括兩隻黑襪，漏了 $\\frac{1}{8}$。",
+        "en": "\"Same colour\" also includes two black socks; leaving it out loses 1/8."
+       },
+       {
+        "label": "(b) 用 $\\frac{6}{16} \\times \\frac{9}{15}$",
+        "labelEn": "(b) using 6/16 × 9/15",
+        "zh": "那是一個黑一個白，顏色不同。",
+        "en": "That is one black and one white, i.e. different colours."
+       }
+      ],
+      "tip": {
+       "zh": "「同時抽」＝「逐一抽、不放回」，兩隻之間分母少 1；「同色／同款」要把每種顏色各自相乘再相加。",
+       "en": "\"At the same time\" is \"one by one without replacement\", so the denominator drops by 1. For \"same colour\", multiply within each colour and add the cases."
+      }
+     }
+    },
+    {
+     "id": "ch18-3-l1-18",
+     "code": "18",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "There are 3 bottles of water and 9 bottles of tea on a table. Rocha and Selina each selects a bottle of drink randomly one by one without replacement. Find the probability that",
+      "zh": "桌上有 3 瓶水和 9 瓶茶。Rocha 和 Selina 先後各隨機選一瓶飲品，選後不放回。求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "the bottles of drink they select are the same,",
+       "zh": "兩人選到的飲品相同。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "the bottles of drink they select are different.",
+       "zh": "兩人選到的飲品不同。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{3}{12} \\times \\frac{2}{11} + \\frac{9}{12} \\times \\frac{8}{11} = \\frac{78}{132} = \\frac{13}{22}",
+       "note": {
+        "zh": "相同＝兩瓶水 或 兩瓶茶；Selina 抽時只剩 11 瓶",
+        "en": "Same = both water or both tea; Selina draws from 11 bottles"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "2 \\times \\frac{3}{12} \\times \\frac{9}{11} = \\frac{9}{22}",
+       "note": {
+        "zh": "不同有兩個次序，也可以用 $1 -$ (a) 核對",
+        "en": "Two orders for \"different\"; check with 1 − (a)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "「相同」有兩種情況",
+         "en": "\"Same\" has two cases"
+        },
+        "math": "\\frac{3}{12} \\times \\frac{2}{11} + \\frac{9}{12} \\times \\frac{8}{11}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{3}{12} \\times \\frac{2}{11}"
+        ],
+        "zh": "「相同」＝「兩瓶都是水」或「兩瓶都是茶」。Rocha 先抽（分母 $12$），Selina 後抽而且不放回（分母 $11$）。",
+        "en": "\"Same\" means both water or both tea. Rocha draws first (denominator 12) and Selina draws without replacement (denominator 11)."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{6}{132} + \\frac{72}{132} = \\frac{78}{132} = \\frac{13}{22}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{13}{22}"
+        ],
+        "zh": "兩瓶水：$\\frac{3}{12}\\times\\frac{2}{11} = \\frac{6}{132}$；兩瓶茶：$\\frac{9}{12}\\times\\frac{8}{11} = \\frac{72}{132}$，合共 $\\frac{78}{132} = \\frac{13}{22}$。",
+        "en": "Both water: 3/12 × 2/11 = 6/132. Both tea: 9/12 × 8/11 = 72/132. Total 78/132 = 13/22."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "「不同」也有兩個次序",
+         "en": "\"Different\" also has two orders"
+        },
+        "math": "\\frac{3}{12} \\times \\frac{9}{11} + \\frac{9}{12} \\times \\frac{3}{11}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{3}{12} \\times \\frac{9}{11}"
+        ],
+        "zh": "「不同」＝「Rocha 水、Selina 茶」或「Rocha 茶、Selina 水」，兩種都要算。",
+        "en": "\"Different\" means Rocha water with Selina tea, or Rocha tea with Selina water; both count."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= 2 \\times \\frac{27}{132} = \\frac{54}{132} = \\frac{9}{22}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{9}{22}"
+        ],
+        "zh": "兩種情況都是 $\\frac{27}{132}$，所以乘 $2$：$\\frac{54}{132} = \\frac{9}{22}$。也可以用反面：$1 - \\frac{13}{22} = \\frac{9}{22}$，正好與 (a) 互補。",
+        "en": "Both orders give 27/132, so double it: 54/132 = 9/22. The complement check works too: 1 − 13/22 = 9/22."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 用 $\\frac{3}{12} \\times \\frac{3}{12}$",
+        "labelEn": "(a) using 3/12 × 3/12",
+        "zh": "第二瓶沒有放回，「兩瓶都是水」要把第一瓶的水也拿走，第二個因子是 $\\frac{2}{11}$。",
+        "en": "The bottle is not replaced, so for \"both water\" one water bottle is already gone: the second factor is 2/11."
+       },
+       {
+        "label": "(a)(b) 相加不等於 1",
+        "labelEn": "answers not adding to 1",
+        "zh": "「相同」與「不同」互補，$\\frac{13}{22} + \\frac{9}{22} = 1$，可以用來檢查。",
+        "en": "\"Same\" and \"different\" are complementary: 13/22 + 9/22 = 1, which is a useful check."
+       },
+       {
+        "label": "(b) 漏了另一種次序",
+        "labelEn": "(b) missing the other order",
+        "zh": "只算「Rocha 水、Selina 茶」會少一半；要乘 $2$ 或加上另一項。",
+        "en": "Counting only Rocha water with Selina tea halves the answer; double it or add the other term."
+       }
+      ],
+      "tip": {
+       "zh": "兩人先後抽同一袋＝不放回，第二人的分母是 $11$。「相同／不同」是互補事件，計完一邊可以用 $1$ 減出另一邊核對。",
+       "en": "Two people drawing from one bag means no replacement, so the second denominator is 11. \"Same\" and \"different\" are complementary — after one, get the other by subtracting from 1."
       }
      }
     },
@@ -2643,7 +3329,7 @@
    "questions": [
     {
      "id": "ch18-3-l2-1",
-     "code": "15",
+     "code": "22",
      "type": "long",
      "marks": 2,
      "difficulty": 2,
@@ -2722,7 +3408,7 @@
     },
     {
      "id": "ch18-3-l2-2",
-     "code": "16",
+     "code": "23",
      "type": "long",
      "marks": 3,
      "difficulty": 2,
@@ -2829,7 +3515,7 @@
     },
     {
      "id": "ch18-3-l2-3",
-     "code": "17",
+     "code": "24",
      "type": "long",
      "marks": 4,
      "difficulty": 2,
@@ -2949,8 +3635,234 @@
      }
     },
     {
+     "id": "ch18-3-l2-25",
+     "code": "25",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Wesley is a baseball catcher. The probability that Wesley catches a baseball is $\\frac{1}{4}$. Assume that his performances in catching baseballs are independent of each other. If a baseball is thrown 3 times, find the probability that Wesley catches the baseball",
+      "zh": "Wesley 是棒球捕手，他接到棒球的概率是 $\\frac{1}{4}$。假設他每次接球的表現互相獨立。若投出棒球 3 次，求 Wesley 接到棒球的概率為"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "exactly 2 times,",
+       "zh": "恰好 2 次。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "at least 2 times.",
+       "zh": "至少 2 次。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "3 \\times \\left(\\frac{1}{4}\\right)^2 \\times \\frac{3}{4} = \\frac{9}{64}",
+       "note": {
+        "zh": "3 次之中「接不到」可以出現在任何一次，共 3 個位置",
+        "en": "The miss can fall in any of the 3 throws"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{9}{64} + \\left(\\frac{1}{4}\\right)^3 = \\frac{5}{32}",
+       "note": {
+        "zh": "「至少 2 次」＝恰好 2 次 ＋ 3 次全中",
+        "en": "\"At least 2\" = exactly 2 plus all 3"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "恰好 2 次：先寫一種次序，再乘位置數",
+         "en": "Exactly 2: one order, then the number of positions"
+        },
+        "math": "3 \\times \\left(\\frac{1}{4}\\right)^2 \\times \\frac{3}{4}",
+        "marking": "(1M)",
+        "highlight": [
+         "3 \\times \\left(\\frac{1}{4}\\right)^2"
+        ],
+        "zh": "「恰好 2 次接到」可以寫成「接、接、失」，但「失」可以出現在第 1、2 或 3 次，共 $3$ 個位置。每次接到 $\\frac{1}{4}$、接不到 $\\frac{3}{4}$，所以是 $3 \\times \\left(\\frac{1}{4}\\right)^2 \\times \\frac{3}{4}$。",
+        "en": "\"Exactly 2 catches\" looks like catch-catch-miss, but the miss can fall in throw 1, 2 or 3 — 3 positions. With P(catch) = 1/4 and P(miss) = 3/4, this is 3 × (1/4)² × 3/4."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{9}{64}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{9}{64}"
+        ],
+        "zh": "$3 \\times \\frac{1}{16} \\times \\frac{3}{4} = \\frac{9}{64}$。乘 3 是因為「接不到」可以出現在三次之中的任何一次。",
+        "en": "3 × 1/16 × 3/4 = 9/64."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "「至少 2 次」＝恰好 2 次 ＋ 3 次全中",
+         "en": "\"At least 2\" = exactly 2 plus all 3"
+        },
+        "math": "\\frac{9}{64} + \\left(\\frac{1}{4}\\right)^3",
+        "marking": "(1M)",
+        "highlight": [
+         "\\left(\\frac{1}{4}\\right)^3"
+        ],
+        "zh": "3 次都接到：$\\left(\\frac{1}{4}\\right)^3 = \\frac{1}{64}$。它與「恰好 2 次」互斥，所以把 (a) 的 $\\frac{9}{64}$ 加上。",
+        "en": "All 3 caught: (1/4)³ = 1/64, added to 9/64 from part (a)."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{10}{64} = \\frac{5}{32}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{5}{32}"
+        ],
+        "zh": "$\\frac{9}{64} + \\frac{1}{64} = \\frac{10}{64} = \\frac{5}{32}$，最後的答案要約至最簡分數。",
+        "en": "9/64 + 1/64 = 10/64 = 5/32."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 漏了乘 3",
+        "labelEn": "(a) missing the factor 3",
+        "zh": "$\\left(\\frac{1}{4}\\right)^2 \\times \\frac{3}{4} = \\frac{3}{64}$ 只數了「接、接、失」這一種次序。",
+        "en": "(1/4)² × 3/4 = 3/64 counts only the catch-catch-miss order."
+       },
+       {
+        "label": "(a) 只寫 $\\left(\\frac{1}{4}\\right)^2$",
+        "labelEn": "(a) writing only (1/4)²",
+        "zh": "那只算了兩次接到，沒有算「另一次接不到」的 $\\frac{3}{4}$。",
+        "en": "That counts the two catches but not the miss, whose probability is 3/4."
+       },
+       {
+        "label": "(b) 只加 3 次全中",
+        "labelEn": "(b) adding only the all-3 case",
+        "zh": "「至少 2 次」包括恰好 2 次，只寫 $\\frac{1}{64}$ 會漏掉 $\\frac{9}{64}$。",
+        "en": "\"At least 2\" includes exactly 2; writing only 1/64 loses the 9/64."
+       }
+      ],
+      "tip": {
+       "zh": "「恰好 k 次」＝先寫出一種次序（成功／失敗相乘），再乘「揀位置」的數目（3 次中揀 1 次＝3）。「至少」就把符合的「恰好」逐個加起來。",
+       "en": "\"Exactly k times\": write one order (success and failure multiplied), then multiply by the number of positions (3 choose 1 = 3). For \"at least\", add up the matching \"exactly\" cases."
+      }
+     }
+    },
+    {
+     "id": "ch18-3-l2-26",
+     "code": "26",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "The probability of Justin doing a skateboard hard-flip is 0.7. Assume that his performances are independent of each other. If Justin tries to do a hard-flip for 4 times, find the probability that he can do a hard-flip at most 3 times.",
+      "zh": "Justin 成功做出滑板硬翻的概率是 0.7。假設他每次表現互相獨立。若 Justin 嘗試硬翻 4 次，求他成功做出硬翻不多於 3 次的概率。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "he can do a hard-flip at most 3 times.",
+       "zh": "他成功做出硬翻不多於 3 次。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "1 - 0.7^4 = 1 - 0.2401 = 0.7599",
+       "note": {
+        "zh": "反面只有「4 次都成功」一個情況",
+        "en": "The complement is the single case \"4 successes\""
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "反面是「4 次都成功」",
+         "en": "The complement is \"4 successes\""
+        },
+        "math": "1 - 0.7^4",
+        "marking": "(1M)",
+        "highlight": [
+         "1 - 0.7^4"
+        ],
+        "zh": "「不多於 3 次」的反面只有「4 次都成功」一種情況，所以用 $1$ 減去它最快。",
+        "en": "The only outcome outside \"at most 3\" is \"all 4 succeed\", so subtract it from 1."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "4 次都成功",
+         "en": "All 4 succeed"
+        },
+        "math": "0.7^4 = 0.2401",
+        "marking": "(1M)",
+        "highlight": [
+         "0.7^4"
+        ],
+        "zh": "4 次都成功就是每次都成功：$0.7 \\times 0.7 \\times 0.7 \\times 0.7 = 0.2401$。",
+        "en": "Four successes: 0.7 × 0.7 × 0.7 × 0.7 = 0.2401."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "1 - 0.2401 = 0.7599",
+        "marking": "(1A)",
+        "highlight": [
+         "0.7599"
+        ],
+        "zh": "$1 - 0.2401 = 0.7599$，就是不多於 3 次成功的概率。",
+        "en": "1 − 0.2401 = 0.7599."
+       }
+      ],
+      "traps": [
+       {
+        "label": "用 $1 - 0.7$",
+        "labelEn": "using 1 − 0.7",
+        "zh": "$1 - 0.7 = 0.3$ 是「一次失敗」的概率，不是「不多於 3 次成功」。",
+        "en": "1 − 0.7 = 0.3 is the probability of a single failure, not of \"at most 3 successes\"."
+       },
+       {
+        "label": "只寫 $0.7^4$",
+        "labelEn": "writing only 0.7⁴",
+        "zh": "$0.2401$ 是「4 次都成功」，與題目要求的「不多於 3 次」剛好相反。",
+        "en": "0.2401 is \"all 4 succeed\", the opposite of what is asked."
+       },
+       {
+        "label": "逐項加 $P(0)+P(1)+P(2)+P(3)$ 但漏項",
+        "labelEn": "adding the four cases but missing one",
+        "zh": "逐項加要寫四個二項式項，很易漏；反面只有一個情況，直接用 $1$ 減。",
+        "en": "Adding the four cases means four binomial terms and is easy to miscopy; the complement is a single case."
+       }
+      ],
+      "tip": {
+       "zh": "「不多於 n−1 次」通常用反面「n 次全部成功」，一條減法就完；反面情況數目越少越應該用。",
+       "en": "\"At most n − 1 times\" is usually one subtraction from the single case \"all n succeed\"; the fewer the complement cases, the better this route."
+      }
+     }
+    },
+    {
      "id": "ch18-3-l2-4",
-     "code": "18",
+     "code": "27",
      "type": "long",
      "marks": 3,
      "difficulty": 3,
@@ -3057,7 +3969,7 @@
     },
     {
      "id": "ch18-3-l2-5",
-     "code": "19",
+     "code": "28",
      "type": "long",
      "marks": 5,
      "difficulty": 3,
@@ -3198,7 +4110,7 @@
     },
     {
      "id": "ch18-3-l2-6",
-     "code": "20",
+     "code": "29",
      "type": "long",
      "marks": 4,
      "difficulty": 3,
@@ -3339,7 +4251,7 @@
     },
     {
      "id": "ch18-3-l2-7",
-     "code": "21",
+     "code": "30",
      "type": "long",
      "marks": 3,
      "difficulty": 3,
@@ -3452,7 +4364,7 @@
     },
     {
      "id": "ch18-3-l2-8",
-     "code": "22",
+     "code": "31",
      "type": "long",
      "marks": 4,
      "difficulty": 3,
@@ -3592,8 +4504,135 @@
      }
     },
     {
+     "id": "ch18-3-l2-32",
+     "code": "32",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Drawer A contains 2 pink towels, 5 white towels and 3 yellow towels. Drawer B contains 3 pink towels, 4 white towels and 5 blue towels. Yuki randomly selects one towel from each drawer. Find the probability that",
+      "zh": "抽屜 A 內有 2 條粉紅色毛巾、5 條白色毛巾和 3 條黃色毛巾。抽屜 B 內有 3 條粉紅色毛巾、4 條白色毛巾和 5 條藍色毛巾。Yuki 從每個抽屜各隨機取出一條毛巾。求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "2 pink towels are selected,",
+       "zh": "取出 2 條粉紅色毛巾。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "2 towels of different colours are selected.",
+       "zh": "取出的 2 條毛巾顏色不同。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{2}{10} \\times \\frac{3}{12} = \\frac{1}{20}",
+       "note": {
+        "zh": "A 共 10 條、B 共 12 條",
+        "en": "Drawer A has 10 towels, drawer B has 12"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\left(\\frac{2}{10} \\times \\frac{3}{12} + \\frac{5}{10} \\times \\frac{4}{12}\\right) = 1 - \\frac{13}{60} = \\frac{47}{60}",
+       "note": {
+        "zh": "反面「同色」只有粉紅＋粉紅、白＋白（A 無藍、B 無黃）",
+        "en": "Same colour is only pink-pink or white-white; A has no blue, B has no yellow"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "兩個抽屜各自的總數",
+         "en": "Totals in each drawer"
+        },
+        "math": "\\frac{2}{10} \\times \\frac{3}{12}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{2}{10} \\times \\frac{3}{12}"
+        ],
+        "zh": "抽屜 A 共 $2+5+3=10$ 條，粉紅 $2$ 條；抽屜 B 共 $3+4+5=12$ 條，粉紅 $3$ 條。兩邊相乘。",
+        "en": "Drawer A holds 2 + 5 + 3 = 10 towels with 2 pink; drawer B holds 3 + 4 + 5 = 12 towels with 3 pink. Multiply the two probabilities."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{6}{120} = \\frac{1}{20}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{20}"
+        ],
+        "zh": "$\\frac{2}{10}\\times\\frac{3}{12} = \\frac{6}{120} = \\frac{1}{20}$。兩個抽屜各抽一條，所以兩邊相乘。",
+        "en": "2/10 × 3/12 = 6/120 = 1/20."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "用反面：「不同」的反面是「同色」",
+         "en": "Use the complement: \"same colour\""
+        },
+        "math": "1 - \\left(\\frac{2}{10} \\times \\frac{3}{12} + \\frac{5}{10} \\times \\frac{4}{12}\\right)",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{5}{10} \\times \\frac{4}{12}"
+        ],
+        "zh": "兩個抽屜只有粉紅和白是共有的（A 沒有藍、B 沒有黃），所以「同色」只有粉紅配粉紅、白配白兩種。",
+        "en": "Pink and white are the only colours in both drawers (A has no blue, B has no yellow), so \"same colour\" means pink-pink or white-white."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= 1 - \\left(\\frac{1}{20} + \\frac{1}{6}\\right) = 1 - \\frac{13}{60} = \\frac{47}{60}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{47}{60}"
+        ],
+        "zh": "$\\frac{5}{10}\\times\\frac{4}{12} = \\frac{20}{120} = \\frac{1}{6}$；同色合共 $\\frac{3}{60} + \\frac{10}{60} = \\frac{13}{60}$，所以不同 $= 1 - \\frac{13}{60} = \\frac{47}{60}$。",
+        "en": "5/10 × 4/12 = 20/120 = 1/6. Same colour totals 3/60 + 10/60 = 13/60, so different = 1 − 13/60 = 47/60."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 用 12 作 A 的分母",
+        "labelEn": "(a) using 12 for drawer A",
+        "zh": "兩個抽屜的總數不同（$10$ 和 $12$），分母要各自用自己的總數。",
+        "en": "The drawers have different totals (10 and 12), so each keeps its own denominator."
+       },
+       {
+        "label": "(b) 逐項數「不同」",
+        "labelEn": "(b) listing all \"different\" pairs",
+        "zh": "「不同」的配法很多（粉對白、粉對藍、白對黃…），逐項數很易漏；用反面只有兩種。",
+        "en": "There are many \"different\" pairings (pink-white, pink-blue, white-yellow ...), easy to miss one; the complement has only two."
+       },
+       {
+        "label": "(b) 把黃配黃、藍配藍也算入",
+        "labelEn": "(b) including yellow-yellow or blue-blue",
+        "zh": "A 沒有藍色、B 沒有黃色，這兩種同色配法不可能發生，不要加進去。",
+        "en": "A has no blue and B has no yellow, so those same-colour pairings cannot happen."
+       }
+      ],
+      "tip": {
+       "zh": "「不同顏色」通常用反面「同色」快得多；先找出兩個容器共有的顏色，只有共有的顏色才可能配成同色。",
+       "en": "\"Different colours\" is usually faster via the complement \"same colour\"; find the colours the two containers share, since only those can pair up."
+      }
+     }
+    },
+    {
      "id": "ch18-3-l2-9",
-     "code": "23",
+     "code": "33",
      "type": "long",
      "marks": 4,
      "difficulty": 3,
@@ -3720,7 +4759,7 @@
     },
     {
      "id": "ch18-3-l2-10",
-     "code": "24",
+     "code": "34",
      "type": "long",
      "marks": 5,
      "difficulty": 3,
@@ -3861,7 +4900,7 @@
     },
     {
      "id": "ch18-3-l2-11",
-     "code": "25",
+     "code": "35",
      "type": "long",
      "marks": 5,
      "difficulty": 3,
@@ -3988,7 +5027,7 @@
     },
     {
      "id": "ch18-3-l2-12",
-     "code": "26",
+     "code": "36",
      "type": "long",
      "marks": 5,
      "difficulty": 3,
@@ -4128,8 +5167,107 @@
      }
     },
     {
+     "id": "ch18-3-l2-37",
+     "code": "37",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 30 boxes, of which 3 contain cash coupons. Karis repeats opening one box at a time randomly with replacement until she opens a box containing cash coupons. Find the probability that she opens boxes at least 3 times.",
+      "zh": "有 30 個盒子，其中 3 個內有現金券。Karis 每次隨機打開一個盒子（打開後放回），直到打開內有現金券的盒子為止。求她打開盒子至少 3 次的概率。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "she opens boxes at least 3 times.",
+       "zh": "她打開盒子至少 3 次。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "1 - \\left(\\frac{3}{30} + \\frac{27}{30} \\times \\frac{3}{30}\\right) = 1 - \\frac{19}{100} = \\frac{81}{100}",
+       "note": {
+        "zh": "反面是「1 次」或「2 次」；有放回，每次概率不變",
+        "en": "The complement is 1 or 2 opens; with replacement the probabilities stay the same"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "每次中獎與落空的概率",
+         "en": "Probability of a coupon or a blank each time"
+        },
+        "math": "\\frac{3}{30} = \\frac{1}{10}, \\quad \\frac{27}{30} = \\frac{9}{10}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{3}{30} = \\frac{1}{10}"
+        ],
+        "zh": "每次打開有現金券的概率是 $\\frac{3}{30} = \\frac{1}{10}$，沒有的概率是 $\\frac{27}{30} = \\frac{9}{10}$。有放回，所以每次都不變。",
+        "en": "Each box has a coupon with probability 3/30 = 1/10 and is blank with 27/30 = 9/10. With replacement these never change."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "反面：「1 次」或「2 次」就中",
+         "en": "Complement: coupon on the 1st or 2nd open"
+        },
+        "math": "P(1\\text{ 次}) = \\frac{1}{10}, \\quad P(2\\text{ 次}) = \\frac{9}{10} \\times \\frac{1}{10} = \\frac{9}{100}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{9}{10} \\times \\frac{1}{10}"
+        ],
+        "zh": "1 次＝第一次就中；2 次＝第一次落空、第二次中：$\\frac{9}{10}\\times\\frac{1}{10} = \\frac{9}{100}$。",
+        "en": "One open means a coupon at once; two opens means blank then coupon: 9/10 × 1/10 = 9/100."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "用 1 減去",
+         "en": "Subtract from 1"
+        },
+        "math": "1 - \\left(\\frac{1}{10} + \\frac{9}{100}\\right) = 1 - \\frac{19}{100} = \\frac{81}{100}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{81}{100}"
+        ],
+        "zh": "$1 - \\left(\\frac{1}{10} + \\frac{9}{100}\\right) = 1 - \\frac{19}{100} = \\frac{81}{100}$。也可以直接想：要開至少 3 次，就是頭兩次都落空，$\\left(\\frac{9}{10}\\right)^2 = \\frac{81}{100}$。",
+        "en": "1 − (1/10 + 9/100) = 1 − 19/100 = 81/100. The direct reading is the same: at least 3 opens means the first two are blank, (9/10)² = 81/100."
+       }
+      ],
+      "traps": [
+       {
+        "label": "當成「不放回」",
+        "labelEn": "treating it as without replacement",
+        "zh": "題目寫明有放回，第二次起的概率不變，仍是 $\\frac{1}{10}$。",
+        "en": "The question says with replacement, so the probability stays 1/10 from the second open on."
+       },
+       {
+        "label": "反面只減「1 次」",
+        "labelEn": "subtracting only the 1-open case",
+        "zh": "「至少 3 次」的反面包括 1 次和 2 次，兩個都要減。",
+        "en": "\"At least 3\" excludes both 1 and 2 opens, so subtract both."
+       },
+       {
+        "label": "只算「恰好 3 次」",
+        "labelEn": "computing exactly 3 opens",
+        "zh": "$\\frac{9}{10}\\times\\frac{9}{10}\\times\\frac{1}{10}$ 是「恰好 3 次」，不是「至少 3 次」。",
+        "en": "9/10 × 9/10 × 1/10 is \"exactly 3 opens\", not \"at least 3\"."
+       }
+      ],
+      "tip": {
+       "zh": "「至少 k 次」用反面「少於 k 次」。有放回時每次概率相同，「頭兩次都落空」就是 $\\left(\\frac{9}{10}\\right)^2$，與反面法同值中較快的一條。",
+       "en": "Use the complement \"fewer than k times\". With replacement the probabilities repeat, so \"first two blank\" is (9/10)² — the quicker of the two equivalent routes."
+      }
+     }
+    },
+    {
      "id": "ch18-3-l2-13",
-     "code": "27",
+     "code": "38",
      "type": "long",
      "marks": 3,
      "difficulty": 3,
@@ -4235,8 +5373,121 @@
      }
     },
     {
+     "id": "ch18-3-l2-39",
+     "code": "39",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "Bag P contains 3 blue balls and 2 red balls, bag Q contains 4 blue balls and 1 red ball while bag R contains 5 blue balls. Vivian selects a bag randomly and then draws a ball randomly. Find the probability that",
+      "zh": "袋 P 內有 3 個藍球和 2 個紅球，袋 Q 內有 4 個藍球和 1 個紅球，袋 R 內有 5 個藍球。Vivian 隨機選一個袋，然後隨機抽出一個球。求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "a red ball is drawn,",
+       "zh": "抽出紅球。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "a blue ball is drawn.",
+       "zh": "抽出藍球。",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{1}{3} \\times \\frac{2}{5} + \\frac{1}{3} \\times \\frac{1}{5} + \\frac{1}{3} \\times 0 = \\frac{1}{5}",
+       "note": {
+        "zh": "先選袋（各 $\\frac{1}{3}$），再按該袋的紅球比例",
+        "en": "Choose a bag (1/3 each), then use that bag's red fraction"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{1}{5} = \\frac{4}{5}",
+       "note": {
+        "zh": "只有紅、藍兩色，所以用反面",
+        "en": "Only red and blue exist, so use the complement"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "三個袋的紅球比例",
+         "en": "Red fraction in each bag"
+        },
+        "math": "\\frac{2}{5}, \\quad \\frac{1}{5}, \\quad 0",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{1}{3} \\times \\frac{2}{5}"
+        ],
+        "zh": "P 袋 $3+2=5$ 個球，紅球 $2$ 個（$\\frac{2}{5}$）；Q 袋 $4+1=5$ 個，紅球 $1$ 個（$\\frac{1}{5}$）；R 袋全是藍球，紅球 $0$ 個。選袋機會均等，各 $\\frac{1}{3}$。",
+        "en": "Bag P has 5 balls with 2 red (2/5); bag Q has 5 balls with 1 red (1/5); bag R has no red. Each bag is chosen with probability 1/3."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "逐袋相乘再加",
+         "en": "Multiply per bag and add"
+        },
+        "math": "= \\frac{2}{15} + \\frac{1}{15} = \\frac{3}{15} = \\frac{1}{5}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{5}"
+        ],
+        "zh": "把三個袋的情況逐袋相乘再加：$\\frac{1}{3}\\times\\frac{2}{5} + \\frac{1}{3}\\times\\frac{1}{5} + \\frac{1}{3}\\times 0 = \\frac{2}{15} + \\frac{1}{15} = \\frac{3}{15} = \\frac{1}{5}$。",
+        "en": "1/3 × 2/5 + 1/3 × 1/5 + 1/3 × 0 = 2/15 + 1/15 = 3/15 = 1/5."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "用反面",
+         "en": "Use the complement"
+        },
+        "math": "1 - \\frac{1}{5} = \\frac{4}{5}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{4}{5}"
+        ],
+        "zh": "袋中只有紅、藍兩色，所以「藍球」是「紅球」的反面：$1 - \\frac{1}{5} = \\frac{4}{5}$。逐袋加也可：$\\frac{1}{3}\\times\\frac{3}{5} + \\frac{1}{3}\\times\\frac{4}{5} + \\frac{1}{3}\\times 1 = \\frac{4}{5}$。",
+        "en": "The bags contain only red and blue, so \"blue\" is the complement of \"red\": 1 − 1/5 = 4/5. Adding per bag gives the same: 1/3 × 3/5 + 1/3 × 4/5 + 1/3 × 1 = 4/5."
+       }
+      ],
+      "traps": [
+       {
+        "label": "忘記選袋的 $\\frac{1}{3}$",
+        "labelEn": "omitting the 1/3 for choosing a bag",
+        "zh": "只寫 $\\frac{2}{5} + \\frac{1}{5}$ 等於假設三個袋都一定會被選中，要先乘 $\\frac{1}{3}$。",
+        "en": "Writing only 2/5 + 1/5 assumes all three bags are chosen; each needs the factor 1/3."
+       },
+       {
+        "label": "把三袋的球合併",
+        "labelEn": "pooling all three bags",
+        "zh": "三個袋不是同一個袋：$\\frac{2+1+0}{5+5+5}$ 是錯的，因為袋中比例不同，而且每袋只會被選一次。",
+        "en": "The three bags are not one bag: (2+1+0)/(5+5+5) is wrong because the proportions differ and only one bag is used."
+       },
+       {
+        "label": "以為 R 袋抽到藍球是 $0$",
+        "labelEn": "thinking bag R gives blue with probability 0",
+        "zh": "R 袋全是藍球，抽到藍球的概率是 $1$（必定），在 (b) 的逐袋加法中要寫 $\\frac{1}{3}\\times 1$。",
+        "en": "Bag R is all blue, so it contributes 1 (certain), i.e. 1/3 × 1 in the per-bag sum."
+       }
+      ],
+      "tip": {
+       "zh": "「先選袋、再抽球」是兩步：第一步 $\\frac{1}{3}$，第二步是該袋的比例，最後把所有袋的情況相加。藍球用反面最快。",
+       "en": "\"Choose a bag, then draw\" is two steps: the 1/3, then that bag's fraction; finally add over the bags. For blue, the complement is quickest."
+      }
+     }
+    },
+    {
      "id": "ch18-3-l2-14",
-     "code": "28",
+     "code": "40",
      "type": "long",
      "marks": 5,
      "difficulty": 3,
@@ -4374,6 +5625,147 @@
        "en": "For transfer questions: (1) list every possible first draw with its probability; (2) for each, write the new contents of the destination; (3) write the conditional probability; (4) add. A table format prevents omissions."
       }
      }
+    },
+    {
+     "id": "ch18-3-l2-41",
+     "code": "41",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "Box C contains 4 red cards, 3 green cards and 1 blue card. Box D contains 1 red card and 4 green cards. One card is randomly drawn from box C and put into box D. Then one card is randomly drawn from box D. Find the probability that",
+      "zh": "盒 C 內有 4 張紅卡、3 張綠卡和 1 張藍卡。盒 D 內有 1 張紅卡和 4 張綠卡。從盒 C 隨機抽出一張卡放入盒 D，然後從盒 D 隨機抽出一張卡。求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "there is no red card left in box D after 2 draws,",
+       "zh": "抽卡 2 次後，盒 D 內沒有紅卡。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "the number of green cards in box D is more than that in box C after 2 draws.",
+       "zh": "抽卡 2 次後，盒 D 內的綠卡數目比盒 C 多。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\left(\\frac{3}{8} + \\frac{1}{8}\\right) \\times \\frac{1}{6} = \\frac{1}{12}",
+       "note": {
+        "zh": "C 只能交出綠卡或藍卡；交紅卡後 D 有 2 張紅，抽 1 張清不掉",
+        "en": "C must give green or blue; a red transfer leaves 2 reds, which one draw cannot clear"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{3}{8} + \\frac{4}{8} \\times \\frac{2}{6} + \\frac{1}{8} \\times \\frac{2}{6} = \\frac{7}{12}",
+       "note": {
+        "zh": "分三個情況追蹤兩盒的綠卡數目",
+        "en": "Track both boxes' green counts in three cases"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "交紅卡一定失敗",
+         "en": "A red transfer can never work"
+        },
+        "math": "\\frac{3}{8} + \\frac{1}{8} = \\frac{1}{2}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{3}{8} + \\frac{1}{8}"
+        ],
+        "zh": "盒 C 共 $4+3+1=8$ 張。若 C 交給 D 的是紅卡，D 便有 $2$ 張紅卡，之後只抽走 $1$ 張，必定仍剩紅卡。所以只能交綠卡或藍卡，概率 $\\frac{3}{8}+\\frac{1}{8}=\\frac{1}{2}$。",
+        "en": "Box C holds 8 cards. If C gives D a red card, D has 2 reds and drawing one card cannot clear them both. So C must give green or blue: 3/8 + 1/8 = 1/2."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "交入後 D 有 6 張，要抽走那張紅卡",
+         "en": "D then has 6 cards: draw the red one"
+        },
+        "math": "\\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{12}"
+        ],
+        "zh": "交入綠卡或藍卡後，D 有 $6$ 張（$1$ 張紅），要抽走那張紅卡，概率 $\\frac{1}{6}$。所以 $\\frac{1}{2}\\times\\frac{1}{6} = \\frac{1}{12}$。",
+        "en": "After a green or blue transfer D has 6 cards including exactly 1 red, so the drawn card must be that red: 1/6. Hence 1/2 × 1/6 = 1/12."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "按「C 交出甚麼」分三個情況",
+         "en": "Split by what C gives"
+        },
+        "math": "\\frac{3}{8}, \\quad \\frac{4}{8}, \\quad \\frac{1}{8}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{4}{8}"
+        ],
+        "zh": "三個情況：交綠卡（$\\frac{3}{8}$）、交紅卡（$\\frac{4}{8}$）、交藍卡（$\\frac{1}{8}$）。每個情況都要追蹤兩盒的綠卡數目。",
+        "en": "Three cases: C gives green (3/8), red (4/8) or blue (1/8). In each, track the green counts in both boxes."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "逐個情況寫出概率",
+         "en": "Write the probability of each case"
+        },
+        "math": "\\frac{3}{8} \\times 1 + \\frac{4}{8} \\times \\frac{2}{6} + \\frac{1}{8} \\times \\frac{2}{6}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{3}{8} \\times 1"
+        ],
+        "zh": "交綠卡：C 剩 $2$ 張綠、D 有 $5$ 張綠，之後抽走任何一張，D 仍多過 C，必定成立。交紅卡：C 仍有 $3$ 張綠，D 有 $4$ 張，要抽走紅卡（$\\frac{2}{6}$）才保持 $4$ 張贏 $3$ 張。交藍卡：C 仍有 $3$ 張綠，D 有 $4$ 張，要抽走紅或藍（$\\frac{2}{6}$）。",
+        "en": "Green transfer: C drops to 2 greens while D has 5, so it always works. Red transfer: C still has 3 greens and D has 4, so the drawn card must be red (2/6). Blue transfer: C still has 3 greens and D has 4, so the drawn card must be red or blue (2/6)."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{18}{48} + \\frac{8}{48} + \\frac{2}{48} = \\frac{28}{48} = \\frac{7}{12}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{7}{12}"
+        ],
+        "zh": "通分之後相加：$\\frac{3}{8} = \\frac{18}{48}$、$\\frac{4}{8}\\times\\frac{2}{6} = \\frac{8}{48}$、$\\frac{1}{8}\\times\\frac{2}{6} = \\frac{2}{48}$，合共 $\\frac{28}{48} = \\frac{7}{12}$。",
+        "en": "3/8 = 18/48, 4/8 × 2/6 = 8/48 and 1/8 × 2/6 = 2/48 give 28/48 = 7/12."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 把「交出紅卡」也算入",
+        "labelEn": "(a) including the red transfer",
+        "zh": "交出紅卡後 D 有 $2$ 張紅卡，只抽 $1$ 張不可能清空，這情況要排除。",
+        "en": "After a red transfer D holds 2 reds and one draw cannot clear them, so that case is excluded."
+       },
+       {
+        "label": "(b) 只算交綠卡的情況",
+        "labelEn": "(b) counting only the green transfer",
+        "zh": "交紅卡或藍卡時，只要從 D 抽走紅卡（或紅／藍卡），D 的綠卡仍然多過 C，兩種都要加。",
+        "en": "With a red or blue transfer, drawing the red (or red/blue) still leaves D ahead on greens, so both cases count."
+       },
+       {
+        "label": "(b) 忘記 C 的綠卡數目會變",
+        "labelEn": "(b) forgetting C's green count changes",
+        "zh": "交出綠卡後 C 只剩 $2$ 張綠卡；交出紅／藍卡則 C 仍有 $3$ 張。兩邊都要跟著更新。",
+        "en": "After a green transfer C has only 2 greens; after red or blue it still has 3. Update both boxes each time."
+       }
+      ],
+      "tip": {
+       "zh": "「搬一張再抽一張」要按「搬的是甚麼」分情況（這裡 3 個），逐個情況追蹤兩個盒的最新數目，再乘該情況的概率、最後相加。",
+       "en": "For \"move one card, then draw one\", split by what was moved (three cases here), update both boxes' counts in each case, multiply by that case's probability and add."
+      }
+     }
     }
    ]
   },
@@ -4391,7 +5783,7 @@
    "questions": [
     {
      "id": "ch18-3-sm-29",
-     "code": "29",
+     "code": "42",
      "type": "long",
      "marks": 4,
      "difficulty": 3,
@@ -4497,8 +5889,93 @@
      }
     },
     {
+     "id": "ch18-3-sm-43",
+     "code": "43",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "A box contains 8 balls numbered 1, 1, 2, 2, 2, 3, 5 and 5 respectively. Bowie draws two balls randomly one by one with replacement. Find the probability that the numbers on the balls drawn are different.",
+      "zh": "一個盒內有 8 個球，編號分別為 1、1、2、2、2、3、5、5。Bowie 每次隨機抽出一個球，抽出後放回，共抽 2 次。求抽出的兩個球編號不同的概率。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "the numbers on the balls drawn are different.",
+       "zh": "抽出的兩個球編號不同。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "1 - \\left[\\left(\\frac{2}{8}\\right)^2 + \\left(\\frac{3}{8}\\right)^2 + \\left(\\frac{1}{8}\\right)^2 + \\left(\\frac{2}{8}\\right)^2\\right] = 1 - \\frac{18}{64} = \\frac{23}{32}",
+       "note": {
+        "zh": "反面「相同」只有四個編號，各自平方再加",
+        "en": "The complement \"same\" has only four numbers: square each and add"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "反面：兩次編號相同",
+         "en": "Complement: the two numbers match"
+        },
+        "math": "\\left(\\frac{2}{8}\\right)^2 + \\left(\\frac{3}{8}\\right)^2 + \\left(\\frac{1}{8}\\right)^2 + \\left(\\frac{2}{8}\\right)^2",
+        "marking": "(1M)",
+        "highlight": [
+         "\\left(\\frac{3}{8}\\right)^2"
+        ],
+        "zh": "「不同」的反面是「相同」。有放回，兩次獨立：編號 1 有 $2$ 個、2 有 $3$ 個、3 有 $1$ 個、5 有 $2$ 個，同號的概率是各數目除以 $8$ 再平方相加。",
+        "en": "The complement of \"different\" is \"same\". With replacement the draws are independent: there are 2 balls numbered 1, 3 numbered 2, 1 numbered 3 and 2 numbered 5, so square each count over 8 and add."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{4+9+1+4}{64} = \\frac{18}{64} = \\frac{9}{32}, \\quad 1 - \\frac{9}{32} = \\frac{23}{32}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{23}{32}"
+        ],
+        "zh": "同號概率 $\\frac{18}{64} = \\frac{9}{32}$，所以不同 $= 1 - \\frac{9}{32} = \\frac{23}{32}$。",
+        "en": "P(same) = 18/64 = 9/32, so P(different) = 1 − 9/32 = 23/32."
+       }
+      ],
+      "traps": [
+       {
+        "label": "當成「不放回」",
+        "labelEn": "treating it as without replacement",
+        "zh": "題目寫明有放回，第二次的分母仍是 $8$。",
+        "en": "The question says with replacement, so the second denominator is still 8."
+       },
+       {
+        "label": "只算編號 1",
+        "labelEn": "counting only the number 1",
+        "zh": "只寫 $\\left(\\frac{2}{8}\\right)^2$ 就漏了編號 2、3、5 的同號情況。",
+        "en": "Writing only (2/8)² misses the same-number cases for 2, 3 and 5."
+       },
+       {
+        "label": "直接數「不同」的配法",
+        "labelEn": "listing all \"different\" pairings",
+        "zh": "「不同」的配法很多，逐項數很易漏；反面「相同」只有四項。",
+        "en": "\"Different\" has many pairings and is easy to miscount; the complement has just four terms."
+       }
+      ],
+      "tip": {
+       "zh": "有放回＝每次獨立，分母不變。「不同」用反面「相同」；相同只有「同一個編號」這幾項，逐個編號平方再加。",
+       "en": "With replacement each draw is independent and the denominator stays the same. For \"different\", use the complement; \"same\" has one term per number."
+      }
+     }
+    },
+    {
      "id": "ch18-3-sm-30",
-     "code": "30",
+     "code": "44",
      "type": "long",
      "marks": 4,
      "difficulty": 3,
@@ -4625,7 +6102,7 @@
     },
     {
      "id": "ch18-3-sm-31",
-     "code": "31",
+     "code": "45",
      "type": "long",
      "marks": 6,
      "difficulty": 3,
@@ -4767,7 +6244,7 @@
    "questions": [
     {
      "id": "ch18-3-ct-32",
-     "code": "32",
+     "code": "46",
      "type": "long",
      "marks": 3,
      "difficulty": 3,
@@ -4874,7 +6351,7 @@
     },
     {
      "id": "ch18-3-ct-33",
-     "code": "33",
+     "code": "47",
      "type": "long",
      "marks": 3,
      "difficulty": 3,
@@ -4986,8 +6463,122 @@
      }
     },
     {
+     "id": "ch18-3-ct-48",
+     "code": "48",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "A fair coin is tossed. In each of the following situations, find the probability that heads and tails appear alternately.",
+      "zh": "擲一枚均勻硬幣。在下列各情況，求正反面交替出現的概率。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "The coin is tossed 3 times.",
+       "zh": "擲硬幣 3 次。",
+       "marks": 1
+      },
+      {
+       "label": "(b)",
+       "en": "The coin is tossed n times.",
+       "zh": "擲硬幣 n 次。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{2}{2^3} = \\frac{1}{4}",
+       "note": {
+        "zh": "符合的只有 HTH 和 THT",
+        "en": "Only HTH and THT qualify"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{2}{2^n} = \\frac{1}{2^{n-1}}",
+       "input": null,
+       "note": {
+        "zh": "第一個硬幣自由，之後每次都被前一個決定",
+        "en": "The first toss is free; every later toss is forced"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "3 次共有 8 個結果",
+         "en": "3 tosses give 8 outcomes"
+        },
+        "math": "\\frac{2}{2^3} = \\frac{1}{4}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{4}"
+        ],
+        "zh": "3 次共有 $2^3 = 8$ 個結果；交替出現的只有 HTH 和 THT 兩個，所以 $\\frac{2}{8} = \\frac{1}{4}$。",
+        "en": "Three tosses give 2³ = 8 outcomes, and only HTH and THT alternate, so the probability is 2/8 = 1/4."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "第一個自由，其餘被決定",
+         "en": "First toss free, the rest forced"
+        },
+        "math": "\\frac{2}{2^n}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{2}{2^n}"
+        ],
+        "zh": "$n$ 次共有 $2^n$ 個結果。交替排列的第一個可以是 H 或 T，但之後每一次都必須與前一次相反，只有一個選擇，所以符合的結果只有 $2$ 個。",
+        "en": "There are 2ⁿ outcomes in total. The first toss may be H or T, but each later toss must differ from the one before, leaving no choice — so only 2 outcomes alternate."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "化簡",
+         "en": "Simplify"
+        },
+        "math": "= \\frac{2}{2^n} = \\frac{1}{2^{n-1}}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{2^{n-1}}"
+        ],
+        "zh": "$\\frac{2}{2^n} = 2^{1-n} = \\frac{1}{2^{n-1}}$。用 $n=3$ 檢查：$\\frac{1}{2^2} = \\frac{1}{4}$，與 (a) 的答案一致。",
+        "en": "2/2ⁿ = 2^(1−n) = 1/2^(n−1). Check with n = 3: 1/2² = 1/4, matching part (a)."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 只寫 HTH",
+        "labelEn": "(a) writing only HTH",
+        "zh": "THT 也符合，兩個都要算。",
+        "en": "THT also alternates, so both must be counted."
+       },
+       {
+        "label": "以為有 $2^n$ 個交替結果",
+        "labelEn": "thinking there are 2ⁿ alternating outcomes",
+        "zh": "第一個有 $2$ 個選擇，但之後每次都被前一個決定，所以只有 $2$ 個，不是 $2^n$。",
+        "en": "The first toss has 2 choices, but every later toss is forced, so there are 2 alternating outcomes, not 2ⁿ."
+       },
+       {
+        "label": "(b) 寫成 $\\frac{2^n}{2}$",
+        "labelEn": "(b) writing 2ⁿ/2",
+        "zh": "分母是全部結果 $2^n$，分子才是符合的 $2$。",
+        "en": "The denominator is all outcomes, 2ⁿ; the numerator is the 2 favourable ones."
+       }
+      ],
+      "tip": {
+       "zh": "交替排列的自由度只在第一個硬幣，定了之後全部跟著定；所以任何 $n$ 都只有 $2$ 個交替結果，概率是 $\\frac{2}{2^n}$。",
+       "en": "Alternation leaves freedom only at the first toss; everything after is forced. So for any n there are just 2 alternating outcomes and the probability is 2/2ⁿ."
+      }
+     }
+    },
+    {
      "id": "ch18-3-ct-34",
-     "code": "34",
+     "code": "49",
      "type": "long",
      "marks": 5,
      "difficulty": 3,
@@ -5109,6 +6700,175 @@
       "tip": {
        "zh": "期望值四步：① 寫出所有可能結果；② 數出各結果的組合數並求概率；③ 檢查概率總和是 $1$；④ 把「結果 × 概率」全部相加。",
        "en": "Four steps for expected value: (1) list all possible outcomes; (2) count the pairs for each and divide by the total; (3) check the probabilities sum to 1; (4) add up outcome × probability."
+      }
+     }
+    },
+    {
+     "id": "ch18-3-ct-50",
+     "code": "50",
+     "type": "long",
+     "marks": 6,
+     "difficulty": 3,
+     "stem": {
+      "en": "The stem-and-leaf diagram below shows the scores (in marks) of a group of candidates in a piano examination.\n$\\begin{array}{c|l} \\text{Stem (tens)} & \\text{Leaf (units)} \\\\ \\hline 5 & 3\\ 5 \\\\ 6 & 4\\ 6\\ 7\\ 8 \\\\ 7 & 2\\ 3\\ 4\\ 6\\ 7\\ 8\\ 8\\ 9 \\\\ 8 & 1\\ 2\\ 3\\ 6\\ 6\\ 7\\ 7 \\\\ 9 & 2\\ 5\\ 6\\ 8 \\end{array}$\nThe candidates are classified into three grades: pass, merit and distinction, where 50 ≤ score < 70 is a pass, 70 ≤ score < 90 is a merit and score ≥ 90 is a distinction. Two candidates are randomly chosen from the group at the same time.",
+      "zh": "以下樹葉圖顯示一組考生在鋼琴考試中的得分（以分為單位）。\n$\\begin{array}{c|l} \\text{幹（十位）} & \\text{葉（個位）} \\\\ \\hline 5 & 3\\ 5 \\\\ 6 & 4\\ 6\\ 7\\ 8 \\\\ 7 & 2\\ 3\\ 4\\ 6\\ 7\\ 8\\ 8\\ 9 \\\\ 8 & 1\\ 2\\ 3\\ 6\\ 6\\ 7\\ 7 \\\\ 9 & 2\\ 5\\ 6\\ 8 \\end{array}$\n考生按得分分為三個等級：$50 \\le$ 得分 $< 70$ 為及格，$70 \\le$ 得分 $< 90$ 為良好，得分 $\\ge 90$ 為卓越。現從這組考生中同時隨機選出兩人。求"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "the probability that exactly one of them gets a distinction,",
+       "zh": "恰好一人獲得卓越。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "the probability that the two candidates are of the same grade,",
+       "zh": "兩人的等級相同。",
+       "marks": 2
+      },
+      {
+       "label": "(c)",
+       "en": "given that at least one of them gets a distinction, the probability that both candidates get distinctions.",
+       "zh": "已知至少一人獲得卓越，兩人皆獲得卓越的概率。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{4}{25} \\times \\frac{21}{24} + \\frac{21}{25} \\times \\frac{4}{24} = \\frac{7}{25}",
+       "note": {
+        "zh": "「恰好一人卓越」有兩個次序",
+        "en": "\"Exactly one distinction\" has two orders"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{6}{25} \\times \\frac{5}{24} + \\frac{15}{25} \\times \\frac{14}{24} + \\frac{4}{25} \\times \\frac{3}{24} = \\frac{21}{50}",
+       "note": {
+        "zh": "同級＝兩個及格、兩個良好 或 兩個卓越",
+        "en": "Same grade = two passes, two merits or two distinctions"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "\\frac{\\frac{4}{25} \\times \\frac{3}{24}}{1 - \\frac{21}{25} \\times \\frac{20}{24}} = \\frac{1}{15}",
+       "note": {
+        "zh": "分母是「至少一人卓越」",
+        "en": "The denominator is \"at least one distinction\""
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先由樹葉圖點出各級人數",
+         "en": "Count each grade from the diagram"
+        },
+        "math": "6, \\quad 15, \\quad 4",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{4}{25}"
+        ],
+        "zh": "5 字頭 $2$ 人（53、55）、6 字頭 $4$ 人（64、66、67、68），所以及格（$50$–$69$）共 $6$ 人；7、8 字頭共 $8+7=15$ 人為良好；9 字頭 $4$ 人為卓越，合共 $25$ 人。「恰好一人卓越」＝第一人卓越、第二人不，或反過來。",
+        "en": "Stem 5 gives 2 candidates and stem 6 gives 4, so 6 passes; stems 7 and 8 give 8 + 7 = 15 merits; stem 9 gives 4 distinctions — 25 in all. \"Exactly one distinction\" means the first is a distinction and the second is not, or the reverse."
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= 2 \\times \\frac{4}{25} \\times \\frac{21}{24} = \\frac{7}{25}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{7}{25}"
+        ],
+        "zh": "同時抽兩人＝不放回：第一人卓越 $\\frac{4}{25}$，第二人不卓越 $\\frac{21}{24}$；兩個次序同值，乘 $2$：$2\\times\\frac{4}{25}\\times\\frac{21}{24} = \\frac{168}{600} = \\frac{7}{25}$。",
+        "en": "Two at once means no replacement: 4/25 for a distinction, then 21/24 for a non-distinction; both orders have the same value, so double it: 2 × 4/25 × 21/24 = 168/600 = 7/25."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "同級有三個情況",
+         "en": "Three same-grade cases"
+        },
+        "math": "\\frac{6}{25} \\times \\frac{5}{24} + \\frac{15}{25} \\times \\frac{14}{24} + \\frac{4}{25} \\times \\frac{3}{24}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{15}{25} \\times \\frac{14}{24}"
+        ],
+        "zh": "「同級」＝兩個及格、兩個良好 或 兩個卓越，三種互斥，逐個相乘再加。",
+        "en": "\"Same grade\" means two passes, two merits or two distinctions — three disjoint cases, multiplied and added."
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "計算",
+         "en": "Evaluate"
+        },
+        "math": "= \\frac{30 + 210 + 12}{600} = \\frac{252}{600} = \\frac{21}{50}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{21}{50}"
+        ],
+        "zh": "把三個情況的結果相加：$\\frac{30}{600} + \\frac{210}{600} + \\frac{12}{600} = \\frac{252}{600} = \\frac{21}{50}$。",
+        "en": "30/600 + 210/600 + 12/600 = 252/600 = 21/50."
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "分母：「至少一人卓越」",
+         "en": "Denominator: at least one distinction"
+        },
+        "math": "1 - \\frac{21}{25} \\times \\frac{20}{24} = \\frac{3}{10}",
+        "marking": "(1M)",
+        "highlight": [
+         "\\frac{3}{10}"
+        ],
+        "zh": "「至少一人卓越」用反面「兩人都不卓越」：$\\frac{21}{25}\\times\\frac{20}{24} = \\frac{420}{600} = \\frac{7}{10}$，所以 $1 - \\frac{7}{10} = \\frac{3}{10}$。",
+        "en": "\"At least one distinction\" via the complement \"neither\": 21/25 × 20/24 = 420/600 = 7/10, so the denominator is 1 − 7/10 = 3/10."
+       },
+       {
+        "part": "(c)",
+        "title": {
+         "zh": "分子：兩人都卓越",
+         "en": "Numerator: both distinctions"
+        },
+        "math": "\\frac{\\frac{1}{50}}{\\frac{3}{10}} = \\frac{1}{15}",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{1}{15}"
+        ],
+        "zh": "兩人皆卓越：$\\frac{4}{25}\\times\\frac{3}{24} = \\frac{12}{600} = \\frac{1}{50}$。條件概率＝$\\frac{1/50}{3/10} = \\frac{1}{50}\\times\\frac{10}{3} = \\frac{1}{15}$。",
+        "en": "Both distinctions: 4/25 × 3/24 = 12/600 = 1/50. The conditional probability is (1/50)/(3/10) = 1/50 × 10/3 = 1/15."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 只算一種次序",
+        "labelEn": "(a) counting one order only",
+        "zh": "「恰好一人卓越」有兩個次序（先卓越或後卓越），要乘 $2$ 或加兩項。",
+        "en": "\"Exactly one\" has two orders (distinction first or second); double it or add both terms."
+       },
+       {
+        "label": "(b) 用 $\\frac{6}{25} \\times \\frac{6}{25}$",
+        "labelEn": "(b) using 6/25 × 6/25",
+        "zh": "同時抽兩人＝不放回，第二人的分母是 $24$，而且同級人數要減 $1$。",
+        "en": "Two at once means no replacement: the second denominator is 24 and the same-grade count drops by 1."
+       },
+       {
+        "label": "(c) 分母用 $1$ 或 $\\frac{4}{25}$",
+        "labelEn": "(c) using 1 or 4/25 as the denominator",
+        "zh": "條件是「至少一人卓越」，分母要用 $\\frac{3}{10}$；用 $\\frac{4}{25}$（第一人卓越）或 $1$ 都不對。",
+        "en": "The condition is \"at least one distinction\", so the denominator is 3/10 — not 4/25 (first is a distinction) and not 1."
+       }
+      ],
+      "tip": {
+       "zh": "先由樹葉圖點出各級人數（$6$、$15$、$4$，合共 $25$）。「恰好一個」有兩個次序；「同級」逐級相乘再加；「已知至少一人」的分母要用反面求出。",
+       "en": "Count each grade from the diagram first (6, 15, 4 — 25 in all). \"Exactly one\" has two orders; \"same grade\" multiplies per grade and adds; for \"given at least one\", get the denominator by the complement."
       }
      }
     }

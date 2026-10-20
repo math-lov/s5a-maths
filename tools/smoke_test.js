@@ -1929,15 +1929,15 @@ ok(["ch18-2", "ch18-3", "ch18-4"].every(
   (pid) => (INDEX.parts.filter((p) => p.id === pid)[0] || {}).answerInput === true) &&
   !(INDEX.parts.filter((p) => p.id === "ch18-1")[0] || {}).answerInput,
   "18.2／18.3／18.4 開了 answerInput，18.1（集合）冇開");
-ok(c18long.length === 112 && c18long.every((q) =>
+ok(c18long.length === 127 && c18long.every((q) =>
   (q.answers || []).length === (q.parts || []).length &&
   q.answers.every((a) => a.input === null || typeof a.input === "string")),
-  "18 章三節 112 條長題：answers 與 parts 一對一，每個答案都有 input（或明寫 null）");
+  "18 章三節 127 條長題：answers 與 parts 一對一，每個答案都有 input（或明寫 null）");
 ok(boot("quiz.html", "?c=ch18-4&p=36", null, "hide").$(".ans-card") === null,
   "18.4 SM 31（答案係 \\frac{n}{2^n}）三小題都寫了 null → 冇輸入卡");
-const c3sm = boot("quiz.html", "?c=ch18-3&p=37", null, "hide");
+const c3sm = boot("quiz.html", "?c=ch18-3&p=50", null, "hide");
 ok(c3sm.$$(".ans-row").length === 1 && c3sm.$$(".ans-part")[0].textContent === "(a)",
-  "18.3 SM 31 只有 (a) 有輸入格（(b) 係判斷＋比較式，寫了 null）");
+  "18.3 Q45 只有 (a) 有輸入格（(b) 係判斷＋比較式，寫了 null）");
 const c3e1 = boot("quiz.html", "?c=ch18-3&p=1", null, "hide");
 ok(c3e1.$$(".ans-row").length === 2 &&
   c3e1.$$(".ans-part").map((n) => n.textContent).join("") === "(a)(b)",
@@ -2342,10 +2342,10 @@ ok(cssDisp(fP3, fSel + " .df-calc") !== "none" &&
 /* ── 6e. 課本練習：第 18 章 → 18.3 概率的乘法 ─────────────────────────── */
 console.log("\n== 第 18 章 · 18.3 概率的乘法（課本練習頁）==");
 const P183 = INDEX.parts.filter((p) => p.id === "ch18-3")[0] || {};
-ok(P183.stats && P183.stats.questions === 40 && P183.stats.marks === 147,
-  "18.3 共 40 題 · 147 分（實際 " +
+ok(P183.stats && P183.stats.questions === 55 && P183.stats.marks === 201,
+  "18.3 共 55 題 · 201 分（實際 " +
   (P183.stats ? P183.stats.questions + " 題 · " + P183.stats.marks + " 分" : "缺 stats") + "）");
-ok((P183.sections || []).length === 6 && (P183.qids || []).length === 40,
+ok((P183.sections || []).length === 6 && (P183.qids || []).length === 55,
   "18.3 分 6 段（課堂例題／判斷／L1／L2／挑戰／跨課題）且 qids 數目正確");
 const P183_JS = read("data/ch18-3.js");
 const P183_DATA = JSON.parse(P183_JS.slice(P183_JS.indexOf("{"), P183_JS.lastIndexOf("}") + 1));
@@ -2466,8 +2466,8 @@ ok(!ct34.stem.en.includes("$") && ct34.parts.every((p) => !(p.en || "").includes
 
 /* 頁面渲染 ＋ 真 KaTeX */
 const c183 = boot("quiz.html", "?c=ch18-3&p=0");
-ok(c183.$$("#pagenav .pg").length === 41,
-  "18.3 分頁列 = 總覽 + 40 題（實際 " + c183.$$("#pagenav .pg").length + "）");
+ok(c183.$$("#pagenav .pg").length === 56,
+  "18.3 分頁列 = 總覽 + 55 題（實際 " + c183.$$("#pagenav .pg").length + "）");
 ok(c183.$$("#pagenav .pg-sec").length === 6, "18.3 分頁列有 6 個分段標題");
 ok(c183.$$(".cc").length === 4, "18.3 總覽渲染出 4 張教學卡");
 ok(c183.$$(".cc .fig svg").length === 2 &&
@@ -2484,12 +2484,12 @@ ok(c183.$$(".katex-error").length === 0, "18.3 教學卡全部數式 KaTeX 渲�
 ok(!/\{\{math:/.test(c183.$("#quiz-body").textContent), "18.3 總覽沒有殘留 {{math:}} 佔位符");
 
 const all183 = [];
-for (let i = 1; i <= 40; i++) all183.push(boot("quiz.html", "?c=ch18-3&p=" + i, null, "show"));
+for (let i = 1; i <= 55; i++) all183.push(boot("quiz.html", "?c=ch18-3&p=" + i, null, "show"));
 ok(all183.every((t) => t.$$(".sol-card").length === 1 && t.$$(".sol-card .steps .step").length > 0),
   "18.3 每題都有逐步題解");
 ok(all183.every((t) => !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
   "18.3 每題都有技巧與常見錯誤");
-ok(all183.every((t) => t.$$(".katex-error").length === 0), "18.3 全部 40 題 KaTeX 零錯誤");
+ok(all183.every((t) => t.$$(".katex-error").length === 0), "18.3 全部 55 題 KaTeX 零錯誤");
 ok(all183.every((t) => !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
   "18.3 所有題幹均有中英版本");
 ok(all183.every((t) => !/\$/.test(t.$(".q-stem").textContent)), "18.3 題幹全部已渲染（無殘留 $）");
