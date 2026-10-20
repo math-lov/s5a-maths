@@ -105,7 +105,7 @@
           "paper": "S.5 Mathematics · Chapter 17 Pre-test Revision",
           "marks": 35,
           "sections": [
-            { "id": "Q", "marks": 5, "title": { "zh": "快測 · 5 題（即時對錯）", "en": "Quick check · 5 questions (instant feedback)" } },
+            { "id": "Q", "marks": 5, "title": { "zh": "快測 · 5 題（提交後對錯）", "en": "Quick check · 5 questions (submit to check)" } },
             { "id": "A", "marks": 8, "title": { "zh": "甲部 · 多項選擇題", "en": "Section A · Multiple choice" } },
             { "id": "B", "marks": 22, "title": { "zh": "乙部 · 長題目", "en": "Section B · Conventional questions" } }
           ]
@@ -182,8 +182,8 @@
           "short": { "zh": "第 17 章", "en": "Chapter 17" },
           "title": { "zh": "第 17 章 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
           "intro": {
-            "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。三節的課本練習都已提供逐步題解：先學「分類用加、分步用乘」，再學排列（有次序），最後學組合（不計次序）。章末另有「17 測前溫習」：卷頭 5 題快測（即時對錯）之後，跟住 4 題多項選擇 ＋ 6 題長題目，合共 15 題 35 分，長題改編自 EPH《Level 5 Assurance Pack》WS22 工作紙，考前可以用來總溫習。",
-            "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. All three sections now have step-by-step solutions: first add for cases and multiply for steps, then permutations (order matters) and finally combinations (order ignored). There is also '17 Pre-test Revision' at the end of the chapter: a 5-question quick check with instant feedback, then 4 multiple-choice and 6 conventional questions, 15 questions and 35 marks in all, with the long questions adapted from the EPH Level 5 Assurance Pack WS22 worksheet for final revision before the test."
+            "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。三節的課本練習都已提供逐步題解：先學「分類用加、分步用乘」，再學排列（有次序），最後學組合（不計次序）。長題每小題都有輸入格，填數字後按「提交答案」核對（接受精確答案或準確至 3 位有效數字）。章末另有「17 測前溫習」：卷頭 5 題快測（都要按「提交答案」才知對錯），跟住 4 題多項選擇 ＋ 6 題長題目，合共 15 題 35 分，長題改編自 EPH《Level 5 Assurance Pack》WS22 工作紙，考前可以用來總溫習。",
+            "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. All three sections now have step-by-step solutions: first add for cases and multiply for steps, then permutations (order matters) and finally combinations (order ignored). Each part of a long question has an input box: type your number and press Submit (an exact answer, or one correct to 3 significant figures, is accepted). There is also '17 Pre-test Revision' at the end of the chapter: a 5-question quick check (all submit to check), then 4 multiple-choice and 6 conventional questions, 15 questions and 35 marks in all, with the long questions adapted from the EPH Level 5 Assurance Pack WS22 worksheet for final revision before the test."
           },
           "sections": [
             { "code": "17.1", "part": "ch17-1", "title": { "zh": "17.1 計數基本原理", "en": "17.1 Basic counting principles" } },

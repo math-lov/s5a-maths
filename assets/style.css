@@ -596,7 +596,7 @@ body[data-lang="both"] .mchip .l-en { font-size: 11px; opacity: .8; }
   border-radius: 999px; padding: 3px 11px;
 }
 
-/* 檢查答案按鈕 + 回饋橫幅（P1） */
+/* 提交答案按鈕 + 回饋橫幅（P1） */
 .check-row { margin-top: 14px; display: grid; gap: 10px; }
 .feedback {
   display: flex; align-items: flex-start; gap: 10px;
