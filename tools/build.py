@@ -514,7 +514,7 @@ def check_intro(data: dict, where: str) -> None:
         check_text("%s introStep %d.en" % (where, i), st.get("en", ""), min_len=20)
 
 
-def check_cards(cards, where: str) -> None:
+def check_cards(cards, where: str, fig_ids: set | None = None) -> None:
     """S14 教學卡：顯示在該節的總覽頁（p=0）"""
     if cards is None:
         return
@@ -526,6 +526,13 @@ def check_cards(cards, where: str) -> None:
         tag = "%s card %s" % (where, c.get("id") or "?")
         if not c.get("id"):
             err("S14 %s：缺少 id" % tag)
+        figs = c.get("figures") or []
+        if not isinstance(figs, list):
+            err("S14 %s：figures 必須是陣列" % tag)
+            figs = []
+        for fid in figs:
+            if fig_ids is not None and fid not in fig_ids:
+                err("S8 %s：引用了不存在的圖 %s" % (tag, fid))
         title = c.get("title") or {}
         check_text(tag + ".title.zh", title.get("zh", ""))
         check_text(tag + ".title.en", title.get("en", ""))
@@ -652,7 +659,7 @@ def main() -> int:
             err("S1 課題 %s 找不到資料檔 data/src/%s" % (pid, fname))
             continue
         data = load(fname)
-        check_cards(data.get("cards"), pid)
+        check_cards(data.get("cards"), pid, fig_ids)
         check_intro(data, pid)
         total_q = 0
         for sec in data.get("sections", []):

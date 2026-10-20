@@ -118,6 +118,84 @@ Total: **39 questions, 143 marks** (the Section Check counts as one question wit
 - **CT-34** "at the same time" means unordered draws, so there are $\binom{8}{2}=28$ outcomes, not
   $8\times7=56$; the largest possible sum is $7+8=15$.
 
+## Tree diagrams (added 2026-10-20, teacher request)
+
+The teacher asked for tree diagrams drawn with **two trials, pass or fail**, and for the contrast
+between **equally likely** and **not equally likely** (probability sits on each branch, then the
+multiplication law along the path). Three figures in `data/src/figures.json`, all `type: "tree"`
+rendered to SVG by `tools/make_figures.py`:
+
+| id | trials | branch probabilities | the four path probabilities |
+| --- | --- | --- | --- |
+| `ch18-3-tree-equal` | 試卷 1, 試卷 2 | 1/2 and 1/2 | 1/4, 1/4, 1/4, 1/4 (all equal) |
+| `ch18-3-tree-unequal` | 試卷 1, 試卷 2 | 0.75/0.25, 0.6/0.4 | 0.45, 0.30, 0.15, 0.10 (all different) |
+| `ch18-3-tree-asha` | Asha, Luna | 1/2, 1/3 | 1/6, 1/3, 1/6, 1/3 |
+
+- `ch18-3-tree-equal` and `ch18-3-tree-unequal` are the pair the new teaching card
+  `ch18-3-c04` shows side by side (see `card.figures` below). The caption on each figure says
+  which case it is and what to do about it.
+- `ch18-3-tree-asha` is attached to **L1-4** via `solution.steps[0].figure`. L1-4 is the real
+  two-trial multiplication question in 18.3: Asha solves with $1/2$, Luna with $1/3$, find
+  (a) only Asha (b) only Luna. Step 1 now reads the tree first and then multiplies along the path.
+  Answers are unchanged: (a) $\frac{1}{2}\times\frac{2}{3}=\frac{1}{3}$,
+  (b) $\frac{1}{2}\times\frac{1}{3}=\frac{1}{6}$.
+
+### Trap worth teaching: "not equally likely" paths can still coincide
+
+In `ch18-3-tree-asha` two of the four paths are both $\frac{1}{6}$, even though Asha's and Luna's own
+rates differ. So a student who counts favourable paths gets (b) wrong even though (a) comes out
+right. The card's `warn` block says this explicitly: **the multiplication law is always the rule —
+"or" means multiply along one path, never count.** This is why the card warns against switching to
+counting just because some numbers look alike.
+
+`ch18-3-tree-unequal` is the cleaner counter-example: 0.45 + 0.30 + 0.15 + 0.10 = 1 exactly, and all
+four differ. Both figures are drawn so that the four path probabilities visibly add to 1, which is
+the check the captions ask students to run.
+
+### Must use `branches`, not `groups`, for a two-trial tree
+
+This was the one real bug found while drawing them. The `groups` shorthand builds
+root → 2 groups → 2 leaves per group, so its leaves mean *"the outcome of that group"*. That is
+correct for 18.2's `ch18-2-l2-26-tree` (卷一 pass/fail and 卷二 pass/fail, each leaf being that
+paper's own result).
+
+It is **wrong** for 18.3, where each leaf is a **combination** of both trials. With `groups` the
+leaf under `Asha 失敗` was labelled 只有 Luna 成功 but carried the product
+$1/2\times 2/3$; the correct product for that combination is $1/2\times 1/3$. All three 18.3
+figures therefore use the fully nested `branches` form:
+
+```
+root → 試卷 1 的結果 → 試卷 2 的結果 → leaf (one combination)
+```
+
+### Renderer extensions made for this
+
+- `tree`: `pathProb` on a leaf prints the whole-path product in the right-hand column
+  (`0.75 × 0.6 = 0.45`), so the multiplication law is visible on the diagram itself and not only
+  in the prose. `groups` forwards `pathProb` to the leaf it builds.
+- `tree`: the right-hand column is now **auto-sized** from the widest leaf
+  (`pathProb` + `leaf` + `note` via `_tw()`), and the canvas grows if the tree would be squeezed
+  below 360px. Hand-tuned `labelWidth` values were clipping the last word.
+- `tree`: `rootLabel` now sits to the **left** of the root node (`text-anchor="end"`), and `x0` is
+  pushed right by the label width. Above and below the root it was crossed by the fan of branches,
+  and a long root label ate the horizontal room the branch labels needed.
+- `tree`: `_ptxt()` (the fraction labels on branches) draws a white backing rect, because the
+  fraction bar ran through the branch line.
+- `cards[].figures` — new field. `renderCards()` in `assets/app.js` appends
+  `figureNode(fid)` after the card body, so a teaching card can show diagrams.
+  `tools/build.py`'s `check_cards()` takes `fig_ids` and raises S8 on an unknown id.
+
+### Editing 18.3 safely
+
+`data/src/ch18-3.json` round-trips byte-identically through
+`json.dumps(obj, ensure_ascii=False, indent=1) + "\n"` written back with CRLF, so patch scripts can
+rewrite the whole file without producing a whole-file diff. Two mistakes made while doing this:
+
+- a `replace_in_file` that swallowed the closing `]` of `cards` **and** the opening `"sections": [`
+  silently orphaned `sections`; `build.py` then reported 0 questions rather than an error. Check
+  structure with a `json.load` + key/`len()` probe before trusting a green build.
+- the file must not contain `**` anywhere (rule S6). Write emphasis out in words or use 「」.
+
 ## Build notes (rules enforced by `tools/build.py`)
 
 - **Currency must not use `$`.** `$` is the front end's math delimiter, so `$56` in an English

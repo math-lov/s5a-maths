@@ -275,11 +275,15 @@ def _ptxt(cx, cy, s, size=15, fill=INK, weight="400"):
     """以 (cx, cy) 為中心排一段文字（分數用：分子在中線上、分母在下）。"""
     if "/" in s:
         a, b = s.split("/", 1)
-        return (_txt(cx, cy - 1, a, size, fill, "middle", weight) +
-                _txt(cx, cy + size + 1, b, size, fill, "middle", weight) +
-                '<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="1.2"/>'
-                % (cx - size * 0.62, cy + 3.2, cx + size * 0.62, cy + 3.2, fill))
-    return _txt(cx, cy + size * 0.36, s, size, fill, "middle", weight)
+        w = max(_tw(a, size), _tw(b, size)) + size * 0.6
+        out = ['<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="#FFFFFF"/>'
+               % (cx - w / 2.0, cy - size * 1.05, w, size * 1.9)]
+        out.append(_txt(cx, cy - 1, a, size, fill, "middle", weight))
+        out.append(_txt(cx, cy + size + 1, b, size, fill, "middle", weight))
+        out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" stroke-width="1.2"/>'
+                   % (cx - size * 0.62, cy + 3.2, cx + size * 0.62, cy + 3.2, fill))
+        return "".join(out)
+    return _txt(cx, cy + size * 0.36, s, size, fill, "middle", weight, halo=True)
 
 
 def _levels(root):
@@ -358,6 +362,8 @@ def _tree_root(spec):
             for it in g.get("items") or []:
                 leaf = {"label": it.get("label", ""), "p": it.get("prob", ""),
                         "leaf": it.get("leaf", ""), "note": it.get("note", "")}
+                if it.get("pathProb"):
+                    leaf["pathProb"] = it["pathProb"]
                 if it.get("hl"):
                     leaf["hl"] = True
                 items.append(leaf)
@@ -383,8 +389,25 @@ def tree(spec) -> str:
     H = float(spec.get("height", 340))
     pad_t, pad_b = 58.0, 34.0
     lab_pad = float(spec.get("labelPad", 16))
-    label_w = float(spec.get("labelWidth", 250))
-    x0 = 24.0
+    size = float(spec.get("fontSize", 17))
+
+    # 最右一欄（路徑機會＋結果＋說明）要夠闊，否則文字會超出 viewBox 被切走。
+    need = 0.0
+    for nd in levels[-1]:
+        w = lab_pad
+        if nd.get("pathProb"):
+            w += _tw(nd["pathProb"], size - 2) + 16
+        w += _tw(nd.get("leaf", ""), size)
+        if nd.get("note"):
+            w += _tw(nd["note"], size - 3.5) + 16
+        need = max(need, w)
+    label_w = max(float(spec.get("labelWidth", 250)), need + 2)
+
+    # 左邊要留位擺根節點的標題（置中排版，太闊就會跑出畫面左緣）。
+    x0 = max(26.0, _tw(root.get("label", ""), size - 3) + 26.0)
+    min_tree = 360.0
+    if W - label_w < min_tree:
+        W = label_w + min_tree
     x_leaf = W - label_w
 
     ys = {}
@@ -405,8 +428,6 @@ def tree(spec) -> str:
 
     out = ['<svg viewBox="0 0 %d %d" xmlns="http://www.w3.org/2000/svg" role="img">' % (W, H)]
     out.append('<rect x="0" y="0" width="%.0f" height="%.0f" fill="#FFFFFF"/>' % (W, H))
-
-    size = float(spec.get("fontSize", 17))
 
     # 分支線 + 分支上的概率
     for d in range(depth):
@@ -445,17 +466,21 @@ def tree(spec) -> str:
                 out.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="#FFFFFF" stroke="%s" '
                            'stroke-width="1.8"/>' % (cx_, cy_, r, INK))
 
-    # 根的標題
+    # 根的標題：放在根節點「左邊」（放在上下都會被分支線劃穿）
     if root.get("label"):
-        out.append(_txt(xs[0] - 2, ys[id(root)] + 30, root["label"], size - 3, MUTED, "middle"))
+        out.append(_txt(xs[0] - 12.0, ys[id(root)] + 5.0, root["label"], size - 3, MUTED, "end"))
 
-    # 最右：結果 + 說明
+    # 最右：整條路徑的機會（pathProb）＋ 結果 ＋ 說明
+    prob_col = x_leaf + lab_pad
     for nd in levels[-1]:
         y = ys[id(nd)]
         hot = bool(nd.get("hl"))
-        col = INK
-        tx = x_leaf + lab_pad
-        out.append(_txt(tx, y + size * 0.36, nd.get("leaf", ""), size, col, "start", "700"))
+        tx = prob_col
+        if nd.get("pathProb"):
+            out.append(_txt(tx, y + size * 0.36, nd["pathProb"], size - 2,
+                            "#2B6CB0" if hot else "#4A5568", "start", "700"))
+            tx += _tw(nd["pathProb"], size - 2) + 16
+        out.append(_txt(tx, y + size * 0.36, nd.get("leaf", ""), size, INK, "start", "700"))
         if nd.get("note"):
             nx = tx + _tw(nd.get("leaf", ""), size) + 16
             out.append(_txt(nx, y + size * 0.36, nd["note"], size - 3.5,

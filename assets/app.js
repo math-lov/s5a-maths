@@ -863,6 +863,11 @@
       h.appendChild(pairSpan(c.title || {}));
       box.appendChild(h);
       box.appendChild(pairWithMath(c.body || {}, c.math || []));
+      /* 教學卡也可以放圖（data/src/figures.json 的圖）："figures": ["ch18-3-tree-equal"] */
+      (c.figures || []).forEach(function (fid) {
+        var fg = figureNode(fid);
+        if (fg) box.appendChild(fg);
+      });
       /* 互動示範（assets/demos.js）：卡片寫 "demo": { "type": "tie-up" } */
       var dm = c.demo || {};
       if (dm.type && window.S5A_DEMO && S5A_DEMO.types[dm.type]) {

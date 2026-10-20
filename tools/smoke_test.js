@@ -400,7 +400,7 @@ ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")
   "每頁都有語言設定");
 
 const figs = JSON.parse(figuresJs.slice(figuresJs.indexOf("{"), figuresJs.lastIndexOf("}") + 1));
-ok(Object.keys(figs).length === 29, "圖共 29 幅（14 幅舊圖 ＋ 13 幅第 18.1 節文氏圖 ＋ 2 幅第 18.2 節樹狀圖；實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).length === 32, "圖共 32 幅（14 幅舊圖 ＋ 13 幅第 18.1 節文氏圖 ＋ 2 幅第 18.2 節樹狀圖 ＋ 3 幅第 18.3 節樹狀圖；實際 " + Object.keys(figs).length + "）");
 ok(Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length === 13,
   "其中 13 幅屬於第 18.1 節（文氏圖；實際 " +
   Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length + "）");
@@ -2355,9 +2355,57 @@ ok(P183_DATA.sections.map((s) => s.id).join(",") === "CE,SC,L1,L2,SM,CT",
   "18.3 分段順序＝課堂例題／判斷題／L1／L2／挑戰題／跨課題");
 ok(P183_DATA.sections.map((s) => s.marks).join(",") === "12,6,45,55,14,11",
   "18.3 各段分數 12／6／45／55／14／11");
-ok((P183_DATA.cards || []).length === 3, "18.3 有 3 張教學卡");
+ok((P183_DATA.cards || []).length === 4, "18.3 有 4 張教學卡");
 ok(P183_DATA.cards.every((c) => (c.math || []).length > 0 && c.warn && c.vocab),
   "18.3 每張卡都有數式、常犯錯誤與詞彙 chips");
+
+/* 2026-10-20（老師要求）：18.3 加入樹狀圖繪畫（2 次測驗 pass／fail），並強調
+   「等機會」與「非等機會」的分別 —— 後者要沿路徑相乘（乘法法則）。
+   樹由 tools/make_figures.py 的 tree 類型畫成 SVG；新支援路徑機會 pathProb。 */
+const c183cards = P183_DATA.cards;
+const c183tree = c183cards.filter((c) => (c.figures || []).length)[0] || {};
+ok(c183tree.id === "ch18-3-c04" &&
+  c183tree.figures.join(",") === "ch18-3-tree-equal,ch18-3-tree-unequal",
+  "18.3 第 4 張卡掛上等機會／非等機會兩幅樹狀圖");
+ok(/equally likely/.test(c183tree.title.en) &&
+  /千萬不要靠數條數/.test(c183tree.body.zh) &&
+  /乘法法則/.test(c183tree.warn.zh),
+  "18.3 樹狀圖卡：中英都點明 equally likely vs 非等機會要逐條相乘");
+ok((P183_DATA.introSteps || []).length === 6 &&
+  P183_DATA.introSteps[1].en.indexOf("Draw a tree") === 0 &&
+  /equally likely/.test(P183_DATA.introSteps[2].en),
+  "18.3 總覽引言加了兩步：畫樹狀圖、等機會 vs 不等機會");
+const l14 = q183("ch18-3-l1-4");
+ok(l14.solution.steps[0].figure === "ch18-3-tree-asha" &&
+  /先畫樹狀圖/.test(l14.solution.steps[0].title.zh) &&
+  /Luna 失敗/.test(l14.solution.steps[0].zh),
+  "L1-4 第 1 步先畫樹狀圖（Asha 1/2、Luna 1/3 的非等機會樹）");
+const t183eq = FIGSRC["ch18-3-tree-equal"];
+const t183un = FIGSRC["ch18-3-tree-unequal"];
+const t183as = FIGSRC["ch18-3-tree-asha"];
+/* 兩次測驗的樹必須是三層：根 → 試卷 1 的結果 → 試卷 2 的結果 → 葉（一個組合）。
+   早前用 groups（根 → 兩組 → 每組兩個葉）會令葉的標籤同路徑乘積對不上。 */
+const leavesOf = (sp) => sp.branches.reduce((a, b) => a.concat(b.to || []), []);
+ok(!!t183eq && t183eq.type === "tree" && t183eq.branches.length === 2 &&
+  t183eq.branches[0].p === "1/2" && t183eq.branches[1].p === "1/2" &&
+  leavesOf(t183eq).length === 4 &&
+  leavesOf(t183eq).every((l) => l.pathProb === "1/2 × 1/2 = 1/4") &&
+  leavesOf(t183eq)[0].leaf === "兩份都合格" && leavesOf(t183eq)[0].hl === true,
+  "18.3 等機會樹：三層兩次測驗，四條路徑都是 1/2 × 1/2 = 1/4，重點標在「兩份都合格」");
+ok(!!t183un && t183un.branches[0].p === "0.75" && t183un.branches[1].p === "0.25" &&
+  leavesOf(t183un).map((l) => l.pathProb).join("|") ===
+  "0.75 × 0.6 = 0.45|0.75 × 0.4 = 0.3|0.25 × 0.6 = 0.15|0.25 × 0.4 = 0.1",
+  "18.3 非等機會樹：0.75／0.25 × 0.6／0.4，四條路徑 0.45／0.3／0.15／0.1 各不相同");
+ok(!!t183as && t183as.levelLabels[1] === "Asha" && t183as.levelLabels[2] === "Luna" &&
+  t183as.branches[1].to[1].p === "2/3" &&
+  leavesOf(t183as)[1].leaf === "只有 Asha 成功" && leavesOf(t183as)[1].hl === true &&
+  leavesOf(t183as)[1].pathProb === "1/2 × 2/3 = 1/3" &&
+  leavesOf(t183as)[2].leaf === "只有 Luna 成功" && leavesOf(t183as)[2].hl === true &&
+  leavesOf(t183as)[2].pathProb === "1/2 × 1/3 = 1/6",
+  "18.3 Asha／Luna 樹：(a) 只有 Asha＝1/2 × 2/3 = 1/3、(b) 只有 Luna＝1/2 × 1/3 = 1/6，兩者都 hl");
+ok(leavesOf(t183un).map((l) => parseFloat(l.pathProb.split("= ")[1]))
+  .reduce((t, v) => t + v, 0).toFixed(2) === "1.00",
+  "非等機會樹四條路徑機會加起來剛好是 1（可作學生的自我檢查）");
 
 /* 官方解答逐題核對，見 data/raw/ch18-3-source.md */
 ok(q183("ch18-3-sc").answers.filter((a) => a.tf === false).map((a) => a.part).join(",") === "(a),(b),(e)",
@@ -2392,7 +2440,17 @@ const c183 = boot("quiz.html", "?c=ch18-3&p=0");
 ok(c183.$$("#pagenav .pg").length === 40,
   "18.3 分頁列 = 總覽 + 39 題（實際 " + c183.$$("#pagenav .pg").length + "）");
 ok(c183.$$("#pagenav .pg-sec").length === 6, "18.3 分頁列有 6 個分段標題");
-ok(c183.$$(".cc").length === 3, "18.3 總覽渲染出 3 張教學卡");
+ok(c183.$$(".cc").length === 4, "18.3 總覽渲染出 4 張教學卡");
+ok(c183.$$(".cc .fig svg").length === 2 &&
+  /0\.75 × 0\.6 = 0\.45/.test(c183.$$(".cc .fig svg").map((s) => s.innerHTML).join("")),
+  "總覽的樹狀圖卡上真的畫出兩幅樹（等機會／非等機會），並列出路徑機會");
+const c183l14 = boot("quiz.html", "?c=ch18-3&p=9", null, "show");
+const ashaSvg = c183l14.$(".fig svg");
+ok(!!c183l14.$('.q-card[data-qid="ch18-3-l1-4"]') && !!ashaSvg &&
+  /1\/2 × 2\/3 = 1\/3/.test(ashaSvg.innerHTML) &&
+  /1\/2 × 1\/3 = 1\/6/.test(ashaSvg.innerHTML) &&
+  /2\/3/.test(ashaSvg.innerHTML),
+  "L1-4 的解法步驟內顯示 Asha／Luna 樹狀圖，(a) 1/3、(b) 1/6 的路徑機會齊全");
 ok(c183.$$(".katex-error").length === 0, "18.3 教學卡全部數式 KaTeX 渲染成功");
 ok(!/\{\{math:/.test(c183.$("#quiz-body").textContent), "18.3 總覽沒有殘留 {{math:}} 佔位符");
 

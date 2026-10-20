@@ -111,6 +111,47 @@
      "en": "Conditional probability"
     }
    ]
+  },
+  {
+   "id": "ch18-3-c04",
+   "topic": "ch18-3",
+   "title": {
+    "zh": "用樹狀圖睇乘法法則：等機會 vs 不等機會",
+    "en": "See the multiplication law in a tree: equally likely vs not"
+   },
+   "body": {
+    "zh": "- 樹狀圖由左至右畫：最左是起點，每條分支寫上該步的概率，最右每一個「葉」就是一條完整路徑的結果。路徑的機會＝把沿途的分支概率相乘。\n- 等機會（上圖）：兩份試卷的合格率都是 $\\frac{1}{2}$，四條路徑的機會全部相同，都是 $\\frac{1}{4}$。這種情況只要數有利路徑的條數，四條各 $\\frac{1}{4}$ 加起來剛好是 $1$。\n- 非等機會（下圖）：試卷 $1$ 合格率 $0.75$、試卷 $2$ 合格率 $0.6$，四條路徑的機會各不相同（$0.45$、$0.30$、$0.15$、$0.10$）。這時千萬不要靠數條數，一定要沿住路徑相乘 —— 這就是乘法法則：{{math:0}}\n- 檢查：無論等機會與否，四條路徑的機會加起來必須剛好是 $1$；對不上就一定漏了路徑或者寫錯了數。",
+    "en": "- Read the tree from left to right: the leftmost point is the start, every branch carries the probability of that step, and each leaf on the right is the outcome of one complete path. The probability of a path is the product of the branch probabilities along it.\n- Equally likely (top figure): both papers have a pass rate of 1/2, so all four paths have the same probability, 1/4. Here you may simply count the favourable paths — four paths of 1/4 add to 1.\n- Not equally likely (bottom figure): paper 1 has a pass rate of 0.75 and paper 2 has 0.6, so the four paths have different probabilities (0.45, 0.30, 0.15 and 0.10). Now you must not count paths; multiply along the path — this is the multiplication law: {{math:0}}\n- Check: equally likely or not, the four path probabilities must add up to exactly 1. If they do not, a path is missing or a number is wrong."
+   },
+   "math": [
+    "P(A \\cap B) = P(A) \\times P(B) \\quad (\\text{along one path of the tree})"
+   ],
+   "figures": [
+    "ch18-3-tree-equal",
+    "ch18-3-tree-unequal"
+   ],
+   "warn": {
+    "zh": "- 「等機會」和「概率是 $\\frac{1}{2}$」不是同一件事：$\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$ 這兩步碰巧相同，但若試卷 $2$ 的合格率是 $0.6$，四條路徑就會變成 $0.45$、$0.30$、$0.15$、$0.10$，計法完全不同。\n- 題目沒有寫「assume independent」就不要直接相乘；例如「抽取後放回另一個袋」就不是獨立。\n- 樹狀圖由上而下、由下而上都可以，但必須沿同一條路徑讀；中途跳去另一條分支相乘，答案一定是錯的。\n- 非等機會的樹，路徑機會也可能碰巧相同（例如 Asha／Luna 那幅就有兩條都是 $\\frac{1}{6}$），所以千萬不要因為「見到幾個一樣的數」就改用數條數：乘法法則任何時候都要用，「或者」就沿一條路徑相乘。\n- 分支概率要寫失敗率還是成功率，視乎該分支代表什麼：代表「合格」就寫合格率，代表「不合格」就寫不合格率。",
+    "en": "- \"Equally likely\" and \"the probability is 1/2\" are not the same thing: the two steps 1/2 × 1/2 = 1/4 happen to agree, but if paper 2's pass rate is 0.6 the four paths become 0.45, 0.30, 0.15 and 0.10, and the method changes completely.\n- Do not multiply straight away unless the question says \"assume independent\"; drawing a card and moving it into another bag is not independent.\n- A tree may be read downwards or upwards, but you must stay on one path; jumping to another branch mid-way gives a wrong answer.\n- In a not-equally-likely tree two paths can still share the same probability (the Asha/Luna tree has two paths of 1/6), so never switch to counting just because some numbers look alike: the multiplication law is always the rule, and \"or\" means multiplying along one path.\n- Write the failure rate on a branch that stands for \"fail\", and the pass rate on one that stands for \"pass\"."
+   },
+   "vocab": [
+    {
+     "zh": "樹狀圖",
+     "en": "Tree diagram"
+    },
+    {
+     "zh": "等機會",
+     "en": "Equally likely"
+    },
+    {
+     "zh": "路徑",
+     "en": "Path"
+    },
+    {
+     "zh": "乘法法則",
+     "en": "Multiplication law"
+    }
+   ]
   }
  ],
  "sections": [
@@ -1121,16 +1162,17 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "把「只有 Asha」拆成兩個要求",
-         "en": "Split \"only Asha\" into two requirements"
+         "zh": "先畫樹狀圖：兩人各自獨立作答",
+         "en": "Draw the tree first: the two work independently"
         },
         "math": "\\frac{1}{2} \\times \\left(1 - \\frac{1}{3}\\right)",
-        "zh": "「只有 Asha 成功」＝ Asha 成功 而且 Luna 失敗。Luna 失敗的機會是 $1 - \\frac{1}{3} = \\frac{2}{3}$。兩人獨立作答，所以用乘法：$\\frac{1}{2} \\times \\left(1 - \\frac{1}{3}\\right)$。",
-        "en": "\"Only Asha\" means Asha succeeds and Luna fails. Luna fails with probability 1 − 1/3 = 2/3. They work independently, so multiply: 1/2 × (1 − 1/3).",
+        "zh": "「只有 Asha 成功」＝ Asha 成功 而且 Luna 失敗。畫樹狀圖：Asha 成功 $\\frac{1}{2}$、失敗 $\\frac{1}{2}$；Luna 成功 $\\frac{1}{3}$、失敗 $1 - \\frac{1}{3} = \\frac{2}{3}$。要的路徑是 Asha 成功 → Luna 失敗，沿路徑相乘：$\\frac{1}{2} \\times \\left(1 - \\frac{1}{3}\\right)$。",
+        "en": "\"Only Asha\" means Asha succeeds and Luna fails. Draw the tree: Asha succeeds with 1/2 and fails with 1/2; Luna succeeds with 1/3 and fails with 1 − 1/3 = 2/3. The path we want is Asha succeeds → Luna fails, so multiply along it: 1/2 × (1 − 1/3).",
         "marking": "(1M)",
         "highlight": [
          "\\frac{1}{2} \\times \\left(1 - \\frac{1}{3}\\right)"
-        ]
+        ],
+        "figure": "ch18-3-tree-asha"
        },
        {
         "part": "(a)",
@@ -4949,6 +4991,14 @@
   {
    "zh": "兩件事都要發生、而且彼此獨立：把概率相乘，$P(A \\cap B) = P(A) \\times P(B)$。",
    "en": "When both must happen and they are independent, multiply: $P(A \\cap B) = P(A) \\times P(B)$."
+  },
+  {
+   "zh": "畫樹狀圖睇清楚：由左至右，每條分支寫該步的概率，最右的葉就是一條完整結果；路徑的機會就是沿途相乘。",
+   "en": "Draw a tree to see it: read left to right, put each step's probability on its branch, and each leaf on the right is one complete outcome; the probability of a path is the product along it."
+  },
+  {
+   "zh": "四條路徑的機會若全部相同（equally likely），只要數有利路徑的條數；若不相同，千萬不要靠數，一定要逐條相乘。",
+   "en": "If the four path probabilities are all the same (equally likely), just count the favourable paths; if they are not, never count — multiply along each path."
   },
   {
    "zh": "第二件事的機會被第一件事影響（不放回抽取、把球轉移到另一個袋、盒子被換掉），就要改用條件概率 $P(A \\cap B) = P(A) \\times P(B \\mid A)$。",
