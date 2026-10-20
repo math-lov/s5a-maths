@@ -13,11 +13,11 @@
    "id": "ch18-4-c01",
    "topic": "ch18-4",
    "title": {
-    "zh": "概率＝合條件的數法 ÷ 全部數法",
+    "zh": "概率＝有利結果的數目 ÷ 所有可能結果的數目",
     "en": "Probability = favourable count ÷ total count"
    },
    "body": {
-    "zh": "- 本節每一題都先問兩件事：「全部」有多少種？「合條件」有多少種？兩者相除就是概率：{{math:0}}\n- 「同時抽」或「一次抽幾個」＝次序不重要，用組合 $C$；「逐個抽」「排隊」「有先後」＝次序重要，用排列 $P$ 或逐步相乘。\n- 分子與分母要用同一種工具：兩個都用 $C$，或者兩個都用 $P$。例如從 $n$ 個之中取 $m$ 個再分給不同種類，分母與分子都可以寫成同類的乘積：{{math:1}}\n- 數完之後檢查：分子的情況一定是分母的一部份，所以概率必定在 $0$ 與 $1$ 之間。算出大於 $1$ 就一定數錯了。",
+    "zh": "- 本節每一題都先問兩件事：「全部」有多少種？「符合條件」有多少種？兩者相除就是概率：{{math:0}}\n- 「同時抽」或「一次抽幾個」＝次序不重要，用組合 $C$；「逐個抽」「排隊」「有先後」＝次序重要，用排列 $P$ 或逐步相乘。\n- 分子與分母要用同一種工具：兩個都用 $C$，或者兩個都用 $P$。例如從 $n$ 個之中取 $m$ 個再分給不同種類，分母與分子都可以寫成同類的乘積：{{math:1}}\n- 數完之後檢查：分子的情況一定是分母的一部份，所以概率必定在 $0$ 與 $1$ 之間。算出大於 $1$ 就一定數錯了。",
     "en": "- Every question here starts with two questions: how many outcomes are there in total, and how many are favourable? Divide one by the other: {{math:0}}\n- \"Drawn at the same time\" or \"select several at once\" ignores order, so use combinations $C$; \"one by one\", \"queue\" or \"in a particular order\" makes order matter, so use $P$ or multiply step by step.\n- Numerator and denominator must use the same tool — both $C$ or both $P$. When choosing from several groups at once, both can be written as similar products: {{math:1}}\n- Check afterwards: the favourable cases are part of the total, so the probability must lie between 0 and 1. Anything above 1 is a counting error."
    },
    "math": [
@@ -25,7 +25,7 @@
     "P = \\frac{C^a_x \\times C^b_y}{C^n_k}"
    ],
    "warn": {
-    "zh": "- 分母用了 $C^{16}_4$（選 4 個的方法數），分子也要是「選 4 個」的數法；若分子寫成 $P$，答案一定錯。\n- 「至少」不要逐個情況加：先算反面 $1 - P(\\text{一件都沒有})$，通常快一半以上。\n- 逐個抽而不放回時，分母每一步都少 $1$；如果改用「一次過選」的組合寫法，就不用管次序，兩者答案必須相同。",
+    "zh": "- 分母用了 $C^{16}_4$（選 4 個的方法數），分子也要是「選 4 個」的計數；若分子寫成 $P$，答案一定錯。\n- 「至少」不要逐個情況加：先算反面 $1 - P(\\text{一件都沒有})$，通常快一半以上。\n- 逐個抽而不放回時，分母每一步都少 $1$；如果改用「一次過選」的組合寫法，就不用管次序，兩者答案必須相同。",
     "en": "- If the denominator uses $C^{16}_4$ (the number of ways of choosing 4), the numerator must also count ways of choosing 4; writing the numerator with $P$ guarantees a wrong answer.\n- Never add case by case for \"at least\": use the complement 1 − P(none), which is usually at least twice as fast.\n- When drawing one by one without replacement, the denominator drops by 1 each step; the equivalent \"choose all at once\" combination ignores order, and both must give the same answer."
    },
    "vocab": [
@@ -51,15 +51,15 @@
     "en": "Symmetry saves the counting"
    },
    "body": {
-    "zh": "- 隨機排列的題目，很多答案只看「誰相對誰」，與其他人完全無關：$n$ 個人之中，某一位在指定某一個位置的機會是 $\\frac{1}{n}$，所以「第一位是他」與「最後一位是她」都是 $\\frac{1}{n}$。\n- 「甲剛好在乙的前一位」也是 $\\frac{1}{n}$——把甲乙綁成一件，這一件可以放在 $n-1$ 個位置中的任何一個，機會均等：{{math:0}}\n- 「甲在乙前面」（不必相鄰）＝ $\\frac{1}{2}$，因為兩人相對次序只有「甲前」與「乙前」兩種，機會均等。\n- 「三人之中乙排在中間」＝ $\\frac{1}{3}$，不是 $\\frac{1}{6}$：三個人的相對次序有 $6$ 種，乙在中間佔 $2$ 種。",
-    "en": "- In a random arrangement the answer often depends only on who is relative to whom, not on the others: in a queue of $n$, one particular person is in a given position with probability $\\frac{1}{n}$, so \"he is first\" and \"she is last\" are both $\\frac{1}{n}$.\n- \"A is immediately before B\" is also $\\frac{1}{n}$ — tie the two together and the pair can sit in any of $n-1$ positions with equal chance: {{math:0}}\n- \"A is somewhere before B\" (not necessarily adjacent) is $\\frac{1}{2}$, because there are only two equally likely relative orders.\n- \"B is in the middle of three\" is $\\frac{1}{3}$, not $\\frac{1}{6}$: there are 6 relative orders and B is in the middle in 2 of them."
+    "zh": "- 隨機排列的題目，很多答案只看「誰相對誰」，與其他人完全無關：$n$ 個人之中，某一位在指定某一個位置的機會是 $\\frac{1}{n}$，所以「第一位是他」與「最後一位是她」都是 $\\frac{1}{n}$。\n- 「甲剛好在乙的前一位」也是 $\\frac{1}{n}$——把甲乙綁成一件，這一件可以放在 $n-1$ 個位置中的任何一個，機會均等：{{math:0}}\n- 「甲在乙前面」（不必相鄰）＝ $\\frac{1}{2}$，因為兩人相對次序只有「甲前」與「乙前」兩種，機會均等。\n- 「三人之中乙排在中間」（不必相鄰）＝ $\\frac{1}{3}$，不是 $\\frac{1}{6}$：三個人的相對次序有 $6$ 種，乙在中間佔 $2$ 種。",
+    "en": "- In a random arrangement the answer often depends only on who is relative to whom, not on the others: in a queue of $n$, one particular person is in a given position with probability $\\frac{1}{n}$, so \"he is first\" and \"she is last\" are both $\\frac{1}{n}$.\n- \"A is immediately before B\" is also $\\frac{1}{n}$ — tie the two together and the pair can sit in any of $n-1$ positions with equal chance: {{math:0}}\n- \"A is somewhere before B\" (not necessarily adjacent) is $\\frac{1}{2}$, because there are only two equally likely relative orders.\n- \"B is in the middle of three\" (not necessarily adjacent) is $\\frac{1}{3}$, not $\\frac{1}{6}$: there are 6 relative orders and B is in the middle in 2 of them."
    },
    "math": [
     "P(\\text{A just before B}) = \\frac{1}{n}",
     "P(\\text{A before B}) = \\frac{1}{2}"
    ],
    "warn": {
-    "zh": "- 「乙在三人的中間」有「甲、乙、丙」與「丙、乙、甲」兩種寫法，所以是 $\\frac{2}{6} = \\frac{1}{3}$，只數 $\\frac{1}{6}$ 是最常見的漏項。\n- 對稱性只在「機會均等」時才可用：若排列方式被限制（例如男生女生必須梅花間竹），就不能直接寫 $\\frac{1}{n}$，要回到數法。\n- 對稱性得出的答案最好用「全部數法」核對一次，尤其是 $n$ 小的題目（$n = 4$、$n = 8$），心算就能驗。",
+    "zh": "- 「乙在三人的中間」有「甲、乙、丙」與「丙、乙、甲」兩種寫法，所以是 $\\frac{2}{6} = \\frac{1}{3}$，只數 $\\frac{1}{6}$ 是最常見的漏項。\n- 對稱性只在「機會均等」時才可用：若排列方式被限制（例如男生女生必須梅花間竹），就不能直接寫 $\\frac{1}{n}$，要回到計數。\n- 對稱性得出的答案最好用「所有可能結果的數目」核對一次，尤其是 $n$ 小的題目（$n = 4$、$n = 8$），心算就能驗。",
     "en": "- \"B in the middle of three\" covers both the order A, B, C and C, B, A, so the answer is $\\frac{2}{6} = \\frac{1}{3}$; stopping at $\\frac{1}{6}$ is the commonest omission.\n- Symmetry only works when the arrangements are equally likely: if the arrangement is restricted (boys and girls must alternate, say) you cannot write $\\frac{1}{n}$ and must count instead.\n- Always check a symmetry answer against the full count, especially for small $n$ ($n = 4$ or $n = 8$), where mental arithmetic is enough."
    },
    "vocab": [
@@ -85,8 +85,8 @@
     "en": "Tie them together, then split into cases"
    },
    "body": {
-    "zh": "- 「同一類的人必須相鄰」＝把那一群人綁成一件，與其他人一起排，最後把群內的排列乘回：{{math:0}}\n- 「恰好 $k$ 個」＝先分類再相乘：從甲類取 $k$ 個、從其餘取 $m-k$ 個，兩邊用組合相乘，然後除以全部數法：{{math:1}}\n- 「至少 $k$ 個」用反面；但反面有幾項要看清楚——「至少 3 個」的反面是「0 個或 1 個或 2 個」，三項都要減。\n- 「至多 $k$ 個」的捷徑：先看 $k$ 是否接近總數。例如「至多 1 個」在總數是 3 的時候，反面只是「2 個或 3 個」；但「至多 1 個」在總數是 5 的時候，正面（0 個＋1 個）反而更快。",
-    "en": "- \"People of the same kind must be adjacent\" means tying that whole group into one block, arranging it with the rest, then multiplying back the arrangements inside the block: {{math:0}}\n- \"Exactly $k$\" is case-splitting: take $k$ from one group and $m-k$ from the rest, multiply the two combinations, then divide by the total count: {{math:1}}\n- \"At least $k$\" uses the complement — but count the cases carefully: the complement of \"at least 3\" is \"0, 1 or 2\", and all three must be subtracted.\n- For \"at most $k$\", check how close $k$ is to the total. \"At most 1\" out of 3 has a short complement (\"2 or 3\"); \"at most 1\" out of 5 is usually quicker done directly (\"0 plus 1\")."
+    "zh": "- 「同一類的人必須相鄰」＝把那一群人綁成一件，與其他人一起排，最後把群內的排列乘回：{{math:0}}\n- 「恰好 $k$ 個」＝先分類再相乘：從甲類取 $k$ 個、從其餘取 $m-k$ 個，兩邊用組合相乘，然後除以所有可能結果的數目：{{math:1}}\n- 「至少 $k$ 個」用反面；但反面有幾項要看清楚——「至少 3 個」的反面是「0 個或 1 個或 2 個」，三項都要減。\n- 「至多 $k$ 個」的捷徑：先看 $k$ 是否接近總數。例如「至多 1 個」在總數是 3 的時候，反面只是「2 個或 3 個」；但「至多 1 個」在總數是 5 的時候，正面（0 個＋1 個）反而更快。\n- 「同類不能相鄰」用插空法：① 先排沒有這個限制的物件；② 數出它們之間的空隙，空隙數＝已排物件數 $+ 1$；③ 把受限制的物件放進空隙（用排列 $P$ 或組合 $C$）。",
+    "en": "- \"People of the same kind must be adjacent\" means tying that whole group into one block, arranging it with the rest, then multiplying back the arrangements inside the block: {{math:0}}\n- \"Exactly $k$\" is case-splitting: take $k$ from one group and $m-k$ from the rest, multiply the two combinations, then divide by the total count: {{math:1}}\n- \"At least $k$\" uses the complement — but count the cases carefully: the complement of \"at least 3\" is \"0, 1 or 2\", and all three must be subtracted.\n- For \"at most $k$\", check how close $k$ is to the total. \"At most 1\" out of 3 has a short complement (\"2 or 3\"); \"at most 1\" out of 5 is usually quicker done directly (\"0 plus 1\").\n- \"The same kind must not be adjacent\" uses gap insertion: (1) arrange the objects that have no such restriction first; (2) the gaps they create number (arranged objects + 1); (3) place the restricted objects into those gaps (using P or C)."
    },
    "math": [
     "\\text{tie up: } (n - k + 1)! \\times k!",
@@ -132,14 +132,14 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "en": "There are 8 dumbbells of different weights. If the dumbbells are arranged in a row randomly, find the probability that the lightest dumbbell is on the leftmost and the heaviest dumbbell is on the rightmost.",
-      "zh": "有 8 個重量不同的啞鈴。若隨機把它們排成一行，求最輕的啞鈴在最左而最重的啞鈴在最右的概率。"
+      "en": "There are 8 dumbbells of different weights. If the dumbbells are arranged in a row randomly, find the probability that",
+      "zh": "有 8 個重量不同的啞鈴。若隨機把它們排成一行，求"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the required probability.",
-       "zh": "求所求概率。",
+       "en": "the lightest dumbbell is on the leftmost and the heaviest dumbbell is on the rightmost.",
+       "zh": "最輕的啞鈴在最左而最重的啞鈴在最右的概率。",
        "marks": 2
       }
      ],
@@ -158,11 +158,11 @@
        {
         "part": "",
         "title": {
-         "zh": "全部數法：8 個啞鈴排成一行",
+         "zh": "所有可能結果的數目：8 個啞鈴排成一行",
          "en": "Total: arrange 8 dumbbells in a row"
         },
         "math": "n(S) = 8!",
-        "zh": "8 個啞鈴排成一行，全部排法有 $8!$ 種。這些排法機會均等，所以可以用「合條件的排法 $\\div$ 全部排法」。",
+        "zh": "8 個啞鈴排成一行，全部排法有 $8!$ 種。這些排法機會均等，所以可以用「符合條件的排法 $\\div$ 全部排法」。",
         "en": "Arranging 8 dumbbells in a row gives $8!$ equally likely orders, so we may divide the favourable count by the total.",
         "marking": "(1M)",
         "highlight": [
@@ -172,7 +172,7 @@
        {
         "part": "",
         "title": {
-         "zh": "合條件的數法：兩端已固定",
+         "zh": "有利結果的數目：兩端已固定",
          "en": "Favourable count: both ends fixed"
         },
         "math": "n(A) = 6!",
@@ -194,7 +194,7 @@
        {
         "label": "用 2 個位置去除 8 個",
         "labelEn": "Dividing two places by eight",
-        "zh": "「兩端固定」不是 $\\frac{2}{8}$。要先數「全部排法」與「合條件排法」，再相除，才不會數錯。",
+        "zh": "「兩端固定」不是 $\\frac{2}{8}$。要先數「全部排法」與「符符合條件的排法」，再相除，才不會數錯。",
         "en": "\"Both ends fixed\" is not 2/8. Count the total arrangements and the favourable arrangements first, then divide."
        }
       ],
@@ -251,7 +251,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：16 人抽 4 人",
+         "zh": "所有可能結果的數目：16 人抽 4 人",
          "en": "Total: choose 4 from 16"
         },
         "math": "n(S) = C^{16}_4 = 1820",
@@ -326,7 +326,7 @@
        }
       ],
       "tip": {
-       "zh": "「至少 $k$ 個」的題目，先列出所有合條件的情況（$k, k+1, \\ldots$），再逐項用「從甲類取、從乙類取」相乘。若不超過三項就直接加；項數多才用反面。",
+       "zh": "「至少 $k$ 個」的題目，先列出所有符合條件的情況（$k, k+1, \\ldots$），再逐項用「從甲類取、從乙類取」相乘。若不超過三項就直接加；項數多才用反面。",
        "en": "For \"at least $k$\", list the qualifying cases ($k, k+1, \\ldots$) and multiply \"choose from one group\" by \"choose from the other\". Add directly when there are at most three terms; use the complement only when there are many."
       }
      }
@@ -344,8 +344,8 @@
      "parts": [
       {
        "label": "(a)",
-       "en": "Benny queues between Abby and Celia,",
-       "zh": "Benny 排在 Abby 與 Celia 之間的概率，",
+       "en": "Benny queues immediately between Abby and Celia,",
+       "zh": "Benny 恰好排在 Abby 與 Celia 之間（三人相鄰）的概率，",
        "marks": 2
       },
       {
@@ -360,8 +360,8 @@
        "part": "(a)",
        "math": "\\frac{6! \\times 2}{8!} = \\frac{1}{28}",
        "note": {
-        "zh": "三人之中 Benny 在中間佔 2 種相對次序，其餘 6 人任意排",
-        "en": "Benny is in the middle in 2 of the 6 relative orders of the three; the other 6 arrange freely"
+        "zh": "三人相鄰且 Benny 在中間，件內 $2$ 種排法；連同其餘 5 人共 6 件",
+        "en": "Three adjacent with Benny in the middle (2 internal orders); 6 items with the other 5"
        }
       },
       {
@@ -378,26 +378,26 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "只看三人的相對次序",
-         "en": "Look only at the relative order of the three"
+         "zh": "捆綁法：三人相鄰，Benny 必須在中間",
+         "en": "Bundling: three adjacent, Benny in the middle"
         },
-        "math": "\\frac{2}{6} = \\frac{1}{3}",
-        "zh": "Abby、Benny、Celia 三人的相對次序有 $3! = 6$ 種，機會均等。Benny 在中間有 2 種（A-B-C 與 C-B-A），所以單看相對次序的機會是 $\\frac{2}{6} = \\frac{1}{3}$。這個比率與其他人怎麼排無關。",
-        "en": "The three have $3! = 6$ equally likely relative orders, and Benny is in the middle in 2 of them (A-B-C and C-B-A), so the relative-order probability is 2/6 = 1/3. The other children's arrangement does not change this ratio.",
+        "math": "6! \\times 2",
+        "zh": "三人相鄰而 Benny 必須在中間，件內只有「Abby-Benny-Celia」與「Celia-Benny-Abby」共 $2! = 2$ 種排法。把三人綁成 $1$ 件，連同其餘 $5$ 位小孩合共 $6$ 件，排列方法有 $6!$ 種。所以符符合條件的排法有 $6! \\times 2$ 種。",
+        "en": "With the three adjacent and Benny in the middle, the block has only A-B-C or C-B-A, i.e. 2! = 2 internal orders. Tie the three into 1 block; with the other 5 children there are 6 items, giving 6! arrangements. Favourable count = 6! × 2.",
         "marking": "(1M)",
         "highlight": [
-         "\\frac{2}{6} = \\frac{1}{3}"
+         "6! \\times 2"
         ]
        },
        {
         "part": "(a)",
         "title": {
-         "zh": "乘回其餘 6 人的排列",
-         "en": "Multiply back the other six"
+         "zh": "計算概率",
+         "en": "Evaluate the probability"
         },
         "math": "\\frac{6! \\times 2}{8!} = \\frac{2}{8 \\times 7} = \\frac{1}{28}",
-        "zh": "用完整數法核對：合條件的排法是「先排其餘 6 人（$6!$），把 Benny 放在他們中間的某兩個空隙，再把 Abby 與 Celia 分放兩側（$2$ 種）」，共 $6! \\times 2$ 種；全部排法 $8!$ 種。$\\frac{6! \\times 2}{8!} = \\frac{2}{8 \\times 7} = \\frac{1}{28}$。",
-        "en": "Check with the full count: arrange the other six ($6!$), put Benny in a gap between two of them, then place Abby and Celia on either side (2 ways) — that is $6! \\times 2$ favourable orders out of $8!$ in total. So 6! × 2 / 8! = 2/(8 × 7) = 1/28.",
+        "zh": "全部排法有 $8!$ 種，所求概率 $= \\frac{6! \\times 2}{8!} = \\frac{2}{8 \\times 7} = \\frac{1}{28}$。",
+        "en": "There are 8! arrangements in total, so the probability is (6! × 2)/8! = 2/(8 × 7) = 1/28.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{1}{28}"
@@ -434,10 +434,10 @@
       ],
       "traps": [
        {
-        "label": "(a) 用 3! 或 1/6",
-        "labelEn": "(a) answering 3! or 1/6",
-        "zh": "「在中間」不只一種寫法，所以是 $\\frac{2}{6} = \\frac{1}{3}$，不是 $\\frac{1}{6}$。漏了 A-B-C 或 C-B-A 其中一個就會只得一半。",
-        "en": "\"In the middle\" covers more than one order, so the answer is 2/6 = 1/3, not 1/6. Missing either A-B-C or C-B-A halves the answer."
+        "label": "(a) 忘了乘 2",
+        "labelEn": "(a) forgetting the factor 2",
+        "zh": "三人相鄰且 Benny 在中間，Abby 與 Celia 仍可以左右對調，所以件內有 $2$ 種排法。只寫 $\\frac{6!}{8!}$ 會得到 $\\frac{1}{56}$，少了一半。",
+        "en": "With the three adjacent and Benny in the middle, Abby and Celia can still swap sides, so the block has 2 internal orders. Writing only 6!/8! gives 1/56 — half the answer."
        },
        {
         "label": "(b) 只寫 2 × 7! 未除以 8!",
@@ -453,8 +453,8 @@
        }
       ],
       "tip": {
-       "zh": "隨機排列的題目先看「相對次序」：只要問的是「誰在誰的前面／中間」，答案就與其他人無關，用 $\\frac{\\text{合條件的相對次序數}}{k!}$ 一步得到，最後再用完整數法核對。",
-       "en": "In arrangement questions look at relative order first: if the question is only about who is before or between whom, the other people are irrelevant — use (favourable relative orders) / $k!$ in one step and verify with the full count."
+       "zh": "先分清「在…之間」與「剛好在…之間」：前者不必相鄰，只看三人的相對次序（$\\frac{2}{6} = \\frac{1}{3}$）；後者要三人相鄰，用捆綁法（$\\frac{6! \\times 2}{8!} = \\frac{1}{28}$）。一字之差，答案差很遠。",
+       "en": "Tell \"between\" from \"immediately between\": the first needs no adjacency and only the relative order of the three matters (2/6 = 1/3); the second needs all three adjacent, so bundle them ((6! × 2)/8! = 1/28). One word changes the answer."
       }
      }
     },
@@ -505,7 +505,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：12 件選 3 件",
+         "zh": "所有可能結果的數目：12 件選 3 件",
          "en": "Total: choose 3 from 12"
         },
         "math": "n(S) = C^{12}_3 = 220",
@@ -768,7 +768,7 @@
          "en": "After the ends, the middle still arranges"
         },
         "math": "\\frac{P^4_2 \\times 4!}{6!} = \\frac{12 \\times 24}{720} = \\frac{2}{5}",
-        "zh": "2、3、5、6、7、9 之中有 4 個奇數（3、5、7、9）與 2 個偶數。首位與末位都要是奇數：首位有 4 個選擇、末位剩 3 個，共 $P^4_2 = 12$ 種；中間 4 個位由餘下 4 個數字任意排列，有 $4! = 24$ 種。合條件的密碼有 $12 \\times 24 = 288$ 個，全部密碼 $6! = 720$ 個，所求概率 $= \\frac{288}{720} = \\frac{2}{5}$。題目漏了 $4!$，所以錯誤。",
+        "zh": "2、3、5、6、7、9 之中有 4 個奇數（3、5、7、9）與 2 個偶數。首位與末位都要是奇數：首位有 4 個選擇、末位剩 3 個，共 $P^4_2 = 12$ 種；中間 4 個位由餘下 4 個數字任意排列，有 $4! = 24$ 種。符合條件的密碼有 $12 \\times 24 = 288$ 個，全部密碼 $6! = 720$ 個，所求概率 $= \\frac{288}{720} = \\frac{2}{5}$。題目漏了 $4!$，所以錯誤。",
         "en": "Among 2, 3, 5, 6, 7 and 9 there are 4 odd digits (3, 5, 7, 9) and 2 even ones. Both ends must be odd: $P^4_2 = 12$ ways for the two ends, and the remaining 4 digits fill the middle in $4! = 24$ ways, so 12 × 24 = 288 favourable passwords out of $6! = 720$. The probability is 288/720 = 2/5; the statement omits the factor 4! and is therefore incorrect.",
         "marking": "(1M)",
         "highlight": [
@@ -905,11 +905,11 @@
        {
         "part": "(b)",
         "title": {
-         "zh": "用數法核對",
+         "zh": "用計數核對",
          "en": "Check by counting"
         },
         "math": "\\frac{1}{24} \\approx 0.042",
-        "zh": "合條件的排法只有 1 種（矮、中、高依次），全部排法 24 種，$\\frac{1}{24} \\approx 0.042$，與對稱性的結果一致。",
+        "zh": "符合條件的排法只有 1 種（矮、中、高依次），全部排法 24 種，$\\frac{1}{24} \\approx 0.042$，與對稱性的結果一致。",
         "en": "Only one order is favourable, out of 24: 1/24 ≈ 0.042, agreeing with the symmetry argument.",
         "marking": "(1A)",
         "highlight": [
@@ -944,14 +944,14 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "en": "A bag contains 6 cards numbered 1 to 6 respectively. Jeffery randomly takes out 3 cards from the bag at the same time. Find the probability that all the cards are odd numbers.",
-      "zh": "一個袋內有 6 張分別寫上 1 至 6 的卡。Jeffery 從袋中同時隨機抽出 3 張卡，求這 3 張卡全部都是奇數的概率。"
+      "en": "A bag contains 6 cards numbered 1 to 6 respectively. Jeffery randomly takes out 3 cards from the bag at the same time. Find the probability that",
+      "zh": "一個袋內有 6 張分別寫上 1 至 6 的卡。Jeffery 從袋中同時隨機抽出 3 張卡，求"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the required probability.",
-       "zh": "求所求概率。",
+       "en": "all the cards are odd numbers.",
+       "zh": "這 3 張卡全部都是奇數的概率。",
        "marks": 2
       }
      ],
@@ -970,7 +970,7 @@
        {
         "part": "",
         "title": {
-         "zh": "全部數法：6 張抽 3 張",
+         "zh": "所有可能結果的數目：6 張抽 3 張",
          "en": "Total: 3 cards from 6"
         },
         "math": "C^6_3 = 20",
@@ -984,7 +984,7 @@
        {
         "part": "",
         "title": {
-         "zh": "合條件：三張都要是奇數",
+         "zh": "符合條件：三張都要是奇數",
          "en": "Favourable: all three odd"
         },
         "math": "\\frac{C^3_3}{C^6_3} = \\frac{1}{20}",
@@ -1023,14 +1023,14 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "en": "In a music awards ceremony, fans vote for 5 songs out of the top 10 songs of the year. Karen is a fan and randomly votes for 5 songs. Find the probability that these 5 songs are the 5 songs with the most numbers of votes.",
-      "zh": "在一個音樂頒獎禮中，樂迷從年度十大歌曲中投票選出 5 首。Karen 是樂迷，隨機投選 5 首歌，求她所選的 5 首歌剛好是得票最多的 5 首歌的概率。"
+      "en": "In a music awards ceremony, fans vote for 5 songs out of the top 10 songs of the year. Karen is a fan and randomly votes for 5 songs. Find the probability that",
+      "zh": "在一個音樂頒獎禮中，樂迷從年度十大歌曲中投票選出 5 首。Karen 是樂迷，隨機投選 5 首歌，求"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the required probability.",
-       "zh": "求所求概率。",
+       "en": "these 5 songs are the 5 songs with the most numbers of votes.",
+       "zh": "她所選的 5 首歌剛好是得票最多的 5 首歌的概率。",
        "marks": 2
       }
      ],
@@ -1049,7 +1049,7 @@
        {
         "part": "",
         "title": {
-         "zh": "全部數法：10 首選 5 首",
+         "zh": "所有可能結果的數目：10 首選 5 首",
          "en": "Total: choose 5 songs from 10"
         },
         "math": "C^{10}_5 = 252",
@@ -1063,7 +1063,7 @@
        {
         "part": "",
         "title": {
-         "zh": "合條件：只有那一組 5 首",
+         "zh": "符合條件：只有那一組 5 首",
          "en": "Favourable: only that one set of five"
         },
         "math": "\\frac{1}{C^{10}_5} = \\frac{1}{252}",
@@ -1215,14 +1215,14 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "Carina sets her digital door lock code with 4 different digits from 0 to 9 inclusive. Find the probability that a person guesses the lock code correctly in the first trial.",
-      "zh": "Carina 用 0 至 9 之中 4 個不同的數字設定電子門鎖密碼。求別人第一次嘗試就猜中密碼的概率。"
+      "en": "Carina sets her digital door lock code with 4 different digits from 0 to 9 inclusive. Find the probability that",
+      "zh": "Carina 用 0 至 9 之中 4 個不同的數字設定電子門鎖密碼。求"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the required probability.",
-       "zh": "求所求概率。",
+       "en": "a person guesses the lock code correctly in the first trial.",
+       "zh": "別人第一次嘗試就猜中密碼的概率。",
        "marks": 2
       }
      ],
@@ -1241,7 +1241,7 @@
        {
         "part": "",
         "title": {
-         "zh": "全部數法：四位數字有次序",
+         "zh": "所有可能結果的數目：四位數字有次序",
          "en": "Total: four ordered digits"
         },
         "math": "P^{10}_4 = 10 \\times 9 \\times 8 \\times 7 = 5040",
@@ -1294,14 +1294,14 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "Belle tosses a fair dice 3 times. Find the probability that all the numbers obtained are different.",
-      "zh": "Belle 擲一枚均勻骰子 3 次。求三次所得的點數全部不同的概率。"
+      "en": "Belle throws a fair die 3 times. Find the probability that",
+      "zh": "Belle 擲一枚均勻骰子 3 次。求"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the required probability.",
-       "zh": "求所求概率。",
+       "en": "all the numbers obtained are different.",
+       "zh": "三次所得的點數全部不同的概率。",
        "marks": 2
       }
      ],
@@ -1320,7 +1320,7 @@
        {
         "part": "",
         "title": {
-         "zh": "全部數法：每次 6 個可能",
+         "zh": "所有可能結果的數目：每次 6 個可能",
          "en": "Total: six possibilities each time"
         },
         "math": "6^3 = 216",
@@ -1334,11 +1334,11 @@
        {
         "part": "",
         "title": {
-         "zh": "合條件：每次要避開之前的點數",
+         "zh": "符合條件：每次要避開之前的點數",
          "en": "Favourable: avoid what has already appeared"
         },
         "math": "\\frac{6 \\times 5 \\times 4}{6^3} = \\frac{5}{9}",
-        "zh": "第一次任意（6 個可能）；第二次要與第一次不同，剩 5 個；第三次要與前兩次都不同，剩 4 個。合條件的結果有 $6 \\times 5 \\times 4 = 120$ 個。所求概率 $= \\frac{120}{216} = \\frac{5}{9}$。",
+        "zh": "第一次任意（6 個可能）；第二次要與第一次不同，剩 5 個；第三次要與前兩次都不同，剩 4 個。符合條件的結果有 $6 \\times 5 \\times 4 = 120$ 個。所求概率 $= \\frac{120}{216} = \\frac{5}{9}$。",
         "en": "The first toss is free (6 possibilities), the second must differ from it (5 left) and the third must differ from both (4 left), so 6 × 5 × 4 = 120 favourable results. The probability is 120/216 = 5/9.",
         "marking": "(1A)",
         "highlight": [
@@ -1385,7 +1385,7 @@
       },
       {
        "label": "(b)",
-       "en": "Find the probability that Sophia and Mavis dress up in 2 particular costumes.",
+       "en": "Find the probability that Sophia and Mavis dress up in 2 particular costumes respectively.",
        "zh": "求 Sophia 與 Mavis 穿上某兩套指定戲服的概率。",
        "marks": 2
       }
@@ -1526,7 +1526,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：逐張抽，次序重要",
+         "zh": "所有可能結果的數目：逐張抽，次序重要",
          "en": "Total: drawn one by one, so order matters"
         },
         "math": "P^{26}_4 = 26 \\times 25 \\times 24 \\times 23 = 358800",
@@ -1558,7 +1558,7 @@
          "en": "A fixed order leaves one draw"
         },
         "math": "\\frac{1}{P^{26}_4} = \\frac{1}{358800}",
-        "zh": "要求「依次序抽出 G、O、A、L」，次序已被規定死，合條件的抽法只有 1 種。所求概率 $= \\frac{1}{358800}$。",
+        "zh": "要求「依次序抽出 G、O、A、L」，次序已被規定死，符合條件的抽法只有 1 種。所求概率 $= \\frac{1}{358800}$。",
         "en": "Requiring G, O, A and L in that order fixes the sequence completely, so exactly one draw is favourable: the probability is 1/358800.",
         "marking": "(1M)",
         "highlight": [
@@ -1613,24 +1613,24 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "Leo has 8 different coloured blocks as shown. If the blocks are stacked up randomly, find the probability that the yellow block is just below the orange block.",
-      "zh": "Leo 有 8 塊不同顏色的積木。若把積木隨機疊起來，求黃色積木剛好在橙色積木之下的概率。"
+      "en": "Leo has 8 different coloured blocks as shown. If the blocks are stacked up randomly, find the probability that",
+      "zh": "Leo 有 8 塊不同顏色的積木。若把積木隨機疊起來，求"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the required probability.",
-       "zh": "求所求概率。",
+       "en": "the yellow block is just below the orange block.",
+       "zh": "黃色積木剛好在橙色積木之下的概率。",
        "marks": 2
       }
      ],
      "answers": [
       {
        "part": "",
-       "math": "\\frac{7! \\times 1}{8!} = \\frac{1}{8}",
+       "math": "\\frac{7!}{8!} = \\frac{1}{8}",
        "note": {
-        "zh": "把兩塊綁成一件，這一件在 8 層之中的位置機會均等",
-        "en": "Tie the two blocks together; the pair is equally likely to occupy any of the 8 levels"
+        "zh": "綁成一件後與其餘 $6$ 塊共 $7$ 組，排法 $7!$",
+        "en": "Tied into one block, there are 7 items in all, giving 7! arrangements"
        }
       }
      ],
@@ -1639,7 +1639,7 @@
        {
         "part": "",
         "title": {
-         "zh": "全部數法：8 塊疊起來",
+         "zh": "所有可能結果的數目：8 塊疊起來",
          "en": "Total: stack 8 blocks"
         },
         "math": "8!",
@@ -1653,12 +1653,12 @@
        {
         "part": "",
         "title": {
-         "zh": "綁成一件：層數位置決定一切",
-         "en": "Tie them up: the level decides everything"
+         "zh": "捆綁法：綁成一件後只有 $7$ 組",
+         "en": "Bundling: one block leaves 7 items"
         },
-        "math": "\\frac{7 \\times 7!}{8!} = \\frac{1}{8}",
-        "zh": "把黃色與橙色綁成一件「黃橙」，這一疊共 8 層。這一件可以在第 1、2、…、第 7 層（黃在下、橙在上），共 7 個位置；其餘 7 件（6 塊其他積木加這一件）的排列有 $7!$ 種。合條件的疊法有 $7 \\times 7!$ 種，所求概率 $= \\frac{7 \\times 7!}{8!} = \\frac{7}{8} = \\frac{1}{8}$。",
-        "en": "Tie the yellow and orange blocks into one pair. The pile has 8 levels, and the pair can sit at levels 1 to 7 (yellow below, orange above) — 7 positions — while the other 7 objects arrange in $7!$ ways. That gives $7 \\times 7!$ favourable stacks out of $8!$, so the probability is $7 \\times 7!/8! = 7/8 \\times 7 = 1/8$.",
+        "math": "\\frac{7!}{8!} = \\frac{1}{8}",
+        "zh": "把黃色與橙色綁成一件「橙在上、黃在下」，件內只有 $1$ 種排法。這一件連同其餘 $6$ 塊積木，合共有 $7$ 組物件，排列方法有 $7!$ 種（這 $7!$ 已經包括這一件落在任何一層的情況，所以不要再乘 $7$）。所求概率 $= \\frac{7!}{8!} = \\frac{1}{8}$。",
+        "en": "Tie the yellow and orange blocks into one block, orange on top and yellow below — only 1 internal order. Together with the other 6 blocks there are 7 items, giving $7!$ arrangements. That $7!$ already covers the block sitting at any level, so do not multiply by 7 again. The probability is 7!/8! = 1/8.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{1}{8}"
@@ -1722,8 +1722,8 @@
        "part": "(b)",
        "math": "\\frac{1}{7}",
        "note": {
-        "zh": "「剛好在之前」＝把兩人綁成一件，共 7 個位置",
-        "en": "\"Just before\" ties the pair together, giving 7 positions"
+        "zh": "綁成一件後與其餘 5 人共 6 個單位",
+        "en": "Tied into one block, there are 6 units with the other 5"
        }
       }
      ],
@@ -1760,12 +1760,12 @@
        {
         "part": "(b)",
         "title": {
-         "zh": "綁成一件：7 個位置機會均等",
-         "en": "Tie them up: 7 equally likely positions"
+         "zh": "捆綁法：綁成一件後只有 6 個單位",
+         "en": "Bundling: one block leaves 6 units"
         },
-        "math": "\\frac{1}{7}",
-        "zh": "把 Macy 與 Natalie 綁成一件「Macy-Natalie」（Macy 在前）。這一疊共 7 個單位，這一件落在 7 個位置中的任何一個都可使 Macy 剛好在 Natalie 之前，所以概率是 $\\frac{1}{7}$。",
-        "en": "Tie Macy and Natalie into one block, Macy first. The row then has 7 units, and the block can occupy any of the 7 positions, so the probability is 1/7.",
+        "math": "\\frac{6!}{7!} = \\frac{1}{7}",
+        "zh": "把 Macy 與 Natalie 綁成一件「Macy-Natalie」（Macy 在前，件內只有 $1$ 種排法）。這一件連同其餘 $5$ 人，隊伍中只有 $6$ 個單位，所以排法有 $6!$ 種；全部排法 $7!$ 種，所求概率 $= \\frac{6!}{7!} = \\frac{1}{7}$。",
+        "en": "Tie Macy and Natalie into one block, Macy first (1 internal order). With the other 5 students the row has only 6 units, so there are 6! arrangements out of 7! in total: the probability is 6!/7! = 1/7.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{1}{7}"
@@ -1776,7 +1776,7 @@
        {
         "label": "(a) 忘記其餘 5 人仍可排列",
         "labelEn": "(a) forgetting the other five still arrange",
-        "zh": "合條件的次序不只 1 種：其餘 5 人可以互換位置，所以是 $5!$ 種。",
+        "zh": "符合條件的次序不只 1 種：其餘 5 人可以互換位置，所以是 $5!$ 種。",
         "en": "There is more than one favourable order: the other five students can permute, giving $5!$ orders."
        },
        {
@@ -1839,7 +1839,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：10 箱選 3 箱",
+         "zh": "所有可能結果的數目：10 箱選 3 箱",
          "en": "Total: 3 boxes from 10"
         },
         "math": "C^{10}_3 = 120",
@@ -1946,7 +1946,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：15 人選 4 人",
+         "zh": "所有可能結果的數目：15 人選 4 人",
          "en": "Total: 4 children from 15"
         },
         "math": "C^{15}_4 = 1365",
@@ -2081,7 +2081,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：13 張選 5 張",
+         "zh": "所有可能結果的數目：13 張選 5 張",
          "en": "Total: 5 photos from 13"
         },
         "math": "C^{13}_5 = 1287",
@@ -2221,7 +2221,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：16 個抽 3 個",
+         "zh": "所有可能結果的數目：16 個抽 3 個",
          "en": "Total: 3 balls from 16"
         },
         "math": "C^{16}_3 = 560",
@@ -2334,7 +2334,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：24 包選 4 包",
+         "zh": "所有可能結果的數目：24 包選 4 包",
          "en": "Total: 4 packs from 24"
         },
         "math": "C^{24}_4 = 10626",
@@ -2465,7 +2465,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：11 把選 3 把",
+         "zh": "所有可能結果的數目：11 把選 3 把",
          "en": "Total: 3 umbrellas from 11"
         },
         "math": "C^{11}_3 = 165",
@@ -2719,7 +2719,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：9 人排列",
+         "zh": "所有可能結果的數目：9 人排列",
          "en": "Total: arranging 9 people"
         },
         "math": "9! = 362880",
@@ -2888,7 +2888,7 @@
        {
         "part": "(b)",
         "title": {
-         "zh": "每個模式的數法",
+         "zh": "每個模式的計數",
          "en": "Counting one pattern"
         },
         "math": "4! \\times 4! \\times 2 = 1152",
@@ -3114,7 +3114,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：7 個數字取 5 個",
+         "zh": "所有可能結果的數目：7 個數字取 5 個",
          "en": "Total: 5 digits out of 7"
         },
         "math": "P^7_5 = 2520",
@@ -3617,7 +3617,7 @@
        {
         "label": "誤用 $C^{16}_3$ 為分子分母",
         "labelEn": "mismatched numerator and denominator",
-        "zh": "分子分母都要是「選 3 粒」的數法，不能一邊用 $C$ 一邊用 $P$。",
+        "zh": "分子分母都要是「選 3 粒」的計數，不能一邊用 $C$ 一邊用 $P$。",
         "en": "Both numerator and denominator must count selections of 3 capsules; C and P must not be mixed."
        }
       ],
@@ -3652,7 +3652,7 @@
       },
       {
        "label": "(b)",
-       "en": "given that at least 1 girl is selected to answer questions, find the probability that 3 boys and 2 girls are selected.",
+       "en": "Given that at least 1 girl is selected, find the probability that 3 boys and 2 girls are selected.",
        "zh": "已知最少選出 1 位女生回答問題，求選出 3 位男生與 2 位女生的概率。",
        "marks": 2
       }
@@ -4252,7 +4252,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "全部數法：14 個燈籠排列",
+         "zh": "所有可能結果的數目：14 個燈籠排列",
          "en": "Total: arranging 14 lanterns"
         },
         "math": "14! = 87178291200",
@@ -4326,7 +4326,7 @@
          "en": "Multiply the three parts"
         },
         "math": "8! \\times 3! \\times P^4_4 = 40320 \\times 6 \\times 24 = 5806080",
-        "zh": "件內紅燈籠有 $8! = 40320$ 種排法，所以合條件的情況共 $40320 \\times 6 \\times 24 = 5806080$ 種。",
+        "zh": "件內紅燈籠有 $8! = 40320$ 種排法，所以符合條件的情況共 $40320 \\times 6 \\times 24 = 5806080$ 種。",
         "en": "The red bundle has 8! = 40 320 internal orders, so the favourable arrangements total 40 320 × 6 × 24 = 5 806 080.",
         "marking": "(1A)",
         "highlight": [
@@ -4501,7 +4501,7 @@
          "en": "Form the probability"
         },
         "math": "\\frac{162 \\times 120}{60480} = \\frac{19440}{60480} = \\frac{9}{28}",
-        "zh": "合條件的情況有 $162 \\times 120 = 19440$ 種，概率 $= \\frac{19440}{60480} = \\frac{9}{28}$。",
+        "zh": "符合條件的情況有 $162 \\times 120 = 19440$ 種，概率 $= \\frac{19440}{60480} = \\frac{9}{28}$。",
         "en": "Favourable stacks number 162 × 120 = 19 440, so the probability is 19 440/60 480 = 9/28.",
         "marking": "(1A)",
         "highlight": [
@@ -4543,7 +4543,7 @@
          "en": "Multiply by the colour assignments"
         },
         "math": "6 \\times 108 = 648",
-        "zh": "合條件的情況共 $6 \\times 108 = 648$ 種。",
+        "zh": "符合條件的情況共 $6 \\times 108 = 648$ 種。",
         "en": "The favourable stacks total 6 × 108 = 648.",
         "marking": "(1A)",
         "highlight": [

@@ -2547,6 +2547,38 @@ ok(q184("ch18-4-sm-31").answers[1].math.includes("\\frac{n}{2^n}") &&
 ok(!/\*\*/.test(read("data/src/ch18-4.json")),
   "18.4 不用 Markdown **（前端不支援）");
 
+/* 2026-10-20 老師審閱：三個數學問題 ＋ 表達/術語修正，斷言防止走回頭路。 */
+ok(q184("ch18-4-l1-9").answers[0].math === "\\frac{7!}{8!} = \\frac{1}{8}" &&
+  q184("ch18-4-l1-9").solution.steps[1].math === "\\frac{7!}{8!} = \\frac{1}{8}" &&
+  !/7 \\times 7!/.test(JSON.stringify(q184("ch18-4-l1-9"))),
+  "L1-9 是 7!/8! = 1/8（綁成一件後只有 7 組，不是 7 × 7! 重複計算）");
+ok(/三人相鄰/.test(q184("ch18-4-ce3").parts[0].zh) &&
+  /immediately between/.test(q184("ch18-4-ce3").parts[0].en),
+  "CE3(a) 題意寫明「三人相鄰／immediately between」，與 1/28 的捆綁解法一致");
+ok(q184("ch18-4-ce3").solution.steps[0].math === "6! \\times 2" &&
+  !/\\frac\{2\}\{6\}/.test(JSON.stringify(q184("ch18-4-ce3").solution.steps)),
+  "CE3(a) 題解不再出現 2/6 = 1/3（那是「不必相鄰」的答案，與 1/28 矛盾）");
+ok(/6\$ 個單位/.test(q184("ch18-4-l1-10").solution.steps[2].zh) &&
+  /\\frac\{6!\}\{7!\}/.test(q184("ch18-4-l1-10").solution.steps[2].zh),
+  "L1-10(b) 2 人綁成 1 件後只剩 6 個單位（6!/7! = 1/7），不是 7 個單位");
+ok(!/a fair dice/.test(read("data/src/ch18-4.json")) &&
+  /a fair die 3 times/.test(q184("ch18-4-l1-6").stem.en),
+  "18.4 骰子單數寫 a fair die（複數才用 dice）");
+ok(/respectively/.test(q184("ch18-4-l1-7").parts[1].en),
+  "L1-7(b) 加 respectively，與 1/72（不含 2!）的答案一致");
+ok(/^Given that at least 1 girl is selected, find the probability that 3 boys and 2 girls are selected\.$/
+  .test(q184("ch18-4-l2-25").parts[2].en),
+  "L2-25(b) 用標準 DSE 條件概率語序，刪去 to answer questions");
+ok(!P184_DATA.sections.some((s) => s.questions.some((q) =>
+  (q.parts || []).some((p) => (p.en || "").trim() === "Find the required probability."))),
+  "18.4 不再有「Find the required probability.」的單句 parts（改為承接題幹的核心短語）");
+ok(read("data/src/ch18-4.json").indexOf("數法") < 0,
+  "18.4 中文不再用口語「數法」（改用「所有可能結果的數目／有利結果的數目」）");
+ok(/所有可能結果的數目/.test(P184_DATA.cards.filter((c) => c.id === "ch18-4-c01")[0].title.zh),
+  "c01 標題改為「概率＝有利結果的數目 ÷ 所有可能結果的數目」");
+ok(/插空法/.test(P184_DATA.cards.filter((c) => c.id === "ch18-4-c03")[0].body.zh),
+  "c03 補上插空法三步模版");
+
 /* 頁面渲染 ＋ 真 KaTeX */
 const c184 = boot("quiz.html", "?c=ch18-4&p=0");
 ok(c184.$$("#pagenav .pg").length === 37,

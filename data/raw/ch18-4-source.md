@@ -112,6 +112,77 @@ Total: **36 questions, 140 marks** (the Section Check counts as one question wit
 - **SM-31(b)** "exactly 1 head" and "exactly $n-1$ heads" are equal because $C^n_1=C^n_{n-1}$ and
   the denominator $2^n$ is the same; the explanation mark is for saying this, not for "yes".
 
+## Corrections after teacher review (2026-10-20)
+
+Three maths problems and a batch of wording changes. Each is pinned by an assertion in
+`tools/smoke_test.js`.
+
+### 1. L1-9 was double-counting the block's position
+
+The answer field was already right ($\frac{7!}{8!} = \frac{1}{8}$) but the solution step read
+$\frac{7 \times 7!}{8!}$, with the Chinese explaining "$7 \times 7!$ favourable stacks" and the
+English even printing "7 × 7!/8! = 7/8 × 7 = 1/8".
+
+Tying yellow and orange into one block leaves **7 items** (the block plus the other 6), so the
+favourable count is $7!$ — that $7!$ already covers the block sitting at any of the levels.
+Multiplying by 7 counts the position a second time. The step was rewritten and the `\times 1` in
+the answer tidied away, so the input box still accepts `1/8`.
+
+### 2. CE3(a) asked "between" but answered "immediately between"
+
+The part read "Benny queues between Abby and Celia" while the answer was
+$\frac{6! \times 2}{8!} = \frac{1}{28}$ — the **three adjacent** count. Worse, step 1 computed
+$\frac{2}{6} = \frac{1}{3}$, which is the "between, not necessarily adjacent" answer, and a trap
+repeated it. Students saw two different answers in the same card.
+
+The official answer is $\frac{1}{28}$ (raw table above), so the wording was the thing to fix:
+the part now says "Benny queues **immediately** between Abby and Celia" / 「Benny 恰好排在 Abby 與
+Celia 之間（三人相鄰）」. Step 1 is now the standard bundling step ($6! \times 2$: the block has
+A-B-C or C-B-A), the trap became "forgot the ×2" (which would give $\frac{1}{56}$), and the tip
+explicitly contrasts the two readings — $\frac{1}{3}$ for "between", $\frac{1}{28}$ for
+"immediately between".
+
+Card `c02`'s bullet "B is in the middle of three = 1/3" was also qualified with
+「（不必相鄰）」/"not necessarily adjacent" so it cannot be read as contradicting CE3(a).
+
+### 3. L1-10(b) counted 7 units after tying two people together
+
+"這一疊共 7 個單位…落在 7 個位置中的任何一個" — wrong twice. Seven performers with two tied into
+one block leave **6 units**, and a block of length 2 in a row of 7 has only **6** starting
+positions. The answer $\frac{1}{7}$ was right; the step now reads $6!$ favourable out of $7!$.
+
+### Wording
+
+- CE1, L1-2, L1-3, L1-5, L1-6 and L1-9 had a single part reading only "Find the required
+  probability." / 「求所求概率。」. Each stem already stated the question in full, so the part was
+  pure filler. The stems now stop at 「求」/"find the probability that" and the parts carry the
+  core phrase, which is the pattern the rest of the book pages already use. Nothing is repeated
+  and the target of the question is explicit.
+- `a fair dice` → `a fair die` (L1-6); `tosses` → `throws`.
+- L1-7(b) gained `respectively`: "2 particular costumes" alone reads as unordered, which would
+  need a factor of $2!$ and give $\frac{1}{36}$; the official answer $\frac{1}{72}$ assumes the
+  costumes are assigned to named people.
+- L2-25(b) shortened to the standard DSE order — "Given that at least 1 girl is selected, find the
+  probability that 3 boys and 2 girls are selected." (dropped "to answer questions").
+
+### Chinese terminology
+
+「數法」(30 occurrences) and 「合條件」 are spoken Cantonese rather than textbook terms:
+
+| before | after | count |
+| --- | --- | --- |
+| 全部數法 | 所有可能結果的數目 | 21 |
+| 合條件的數法 | 有利結果的數目 | 2 |
+| 合條件(…) | 符合條件(…) | 16 |
+| 其他「數法」 | 計數 | 7 |
+
+Card `c01`'s title is now 「概率＝有利結果的數目 ÷ 所有可能結果的數目」. The counter 「件」 was
+**not** changed — it is the correct measure word for a bundled block («綁成一件»), not slang.
+
+Card `c03` gained the gap-insertion (插空法) template to sit beside the bundling one:
+arrange the unrestricted objects first → the gaps number (arranged objects + 1) → place the
+restricted objects into the gaps with $P$ or $C$.
+
 ## Build notes (rules enforced by `tools/build.py`)
 
 - **Rule S5** requires every `steps[].zh` to have at least 8 Chinese characters. Two closing
