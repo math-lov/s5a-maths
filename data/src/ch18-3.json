@@ -17,8 +17,8 @@
     "en": "When both must happen: multiply"
    },
    "body": {
-    "zh": "- 18.2 的加法定律問「$A$ 或 $B$」；本節問「$A$ 而且 $B$」。若兩件事互相獨立（擲硬幣與擲骰子、兩人各自作答），「而且」的概率就是把兩個概率相乘：{{math:0}}\n- 很多題目其實問「至少一件」。這種題用反面最快——先算「一件都沒有」，再用 $1$ 減：{{math:1}}\n- 驗算：若算出來的機會大於 $1$，一定是把兩種情況重複計算了（最常是把「全部命中」和「部分命中」都加進去）。",
-    "en": "- Section 18.2's addition law asked for \"A or B\"; this section asks for \"A and B\". If the two events are independent (a coin and a dice, two people working separately), the \"and\" probability is the product: {{math:0}}\n- Many questions really ask for \"at least one\". The complement is quickest: work out \"neither\" first, then subtract from 1: {{math:1}}\n- Check: a probability above 1 means two cases were double-counted, most often adding \"all succeed\" on top of the partial cases."
+    "zh": "- 18.2 的加法定律問「$A$ 或 $B$」；本節問「$A$ 而且 $B$」。若兩件事互相獨立（擲硬幣與擲骰子、兩人各自作答），「而且」的概率就是把兩個概率相乘：{{math:0}}\n- 很多題目其實問「至少一件」。這種題用反面最快——先算「一件都沒有」，再用 $1$ 減：{{math:1}}\n- 驗算：若算出來的概率大於 $1$，一定是把兩種情況重複計算了（最常是把「全部命中」和「部分命中」都加進去）。",
+    "en": "- Section 18.2's addition law asked for \"A or B\"; this section asks for \"A and B\". If the two events are independent (a coin and a die, two people working separately), the \"and\" probability is the product: {{math:0}}\n- Many questions really ask for \"at least one\". The complement is quickest: work out \"none\" first, then subtract from 1: {{math:1}}\n- Check: a probability above 1 means two cases were double-counted, most often adding \"all succeed\" on top of the partial cases."
    },
    "math": [
     "P(A \\cap B) = P(A) \\times P(B) \\quad (\\text{independent})",
@@ -51,8 +51,8 @@
     "en": "Conditional probability: the denominator becomes the \"given\" part"
    },
    "body": {
-    "zh": "- 「已知 $B$ 發生」就是把樣本空間縮成 $B$：分母由 $n(S)$ 變成 $n(B)$：{{math:0}}\n- 兩個方向的條件概率不可互換，$P(A \\mid B) \\neq P(B \\mid A)$；要還原成全體就用：{{math:1}}\n- 已知 $P(A \\cap B)$ 與 $P(A)$，可以反求 $P(B \\mid A)$——分母是 $P(A)$，不是 $P(A \\cap B)$：{{math:2}}",
-    "en": "- \"Given that B happened\" shrinks the sample space to B: the denominator changes from $n(S)$ to $n(B)$: {{math:0}}\n- The two directions are not interchangeable, $P(A \\mid B) \\neq P(B \\mid A)$; to convert back to the whole, use: {{math:1}}\n- Given $P(A \\cap B)$ and $P(A)$ you can recover $P(B \\mid A)$ — the denominator is $P(A)$, not $P(A \\cap B)$: {{math:2}}"
+    "zh": "- 「已知 $B$ 發生」就是把樣本空間縮成 $B$：分母由 $n(S)$ 變成 $n(B)$：{{math:0}}\n- 兩個方向的條件概率不可互換，$P(A \\mid B) \\neq P(B \\mid A)$；要還原成全體就用：{{math:1}}\n- 已知 $P(A \\cap B)$ 與 $P(A)$，可以反求 $P(B \\mid A)$——分母是 $P(A)$，不是 $P(A \\cap B)$：{{math:2}}\n- 遇到「已知（given that）」時，固定做三件事：① 只在「已知的那一組人／那一些結果」之內數；② 分母＝這一組的數目；③ 分子＝同時符合已知與所求的數目。",
+    "en": "- \"Given that B happened\" shrinks the sample space to B: the denominator changes from $n(S)$ to $n(B)$: {{math:0}}\n- The two directions are not interchangeable, $P(A \\mid B) \\neq P(B \\mid A)$; to convert back to the whole, use: {{math:1}}\n- Given $P(A \\cap B)$ and $P(A)$ you can recover $P(B \\mid A)$ — the denominator is $P(A)$, not $P(A \\cap B)$: {{math:2}}\n- When you meet \"given that\", do the same three things every time: (1) work inside the given group only; (2) denominator = the size of that group; (3) numerator = those matching both the condition and the target. Among the given group, count the favourable outcomes."
    },
    "math": [
     "P(A \\mid B) = \\frac{n(A \\cap B)}{n(B)}",
@@ -60,7 +60,7 @@
     "P(B \\mid A) = \\frac{P(A \\cap B)}{P(A)}"
    ],
    "warn": {
-    "zh": "- 表格題先寫分母：已知「是女生」，分母就是女生總數，不是全組總數。18.2 的表格題分母是全組，18.3 的條件概率分母是那一行或那一格，兩者最容易混淆。\n- 「已知轉入的是黑球，紅球機會變大」——分母由 6 變 5 或 7，分子也要同時改；只改分母是最常見的錯。\n- 由 $P(A \\cap B)$ 反求條件概率時，分母用題目給的「已知」事件，不是交集。",
+    "zh": "- 表格題先寫分母：已知「是女生」，分母就是女生總數，不是全組總數。18.2 的表格題分母是全組，18.3 的條件概率分母是那一行或那一格，兩者最容易混淆。\n- 「已知轉入的是黑球，紅球概率變大」——分母由 6 變 5 或 7，分子也要同時改；只改分母是最常見的錯。\n- 由 $P(A \\cap B)$ 反求條件概率時，分母用題目給的「已知」事件，不是交集。",
     "en": "- In a table question write the denominator first: given \"is a girl\", the denominator is the total number of girls, not the whole group. Section 18.2 used the whole group while 18.3 uses the given row or cell — the two are easily confused.\n- \"Given a black ball was transferred, red becomes more likely\": the denominator changes from 6 to 5 or 7 and the numerator changes with it; changing only the denominator is the commonest error.\n- When recovering a conditional probability from $P(A \\cap B)$, the denominator is the given event, not the intersection."
    },
    "vocab": [
@@ -86,7 +86,7 @@
     "en": "Without replacement: numerator and denominator shrink together"
    },
    "body": {
-    "zh": "- 「one by one without replacement」＝前一次抽走的已經不在箱內，所以每一步的總數都少 $1$（抽了 $k$ 次就少 $k$ 個），分子同時要減：{{math:0}}\n- 「with replacement」＝抽完放回，總數不變，所以每一步的機會率相同，可以直接寫成乘方：{{math:1}}\n- 若中途改問「直到抽中黃色卡為止」，寫法就是（非黃）$\\times$（非黃）$\\times \\cdots \\times$（黃）——前面每一次都要避開，最後一步才命中。",
+    "zh": "- 「one by one without replacement」＝前一次抽走的已經不在箱內，所以每一步的總數都少 $1$（抽了 $k$ 次就少 $k$ 個），分子同時要減：{{math:0}}\n- 「with replacement」＝抽完放回，總數不變，所以每一步的概率相同，可以直接寫成乘方：{{math:1}}\n- 若中途改問「直到抽中黃色卡為止」，寫法就是（非黃）$\\times$（非黃）$\\times \\cdots \\times$（黃）——前面每一次都要避開，最後一步才命中。",
     "en": "- \"One by one without replacement\" means the previous draw is gone, so the total shrinks by 1 at every step (by $k$ after $k$ draws) and the numerator shrinks with it: {{math:0}}\n- \"With replacement\" puts the card back, so the total never changes, every factor is the same and the product can be written as a power: {{math:1}}\n- If the question says \"until a yellow card is drawn\", write non-yellow $\\times$ non-yellow $\\times \\cdots \\times$ yellow: every earlier draw must miss and only the last one succeeds."
    },
    "math": [
@@ -116,11 +116,11 @@
    "id": "ch18-3-c04",
    "topic": "ch18-3",
    "title": {
-    "zh": "用樹狀圖睇乘法法則：等機會 vs 不等機會",
+    "zh": "用樹狀圖睇乘法法則：等可能 vs 非等可能",
     "en": "See the multiplication law in a tree: equally likely vs not"
    },
    "body": {
-    "zh": "- 樹狀圖由左至右畫：最左是起點，每條分支寫上該步的概率，最右每一個「葉」就是一條完整路徑的結果。路徑的機會＝把沿途的分支概率相乘。\n- 等機會（上圖）：兩份試卷的合格率都是 $\\frac{1}{2}$，四條路徑的機會全部相同，都是 $\\frac{1}{4}$。這種情況只要數有利路徑的條數，四條各 $\\frac{1}{4}$ 加起來剛好是 $1$。\n- 非等機會（下圖）：試卷 $1$ 合格率 $0.75$、試卷 $2$ 合格率 $0.6$，四條路徑的機會各不相同（$0.45$、$0.30$、$0.15$、$0.10$）。這時千萬不要靠數條數，一定要沿住路徑相乘 —— 這就是乘法法則：{{math:0}}\n- 檢查：無論等機會與否，四條路徑的機會加起來必須剛好是 $1$；對不上就一定漏了路徑或者寫錯了數。",
+    "zh": "- 樹狀圖由左至右畫：最左是起點，每條分支寫上該步的概率，最右每一個「葉」就是一條完整路徑的結果。路徑的概率＝把沿途的分支概率相乘。\n- 等可能（上圖）：兩份試卷的合格率都是 $\\frac{1}{2}$，四條路徑的概率全部相同，都是 $\\frac{1}{4}$。這種情況只要數有利路徑的條數，四條各 $\\frac{1}{4}$ 加起來剛好是 $1$。\n- 非等可能（下圖）：試卷 $1$ 合格率 $0.75$、試卷 $2$ 合格率 $0.6$，四條路徑的概率各不相同（$0.45$、$0.30$、$0.15$、$0.10$）。這時千萬不要靠數條數，一定要沿住路徑相乘 —— 這就是乘法法則：{{math:0}}\n- 檢查：無論等可能與否，四條路徑的概率加起來必須剛好是 $1$；對不上就一定漏了路徑或者寫錯了數。",
     "en": "- Read the tree from left to right: the leftmost point is the start, every branch carries the probability of that step, and each leaf on the right is the outcome of one complete path. The probability of a path is the product of the branch probabilities along it.\n- Equally likely (top figure): both papers have a pass rate of 1/2, so all four paths have the same probability, 1/4. Here you may simply count the favourable paths — four paths of 1/4 add to 1.\n- Not equally likely (bottom figure): paper 1 has a pass rate of 0.75 and paper 2 has 0.6, so the four paths have different probabilities (0.45, 0.30, 0.15 and 0.10). Now you must not count paths; multiply along the path — this is the multiplication law: {{math:0}}\n- Check: equally likely or not, the four path probabilities must add up to exactly 1. If they do not, a path is missing or a number is wrong."
    },
    "math": [
@@ -131,8 +131,8 @@
     "ch18-3-tree-unequal"
    ],
    "warn": {
-    "zh": "- 「等機會」和「概率是 $\\frac{1}{2}$」不是同一件事：$\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$ 這兩步碰巧相同，但若試卷 $2$ 的合格率是 $0.6$，四條路徑就會變成 $0.45$、$0.30$、$0.15$、$0.10$，計法完全不同。\n- 題目沒有寫「assume independent」就不要直接相乘；例如「抽取後放回另一個袋」就不是獨立。\n- 樹狀圖由上而下、由下而上都可以，但必須沿同一條路徑讀；中途跳去另一條分支相乘，答案一定是錯的。\n- 非等機會的樹，路徑機會也可能碰巧相同（例如 Asha／Luna 那幅就有兩條都是 $\\frac{1}{6}$），所以千萬不要因為「見到幾個一樣的數」就改用數條數：乘法法則任何時候都要用，「或者」就沿一條路徑相乘。\n- 分支概率要寫失敗率還是成功率，視乎該分支代表什麼：代表「合格」就寫合格率，代表「不合格」就寫不合格率。",
-    "en": "- \"Equally likely\" and \"the probability is 1/2\" are not the same thing: the two steps 1/2 × 1/2 = 1/4 happen to agree, but if paper 2's pass rate is 0.6 the four paths become 0.45, 0.30, 0.15 and 0.10, and the method changes completely.\n- Do not multiply straight away unless the question says \"assume independent\"; drawing a card and moving it into another bag is not independent.\n- A tree may be read downwards or upwards, but you must stay on one path; jumping to another branch mid-way gives a wrong answer.\n- In a not-equally-likely tree two paths can still share the same probability (the Asha/Luna tree has two paths of 1/6), so never switch to counting just because some numbers look alike: the multiplication law is always the rule, and \"or\" means multiplying along one path.\n- Write the failure rate on a branch that stands for \"fail\", and the pass rate on one that stands for \"pass\"."
+    "zh": "- 「等可能」和「概率是 $\\frac{1}{2}$」不是同一件事：$\\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{4}$ 這兩步碰巧相同，但若試卷 $2$ 的合格率是 $0.6$，四條路徑就會變成 $0.45$、$0.30$、$0.15$、$0.10$，計法完全不同。\n- 題目沒有寫「assume independent」就不要直接相乘；例如「抽取後放回另一個袋」就不是獨立。\n- 樹狀圖由上而下、由下而上都可以，但必須沿同一條路徑讀；中途跳去另一條分支相乘，答案一定是錯的。\n- 非等可能的樹，路徑概率也可能碰巧相同（例如 Asha／Luna 那幅就有兩條都是 $\\frac{1}{6}$），所以千萬不要因為「見到幾個一樣的數」就改用數條數：乘法法則任何時候都要用：同一條路徑上的分支是「而且」，所以相乘；不同路徑之間才是「或者」，所以相加。\n- 分支概率要寫失敗率還是成功率，視乎該分支代表什麼：代表「合格」就寫合格率，代表「不合格」就寫不合格率。",
+    "en": "- \"Equally likely\" and \"the probability is 1/2\" are not the same thing: the two steps 1/2 × 1/2 = 1/4 happen to agree, but if paper 2's pass rate is 0.6 the four paths become 0.45, 0.30, 0.15 and 0.10, and the method changes completely.\n- Do not multiply straight away unless the question says \"assume independent\"; drawing a card and moving it into another bag is not independent.\n- A tree may be read downwards or upwards, but you must stay on one path; jumping to another branch mid-way gives a wrong answer.\n- In a not-equally-likely tree two paths can still share the same probability (the Asha/Luna tree has two paths of 1/6), so never switch to counting just because some numbers look alike: the multiplication law is always the rule: branches along one path are \"and\", so multiply; different paths are \"or\", so add.\n- Write the failure rate on a branch that stands for \"fail\", and the pass rate on one that stands for \"pass\"."
    },
    "vocab": [
     {
@@ -140,7 +140,7 @@
      "en": "Tree diagram"
     },
     {
-     "zh": "等機會",
+     "zh": "等可能",
      "en": "Equally likely"
     },
     {
@@ -186,7 +186,7 @@
       },
       {
        "label": "(b)",
-       "en": "are at least one Chinese book.",
+       "en": "at least one is a Chinese book.",
        "zh": "至少一本是中文書的概率。",
        "marks": 1
       }
@@ -197,7 +197,7 @@
        "math": "\\frac{5}{9} \\times \\frac{3}{10} = \\frac{15}{90} = \\frac{1}{6}",
        "note": {
         "zh": "兩個盒子互不影響，可以相乘",
-        "en": "The two boxes do not affect each other, so multiply"
+        "en": "The two draws are independent, so multiply their probabilities directly"
        }
       },
       {
@@ -218,8 +218,8 @@
          "en": "Two separate boxes: multiply"
         },
         "math": "\\frac{5}{9} \\times \\frac{3}{10}",
-        "zh": "從盒子 X 抽到英文書的機會是 $\\frac{5}{9}$，從盒子 Y 抽到英文書的機會是 $\\frac{3}{10}$。兩個盒子互不影響（書沒有從一盒搬到另一盒），所以用乘法法則：$\\frac{5}{9} \\times \\frac{3}{10}$。",
-        "en": "Box X gives English with probability 5/9 and box Y with probability 3/10. The boxes do not affect each other (no book moves from one to the other), so apply the multiplication law: 5/9 × 3/10.",
+        "zh": "從盒子 X 抽到英文書的概率是 $\\frac{5}{9}$，從盒子 Y 抽到英文書的概率是 $\\frac{3}{10}$。兩個盒子互不影響（書沒有從一盒搬到另一盒），所以用乘法法則：$\\frac{5}{9} \\times \\frac{3}{10}$。",
+        "en": "Box X gives English with probability 5/9 and box Y with probability 3/10. The two draws are independent (no book moves from one box to the other), so multiply their probabilities directly: 5/9 × 3/10.",
         "marking": "(1M)",
         "highlight": [
          "\\frac{5}{9} \\times \\frac{3}{10}"
@@ -288,7 +288,7 @@
      "difficulty": 1,
      "stem": {
       "en": "In an archery practice, the probability of Carmen hitting the target is 0.8. Assume that her performances in the shoot are independent of each other. If Carmen shoots 3 times, find the probability that",
-      "zh": "在射箭練習中，Carmen 射中靶的機會是 0.8，並假設她每次射擊的表現互相獨立。若 Carmen 射了 3 次，求她"
+      "zh": "在射箭練習中，Carmen 射中靶的概率是 0.8，並假設她每次射擊的表現互相獨立。若 Carmen 射了 3 次，求她"
      },
      "parts": [
       {
@@ -444,7 +444,7 @@
          "en": "Two people in turn: without replacement"
         },
         "math": "\\frac{5}{20} \\times \\frac{4}{19}",
-        "zh": "Howard 先坐：壞椅子的機會是 $\\frac{5}{20}$。他坐的那張（不管是壞是好）已經被佔用，所以房間內只剩 $19$ 張可用，壞椅只剩 $4$ 張，Jennifer 坐到壞椅的機會是 $\\frac{4}{19}$。兩步相乘：$\\frac{5}{20} \\times \\frac{4}{19}$。",
+        "zh": "Howard 先坐：壞椅子的概率是 $\\frac{5}{20}$。他坐的那張（不管是壞是好）已經被佔用，所以房間內只剩 $19$ 張可用，壞椅只剩 $4$ 張，Jennifer 坐到壞椅的概率是 $\\frac{4}{19}$。兩步相乘：$\\frac{5}{20} \\times \\frac{4}{19}$。",
         "en": "Howard sits first with probability 5/20 of a broken chair. Whatever he took is now occupied, so 19 chairs remain and only 4 of them are broken: Jennifer's probability is 4/19. Multiply the two steps: 5/20 × 4/19.",
         "marking": "(1M)",
         "highlight": [
@@ -472,7 +472,7 @@
          "en": "The second denominator is still 19"
         },
         "math": "\\frac{5}{20} \\times \\frac{15}{19} = \\frac{75}{380} = \\frac{15}{76}",
-        "zh": "「只有 Howard」＝ Howard 坐壞椅，而且 Jennifer 坐好椅。好椅原本 $15$ 張，但房間仍然只剩 $19$ 張可選，所以 Jennifer 的機會是 $\\frac{15}{19}$：$\\frac{5}{20} \\times \\frac{15}{19} = \\frac{15}{76}$。",
+        "zh": "「只有 Howard」＝ Howard 坐壞椅，而且 Jennifer 坐好椅。好椅原本 $15$ 張，但房間仍然只剩 $19$ 張可選，所以 Jennifer 的概率是 $\\frac{15}{19}$：$\\frac{5}{20} \\times \\frac{15}{19} = \\frac{15}{76}$。",
         "en": "\"Only Howard\" means Howard takes a broken chair and Jennifer takes a good one. There are 15 good chairs, but only 19 chairs are left to choose from, so Jennifer's probability is 15/19: 5/20 × 15/19 = 15/76.",
         "marking": "(1A)",
         "highlight": [
@@ -496,7 +496,7 @@
        {
         "label": "以為兩人獨立",
         "labelEn": "Assuming the two are independent",
-        "zh": "獨立才可以寫 $\\frac{5}{20} \\times \\frac{5}{20}$；但 Jennifer 的機會被 Howard 影響，所以不是獨立，要用 $\\frac{5}{20} \\times P(\\text{爛椅} \\mid \\text{Howard 先坐})$。",
+        "zh": "獨立才可以寫 $\\frac{5}{20} \\times \\frac{5}{20}$；但 Jennifer 的概率被 Howard 影響，所以不是獨立，要用 $\\frac{5}{20} \\times P(\\text{爛椅} \\mid \\text{Howard 先坐})$。",
         "en": "Only independent events give 5/20 × 5/20. Jennifer's chance is affected by Howard, so write 5/20 × P(broken | Howard sat first)."
        }
       ],
@@ -571,7 +571,7 @@
          "en": "Update bag B first"
         },
         "math": "n(B) = 3 + 5 + 1 = 9",
-        "zh": "從袋 A 轉入一個紅球後，袋 B 變成 $3$ 綠 $6$ 紅，共 $3 + 5 + 1 = 9$ 個。已知轉入的是紅球，紅球機會是 $\\frac{6}{9} = \\frac{2}{3}$。",
+        "zh": "從袋 A 轉入一個紅球後，袋 B 變成 $3$ 綠 $6$ 紅，共 $3 + 5 + 1 = 9$ 個。已知轉入的是紅球，紅球概率是 $\\frac{6}{9} = \\frac{2}{3}$。",
         "en": "With a red ball transferred, bag B becomes 3 green and 6 red, 3 + 5 + 1 = 9 in all. Given the transfer was red, the probability of red is 6/9 = 2/3.",
         "marking": "(1A)",
         "highlight": [
@@ -585,7 +585,7 @@
          "en": "Same denominator 9, numerator becomes 5"
         },
         "math": "\\frac{5}{9}",
-        "zh": "若轉入的是綠球，袋 B 變成 $4$ 綠 $5$ 紅，仍然是 $9$ 個，所以紅球機會是 $\\frac{5}{9}$。兩個小題的分母相同，因為無論轉入甚麼顏色，袋 B 總數都是 9。",
+        "zh": "若轉入的是綠球，袋 B 變成 $4$ 綠 $5$ 紅，仍然是 $9$ 個，所以紅球概率是 $\\frac{5}{9}$。兩個小題的分母相同，因為無論轉入甚麼顏色，袋 B 總數都是 9。",
         "en": "With a green ball transferred, bag B becomes 4 green and 5 red, still 9 in all, so the probability of red is 5/9. The denominators match because the total is 9 whichever colour moves.",
         "marking": "(1A)",
         "highlight": [
@@ -599,8 +599,8 @@
          "en": "Two mutually exclusive cases: add"
         },
         "math": "\\frac{2}{6} \\times \\frac{6}{9} + \\frac{4}{6} \\times \\frac{5}{9} = \\frac{12 + 20}{54} = \\frac{16}{27}",
-        "zh": "袋 A 只有綠球與紅球兩種可能，而且互斥，所以用 18.2 的加法定律：$\\frac{2}{6} \\times \\frac{6}{9} + \\frac{4}{6} \\times \\frac{5}{9} = \\frac{12 + 20}{54} = \\frac{16}{27}$。分子記得先加後減的次序：$\\frac{2}{6} \\times \\frac{6}{9} = \\frac{12}{54}$，$\\frac{4}{6} \\times \\frac{5}{9} = \\frac{20}{54}$。",
-        "en": "Bag A has only two possible colours and they are mutually exclusive, so apply the 18.2 addition law: 2/6 × 6/9 + 4/6 × 5/9 = (12 + 20)/54 = 16/27. Add before subtracting: 2/6 × 6/9 = 12/54 and 4/6 × 5/9 = 20/54.",
+        "zh": "袋 A 只有綠球與紅球兩種可能，而且互斥，所以用 18.2 的加法定律：$\\frac{2}{6} \\times \\frac{6}{9} + \\frac{4}{6} \\times \\frac{5}{9} = \\frac{12 + 20}{54} = \\frac{16}{27}$。先各自相乘，再相加：$\\frac{2}{6} \\times \\frac{6}{9} = \\frac{12}{54}$，$\\frac{4}{6} \\times \\frac{5}{9} = \\frac{20}{54}$，相加得 $\\frac{32}{54} = \\frac{16}{27}$。",
+        "en": "Bag A has only two possible colours and they are mutually exclusive, so apply the 18.2 addition law: 2/6 × 6/9 + 4/6 × 5/9 = (12 + 20)/54 = 16/27. Multiply each case first, then add: 2/6 × 6/9 = 12/54 and 4/6 × 5/9 = 20/54, giving 32/54 = 16/27.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{16}{27}"
@@ -623,13 +623,13 @@
        {
         "label": "(c) 忘了乘 $P(\\text{袋 A})$",
         "labelEn": "(c) forgetting the P(bag A) factor",
-        "zh": "要寫成 $\\frac{2}{6} \\times \\frac{6}{9} + \\frac{4}{6} \\times \\frac{5}{9}$，兩邊都要乘上「從袋 A 抽到該顏色」的機會，否則算出來超過 1。",
+        "zh": "要寫成 $\\frac{2}{6} \\times \\frac{6}{9} + \\frac{4}{6} \\times \\frac{5}{9}$，兩邊都要乘上「從袋 A 抽到該顏色」的概率，否則算出來超過 1。",
         "en": "Each term needs the factor \"drawing that colour from bag A\"; leaving it out pushes the answer above 1."
        }
       ],
       "tip": {
-       "zh": "轉移題的固定流程：① 寫出轉入後新袋的組成與總數；② (a)(b) 直接在新袋上算；③ (c) 用加法定律把「轉入紅」與「轉入綠」兩種互斥情況相加，每項都要乘 $P(\\text{袋 A})$。",
-       "en": "A transfer question has a fixed routine: (1) write the new bag's contents and total; (2) parts (a) and (b) read straight off the new bag; (3) part (c) adds the two mutually exclusive cases \"red transferred\" and \"green transferred\", each multiplied by P(bag A)."
+       "zh": "轉移球／轉移杯題的固定三步：① 列出第一個袋抽出每個顏色的概率；② 更新第二個袋內各色球數與總數；③ 用條件概率各自相乘（乘法法則），再把互斥的情況相加（加法定律）。回到這題：(a)(b) 直接在新袋上讀；(c) 把「轉入紅」與「轉入綠」兩種互斥情況相加，每項都要乘 $P(\\text{袋 A})$。",
+       "en": "Three fixed steps for a transfer question: (1) write the probability of each colour drawn from the first bag; (2) update the counts and the total in the second bag; (3) multiply each conditional probability (multiplication law), then add the mutually exclusive cases (addition law). In this question: (a) and (b) read straight off the new bag; (c) adds \"red transferred\" and \"green transferred\", each multiplied by P(bag A)."
       }
      }
     }
@@ -774,8 +774,8 @@
          "en": "The complement was written wrongly"
         },
         "math": "1 - \\left(\\frac{5}{6}\\right)^2 = \\frac{11}{36}",
-        "zh": "「至少一個 5」的反面是「兩個都不是 5」，每個骰子擲得不是 5 的機會是 $\\frac{5}{6}$，所以 $P(\\text{at least one 5}) = 1 - \\left(\\frac{5}{6}\\right)^2 = \\frac{11}{36}$，不是 $\\frac{35}{36}$。",
-        "en": "The complement of \"at least one 5\" is \"neither is a 5\"; each dice misses 5 with probability 5/6, so P(at least one 5) = 1 − (5/6)² = 11/36, not 35/36.",
+        "zh": "「至少一個 5」的反面是「兩個都不是 5」，每個骰子擲得不是 5 的概率是 $\\frac{5}{6}$，所以 $P(\\text{at least one 5}) = 1 - \\left(\\frac{5}{6}\\right)^2 = \\frac{11}{36}$，不是 $\\frac{35}{36}$。",
+        "en": "The complement of \"at least one 5\" is \"neither is a 5\"; each die misses 5 with probability 5/6, so P(at least one 5) = 1 − (5/6)² = 11/36, not 35/36.",
         "marking": "(1M)",
         "highlight": [
          "1 - \\left(\\frac{5}{6}\\right)^2 = \\frac{11}{36}"
@@ -802,7 +802,7 @@
          "en": "Update box B first"
         },
         "math": "\\frac{2}{3 + 1 + 1} = \\frac{2}{5}",
-        "zh": "已知從盒 A 轉入的是黑筆，盒 B 就由 $3$ 藍 $1$ 黑變成 $3$ 藍 $2$ 黑，共 $5$ 枝，所以抽到黑筆的機會是 $\\frac{2}{5}$。與題目一致，正確。",
+        "zh": "已知從盒 A 轉入的是黑筆，盒 B 就由 $3$ 藍 $1$ 黑變成 $3$ 藍 $2$ 黑，共 $5$ 枝，所以抽到黑筆的概率是 $\\frac{2}{5}$。與題目一致，正確。",
         "en": "Given a black pen was transferred, box B goes from 3 blue, 1 black to 3 blue, 2 black, five in all, so the probability is 2/5, matching the statement.",
         "marking": "(1M)",
         "highlight": [
@@ -842,7 +842,7 @@
        {
         "label": "(a)(b)(e) 只是忘了加情況或約簡",
         "labelEn": "(a)(b)(e) missing a case or a simplification slip",
-        "zh": "這三項的「框架」都是對的：都是用乘法或反面。錯在只寫一種情況（(a)）、把 $\\frac{1}{6}$ 當成「不是 5」的機會（(b)）、以及 $\\frac{9}{81}$ 約簡成 $\\frac{1}{4}$（(e)）。",
+        "zh": "這三項的「框架」都是對的：都是用乘法或反面。錯在只寫一種情況（(a)）、把 $\\frac{1}{6}$ 當成「不是 5」的概率（(b)）、以及 $\\frac{9}{81}$ 約簡成 $\\frac{1}{4}$（(e)）。",
         "en": "All three are set up correctly with multiplication or a complement. The errors are one case only (a), using 1/6 as the chance of \"not a 5\" (b), and simplifying 9/81 to 1/4 (e)."
        },
        {
@@ -859,7 +859,7 @@
        }
       ],
       "tip": {
-       "zh": "判斷這類題目時，先確認三件事：① 是「而且」還是「或」；② 放回還是不放回；③ 反面事件的機會率寫對了沒有。三項都對，答案通常就對。",
+       "zh": "判斷這類題目時，先確認三件事：① 是「而且」還是「或」；② 放回還是不放回；③ 反面事件的概率寫對了沒有。三項都對，答案通常就對。",
        "en": "For statements like these, check three things: (1) is it \"and\" or \"or\"; (2) with or without replacement; (3) is the complement's probability written correctly. Get all three right and the verdict usually follows."
       }
      }
@@ -885,7 +885,7 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "en": "A fair coin and a fair dice are thrown once. Find the probability of getting a head and a '4'.",
+      "en": "A fair coin and a fair die are thrown once. Find the probability of getting a head and a '4'.",
       "zh": "擲一枚均勻硬幣和一枚均勻骰子一次。求擲得正面而且擲得 '4' 的概率。"
      },
      "parts": [
@@ -902,7 +902,7 @@
        "math": "\\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}",
        "note": {
         "zh": "硬幣與骰子互相獨立",
-        "en": "The coin and the dice are independent"
+        "en": "The coin and the die are independent"
        }
       }
      ],
@@ -916,7 +916,7 @@
         },
         "math": "\\frac{1}{2} \\times \\frac{1}{6}",
         "zh": "「而且」是本節的主題。硬幣與骰子各自擲一次，兩者互不影響，所以正面而且 '4' 的概率是兩個概率相乘：$\\frac{1}{2} \\times \\frac{1}{6}$。",
-        "en": "\"And\" is the theme of this section. The coin and the dice are thrown separately and do not affect each other, so head and a 4 is the product: 1/2 × 1/6.",
+        "en": "\"And\" is the theme of this section. The coin and the die are thrown separately and are independent, so multiply their probabilities directly: 1/2 × 1/6.",
         "marking": "(1M)",
         "highlight": [
          "\\frac{1}{2} \\times \\frac{1}{6}"
@@ -953,7 +953,7 @@
       ],
       "tip": {
        "zh": "兩個試驗同時進行而且互不影響，就相乘；同一個試驗的「正面或反面」才用相加。寫之前先問：「兩件事都要發生嗎？」",
-       "en": "When two trials happen together and do not affect each other, multiply; the addition law is for \"this or that\" within one trial. Ask first: \"must both happen?\""
+       "en": "When two trials are independent, multiply their probabilities directly; the addition law is for \"this or that\" within one trial. Ask first: \"must both happen?\""
       }
      }
     },
@@ -994,7 +994,7 @@
          "en": "The keyword: with replacement"
         },
         "math": "\\frac{5}{10} \\times \\frac{5}{10}",
-        "zh": "1 至 10 之間有 $5$ 個偶數（2、4、6、8、10），所以抽到偶數的機會是 $\\frac{5}{10}$。題目寫 with replacement，即抽完放回，第二張卡的機會率仍然是 $\\frac{5}{10}$：$\\frac{5}{10} \\times \\frac{5}{10}$。",
+        "zh": "1 至 10 之間有 $5$ 個偶數（2、4、6、8、10），所以抽到偶數的概率是 $\\frac{5}{10}$。題目寫 with replacement，即抽完放回，第二張卡的概率仍然是 $\\frac{5}{10}$：$\\frac{5}{10} \\times \\frac{5}{10}$。",
         "en": "There are 5 even numbers in 1 to 10 (2, 4, 6, 8, 10), so an even draw has probability 5/10. The question says with replacement, so the card goes back and the second draw is still 5/10: 5/10 × 5/10.",
         "marking": "(1M)",
         "highlight": [
@@ -1057,10 +1057,10 @@
      "answers": [
       {
        "part": "(a)",
-       "math": "\\frac{9}{10} \\times \\frac{9}{10} = \\frac{81}{100}",
+       "math": "\\frac{1}{9} \\times \\frac{1}{9} = \\frac{1}{81}",
        "note": {
-        "zh": "兩位都要猜中",
-        "en": "Both digits must be right"
+        "zh": "$81$ 個可能號碼之中只有 $1$ 個正確",
+        "en": "Only 1 of the 81 possible endings is correct"
        }
       }
      ],
@@ -1069,49 +1069,49 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "每一位的命中率是 $\\frac{9}{10}$",
-         "en": "Each digit has probability 9/10"
+         "zh": "先數一共有多少個可能的號碼",
+         "en": "First count the possible endings"
         },
-        "math": "\\frac{9}{10} \\times \\frac{9}{10}",
-        "zh": "他已知道號碼內沒有 '0'，所以每一位只可能是 1 至 9，猜中的機會是 $\\frac{9}{10}$。要在第一次就撥通，兩位都要猜中：$\\frac{9}{10} \\times \\frac{9}{10}$。",
-        "en": "He knows there is no '0', so each digit is one of 1 to 9 and he has probability 9/10 for each. To get through on the first try both digits must be right: 9/10 × 9/10.",
+        "math": "9 \\times 9 = 81",
+        "zh": "他記得號碼內沒有 '0'，所以每一位只可能是 $1$ 至 $9$ 共 $9$ 個數字。最後兩位合共有 $9 \\times 9 = 81$ 個可能的號碼。",
+        "en": "He remembers there is no '0', so each digit is one of 1 to 9 — nine choices. The last two digits therefore have 9 × 9 = 81 possible endings.",
         "marking": "(1M)",
         "highlight": [
-         "\\frac{9}{10} \\times \\frac{9}{10}"
+         "9 \\times 9 = 81"
         ]
        },
        {
         "part": "(a)",
         "title": {
-         "zh": "計算",
-         "en": "Evaluate"
+         "zh": "$81$ 個之中只有 $1$ 個撥得通",
+         "en": "Only 1 of the 81 endings works"
         },
-        "math": "\\frac{9}{10} \\times \\frac{9}{10} = \\frac{81}{100}",
-        "zh": "$\\frac{9}{10} \\times \\frac{9}{10} = \\frac{81}{100}$。用 $100$ 個可能號碼去數也一樣：共有 $9 \\times 9 = 81$ 個不含 '0' 的兩位組合。",
-        "en": "9/10 × 9/10 = 81/100. Counting 100 possible endings gives the same picture: 9 × 9 = 81 two-digit endings contain no '0'.",
+        "math": "\\frac{1}{81}",
+        "zh": "朋友的號碼只有一個，所以 $81$ 個可能之中只有 $1$ 個撥得通，第一次就撥中的概率是 $\\frac{1}{81}$。也可以逐位看：猜中一位的概率是 $\\frac{1}{9}$，兩位都要中就 $\\frac{1}{9} \\times \\frac{1}{9} = \\frac{1}{81}$。",
+        "en": "There is only one correct number, so exactly 1 of the 81 endings gets through and the probability is 1/81. Digit by digit: each digit is guessed right with probability 1/9, and both must be right, so 1/9 × 1/9 = 1/81.",
         "marking": "(1A)",
         "highlight": [
-         "\\frac{81}{100}"
+         "\\frac{1}{81}"
         ]
        }
       ],
       "traps": [
        {
-        "label": "以為只有一位要對",
-        "labelEn": "Assuming only one digit must be right",
-        "zh": "「第一次就撥通」要求兩位都對，所以是 $\\frac{81}{100}$ 而不是 $\\frac{9}{10}$。",
-        "en": "\"Succeeds on the first trial\" needs both digits correct, so it is 81/100, not 9/10."
+        "label": "每一位寫成 $\\frac{9}{10}$",
+        "labelEn": "Writing 9/10 for each digit",
+        "zh": "已知沒有 '0'，每一位只剩 $9$ 個可能，猜中其中一個是 $\\frac{1}{9}$，不是 $\\frac{9}{10}$。$\\frac{9}{10}$ 算的是「隨機按一個數字而它不是 0」，不是「按中朋友的號碼」。",
+        "en": "Given no '0', each digit has 9 candidates, so guessing it right is 1/9, not 9/10. 9/10 is the chance that a random digit is not 0 — not the chance of hitting the number."
        },
        {
-        "label": "把命中率寫成 $\\frac{10}{9}$",
-        "labelEn": "Writing 10/9",
-        "zh": "已知條件是「沒有 0」，所以可選的只有 9 個數字，命中率是 $\\frac{9}{10}$；寫成 $\\frac{10}{9}$ 表示大於 1，不可能。",
-        "en": "Given \"no 0\", only 9 digits are possible and the hit rate is 9/10; 10/9 would exceed 1, which is impossible."
+        "label": "只算一位",
+        "labelEn": "Counting only one digit",
+        "zh": "兩位都要對，所以是 $\\frac{1}{9} \\times \\frac{1}{9}$，不是 $\\frac{1}{9}$。",
+        "en": "Both digits must be right, so it is 1/9 × 1/9, not 1/9."
        }
       ],
       "tip": {
-       "zh": "「已知沒有 0」是一個條件，把樣本空間從 100 個縮到 $9 \\times 9 = 81$ 個。每位獨立，所以命中率直接相乘。",
-       "en": "\"There are no 0s\" is a condition: it shrinks the sample space from 100 endings to 9 × 9 = 81. The digits are independent, so the hit rates multiply."
+       "zh": "先分清楚題目問的是「按出某個範圍的號碼」還是「按中那一個號碼」。這題只有一個正確號碼，所以分母是全部可能號碼的數目（$9 \\times 9 = 81$），分子是 $1$。",
+       "en": "First decide whether the question asks for \"a number in some range\" or \"that one number\". Here only one ending is correct, so the denominator is the number of possible endings (9 × 9 = 81) and the numerator is 1."
       }
      }
     },
@@ -1123,7 +1123,7 @@
      "difficulty": 2,
      "stem": {
       "en": "Asha and Luna are asked to solve a problem independently. The probabilities that Asha and Luna solve the problem successfully are $\\frac{1}{2}$ and $\\frac{1}{3}$ respectively. Find the probability that",
-      "zh": "Asha 與 Luna 被要求獨立地解答一道題目。她們成功解答的機會分別是 $\\frac{1}{2}$ 與 $\\frac{1}{3}$。求"
+      "zh": "Asha 與 Luna 被要求獨立地解答一道題目。她們成功解答的概率分別是 $\\frac{1}{2}$ 與 $\\frac{1}{3}$。求"
      },
      "parts": [
       {
@@ -1181,7 +1181,7 @@
          "en": "Evaluate"
         },
         "math": "\\frac{1}{2} \\times \\frac{2}{3} = \\frac{1}{3}",
-        "zh": "$\\frac{1}{2} \\times \\frac{2}{3} = \\frac{1}{3}$。第二個因子是 Luna 答錯的機率，所以乘積只計入 Asha 答對的情況。",
+        "zh": "$\\frac{1}{2} \\times \\frac{2}{3} = \\frac{1}{3}$。第二個因子是 Luna 答錯的概率，所以乘積只計入 Asha 答對的情況。",
         "en": "1/2 × 2/3 = 1/3. The second factor is Luna's chance of being wrong, so the product counts only the cases where Asha is correct.",
         "marking": "(1A)",
         "highlight": [
@@ -1205,7 +1205,7 @@
       ],
       "traps": [
        {
-        "label": "(b) 忘了 Asha 的機會率不是 $\\frac{2}{3}$",
+        "label": "(b) 忘了 Asha 的概率不是 $\\frac{2}{3}$",
         "labelEn": "(b) forgetting Asha's rate is 1/2, not 2/3",
         "zh": "Asha 的成功率是 $\\frac{1}{2}$，所以失敗率是 $\\frac{1}{2}$；$\\frac{2}{3}$ 是 Luna 的失敗率，不要兩格都用。",
         "en": "Asha's success rate is 1/2 so her failure rate is 1/2; 2/3 is Luna's failure rate — do not use it twice."
@@ -1237,7 +1237,7 @@
      "difficulty": 2,
      "stem": {
       "en": "The probabilities that Leslie and Kenny have breakfast on a day are 0.9 and 0.4 respectively. Assume that their decisions are independent. Find the probability that",
-      "zh": "Leslie 與 Kenny 在某日吃早餐的機會分別是 0.9 與 0.4，並假設他們的決定互相獨立。求"
+      "zh": "Leslie 與 Kenny 在某日吃早餐的概率分別是 0.9 與 0.4，並假設他們的決定互相獨立。求"
      },
      "parts": [
       {
@@ -1294,7 +1294,7 @@
          "en": "Both eat: multiply and evaluate"
         },
         "math": "0.9 \\times 0.4 = 0.36",
-        "zh": "Leslie 吃早餐的機會是 $0.9$，Kenny 是 $0.4$。題目說兩人的決定獨立，所以「兩個都吃」是 $0.9 \\times 0.4 = 0.36$。",
+        "zh": "Leslie 吃早餐的概率是 $0.9$，Kenny 是 $0.4$。題目說兩人的決定獨立，所以「兩個都吃」是 $0.9 \\times 0.4 = 0.36$。",
         "en": "Leslie has breakfast with probability 0.9 and Kenny with probability 0.4. The decisions are independent, so \"both\" is 0.9 × 0.4 = 0.36.",
         "marking": "(1A)",
         "highlight": [
@@ -1308,7 +1308,7 @@
          "en": "Neither: multiply the failure rates and evaluate"
         },
         "math": "\\left(1 - 0.4\\right) \\times \\left(1 - 0.9\\right) = 0.6 \\times 0.1 = 0.06",
-        "zh": "Leslie 不吃的機會是 $1 - 0.9 = 0.1$，Kenny 不吃的機會是 $1 - 0.4 = 0.6$。兩個都不吃就是兩個失敗同時發生：$0.6 \\times 0.1 = 0.06$。",
+        "zh": "Leslie 不吃的概率是 $1 - 0.9 = 0.1$，Kenny 不吃的概率是 $1 - 0.4 = 0.6$。兩個都不吃就是兩個失敗同時發生：$0.6 \\times 0.1 = 0.06$。",
         "en": "Leslie skips with probability 1 − 0.9 = 0.1 and Kenny with probability 1 − 0.4 = 0.6. \"Neither\" is both failures together: 0.6 × 0.1 = 0.06.",
         "marking": "(1A)",
         "highlight": [
@@ -1378,7 +1378,7 @@
      "difficulty": 2,
      "stem": {
       "en": "Alfred plays chess with Tina and Nicole separately. The probability that he beats Tina is 0.5. The probability that he beats Nicole is 0.6. Assume that his performances in the two games are independent. Find the probability that",
-      "zh": "Alfred 分別與 Tina 及 Nicole 下棋。他擊敗 Tina 的機會是 0.5，擊敗 Nicole 的機會是 0.6，並假設他在兩盤棋的表現互相獨立。求"
+      "zh": "Alfred 分別與 Tina 及 Nicole 下棋。他擊敗 Tina 的概率是 0.5，擊敗 Nicole 的概率是 0.6，並假設他在兩盤棋的表現互相獨立。求"
      },
      "parts": [
       {
@@ -1656,12 +1656,12 @@
        {
         "label": "(c) 寫成 $\\frac{3}{6} \\times \\frac{3}{9}$",
         "labelEn": "(c) writing 3/6 × 3/9",
-        "zh": "那是「兩枝都是黃」的機會；「不多於一枝紅」還包括 0 枝紅（兩枝都是黃）和 1 枝紅。",
+        "zh": "那是「兩枝都是黃」的概率；「不多於一枝紅」還包括 0 枝紅（兩枝都是黃）和 1 枝紅。",
         "en": "That is the probability of \"both yellow\"; \"at most 1 red\" also includes no red at all (both yellow)."
        }
       ],
       "tip": {
-       "zh": "兩個花瓶＝兩個獨立步驟，所以永遠是「一邊的機會 × 另一邊的機會」。關鍵是看清楚題目的字眼決定「一邊要甚麼」：有白花就只能在 A 揀白。",
+       "zh": "兩個花瓶＝兩個獨立步驟，所以永遠是「一邊的概率 × 另一邊的概率」。關鍵是看清楚題目的字眼決定「一邊要甚麼」：有白花就只能在 A 揀白。",
        "en": "Two vases means two independent steps, so it is always \"one side's probability × the other side's probability\". The key is reading which side must supply what: only vase A has white, so the white must come from A."
       }
      }
@@ -1755,9 +1755,9 @@
       ],
       "traps": [
        {
-        "label": "(a) 以為兩個字母機會相同",
+        "label": "(a) 以為兩個字母概率相同",
         "labelEn": "(a) assuming the two letters are equally likely",
-        "zh": "'MIRROR' 有 $6$ 個字母而 'FIRE' 只有 $4$ 個，機會率不同；而且 'MIRROR' 中 R 出現 3 次，選到 R 的機會是 $\\frac{3}{6}$，不是 $\\frac{1}{6}$。",
+        "zh": "'MIRROR' 有 $6$ 個字母而 'FIRE' 只有 $4$ 個，概率不同；而且 'MIRROR' 中 R 出現 3 次，選到 R 的概率是 $\\frac{3}{6}$，不是 $\\frac{1}{6}$。",
         "en": "MIRROR has 6 letters and FIRE only 4, and R appears three times in MIRROR, so drawing R has probability 3/6, not 1/6."
        },
        {
@@ -1774,7 +1774,7 @@
        }
       ],
       "tip": {
-       "zh": "「選一個字母」是抽樣，不是等可能：重複出現的字母機會較大。寫之前先列出兩句話裏各字母的個數，並圈出共有的字母，「相同」的答案就只由這些共有字母貢獻。",
+       "zh": "「選一個字母」是抽樣，不是等可能：重複出現的字母概率較大。寫之前先列出兩句話裏各字母的個數，並圈出共有的字母，「相同」的答案就只由這些共有字母貢獻。",
        "en": "\"Choose a letter\" is sampling, not a uniform draw: repeated letters are more likely. List the letter counts of both words first and circle the shared letters; only those contribute to \"the same\"."
       }
      }
@@ -2084,7 +2084,7 @@
          "en": "Treat the given marble as already removed"
         },
         "math": "\\frac{13 - 1 - 4}{13 - 1} = \\frac{4}{12} = \\frac{1}{3}",
-        "zh": "袋內原本 $4 + 6 + 3 = 13$ 顆。已知第一顆是藍色，等於已經抽走 $1$ 顆藍球：剩下 $12$ 顆（藍球 $5$ 顆、紅球仍然是 $4$ 顆）。所以第二顆是紅色的機會是 $\\frac{4}{12} = \\frac{1}{3}$。",
+        "zh": "袋內原本 $4 + 6 + 3 = 13$ 顆。已知第一顆是藍色，等於已經抽走 $1$ 顆藍球：剩下 $12$ 顆（藍球 $5$ 顆、紅球仍然是 $4$ 顆）。所以第二顆是紅色的概率是 $\\frac{4}{12} = \\frac{1}{3}$。",
         "en": "The bag holds 4 + 6 + 3 = 13 marbles. \"The first is blue\" means one blue marble has already gone: 12 remain (5 blue, still 4 red). So the second is red with probability 4/12 = 1/3.",
         "marking": "(1M)",
         "highlight": [
@@ -2112,7 +2112,7 @@
          "en": "Two removed: the denominator becomes 11"
         },
         "math": "\\frac{4}{13 - 2} = \\frac{4}{11}",
-        "zh": "已知首兩顆都不是紅色，代表兩顆非紅球（藍或黃）已經被抽走：剩下 $13 - 2 = 11$ 顆，而紅球一顆都沒有被抽走，仍然是 $4$ 顆。所以第三顆是紅色的機會是 $\\frac{4}{11}$（已是最簡）。",
+        "zh": "已知首兩顆都不是紅色，代表兩顆非紅球（藍或黃）已經被抽走：剩下 $13 - 2 = 11$ 顆，而紅球一顆都沒有被抽走，仍然是 $4$ 顆。所以第三顆是紅色的概率是 $\\frac{4}{11}$（已是最簡）。",
         "en": "\"The first two are not red\" means two non-red marbles (blue or yellow) have gone: 13 − 2 = 11 remain, and no red has been removed, so there are still 4. So the third is red with probability 4/11, already in lowest terms.",
         "marking": "(1A)",
         "highlight": [
@@ -2136,7 +2136,7 @@
        {
         "label": "以為 (a) 的分子是 $\\frac{5}{12}$",
         "labelEn": "Assuming the numerator in (a) is 5/12",
-        "zh": "$\\frac{5}{12}$ 是「第二顆是藍色」的機會。題目問的是紅色，分子是 $4$。",
+        "zh": "$\\frac{5}{12}$ 是「第二顆是藍色」的概率。題目問的是紅色，分子是 $4$。",
         "en": "5/12 is the probability that the second is blue; the question asks for red, so the numerator is 4."
        }
       ],
@@ -2193,11 +2193,11 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "放回：兩次機會相同",
+         "zh": "放回：兩次概率相同",
          "en": "With replacement: the two chances are identical"
         },
         "math": "\\frac{7}{13} \\times \\frac{7}{13} = \\left(\\frac{7}{13}\\right)^2",
-        "zh": "盒內共 $2 + 4 + 7 = 13$ 個方塊，其中藍色 $7$ 個。放回抽取，第一個方塊抽完放回，所以第二次抽到藍色的機會仍是 $\\frac{7}{13}$，而且這次一定又是藍色：$\\frac{7}{13} \\times \\frac{7}{13} = \\left(\\frac{7}{13}\\right)^2$。",
+        "zh": "盒內共 $2 + 4 + 7 = 13$ 個方塊，其中藍色 $7$ 個。放回抽取，第一個方塊抽完放回，所以第二次抽到藍色的概率仍是 $\\frac{7}{13}$，而且這次一定又是藍色：$\\frac{7}{13} \\times \\frac{7}{13} = \\left(\\frac{7}{13}\\right)^2$。",
         "en": "There are 2 + 4 + 7 = 13 blocks, 7 of them blue. With replacement the first block goes back, so the second draw is still 7/13 and must also be blue: 7/13 × 7/13 = (7/13)².",
         "marking": "(1M)",
         "highlight": [
@@ -2225,7 +2225,7 @@
          "en": "Without replacement: both shrink"
         },
         "math": "\\frac{7}{13} \\times \\frac{6}{12}",
-        "zh": "第一個藍色方塊被抽走後不放回：盒內剩下 $13 - 1 = 12$ 個方塊，藍色由 $7$ 個變 $6$ 個（因為知道自己抽中藍色）。所以第二次的機會是 $\\frac{6}{12}$：$\\frac{7}{13} \\times \\frac{6}{12}$。",
+        "zh": "第一個藍色方塊被抽走後不放回：盒內剩下 $13 - 1 = 12$ 個方塊，藍色由 $7$ 個變 $6$ 個（因為知道自己抽中藍色）。所以第二次的概率是 $\\frac{6}{12}$：$\\frac{7}{13} \\times \\frac{6}{12}$。",
         "en": "Once the first blue block is gone and not replaced, 13 − 1 = 12 blocks remain and the blue count drops from 7 to 6 (we know the first was blue). So the second factor is 6/12: 7/13 × 6/12.",
         "marking": "(1M)",
         "highlight": [
@@ -2261,9 +2261,9 @@
         "en": "A blue block left, so blue drops from 7 to 6: the numerator must shrink too. Writing 7/12 is wrong."
        },
        {
-        "label": "(b) 以為兩次機會相同",
+        "label": "(b) 以為兩次概率相同",
         "labelEn": "(b) assuming the two chances are equal",
-        "zh": "兩次都是藍色的機會在放回時才是 $\\left(\\frac{7}{13}\\right)^2$；不放回時第二次一定比第一次難，所以 (b) 的答案應該小於 (a)：$\\frac{7}{26} \\approx 0.27 < 0.29$。",
+        "zh": "兩次都是藍色的概率在放回時才是 $\\left(\\frac{7}{13}\\right)^2$；不放回時第二次一定比第一次難，所以 (b) 的答案應該小於 (a)：$\\frac{7}{26} \\approx 0.27 < 0.29$。",
         "en": "Only with replacement gives (7/13)²; without replacement the second blue is harder, so (b) must be smaller than (a): 7/26 ≈ 0.27 < 0.29."
        }
       ],
@@ -2338,7 +2338,7 @@
          "en": "\"Exactly two cuts\": spell out the order"
         },
         "math": "\\frac{7}{9} \\times \\frac{2}{8}",
-        "zh": "「恰好切兩刀」代表：第一個是紅（切了，錯），第二個是黃（對，停止）。所以第一刀的機會是 $\\frac{7}{9}$；切走一個紅瓜後，剩下 $8$ 個，當中黃瓜仍是 $2$ 個，所以第二刀是黃的機會是 $\\frac{2}{8}$。相乘：$\\frac{7}{9} \\times \\frac{2}{8}$。",
+        "zh": "「恰好切兩刀」代表：第一個是紅（切了，錯），第二個是黃（對，停止）。所以第一刀的概率是 $\\frac{7}{9}$；切走一個紅瓜後，剩下 $8$ 個，當中黃瓜仍是 $2$ 個，所以第二刀是黃的概率是 $\\frac{2}{8}$。相乘：$\\frac{7}{9} \\times \\frac{2}{8}$。",
         "en": "\"Exactly two cuts\" means the first pick is red (a cut, a miss) and the second is yellow (a hit, stop). The first factor is 7/9; after a red watermelon leaves, 8 remain and there are still 2 yellow, so the second factor is 2/8. Multiply: 7/9 × 2/8.",
         "marking": "(1M)",
         "highlight": [
@@ -2352,7 +2352,7 @@
          "en": "Evaluate"
         },
         "math": "\\frac{7}{9} \\times \\frac{2}{8} = \\frac{14}{72} = \\frac{7}{36}",
-        "zh": "$\\frac{14}{72} = \\frac{7}{36}$。順帶一提 (a) 的 $\\frac{2}{9} = \\frac{8}{36}$ 比分數 $\\frac{7}{36}$ 大，符合「多切一刀機會更小」的直覺。",
+        "zh": "$\\frac{14}{72} = \\frac{7}{36}$。順帶一提 (a) 的 $\\frac{2}{9} = \\frac{8}{36}$ 比分數 $\\frac{7}{36}$ 大，符合「多切一刀概率更小」的直覺。",
         "en": "14/72 = 7/36. As a sanity check, part (a) gives 2/9 = 8/36, which is larger than 7/36 — as expected, needing more cuts is less likely.",
         "marking": "(1A)",
         "highlight": [
@@ -2394,7 +2394,7 @@
      "difficulty": 3,
      "stem": {
       "en": "Yannis wants to buy fresh milk from a supermarket. If the milk in a supermarket is sold out, she will go to another supermarket. The probabilities of the milk being sold out in supermarkets A, B and C are 0.7, 0.4 and 0.2 respectively. If Yannis goes to the supermarkets in the order of A, B and C, find the probability that she buys milk in",
-      "zh": "Yannis 想在超市買鮮奶。如果某間超市的鮮奶售罄，她會去另一間超市。超市 A、B 及 C 的鮮奶售罄的機會分別是 0.7、0.4 和 0.2。若 Yannis 按 A、B、C 的次序前往，求她在"
+      "zh": "Yannis 想在超市買鮮奶。如果某間超市的鮮奶售罄，她會去另一間超市。超市 A、B 及 C 的鮮奶售罄的概率分別是 0.7、0.4 和 0.2。若 Yannis 按 A、B、C 的次序前往，求她在"
      },
      "parts": [
       {
@@ -2477,13 +2477,13 @@
        {
         "label": "(a) 忘記乘 $1 - 0.4$",
         "labelEn": "(a) forgetting the factor 1 − 0.4",
-        "zh": "$0.7$ 只是「A 售罄」；若 B 也售罄她就去 C 了，所以一定要乘上 B 有貨的機會 $0.6$。",
+        "zh": "$0.7$ 只是「A 售罄」；若 B 也售罄她就去 C 了，所以一定要乘上 B 有貨的概率 $0.6$。",
         "en": "0.7 only covers \"A sold out\"; if B is also sold out she moves on to C, so B's in-stock factor 0.6 is essential."
        },
        {
         "label": "(b) 用 $0.2$ 而非 $1 - 0.2$",
         "labelEn": "(b) using 0.2 instead of 1 − 0.2",
-        "zh": "C 要「有貨」才買到，$0.2$ 是售罄的機會；用 $0.2$ 會把答案算成 $0.056$。",
+        "zh": "C 要「有貨」才買到，$0.2$ 是售罄的概率；用 $0.2$ 會把答案算成 $0.056$。",
         "en": "C must be in stock; 0.2 is the sold-out rate. Using 0.2 would give 0.056."
        },
        {
@@ -2494,7 +2494,7 @@
        }
       ],
       "tip": {
-       "zh": "逐間超市／逐個機會的鏈式題目，先用一句話列出「要在最後一間買到，前面每一間必須怎樣」。寫成列表後每一行就是一個因子，答案就是它們的乘積。",
+       "zh": "逐間超市／逐個概率的鏈式題目，先用一句話列出「要在最後一間買到，前面每一間必須怎樣」。寫成列表後每一行就是一個因子，答案就是它們的乘積。",
        "en": "For a chain of supermarkets or attempts, first write one sentence: \"to buy at the last one, what must happen at each earlier one?\" Each line of that list is one factor, and the answer is their product."
       }
      }
@@ -2587,7 +2587,7 @@
        }
       ],
       "tip": {
-       "zh": "兩人或多次「不要相同／不要指定結果」的題目，先算反面通常最快。反面若仍然複雜，就直接用乘法：第二人的條件機率是「剩下的機會」，例如 $\\frac{5}{6} \\times \\frac{5}{6}$。",
+       "zh": "兩人或多次「不要相同／不要指定結果」的題目，先算反面通常最快。反面若仍然複雜，就直接用乘法：第二人的條件概率是「剩下的概率」，例如 $\\frac{5}{6} \\times \\frac{5}{6}$。",
        "en": "For \"not the same\" or \"not a specified result\" with two or more trials, the complement is usually fastest. If the complement is still messy, multiply directly: the second person's conditional probability is what is left, e.g. 5/6 × 5/6."
       }
      }
@@ -2629,8 +2629,8 @@
        "part": "(b)",
        "math": "1 - \\frac{1}{16} = \\frac{15}{16}",
        "note": {
-        "zh": "反面是「4 次都是反面」",
-        "en": "The complement is \"4 tails\""
+        "zh": "反面事件是「4 次都是正面」",
+        "en": "The complement is \"4 heads\""
        }
       }
      ],
@@ -2667,12 +2667,12 @@
        {
         "part": "(b)",
         "title": {
-         "zh": "「至多」的相反數是「4 次」",
-         "en": "\"At most 3\" negates to \"all 4\""
+         "zh": "「至多 3 次」的反面是「4 次都是正面」",
+         "en": "\"At most 3\" leaves only \"4 heads\""
         },
         "math": "P(\\text{至多 3 次正面}) = 1 - \\frac{1}{16} = \\frac{15}{16}",
-        "zh": "「至多 $3$ 次正面」的相反事件是「$4$ 次都是反面」，而這正是 (a) 的情況（首面標籤不同、數值相同），所以 $P = 1 - \\frac{1}{16} = \\frac{15}{16}$。",
-        "en": "The opposite of \"at most 3 heads\" is \"4 tails\", which is exactly the situation in (a) with the labels swapped, so P = 1 − 1/16 = 15/16.",
+        "zh": "「至多 $3$ 次正面」＝ $0$、$1$、$2$、$3$ 次正面，唯一沒有包括的是「$4$ 次都是正面」，所以反面事件就是「$4$ 次都是正面」—— 這正是 (a) 已算出的 $\\frac{1}{16}$。所以 $P = 1 - \\frac{1}{16} = \\frac{15}{16}$。",
+        "en": "\"At most 3 heads\" covers 0, 1, 2 and 3 heads; the only case left out is \"4 heads\", so that is the complement — and (a) already found it to be 1/16. Hence P = 1 − 1/16 = 15/16.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{15}{16}"
@@ -2681,10 +2681,10 @@
       ],
       "traps": [
        {
-        "label": "把 (b) 寫成 $\\frac{15}{16}$ 但用 $\\binom{4}{1} + \\binom{4}{2} + \\binom{4}{3}$ 硬加",
-        "labelEn": "Adding C(4,1)+C(4,2)+C(4,3) term by term",
-        "zh": "這樣做要處理 $\\frac{4}{16} + \\frac{6}{16} + \\frac{4}{16}$，較易加錯，而且忘記了 (a) 已經告訴你 $\\frac{1}{16}$。用 $1 - \\frac{1}{16}$ 一行完成。",
-        "en": "This means handling 4/16 + 6/16 + 4/16, which is easy to add wrongly, and it ignores the fact that (a) already gave you 1/16. One line with 1 − 1/16 does the job."
+        "label": "用逐項相加代替反面",
+        "labelEn": "Adding the cases term by term instead of using the complement",
+        "zh": "$0$ 次正面也要算：$\\binom{4}{0}+\\binom{4}{1}+\\binom{4}{2}+\\binom{4}{3} = 1+4+6+4 = 15$ 份，即 $\\frac{15}{16}$。漏了 $\\binom{4}{0}$ 就只得 $\\frac{14}{16}$，而且加四項比 $1 - \\frac{1}{16}$ 容易出錯；(a) 已經給了你 $\\frac{1}{16}$。",
+        "en": "The 0-heads case must be included too: C(4,0)+C(4,1)+C(4,2)+C(4,3) = 1+4+6+4 = 15 sixteenths, i.e. 15/16. Leaving out C(4,0) gives only 14/16, and adding four terms is more error-prone than 1 − 1/16 — and (a) already handed you the 1/16."
        },
        {
         "label": "把 (a) 寫成 $\\frac{1}{8}$",
@@ -2706,7 +2706,7 @@
      "marks": 4,
      "difficulty": 2,
      "stem": {
-      "en": "A fair dice is thrown 3 times. Find the probability that",
+      "en": "A fair die is thrown 3 times. Find the probability that",
       "zh": "擲一枚均勻骰子 3 次。求"
      },
      "parts": [
@@ -2810,7 +2810,7 @@
        {
         "label": "(b) 寫成 $3 \\times \\frac{2}{6}$",
         "labelEn": "Writing 3 × 2/6 in (b)",
-        "zh": "$\\frac{2}{6}$ 是「某一次出現 $5$ 或 $6$」的機率，$3 \\times \\frac{2}{6} = 1$ 顯然不對。這是 18.2 的加法定律，但三個事件「第一次是 $5$ 或 $6$」互相重疊，不能直接相加。",
+        "zh": "$\\frac{2}{6}$ 是「某一次出現 $5$ 或 $6$」的概率，$3 \\times \\frac{2}{6} = 1$ 顯然不對。這是 18.2 的加法定律，但三個事件「第一次是 $5$ 或 $6$」互相重疊，不能直接相加。",
         "en": "2/6 is the probability for one specified throw, and 3 × 2/6 = 1 is obviously wrong. This is the addition law, but the three events \"the first throw is 5 or 6\" overlap and cannot simply be added."
        }
       ],
@@ -2871,7 +2871,7 @@
          "en": "Convert all three rates to \"fails\""
         },
         "math": "\\frac{1}{4}, \\quad \\frac{1}{2}, \\quad \\frac{4}{5}",
-        "zh": "題目給的是「通過」的概率，要算「全部不及格」就要先取每個的相反數：$\\frac{3}{4} \\to \\frac{1}{4}$、$\\frac{1}{2} \\to \\frac{1}{2}$、$\\frac{1}{5} \\to \\frac{4}{5}$。",
+        "zh": "題目給的是「通過」的概率，要算「全部不及格」就要先取每個的反面事件：$\\frac{3}{4} \\to \\frac{1}{4}$、$\\frac{1}{2} \\to \\frac{1}{2}$、$\\frac{1}{5} \\to \\frac{4}{5}$。",
         "en": "The question gives passing rates, so first take each complement: 3/4 → 1/4, 1/2 → 1/2, 1/5 → 4/5.",
         "marking": "(1M)",
         "highlight": [
@@ -2911,7 +2911,7 @@
        {
         "label": "(a) 直接用 $\\frac{3}{4} \\times \\frac{1}{2} \\times \\frac{1}{5}$",
         "labelEn": "Using 3/4 × 1/2 × 1/5 directly",
-        "zh": "這是「三部分全部通過」的概率，不是「全部不及格」。答題前先寫一句「我要算的是不及格」，再逐個取相反數。",
+        "zh": "這是「三部分全部通過」的概率，不是「全部不及格」。答題前先寫一句「我要算的是不及格」，再逐個取反面事件。",
         "en": "That is \"passes all three\", not \"fails all three\". Write the target sentence \"I want the FAIL rate\" first, then complement each rate."
        },
        {
@@ -2978,7 +2978,7 @@
          "en": "First write the on-time probabilities"
         },
         "math": "P(\\text{準時}) = 0.8, \\ 0.3, \\ 0.1",
-        "zh": "遲到的概率已給出，但「恰好兩人遲到」意味著有一人準時，所以要先取相反數：Sita 準時 $0.8$、Terrie 準時 $0.3$、Nika 準時 $0.1$。",
+        "zh": "遲到的概率已給出，但「恰好兩人遲到」意味著有一人準時，所以要先取反面事件：Sita 準時 $0.8$、Terrie 準時 $0.3$、Nika 準時 $0.1$。",
         "en": "The late probabilities are given, but \"exactly two are late\" means one person is on time, so take complements: Sita on time 0.8, Terrie on time 0.3, Nika on time 0.1.",
         "marking": "(1M)",
         "highlight": [
@@ -3046,7 +3046,7 @@
        {
         "label": "(b) 寫成 $1 - 0.572$",
         "labelEn": "Writing 1 − 0.572 in (b)",
-        "zh": "$0.572$ 是「恰好兩人」的機率，它的相反是「零或一人遲到」與「三人全遲到」的聯集，並不等於 (b)。",
+        "zh": "$0.572$ 是「恰好兩人」的概率，它的相反是「零或一人遲到」與「三人全遲到」的聯集，並不等於 (b)。",
         "en": "0.572 is \"exactly two late\"; its complement is \"fewer than two or all three\", which is not (b)."
        },
        {
@@ -3056,7 +3056,7 @@
         "en": "\"Exactly k of n\" has C(n,k) cases. Exactly two of three gives C(3,2) = 3 cases; list and label all three before computing."
        },
        {
-        "label": "忘記把「準時」的概率取相反數",
+        "label": "忘記把「準時」的概率取反面事件",
         "labelEn": "Forgetting to complement the on-time rates",
         "zh": "例如情況三誤寫成 $0.2 \\times 0.7 \\times 0.9 = 0.126$，等於說 Nika 也遲到，那是三人全遲到。寫乘法前先檢查每個因子對應誰、遲到還是準時。",
         "en": "For example, writing 0.2 × 0.7 × 0.9 = 0.126 for case 3 means Nika is also late — that is all three late. Check who each factor belongs to and whether it is late or on time."
@@ -3236,7 +3236,7 @@
      "answers": [
       {
        "part": "(a)",
-       "math": "\\frac{5}{9} = \\frac{2}{3}",
+       "math": "\\frac{5}{9}",
        "note": {
         "zh": "7 已被抽走，剩下 4,5,6,8,9",
         "en": "7 has been removed, leaving 4, 5, 6, 8, 9"
@@ -3273,9 +3273,9 @@
          "zh": "數出符合條件的塊",
          "en": "Count the favourable blocks"
         },
-        "math": "\\frac{5}{9} = \\frac{2}{3}",
-        "zh": "要和大於 $10$，第二塊必須大於 $10 - 7 = 3$，即 $4,5,6,8,9$ 共 $5$ 塊。所以概率是 $\\frac{5}{9}$，不需化簡。",
-        "en": "The sum must exceed 10, so the second block must exceed 10 − 7 = 3, i.e. 4, 5, 6, 8, 9 — five blocks. The probability is 5/9, already in lowest terms.",
+        "math": "\\frac{5}{9}",
+        "zh": "要和大於 $10$，第二塊必須大於 $10 - 7 = 3$，即 $4,5,6,8,9$ 共 $5$ 塊。所以概率是 $\\frac{5}{9}$。$5$ 與 $9$ 互質，已經是最簡分數，不要寫成 $\\frac{2}{3}$。",
+        "en": "The sum must exceed 10, so the second block must exceed 10 − 7 = 3, i.e. 4, 5, 6, 8, 9 — five blocks. The probability is 5/9. Since 5 and 9 are coprime this is already in lowest terms — it is not 2/3.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{5}{9}"
@@ -3329,8 +3329,8 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "en": "An examination consists of two papers, paper 1 and paper 2. There are 160 candidates in the examination. 120 candidates pass paper 1, 138 candidates pass paper 2 and 96 candidates pass both papers. If a candidate is randomly chosen from these candidates, find the probability that the candidate passes both papers given that he/she passes",
-      "zh": "一次考試分為試卷 $1$ 及試卷 $2$。共有 $160$ 名考生，其中 $120$ 名通過試卷 $1$、$138$ 名通過試卷 $2$、$96$ 名兩份都通過。若從這些考生中隨機選出一名，求已知他／她通過了下列哪一份試卷時，該考生兩份都通過的概率"
+      "en": "An examination consists of two papers, paper 1 and paper 2. There are 180 candidates in the examination. 120 candidates pass paper 1, 138 candidates pass paper 2 and 96 candidates pass both papers. If a candidate is randomly chosen from these candidates, find the probability that the candidate passes both papers given that he/she passes",
+      "zh": "一次考試分為試卷 $1$ 及試卷 $2$。共有 $180$ 名考生，其中 $120$ 名通過試卷 $1$、$138$ 名通過試卷 $2$、$96$ 名兩份都通過。若從這些考生中隨機選出一名，求已知他／她通過了下列哪一份試卷時，該考生兩份都通過的概率"
      },
      "parts": [
       {
@@ -3429,8 +3429,8 @@
          "en": "Then the conditional probability"
         },
         "math": "\\frac{96}{162} = \\frac{16}{27}",
-        "zh": "在這 $162$ 人之中，兩份都通過的有 $96$ 人，所以是 $\\frac{96}{162} = \\frac{16}{27}$。順帶一提，全體中只有一份通過的有 $40$ 人、一份都沒有通過的有 $16$ 人，$96+40+16 = 152$ 之外再加回兩份都通過的 $96$ 人剛好是 $160$，可作檢查。",
-        "en": "Of those 162, 96 pass both, so 96/162 = 16/27. As a check, 40 pass only one and 16 pass neither, and 120 + 138 − 96 = 162 counts correctly.",
+        "zh": "在這 $162$ 人之中，兩份都通過的有 $96$ 人，所以是 $\\frac{96}{162} = \\frac{16}{27}$。檢查四格：只通過試卷 $1$ 有 $120 - 96 = 24$ 人、只通過試卷 $2$ 有 $138 - 96 = 42$ 人、兩份都不通過有 $180 - 162 = 18$ 人，$24 + 42 + 96 + 18 = 180$ 剛好是全體人數。",
+        "en": "Of those 162, 96 pass both, so 96/162 = 16/27. Check the four groups: paper 1 only is 120 − 96 = 24, paper 2 only is 138 − 96 = 42, and neither is 180 − 162 = 18; 24 + 42 + 96 + 18 = 180, the whole cohort.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{16}{27}"
@@ -3453,8 +3453,8 @@
        {
         "label": "(c) 分母寫成 $160$",
         "labelEn": "Using 160 in (c)",
-        "zh": "$160$ 是全體考生，但條件已限定為「至少通過一份」，所以要用 $162$。",
-        "en": "160 is everyone, but the condition restricts to \"at least one paper passed\", so use 162."
+        "zh": "$180$ 是全體考生，但條件已限定為「至少通過一份」，所以要用 $162$。",
+        "en": "180 is everyone, but the condition restricts to \"at least one paper passed\", so use 162."
        }
       ],
       "tip": {
@@ -3514,7 +3514,7 @@
          "en": "Update step by step"
         },
         "math": "\\frac{9}{15} \\times \\frac{8}{14} \\times \\frac{7}{13}",
-        "zh": "總數 $15$ 塊。第一塊朱古力 $\\frac{9}{15}$；抽走一塊朱古力後，剩 $8$ 塊朱古力、$14$ 塊總數，機率 $\\frac{8}{14}$；再抽一塊朱古力後剩 $\\frac{7}{13}$。",
+        "zh": "總數 $15$ 塊。第一塊朱古力 $\\frac{9}{15}$；抽走一塊朱古力後，剩 $8$ 塊朱古力、$14$ 塊總數，概率 $\\frac{8}{14}$；再抽一塊朱古力後剩 $\\frac{7}{13}$。",
         "en": "There are 15 in total. First chocolate 9/15; after removing one chocolate there are 8 of 14; after another, 7 of 13.",
         "marking": "(1M)",
         "highlight": [
@@ -3637,7 +3637,7 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "寫出每個數字的機率",
+         "zh": "寫出每個數字的概率",
          "en": "Write the probability of each number"
         },
         "math": "P(1) = \\frac{3}{6}, \\quad P(2) = \\frac{2}{6}, \\quad P(3) = \\frac{1}{6}",
@@ -3683,7 +3683,7 @@
          "en": "First compute one arrangement"
         },
         "math": "\\left(\\frac{3}{6}\\right)^{2} \\times \\frac{2}{6}",
-        "zh": "次序定為「$1$、$1$、$2$」時，機率是 $\\left(\\frac{3}{6}\\right)^{2} \\times \\frac{2}{6}$。",
+        "zh": "次序定為「$1$、$1$、$2$」時，概率是 $\\left(\\frac{3}{6}\\right)^{2} \\times \\frac{2}{6}$。",
         "en": "For the order 1, 1, 2 the probability is (3/6)^2 × 2/6.",
         "marking": "(1M)",
         "highlight": [
@@ -3697,8 +3697,8 @@
          "en": "Multiply by the number of arrangements"
         },
         "math": "3 \\times \\left(\\frac{3}{6}\\right)^{2} \\times \\frac{2}{6} = \\frac{1}{4}",
-        "zh": "'2' 可以放在三個位置中的任何一個，共 $3$ 種排法，所以 $3 \\times \\left(\\frac{3}{6}\\right)^{2} \\times \\frac{2}{6} = 3 \\times \\frac{1}{4} \\times \\frac{1}{3} = \\frac{1}{4}$。\n\n另一個做法是組合：$\\frac{\\binom{3}{2}\\binom{2}{1}}{\\binom{6}{3}} = \\frac{6}{20} = \\frac{1}{4}$。",
-        "en": "The 2 can occupy any of the three positions, giving 3 arrangements, so 3 × (3/6)^2 × 2/6 = 3 × 1/4 × 1/3 = 1/4.\n\nAlternatively, by combinations: C(3,2)C(2,1)/C(6,3) = 6/20 = 1/4.",
+        "zh": "'2' 可以放在三個位置中的任何一個，共 $3$ 種排法，所以 $3 \\times \\left(\\frac{3}{6}\\right)^{2} \\times \\frac{2}{6} = 3 \\times \\frac{1}{4} \\times \\frac{1}{3} = \\frac{1}{4}$。",
+        "en": "The 2 can occupy any of the three positions, giving 3 arrangements, so 3 × (3/6)^2 × 2/6 = 3 × 1/4 × 1/3 = 1/4.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{1}{4}"
@@ -3796,7 +3796,7 @@
          "en": "Simplify"
         },
         "math": "\\frac{180}{1320} = \\frac{3}{22}",
-        "zh": "$\\frac{180}{1320} = \\frac{3}{22}$。順帶一提，這等於「$12$ 條中金條排在第 $3$ 位」的機率 $\\frac{\\binom{2}{1}\\binom{10}{2}}{\\binom{12}{3}} = \\frac{90}{220} = \\frac{9}{22}$ 的一半，因為金條可佔第 $3$ 或第 $4$ 位。",
+        "zh": "$\\frac{180}{1320} = \\frac{3}{22}$。順帶一提，這等於「$12$ 條中金條排在第 $3$ 位」的概率 $\\frac{\\binom{2}{1}\\binom{10}{2}}{\\binom{12}{3}} = \\frac{90}{220} = \\frac{9}{22}$ 的一半，因為金條可佔第 $3$ 或第 $4$ 位。",
         "en": "180/1320 = 3/22. As a check, this is half of C(2,1)C(10,2)/C(12,3) = 90/220 = 9/22, since a gold bar may also sit fourth.",
         "marking": "(1M+1A)",
         "highlight": [
@@ -3824,7 +3824,7 @@
          "en": "Third draws the remaining gold bar"
         },
         "math": "\\frac{10}{33} \\times \\frac{1}{10} = \\frac{1}{33}",
-        "zh": "前兩位用掉一條金條之後，盒內只剩 $1$ 條金條、共 $10$ 條，第三位抽到金條的機率是 $\\frac{1}{10}$。所以 $P = \\frac{10}{33} \\times \\frac{1}{10} = \\frac{1}{33}$。",
+        "zh": "前兩位用掉一條金條之後，盒內只剩 $1$ 條金條、共 $10$ 條，第三位抽到金條的概率是 $\\frac{1}{10}$。所以 $P = \\frac{10}{33} \\times \\frac{1}{10} = \\frac{1}{33}$。",
         "en": "After one gold bar is used, one gold remains among 10 bars, so the third draw is gold with probability 1/10. Hence P = 10/33 × 1/10 = 1/33.",
         "marking": "(1A)",
         "highlight": [
@@ -3909,7 +3909,7 @@
          "en": "\"Exactly 3\" = two non-yellow then a yellow"
         },
         "math": "\\frac{4+7}{16} = \\frac{12}{16}",
-        "zh": "盒內共 $16$ 張卡，不是黃色的有 $5 + 7 = 12$ 張，所以第一次抽不到黃色的機率是 $\\frac{12}{16}$。",
+        "zh": "盒內共 $16$ 張卡，不是黃色的有 $5 + 7 = 12$ 張，所以第一次抽不到黃色的概率是 $\\frac{12}{16}$。",
         "en": "There are 16 cards and 12 are not yellow, so the first draw misses with probability 12/16.",
         "marking": "(1M)",
         "highlight": [
@@ -4157,7 +4157,7 @@
          "en": "Write the two possible transfers"
         },
         "math": "\\text{轉入黑杯}: \\frac{5}{8}, \\quad \\text{轉入白杯}: \\frac{3}{8}",
-        "zh": "盒 $A$ 有 $8$ 隻杯（$3$ 白 $5$ 黑），所以轉入黑杯的機率是 $\\frac{5}{8}$，轉入白杯的機率是 $\\frac{3}{8}$。",
+        "zh": "盒 $A$ 有 $8$ 隻杯（$3$ 白 $5$ 黑），所以轉入黑杯的概率是 $\\frac{5}{8}$，轉入白杯的概率是 $\\frac{3}{8}$。",
         "en": "Box A holds 8 cups (3 white, 5 black), so a black cup is transferred with probability 5/8 and a white cup with probability 3/8.",
         "marking": "(1M)",
         "highlight": [
@@ -4213,7 +4213,7 @@
          "en": "White transferred, black drawn, then add"
         },
         "math": "\\frac{3}{8} \\times \\frac{2}{7} + \\frac{5}{8} \\times \\frac{4}{7} = \\frac{6}{56} + \\frac{20}{56} = \\frac{13}{28}",
-        "zh": "若轉入的是白杯（$\\frac{3}{8}$），就要抽到黑杯，機率仍是 $\\frac{2}{7}$。兩種情況相加：\n\n$\\frac{6}{56} + \\frac{20}{56} = \\frac{26}{56} = \\frac{13}{28}$。",
+        "zh": "若轉入的是白杯（$\\frac{3}{8}$），就要抽到黑杯，概率仍是 $\\frac{2}{7}$。兩種情況相加：\n\n$\\frac{6}{56} + \\frac{20}{56} = \\frac{26}{56} = \\frac{13}{28}$。",
         "en": "If a white cup is transferred (3/8), a black draw is needed, still 2/7. Adding the two cases:\n\n6/56 + 20/56 = 26/56 = 13/28.",
         "marking": "(1A)",
         "highlight": [
@@ -4340,7 +4340,7 @@
          "en": "Conditional probability: the denominator becomes part (a)"
         },
         "math": "P(\\text{工作} \\mid \\text{外賣}) = \\frac{\\frac{5}{7} \\times 0.6}{\\frac{16}{35}} = \\frac{\\frac{3}{7}}{\\frac{16}{35}} = \\frac{3}{7} \\times \\frac{35}{16} = \\frac{15}{16}",
-        "zh": "已知「叫外賣」，能發生的背景只有兩種，所以分子是「工作而叫外賣」的機率 $\\frac{5}{7} \\times 0.6 = \\frac{3}{7}$，分母是 (a) 的 $\\frac{16}{35}$：\n\n$\\frac{3}{7} \\div \\frac{16}{35} = \\frac{3}{7} \\times \\frac{35}{16} = \\frac{15}{16}$。",
+        "zh": "已知「叫外賣」，能發生的背景只有兩種，所以分子是「工作而叫外賣」的概率 $\\frac{5}{7} \\times 0.6 = \\frac{3}{7}$，分母是 (a) 的 $\\frac{16}{35}$：\n\n$\\frac{3}{7} \\div \\frac{16}{35} = \\frac{3}{7} \\times \\frac{35}{16} = \\frac{15}{16}$。",
         "en": "Given \"orders delivery\", the only backgrounds are the two cases, so the numerator is \"works and orders\" = 5/7 × 0.6 = 3/7 and the denominator is part (a), 16/35:\n\n3/7 ÷ 16/35 = 3/7 × 35/16 = 15/16.",
         "marking": "(1A)",
         "highlight": [
@@ -4601,7 +4601,7 @@
        {
         "label": "(b) 只比較而不求 Kathy 的概率就下結論",
         "labelEn": "Concluding in (b) without computing Kathy",
-        "zh": "要說服別人，必須把兩邊的機率都算出來。加上 $\\frac{17}{28} + \\frac{11}{28} = 1$ 這個檢查，論據才完整。",
+        "zh": "要說服別人，必須把兩邊的概率都算出來。加上 $\\frac{17}{28} + \\frac{11}{28} = 1$ 這個檢查，論據才完整。",
         "en": "To justify a claim you must compute both sides. Adding the check 17/28 + 11/28 = 1 makes the argument complete."
        },
        {
@@ -4613,7 +4613,7 @@
        {
         "label": "寫成 $\\frac{1}{2}$ 或 $\\frac{3}{8}$",
         "labelEn": "Writing 1/2 or 3/8",
-        "zh": "$\\frac{3}{8}$ 只是「第一次就中」的機率，漏了第 $3$、$5$ 次的情況；$\\frac{1}{2}$ 則是誤以為兩人對稱。",
+        "zh": "$\\frac{3}{8}$ 只是「第一次就中」的概率，漏了第 $3$、$5$ 次的情況；$\\frac{1}{2}$ 則是誤以為兩人對稱。",
         "en": "3/8 counts only winning on the very first draw and misses turns 3 and 5; 1/2 wrongly assumes the two players are symmetric."
        }
       ],
@@ -4993,15 +4993,15 @@
    "en": "When both must happen and they are independent, multiply: $P(A \\cap B) = P(A) \\times P(B)$."
   },
   {
-   "zh": "畫樹狀圖睇清楚：由左至右，每條分支寫該步的概率，最右的葉就是一條完整結果；路徑的機會就是沿途相乘。",
+   "zh": "畫樹狀圖睇清楚：由左至右，每條分支寫該步的概率，最右的葉就是一條完整結果；路徑的概率就是沿途相乘。",
    "en": "Draw a tree to see it: read left to right, put each step's probability on its branch, and each leaf on the right is one complete outcome; the probability of a path is the product along it."
   },
   {
-   "zh": "四條路徑的機會若全部相同（equally likely），只要數有利路徑的條數；若不相同，千萬不要靠數，一定要逐條相乘。",
+   "zh": "四條路徑的概率若全部相同（equally likely），只要數有利路徑的條數；若不相同，千萬不要靠數，一定要逐條相乘。",
    "en": "If the four path probabilities are all the same (equally likely), just count the favourable paths; if they are not, never count — multiply along each path."
   },
   {
-   "zh": "第二件事的機會被第一件事影響（不放回抽取、把球轉移到另一個袋、盒子被換掉），就要改用條件概率 $P(A \\cap B) = P(A) \\times P(B \\mid A)$。",
+   "zh": "第二件事的概率被第一件事影響（不放回抽取、把球轉移到另一個袋、盒子被換掉），就要改用條件概率 $P(A \\cap B) = P(A) \\times P(B \\mid A)$。",
    "en": "If the second event's chance is affected by the first (drawing without replacement, transferring a ball into another bag, a box being swapped), use the conditional form $P(A \\cap B) = P(A) \\times P(B \\mid A)$."
   },
   {

@@ -2421,6 +2421,26 @@ ok(q183("ch18-3-sc").answers.filter((a) => a.tf === false).map((a) => a.part).jo
   "判斷題：錯的是 (a)、(b)、(e)（漏情況、反面寫錯、約簡出錯）");
 ok(q183("ch18-3-l1-1").answers[0].math === "\\frac{1}{2} \\times \\frac{1}{6} = \\frac{1}{12}",
   "L1-1 官方答案 1/12（硬幣 × 骰子，獨立事件相乘）");
+/* 2026-10-20 老師審閱：以下五題原本有數學錯誤，斷言它們不會再走回頭路。 */
+ok(q183("ch18-3-l1-3").answers[0].math === "\\frac{1}{9} \\times \\frac{1}{9} = \\frac{1}{81}",
+  "L1-3 是 1/81（81 個可能號碼只有 1 個正確），不是「按出不含 0 的號碼」的 81/100");
+ok(!/\\frac\{9\}\{10\}/.test(JSON.stringify(q183("ch18-3-l1-3").solution.steps)),
+  "L1-3 的題解步驟不再出現 9/10（那是「按出非 0 數字」的概率；常犯錯誤可以提）");
+ok(/4 次都是正面/.test(q183("ch18-3-l2-2").answers[1].note.zh) &&
+  !/4 次都是反面/.test(JSON.stringify(q183("ch18-3-l2-2"))),
+  "L2-2(b) 反面事件是「4 次都是正面」，不是「4 次都是反面」");
+ok(/"4 heads"/.test(q183("ch18-3-l2-2").answers[1].note.en),
+  "L2-2(b) 英文反面事件寫成 4 heads");
+ok(q183("ch18-3-l2-7").answers[0].math === "\\frac{5}{9}" &&
+  q183("ch18-3-l2-7").solution.steps[1].math === "\\frac{5}{9}" &&
+  !/=\s*\\frac\{2\}\{3\}/.test(JSON.stringify(q183("ch18-3-l2-7"))),
+  "L2-7(a) 答案是 5/9（最簡），不會再出現「5/9 = 2/3」");
+ok(q183("ch18-3-l2-8").stem.zh.indexOf("$180$") > 0 &&
+  q183("ch18-3-l2-8").stem.en.indexOf("180") > 0,
+  "L2-8 總人數改為 180（原本 160 但「至少一份」要 120 + 138 − 96 = 162 人）");
+ok(!/binom\{6\}\{3\}/.test(JSON.stringify(q183("ch18-3-l2-10").solution)) &&
+  !/combinations/i.test(JSON.stringify(q183("ch18-3-l2-10").solution)),
+  "L2-10(b) 已刪除「有放回卻用 C(6,3)」的錯誤另解（排列數 C(3,2) 本身仍然正確）");
 ok(q183("ch18-3-l1-19").answers[1].math === "\\frac{7}{13} \\times \\frac{6}{12} = \\frac{7}{26}",
   "L1-19(b) 官方答案 7/26（不放回，分母由 13 變 12）");
 ok(q183("ch18-3-l2-5").answers[0].math ===

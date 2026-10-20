@@ -104,7 +104,9 @@ Total: **39 questions, 143 marks** (the Section Check counts as one question wit
   has already been removed.
 - **L2-21(a)** given the first block is 7, the remaining nine blocks are
   $\{0,1,2,3,4,5,6,8,9\}$; 7 itself is gone, so only $4,5,6,8,9$ work → $\frac{5}{9}$.
-- **L2-22(c)** "at least one paper" is $120+138-96=162$ (18.2 addition law), not $258$ and not $160$.
+- **L2-22(c)** "at least one paper" is $120+138-96=162$ (18.2 addition law), not $258$ and not $180$.
+  The cohort size was corrected from 160 to 180 — see "Corrections after teacher review" below,
+  because 162 candidates passing at least one paper cannot sit inside a cohort of 160.
 - **L2-23(b)** the complement has **two** cases (all chocolate / all butter), so both are subtracted.
 - **L2-25(b)** the third student faces $1$ gold bar in $10$, because one has already been drawn.
 - **L2-26(b)** "at most 3 draws" is the sum of the 1-, 2- and 3-draw cases, not $1-\frac{11}{70}$
@@ -117,6 +119,92 @@ Total: **39 questions, 143 marks** (the Section Check counts as one question wit
   $\frac{17}{28}$, confirmed from `sol_png/image505.png`.
 - **CT-34** "at the same time" means unordered draws, so there are $\binom{8}{2}=28$ outcomes, not
   $8\times7=56$; the largest possible sum is $7+8=15$.
+
+## Corrections after teacher review (2026-10-20)
+
+Five genuine maths errors were found and fixed. Each is now pinned by an assertion in
+`tools/smoke_test.js`.
+
+### 1. L1-3 was answering a different question (81/100 → 1/81)
+
+The site had `9/10 × 9/10 = 81/100` with "each digit has probability 9/10". That is the
+probability that a **randomly dialled ending contains no 0**, not the probability of **hitting the
+friend's number**. Since Timothy knows there is no `0`, each position has 9 candidates and exactly
+one of them is correct, so each digit is guessed with probability $1/9$ and the answer is
+$1/9 \times 1/9 = 1/81$ (equivalently: 1 correct ending out of $9\times9 = 81$).
+
+The question, the answer, both solution steps, both traps and the tip were rewritten; the traps now
+explicitly contrast "$9/10$ = the digit is not 0" with "$1/9$ = the digit is right".
+
+### 2. L2-2(b) named the wrong complement
+
+"At most 3 heads" = 0, 1, 2 or 3 heads, so its complement is **4 heads**, not "4 tails". The two
+happen to have the same value $1/16$, which is exactly why the mistake survived. Both the answer
+note and the solution step are rewritten, and the first trap was replaced because it listed
+$\binom{4}{1}+\binom{4}{2}+\binom{4}{3}$ — it dropped the 0-heads case and so summed to $14/16$.
+
+### 3. L2-7(a) claimed 5/9 = 2/3
+
+$5/9$ is already in lowest terms. The spurious `= \frac{2}{3}` was in both the answer and the
+solution step. This mattered twice over: S19 derives the input-box answer from the **last**
+segment of `answers[].math`, so students were being marked against `2/3` for a correct answer of
+`5/9`. Removing the tail fixes the displayed answer **and** the accepted input.
+
+### 4. L2-8 was internally inconsistent (cohort 160 → 180)
+
+120 pass paper 1, 138 pass paper 2 and 96 pass both, so by the addition law
+$120+138-96 = 162$ pass at least one — more than the stated 160 candidates. A garbled note
+("$96+40+16 = 152$ …") had been written to paper over it.
+
+The cohort size was changed to **180**. This is the minimal repair: (a) $96/120 = 4/5$,
+(b) $96/138 = 16/23$ and (c) $96/162 = 16/27$ do not involve the total at all, so every official
+answer is unchanged. The note now shows the four-group check that is only possible with the
+corrected total: $24 + 42 + 96 + 18 = 180$.
+
+### 5. L2-10(b) offered an invalid and arithmetically wrong alternative
+
+The step ended with "alternatively, by combinations:
+$\frac{\binom{3}{2}\binom{2}{1}}{\binom{6}{3}} = \frac{6}{20} = \frac{1}{4}$". Two faults:
+$\frac{6}{20} = \frac{3}{10}$, not $\frac14$; and the question is **with replacement**, where
+$\binom{n}{r}$ (an unordered selection without replacement) simply does not apply. The sentence was
+deleted from both languages. The $\binom{3}{2} = 3$ in the main method is unaffected — that counts
+arrangements of the three draws, which is legitimate.
+
+### Text contradictions
+
+- **c04** said "「或者」就沿一條路徑相乘" / "\"or\" means multiplying along one path" — backwards.
+  Multiplying along one path is **and**; different paths are **or**, so they are added. Rewritten
+  in both languages.
+- **CE4(c)** said "分子記得先加後減的次序" / "Add before subtracting", but the numerator only
+  multiplies and adds ($12 + 20$). Rewritten as "先各自相乘，再相加" / "Multiply each case first,
+  then add".
+
+### Terminology unified
+
+The file mixed 「機會」 (68), 「機率」 (16) and 「概率」 (147); the DSE textbook term is
+**概率**, so 機會／機率 were swept to 概率. Two guards were needed:
+
+- **「最後一次機會」** (L1-20) is the idiom "last chance", not a probability — protected during the
+  sweep and left untouched.
+- **「機會率」** would have become the non-word 「概率率」, so it was mapped to 概率 first.
+- 「等機會／非等機會」 (equally likely) became **「等可能／非等可能」**, the standard HK term, so
+  that the global sweep did not produce 「等概率」.
+
+「相反數」 (5 occurrences) → **「反面事件」**; 相反數 means "additive inverse" and is wrong here.
+
+### English tightened for weaker readers
+
+- CE1(b) `are at least one Chinese book.` → `at least one is a Chinese book.`
+- `a fair dice` → `a fair die` (L1-1, L2-3); `each dice misses 5` → `each die misses 5`.
+  The plural `two fair dice` is kept as is.
+- c01 `work out "neither" first` → `work out "none" first` — with 3 or more trials the complement
+  is "none", not "neither".
+- `do not affect each other` (4 places) → `are independent, so multiply their probabilities
+  directly`, matching the DSE keyword.
+- c02 gained a fixed cue for `given that`: work inside the given group, denominator = its size,
+  numerator = those matching both. c04's transfer-question tip was merged into one three-step
+  routine (list the first draw → update the second bag → multiply each case, then add), which
+  L2-14 already followed.
 
 ## Tree diagrams (added 2026-10-20, teacher request)
 
