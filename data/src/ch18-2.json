@@ -3268,8 +3268,8 @@
        "part": "(c)",
        "math": "1 - \\frac{3}{8} - \\frac{1}{8} = \\frac{1}{2}",
        "note": {
-        "zh": "反面＝沒有正面或只有一次正面",
-        "en": "Complement: no head or exactly one head"
+        "zh": "數幾組就減幾次：反面在樹上分兩組",
+        "en": "Subtract once per group: the complement is two groups on the tree"
        }
       }
      ],
@@ -3278,60 +3278,60 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "列出全部 8 個結果",
-         "en": "List all eight outcomes"
+         "zh": "先畫樹狀圖：三次擲幣共 8 個葉",
+         "en": "Draw the tree first: eight leaves for three tosses"
         },
-        "math": "2^3 = 8",
-        "zh": "三次擲幣共有 $2^3 = 8$ 個結果：HHH、HHT、HTH、HTT、THH、THT、TTH、TTT。「三次都是正面」只有 HHH 一個，所以概率是 $\\frac{1}{8}$。",
-        "en": "Three tosses give 2³ = 8 outcomes: HHH, HHT, HTH, HTT, THH, THT, TTH, TTT. Only HHH has three heads, so the probability is 1/8.",
+        "math": "\\begin{gathered}\\begin{array}{cccccccccccccccc}&&&H&&&&&&&&&T&&&\\\\&&&\\diagup&&\\diagdown&&&&&\\diagup&&\\diagdown&&\\\\&H&&&&&T&&&H&&&&&T&\\\\\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown\\\\H&&T&&H&&T&&H&&T&&H&&T&\\end{array} \\\\ [14pt] \\text{每個葉} = \\frac{1}{2} \\times \\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{8}\\end{gathered}",
+        "zh": "先畫樹狀圖，之後全部答案都在樹上讀。每次擲幣分 $H$（正面）與 $T$（反面）兩條分支，各佔 $\\frac{1}{2}$；擲三次之後樹底有 $2^3 = 8$ 個葉，每個葉就是一條完整結果（例如 $HHT$），概率是 $\\frac{1}{2}\\times\\frac{1}{2}\\times\\frac{1}{2} = \\frac{1}{8}$。「三次都是正面」只有最左邊的 $HHH$ 一個葉，所以概率是 $\\frac{1}{8}$。",
+        "en": "Draw the tree first — every later answer is read off it. Each toss splits into an H branch and a T branch, each of probability 1/2; after three tosses there are 2³ = 8 leaves at the bottom, each one a complete sequence (for example HHT) with probability 1/2 × 1/2 × 1/2 = 1/8. Only the leftmost leaf HHH has three heads, so the probability is 1/8.",
         "marking": "(1A)",
         "highlight": [
-         "\\frac{1}{8}"
+         "\\text{每個葉} = \\frac{1}{2} \\times \\frac{1}{2} \\times \\frac{1}{2} = \\frac{1}{8}"
         ]
-       },
-       {
+        },
+        {
         "part": "(b)",
         "title": {
-         "zh": "數恰好兩次正面",
-         "en": "Count exactly two heads"
+         "zh": "在樹上數「恰好兩次正面」的葉",
+         "en": "Count the leaves with exactly two heads"
         },
         "math": "\\frac{3}{8}",
-        "zh": "「恰好兩次正面」有 HHT、HTH、THH 三個結果，所以概率是 $\\frac{3}{8}$。",
-        "en": "\"Exactly two heads\" covers HHT, HTH and THH, three outcomes, so the probability is 3/8.",
+        "zh": "在樹上逐個葉數，「恰好兩次正面」是 $HHT$、$HTH$、$THH$ 三個葉，每個 $\\frac{1}{8}$，合共 $3 \\times \\frac{1}{8} = \\frac{3}{8}$。注意它們分散在樹上三處不同分支，並不是同一條分支。",
+        "en": "Reading the leaves one by one, \"exactly two heads\" is HHT, HTH and THH, three leaves of 1/8 each, so 3 × 1/8 = 3/8. Note they sit in three different branches of the tree, not in one.",
         "marking": "(1A)",
         "highlight": [
          "\\frac{3}{8}"
         ]
-       },
-       {
+        },
+        {
         "part": "(c)",
         "title": {
-         "zh": "「至多一次」用反面",
-         "en": "\"At most one\" by complement"
+         "zh": "看樹：反面是分開的兩組，要減兩次",
+         "en": "From the tree: the complement is two separate groups"
         },
-        "math": "1 - \\frac{3}{8} - \\frac{1}{8}",
-        "zh": "「至多一次正面」是「兩次正面或三次正面」的反面，用 $1$ 減去 (b) 與 (a) 兩項。",
-        "en": "\"At most one head\" is the complement of \"two or three heads\", so subtract parts (b) and (a) from 1.",
+        "math": "\\begin{array}{cccccccccccccccc}&&&H&&&&&&&&&T&&&\\\\&&&\\diagup&&\\diagdown&&&&&\\diagup&&\\diagdown&&\\\\&H&&&&&T&&&H&&&&&T&\\\\\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown&\\diagup&\\diagdown\\\\H&&T&&H&&T&&H&&T&&H&&T&\\end{array}",
+        "zh": "再看一次樹：「至多一次正面」是 $HTT$、$THT$、$TTH$、$TTT$ 這 $4$ 個葉。反過來說，反面「兩次或三次正面」在樹上分成兩組 ——「$3$ 次正面」是 $HHH$ 一個葉（第一組），「恰好 $2$ 次正面」是 $HHT$、$HTH$、$THH$（第二組）。因為兩組是分開的，反面不能用一個分數代表，所以要用 $1$ 減兩次，即減 (b) 再減 (a)。",
+        "en": "Look at the tree again: \"at most one head\" is the four leaves HTT, THT, TTH and TTT. Put the other way round, the complement \"two or three heads\" splits into two groups on the tree — three heads is the single leaf HHH (one group), and exactly two heads is HHT, HTH and THH (a second group). Because the two groups are separate, the complement cannot be written as one single probability, so we subtract twice from 1: part (b) first, then part (a).",
         "marking": "(1M)",
         "highlight": [
-         "1 - \\frac{3}{8} - \\frac{1}{8}"
+         "H ,  , T ,  , H ,  , T ,  , H ,  , T ,  , H ,  , T"
         ]
-       },
-       {
+        },
+        {
         "part": "(c)",
         "title": {
-         "zh": "計算，並用直接數法核對",
-         "en": "Evaluate and check by counting"
+         "zh": "兩組各減一次，並用直接數法核對",
+         "en": "Subtract each group once, then check by counting"
         },
-        "math": "1 - \\frac{4}{8} = \\frac{1}{2}",
-        "zh": "$1 - \\frac{4}{8} = \\frac{1}{2}$。直接數：沒有正面（TTT）1 個，一次正面（HTT、THT、TTH）3 個，共 4 個，$\\frac{4}{8} = \\frac{1}{2}$，一致。",
-        "en": "1 − 4/8 = 1/2. Counting directly: no head (TTT) plus exactly one head (HTT, THT, TTH) makes four outcomes, and 4/8 = 1/2, the same.",
+        "math": "1 - \\underbrace{\\frac{1}{8}}_{\\text{3 次正面}} - \\underbrace{\\frac{3}{8}}_{\\text{恰好 2 次正面}} = \\frac{4}{8} = \\frac{1}{2}",
+        "zh": "$1 - \\underbrace{\\frac{1}{8}}_{\\text{3 次正面}} - \\underbrace{\\frac{3}{8}}_{\\text{恰好 2 次正面}} = 1 - \\frac{4}{8} = \\frac{1}{2}$。核對：直接數樹上的葉，$TTT$ 一個加「恰好一次正面」$HTT$、$THT$、$THH$ 三個，共 $4$ 個，$\\frac{4}{8} = \\frac{1}{2}$，兩種做法一致。",
+        "en": "1 − 1/8 (three heads) − 3/8 (exactly two heads) = 1 − 4/8 = 1/2. Check by counting the leaves directly: TTT plus the three leaves with exactly one head HTT, THT, TTH makes 4, and 4/8 = 1/2 — the two routes agree.",
         "marking": "(1A)",
         "highlight": [
-         "1 - \\frac{4}{8} = \\frac{1}{2}"
+         "\\frac{4}{8} = \\frac{1}{2}"
         ]
-       }
-      ],
+        }
+        ],
       "traps": [
        {
         "label": "(c) 把「至多」當「恰好」",
@@ -3340,16 +3340,22 @@
         "en": "\"At most one head\" includes zero heads (TTT); counting only the three \"exactly one\" outcomes misses TTT and gives 3/8."
        },
        {
+        "label": "(c) 反面只當成一組",
+        "labelEn": "(c) treating the complement as one group",
+        "zh": "在樹上反面是分開的兩組：「$3$ 次正面」只有 $HHH$ 一個葉，「恰好 $2$ 次正面」是另外三個葉。若只減 $\\frac{3}{8}$，就漏掉 $HHH$ 的 $\\frac{1}{8}$，答案變成 $\\frac{5}{8}$。",
+        "en": "On the tree the complement is two separate groups: three heads is the single leaf HHH, exactly two heads is three other leaves. Subtracting only 3/8 drops the 1/8 from HHH and gives 5/8."
+        },
+        {
         "label": "分母不當",
         "labelEn": "Wrong denominator",
         "zh": "三次擲幣的樣本空間是 8 個結果，不是 6（骰子）也不是 3（次數）。",
         "en": "The sample space of three tosses has eight outcomes — not six (as for a dice) and not three (the number of tosses)."
-       }
-      ],
-      "tip": {
-       "zh": "三次硬幣先寫出 $2^3 = 8$ 個結果（HHH 至 TTT）；「至多 $k$ 次」用反面（$1$ 減「多於 $k$ 次」）最快。",
-       "en": "For three tosses write the 2³ = 8 outcomes (HHH to TTT); \"at most k\" is fastest by complement (1 − P(more than k))."
-      }
+        }
+        ],
+        "tip": {
+        "zh": "多次試驗先畫樹狀圖，之後的答案全部在樹上數葉：「至多／至少」用反面時，要數反面在樹上佔幾組，幾組就要減幾次 —— 這題反面是兩組，所以減兩次（見 L2 Q26 對照，那題反面只有一組，只減一次）。",
+        "en": "For repeated trials draw the tree first and count leaves afterwards. When you use the complement for \"at most / at least\", count how many groups the complement occupies on the tree and subtract once per group: here the complement is two groups, so two subtractions (compare Level 2 Q26, where the complement is a single group and only one subtraction is needed)."
+        }
      }
     },
     {
@@ -3651,8 +3657,8 @@
        "part": "(a)",
        "math": "1 - 0.15 = 0.85",
        "note": {
-        "zh": "反面：兩份都不合格是 0.15",
-        "en": "Complement: passing none is 0.15"
+        "zh": "反面：樹上唯一「不過、不過」的葉，機會 0.15",
+        "en": "Complement: the single (fail, fail) leaf on the tree, probability 0.15"
        }
       },
       {
@@ -3669,26 +3675,26 @@
        {
         "part": "(a)",
         "title": {
-         "zh": "「至少一份」用反面",
-         "en": "\"At least one\" by complement"
+         "zh": "先畫樹狀圖：兩份試卷共 4 個葉",
+         "en": "Draw the tree first: four leaves for the two papers"
         },
-        "math": "1 - 0.15",
-        "zh": "「至少合格一份」是「兩份都不合格」的反面，所以用 $1$ 減去 $0.15$。",
-        "en": "\"Passes at least one\" is the complement of \"passes none\", so subtract 0.15 from 1.",
+        "math": "\\begin{gathered}\\begin{array}{cccccccc}&&&\\text{試卷}&&&&\\\\&&&\\diagup&&\\diagdown&&\\\\&&\\text{卷一}&&&&\\text{卷二}&\\\\&\\diagup&&\\diagdown&&\\diagup&&\\diagdown\\\\\\checkmark&&\\times&&\\checkmark&&\\times&\\end{array} \\\\ [12pt] \\checkmark = \\text{合格},\\quad \\times = \\text{不合格},\\quad 2 \\times 2 = 4 \\text{ 個葉}\\end{gathered}",
+        "zh": "先畫樹狀圖，之後的答案都在樹上讀。卷一分「合格／不合格」兩條分支，卷二也分兩條，兩個事件合起來共 $2 \\times 2 = 4$ 個葉：過過、過不過、不通過、不通不過。（樹上 $\\checkmark$ 表示合格，$\\times$ 表示不合格。）",
+        "en": "Draw the tree first — every later answer is read off it. Paper 1 splits into pass and fail, and so does paper 2, giving 2 × 2 = 4 leaves: pass-pass, pass-fail, fail-pass, fail-fail. (On the tree ✓ means pass and × means fail.)",
         "marking": "(1M)",
         "highlight": [
-         "1 - 0.15"
+         "2 \\times 2 = 4 \\text{ 個葉}"
         ]
        },
        {
         "part": "(a)",
         "title": {
-         "zh": "計算",
-         "en": "Evaluate"
+         "zh": "反面只有一個葉，所以只減一次",
+         "en": "The complement is one leaf, so subtract once"
         },
-        "math": "1 - 0.15 = 0.85",
-        "zh": "$1 - 0.15 = 0.85$，所以至少合格一份的概率是 $0.85$。",
-        "en": "1 − 0.15 = 0.85, so the probability of passing at least one paper is 0.85.",
+        "math": "\\underbrace{\\text{不過、不過}}_{\\text{唯一「兩份都不合格」的葉}} \\quad \\Rightarrow \\quad 1 - 0.15 = 0.85",
+        "zh": "題目已給「兩份都不合格」$= 0.15$，在樹上它對應唯一的一個葉（不過、不過），所以「至少合格一份」是它的反面，只需減一次：$1 - 0.15 = 0.85$。對比 L2 Q23 擲三次硬幣：那題的反面在樹上分成兩組（「$3$ 次正面」與「恰好 $2$ 次正面」），所以要減兩次。要減的次數由反面在樹上佔幾組決定，不是由「至多」或「至少」的字眼決定。",
+        "en": "The question gives P(passing none) = 0.15, and on the tree that is the single leaf (fail, fail). \"Passing at least one\" is its complement, so only one subtraction is needed: 1 − 0.15 = 0.85. Compare Level 2 Q23 on three tosses, where the complement splits into two groups on the tree (three heads, and exactly two heads) and so needs two subtractions. The number of subtractions is decided by how many groups the complement occupies on the tree, not by the words \"at most\" or \"at least\".",
         "marking": "(1A)",
         "highlight": [
          "1 - 0.15 = 0.85"
@@ -3697,12 +3703,12 @@
        {
         "part": "(b)",
         "title": {
-         "zh": "反求交集",
-         "en": "Recover the intersection"
+         "zh": "反求交集：樹上「過、過」那一格",
+         "en": "Recover the intersection: the pass-pass leaf"
         },
         "math": "P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)",
-        "zh": "兩個數都合格就是交集。已知 $P(\\text{卷一}) = 0.55$、$P(\\text{卷二}) = 0.4$，而 (a) 已求出聯集 $P(\\text{至少一份}) = 0.85$，把加法定律反過來用。",
-        "en": "Passing both papers is the intersection. With P(paper 1) = 0.55, P(paper 2) = 0.4 and the union P(at least one) = 0.85 from (a), reverse the addition law.",
+        "zh": "兩份都合格在樹上是「過、過」那一格，就是交集。已知 $P(\\text{卷一}) = 0.55$、$P(\\text{卷二}) = 0.4$，而 (a) 已求出聯集 $P(\\text{至少一份}) = 0.85$，把加法定律反過來用。",
+        "en": "Passing both papers is the pass-pass leaf of the tree, i.e. the intersection. With P(paper 1) = 0.55, P(paper 2) = 0.4 and the union P(at least one) = 0.85 from (a), reverse the addition law.",
         "marking": "(1M)",
         "highlight": [
          "P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)"
@@ -3715,8 +3721,8 @@
          "en": "Add first, then subtract"
         },
         "math": "[0.55 + 0.4] - 0.85 = 0.1",
-        "zh": "$[0.55 + 0.4] - 0.85 = 0.95 - 0.85 = 0.1$，所以兩份都合格的概率是 $0.1$。",
-        "en": "[0.55 + 0.4] − 0.85 = 0.95 − 0.85 = 0.1, so the probability of passing both papers is 0.1.",
+        "zh": "$[0.55 + 0.4] - 0.85 = 0.95 - 0.85 = 0.1$，所以兩份都合格的概率是 $0.1$。回樹上看：這 $0.1$ 補回「過、過」那一格，四個葉 $0.55$、$0.45$、$0.4$、$0.6$ 加起來是 $2$，減去兩份都合格重複的 $0.1$ 就對得上。",
+        "en": "[0.55 + 0.4] − 0.85 = 0.95 − 0.85 = 0.1, so the probability of passing both papers is 0.1. Back on the tree: this 0.1 fills in the pass-pass leaf, and the two single probabilities 0.55 + 0.4 = 0.95 lose the 0.1 that was counted twice, as it should.",
         "marking": "(1A)",
         "highlight": [
          "[0.55 + 0.4] - 0.85 = 0.1"
@@ -3724,6 +3730,12 @@
        }
       ],
       "traps": [
+       {
+        "label": "(a) 反面以為要減兩項",
+        "labelEn": "(a) subtracting two terms for the complement",
+        "zh": "「兩份都不合格」在樹上只有一個葉（不過、不過），題目已直接給了 $0.15$，所以反面只需減一次。若把 $0.55$ 與 $0.4$ 各自取反面（$0.45$、$0.6$）再相加，「至少一份合格」的人會被計算兩次。",
+        "en": "Passing none is a single leaf on the tree (fail, fail) and the question gives 0.15 directly, so the complement needs one subtraction only. Complementing 0.55 and 0.4 separately (0.45 and 0.6) and adding counts those passing at least one twice."
+       },
        {
         "label": "(a) 把兩個概率相加",
         "labelEn": "(a) adding the two probabilities",
@@ -3738,8 +3750,8 @@
        }
       ],
       "tip": {
-       "zh": "加法定律可以雙向使用：由兩個事件與聯集反求交集，$P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)$；先加後減的次序不要掉亂。",
-       "en": "The addition law works both ways: recover the intersection from the events and the union, P(A ∩ B) = [P(A) + P(B)] − P(A ∪ B); keep the order — add first, subtract second."
+       "zh": "加法定律可以雙向使用：由兩個事件與聯集反求交集，$P(A \\cap B) = [P(A) + P(B)] - P(A \\cup B)$；先加後減的次序不要掉亂。兩個事件也可以先畫成樹狀圖再讀答案：反面佔一組就減一次，佔兩組就減兩次。",
+       "en": "The addition law works both ways: recover the intersection from the events and the union, P(A ∩ B) = [P(A) + P(B)] − P(A ∪ B); keep the order — add first, subtract second. With two events you can also draw a tree and read the answers off it: one group in the complement means one subtraction, two groups mean two."
       }
      }
     },

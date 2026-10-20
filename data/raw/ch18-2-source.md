@@ -119,6 +119,30 @@ Total: **39 questions, 146 marks** (the Section Check counts as one question wit
   showing the arithmetic.
 - Every fraction was re-rendered with real KaTeX (`throwOnError`) — 819 expressions, 0 errors.
 
+### Tree diagrams drawn in KaTeX (L2 Q23 and L2 Q26, revised 2026-10-20)
+
+- Both solutions were rewritten at the teacher's request so that a **tree diagram** explains *why* the
+  complement is subtracted once or twice. No new figure type was added: the tree is a KaTeX
+  `array` whose cells contain `\diagup` / `\diagdown` (they render as the characters ╱ and ╲), and
+  `\checkmark` / `\times` for pass and fail. `data/src/figures.json` still has no `ch18-2` entries.
+- **Empty cells must be genuinely empty.** A first attempt filled the blank cells with `,` as
+  padding; KaTeX renders a comma as a real `<mo>` element, so the tree came out as rows of dots.
+  Blank cells are now `&&` only. `tools/smoke_test.js` asserts no comma appears inside the
+  `{array} … \end{array}` part of the three tree steps.
+- The three-toss tree needs **16 columns** (8 leaves at the even columns, one `\diagup` +
+  `\diagdown` in each odd column). Every row must have exactly 16 cells or KaTeX warns
+  "Too few columns specified in the {array} column argument".
+- **The teaching point is now the contrast between the two questions:**
+  - Q23 (three tosses) — the complement of "at most one head" is *two separate groups* on the
+    tree (HHH alone, and HHT / HTH / THH), so `1 − 1/8 − 3/8`: two subtractions.
+  - Q26 (two papers) — "passing none" is a *single leaf* (fail, fail) on the tree, and the question
+    gives it as 0.15, so `1 − 0.15`: one subtraction.
+  Each solution states the rule in words — the number of subtractions is decided by how many groups
+  the complement occupies on the tree, not by the words "at least" / "at most" — and cross-refers
+  to the other question. A trap was added to each question for the opposite mistake.
+- Marks are unchanged: both questions stay at 4 marks with four `(1M)`/`(1A)` steps each.
+
+
 ## Marks
 
 Book-exercise questions carry no official marks. Teacher-set marks, each question's `parts[].marks`
