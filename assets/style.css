@@ -77,10 +77,14 @@ html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
   padding: 0 0 48px;
-  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", "PingFang TC",
-    "Microsoft JhengHei", sans-serif;
-  font-size: 17px;
-  line-height: 1.7;
+  /* 正文：STIX Two Text（自架，只含拉丁子集；見 vendor/fonts/）。
+     中文不在字體的 unicode-range 內，會自動接到系統中文字體。
+     STIX 是學術出版用的襯線字，跟 KaTeX 的公式並排最協調。 */
+  font-family: "STIX Two Text", "Source Serif 4", Georgia, "Noto Sans TC",
+    "PingFang TC", "Microsoft JhengHei", serif;
+  font-size: 17.5px;
+  line-height: 1.72;
+  font-variant-numeric: lining-nums;
   color: var(--text);
   background: var(--bg);
 }
@@ -102,7 +106,7 @@ body {
   flex-wrap: wrap; row-gap: 8px;
 }
 .topbar .btn { white-space: nowrap; }
-.brand { font-weight: 800; font-size: 18px; letter-spacing: -.02em; color: var(--text); line-height: 1.3; }
+.brand { font-weight: 800; font-size: 18px; letter-spacing: 0; color: var(--text); line-height: 1.3; }
 .brand small { display: block; font-weight: 500; font-size: 12.5px; color: var(--muted); letter-spacing: 0; }
 .brand a { text-decoration: none; color: inherit; }
 .spacer { flex: 1; }
@@ -112,7 +116,7 @@ body {
 }
 
 .hero { padding: 24px 0 8px; }
-.hero h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.25; font-weight: 800; letter-spacing: -.025em; }
+.hero h1 { margin: 0 0 6px; font-size: 30px; line-height: 1.25; font-weight: 700; letter-spacing: -.005em; }
 .hero p { margin: 0; color: var(--muted); font-size: 15.5px; }
 .hero h1 .l-zh, .hero h1 .l-en { display: block; }
 /* 中英並列時：大標題只應該搶一次焦點，英文降為副題（同一句意思唔應該用同等重量出兩次） */
@@ -265,7 +269,7 @@ body[data-lang="both"] #chapter-progress .l-zh + .l-en::before { content: " · "
 .part-btn:hover { transform: translateY(-1px); box-shadow: var(--shadow-lift); border-color: var(--primary-line); }
 .part-btn:focus-visible { outline: 3px solid rgba(79, 70, 229, .35); outline-offset: 2px; }
 .part-btn .t-body { flex: 1; min-width: 0; }
-.part-btn .t-name { font-weight: 800; font-size: 17px; letter-spacing: -.01em; }
+.part-btn .t-name { font-weight: 700; font-size: 17px; letter-spacing: 0; }
 .part-btn .t-en { display: block; font-size: 13.5px; font-weight: 500; color: var(--muted); margin-top: 2px; }
 .part-btn .t-meta { font-size: 13px; line-height: 1.5; color: var(--muted); margin-top: 6px; }
 
@@ -369,6 +373,11 @@ body[data-lang="both"] .mchip .l-en { font-size: 11px; opacity: .8; }
 }
 .q-diff { font-size: 12px; color: var(--accent); letter-spacing: 2px; }
 .q-source { font-size: 13px; color: var(--muted); }
+
+/* 數字對齊：題號、分數、評分代號一律等寬數字，清單與表格的數字才會對位 */
+.q-code, .q-marks, .q-bonus, .q-diff, .marking, .pagenav .pg {
+  font-variant-numeric: tabular-nums lining-nums;
+}
 
 .q-stem { font-size: 19px; font-weight: 500; margin: 4px 0 12px; line-height: 1.6; }
 .q-parts { margin: 8px 0 0; padding-left: 0; list-style: none; }
@@ -566,7 +575,7 @@ body[data-lang="both"] .mchip .l-en { font-size: 11px; opacity: .8; }
   padding: 14px 16px; margin-top: 12px; background: var(--card);
 }
 .cc + .cc { margin-top: 14px; }
-.cc-title { margin: 0 0 8px; font-size: 16px; font-weight: 800; color: var(--primary-ink); letter-spacing: -.01em; }
+.cc-title { margin: 0 0 8px; font-size: 16px; font-weight: 700; color: var(--primary-ink); letter-spacing: 0; }
 .cc-p { margin: 6px 0; font-size: 16px; line-height: 1.7; }
 .cc-ul { margin: 6px 0 6px 2px; padding-left: 22px; list-style: disc; font-size: 16px; line-height: 1.7; }
 .cc-ul li { margin: 4px 0; }
@@ -647,7 +656,7 @@ body[data-sol="show"] .hint-row { display: none; }
 }
 
 .sol-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-.sol-head h2 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.sol-head h2 { margin: 0; font-size: 20.5px; font-weight: 700; letter-spacing: 0; }
 
 .steps { margin-top: 14px; display: grid; gap: var(--sp-3); }
 .step {
@@ -807,7 +816,7 @@ body[data-sol="show"] .hint-row { display: none; }
   animation: rise .25s ease both;
 }
 .pm-head { display: flex; align-items: flex-start; gap: 10px; }
-.pm-head h3 { margin: 0; font-size: 18px; font-weight: 800; flex: 1; letter-spacing: -.01em; }
+.pm-head h3 { margin: 0; font-size: 18px; font-weight: 700; flex: 1; letter-spacing: 0; }
 .pm-x { border: 0; background: transparent; font-size: 22px; line-height: 1; color: var(--muted); cursor: pointer; min-height: 34px; }
 .pm-hint { font-size: 14px; color: var(--muted); margin: 6px 0 10px; }
 .pm-opts { display: grid; gap: 6px; margin-bottom: 10px; }
@@ -855,7 +864,7 @@ body[data-sol="show"] .hint-row { display: none; }
   display: flex; align-items: baseline; gap: var(--sp-2); flex-wrap: wrap;
   margin-bottom: var(--sp-3);
 }
-.demo-title { font-size: 15px; font-weight: 800; color: var(--primary-ink); letter-spacing: -.01em; }
+.demo-title { font-size: 15px; font-weight: 700; color: var(--primary-ink); letter-spacing: 0; }
 .demo-step {
   margin-left: auto; flex: none; font-size: 12.5px; font-weight: 800; color: var(--muted);
   font-variant-numeric: tabular-nums;
@@ -1010,7 +1019,7 @@ body[data-sol="show"] .hint-row { display: none; }
 
 /* 獨立外殼（demos/*.html）用：頁面外框，站內唔會用到 */
 .demo-shell { max-width: 720px; margin: 0 auto; padding: 18px 16px 48px; }
-.demo-shell h1 { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin: 18px 0 6px; }
+.demo-shell h1 { font-size: 22px; font-weight: 700; letter-spacing: 0; margin: 18px 0 6px; }
 .demo-shell h1 .l-zh, .demo-shell h1 .l-en { display: block; }
 /* 中英並列時：英文降為副題（同首頁 hero 一致） */
 body[data-lang="both"] .demo-shell h1 .l-en {
