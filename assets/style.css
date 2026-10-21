@@ -691,6 +691,37 @@ body[data-sol="show"] .hint-row { display: none; }
 }
 .formula-line { display: block; max-width: 100%; }
 .formula-multi { padding: 12px 4px; gap: 2px; }
+
+/* 算式＋評分代號排成一行：代號貼在算式右手邊的「批改欄」
+   （跟算式同一行，像老師在卷邊逐行打分；窄螢幕才疊到下面靠右） */
+.formula-row { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+.formula-row .formula { flex: 1 1 auto; min-width: 0; margin: 0; }
+.formula-row .marking { flex: none; margin-top: 0; }
+
+/* 下一個步驟：虛線佔位卡（點一下或按 Enter 顯示） */
+.step-next {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  font: inherit; font-family: inherit; text-align: left; cursor: pointer;
+  color: var(--muted); background: transparent;
+  border: 1.5px dashed var(--line); border-radius: var(--radius-sm);
+  padding: 10px 14px; transition: border-color .15s, background .15s, color .15s;
+}
+.step-next:hover, .step-next:focus-visible {
+  color: var(--primary-ink); border-color: var(--primary-line); background: var(--primary-soft);
+}
+.step-next-n {
+  flex: none; width: 26px; height: 26px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 12.5px; font-weight: 800; color: var(--muted);
+  border: 1.5px dashed var(--line); background: #fff;
+}
+.step-next:hover .step-next-n { color: var(--primary); border-color: var(--primary-line); }
+.step-next-t { font-size: 14px; font-weight: 700; }
+
+@media (max-width: 620px) {
+  .formula-row { flex-direction: column; align-items: stretch; }
+  .formula-row .marking { align-self: flex-end; margin-top: 2px; }
+}
 @media (max-width: 620px) {
   .formula .katex { font-size: .94em; }
   .formula-multi .katex { font-size: .9em; }

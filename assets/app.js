@@ -144,6 +144,8 @@
     hintsDone: { zh: "提示已全部顯示 —— 再按一次可睇埋陷阱與技巧。", en: "All hints shown — press again to see the traps and tips too." },
     showAnswer: { zh: "顯示答案", en: "Show answer" },
     hideAnswer: { zh: "收起答案", en: "Hide answer" },
+    /* 下一個步驟的佔位卡（點一下或按 Enter 顯示） */
+    stepNext: { zh: "點一下或按 Enter 顯示", en: "Click or press Enter to reveal" },
     pmHint: {
       zh: "先寫下你卡住的地方，勾選想要的選項，再按「複製」。下面的內容可以直接修改。",
       en: "Write where you are stuck, tick the options you want, then press Copy. You can edit the text below directly."
@@ -790,6 +792,9 @@
   function renderPage(pages, cur, id, part) {
     var body = qs("#quiz-body");
     body.innerHTML = "";
+    STEP_REVEAL = null;
+    /* 每次重畫重新登記 ← →（總覽頁都可以用；Enter 只限題目頁，見下） */
+    KEYNAV = { pages: pages, cur: cur, id: id, reveal: null };
     var p = pages[cur];
     if (!p) { body.appendChild(el("div", "empty", "這一頁沒有內容")); return; }
 
@@ -1742,6 +1747,13 @@
     var all = sol.steps || [];
     var total = all.length;
     var shown = solHidden() ? Math.min(store.hints[q.id] || 0, total) : total;
+    /* 顯示下一步：佔位卡、提示按鈕與 Enter 鍵共用同一個動作（重畫一次） */
+    function revealNext() {
+      if (!solHidden() || shown >= total) return;
+      store.hints[q.id] = shown + 1;
+      saveStore();
+      if (refresh) refresh();
+    }
     var stepsHost = el("div", "steps sol-body");
     var lastPart = null;
     all.slice(0, shown).forEach(function (st, i) {
@@ -1766,10 +1778,19 @@
       if (st.math) {
         var f = el("div", "formula");
         formulaBlock(f, st.math, true);
-        box.appendChild(f);
+        if (st.marking) {
+          /* 評分代號貼在算式右手邊的「批改欄」，跟算式同一行（像老師在卷邊打分） */
+          var frow = el("div", "formula-row");
+          frow.appendChild(f);
+          frow.appendChild(el("span", "marking", st.marking));
+          box.appendChild(frow);
+        } else {
+          box.appendChild(f);
+        }
       }
       box.appendChild(pair({ zh: st.zh, en: st.en }, "div", "why bi"));
-      if (st.marking) box.appendChild(el("span", "marking", st.marking));
+      /* 冇算式（純文字步驟）才把評分代號留在下面 */
+      if (st.marking && !st.math) box.appendChild(el("span", "marking", st.marking));
       /* 變號步驟：加一個雙語高亮標籤（最容易失分的地方） */
       if (st.flip) {
         var fn = el("div", "flip-note");
@@ -1787,6 +1808,18 @@
       }
       stepsHost.appendChild(box);
     });
+    /* 還有未顯示的步驟：放一張虛線佔位卡，點一下（或按 Enter）就顯示下一步 */
+    if (solHidden() && shown < total) {
+      var nx = el("button", "step-next");
+      nx.type = "button";
+      nx.setAttribute("data-hint-next", String(shown + 1));
+      nx.appendChild(el("span", "step-next-n", String(shown + 1)));
+      var nxt = el("span", "step-next-t");
+      nxt.appendChild(pairSpan(UI.stepNext));
+      nx.appendChild(nxt);
+      nx.onclick = revealNext;
+      stepsHost.appendChild(nx);
+    }
     card.appendChild(stepsHost);
 
     /* 圖／陷阱／技巧：收起題解時一併收起（提示揭曉完才出現） */
@@ -1859,11 +1892,7 @@
           zh: "顯示提示（第 " + (shown + 1) + " / " + total + " 步）",
           en: "Show hint (step " + (shown + 1) + " / " + total + ")"
         }));
-        hb.onclick = function () {
-          store.hints[q.id] = shown + 1;
-          saveStore();
-          if (refresh) refresh();
-        };
+        hb.onclick = revealNext;
         hr.appendChild(hb);
       } else {
         var hc = el("div", "hint-count");
@@ -1893,6 +1922,8 @@
       hr.appendChild(ab);
       card.appendChild(hr);
     }
+    /* 鍵盤 Enter 用：還有未顯示的步驟時才生效 */
+    STEP_REVEAL = (solHidden() && shown < total) ? revealNext : null;
     return card;
   }
 
@@ -1962,7 +1993,41 @@
     body.appendChild(foot);
 
     if (solHidden()) scrollToTopOf(body);
+
+    /* Enter 顯示下一步（route 由 renderPage 登記，這裡只補上這一頁的動作） */
+    KEYNAV.reveal = STEP_REVEAL;
   }
+
+  /* ── 鍵盤操作 ─────────────────────────────────────────────────────────
+     ← / → ＝ 上一題／下一題（跟底欄那兩個箭嘴按鈕同一個意思）
+     Enter ＝ 顯示下一步提示（跟「顯示提示」按鈕同一個動作，不搶按鈕的預設行為）
+     在輸入框打字、開住提問視窗時一律不攔截。 */
+  function keyNavOn(e) {
+    if (!KEYNAV || e.ctrlKey || e.metaKey || e.altKey || e.defaultPrevented) return false;
+    if (qs(".prompt-modal")) return false;
+    var t = e.target || {};
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName || "")) return false;
+    if (t.isContentEditable) return false;
+    return true;
+  }
+  document.addEventListener("keydown", function (e) {
+    if (!keyNavOn(e)) return;
+    if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+      var n = KEYNAV.cur + (e.key === "ArrowRight" ? 1 : -1);
+      if (n < 0 || n >= KEYNAV.pages.length) return;
+      e.preventDefault();
+      gotoPage(KEYNAV.id, n);
+      return;
+    }
+    if (e.key === "Enter") {
+      /* 聚焦在按鈕／連結／summary 時交回瀏覽器處理 */
+      var tag = (e.target && e.target.tagName) || "";
+      if (/^(BUTTON|A|SUMMARY|LABEL)$/.test(tag)) return;
+      if (!KEYNAV.reveal) return;
+      e.preventDefault();
+      KEYNAV.reveal();
+    }
+  });
 
   /* ── 一鍵複製 LLM 提問 Prompt ─────────────────────────────────────────
      設計：所有 prompt 都由「一份模板 + 題目資料」即時生成
@@ -1972,6 +2037,8 @@
   ──────────────────────────────────────────────────────────────────────── */
   var META = null;                                   // 目前這份測驗的 meta
   var refreshCurrent = null;                         // 重畫目前這一題（提示／顯示題解用）
+  var KEYNAV = null;                                 // 目前這一頁的鍵盤操作（← → 換題、Enter 顯示下一步）
+  var STEP_REVEAL = null;                            // 由 solutionCard 登記的「顯示下一步」
   var TPLS = (INDEX && INDEX.promptTemplates) || null;
   var PM_OPTS = ["simpler", "examples", "examTips", "visual", "practice"];
 

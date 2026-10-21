@@ -231,6 +231,46 @@ ok(!!qh.$(".sol-card .sol-extra"),
   "陷阱與技巧放在 .sol-extra（收起題解時由 CSS 隱藏，揭曉完才出現）");
 ok(!!qh.$(".answer-box.sol-answer") && !qh.$(".answer-box").classList.contains("on"),
   "收起題解且未作答時，答案欄未揭曉（收起題解不再顯示答案）");
+
+/* 評分代號貼在算式右手邊（跟算式同一行）＋「點一下／Enter 顯示下一步」 */
+const kn = boot("quiz.html", "?c=ch17-2&p=1");
+ok(!!kn.$(".step-next"), "收起題解時有虛線佔位卡（下一步）");
+ok(kn.$(".step-next .step-next-n").textContent === "1", "佔位卡標明第 1 步");
+kn.$(".step-next").click();
+ok(kn.$$(".sol-card .steps .step").length === 1, "點佔位卡 → 顯示第 1 步");
+ok(kn.$(".step-next .step-next-n").textContent === "2", "點完之後佔位卡換成第 2 步");
+const knEv = new (kn.ctx.window.KeyboardEvent)("keydown", { key: "Enter", bubbles: true, cancelable: true });
+kn.doc.body.dispatchEvent(knEv);
+ok(kn.$$(".sol-card .steps .step").length === 2, "按 Enter → 顯示下一步");
+ok(knEv.defaultPrevented, "Enter 有 preventDefault（唔會順便捲頁）");
+const knInput = boot("quiz.html", "?c=ch17-2&p=5", null, "show");
+const knEv2 = new (knInput.ctx.window.KeyboardEvent)("keydown", { key: "Enter", bubbles: true, cancelable: true });
+knInput.doc.body.dispatchEvent(knEv2);
+ok(!knEv2.defaultPrevented, "題解已全部顯示時，Enter 唔會攔截（交回瀏覽器）");
+
+const fr = boot("quiz.html", "?c=ch17-2&p=1", null, "show");
+ok(fr.$$(".formula-row").length === 4, "CE1 四個步驟的算式都排成 .formula-row（實際 " +
+  fr.$$(".formula-row").length + "）");
+ok(fr.$$(".formula-row .marking").length === fr.$$(".sol-card .step .marking").length,
+  "每個評分代號都貼在算式右手邊（沒有一個留在文字下面）");
+ok(fr.$$(".sol-card .step").every((s) => !s.querySelector(".formula") || !!s.querySelector(".formula-row")),
+  "有算式的步驟都用 .formula-row 包住，代號與算式同一行");
+ok(fr.$$(".step-next").length === 0, "題解全部顯示時沒有佔位卡");
+
+/* 鍵盤 ← → 換頁：總覽頁一樣有效，第一頁按 ← 唔攔截，輸入格內唔搶按鍵 */
+const kaFirst = boot("quiz.html", "?c=ch17-2&p=0");
+const kLeft = new (kaFirst.ctx.window.KeyboardEvent)("keydown", { key: "ArrowLeft", bubbles: true, cancelable: true });
+kaFirst.doc.body.dispatchEvent(kLeft);
+ok(!kLeft.defaultPrevented, "第一頁（總覽）按 ← 唔會攔截");
+const ka = boot("quiz.html", "?c=ch17-2&p=0");
+const kRight = new (ka.ctx.window.KeyboardEvent)("keydown", { key: "ArrowRight", bubbles: true, cancelable: true });
+ka.doc.body.dispatchEvent(kRight);
+ok(kRight.defaultPrevented, "總覽頁按 → 會去下一頁（有 preventDefault）");
+const kaIn = boot("quiz.html", "?c=ch17-2&p=1");
+const inEl = kaIn.$("input[type=text], input:not([type])");
+const kType = new (kaIn.ctx.window.KeyboardEvent)("keydown", { key: "ArrowRight", bubbles: true, cancelable: true });
+if (inEl) inEl.dispatchEvent(kType);
+ok(!!inEl && !kType.defaultPrevented, "在輸入格按 → 唔會攔截（要留給移游標）");
 const cssText = read("assets/style.css");
 ok(!/\.sol-card \.sol-body\s*\{\s*display:\s*none/.test(cssText),
   "style.css 不再收起 .sol-body（否則按「顯示提示」無反應）");
