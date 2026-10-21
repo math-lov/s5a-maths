@@ -4861,7 +4861,7 @@
          "zh": "去分母整理成兩個一次方程",
          "en": "Clear the denominators"
         },
-        "math": "5(7+m) = 4(7+m+n) \\implies m = 4n - 7 ,\\ 3(7+n) = 2(7+m+n) \\implies n = 2m - 7",
+        "math": "5(7+m) = 4(7+m+n) \\implies m = 4n - 7 \n3(7+n) = 2(7+m+n) \\implies n = 2m - 7",
         "zh": "第一式去分母：$5(7+m) = 4(7+m+n)$，$35 + 5m = 28 + 4m + 4n$，得 $m = 4n - 7$。第二式去分母：$3(7+n) = 2(7+m+n)$，$21 + 3n = 14 + 2m + 2n$，得 $n = 2m - 7$。",
         "en": "First: 5(7 + m) = 4(7 + m + n) gives 35 + 5m = 28 + 4m + 4n, i.e. m = 4n − 7. Second: 3(7 + n) = 2(7 + m + n) gives 21 + 3n = 14 + 2m + 2n, i.e. n = 2m − 7.",
         "marking": "(1M)",

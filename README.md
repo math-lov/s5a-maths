@@ -54,7 +54,17 @@ node tools\smoke_test.js        # 要見到 all smoke tests passed
 
 # 4) 本機預覽（直接開檔案也可以，因為沒有 fetch）
 start index.html
+
+# 5) 收工：直接 commit + push（做完就推，唔需要再問）
+git add -A
+git commit -m "改了什麼 + build/smoke 結果"
+git push origin main
 ```
+
+> **規則：每次改動都以 commit + push 收尾。**
+> 前提是 build.py 0 錯 0 警、smoke_test.js 全部通過；未通過就先修好，不要 push。
+> commit message 寫清楚「改了什麼」與「驗證結果」。
+> `font-lab.html`、`sample/`、`source/`、`_tmp_*` 已在 `.gitignore`，不會被 `git add -A` 帶上去。
 
 ## 檔案放哪裡？（本機 ↔ GitHub）
 

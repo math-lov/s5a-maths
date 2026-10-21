@@ -658,7 +658,9 @@ body[data-sol="show"] .hint-row { display: none; }
 .sol-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
 .sol-head h2 { margin: 0; font-size: 20.5px; font-weight: 700; letter-spacing: 0; }
 
-.steps { margin-top: 14px; display: grid; gap: var(--sp-3); }
+/* minmax(0,1fr)：唯一的欄永遠唔會因為內容（例如好闊的算式）而撐爆卡片 */
+.steps { margin-top: 14px; display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--sp-3); }
+.step { min-width: 0; }
 .step {
   background: var(--card); border: 1px solid var(--line-soft);
   border-left: 5px solid var(--primary);
@@ -703,8 +705,10 @@ body[data-sol="show"] .hint-row { display: none; }
 
 /* 算式＋評分代號排成一行：代號貼在算式右手邊的「批改欄」
    （跟算式同一行，像老師在卷邊逐行打分；窄螢幕才疊到下面靠右） */
-.formula-row { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
-.formula-row .formula { flex: 1 1 auto; min-width: 0; margin: 0; }
+.formula-row { display: flex; align-items: center; gap: 10px; margin: 10px 0; min-width: 0; }
+/* flex-basis 一定要係 0：用 auto 嘅話，算式本身的固有寬度（可以好闊）
+   會計入 .formula-row 的 min-content，連帶把 grid 入面的 .step 撐爆卡片 */
+.formula-row .formula { flex: 1 1 0%; min-width: 0; margin: 0; }
 .formula-row .marking { flex: none; margin-top: 0; }
 
 /* 下一個步驟：虛線佔位卡（點一下或按 Enter 顯示） */
