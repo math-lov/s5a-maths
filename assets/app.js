@@ -801,9 +801,49 @@
     if (p.kind === "overview") renderOverview(body, part, pages, id);
     else renderQuestion(body, p, pages, cur, id, part);
 
+    fitFormulas(body);
+
     var stat = qs("#quiz-progress");
     if (stat) setProgress(stat, part);
   }
+
+  /* ── 算式自動收細 ─────────────────────────────────────────────────────
+     長分式一行過唔夠位，預設會出現橫向捲軸、題解睇唔齊。
+     這裡照實際寬度量一次，收細字級令整條式一次過睇完；
+     收到 FIT_MIN 都仍然超闊（極端情況）才維持可捲動。 */
+  var FIT_MIN = 0.62;
+  /* 算式的「真實寬度」：.katex 係 inline-block，會被容器夾住量唔到，
+     一定要用 scrollWidth（overflow 的內容照計）。多行就逐行量最大那個。
+     scrollWidth 含 padding-left，所以要扣走才跟「可用內容寬度」同一個基準。 */
+  function fitFormulas(root) {
+    qsa(".formula", root || document).forEach(function (host) {
+      var prev = host.style.overflowX;
+      host.style.overflowX = "hidden";          /* 量度時唔想被捲軸影響 clientWidth */
+      host.style.fontSize = "";
+      var avail = host.clientWidth;
+      if (!avail || avail < 40) {                /* 未顯示／未排版：留待下次 */
+        host.style.overflowX = prev;
+        return;
+      }
+      /* scrollWidth 同 clientWidth 同一個基準：scrollWidth > clientWidth 就係真溢出。
+         注意「剛好放得落」時兩者相等，所以唔可以留 1px 餘量，否則會無限縮。 */
+      var target = avail;
+      if (host.scrollWidth > target) {
+        var ratio = Math.max(FIT_MIN, target / host.scrollWidth);
+        for (var i = 0; i < 6; i++) {
+          host.style.fontSize = (ratio * 100).toFixed(1) + "%";
+          if (host.scrollWidth <= target) break;
+          ratio = Math.max(FIT_MIN, ratio * (target / host.scrollWidth) * 0.995);
+        }
+      }
+      host.style.overflowX = prev;
+    });
+  }
+  var fitTimer = null;
+  window.addEventListener("resize", function () {
+    if (fitTimer) clearTimeout(fitTimer);
+    fitTimer = setTimeout(function () { fitFormulas(document); }, 180);
+  });
 
   /* ── 教學卡（part.cards[]）：顯示在該節的總覽頁（p=0）────────────────── */
   /* 內文用 {{math:N}} 佔位符（跟四個站的 learn 內容同一套寫法），
@@ -2270,6 +2310,11 @@
       }, 125);
     } else {
       rerenderAll();
+    }
+
+    /* 字體載入／替换後行寬會變，重新收一次算式 */
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { fitFormulas(document); });
     }
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", start);
