@@ -374,6 +374,47 @@ body[data-lang="both"] .mchip .l-en { font-size: 11px; opacity: .8; }
 .q-diff { font-size: 12px; color: var(--accent); letter-spacing: 2px; }
 .q-source { font-size: 13px; color: var(--muted); }
 
+/* ── 全班表現（測驗檢討）：題目卡頭 chips ＋ 總覽統計表 ─────────────── */
+.q-perf { display: flex; flex-wrap: wrap; gap: 6px; margin: -2px 0 12px; }
+.perf-chip {
+  font-size: 12.5px; font-weight: 700; color: var(--text);
+  background: var(--band); border: 1px solid var(--line-soft);
+  border-radius: 999px; padding: 3px 10px;
+}
+.perf-chip .l-zh + .l-en { margin-left: 6px; }
+.perf-chip .l-zh + .l-en::before { content: "·"; margin-right: 6px; opacity: .5; }
+body[data-lang="both"] .perf-chip .l-en { font-size: 11.5px; opacity: .85; }
+.perf-chip-rank { color: var(--primary-ink); background: var(--primary-soft); border-color: var(--primary-line); }
+
+.perf-card .section-title { margin-top: 0; }
+.perf-stats { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 12px; }
+.perf-stat { background: var(--band); border-radius: 12px; padding: 8px 12px; min-width: 100px; }
+.perf-lab { display: block; font-size: 12px; color: var(--muted); }
+.perf-stat b { font-size: 18px; font-variant-numeric: tabular-nums; }
+.perf-note { font-size: 14px; line-height: 1.65; margin-bottom: 10px; }
+.perf-sub { font-size: 12.5px; margin: 10px 0 4px; }
+.perf-row { display: grid; grid-template-columns: 84px 104px 1fr; align-items: center; gap: 10px; }
+.perf-head { font-size: 12px; font-weight: 700; color: var(--muted); padding: 4px 0; }
+.perf-line {
+  width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer;
+  border: 0; border-top: 1px solid var(--line-soft); background: transparent;
+  padding: 7px 0; border-radius: 0;
+}
+.perf-line:hover { background: var(--primary-soft); }
+.perf-line:focus-visible { outline: 2px solid var(--primary); outline-offset: -2px; }
+.perf-c1 b { font-size: 14px; font-variant-numeric: tabular-nums; }
+.perf-rank { margin-left: 6px; font-size: 11px; color: var(--muted); }
+.perf-c2 { font-size: 14px; font-variant-numeric: tabular-nums; }
+.perf-c3 { display: flex; align-items: center; gap: 8px; }
+.perf-bar {
+  flex: 1; display: block; min-width: 60px; height: 8px;
+  background: var(--line-soft); border-radius: 999px; overflow: hidden;
+}
+.perf-bar i { display: block; height: 100%; background: var(--ok); border-radius: 999px; }
+.perf-bar.mid i { background: var(--accent); }
+.perf-bar.low i { background: var(--err); }
+.perf-pct { width: 48px; text-align: right; font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+
 /* 數字對齊：題號、分數、評分代號一律等寬數字，清單與表格的數字才會對位 */
 .q-code, .q-marks, .q-bonus, .q-diff, .marking, .pagenav .pg {
   font-variant-numeric: tabular-nums lining-nums;

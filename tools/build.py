@@ -514,6 +514,66 @@ def check_intro(data: dict, where: str) -> None:
         check_text("%s introStep %d.en" % (where, i), st.get("en", ""), min_len=20)
 
 
+def check_class_perf(data: dict, where: str) -> None:
+    """S20 全班表現（classPerf）：總覽統計與逐題平均分／答對率要自洽。
+
+    資料來自老師的成績分析 JSON（例：統測乙部）。有 part 層的 classPerf，
+    每一題就一定要有自己的 classPerf；答對率要等於「平均分 ÷ 滿分」（±0.2）。
+    """
+    cp = data.get("classPerf")
+    if not cp:
+        return
+    for key in ("cohort", "paperTotal", "mean", "median", "passRate"):
+        if key not in cp:
+            err("S20 %s：classPerf 缺少 %s" % (where, key))
+    cohort = cp.get("cohort")
+    if not isinstance(cohort, int) or cohort <= 0:
+        err("S20 %s：classPerf.cohort 要係正整數（現時 %r）" % (where, cohort))
+    total = cp.get("paperTotal")
+    if not isinstance(total, (int, float)) or total <= 0:
+        err("S20 %s：classPerf.paperTotal 要係正數（現時 %r）" % (where, total))
+    for key in ("mean", "median"):
+        v = cp.get(key)
+        if not isinstance(v, (int, float)):
+            err("S20 %s：classPerf.%s 要係數字（現時 %r）" % (where, key, v))
+        elif isinstance(total, (int, float)) and not (0 <= v <= total):
+            err("S20 %s：classPerf.%s 要在 0 與試卷總分之間（現時 %r）" % (where, key, v))
+    pr = cp.get("passRate")
+    if not isinstance(pr, str) or not re.match(r"^\d+(\.\d+)?%$", pr or ""):
+        err("S20 %s：classPerf.passRate 要係「xx%%」字串（現時 %r）" % (where, pr))
+    note = cp.get("note") or {}
+    check_text("%s classPerf.note.zh" % where, note.get("zh", ""), min_len=10, need_zh=True)
+    check_text("%s classPerf.note.en" % where, note.get("en", ""), min_len=20)
+
+    qs = [q for sec in data.get("sections", []) for q in sec.get("questions", [])]
+    ranks = []
+    for q in qs:
+        qcp = q.get("classPerf")
+        tag = "%s / %s" % (where, q.get("id"))
+        if not qcp:
+            err("S20 %s：課題有 classPerf，每題都要有自己的 classPerf" % tag)
+            continue
+        avg, fac, rank = qcp.get("avg"), qcp.get("facility"), qcp.get("rank")
+        marks = q.get("marks") or 0
+        if not isinstance(avg, (int, float)) or not (0 <= avg <= marks):
+            err("S20 %s：classPerf.avg 要在 0 與該題分數 %d 之間（現時 %r）"
+                % (tag, marks, avg))
+        if not isinstance(fac, (int, float)) or not (0 <= fac <= 100):
+            err("S20 %s：classPerf.facility 要在 0–100（現時 %r）" % (tag, fac))
+        elif isinstance(avg, (int, float)) and marks:
+            want = round(avg / marks * 100, 1)
+            if abs(fac - want) > 0.2:
+                err("S20 %s：classPerf.facility（%r%%）與平均分／滿分（%.1f%%）對唔上"
+                    % (tag, fac, want))
+        if not isinstance(rank, int) or not (1 <= rank <= len(qs)):
+            err("S20 %s：classPerf.rank 要係 1 至 %d 的整數（現時 %r）"
+                % (tag, len(qs), rank))
+        else:
+            ranks.append(rank)
+    if len(ranks) == len(qs) and sorted(ranks) != list(range(1, len(qs) + 1)):
+        err("S20 %s：classPerf.rank 不可以重複或漏（現時 %r）" % (where, sorted(ranks)))
+
+
 def check_cards(cards, where: str, fig_ids: set | None = None) -> None:
     """S14 教學卡：顯示在該節的總覽頁（p=0）"""
     if cards is None:
@@ -661,6 +721,7 @@ def main() -> int:
         data = load(fname)
         check_cards(data.get("cards"), pid, fig_ids)
         check_intro(data, pid)
+        check_class_perf(data, pid)
         total_q = 0
         for sec in data.get("sections", []):
             for q in sec.get("questions", []):

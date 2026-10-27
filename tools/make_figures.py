@@ -150,6 +150,16 @@ def graph(spec) -> str:
             out.append('<text x="%.1f" y="%.1f" fill="%s" font-size="14" font-family="%s">%s</text>'
                        % (x + 7, py(y1) + 16, INK, FONT, vl["label"]))
 
+    # 直線（2026-10-27：統測第 19 題的 L1／L2）
+    for ln in spec.get("lines", []):
+        xa, ya = px(ln["x1"]), py(ln["y1"])
+        xb, yb = px(ln["x2"]), py(ln["y2"])
+        out.append('<line x1="%.1f" y1="%.1f" x2="%.1f" y2="%.1f" stroke="%s" '
+                   'stroke-width="2.2"/>' % (xa, ya, xb, yb, INK))
+        if ln.get("label"):
+            out.append('<text x="%.1f" y="%.1f" fill="%s" font-size="15" font-family="%s">%s</text>'
+                       % (xb + ln.get("lx", 6), yb + ln.get("ly", -4), INK, FONT, ln["label"]))
+
     # 拋物線
     for par in spec.get("parabolas", []):
         a, b, c = par["a"], par["b"], par["c"]

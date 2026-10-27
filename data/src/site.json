@@ -53,6 +53,25 @@
         "source": { "zh": "校本 Chapter Quiz 第 17 章（2026-10-15）＋ 官方題解", "en": "School chapter quiz, Chapter 17 (15 Oct 2026), with the official solutions" }
       },
       {
+        "id": "ut-review",
+        "answerInput": true,
+        "group": "quiz",
+        "kind": { "zh": "測驗檢討", "en": "Quiz review" },
+        "unit": { "zh": "中五統測 · 乙部", "en": "S.5 Uniform Test · Section B" },
+        "title": { "zh": "統測乙部檢討 · 9 題 50 分", "en": "Uniform Test Section B Review" },
+        "meta": {
+          "paper": "S.5 Mathematics · 1st Uniform Test",
+          "date": "23 / 10 / 2026",
+          "marks": 50,
+          "sections": [
+            { "id": "B", "marks": 50, "title": { "zh": "乙部 · 長題目", "en": "Section B · Conventional questions" } }
+          ]
+        },
+        "stats": { "questions": 9, "marks": 50, "mc": 0, "long": 9, "bonus": 0 },
+        "status": "ready",
+        "source": { "zh": "校本中五統測（2026-10-23）乙部 ＋ 官方題解 ＋ 全班成績分析（31 人）", "en": "School S.5 uniform test (23 Oct 2026), Section B, with the official solutions and the class performance data (31 students)" }
+      },
+      {
         "id": "ch17-1",
         "answerInput": true,
         "group": "classwork",
@@ -210,8 +229,8 @@
       ]
     },
     "comingSoon": {
-      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章三節、第 18 章四節已全部上線。",
-      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17 and all four sections of Chapter 18 are online."
+      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章三節、第 18 章四節、統測乙部檢討都已上線。",
+      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17, all four sections of Chapter 18 and the Uniform Test Section B review are online."
     }
   }
 }

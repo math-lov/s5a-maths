@@ -119,6 +119,17 @@
       en: "Some answers are off — fix them and submit again (the ones not yet correct stay open)."
     },
     paperHowTo: { zh: "點做這份卷", en: "How to work through this paper" },
+    /* 全班表現（part.classPerf ＋ 每題 q.classPerf）：總覽頁統計表與每題的 chips */
+    classPerf: { zh: "全班表現", en: "Class performance" },
+    perfCohort: { zh: "全班人數", en: "Students" },
+    perfMean: { zh: "平均分", en: "Mean" },
+    perfMedian: { zh: "中位數", en: "Median" },
+    perfPass: { zh: "及格率", en: "Pass rate" },
+    perfTable: { zh: "逐題平均分與答對率（由易到難）", en: "Average and facility rate by question (easiest first)" },
+    perfQ: { zh: "題號", en: "Question" },
+    perfAvg: { zh: "平均 / 滿分", en: "Average / full" },
+    perfRate: { zh: "答對率", en: "Facility" },
+    perfJump: { zh: "點一列可以跳去那一題", en: "Click a row to jump to that question" },
     quickMultiHint: { zh: "可多選：把所有符合條件的組合都剔上。", en: "Multiple answers: tick every combination that satisfies the condition." },
     quickNeedPick: { zh: "先揀答案（數字可以自己填），再按提交。", en: "Choose an answer (you may type a number), then submit." },
     quickMethodOnly: { zh: "方法揀啱，數字再諗多次。", en: "Right method — have another go at the number." },
@@ -947,6 +958,91 @@
     host.appendChild(card);
   }
 
+  /* 全班表現卡（總覽頁）：全班統計 ＋ 逐題平均分與答對率，由易到難排。
+     資料：data/src/<part>.json 的 classPerf（全班）與每題的 classPerf。
+     點一列可以直接跳去該題。 */
+  function classPerfCard(part, pages, id) {
+    var cp = part.classPerf || {};
+    var card = el("div", "card perf-card");
+    var title = el("div", "section-title");
+    title.appendChild(pairSpan(UI.classPerf));
+    card.appendChild(title);
+
+    var stats = el("div", "perf-stats");
+    [
+      [UI.perfCohort, cp.cohort, ""],
+      [UI.perfMean, cp.mean, cp.paperTotal ? " / " + cp.paperTotal : ""],
+      [UI.perfMedian, cp.median, ""],
+      [UI.perfPass, cp.passRate, ""]
+    ].forEach(function (it) {
+      if (it[1] === undefined || it[1] === null || it[1] === "") return;
+      var box = el("div", "perf-stat");
+      var lab = el("span", "perf-lab");
+      lab.appendChild(pairSpan(it[0]));
+      box.appendChild(lab);
+      box.appendChild(el("b", "", String(it[1]) + (it[2] || "")));
+      stats.appendChild(box);
+    });
+    card.appendChild(stats);
+
+    if (cp.note) card.appendChild(pair(cp.note, "div", "perf-note bi"));
+
+    var rows = [];
+    (part.sections || []).forEach(function (sec) {
+      (sec.questions || []).forEach(function (q) {
+        if (q.classPerf) rows.push(q);
+      });
+    });
+    if (!rows.length) return card;
+    rows.sort(function (a, b) { return (a.classPerf.rank || 0) - (b.classPerf.rank || 0); });
+
+    var sub = el("div", "perf-sub small muted");
+    sub.appendChild(pairSpan(UI.perfTable));
+    card.appendChild(sub);
+
+    var head = el("div", "perf-row perf-head");
+    [UI.perfQ, UI.perfAvg, UI.perfRate].forEach(function (t, i) {
+      var c = el("span", "perf-c" + (i + 1));
+      c.appendChild(pairSpan(t));
+      head.appendChild(c);
+    });
+    card.appendChild(head);
+
+    rows.forEach(function (q) {
+      var qp = q.classPerf;
+      var fac = Number(qp.facility) || 0;
+      var row = el("button", "perf-row perf-line");
+      row.type = "button";
+      row.setAttribute("data-perf-qid", q.id);
+      var c1 = el("span", "perf-c1");
+      c1.appendChild(el("b", "", q.code));
+      if (qp.rank) c1.appendChild(el("span", "perf-rank", "#" + qp.rank));
+      row.appendChild(c1);
+      var c2 = el("span", "perf-c2");
+      c2.textContent = qp.avg + " / " + (q.marks || 0);
+      row.appendChild(c2);
+      var c3 = el("span", "perf-c3");
+      var bar = el("span", "perf-bar" + (fac < 40 ? " low" : fac < 65 ? " mid" : ""));
+      var fill = el("i");
+      fill.style.width = Math.max(2, Math.min(100, fac)) + "%";
+      bar.appendChild(fill);
+      c3.appendChild(bar);
+      c3.appendChild(el("span", "perf-pct", fac + "%"));
+      row.appendChild(c3);
+      row.onclick = function () {
+        var idx = 0;
+        pages.forEach(function (pg, i) { if (pg.kind === "q" && pg.q === q) idx = i; });
+        gotoPage(id, idx);
+      };
+      card.appendChild(row);
+    });
+
+    var hint = el("div", "perf-sub small muted");
+    hint.appendChild(pairSpan(UI.perfJump));
+    card.appendChild(hint);
+    return card;
+  }
+
   function renderOverview(body, part, pages, id) {
     var card = el("div", "card");
     var head = el("div", "q-head");
@@ -1003,6 +1099,8 @@
     card.appendChild(row);
     body.appendChild(card);
 
+    if (part.classPerf) body.appendChild(classPerfCard(part, pages, id));
+
     renderCards(part, body);
 
     var tip = el("div", "card safety-note");
@@ -1036,6 +1134,15 @@
     body.appendChild(list);
   }
 
+  /* 有全班數據的題數（給「由易到難排第 N／M」用） */
+  function perfRankTotal() {
+    var n = 0;
+    ((PART || {}).sections || []).forEach(function (s) {
+      (s.questions || []).forEach(function (q) { if (q.classPerf) n++; });
+    });
+    return n;
+  }
+
   function questionCard(q) {
     var card = el("div", "card q-card");
     card.setAttribute("data-qid", q.id);
@@ -1054,6 +1161,35 @@
       head.appendChild(bn);
     }
     card.appendChild(head);
+
+    /* 全班表現 chips（q.classPerf）：平均分、答對率、由易到難排名
+       —— 學生一開這一題就知道全班考成點，知道自己不是唯一卡住的人。 */
+    if (q.classPerf) {
+      var perf = el("div", "q-perf");
+      var c1 = el("span", "perf-chip");
+      c1.appendChild(pairSpan({
+        zh: "全班平均 " + q.classPerf.avg + " / " + (q.marks || 0),
+        en: "Class average " + q.classPerf.avg + " / " + (q.marks || 0)
+      }));
+      perf.appendChild(c1);
+      if (q.classPerf.facility !== undefined) {
+        var c2 = el("span", "perf-chip");
+        c2.appendChild(pairSpan({
+          zh: "答對率 " + q.classPerf.facility + "%",
+          en: "Facility " + q.classPerf.facility + "%"
+        }));
+        perf.appendChild(c2);
+      }
+      if (q.classPerf.rank) {
+        var c3 = el("span", "perf-chip perf-chip-rank");
+        c3.appendChild(pairSpan({
+          zh: "由易到難排第 " + q.classPerf.rank,
+          en: "Rank " + q.classPerf.rank + " of " + perfRankTotal() + " (easiest first)"
+        }));
+        perf.appendChild(c3);
+      }
+      card.appendChild(perf);
+    }
 
     // 題目字眼（讀題提示）
     if ((q.keywords || []).length) {

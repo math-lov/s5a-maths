@@ -440,7 +440,7 @@ ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")
   "每頁都有語言設定");
 
 const figs = JSON.parse(figuresJs.slice(figuresJs.indexOf("{"), figuresJs.lastIndexOf("}") + 1));
-ok(Object.keys(figs).length === 32, "圖共 32 幅（14 幅舊圖 ＋ 13 幅第 18.1 節文氏圖 ＋ 2 幅第 18.2 節樹狀圖 ＋ 3 幅第 18.3 節樹狀圖；實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).length === 33, "圖共 33 幅（14 幅舊圖 ＋ 13 幅第 18.1 節文氏圖 ＋ 2 幅第 18.2 節樹狀圖 ＋ 3 幅第 18.3 節樹狀圖 ＋ 1 幅統測第 19 題坐標圖；實際 " + Object.keys(figs).length + "）");
 ok(Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length === 13,
   "其中 13 幅屬於第 18.1 節（文氏圖；實際 " +
   Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length + "）");
@@ -2002,6 +2002,132 @@ ok(ansPass("ch18-2", 1, 0, "30/32") && ansPass("ch18-2", 1, 0, "0.938") &&
 ok(ansPass("ch17-test", 10, 0, "12") && !ansPass("ch17-test", 10, 0, "12.04") &&
   !ansPass("ch17-test", 10, 0, "11.9"),
   "整數答案（17 測前 B1(a)＝12）要準確：12 對；12.04（3 位有效數字一樣）、11.9 都當錯");
+
+/* ── 6b-7. 統測乙部檢討（ut-review，2026-10-27）─────────────────────────
+   來源：source/UT/Sample paper section B.pdf（乙部 9 題）
+        ＋ source/UT/26-27s5math.1ut (solution).docx（官方題解）
+        ＋ source/UT/Section B performance.json（全班 31 人成績分析）。
+   每一題卡頭顯示全班平均分、答對率與「由易到難」排名；總覽頁多一張
+   「全班表現」卡（全班統計 ＋ 逐題比較表）。 ─────────────────────────── */
+console.log("\n== 統測乙部檢討（Uniform Test Section B Review）==");
+const utPart = INDEX.parts.find((p) => p.id === "ut-review");
+ok(!!utPart && utPart.group === "quiz" && utPart.kind.zh === "測驗檢討" &&
+  /統測/.test(utPart.title.zh) && /Uniform Test/.test(utPart.title.en),
+  "首頁「測驗檢討」有「統測乙部檢討」（Uniform Test Section B Review）");
+ok(utPart.stats.questions === 9 && utPart.stats.marks === 50 && utPart.stats.long === 9 &&
+  utPart.meta.marks === 50 && utPart.meta.date === "23 / 10 / 2026" &&
+  utPart.meta.sections.map((s) => s.marks).join("+") === "50" && utPart.answerInput === true,
+  "統測乙部檢討：9 題 50 分（全長題）、卷面 23 / 10 / 2026、已開「輸入答案核對」");
+
+const UT_JS = read("data/ut-review.js");
+const UT_DATA = JSON.parse(UT_JS.slice(UT_JS.indexOf("{"), UT_JS.lastIndexOf("}") + 1));
+const UT_QS = UT_DATA.sections.reduce((a, s) => a.concat(s.questions || []), []);
+const utQ = (id) => UT_QS.find((q) => q.id === id) || {};
+const utA = (id, i) => (utQ(id).answers || [])[i || 0] || {};
+ok(UT_DATA.sections.map((s) => s.id).join(",") === "B" && UT_QS.length === 9 &&
+  UT_DATA.sections[0].marks === 50,
+  "資料結構：乙部一節 9 題、該節 50 分（原卷第 11–19 題）");
+ok(UT_QS.map((q) => q.code).join(",") === "11,12,13,14,15,16,17,18,19" &&
+  UT_QS.map((q) => q.marks).join(",") === "4,6,5,5,6,4,6,5,9",
+  "題號 11–19、分數 4・6・5・5・6・4・6・5・9（跟卷面一致）");
+
+ok(utA("ut-b11").math === "k = -28" && /\\frac\{7\}\{3\}/.test(utA("ut-b11", 1).math),
+  "第 11 題：(a) k = −28、(b) x = −4 或 7/3");
+ok(/^-7, -6, -5, -4, -3, -2, -1$/.test(utA("ut-b12").math.replace(/^k = /, "")),
+  "第 12 題：k 的所有可能值 = −7 至 −1（七個）");
+ok(utA("ut-b13").math === "-3 - 4i" && utA("ut-b13", 1).math === "-12 + 16i",
+  "第 13 題：(a) −3 − 4i、(b) −12 + 16i");
+ok(/\\le -7/.test(utA("ut-b14").math) && /\\ge -6/.test(utA("ut-b14").math) &&
+  /all real numbers/.test(utA("ut-b14", 1).math),
+  "第 14 題：(a) x ≤ −7 或 x ≥ −6、(b) 所有實數 k");
+ok(utA("ut-b15").math === "x \\le 2" && utA("ut-b15", 1).input === "2",
+  "第 15 題：(a) x ≤ 2、(b) 最大值 2（可輸入核對）");
+ok(utA("ut-b16", 0).input === "40320" && utA("ut-b16", 1).input === "10080" &&
+  utA("ut-b16", 2).input === "30240",
+  "第 16 題：40 320／10 080／30 240");
+ok(utA("ut-b17", 0).input === "360" && utA("ut-b17", 1).input === "180" &&
+  utA("ut-b17", 2).input === "144",
+  "第 17 題：360／180／144");
+ok(utA("ut-b18", 0).input === "3576" && utA("ut-b18", 1).input === "429120" &&
+  utA("ut-b18", 2).input === "104832" && (utQ("ut-b18").solution.alt || []).length === 1,
+  "第 18 題：3 576／429 120／104 832，並附「分類相加」參考解法");
+ok(utA("ut-b19").input === "2" && /A\(8, 0\)/.test(utA("ut-b19", 1).math) &&
+  /B\(0, -5\)/.test(utA("ut-b19", 1).math) && utA("ut-b19", 3).input === "568/89",
+  "第 19 題：k = 2、A(8, 0)、B(0, −5)、P 的 x 坐標 568/89");
+
+const utMarkSum = (q) => (q.solution.steps || []).reduce((a, s) =>
+  a + ((s.marking || "").match(/\d*[MA]/g) || [])
+    .reduce((b, t) => b + (parseInt(t, 10) || 1), 0), 0);
+ok(UT_QS.every((q) => utMarkSum(q) === q.marks &&
+  q.parts.reduce((a, p) => a + p.marks, 0) === q.marks),
+  "每題 parts 分數加總、steps 的 (1M)/(1A) 加總都＝該題分數");
+ok(UT_QS.every((q) => q.difficulty >= 1 && q.difficulty <= 3) &&
+  UT_QS.every((q) => (q.solution.traps || []).length >= 2),
+  "難度都在 1–3（三顆星），每題最少 2 個「常見錯誤」");
+
+const utCP = UT_DATA.classPerf || {};
+ok(utCP.cohort === 31 && utCP.mean === 35.84 && utCP.median === 37 &&
+  utCP.passRate === "61.3%" && utCP.paperTotal === 70 && UT_DATA.classPerf.sectionMarks === 50,
+  "全班統計：31 人應考、全卷 70 分、平均 35.84、中位數 37、及格率 61.3%");
+ok(UT_QS.every((q) => q.classPerf && q.classPerf.avg <= q.marks) &&
+  UT_QS.map((q) => q.classPerf.rank).sort((a, b) => a - b).join(",") === "1,2,3,4,5,6,7,8,9",
+  "每題都有全班數據（平均分不超過滿分），排名 1–9 不重複");
+ok(utQ("ut-b17").classPerf.avg === 1.42 && utQ("ut-b17").classPerf.facility === 23.7 &&
+  utQ("ut-b11").classPerf.rank === 1 && utQ("ut-b17").classPerf.rank === 9,
+  "第 17 題最難（平均 1.42/6、答對率 23.7%、排第 9）；第 11 題最易（排第 1）");
+
+const utOv = boot("quiz.html", "?c=ut-review&p=0");
+ok(/統測乙部檢討/.test((utOv.$("#quiz-name") || {}).textContent || "") &&
+  utOv.$$("#pagenav .pg").length === 10 && utOv.$$(".katex-error").length === 0,
+  "統測乙部檢討總覽：9 題＋總覽共 10 格、KaTeX 零錯誤");
+ok(utOv.$$(".how-paper .how-row").length === UT_DATA.introSteps.length &&
+  utOv.$$(".how-paper .how-row .l-en").length === UT_DATA.introSteps.length,
+  "總覽頁以編號步驟列「點做這份卷」（" + UT_DATA.introSteps.length + " 步，中英齊全）");
+const utStats = utOv.$$(".perf-card .perf-stat").map((n) => n.textContent.replace(/\s+/g, ""));
+ok(utOv.$$(".perf-card").length === 1 && utStats.length === 4 &&
+  utStats.join("|").indexOf("31") >= 0 && utStats.join("|").indexOf("35.84/70") >= 0 &&
+  utStats.join("|").indexOf("61.3%") >= 0,
+  "總覽頁「全班表現」卡：31 人、平均 35.84/70、中位數 37、及格率 61.3%");
+const utRows = utOv.$$(".perf-card .perf-line");
+ok(utRows.length === 9 && /^11#1/.test(utRows[0].textContent.replace(/\s+/g, "")) &&
+  /^17#9/.test(utRows[8].textContent.replace(/\s+/g, "")) &&
+  utOv.$$(".perf-card .perf-bar").length === 9,
+  "逐題比較表 9 行、由易到難排（第 11 題第一、第 17 題最後），每行有答對率橫條");
+
+const utQ17 = boot("quiz.html", "?c=ut-review&p=7", null, "show");
+ok(!!utQ17.$('.q-card[data-qid="ut-b17"]') && utQ17.$$(".q-perf .perf-chip").length === 3 &&
+  /1.42 \/ 6/.test(utQ17.$(".q-perf").textContent) &&
+  /23.7%/.test(utQ17.$(".q-perf").textContent) &&
+  /排第 9/.test(utQ17.$(".q-perf").textContent),
+  "第 17 題卡頭：全班平均 1.42/6、答對率 23.7%、由易到難排第 9");
+ok(utQ17.$$(".sol-card .steps .step").length === 6 &&
+  utQ17.$$(".step .marking").length === 6 && utQ17.$$(".sol-card .trap").length === 3,
+  "第 17 題：(a)(b)(c) 六個步驟（都有分數）＋ 3 個常見錯誤");
+
+const utAll = [];
+for (let i = 1; i <= 9; i++) utAll.push(boot("quiz.html", "?c=ut-review&p=" + i, null, "show"));
+ok(utAll.every((t) => t.$$(".sol-card .steps .step").length > 0 &&
+  !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length >= 2),
+  "9 題都有逐步題解、「帶得走的技巧」與最少 2 個常見錯誤");
+ok(utAll.every((t) => t.$$(".katex-error").length === 0 &&
+  !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en") &&
+  !/\$/.test(t.$(".q-stem").textContent)),
+  "9 題 KaTeX 零錯誤，題幹中英對照且已渲染");
+ok(utAll.filter((t) => !!t.$(".ans-card")).length === 6 &&
+  utAll.every((t) => t.$$(".sol-card .hl").length > 0),
+  "6 題有「輸入答案核對」格（其餘答案係複數／不等式，只顯示答案欄），每題都有重點框");
+ok(!boot("quiz.html", "?c=ut-review&p=3", null, "hide").$(".ans-card"),
+  "第 13 題（複數答案）不設輸入格");
+
+const utQ19t = boot("quiz.html", "?c=ut-review&p=9", null, "hide");
+ok(utQ19t.$$(".ans-row").length === 2 &&
+  utQ19t.$$(".ans-row .ans-part").map((n) => n.textContent).join("") === "(a)(c)(ii)",
+  "第 19 題兩格：(a) k 與 (c)(ii) P 的 x 坐標");
+ansType(utQ19t, 0, "2");
+ansType(utQ19t, 1, "6.38");
+ansSub(utQ19t).click();
+ok(utQ19t.$$(".ans-row.ok").length === 2,
+  "第 19 題填 2 與 6.38（568/89 準確至 3 位有效數字）都當正確");
 
 /* ── 6c. 課本練習：第 18 章 → 18.1 集合 ──────────────────────────────── */
 console.log("\n== 第 18 章 · 18.1 集合（課本練習頁）==");
