@@ -22,6 +22,10 @@
    "en": "Students lost the most marks in Q17 and Q19.\nThe facility rates were 23.7% and 25.4%. Read the common errors for these two questions first, and then solve them again."
   },
   {
+   "zh": "英文用 6P4、16C5 這種寫法\n6P4 即「由 6 個之中取 4 個排列」＝ $6 \\times 5 \\times 4 \\times 3$；16C5 即「由 16 個之中取 5 個組合」，唔計次序。步驟見到這類寫法，就照這個意思讀。",
+   "en": "Notation used in the English solutions: 6P4 and 16C5\n6P4 means arranging 4 items chosen from 6 (= 6 × 5 × 4 × 3). 16C5 means choosing 5 items from 16 without regard to order. Read every step with this in mind."
+  },
+  {
    "zh": "常見錯誤按小題次序排\n(a)、(b)、(c) 順住排，方便逐小題檢查自己卡在哪一步；每題最後是「帶得走的技巧」。",
    "en": "Common errors follow the parts in order: (a), (b), and (c).\nThis order helps you find where you made an error. Each question ends with a key exam tip."
   }
@@ -918,10 +922,10 @@
         "en": "After tying, the pair counts as 1 unit: 1 (the pair) + 6 (the others) = 7 units, so the answer is 2! × 7!. Using 6! omits the position of the pair itself."
        },
        {
-        "label": "(c) 用 8! − P(8,2) 之類的公式",
-        "labelEn": "(c) Using 8! - P(8, 2) or a similar formula",
-        "zh": "「唔相鄰」＝全部排列 −（兩人相鄰的排列）。相鄰的排列是 $2! \\times 7! = 10080$，不是 $P(8,2) = 56$。",
-        "en": "'Not next to each other' means all arrangements minus the arrangements with the two together. The adjacent count is 2! × 7! = 10080, not P(8, 2) = 56."
+        "label": "(c) 用 8! − 8P2 之類的公式",
+        "labelEn": "(c) Using 8! - 8P2 or a similar formula",
+        "zh": "「唔相鄰」＝全部排列 −（兩人相鄰的排列）。相鄰的排列是 $2! \\times 7! = 10080$，不是 $P^8_2 = 56$。",
+        "en": "'Not next to each other' means all arrangements minus the arrangements with the two together. The adjacent count is 2! × 7! = 10080, not 8P2 = 56."
        }
       ],
       "tip": {
@@ -1006,7 +1010,7 @@
         },
         "math": "P^6_4",
         "zh": "4 個人不同、6 間房也不同，「誰住哪一間」有分別，所以是排列而不是組合：第 1 個人有 6 個選擇、第 2 個有 5 個……寫成 $P^6_4$。",
-        "en": "The 4 people are distinct and the 6 rooms are distinct. The order of room assignments matters: 6 choices for person 1, 5 for person 2, and so on. Use P(6, 4).",
+        "en": "The 4 people are distinct and the 6 rooms are distinct. The order of room assignments matters: 6 choices for person 1, 5 for person 2, and so on. Use 6P4.",
         "marking": "(1M)"
        },
        {
@@ -1017,7 +1021,7 @@
         },
         "math": "P^6_4 = 6 \\times 5 \\times 4 \\times 3 = 360",
         "zh": "逐個位置數：$6 \\times 5 \\times 4 \\times 3 = 360$，所以共有 360 種房間安排。",
-        "en": "Calculate P(6, 4) = 6 × 5 × 4 × 3 = 360 arrangements.",
+        "en": "Calculate 6P4 = 6 × 5 × 4 × 3 = 360 arrangements.",
         "marking": "(1A)",
         "highlight": [
          "360"
@@ -1031,7 +1035,7 @@
         },
         "math": "P^6_2 \\times P^3_2",
         "zh": "Alan 與 Benny 在 6 間房之中住兩間：$P^6_2 = 30$；Candy 與 David 在 3 間房之中住兩間：$P^3_2 = 6$。兩組獨立，所以相乘。",
-        "en": "Alan and Benny book 2 of the 6 rooms in hotel M: P(6, 2) = 30. Candy and David book 2 of the 3 rooms in hotel N: P(3, 2) = 6. The two choices are independent, so multiply them.",
+        "en": "Alan and Benny book 2 of the 6 rooms in hotel M: 6P2 = 30. Candy and David book 2 of the 3 rooms in hotel N: 3P2 = 6. The two choices are independent, so multiply them.",
         "marking": "(1M)"
        },
        {
@@ -1056,7 +1060,7 @@
         },
         "math": "C^4_3 \\times P^3_3 \\times P^6_1",
         "zh": "先在 4 人之中揀 3 人住酒店 $N$：$C^4_3 = 4$；這 3 人住 $N$ 的 3 間房：$P^3_3 = 6$；餘下 1 人住 $M$ 的其中一間：$P^6_1 = 6$。",
-        "en": "Select 3 of the 4 people for hotel N in C(4, 3) = 4 ways. Assign them to the 3 rooms in hotel N in P(3, 3) = 6 ways. Assign the remaining 1 person to 1 of the 6 rooms in hotel M in P(6, 1) = 6 ways.",
+        "en": "Select 3 of the 4 people for hotel N in 4C3 = 4 ways. Assign them to the 3 rooms in hotel N in 3P3 = 6 ways. Assign the remaining 1 person to 1 of the 6 rooms in hotel M in 6P1 = 6 ways.",
         "marking": "(1M)"
        },
        {
@@ -1076,10 +1080,10 @@
       ],
       "traps": [
        {
-        "label": "(a) 用 C(6,4) = 15",
-        "labelEn": "(a) Using combinations C(6, 4) = 15 instead of permutations",
+        "label": "(a) 用 6C4 = 15",
+        "labelEn": "(a) Using combinations 6C4 = 15 instead of permutations",
         "zh": "房間有編號、人有名有姓，所以「換房」就是另一種安排，要用 $P^6_4$。$C^6_4$ 只是挑出 4 間房，沒有把人分配進去。",
-        "en": "Rooms and people are distinct, so switching rooms creates a new arrangement. Use P(6, 4). C(6, 4) only selects 4 rooms without assigning people."
+        "en": "Rooms and people are distinct, so switching rooms creates a new arrangement. Use 6P4. 6C4 only selects 4 rooms without assigning people."
        },
        {
         "label": "(b) 把兩組的數目相加（30 + 6 = 36）",
@@ -1088,10 +1092,10 @@
         "en": "Both groups are arranged in the same booking plan. Multi-stage independent events require multiplication: 30 × 6 = 180. Addition only applies to mutually exclusive cases."
        },
        {
-        "label": "(c) 漏了先揀人（只寫 P(3,3) × P(6,1) = 36）",
-        "labelEn": "(c) Forgetting to choose the three people (P(3, 3) × P(6, 1) = 36)",
+        "label": "(c) 漏了先揀人（只寫 3P3 × 6P1 = 36）",
+        "labelEn": "(c) Forgetting to choose the three people (3P3 × 6P1 = 36)",
         "zh": "題目說「只有三人住 $N$」，即要先決定是哪 3 人：$C^4_3 = 4$。少了這一步，就只計了其中一組人。",
-        "en": "'Only three of them' means you must first choose which 3 people go to hotel N: C(4, 3) = 4. Omitting this step calculates the arrangement for only one specific group."
+        "en": "'Only three of them' means you must first choose which 3 people go to hotel N: 4C3 = 4. Omitting this step calculates the arrangement for only one specific group."
        }
       ],
       "tip": {
@@ -1176,7 +1180,7 @@
         },
         "math": "C^{16}_5 - C^{12}_5",
         "zh": "共有 $12 + 4 = 16$ 首歌，任揀 5 首有 $C^{16}_5$ 種。不合條件的情況只有「5 首全部是中文歌」，有 $C^{12}_5$ 種；其餘情況都符合「中英各至少一首」。",
-        "en": "There are 12 + 4 = 16 songs in total. Choosing any 5 songs gives C(16, 5) ways. The only invalid outcome is choosing 5 Chinese songs, which gives C(12, 5) ways. All other selections contain at least one of each language.",
+        "en": "There are 12 + 4 = 16 songs in total. Choosing any 5 songs gives 16C5 ways. The only invalid outcome is choosing 5 Chinese songs, which gives 12C5 ways. All other selections contain at least one of each language.",
         "marking": "(1M)"
        },
        {
@@ -1187,7 +1191,7 @@
         },
         "math": "= 4368 - 792 = 3576",
         "zh": "$C^{16}_5 = 4368$、$C^{12}_5 = 792$，所以符合條件的有 $4368 - 792 = 3576$ 種。",
-        "en": "C(16, 5) = 4368 and C(12, 5) = 792. Subtract: 4368 - 792 = 3576 ways.",
+        "en": "16C5 = 4368 and 12C5 = 792. Subtract: 4368 - 792 = 3576 ways.",
         "marking": "(1A)",
         "highlight": [
          "3576"
@@ -1226,7 +1230,7 @@
         },
         "math": "C^4_1 \\times C^{12}_1 \\times P^{14}_3",
         "zh": "第一首從 4 首英文歌揀 1 首：$C^4_1$；最後一首從 12 首中文歌揀 1 首：$C^{12}_1$；中間 3 個位置由餘下 14 首歌填，次序有分別，所以用 $P^{14}_3$。",
-        "en": "Choose the first song from 4 English songs: C(4, 1). Choose the last song from 12 Chinese songs: C(12, 1). Fill the middle 3 slots from the remaining 14 songs in order: P(14, 3)."
+        "en": "Choose the first song from 4 English songs: 4C1. Choose the last song from 12 Chinese songs: 12C1. Fill the middle 3 slots from the remaining 14 songs in order: 14P3."
        },
        {
         "part": "(b)(ii)",
@@ -1236,7 +1240,7 @@
         },
         "math": "= 4 \\times 12 \\times 2184 = 104832",
         "zh": "$P^{14}_3 = 14 \\times 13 \\times 12 = 2184$，所以總共有 $4 \\times 12 \\times 2184 = 104832$ 種方法。",
-        "en": "Calculate P(14, 3) = 14 × 13 × 12 = 2184. The total number of arrangements is 4 × 12 × 2184 = 104832.",
+        "en": "Calculate 14P3 = 14 × 13 × 12 = 2184. The total number of arrangements is 4 × 12 × 2184 = 104832.",
         "marking": "(1A)",
         "highlight": [
          "104832"
@@ -1248,7 +1252,7 @@
         "label": "(a) 先揀 1 中 1 英，再從其餘 14 首揀 3 首",
         "labelEn": "(a) Selecting 1 Chinese and 1 English first, then 3 from the remaining 14",
         "zh": "$C^{12}_1 \\times C^4_1 \\times C^{14}_3 = 17472$ 會重複計算：同一組 5 首會被數多次（先揀哪一首中文、哪一首英文不同）。用反面或分類相加才不會重複。",
-        "en": "Calculating C(12, 1) × C(4, 1) × C(14, 3) = 17472 causes double counting. The same group of 5 songs is counted multiple times. Use the complement method or mutually exclusive cases."
+        "en": "Calculating 12C1 × 4C1 × 14C3 = 17472 causes double counting. The same group of 5 songs is counted multiple times. Use the complement method or mutually exclusive cases."
        },
        {
         "label": "(b)(i) 只答 5! = 120",
@@ -1257,10 +1261,10 @@
         "en": "5! only arranges one fixed set of songs. The question requires all possible song selections and their orders. Multiply 5! by the 3576 selections from part (a)."
        },
        {
-        "label": "(b)(ii) 中間三首用 C(14,3) 而不是 P(14,3)",
-        "labelEn": "(b)(ii) Using C(14, 3) instead of P(14, 3) for the middle three songs",
+        "label": "(b)(ii) 中間三首用 14C3 而不是 14P3",
+        "labelEn": "(b)(ii) Using 14C3 instead of 14P3 for the middle three songs",
         "zh": "中間三首要逐個位置播放，次序有分別，所以是 $P^{14}_3 = 2184$。用 $C^{14}_3 = 364$ 會得 $48 \\times 364 = 17472$，漏了次序。",
-        "en": "The middle three songs are played in sequence, so the order matters. Use P(14, 3) = 2184. Using C(14, 3) = 364 omits the playing order and gives an incorrect answer."
+        "en": "The middle three songs are played in sequence, so the order matters. Use 14P3 = 2184. Using 14C3 = 364 omits the playing order and gives an incorrect answer."
        }
       ],
       "alt": [
@@ -1270,7 +1274,7 @@
          "en": "Alternative method: Split part (a) into cases"
         },
         "zh": "按「幾首中文歌」分四類（1、2、3、4 首中文），每類再揀英文歌：$C^{12}_1C^4_4 + C^{12}_2C^4_3 + C^{12}_3C^4_2 + C^{12}_4C^4_1 = 12 + 264 + 1320 + 1980 = 3576$。四類互斥，所以相加不會重複。",
-        "en": "Split by the number of Chinese songs (1, 2, 3, or 4): C(12, 1)C(4, 4) + C(12, 2)C(4, 3) + C(12, 3)C(4, 2) + C(12, 4)C(4, 1) = 12 + 264 + 1320 + 1980 = 3576. These four cases are mutually exclusive, so they do not overlap."
+        "en": "Split by the number of Chinese songs (1, 2, 3, or 4): 12C1 × 4C4 + 12C2 × 4C3 + 12C3 × 4C2 + 12C4 × 4C1 = 12 + 264 + 1320 + 1980 = 3576. These four cases are mutually exclusive, so they do not overlap."
        }
       ],
       "tip": {
