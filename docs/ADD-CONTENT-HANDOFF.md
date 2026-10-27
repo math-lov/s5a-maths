@@ -539,6 +539,7 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 
 - 已合併：`intro.en`、`introSteps[].en`、`classPerf.note.en`，以及第 11–16 題的 `solution.steps`（步驟標題與說明）、`traps`、`tip`；中文除第 12 題第 1 步外全部冇改。
 - 順帶修正的數學：12(1) 由 `3x(x + 2) - k = 4` 改寫成 `3x(x + 2) = 4 + k`（中文同步改成「把 $4 + k$ 移到左邊」）；14(3) 寫成 `(k^2 + 3)`、14(5) 補回 `4(1)`、14(6) 加 `\Rightarrow k^2 + 4 > 0`、14 答案改字 "all real values of k"。
-- **該檔在尾段被截斷**（最後一行停在第 16 題 trap (b) 的 `labelEn`），所以第 17–19 題完全冇新版本，維持原稿；第 16 題的 traps (b)(c) 與 tip 由我按同一風格補寫。
+- **該檔在尾段被截斷**（最後一行停在第 16 題 trap (b) 的 `labelEn`），所以第一輪只做到第 11–16 題；第 16 題的 traps (b)(c) 與 tip 由我按同一風格補寫。
+- **同日補上第 17–19 題**：老師直接貼出完整的三題 JSON（`ut-b17`／`ut-b18`／`ut-b19`），已原樣接入。第 18 題的 (b)(ii) `(1A)` 由第 5 步移到第 6 步（加總仍然 5 分）；第 19 題的 `highlight` 修正為第 3 步 `A(8, 0)`、第 5 步 `B(0, −5)`（之前第 5 步誤標 `A(8, 0)`）。
 - 合併方式：抽 JSON → 逐欄位 diff → 只覆蓋 refined 有的欄位，`marks`／`difficulty`／`classPerf`／`figures` 一律保留；`build.py --check` 0 錯 0 警（parts 與 marking 加總仍對得上）。
 - smoke 的 14 題答案字串改寬鬆比對 `/all real (numbers|values)/`（配合新字）。

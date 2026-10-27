@@ -108,7 +108,10 @@
   - 14(3)：`(3 + k^2)` 統一寫成 `(k^2 + 3)`；14(5) 補回 `4(1)`；14(6) 加 `\Rightarrow k^2 + 4 > 0`。
   - 14(b) 答案字串：`all real numbers of k` → `all real values of k`。
 - **截斷**：該檔最後一行停在第 16 題 trap (b) 的 `labelEn`，之後（16(b)(c)、tip、17–19 題）
-  完全冇內容 → 第 16 題的 (b)(c) 與 tip 由我按同一風格補寫，第 17–19 題保留原稿。
+  完全冇內容 → 第 16 題的 (b)(c) 與 tip 由我按同一風格補寫。
+- **同日補回 17–19 題**：老師另外貼出完整三題 JSON，已原樣接入；第 18 題 (b)(ii) 的 `(1A)`
+  由第 5 步移到第 6 步（加總仍 5 分），第 19 題 `highlight` 修正為第 3 步 `A(8, 0)`、
+  第 5 步 `B(0, −5)`。
 - **合併方式**：抽 JSON（截斷部分用括號修補）→ 逐欄位 diff → 只覆蓋 refined 有的欄位，
   `marks`／`difficulty`／`classPerf`／`figures` 保留；`build.py --check` 0 錯 0 警，
   `smoke_test.js` 全部通過（14 題答案改 `/all real (numbers|values)/` 寬鬆比對）。

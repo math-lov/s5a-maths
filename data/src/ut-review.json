@@ -1002,22 +1002,22 @@
         "part": "(a)",
         "title": {
          "zh": "第 1 步 · 人與房都有分別，用排列",
-         "en": "Step 1 · People and rooms are distinct, so use permutations"
+         "en": "Step 1 · Use permutations for distinct people and distinct rooms"
         },
         "math": "P^6_4",
         "zh": "4 個人不同、6 間房也不同，「誰住哪一間」有分別，所以是排列而不是組合：第 1 個人有 6 個選擇、第 2 個有 5 個……寫成 $P^6_4$。",
-        "en": "The four people are distinct and so are the rooms, so who gets which room matters: 6 choices for the first person, 5 for the second, and so on — written P(6, 4).",
+        "en": "The 4 people are distinct and the 6 rooms are distinct. The order of room assignments matters: 6 choices for person 1, 5 for person 2, and so on. Use P(6, 4).",
         "marking": "(1M)"
        },
        {
         "part": "(a)",
         "title": {
          "zh": "第 2 步 · 計數",
-         "en": "Step 2 · Evaluate"
+         "en": "Step 2 · Calculate the value"
         },
         "math": "P^6_4 = 6 \\times 5 \\times 4 \\times 3 = 360",
         "zh": "逐個位置數：$6 \\times 5 \\times 4 \\times 3 = 360$，所以共有 360 種房間安排。",
-        "en": "6 × 5 × 4 × 3 = 360 arrangements.",
+        "en": "Calculate P(6, 4) = 6 × 5 × 4 × 3 = 360 arrangements.",
         "marking": "(1A)",
         "highlight": [
          "360"
@@ -1027,22 +1027,22 @@
         "part": "(b)",
         "title": {
          "zh": "第 3 步 · 兩組各自排房，再相乘",
-         "en": "Step 3 · Arrange each group, then multiply"
+         "en": "Step 3 · Arrange each group separately and multiply"
         },
         "math": "P^6_2 \\times P^3_2",
         "zh": "Alan 與 Benny 在 6 間房之中住兩間：$P^6_2 = 30$；Candy 與 David 在 3 間房之中住兩間：$P^3_2 = 6$。兩組獨立，所以相乘。",
-        "en": "Alan and Benny take two of the 6 rooms: P(6, 2) = 30. Candy and David take two of the 3 rooms: P(3, 2) = 6. The two groups are independent, so multiply.",
+        "en": "Alan and Benny book 2 of the 6 rooms in hotel M: P(6, 2) = 30. Candy and David book 2 of the 3 rooms in hotel N: P(3, 2) = 6. The two choices are independent, so multiply them.",
         "marking": "(1M)"
        },
        {
         "part": "(b)",
         "title": {
          "zh": "第 4 步 · 計數",
-         "en": "Step 4 · Evaluate"
+         "en": "Step 4 · Calculate the product"
         },
         "math": "30 \\times 6 = 180",
         "zh": "兩組的安排相乘：$30 \\times 6 = 180$，所以共有 180 種房間安排。",
-        "en": "30 × 6 = 180 arrangements.",
+        "en": "Calculate: 30 × 6 = 180 arrangements.",
         "marking": "(1A)",
         "highlight": [
          "180"
@@ -1052,22 +1052,22 @@
         "part": "(c)",
         "title": {
          "zh": "第 5 步 · 先揀人，再排房",
-         "en": "Step 5 · Choose the people first, then the rooms"
+         "en": "Step 5 · Choose people first, then assign rooms"
         },
         "math": "C^4_3 \\times P^3_3 \\times P^6_1",
         "zh": "先在 4 人之中揀 3 人住酒店 $N$：$C^4_3 = 4$；這 3 人住 $N$ 的 3 間房：$P^3_3 = 6$；餘下 1 人住 $M$ 的其中一間：$P^6_1 = 6$。",
-        "en": "Choose which 3 of the 4 go to hotel N: C(4, 3) = 4. Arrange them in N's 3 rooms: P(3, 3) = 6. The remaining person takes one of M's 6 rooms: P(6, 1) = 6.",
+        "en": "Select 3 of the 4 people for hotel N in C(4, 3) = 4 ways. Assign them to the 3 rooms in hotel N in P(3, 3) = 6 ways. Assign the remaining 1 person to 1 of the 6 rooms in hotel M in P(6, 1) = 6 ways.",
         "marking": "(1M)"
        },
        {
         "part": "(c)",
         "title": {
          "zh": "第 6 步 · 計數",
-         "en": "Step 6 · Evaluate"
+         "en": "Step 6 · Calculate the final product"
         },
         "math": "4 \\times 6 \\times 6 = 144",
         "zh": "三個數相乘：$4 \\times 6 \\times 6 = 144$，所以共有 144 種房間安排。",
-        "en": "4 × 6 × 6 = 144 arrangements.",
+        "en": "Multiply the stages: 4 × 6 × 6 = 144 arrangements.",
         "marking": "(1A)",
         "highlight": [
          "144"
@@ -1077,26 +1077,26 @@
       "traps": [
        {
         "label": "(a) 用 C(6,4) = 15",
-        "labelEn": "(a) Using C(6, 4) = 15",
+        "labelEn": "(a) Using combinations C(6, 4) = 15 instead of permutations",
         "zh": "房間有編號、人有名有姓，所以「換房」就是另一種安排，要用 $P^6_4$。$C^6_4$ 只是挑出 4 間房，沒有把人分配進去。",
-        "en": "The rooms are numbered and the people are distinct, so swapping rooms gives a different arrangement: use P(6, 4). C(6, 4) only picks four rooms and never assigns anyone."
+        "en": "Rooms and people are distinct, so switching rooms creates a new arrangement. Use P(6, 4). C(6, 4) only selects 4 rooms without assigning people."
        },
        {
         "label": "(b) 把兩組的數目相加（30 + 6 = 36）",
-        "labelEn": "(b) Adding the two groups (30 + 6 = 36)",
+        "labelEn": "(b) Adding instead of multiplying (30 + 6 = 36)",
         "zh": "兩組的安排要同時發生（同一份安排包含兩組），所以用乘法：$30 \\times 6$。相加只適用於互斥的分類。",
-        "en": "Both groups are arranged in the same plan, so multiply: 30 × 6. Adding only applies to mutually exclusive cases."
+        "en": "Both groups are arranged in the same booking plan. Multi-stage independent events require multiplication: 30 × 6 = 180. Addition only applies to mutually exclusive cases."
        },
        {
         "label": "(c) 漏了先揀人（只寫 P(3,3) × P(6,1) = 36）",
-        "labelEn": "(c) Forgetting to choose the three people (P(3,3) × P(6,1) = 36)",
+        "labelEn": "(c) Forgetting to choose the three people (P(3, 3) × P(6, 1) = 36)",
         "zh": "題目說「只有三人住 $N$」，即要先決定是哪 3 人：$C^4_3 = 4$。少了這一步，就只計了其中一組人。",
-        "en": "'Only three of them' means first decide which three: C(4, 3) = 4. Without it you count the arrangements for just one chosen trio."
+        "en": "'Only three of them' means you must first choose which 3 people go to hotel N: C(4, 3) = 4. Omitting this step calculates the arrangement for only one specific group."
        }
       ],
       "tip": {
        "zh": "人與房都有分別 ⇒ 用 $P$（排列）；「其中幾個」就先 $C$ 揀人，再 $P$ 排位，多步用乘。",
-       "en": "Distinct people, distinct rooms, so use P. When the question says 'only some of them', choose with C first, then arrange with P, and multiply the stages."
+       "en": "When people and rooms are distinct, use permutations P. When selecting a subset of people first, use combinations C, then arrange with P, and multiply all stages."
       }
      }
     },
@@ -1172,22 +1172,22 @@
         "part": "(a)",
         "title": {
          "zh": "第 1 步 · 反面：全部 − 全部中文",
-         "en": "Step 1 · Complement: all minus all-Chinese"
+         "en": "Step 1 · Use the complement method: Total minus All-Chinese"
         },
         "math": "C^{16}_5 - C^{12}_5",
         "zh": "共有 $12 + 4 = 16$ 首歌，任揀 5 首有 $C^{16}_5$ 種。不合條件的情況只有「5 首全部是中文歌」，有 $C^{12}_5$ 種；其餘情況都符合「中英各至少一首」。",
-        "en": "There are 12 + 4 = 16 songs, so C(16, 5) choices in total. The only invalid case is 'all 5 are Chinese', with C(12, 5) choices; everything else has at least one of each.",
+        "en": "There are 12 + 4 = 16 songs in total. Choosing any 5 songs gives C(16, 5) ways. The only invalid outcome is choosing 5 Chinese songs, which gives C(12, 5) ways. All other selections contain at least one of each language.",
         "marking": "(1M)"
        },
        {
         "part": "(a)",
         "title": {
          "zh": "第 2 步 · 計數",
-         "en": "Step 2 · Evaluate"
+         "en": "Step 2 · Calculate the number of selections"
         },
         "math": "= 4368 - 792 = 3576",
         "zh": "$C^{16}_5 = 4368$、$C^{12}_5 = 792$，所以符合條件的有 $4368 - 792 = 3576$ 種。",
-        "en": "C(16, 5) = 4368 and C(12, 5) = 792, so 4368 - 792 = 3576 ways.",
+        "en": "C(16, 5) = 4368 and C(12, 5) = 792. Subtract: 4368 - 792 = 3576 ways.",
         "marking": "(1A)",
         "highlight": [
          "3576"
@@ -1197,22 +1197,22 @@
         "part": "(b)(i)",
         "title": {
          "zh": "第 3 步 · 先揀，再排",
-         "en": "Step 3 · Choose first, then arrange"
+         "en": "Step 3 · Multiply selections by the number of permutations"
         },
         "math": "3576 \\times 5!",
         "zh": "每一組 5 首歌都可以排成 $5!$ 個不同次序，而 (a) 已算出有 3576 組，所以總數是 $3576 \\times 5!$。",
-        "en": "Each chosen set of 5 songs can be played in 5! different orders, and (a) gave 3576 sets, so the total is 3576 × 5!.",
+        "en": "Each set of 5 songs can be arranged in 5! different playing sequences. There are 3576 valid sets from part (a), so calculate 3576 × 5!.",
         "marking": "(1M)"
        },
        {
         "part": "(b)(i)",
         "title": {
          "zh": "第 4 步 · 計數",
-         "en": "Step 4 · Evaluate"
+         "en": "Step 4 · Calculate the total sequences"
         },
         "math": "= 3576 \\times 120 = 429120",
         "zh": "$5! = 120$，所以總共有 $3576 \\times 120 = 429120$ 個播放次序。",
-        "en": "5! = 120, so 3576 × 120 = 429120 playing sequences.",
+        "en": "Since 5! = 120, calculate 3576 × 120 = 429120 playing sequences.",
         "marking": "(1A)",
         "highlight": [
          "429120"
@@ -1222,22 +1222,22 @@
         "part": "(b)(ii)",
         "title": {
          "zh": "第 5 步 · 頭尾先定，中間三首用 P",
-         "en": "Step 5 · Fix the two ends, permute the middle three"
+         "en": "Step 5 · Fix the first and last slots, then arrange the middle three songs"
         },
         "math": "C^4_1 \\times C^{12}_1 \\times P^{14}_3",
         "zh": "第一首從 4 首英文歌揀 1 首：$C^4_1$；最後一首從 12 首中文歌揀 1 首：$C^{12}_1$；中間 3 個位置由餘下 14 首歌填，次序有分別，所以用 $P^{14}_3$。",
-        "en": "Pick the first song from the 4 English songs: C(4, 1). Pick the last from the 12 Chinese songs: C(12, 1). The middle three slots are filled from the remaining 14 songs, where order matters, so use P(14, 3).",
-        "marking": "(1A)"
+        "en": "Choose the first song from 4 English songs: C(4, 1). Choose the last song from 12 Chinese songs: C(12, 1). Fill the middle 3 slots from the remaining 14 songs in order: P(14, 3)."
        },
        {
         "part": "(b)(ii)",
         "title": {
          "zh": "第 6 步 · 計數",
-         "en": "Step 6 · Evaluate"
+         "en": "Step 6 · Calculate the product"
         },
         "math": "= 4 \\times 12 \\times 2184 = 104832",
         "zh": "$P^{14}_3 = 14 \\times 13 \\times 12 = 2184$，所以總共有 $4 \\times 12 \\times 2184 = 104832$ 種方法。",
-        "en": "P(14, 3) = 14 × 13 × 12 = 2184, so 4 × 12 × 2184 = 104832 arrangements.",
+        "en": "Calculate P(14, 3) = 14 × 13 × 12 = 2184. The total number of arrangements is 4 × 12 × 2184 = 104832.",
+        "marking": "(1A)",
         "highlight": [
          "104832"
         ]
@@ -1246,36 +1246,36 @@
       "traps": [
        {
         "label": "(a) 先揀 1 中 1 英，再從其餘 14 首揀 3 首",
-        "labelEn": "(a) Picking one Chinese and one English first, then 3 from the remaining 14",
+        "labelEn": "(a) Selecting 1 Chinese and 1 English first, then 3 from the remaining 14",
         "zh": "$C^{12}_1 \\times C^4_1 \\times C^{14}_3 = 17472$ 會重複計算：同一組 5 首會被數多次（先揀哪一首中文、哪一首英文不同）。用反面或分類相加才不會重複。",
-        "en": "C(12,1) × C(4,1) × C(14,3) = 17472 overcounts: the same set of five songs is counted once for each way of naming 'the' Chinese and English song. Use the complement or split into mutually exclusive cases."
+        "en": "Calculating C(12, 1) × C(4, 1) × C(14, 3) = 17472 causes double counting. The same group of 5 songs is counted multiple times. Use the complement method or mutually exclusive cases."
        },
        {
         "label": "(b)(i) 只答 5! = 120",
         "labelEn": "(b)(i) Answering only 5! = 120",
         "zh": "5! 只是「一組歌」的播放次序數目。題目要的是所有可能的選歌組合再排列，所以要乘 (a) 的 3576。",
-        "en": "5! only arranges one fixed set. The question asks for all possible choices and their orders, so multiply by the 3576 sets from (a)."
+        "en": "5! only arranges one fixed set of songs. The question requires all possible song selections and their orders. Multiply 5! by the 3576 selections from part (a)."
        },
        {
         "label": "(b)(ii) 中間三首用 C(14,3) 而不是 P(14,3)",
-        "labelEn": "(b)(ii) Using C(14,3) instead of P(14,3) for the middle three",
+        "labelEn": "(b)(ii) Using C(14, 3) instead of P(14, 3) for the middle three songs",
         "zh": "中間三首要逐個位置播放，次序有分別，所以是 $P^{14}_3 = 2184$。用 $C^{14}_3 = 364$ 會得 $48 \\times 364 = 17472$，漏了次序。",
-        "en": "The middle three songs fill three ordered slots, so it is P(14,3) = 2184. Using C(14,3) = 364 gives 48 × 364 = 17472 and loses the ordering."
+        "en": "The middle three songs are played in sequence, so the order matters. Use P(14, 3) = 2184. Using C(14, 3) = 364 omits the playing order and gives an incorrect answer."
        }
       ],
       "alt": [
        {
         "name": {
          "zh": "另一個做法：(a) 分類相加",
-         "en": "Another approach: split part (a) into cases"
+         "en": "Alternative method: Split part (a) into cases"
         },
         "zh": "按「幾首中文歌」分四類（1、2、3、4 首中文），每類再揀英文歌：$C^{12}_1C^4_4 + C^{12}_2C^4_3 + C^{12}_3C^4_2 + C^{12}_4C^4_1 = 12 + 264 + 1320 + 1980 = 3576$。四類互斥，所以相加不會重複。",
-        "en": "Split by the number of Chinese songs (1, 2, 3 or 4) and choose the English songs in each case: C(12,1)C(4,4) + C(12,2)C(4,3) + C(12,3)C(4,2) + C(12,4)C(4,1) = 12 + 264 + 1320 + 1980 = 3576. The four cases are mutually exclusive, so adding cannot double count."
+        "en": "Split by the number of Chinese songs (1, 2, 3, or 4): C(12, 1)C(4, 4) + C(12, 2)C(4, 3) + C(12, 3)C(4, 2) + C(12, 4)C(4, 1) = 12 + 264 + 1320 + 1980 = 3576. These four cases are mutually exclusive, so they do not overlap."
        }
       ],
       "tip": {
        "zh": "「至少各一」用反面：全部 − 全部同一類；「揀完要排」＝先 C 再乘階乘（或 P），兩步都要寫。",
-       "en": "'At least one of each' means total minus all-of-one-kind. When the chosen items are then arranged, multiply by the factorial (or use P) — write both stages."
+       "en": "For 'at least one of each', calculate Total minus All-of-one-type. When chosen items are played or placed in order, multiply combinations by permutations (or factorials)."
       }
      }
     },
@@ -1365,22 +1365,22 @@
         "part": "(a)",
         "title": {
          "zh": "第 1 步 · 寫出 L1 的斜率",
-         "en": "Step 1 · Write down the slope of L1"
+         "en": "Step 1 · Find the slope of line L1"
         },
         "math": "\\text{slope of } L_1 = -\\frac{5}{k}",
         "zh": "直線 $Ax + By + C = 0$ 的斜率是 $-\\frac{A}{B}$。這裡 $A = 5$、$B = k$，所以斜率是 $-\\frac{5}{k}$，而不是 $-\\frac{k}{5}$。",
-        "en": "For Ax + By + C = 0 the slope is -A/B. Here A = 5 and B = k, so the slope is -5/k, not -k/5.",
+        "en": "For the line Ax + By + C = 0, the slope is -A/B. Here A = 5 and B = k, so the slope is -5/k.",
         "marking": "(1M)"
        },
        {
         "part": "(a)",
         "title": {
          "zh": "第 2 步 · 比較係數",
-         "en": "Step 2 · Compare with the given slope"
+         "en": "Step 2 · Equate with the given slope to find k"
         },
         "math": "-\\frac{5}{k} = -\\frac{5}{2} \\Rightarrow k = 2",
         "zh": "已知斜率是 $-\\frac{5}{2}$，所以 $-\\frac{5}{k} = -\\frac{5}{2}$，得 $k = 2$。",
-        "en": "The given slope is -5/2, so -5/k = -5/2 and k = 2.",
+        "en": "The given slope is -5/2. Set -5/k = -5/2 to get k = 2.",
         "marking": "(1A)",
         "highlight": [
          "k = 2"
@@ -1390,47 +1390,50 @@
         "part": "(b)",
         "title": {
          "zh": "第 3 步 · 求 A 的坐標（y = 0）",
-         "en": "Step 3 · Find A by putting y = 0"
+         "en": "Step 3 · Find the coordinates of A (set y = 0)"
         },
         "math": "5x + 2(0) - 40 = 0 \\Rightarrow x = 8",
         "zh": "把 $k = 2$ 代入：$L_1$ 是 $5x + 2y - 40 = 0$。與 $x$ 軸相交即 $y = 0$，得 $5x = 40$、$x = 8$，所以 $A(8, 0)$。",
-        "en": "Put k = 2, so L1 is 5x + 2y - 40 = 0. On the x-axis y = 0, giving 5x = 40 and x = 8, so A is (8, 0).",
-        "marking": "(1M)"
+        "en": "Substitute k = 2 to get L1: 5x + 2y - 40 = 0. Point A is on the x-axis, so y = 0. Solve 5x = 40 to get x = 8. Therefore, A is (8, 0).",
+        "marking": "(1M)",
+        "highlight": [
+         "A(8, 0)"
+        ]
        },
        {
         "part": "(b)",
         "title": {
          "zh": "第 4 步 · 由 5OA = 8OB 反求 OB",
-         "en": "Step 4 · Use 5OA = 8OB to find OB"
+         "en": "Step 4 · Use 5OA = 8OB to find the length OB"
         },
         "math": "5(8 - 0) = 8OB \\Rightarrow OB = 5",
         "zh": "$OA$ 是 $O$ 到 $A$ 的距離，即 $8$。代入 $5 \\times 8 = 8 \\times OB$，得 $OB = 5$。",
-        "en": "OA is the distance from O to A, which is 8. Then 5 × 8 = 8 × OB, so OB = 5.",
+        "en": "The distance OA is 8. Substitute into 5 × 8 = 8 × OB to get OB = 5.",
         "marking": "(1A)"
        },
        {
         "part": "(b)",
         "title": {
          "zh": "第 5 步 · 寫出 B 的坐標，留意符號",
-         "en": "Step 5 · Write B's coordinates, mind the sign"
+         "en": "Step 5 · Determine the coordinates of B"
         },
         "math": "B(0, -5)",
         "zh": "$B$ 在 $y$ 軸上、圖中位於 $x$ 軸之下，所以坐標是 $(0, -5)$，不是 $(0, 5)$。長度 $OB = 5$ 是正數，但坐標可以是負數。",
-        "en": "B is on the y-axis, below the x-axis in the figure, so its coordinates are (0, -5), not (0, 5). The length OB is positive, but a coordinate can be negative.",
+        "en": "Point B lies on the negative y-axis below the x-axis, so its coordinates are (0, -5), not (0, 5). Length OB is positive, but coordinates have signs.",
         "marking": "(1A)",
         "highlight": [
-         "A(8, 0)"
+         "B(0, -5)"
         ]
        },
        {
         "part": "(c)(i)",
         "title": {
          "zh": "第 6 步 · 代入檢驗",
-         "en": "Step 6 · Substitute to test"
+         "en": "Step 6 · Substitute point C into the equation of L1"
         },
         "math": "5(12) + 2(-10) - 40 = 60 - 20 - 40 = 0",
         "zh": "把 $C(12, -10)$ 代入 $L_1$ 的左邊：$60 - 20 - 40 = 0$，等於右邊，所以 $C$ 在 $L_1$ 上。只寫「是」沒有解釋，就拿不到 1M。",
-        "en": "Substitute C(12, -10) into the left side of L1: 60 - 20 - 40 = 0, equal to the right side, so C lies on L1. Saying only 'yes' without this check loses the method mark.",
+        "en": "Substitute C(12, -10) into the left side of L1: 5(12) + 2(-10) - 40 = 60 - 20 - 40 = 0. The left side equals the right side, so C lies on L1. You must show this calculation to earn the method mark.",
         "marking": "(1M)"
        },
        {
@@ -1441,29 +1444,29 @@
         },
         "math": "\\text{L.H.S.} = 0 = \\text{R.H.S.} \\Rightarrow C \\text{ lies on } L_1",
         "zh": "左邊等於右邊，所以 $C$ 在 $L_1$ 上（順帶一提：$C$ 的 $y$ 坐標 $-10$ 正好在 $B$ 之下不遠，與圖中位置一致）。",
-        "en": "The two sides agree, so C lies on L1. (Its y-coordinate, -10, also sits just below B, matching the figure.)",
+        "en": "L.H.S. = R.H.S. = 0, so C lies on L1.",
         "marking": "(1A)"
        },
        {
         "part": "(c)(ii)",
         "title": {
          "zh": "第 8 步 · 寫出 L2，再寫 PC 的方程",
-         "en": "Step 8 · Write L2, then the line PC"
+         "en": "Step 8 · Find the equation of L2 and the perpendicular line PC"
         },
         "math": "L_2: y = \\frac{5}{8}x - 5, \\quad PC: 8x + 5y - 46 = 0",
         "zh": "$L_2$ 經過 $A(8, 0)$、$B(0, -5)$，斜率 $=\\frac{0 - (-5)}{8 - 0} = \\frac{5}{8}$，所以 $y = \\frac{5}{8}x - 5$。「最近的點」是垂足，$PC \\perp L_2$，斜率是 $-\\frac{8}{5}$，用 $C(12, -10)$ 得 $y + 10 = -\\frac{8}{5}(x - 12)$，整理成 $8x + 5y - 46 = 0$。",
-        "en": "L2 passes through A(8, 0) and B(0, -5), with slope (0 - (-5))/(8 - 0) = 5/8, so y = 5x/8 - 5. The closest point is the foot of the perpendicular, so PC ⊥ L2 with slope -8/5; through C(12, -10), y + 10 = -8/5 (x - 12), which rearranges to 8x + 5y - 46 = 0.",
+        "en": "Line L2 passes through A(8, 0) and B(0, -5). Its slope is (0 - (-5))/(8 - 0) = 5/8, so its equation is y = (5/8)x - 5. The closest point P is the foot of the perpendicular, so PC ⊥ L2 with slope -8/5. Through C(12, -10), the equation of PC is y + 10 = (-8/5)(x - 12), which simplifies to 8x + 5y - 46 = 0.",
         "marking": "(1M)"
        },
        {
         "part": "(c)(ii)",
         "title": {
          "zh": "第 9 步 · 解聯立方程",
-         "en": "Step 9 · Solve the two equations"
+         "en": "Step 9 · Solve the simultaneous equations to find x"
         },
         "math": "8x + 5\\left(\\frac{5}{8}x - 5\\right) - 46 = 0 \\Rightarrow \\frac{89}{8}x = 71 \\Rightarrow x = \\frac{568}{89}",
         "zh": "把 $L_2$ 代入 $PC$：$8x + \\frac{25}{8}x - 25 - 46 = 0$，即 $\\frac{89}{8}x = 71$，所以 $x = \\frac{568}{89}$（約 6.38）。兩式聯立之後只剩 $x$ 一個未知數，直接解方程就可以。",
-        "en": "Substitute L2 into PC: 8x + 25x/8 - 25 - 46 = 0, so 89x/8 = 71 and x = 568/89 (about 6.38).",
+        "en": "Substitute y = (5/8)x - 5 into 8x + 5y - 46 = 0: 8x + 5[(5/8)x - 5] - 46 = 0. Simplify: (89/8)x = 71, which gives x = 568/89.",
         "marking": "(1A)",
         "highlight": [
          "x = \\frac{568}{89}"
@@ -1473,38 +1476,38 @@
       "traps": [
        {
         "label": "(a) 把斜率寫成 −k/5",
-        "labelEn": "(a) Writing the slope as -k/5",
+        "labelEn": "(a) Writing the slope as -k/5 instead of -5/k",
         "zh": "$Ax + By + C = 0$ 的斜率是 $-\\frac{A}{B}$，即 $-\\frac{5}{k}$。寫成 $-\\frac{k}{5}$ 會得 $k = \\frac{25}{2}$，之後全部連鎖出錯。",
-        "en": "The slope of Ax + By + C = 0 is -A/B, here -5/k. Using -k/5 gives k = 25/2 and every later part goes wrong."
+        "en": "The slope of Ax + By + C = 0 is -A/B, which gives -5/k. Writing -k/5 gives k = 25/2 and causes subsequent answers to be incorrect."
        },
        {
         "label": "(b) 寫 B(0, 5)",
         "labelEn": "(b) Writing B as (0, 5)",
         "zh": "$OB = 5$ 是長度，$B$ 在圖中位於 $x$ 軸之下，所以 $y$ 坐標是 $-5$。長度與坐標的符號要分清楚。",
-        "en": "OB = 5 is a length; B is below the x-axis in the figure, so its y-coordinate is -5. Separate length from coordinate sign."
+        "en": "OB = 5 is a length. Point B lies below the x-axis in the figure, so its y-coordinate is -5. Do not confuse distance with coordinate values."
        },
        {
         "label": "(c)(i) 只答「是」而沒有代入",
-        "labelEn": "(c)(i) Answering 'yes' without substituting",
+        "labelEn": "(c)(i) Stating 'Yes' without substitution",
         "zh": "題目說「Explain your answer」，要寫出代入後左邊等於 0，才可以拿方法分。",
-        "en": "The question says 'Explain your answer': show that substituting gives 0, otherwise the method mark is lost."
+        "en": "The question asks you to 'Explain your answer'. You must show that substituting the point into the equation gives 0 to earn the method mark."
        },
        {
         "label": "(c)(ii) 用 C 到 A 的距離，或者當成中點",
-        "labelEn": "(c)(ii) Using the distance to A, or treating P as a midpoint",
+        "labelEn": "(c)(ii) Assuming P is point A or the midpoint of AB",
         "zh": "「$L_2$ 上最接近 $C$ 的點」是垂足：$PC$ 必須垂直 $L_2$，不是 $A$，也不是 $AB$ 的中點。",
-        "en": "The closest point on L2 is the foot of the perpendicular: PC must be perpendicular to L2 — it is not A, and not the midpoint of AB."
+        "en": "The point on L2 closest to C is the foot of the perpendicular. Line PC must be perpendicular to L2. P is neither point A nor the midpoint of AB."
        },
        {
         "label": "整題留空（時間不足）",
-        "labelEn": "Leaving the whole question blank",
+        "labelEn": "Leaving Question 19 blank",
         "zh": "(a) 求 $k$、(b) 求 $A$ 都是很直接的一兩步，各有方法分。這一題 9 分，是全卷最高，不要整題放棄。",
-        "en": "Parts (a) and (b) are one or two direct steps with method marks. This is the longest question in the paper (9 marks) — never leave it entirely blank."
+        "en": "Parts (a) and (b) require only basic steps and provide accessible method marks. This question carries 9 marks in total, so always complete the early parts."
        }
       ],
       "tip": {
        "zh": "$Ax + By + C = 0$ 的斜率是 $-\\frac{A}{B}$；「最近的點」＝垂足（兩線斜率相乘等於 $-1$）；長度是正數，坐標要看圖定正負。",
-       "en": "For Ax + By + C = 0 the slope is -A/B. The closest point is the foot of the perpendicular (slopes multiply to -1). Lengths are positive, but read the figure to decide the sign of a coordinate."
+       "en": "The slope of Ax + By + C = 0 is -A/B. The point on a line closest to an external point is the foot of the perpendicular (slopes multiply to -1). Length is positive, but coordinates can be negative."
       }
      }
     }
