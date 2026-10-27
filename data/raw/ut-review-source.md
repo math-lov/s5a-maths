@@ -95,3 +95,20 @@
   冇學生個人資料。
 - 第 19 題的圖用 `figures.json` 新的 `lines` 規格重畫（5x + 2y − 40 = 0 與
   5x − 8y − 40 = 0），`tools/preview_figures.py` 出 PNG 逐幅檢查。
+
+## 七、用字與步驟修訂（2026-10-27）
+
+老師另外提供 `source/UT/refined UT review scripts.js`（另一個 AI 依原稿重寫的英文版，
+格式跟 `data/ut-review.js` 一樣，可以直接抽 JSON 比對）。
+
+- **覆蓋範圍**：第 11–16 題的 `solution.steps`（步驟標題＋說明）、`traps`、`tip`，
+  加上 `intro.en`、`introSteps[].en`、`classPerf.note.en`。中文只有第 12 題第 1 步改過。
+- **數學修正**：
+  - 12(1)：`3x(x + 2) - k = 4` → `3x(x + 2) = 4 + k`，中文改「把 $4 + k$ 移到左邊」。
+  - 14(3)：`(3 + k^2)` 統一寫成 `(k^2 + 3)`；14(5) 補回 `4(1)`；14(6) 加 `\Rightarrow k^2 + 4 > 0`。
+  - 14(b) 答案字串：`all real numbers of k` → `all real values of k`。
+- **截斷**：該檔最後一行停在第 16 題 trap (b) 的 `labelEn`，之後（16(b)(c)、tip、17–19 題）
+  完全冇內容 → 第 16 題的 (b)(c) 與 tip 由我按同一風格補寫，第 17–19 題保留原稿。
+- **合併方式**：抽 JSON（截斷部分用括號修補）→ 逐欄位 diff → 只覆蓋 refined 有的欄位，
+  `marks`／`difficulty`／`classPerf`／`figures` 保留；`build.py --check` 0 錯 0 警，
+  `smoke_test.js` 全部通過（14 題答案改 `/all real (numbers|values)/` 寬鬆比對）。

@@ -2038,7 +2038,7 @@ ok(/^-7, -6, -5, -4, -3, -2, -1$/.test(utA("ut-b12").math.replace(/^k = /, "")),
 ok(utA("ut-b13").math === "-3 - 4i" && utA("ut-b13", 1).math === "-12 + 16i",
   "第 13 題：(a) −3 − 4i、(b) −12 + 16i");
 ok(/\\le -7/.test(utA("ut-b14").math) && /\\ge -6/.test(utA("ut-b14").math) &&
-  /all real numbers/.test(utA("ut-b14", 1).math),
+  /all real (numbers|values)/.test(utA("ut-b14", 1).math),
   "第 14 題：(a) x ≤ −7 或 x ≥ −6、(b) 所有實數 k");
 ok(utA("ut-b15").math === "x \\le 2" && utA("ut-b15", 1).input === "2",
   "第 15 題：(a) x ≤ 2、(b) 最大值 2（可輸入核對）");

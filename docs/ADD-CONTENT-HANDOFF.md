@@ -534,3 +534,11 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 **工作紙**：`python -X utf8 tools/make_worksheet_docx.py --part ut-review` 可印（全英）；不過統測卷本身已派，主要用途係重印。
 
 **smoke**：新增 `6b-7` 段 26 條斷言（課題註冊、9 題 50 分、官方答案字串、parts／marking 加總、全班統計與排名、總覽「全班表現」卡與 9 行表、第 17 題卡頭 chips、KaTeX 零錯誤、6 題有輸入格、第 19 題填 2 與 6.38 都當對）。圖數斷言同時由 32 改 33。
+
+**2026-10-27 用字／步驟修訂（第二次）**：老師提供 `source/UT/refined UT review scripts.js`（另一個 AI 重寫的英文版，同樣係生成檔格式）。
+
+- 已合併：`intro.en`、`introSteps[].en`、`classPerf.note.en`，以及第 11–16 題的 `solution.steps`（步驟標題與說明）、`traps`、`tip`；中文除第 12 題第 1 步外全部冇改。
+- 順帶修正的數學：12(1) 由 `3x(x + 2) - k = 4` 改寫成 `3x(x + 2) = 4 + k`（中文同步改成「把 $4 + k$ 移到左邊」）；14(3) 寫成 `(k^2 + 3)`、14(5) 補回 `4(1)`、14(6) 加 `\Rightarrow k^2 + 4 > 0`、14 答案改字 "all real values of k"。
+- **該檔在尾段被截斷**（最後一行停在第 16 題 trap (b) 的 `labelEn`），所以第 17–19 題完全冇新版本，維持原稿；第 16 題的 traps (b)(c) 與 tip 由我按同一風格補寫。
+- 合併方式：抽 JSON → 逐欄位 diff → 只覆蓋 refined 有的欄位，`marks`／`difficulty`／`classPerf`／`figures` 一律保留；`build.py --check` 0 錯 0 警（parts 與 marking 加總仍對得上）。
+- smoke 的 14 題答案字串改寬鬆比對 `/all real (numbers|values)/`（配合新字）。
