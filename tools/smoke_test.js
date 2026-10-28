@@ -2682,7 +2682,7 @@ const q184 = (id) => P184_DATA.sections
   .reduce((a, s) => a.concat(s.questions || []), []).filter((q) => q.id === id)[0] || {};
 ok(P184_DATA.sections.map((s) => s.id).join(",") === "CE,SC,L1,L2,SM",
   "18.4 分段順序＝課堂例題／判斷題／L1／L2／挑戰題（沒有跨課題段）");
-ok((P184_DATA.cards || []).length === 3, "18.4 有 3 張教學卡");
+ok((P184_DATA.cards || []).length === 4, "18.4 有 4 張教學卡");
 ok(P184_DATA.cards.every((c) => (c.math || []).length > 0 && c.warn && c.vocab),
   "18.4 每張卡都有數式、常犯錯誤與詞彙 chips");
 
@@ -2757,12 +2757,28 @@ ok(/所有可能結果的數目/.test(P184_DATA.cards.filter((c) => c.id === "ch
 ok(/插空法/.test(P184_DATA.cards.filter((c) => c.id === "ch18-4-c03")[0].body.zh),
   "c03 補上插空法三步模版");
 
+/* 2026-10-28 老師指示：教學卡英文要淺白直接，並補「分子分母一致」與「C/P/! 要求不同物件」
+   （原文 Tie them together, then split into cases 太抽象） */
+const card184 = (id) => P184_DATA.cards.filter((c) => c.id === id)[0] || { body: {}, math: [] };
+ok(card184("ch18-4-c04").body.zh &&
+  /同一把尺/.test(card184("ch18-4-c04").body.zh) &&
+  /無放回/.test(card184("ch18-4-c04").body.zh),
+  "c04 講分子分母要用同一把尺，並指出 C／P／! 要求物件不同、無放回");
+ok(/\(Q\.6\)/.test(card184("ch18-4-c04").body.en) &&
+  card184("ch18-4-c04").body.en.indexOf("C^6_3") > 0,
+  "c04 用第 6 題（擲骰 P(6,3)/6³ 而非 C(6,3)/6³）做反例");
+ok(/Method 1/.test(card184("ch18-4-c03").body.en) &&
+  !/Tie them together/.test(card184("ch18-4-c03").title.en),
+  "c03 英文改成 Method 1／2／3 直述步驟");
+ok(/4! \\times 2! = 24 \\times 2 = 48/.test(card184("ch18-4-c03").math[0]),
+  "c03 以 5 人排行 4!×2!=48 取代 (n-k+1)!k! 抽象公式");
+
 /* 頁面渲染 ＋ 真 KaTeX */
 const c184 = boot("quiz.html", "?c=ch18-4&p=0");
 ok(c184.$$("#pagenav .pg").length === 37,
   "18.4 分頁列 = 總覽 + 36 題（實際 " + c184.$$("#pagenav .pg").length + "）");
 ok(c184.$$("#pagenav .pg-sec").length === 5, "18.4 分頁列有 5 個分段標題");
-ok(c184.$$(".cc").length === 3, "18.4 總覽渲染出 3 張教學卡");
+ok(c184.$$(".cc").length === 4, "18.4 總覽渲染出 4 張教學卡");
 ok(c184.$$(".katex-error").length === 0, "18.4 教學卡全部數式 KaTeX 渲染成功");
 ok(!/\{\{math:/.test(c184.$("#quiz-body").textContent), "18.4 總覽沒有殘留 {{math:}} 佔位符");
 
@@ -2790,9 +2806,9 @@ ok(P184_DATA.sections.every((s) => s.questions.every((q) => stepMarks(q) === q.m
 ok(!LABEL_WORDS.some((w) => read("data/src/ch18-4.json").includes(w)),
   "18.4 全部內容沒有標籤學生的字眼");
 
-/* 下捨入示範（`floor`）掛在 18.2 c02，唔在 18.4；18.4 三張卡都保持靜態 */
+/* 下捨入示範（`floor`）掛在 18.2 c02，唔在 18.4；18.4 四張卡都保持靜態 */
 ok(P184_DATA.cards.every((c) => !c.demo),
-  "18.4 三張教學卡都冇 demo（下捨入示範改掛在 18.2 c02）");
+  "18.4 四張教學卡都冇 demo（下捨入示範改掛在 18.2 c02）");
 
 /* ── 7. 進度記錄（新開頁面仍記得）────────────────────────────────────── */
 console.log("\n== 進度 ==");

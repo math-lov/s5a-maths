@@ -17,16 +17,15 @@
     "en": "Probability = favourable count ÷ total count"
    },
    "body": {
-    "zh": "- 本節每一題都先問兩件事：「全部」有多少種？「符合條件」有多少種？兩者相除就是概率：{{math:0}}\n- 「同時抽」或「一次抽幾個」＝次序不重要，用組合 $C$；「逐個抽」「排隊」「有先後」＝次序重要，用排列 $P$ 或逐步相乘。\n- 分子與分母要用同一種工具：兩個都用 $C$，或者兩個都用 $P$。例如從 $n$ 個之中取 $m$ 個再分給不同種類，分母與分子都可以寫成同類的乘積：{{math:1}}\n- 數完之後檢查：分子的情況一定是分母的一部份，所以概率必定在 $0$ 與 $1$ 之間。算出大於 $1$ 就一定數錯了。",
-    "en": "- Every question here starts with two questions: how many outcomes are there in total, and how many are favourable? Divide one by the other: {{math:0}}\n- \"Drawn at the same time\" or \"select several at once\" ignores order, so use combinations $C$; \"one by one\", \"queue\" or \"in a particular order\" makes order matter, so use $P$ or multiply step by step.\n- Numerator and denominator must use the same tool — both $C$ or both $P$. When choosing from several groups at once, both can be written as similar products: {{math:1}}\n- Check afterwards: the favourable cases are part of the total, so the probability must lie between 0 and 1. Anything above 1 is a counting error."
-   },
-   "math": [
-    "P = \\frac{n(A)}{n(S)}",
-    "P = \\frac{C^a_x \\times C^b_y}{C^n_k}"
-   ],
+    "zh": "- 每題先問兩件事：所有可能結果有多少個？當中有多少個是我們要的？後者除以前者就是概率：{{math:0}}\n- 「同時抽」或「一次抽幾個」＝次序不重要，用組合 $C$；「逐個抽」「排隊」「有指定次序」＝次序重要，用排列 $P$ 或逐步相乘。\n- 最後檢查答案：一定在 $0$ 與 $1$ 之間，因為有利結果只是所有可能結果的一部份。算出大於 $1$ 就表示數錯了。",
+    "en": "- Ask two questions first: how many results are possible in total, and how many of them do we want? Divide the wanted count by the total count: {{math:0}}\n- \"At the same time\" or \"pick several at once\" means order does not matter, so use $C$. \"One by one\", \"in a queue\" or \"in a fixed order\" means order matters, so use $P$ or multiply step by step.\n- Check the answer at the end: it must be between 0 and 1, because the wanted results are only part of all results. An answer above 1 means a counting mistake."
+    },
+    "math": [
+    "P = \\frac{\\text{wanted}}{\\text{total}}"
+    ],
    "warn": {
-    "zh": "- 分母用了 $C^{16}_4$（選 4 個的方法數），分子也要是「選 4 個」的計數；若分子寫成 $P$，答案一定錯。\n- 「至少」不要逐個情況加：先算反面 $1 - P(\\text{一件都沒有})$，通常快一半以上。\n- 逐個抽而不放回時，分母每一步都少 $1$；如果改用「一次過選」的組合寫法，就不用管次序，兩者答案必須相同。",
-    "en": "- If the denominator uses $C^{16}_4$ (the number of ways of choosing 4), the numerator must also count ways of choosing 4; writing the numerator with $P$ guarantees a wrong answer.\n- Never add case by case for \"at least\": use the complement 1 − P(none), which is usually at least twice as fast.\n- When drawing one by one without replacement, the denominator drops by 1 each step; the equivalent \"choose all at once\" combination ignores order, and both must give the same answer."
+    "zh": "- 分母用 $C^{16}_4$（選 4 個的方法數），分子就要同樣數「選 4 個」的方法；分子改用 $P$ 一定錯。\n- 「至少」不要逐個情況加：用反面 $1 - P(\\text{一個都沒有})$，通常快好多。\n- 逐個抽而不放回時，分母每一步減 $1$；改用「一次過選」的組合寫法，答案必須相同，可以互相核對。",
+    "en": "- If the bottom is $C^{16}_4$ (the number of ways to choose 4), the top must also count ways to choose 4. Putting $P$ on top guarantees a wrong answer.\n- For \"at least\", do not add case by case; use the opposite $1 - P(\\text{none})$, which is usually much faster.\n- Drawing one by one without replacement makes the bottom lose 1 each step. The \"choose all at once\" version with $C$ must give the same answer, so use the two to check each other."
    },
    "vocab": [
     {
@@ -51,16 +50,16 @@
     "en": "Symmetry saves the counting"
    },
    "body": {
-    "zh": "- 隨機排列的題目，很多答案只看「誰相對誰」，與其他人完全無關：$n$ 個人之中，某一位在指定某一個位置的機會是 $\\frac{1}{n}$，所以「第一位是他」與「最後一位是她」都是 $\\frac{1}{n}$。\n- 「甲剛好在乙的前一位」也是 $\\frac{1}{n}$——把甲乙綁成一件，這一件可以放在 $n-1$ 個位置中的任何一個，機會均等：{{math:0}}\n- 「甲在乙前面」（不必相鄰）＝ $\\frac{1}{2}$，因為兩人相對次序只有「甲前」與「乙前」兩種，機會均等。\n- 「三人之中乙排在中間」（不必相鄰）＝ $\\frac{1}{3}$，不是 $\\frac{1}{6}$：三個人的相對次序有 $6$ 種，乙在中間佔 $2$ 種。",
-    "en": "- In a random arrangement the answer often depends only on who is relative to whom, not on the others: in a queue of $n$, one particular person is in a given position with probability $\\frac{1}{n}$, so \"he is first\" and \"she is last\" are both $\\frac{1}{n}$.\n- \"A is immediately before B\" is also $\\frac{1}{n}$ — tie the two together and the pair can sit in any of $n-1$ positions with equal chance: {{math:0}}\n- \"A is somewhere before B\" (not necessarily adjacent) is $\\frac{1}{2}$, because there are only two equally likely relative orders.\n- \"B is in the middle of three\" (not necessarily adjacent) is $\\frac{1}{3}$, not $\\frac{1}{6}$: there are 6 relative orders and B is in the middle in 2 of them."
+    "zh": "- 排列完全隨機時，每個人排每個位置的機會都一樣：$n$ 個人排隊，某一位排第一的機會是 $\\frac{1}{n}$；排最後，或者排任何指定位置，都一樣是 $\\frac{1}{n}$。\n- 「甲剛好在乙前面一位」也是 $\\frac{1}{n}$：把甲乙綁成一件，這一件可以放 $n-1$ 個位置，機會均等：{{math:0}}\n- 「甲在乙前面」（不必相鄰）＝ $\\frac{1}{2}$，因為兩人相對次序只有「甲前」與「乙前」兩種，機會均等。\n- 「三人之中乙排在中間」（不必相鄰）＝ $\\frac{1}{3}$，不是 $\\frac{1}{6}$：三個人有 $6$ 種次序，乙在中間佔 $2$ 種。",
+    "en": "- When the arrangement is completely random, every position is equally likely for everyone: in a queue of $n$, one particular person is first with probability $\\frac{1}{n}$; last place, or any fixed position, is also $\\frac{1}{n}$.\n- \"A is right in front of B\" is also $\\frac{1}{n}$: tie A and B into one block, and that block can sit in any of $n-1$ places with equal chance: {{math:0}}\n- \"A is somewhere before B\" (not necessarily next to each other) is $\\frac{1}{2}$, because for two people there are only two relative orders and both are equally likely.\n- \"B is in the middle of the three\" (not necessarily next to each other) is $\\frac{1}{3}$, not $\\frac{1}{6}$: three people give $6$ orders, and B is in the middle in $2$ of them."
    },
    "math": [
     "P(\\text{A just before B}) = \\frac{1}{n}",
     "P(\\text{A before B}) = \\frac{1}{2}"
    ],
    "warn": {
-    "zh": "- 「乙在三人的中間」有「甲、乙、丙」與「丙、乙、甲」兩種寫法，所以是 $\\frac{2}{6} = \\frac{1}{3}$，只數 $\\frac{1}{6}$ 是最常見的漏項。\n- 對稱性只在「機會均等」時才可用：若排列方式被限制（例如男生女生必須梅花間竹），就不能直接寫 $\\frac{1}{n}$，要回到計數。\n- 對稱性得出的答案最好用「所有可能結果的數目」核對一次，尤其是 $n$ 小的題目（$n = 4$、$n = 8$），心算就能驗。",
-    "en": "- \"B in the middle of three\" covers both the order A, B, C and C, B, A, so the answer is $\\frac{2}{6} = \\frac{1}{3}$; stopping at $\\frac{1}{6}$ is the commonest omission.\n- Symmetry only works when the arrangements are equally likely: if the arrangement is restricted (boys and girls must alternate, say) you cannot write $\\frac{1}{n}$ and must count instead.\n- Always check a symmetry answer against the full count, especially for small $n$ ($n = 4$ or $n = 8$), where mental arithmetic is enough."
+    "zh": "- 「乙在三人的中間」有「甲、乙、丙」與「丙、乙、甲」兩種，所以是 $\\frac{2}{6} = \\frac{1}{3}$；只寫 $\\frac{1}{6}$ 是最常見的漏項。\n- 對稱性只在「所有排列機會均等」時才可用。若排列受限制（例如男女必須梅花間竹），就要回到計數。\n- 對稱性的答案最好用全部排法核對一次，$n$ 小的題目（$n = 4$、$n = 8$）心算就可以驗。",
+    "en": "- \"B in the middle of three\" covers both A, B, C and C, B, A, so the answer is $\\frac{2}{6} = \\frac{1}{3}$; stopping at $\\frac{1}{6}$ is the most common slip.\n- Symmetry only works when all arrangements are equally likely. If the arrangement is restricted (boys and girls must alternate, say), go back to counting.\n- Check a symmetry answer against the full count, especially when $n$ is small ($n = 4$ or $n = 8$), where you can do it in your head."
    },
    "vocab": [
     {
@@ -81,20 +80,20 @@
    "id": "ch18-4-c03",
    "topic": "ch18-4",
    "title": {
-    "zh": "綁在一起，與分類相加",
-    "en": "Tie them together, then split into cases"
+    "zh": "先綁成一件，再分類討論",
+    "en": "Tie into a block, then split into cases"
    },
    "body": {
-    "zh": "- 「同一類的人必須相鄰」＝把那一群人綁成一件，與其他人一起排，最後把群內的排列乘回：{{math:0}}\n- 「恰好 $k$ 個」＝先分類再相乘：從甲類取 $k$ 個、從其餘取 $m-k$ 個，兩邊用組合相乘，然後除以所有可能結果的數目：{{math:1}}\n- 「至少 $k$ 個」用反面；但反面有幾項要看清楚——「至少 3 個」的反面是「0 個或 1 個或 2 個」，三項都要減。\n- 「至多 $k$ 個」的捷徑：先看 $k$ 是否接近總數。例如「至多 1 個」在總數是 3 的時候，反面只是「2 個或 3 個」；但「至多 1 個」在總數是 5 的時候，正面（0 個＋1 個）反而更快。\n- 「同類不能相鄰」用插空法：① 先排沒有這個限制的物件；② 數出它們之間的空隙，空隙數＝已排物件數 $+ 1$；③ 把受限制的物件放進空隙（用排列 $P$ 或組合 $C$）。",
-    "en": "- \"People of the same kind must be adjacent\" means tying that whole group into one block, arranging it with the rest, then multiplying back the arrangements inside the block: {{math:0}}\n- \"Exactly $k$\" is case-splitting: take $k$ from one group and $m-k$ from the rest, multiply the two combinations, then divide by the total count: {{math:1}}\n- \"At least $k$\" uses the complement — but count the cases carefully: the complement of \"at least 3\" is \"0, 1 or 2\", and all three must be subtracted.\n- For \"at most $k$\", check how close $k$ is to the total. \"At most 1\" out of 3 has a short complement (\"2 or 3\"); \"at most 1\" out of 5 is usually quicker done directly (\"0 plus 1\").\n- \"The same kind must not be adjacent\" uses gap insertion: (1) arrange the objects that have no such restriction first; (2) the gaps they create number (arranged objects + 1); (3) place the restricted objects into those gaps (using P or C)."
+    "zh": "- 方法一：綁成一件。要某些人必須相鄰，就把他們綁成一件（一個大單位），先與其他人一起排，最後乘回大單位裡面的排法。例：5 人排一行，A 與 B 必須相鄰——綁成一件後有 4 個單位（$4! = 24$），單位內 A、B 可以對調（$2! = 2$），共 $24 \\times 2 = 48$：{{math:0}}\n- 綁完一定要乘回裡面的排法，這是最常見的漏分位。若只是「某兩人相鄰」，裡面就只有 $2!$。\n- 方法二：先分類，再相乘。「恰好 $k$ 個」＝從甲類取 $k$ 個，再從其餘取夠數，兩邊相乘，最後除以所有可能結果的數目：{{math:1}}\n- 「至少 $k$ 個」＝把 $k$、$k+1$、…各項加起來，項數太多才用反面。反面的項要看清楚：「至少 3 個」的反面是「0 個、1 個或 2 個」，三項都要減。「至多 $k$ 個」就揀項數少的一邊。\n- 方法三：插空法。「同類不能相鄰」時：① 先排沒有這個限制的物件；② 空隙數 ＝ 已排物件數 $+ 1$；③ 把受限制的物件放入空隙。\n- 分類相加之前檢查：各類不可以重疊，合起來要剛好等於題目要求的情況。",
+    "en": "- Method 1: tie into a block. If some people must be next to each other, tie them into one block (one big unit), arrange the block with everyone else, then multiply by the arrangements inside the block. Example: 5 students in a row, A and B must be next to each other. The block gives 4 units ($4! = 24$), and A, B can swap inside ($2! = 2$), so $24 \\times 2 = 48$: {{math:0}}\n- Always multiply back the arrangements inside the block; forgetting this is the most common lost mark. If only two particular people must be adjacent, the inside is just $2!$.\n- Method 2: split into cases, then multiply. \"Exactly $k$\" means choose $k$ from one group and the rest from the other group, multiply the two counts, then divide by the total: {{math:1}}\n- \"At least $k$\" means add the cases $k$, $k+1$, ...; use the opposite only when there are many cases. Count the opposite carefully: the opposite of \"at least 3\" is \"0, 1 or 2\", and all three must be subtracted. For \"at most $k$\", use whichever side has fewer cases.\n- Method 3: fill the gaps. When the same kind must not be next to each other: (1) arrange the other objects first; (2) the number of gaps is (objects arranged + 1); (3) put the restricted objects into the gaps.\n- Before you add cases, check that they do not overlap and that together they cover exactly what the question asks."
    },
    "math": [
-    "\\text{tie up: } (n - k + 1)! \\times k!",
-    "P(\\text{exactly } k) = \\frac{C^a_k \\times C^{n-a}_{m-k}}{C^n_m}"
+    "4! \\times 2! = 24 \\times 2 = 48",
+    "\\frac{C^{10}_3 \\times C^{6}_1}{C^{16}_4} = \\frac{720}{1820} = \\frac{36}{91}"
    ],
    "warn": {
-    "zh": "- 綁成一件之後，一定要把群內的排列乘回。忘記乘回是這類題目最常見的漏分位。\n- 「同一類相鄰」有很多種問法：「全部男生坐在一起」「三本字典放在一起」都是同一招，但「某兩人相鄰」只需把兩人綁成一件，內的排列是 $2!$。\n- 分類相加時各類必須互斥並且合起來剛好是全部要求的情況，否則會重複計算或漏掉（例如「至少 2 對夫婦」要小心「恰好 2 對」與「恰好 3 對」的分界）。",
-    "en": "- After tying a group into one block, always multiply back the arrangements inside the block; forgetting this is the commonest lost mark.\n- \"Same kind adjacent\" appears in many disguises (\"all the boys sit together\", \"the three dictionaries stay together\"), but \"two particular people are adjacent\" only ties two people, with $2!$ inside.\n- When adding cases, they must be mutually exclusive and together cover exactly the required event, otherwise some are double-counted or missed (for \"at least 2 couples\", watch the boundary between exactly 2 and exactly 3)."
+    "zh": "- 綁成一件之後，一定要把大單位裡面的排法乘回。忘記乘回是這類題目最常見的漏分位。\n- 「同類相鄰」有很多種問法：「全部男生坐在一起」「三本字典放在一起」都是同一招；若只是「某兩人相鄰」，大單位裡面就是 $2!$。\n- 分類相加時，各類必須互斥，合起來要剛好等於題目要求的情況，否則會重複計或漏計（例如「至少 2 對夫婦」要分清楚「恰好 2 對」與「恰好 3 對」）。",
+    "en": "- After tying a block, always multiply back the arrangements inside it. Forgetting this is the most common lost mark.\n- \"The same kind must be together\" comes in many words (\"all the boys sit together\", \"the three dictionaries stay together\") but the method is the same. If only two particular people must be adjacent, the inside is just $2!$.\n- When you add cases, they must not overlap and must cover exactly what the question asks, or you will double count or miss some (for \"at least 2 couples\", keep \"exactly 2\" and \"exactly 3\" apart)."
    },
    "vocab": [
     {
@@ -110,8 +109,43 @@
      "en": "Case splitting"
     }
    ]
+  },
+  {
+   "id": "ch18-4-c04",
+   "topic": "ch18-4",
+   "title": {
+    "zh": "分子與分母要一致；$C$、$P$、$!$ 都要求物件不同、不能重複",
+    "en": "Match the top and the bottom; C, P and ! need different objects"
+   },
+   "body": {
+    "zh": "- 分子和分母一定要用同一把尺：分母用 $P$（有次序），分子就要用有次序的目光去數；分母用 $C$（無次序），分子也要無次序。一邊有次序、一邊無次序，答案一定錯。\n- 例：分母是「同時選 4 人」的 $C^{16}_4$，分子就只可以寫 $C^{10}_4$ 這類「選 4 人」的寫法；寫成 $P^{10}_4$ 就把 4 個人的次序重複計了 $4!$ 次。\n- $C^n_r$、$P^n_r$、$n!$ 全部都假設兩件事：物件彼此不同，而且抽過的不可以再抽（無放回）。若過程可以重複，就不可以直接用 $C$ 或 $P$ 去數全部結果。\n- 例（第 6 題）：擲一枚骰子 3 次，求三次點數全部不同。分母是 $6^3 = 216$，因為點數可以重複；分子要有次序：第一次 6 個、第二次 5 個、第三次 4 個，即 $P^6_3 = 120$，所以答案是 $\\frac{120}{216} = \\frac{5}{9}$：{{math:0}}\n- 不可以寫 $\\frac{C^6_3}{6^3}$：$C^6_3 = 20$ 只是「揀 3 個不同的點數」，忘了哪一次擲出哪個點數；但分母 $6^3$ 是「第 1、2、3 次有序」的，兩邊不一致，答案就錯：{{math:1}}",
+    "en": "- The top and the bottom must be counted with the same ruler. If the bottom uses $P$ (order counted), count the top with order too. If the bottom uses $C$ (order ignored), ignore order on top too. One side with order and the other without always gives a wrong answer.\n- Example: if the bottom is $C^{16}_4$ (choose 4 people at the same time), the top can only be a \"choose 4\" count such as $C^{10}_4$. Writing $P^{10}_4$ counts the order of those 4 people $4!$ times.\n- $C^n_r$, $P^n_r$ and $n!$ all assume two things: the objects are all different, and nothing is picked twice (no replacement). If the process can repeat, you cannot use $C$ or $P$ to count all the outcomes.\n- Example (Q.6): roll a die 3 times. The bottom is $6^3 = 216$, because a number can come out again. The top must keep order: 6 choices, then 5, then 4, so $P^6_3 = 120$, and the answer is $\\frac{120}{216} = \\frac{5}{9}$: {{math:0}}\n- Do not write $\\frac{C^6_3}{6^3}$: $C^6_3 = 20$ only picks a set of 3 different numbers and forgets which throw gave which, but $6^3$ counts the 3 throws in order. The two sides do not match, so the answer is wrong: {{math:1}}"
+   },
+   "math": [
+    "\\frac{P^6_3}{6^3} = \\frac{120}{216} = \\frac{5}{9}",
+    "\\frac{C^6_3}{6^3} = \\frac{20}{216} = \\frac{5}{54}\\ \\text{(wrong)}"
+   ],
+   "warn": {
+    "zh": "- 見「有放回」或「重複做同一個試驗」（擲骰、擲銀幣、每次都重新選），全部結果是「每次可能數的次方」，不是 $C$。\n- 見「同時抽」「一次抽幾個」「不分先後」，分子分母都用 $C$，不可以一邊 $C$ 一邊 $P$。\n- 逐步相乘（$6 \\times 5 \\times 4$）其實就是 $P^6_3$，兩種寫法都可以；但寫成 $C^6_3$ 就錯了。",
+    "en": "- If the question says \"with replacement\" or repeats the same trial (dice, coins, choose again each time), the total is a power, not $C$.\n- If it says \"at the same time\" or \"order does not matter\", use $C$ on both the top and the bottom; never mix $C$ with $P$.\n- Multiplying step by step ($6 \\times 5 \\times 4$) is the same as $P^6_3$, and either one is fine; writing $C^6_3$ is not."
+   },
+   "vocab": [
+    {
+     "zh": "不同物件",
+     "en": "Different objects"
+    },
+    {
+     "zh": "有放回",
+     "en": "With replacement"
+    },
+    {
+     "zh": "分子與分母",
+     "en": "Top and bottom"
+    }
+   ]
   }
- ],
+],
+
  "sections": [
   {
    "id": "CE",
