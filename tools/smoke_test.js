@@ -2781,8 +2781,15 @@ ok(card184("ch18-4-c03").math.join(" ").indexOf("\\frac{720}{1820}") > 0 &&
   card184("ch18-4-c03").math.join(" ").indexOf("\\frac{36}{91}") > 0,
   "c03 的 C(10,3)C(6,1)/C(16,4) 有 10 男 6 女選 4 人的背景，並算出 36/91");
 ok(/4 男 2 女/.test(card184("ch18-4-c03").body.zh) &&
-  /4! \\times P\^5_2 = 24 \\times 20 = 480/.test(card184("ch18-4-c03").math[1]),
-  "c03 插空法用 4 男 2 女（480 種）的數字例子，不再只寫 m! 與 P(m+1,k)");
+  /6! = 720/.test(card184("ch18-4-c03").body.en) &&
+  /\\frac\{4! \\times P\^5_2\}\{6!\}/.test(card184("ch18-4-c03").math[1]),
+  "c03 插空法用 4 男 2 女的概率題（480/720 = 2/3），不只是排法數");
+ok(/求 2 名女生不相鄰的概率/.test(card184("ch18-4-c03").body.zh) &&
+  /Find the probability that the 2 girls are not next to each other/.test(
+    card184("ch18-4-c03").body.en),
+  "c03 題型二有明確的「求概率」問法（與 18.4 概率主題一致）");
+ok((card184("ch18-4-c03").body.en.match(/probability/g) || []).length >= 3,
+  "c03 三個題型都以概率作結（英文 probability 出現 3 次以上）");
 ok(/\\frac\{10\}\{16\}/.test(card184("ch18-4-c01").math.join(" ")) &&
   /C\^\{16\}_2/.test(card184("ch18-4-c01").math.join(" ")),
   "c01 常犯錯誤補上「逐步相乘 = 用 C」的雙方法對比（10/16 × 9/15 = C(10,2)/C(16,2)）");
