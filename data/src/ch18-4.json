@@ -5,27 +5,50 @@
   "en": "18.4 Probability by Counting · Book Exercise"
  },
  "intro": {
-  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習及挑戰題（18.4 沒有跨課題部分）。這是第 17 章排列組合的應用。",
-  "en": "This section follows the textbook: Class Exercise, Section Check, Level 1, Level 2 and SMART CORNER (18.4 has no Cross Topics). It applies the permutations and combinations of Chapter 17."
+  "zh": "本節按課本分為課堂例題、判斷題、基礎練習、進階練習及挑戰題（18.4 沒有跨課題部分）。主要是把第 17 章的排列 $P$ 與組合 $C$ 應用到概率計算。",
+  "en": "This section follows the textbook: Class Exercise, Section Check, Level 1, Level 2 and SMART CORNER (no Cross-Topic part in 18.4). It applies Chapter 17's $P$ and $C$ to probability."
  },
+ "introSteps": [
+  {
+   "zh": "分母＝所有可能結果的總數，分子＝符合條件的有利結果數；兩者必須用同一套計數標準。",
+   "en": "The denominator is the total number of possible outcomes, and the numerator is the number of favourable outcomes. You must use the same counting rule for both."
+  },
+  {
+   "zh": "「同時抽」或「一次過選幾個」＝次序不重要，用組合 $C$。",
+   "en": "When choosing items \"at the same time\" or \"all at once\", order does not matter, so use combinations $C$."
+  },
+  {
+   "zh": "「逐個抽」「排成一行」或「有指定次序」＝次序重要，用排列 $P$ 或逐步相乘。",
+   "en": "When choosing items \"one by one\" or arranging them in a row, order matters, so use permutations $P$ or multiply step by step."
+  },
+  {
+   "zh": "不少題目不必硬數：善用隨機排列的對稱性，往往一步就有答案。",
+   "en": "Many questions do not need full counting: the symmetry of a random arrangement often gives the answer in one step."
+  },
+  {
+   "zh": "分數代號：(1M) 方法分，(1A) 答案分。",
+   "en": "Marking codes: (1M) = method mark, (1A) = accuracy (answer) mark."
+  }
+ ],
  "cards": [
   {
    "id": "ch18-4-c01",
    "topic": "ch18-4",
    "title": {
     "zh": "概率＝有利結果的數目 ÷ 所有可能結果的數目",
-    "en": "Probability = favourable count ÷ total count"
+    "en": "Probability = favourable outcomes ÷ total outcomes"
    },
    "body": {
-    "zh": "- 每題先問兩件事：所有可能結果有多少個？當中有多少個是我們要的？後者除以前者就是概率：{{math:0}}\n- 「同時抽」或「一次抽幾個」＝次序不重要，用組合 $C$；「逐個抽」「排隊」「有指定次序」＝次序重要，用排列 $P$ 或逐步相乘。\n- 最後檢查答案：一定在 $0$ 與 $1$ 之間，因為有利結果只是所有可能結果的一部份。算出大於 $1$ 就表示數錯了。",
-    "en": "- Ask two questions first: how many results are possible in total, and how many of them do we want? Divide the wanted count by the total count: {{math:0}}\n- \"At the same time\" or \"pick several at once\" means order does not matter, so use $C$. \"One by one\", \"in a queue\" or \"in a fixed order\" means order matters, so use $P$ or multiply step by step.\n- Check the answer at the end: it must be between 0 and 1, because the wanted results are only part of all results. An answer above 1 means a counting mistake."
-    },
-    "math": [
-    "P = \\frac{\\text{wanted}}{\\text{total}}"
-    ],
+    "zh": "先問兩件事：所有可能結果一共有多少個？當中有多少個符合題目要求？後者除以前者就是概率：{{math:0}}\n判斷工具：「同時抽」或「一次過選幾個」＝次序不重要，用組合 $C$；「逐個抽」「排隊」或「有指定次序」＝次序重要，用排列 $P$ 或逐步相乘。\n計完記得檢查：概率必定在 $0$ 與 $1$ 之間；算出大於 $1$ 就代表分子或分母數錯了。",
+    "en": "Always ask two questions first: how many outcomes are possible in total, and how many of them match what the question asks for? Divide the favourable outcomes by the total outcomes: {{math:0}}\n\"At the same time\" or \"choose a group\" means order does not matter, so use $C$. \"One by one\", \"in a row\" or \"in a specific order\" means order matters, so use $P$ or multiply step by step.\nAlways check your final answer: a probability must be between $0$ and $1$. If your answer is greater than $1$, you have made a counting mistake."
+   },
+   "math": [
+    "P(\\text{event}) = \\frac{\\text{favourable outcomes}}{\\text{total outcomes}}",
+    "\\frac{10}{16} \\times \\frac{9}{15} = \\frac{C^{10}_2}{C^{16}_2} = \\frac{3}{8}"
+   ],
    "warn": {
-    "zh": "- 分母用 $C^{16}_4$（選 4 個的方法數），分子就要同樣數「選 4 個」的方法；分子改用 $P$ 一定錯。\n- 「至少」不要逐個情況加：用反面 $1 - P(\\text{一個都沒有})$，通常快好多。\n- 逐個抽而不放回時，分母每一步減 $1$；改用「一次過選」的組合寫法，答案必須相同，可以互相核對。",
-    "en": "- If the bottom is $C^{16}_4$ (the number of ways to choose 4), the top must also count ways to choose 4. Putting $P$ on top guarantees a wrong answer.\n- For \"at least\", do not add case by case; use the opposite $1 - P(\\text{none})$, which is usually much faster.\n- Drawing one by one without replacement makes the bottom lose 1 each step. The \"choose all at once\" version with $C$ must give the same answer, so use the two to check each other."
+    "zh": "例：10 男 6 女共 16 人，選 4 人。分母用 $C^{16}_4$（不計次序選 4 人），分子也必須用 $C$ 數「選 4 人」的方法；若求 4 人全為男生就寫 $C^{10}_4$，分子改用 $P$ 就一定錯。\n「至少 1 個」不要逐個情況相加，改用互補事件 $1 - P(\\text{一個都沒有})$，快很多而且不易計錯。\n「逐個抽而不放回」可以逐步相乘（分母每步減 $1$），也可以當作「一次過抽」用 $C$。例：10 男 6 女共 16 人，求抽中 2 名男生——左邊逐步相乘，右邊用組合，結果一樣：{{math:1}}",
+    "en": "Example: 10 boys and 6 girls, 16 people in total; choose 4. If the denominator is $C^{16}_4$ (choosing 4 without order), the numerator must also count groups of 4 with $C$ — for \"all 4 are boys\" it is $C^{10}_4$. Using $P$ in the numerator is always wrong.\nFor \"at least 1\", do not add up every case. Use the complementary event $1 - P(\\text{none})$: it is faster and less likely to go wrong.\nDrawing one by one without replacement can be done by multiplying step by step (the denominator drops by 1 each time), or by treating it as one simultaneous draw with $C$. Example: pick 2 boys from 10 boys and 6 girls — left side step by step, right side with $C$, same answer: {{math:1}}"
    },
    "vocab": [
     {
@@ -46,20 +69,20 @@
    "id": "ch18-4-c02",
    "topic": "ch18-4",
    "title": {
-    "zh": "不用數算的對稱性",
-    "en": "Symmetry saves the counting"
+    "zh": "善用對稱性，免卻繁複計數",
+    "en": "Use symmetry to skip the counting"
    },
    "body": {
-    "zh": "- 排列完全隨機時，每個人排每個位置的機會都一樣：$n$ 個人排隊，某一位排第一的機會是 $\\frac{1}{n}$；排最後，或者排任何指定位置，都一樣是 $\\frac{1}{n}$。\n- 「甲剛好在乙前面一位」也是 $\\frac{1}{n}$：把甲乙綁成一件，這一件可以放 $n-1$ 個位置，機會均等：{{math:0}}\n- 「甲在乙前面」（不必相鄰）＝ $\\frac{1}{2}$，因為兩人相對次序只有「甲前」與「乙前」兩種，機會均等。\n- 「三人之中乙排在中間」（不必相鄰）＝ $\\frac{1}{3}$，不是 $\\frac{1}{6}$：三個人有 $6$ 種次序，乙在中間佔 $2$ 種。",
-    "en": "- When the arrangement is completely random, every position is equally likely for everyone: in a queue of $n$, one particular person is first with probability $\\frac{1}{n}$; last place, or any fixed position, is also $\\frac{1}{n}$.\n- \"A is right in front of B\" is also $\\frac{1}{n}$: tie A and B into one block, and that block can sit in any of $n-1$ places with equal chance: {{math:0}}\n- \"A is somewhere before B\" (not necessarily next to each other) is $\\frac{1}{2}$, because for two people there are only two relative orders and both are equally likely.\n- \"B is in the middle of the three\" (not necessarily next to each other) is $\\frac{1}{3}$, not $\\frac{1}{6}$: three people give $6$ orders, and B is in the middle in $2$ of them."
+    "zh": "$n$ 個人完全隨機排成一行時，每個位置出現任何人的機會均等。以下幾種問法都可以一步寫出答案：\n指定某人在指定位置：某人排第一、排最後，或排任何一個指定位置，概率都是 $\\frac{1}{n}$。\n「甲排在乙前面」（不必相鄰）＝ $\\frac{1}{2}$：只看甲乙，相對次序只有「甲前乙後」與「乙前甲後」兩種，機會均等。\n「甲剛好排在乙正前方一位」（必須相鄰且次序為甲乙）＝ $\\frac{1}{n}$：把「甲乙」綁成 1 個大單位，連同其餘 $n-2$ 人共 $n-1$ 個單位，有 $(n-1)!$ 種排法，除以總排法 $n!$：{{math:0}}\n「三人之中乙排在甲和丙中間」（不必相鄰）＝ $\\frac{2}{6} = \\frac{1}{3}$，不是 $\\frac{1}{6}$：三人共有 $3! = 6$ 種次序，乙在中間佔 2 種（甲乙丙、丙乙甲）：{{math:1}}",
+    "en": "When $n$ people are arranged in a row completely at random, every position is equally likely for everyone. Each of these questions can be answered in one step:\nOne particular person in one particular position: the probability is $\\frac{1}{n}$ for first place, last place, or any fixed seat.\n\"A is somewhere in front of B\" (not necessarily next to each other) is $\\frac{1}{2}$: looking only at A and B, there are just two equally likely orders — A before B, or B before A.\n\"A is right in front of B\" (they must be adjacent, in the order AB) is $\\frac{1}{n}$: bundle AB into one unit, so there are $n-1$ units in total, giving $(n-1)!$ arrangements out of $n!$: {{math:0}}\n\"B is between A and C\" (not necessarily next to each other) is $\\frac{2}{6} = \\frac{1}{3}$, not $\\frac{1}{6}$: there are $3! = 6$ orders, and B is in the middle in 2 of them (A-B-C and C-B-A): {{math:1}}"
    },
    "math": [
-    "P(\\text{A just before B}) = \\frac{1}{n}",
-    "P(\\text{A before B}) = \\frac{1}{2}"
+    "\\frac{(n-1)!}{n!} = \\frac{1}{n}",
+    "\\frac{2}{3!} = \\frac{2}{6} = \\frac{1}{3}"
    ],
    "warn": {
-    "zh": "- 「乙在三人的中間」有「甲、乙、丙」與「丙、乙、甲」兩種，所以是 $\\frac{2}{6} = \\frac{1}{3}$；只寫 $\\frac{1}{6}$ 是最常見的漏項。\n- 對稱性只在「所有排列機會均等」時才可用。若排列受限制（例如男女必須梅花間竹），就要回到計數。\n- 對稱性的答案最好用全部排法核對一次，$n$ 小的題目（$n = 4$、$n = 8$）心算就可以驗。",
-    "en": "- \"B in the middle of three\" covers both A, B, C and C, B, A, so the answer is $\\frac{2}{6} = \\frac{1}{3}$; stopping at $\\frac{1}{6}$ is the most common slip.\n- Symmetry only works when all arrangements are equally likely. If the arrangement is restricted (boys and girls must alternate, say), go back to counting.\n- Check a symmetry answer against the full count, especially when $n$ is small ($n = 4$ or $n = 8$), where you can do it in your head."
+    "zh": "計「乙在甲和丙中間」時，同學最常漏計甲、丙對調（只數了「甲乙丙」而漏了「丙乙甲」），把 $\\frac{1}{3}$ 寫成 $\\frac{1}{6}$。\n對稱性只在「所有排列機會均等」時才適用。若排列本身受限制（例如男女必須梅花間竹），就要回到基本計數。\n不確定對稱性的直覺時，用很小的數目（$n = 3$ 或 $n = 4$）把所有情況列出來核對一次。",
+    "en": "For \"B between A and C\", students often forget that A and C can swap (they count A-B-C but not C-B-A), and write $\\frac{1}{6}$ instead of $\\frac{2}{6} = \\frac{1}{3}$.\nSymmetry only works when all arrangements are equally likely. If the arrangement has restrictions (for example boys and girls must alternate), go back to counting.\nIf you are unsure whether a symmetry shortcut is right, test it with a small number such as $n = 3$ or $n = 4$ by listing all the cases."
    },
    "vocab": [
     {
@@ -80,25 +103,30 @@
    "id": "ch18-4-c03",
    "topic": "ch18-4",
    "title": {
-    "zh": "先綁成一件，再分類討論",
-    "en": "Tie into a block, then split into cases"
+    "zh": "三大常見題型：綑綁法、插空法、分組抽取",
+    "en": "Three skills: bundling, slotting-in, choosing from groups"
    },
    "body": {
-    "zh": "- 方法一：綁成一件。要某些人必須相鄰，就把他們綁成一件（一個大單位），先與其他人一起排，最後乘回大單位裡面的排法。例：5 人排一行，A 與 B 必須相鄰——綁成一件後有 4 個單位（$4! = 24$），單位內 A、B 可以對調（$2! = 2$），共 $24 \\times 2 = 48$：{{math:0}}\n- 綁完一定要乘回裡面的排法，這是最常見的漏分位。若只是「某兩人相鄰」，裡面就只有 $2!$。\n- 方法二：先分類，再相乘。「恰好 $k$ 個」＝從甲類取 $k$ 個，再從其餘取夠數，兩邊相乘，最後除以所有可能結果的數目：{{math:1}}\n- 「至少 $k$ 個」＝把 $k$、$k+1$、…各項加起來，項數太多才用反面。反面的項要看清楚：「至少 3 個」的反面是「0 個、1 個或 2 個」，三項都要減。「至多 $k$ 個」就揀項數少的一邊。\n- 方法三：插空法。「同類不能相鄰」時：① 先排沒有這個限制的物件；② 空隙數 ＝ 已排物件數 $+ 1$；③ 把受限制的物件放入空隙。\n- 分類相加之前檢查：各類不可以重疊，合起來要剛好等於題目要求的情況。",
-    "en": "- Method 1: tie into a block. If some people must be next to each other, tie them into one block (one big unit), arrange the block with everyone else, then multiply by the arrangements inside the block. Example: 5 students in a row, A and B must be next to each other. The block gives 4 units ($4! = 24$), and A, B can swap inside ($2! = 2$), so $24 \\times 2 = 48$: {{math:0}}\n- Always multiply back the arrangements inside the block; forgetting this is the most common lost mark. If only two particular people must be adjacent, the inside is just $2!$.\n- Method 2: split into cases, then multiply. \"Exactly $k$\" means choose $k$ from one group and the rest from the other group, multiply the two counts, then divide by the total: {{math:1}}\n- \"At least $k$\" means add the cases $k$, $k+1$, ...; use the opposite only when there are many cases. Count the opposite carefully: the opposite of \"at least 3\" is \"0, 1 or 2\", and all three must be subtracted. For \"at most $k$\", use whichever side has fewer cases.\n- Method 3: fill the gaps. When the same kind must not be next to each other: (1) arrange the other objects first; (2) the number of gaps is (objects arranged + 1); (3) put the restricted objects into the gaps.\n- Before you add cases, check that they do not overlap and that together they cover exactly what the question asks."
+    "zh": "題型一：必須相鄰 —— 綑綁法\n某 $k$ 個人必須排在一起，就把他們綁成 1 個大單位。總單位數＝餘下 $(n-k)$ 人＋1 個大單位＝$n-k+1$ 個；排好之後，記得乘回大單位內部的排列數 $k!$：{{math:0}}\n例：5 名學生排成一行，A 與 B 必須相鄰。餘下 $5-2=3$ 人＋1 個大單位＝4 個單位（$4! = 24$），單位內 A、B 可以對調（$2! = 2$），有利排法 $4! \\times 2! = 48$ 種，概率 $=\\frac{48}{5!} = \\frac{48}{120} = \\frac{2}{5}$。\n題型二：不可相鄰 —— 插空法\n分三步：① 先排沒有受限制的物件；② 數空隙（連頭尾，空隙數＝已排物件數 $+1$）；③ 用排列 $P$ 把受限制的物件放入空隙。\n例：4 男 2 女排成一行，2 名女生不可相鄰。① 先排 4 名男生：$4! = 24$；② 4 名男生連頭尾產生 $4+1=5$ 個空隙（_ 男 _ 男 _ 男 _ 男 _）；③ 從 5 個空隙選 2 個排入女生：$P^5_2 = 20$。有利排法共 $4! \\times P^5_2 = 24 \\times 20 = 480$ 種：{{math:1}}\n題型三：分組抽取與分類討論\n求「恰好 $k$ 個」：先從目標組別取 $k$ 個，再從另一組取夠餘下所需數目，兩邊相乘，最後除以總結果數。\n例：10 男 6 女共 16 人，隨機選出 4 人，求恰好選出 3 名男生（即 3 男 1 女）的概率：{{math:2}}\n求「至少 $k$ 個」或「至多 $k$ 個」：拆成「恰好 $k$ 個」「恰好 $k+1$ 個」……逐項相加；正面項數太多才用反面 $1 - P(\\text{相反情況})$。反面要扣清：「至少 3 個」的反面是「0、1、2 個」，三項都要減。",
+    "en": "Scenario 1: items MUST be together — bundling\nIf $k$ items must be next to each other, bundle them into 1 big unit. Total units = the other $(n-k)$ items + 1 bundle = $n-k+1$ units. Arrange the units, then multiply by the arrangements inside the bundle ($k!$): {{math:0}}\nExample: 5 students stand in a row, and A and B must be next to each other. The other $5-2=3$ students plus 1 bundle give 4 units ($4! = 24$). Inside the bundle A and B can swap ($2! = 2$), so there are $4! \\times 2! = 48$ favourable arrangements, and the probability is $\\frac{48}{5!} = \\frac{48}{120} = \\frac{2}{5}$.\nScenario 2: items must NOT be together — slotting-in\nThree steps: (1) arrange the unrestricted items first; (2) count the spaces between them, including both ends (there are always items + 1 spaces); (3) use $P$ to slot the restricted items into those spaces.\nExample: 4 boys and 2 girls stand in a row, and the 2 girls must not be next to each other. (1) Arrange the 4 boys: $4! = 24$. (2) The 4 boys create $4+1=5$ spaces (_ B _ B _ B _ B _). (3) Slot the 2 girls into 2 of the 5 spaces: $P^5_2 = 20$. Favourable arrangements $= 4! \\times P^5_2 = 24 \\times 20 = 480$: {{math:1}}\nScenario 3: choosing from different groups, and splitting into cases\nFor \"exactly $k$\" from one group, choose $k$ from that group and the remaining items from the other group, multiply the two counts, then divide by the total number of outcomes.\nExample: from 10 boys and 6 girls (16 people in total), 4 are chosen at random. Find the probability of choosing exactly 3 boys: {{math:2}}\nFor \"at least $k$\" or \"at most $k$\", split the question into cases (\"exactly $k$\", \"exactly $k+1$\", ...) and add them up. Use the opposite $1 - P(\\text{opposite cases})$ only when there are too many cases, and count the opposite carefully: the opposite of \"at least 3\" is \"0, 1 or 2\", so all three must be subtracted."
    },
    "math": [
-    "4! \\times 2! = 24 \\times 2 = 48",
-    "\\frac{C^{10}_3 \\times C^{6}_1}{C^{16}_4} = \\frac{720}{1820} = \\frac{36}{91}"
+    "(n-k+1)! \\times k!",
+    "4! \\times P^5_2 = 24 \\times 20 = 480",
+    "\\frac{C^{10}_3 \\times C^{6}_1}{C^{16}_4} = \\frac{120 \\times 6}{1820} = \\frac{720}{1820} = \\frac{36}{91}"
    ],
    "warn": {
-    "zh": "- 綁成一件之後，一定要把大單位裡面的排法乘回。忘記乘回是這類題目最常見的漏分位。\n- 「同類相鄰」有很多種問法：「全部男生坐在一起」「三本字典放在一起」都是同一招；若只是「某兩人相鄰」，大單位裡面就是 $2!$。\n- 分類相加時，各類必須互斥，合起來要剛好等於題目要求的情況，否則會重複計或漏計（例如「至少 2 對夫婦」要分清楚「恰好 2 對」與「恰好 3 對」）。",
-    "en": "- After tying a block, always multiply back the arrangements inside it. Forgetting this is the most common lost mark.\n- \"The same kind must be together\" comes in many words (\"all the boys sit together\", \"the three dictionaries stay together\") but the method is the same. If only two particular people must be adjacent, the inside is just $2!$.\n- When you add cases, they must not overlap and must cover exactly what the question asks, or you will double count or miss some (for \"at least 2 couples\", keep \"exactly 2\" and \"exactly 3\" apart)."
+    "zh": "綑綁法兩大陷阱：① 數總單位時忘記「加 1」（5 人中有 2 人綁在一起，是 $5-2+1=4$ 個單位，不是直接相減寫成 $3!$）；② 綁完之後忘記乘回大單位內部的 $k!$。\n插空法的空隙包括頭尾：4 名男生有 $4+1=5$ 個空隙，不是 3 個；漏了兩端就會少計。\n分類相加之前，必須檢查各情況互不重疊（互斥），而且合起來剛好涵蓋題目所有要求，否則會重複計算或漏計。",
+    "en": "Two traps in bundling: (1) forgetting the \"+1\" when counting units (2 students bundled out of 5 give $5-2+1=4$ units, not $3!$); (2) forgetting to multiply by the internal arrangements $k!$.\nSlotting-in spaces include both ends: 4 boys create $4+1=5$ spaces, not 3. Missing the two end spaces undercounts the answer.\nBefore adding cases, check that they do not overlap (mutually exclusive) and that together they cover exactly what the question asks; otherwise you double count or miss some."
    },
    "vocab": [
     {
      "zh": "相鄰",
      "en": "Adjacent"
+    },
+    {
+     "zh": "插空法",
+     "en": "Slotting-in"
     },
     {
      "zh": "互斥",
@@ -114,25 +142,25 @@
    "id": "ch18-4-c04",
    "topic": "ch18-4",
    "title": {
-    "zh": "分子與分母要一致；$C$、$P$、$!$ 都要求物件不同、不能重複",
-    "en": "Match the top and the bottom; C, P and ! need different objects"
+    "zh": "分子與分母標準要一致；何時不能用 $C$ 與 $P$",
+    "en": "Match the top and the bottom; when $C$ and $P$ cannot be used"
    },
    "body": {
-    "zh": "- 分子和分母一定要用同一把尺：分母用 $P$（有次序），分子就要用有次序的目光去數；分母用 $C$（無次序），分子也要無次序。一邊有次序、一邊無次序，答案一定錯。\n- 例：分母是「同時選 4 人」的 $C^{16}_4$，分子就只可以寫 $C^{10}_4$ 這類「選 4 人」的寫法；寫成 $P^{10}_4$ 就把 4 個人的次序重複計了 $4!$ 次。\n- $C^n_r$、$P^n_r$、$n!$ 全部都假設兩件事：物件彼此不同，而且抽過的不可以再抽（無放回）。若過程可以重複，就不可以直接用 $C$ 或 $P$ 去數全部結果。\n- 例（第 6 題）：擲一枚骰子 3 次，求三次點數全部不同。分母是 $6^3 = 216$，因為點數可以重複；分子要有次序：第一次 6 個、第二次 5 個、第三次 4 個，即 $P^6_3 = 120$，所以答案是 $\\frac{120}{216} = \\frac{5}{9}$：{{math:0}}\n- 不可以寫 $\\frac{C^6_3}{6^3}$：$C^6_3 = 20$ 只是「揀 3 個不同的點數」，忘了哪一次擲出哪個點數；但分母 $6^3$ 是「第 1、2、3 次有序」的，兩邊不一致，答案就錯：{{math:1}}",
-    "en": "- The top and the bottom must be counted with the same ruler. If the bottom uses $P$ (order counted), count the top with order too. If the bottom uses $C$ (order ignored), ignore order on top too. One side with order and the other without always gives a wrong answer.\n- Example: if the bottom is $C^{16}_4$ (choose 4 people at the same time), the top can only be a \"choose 4\" count such as $C^{10}_4$. Writing $P^{10}_4$ counts the order of those 4 people $4!$ times.\n- $C^n_r$, $P^n_r$ and $n!$ all assume two things: the objects are all different, and nothing is picked twice (no replacement). If the process can repeat, you cannot use $C$ or $P$ to count all the outcomes.\n- Example (Q.6): roll a die 3 times. The bottom is $6^3 = 216$, because a number can come out again. The top must keep order: 6 choices, then 5, then 4, so $P^6_3 = 120$, and the answer is $\\frac{120}{216} = \\frac{5}{9}$: {{math:0}}\n- Do not write $\\frac{C^6_3}{6^3}$: $C^6_3 = 20$ only picks a set of 3 different numbers and forgets which throw gave which, but $6^3$ counts the 3 throws in order. The two sides do not match, so the answer is wrong: {{math:1}}"
+    "zh": "分子和分母必須用同一套標準：分母計次序（用 $P$ 或次方），分子也要計次序；分母不計次序（用 $C$），分子也要不計次序。\n例：10 男 6 女共 16 人同時選 4 人，分母是 $C^{16}_4$（不計次序）。若求 4 人全為男生，分子只能寫 $C^{10}_4$；寫成 $P^{10}_4$ 就把 4 個人的次序重複計算了 $4!$ 次。\n切記 $C^n_r$、$P^n_r$ 與 $n!$ 都有兩個前提：物件彼此不同，而且抽取後不放回（不能重複）。如果過程可以重複，就不能直接用 $C$ 或 $P$ 數總結果。\n例（第 6 題）：擲一枚勻稱骰子 3 次，求三次點數全部不同的概率。點數可以重複，所以分母是 $6 \\times 6 \\times 6 = 6^3 = 216$（已包含第 1、2、3 次的先後次序）；分子也要計次序：第一次 6 個、第二次 5 個、第三次 4 個，即 $P^6_3 = 120$：{{math:0}}\n切勿寫 $\\frac{C^6_3}{6^3}$！$C^6_3 = 20$ 只是「選出 3 個不同點數」，沒有分配哪一次擲出哪個點數，與計及次序的分母 $6^3$ 標準不一致：{{math:1}}",
+    "en": "The numerator and the denominator must use the same counting rule. If the denominator counts order (using $P$ or powers), the numerator must count order too. If the denominator ignores order (using $C$), the numerator must ignore it too.\nExample: from 10 boys and 6 girls (16 people), 4 are chosen at the same time, so the denominator is $C^{16}_4$ (order ignored). For \"all 4 are boys\" the numerator can only be $C^{10}_4$; writing $P^{10}_4$ counts the order of those 4 people $4!$ times over.\nRemember that $C^n_r$, $P^n_r$ and $n!$ only work when all items are different AND drawn without replacement (no repetition). If items can repeat, you cannot use $C$ or $P$ to count the total outcomes.\nExample (Q.6): a fair die is thrown 3 times. Find the probability of getting 3 different numbers. Numbers can repeat, so the denominator is $6 \\times 6 \\times 6 = 6^3 = 216$ (this counts the 1st, 2nd and 3rd throws in order). The numerator must follow the same order: 6 choices, then 5, then 4, i.e. $P^6_3 = 120$: {{math:0}}\nNever write $\\frac{C^6_3}{6^3}$! $C^6_3 = 20$ only chooses a group of 3 different numbers without saying which throw gives which number, so it does not match the ordered denominator $6^3$: {{math:1}}"
    },
    "math": [
     "\\frac{P^6_3}{6^3} = \\frac{120}{216} = \\frac{5}{9}",
-    "\\frac{C^6_3}{6^3} = \\frac{20}{216} = \\frac{5}{54}\\ \\text{(wrong)}"
+    "\\frac{C^6_3}{6^3} = \\frac{20}{216} = \\frac{5}{54}\\ \\text{(wrong!)}"
    ],
    "warn": {
-    "zh": "- 見「有放回」或「重複做同一個試驗」（擲骰、擲銀幣、每次都重新選），全部結果是「每次可能數的次方」，不是 $C$。\n- 見「同時抽」「一次抽幾個」「不分先後」，分子分母都用 $C$，不可以一邊 $C$ 一邊 $P$。\n- 逐步相乘（$6 \\times 5 \\times 4$）其實就是 $P^6_3$，兩種寫法都可以；但寫成 $C^6_3$ 就錯了。",
-    "en": "- If the question says \"with replacement\" or repeats the same trial (dice, coins, choose again each time), the total is a power, not $C$.\n- If it says \"at the same time\" or \"order does not matter\", use $C$ on both the top and the bottom; never mix $C$ with $P$.\n- Multiplying step by step ($6 \\times 5 \\times 4$) is the same as $P^6_3$, and either one is fine; writing $C^6_3$ is not."
+    "zh": "見到「有放回」或「重複同一個試驗」（擲骰、擲銀幣、可重複選數字），總結果是逐步相乘的次方 $n^r$，絕對不是 $C^n_r$。\n逐步相乘（$6 \\times 5 \\times 4$）與 $P^6_3$ 完全相同，考試時兩種寫法都接受；最緊要是不要誤寫 $C^6_3$。\n分母用 $C$ 的題目，分子也要用 $C$：一邊用 $C$、一邊用 $P$ 是最常見的失分。",
+    "en": "When a question says \"with replacement\" or repeats the same trial (throwing dice, tossing coins, choosing digits that may repeat), the total number of outcomes is a power $n^r$, never $C^n_r$.\nMultiplying step by step ($6 \\times 5 \\times 4$) is exactly the same as $P^6_3$, and both are accepted in the exam; what matters is never writing $C^6_3$.\nIf the denominator uses $C$, the numerator must use $C$ too; mixing $C$ with $P$ is the most common way to lose marks."
    },
    "vocab": [
     {
      "zh": "不同物件",
-     "en": "Different objects"
+     "en": "Distinct objects"
     },
     {
      "zh": "有放回",
@@ -140,12 +168,11 @@
     },
     {
      "zh": "分子與分母",
-     "en": "Top and bottom"
+     "en": "Numerator and denominator"
     }
    ]
   }
-],
-
+ ],
  "sections": [
   {
    "id": "CE",
@@ -4776,24 +4803,6 @@
      }
     }
    ]
-  }
- ],
- "introSteps": [
-  {
-   "zh": "分母是「全部可能的結果數」，分子是「合符條件的情況數」，兩者必須用同一種工具。",
-   "en": "The denominator counts every possible outcome and the numerator counts the favourable ones; both must use the same tool."
-  },
-  {
-   "zh": "同時抽或一次抽幾個，次序不重要，用組合 $C$。",
-   "en": "Draws made at the same time ignore order, so use combinations $C$."
-  },
-  {
-   "zh": "逐個抽、有先後次序，就要用排列 $P$ 或逐步相乘。",
-   "en": "Draws made one by one, where order matters, need permutations $P$ or a product step by step."
-  },
-  {
-   "zh": "很多題目其實不必逐個數：隨機排列的對稱性（$n$ 個人之中某一位在某處的機會是 $\\frac{1}{n}$）往往一步就得到答案。",
-   "en": "Many questions need no listing at all — the symmetry of a random arrangement (one particular person is in a given place with probability $\\frac{1}{n}$) settles it in one step."
   }
  ]
 }

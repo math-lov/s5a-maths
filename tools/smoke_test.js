@@ -2757,21 +2757,43 @@ ok(/所有可能結果的數目/.test(P184_DATA.cards.filter((c) => c.id === "ch
 ok(/插空法/.test(P184_DATA.cards.filter((c) => c.id === "ch18-4-c03")[0].body.zh),
   "c03 補上插空法三步模版");
 
-/* 2026-10-28 老師指示：教學卡英文要淺白直接，並補「分子分母一致」與「C/P/! 要求不同物件」
-   （原文 Tie them together, then split into cases 太抽象） */
+/* 2026-10-28 老師指示：教學卡要淺白直接、每個算式都要有題目背景；
+   c03 由「方法一／二／三」改為「常見題型（Scenario）」，並貫穿 10 男 6 女 選 4 人的例子 */
 const card184 = (id) => P184_DATA.cards.filter((c) => c.id === id)[0] || { body: {}, math: [] };
 ok(card184("ch18-4-c04").body.zh &&
-  /同一把尺/.test(card184("ch18-4-c04").body.zh) &&
-  /無放回/.test(card184("ch18-4-c04").body.zh),
-  "c04 講分子分母要用同一把尺，並指出 C／P／! 要求物件不同、無放回");
+  /同一套標準/.test(card184("ch18-4-c04").body.zh) &&
+  /不放回/.test(card184("ch18-4-c04").body.zh),
+  "c04 講分子分母要用同一套標準，並指出 C／P／! 要求物件不同、無放回");
 ok(/\(Q\.6\)/.test(card184("ch18-4-c04").body.en) &&
   card184("ch18-4-c04").body.en.indexOf("C^6_3") > 0,
   "c04 用第 6 題（擲骰 P(6,3)/6³ 而非 C(6,3)/6³）做反例");
-ok(/Method 1/.test(card184("ch18-4-c03").body.en) &&
-  !/Tie them together/.test(card184("ch18-4-c03").title.en),
-  "c03 英文改成 Method 1／2／3 直述步驟");
-ok(/4! \\times 2! = 24 \\times 2 = 48/.test(card184("ch18-4-c03").math[0]),
-  "c03 以 5 人排行 4!×2!=48 取代 (n-k+1)!k! 抽象公式");
+ok(/Scenario 1/.test(card184("ch18-4-c03").body.en) &&
+  /Scenario 3/.test(card184("ch18-4-c03").body.en) &&
+  !/Method 1/.test(card184("ch18-4-c03").body.en),
+  "c03 英文改成常見題型 Scenario 1／2／3，不再自稱三種解法");
+ok(/題型一/.test(card184("ch18-4-c03").body.zh) &&
+  /題型三/.test(card184("ch18-4-c03").body.zh),
+  "c03 中文用題型一／二／三分類");
+
+/* 每個算式都要交代背景：數字例子要寫齊 10 男 6 女、16 人、4 男 2 女 */
+ok(card184("ch18-4-c03").math.join(" ").indexOf("\\frac{720}{1820}") > 0 &&
+  /10 男 6 女/.test(card184("ch18-4-c03").body.zh) &&
+  card184("ch18-4-c03").math.join(" ").indexOf("\\frac{36}{91}") > 0,
+  "c03 的 C(10,3)C(6,1)/C(16,4) 有 10 男 6 女選 4 人的背景，並算出 36/91");
+ok(/4 男 2 女/.test(card184("ch18-4-c03").body.zh) &&
+  /4! \\times P\^5_2 = 24 \\times 20 = 480/.test(card184("ch18-4-c03").math[1]),
+  "c03 插空法用 4 男 2 女（480 種）的數字例子，不再只寫 m! 與 P(m+1,k)");
+ok(/\\frac\{10\}\{16\}/.test(card184("ch18-4-c01").math.join(" ")) &&
+  /C\^\{16\}_2/.test(card184("ch18-4-c01").math.join(" ")),
+  "c01 常犯錯誤補上「逐步相乘 = 用 C」的雙方法對比（10/16 × 9/15 = C(10,2)/C(16,2)）");
+ok(/10 男 6 女/.test(card184("ch18-4-c01").warn.zh) &&
+  /10 boys and 6 girls/.test(card184("ch18-4-c01").warn.en) &&
+  /10 boys and 6 girls/.test(card184("ch18-4-c04").body.en),
+  "c01／c04 統一用 10 男 6 女選 4 人做貫穿例子（C(16,4) 有背景）");
+ok((P184_DATA.introSteps || []).length === 5 &&
+  /次序不重要/.test(P184_DATA.introSteps[1].zh) &&
+  /symmetry/.test(P184_DATA.introSteps[3].en),
+  "總覽補上 5 條「點做這份卷」指引（C／P 判斷、對稱性、分數代號）");
 
 /* 頁面渲染 ＋ 真 KaTeX */
 const c184 = boot("quiz.html", "?c=ch18-4&p=0");
