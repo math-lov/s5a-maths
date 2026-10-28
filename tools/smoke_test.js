@@ -2801,6 +2801,9 @@ ok(c184.$$("#pagenav .pg").length === 37,
   "18.4 分頁列 = 總覽 + 36 題（實際 " + c184.$$("#pagenav .pg").length + "）");
 ok(c184.$$("#pagenav .pg-sec").length === 5, "18.4 分頁列有 5 個分段標題");
 ok(c184.$$(".cc").length === 4, "18.4 總覽渲染出 4 張教學卡");
+ok(c184.$$('.demo[data-demo="tie-up"]').length === 1,
+  "18.4 總覽的綑綁法卡有 tie-up 互動示範（實際 " +
+  c184.$$('.demo[data-demo="tie-up"]').length + "）");
 ok(c184.$$(".katex-error").length === 0, "18.4 教學卡全部數式 KaTeX 渲染成功");
 ok(!/\{\{math:/.test(c184.$("#quiz-body").textContent), "18.4 總覽沒有殘留 {{math:}} 佔位符");
 
@@ -2828,9 +2831,15 @@ ok(P184_DATA.sections.every((s) => s.questions.every((q) => stepMarks(q) === q.m
 ok(!LABEL_WORDS.some((w) => read("data/src/ch18-4.json").includes(w)),
   "18.4 全部內容沒有標籤學生的字眼");
 
-/* 下捨入示範（`floor`）掛在 18.2 c02，唔在 18.4；18.4 四張卡都保持靜態 */
-ok(P184_DATA.cards.every((c) => !c.demo),
-  "18.4 四張教學卡都冇 demo（下捨入示範改掛在 18.2 c02）");
+/* 2026-10-28 老師拍板：c03 的綑綁法掛上 `tie-up` 示範（同 5 人 A、B 相鄰的例子一致）；
+   其餘三張卡保持靜態（下捨入示範仍然掛在 18.2 c02） */
+const demo184 = P184_DATA.cards.filter((c) => c.demo);
+ok(demo184.length === 1 && demo184[0].id === "ch18-4-c03" &&
+  demo184[0].demo.type === "tie-up" &&
+  !!demo184[0].demo.caption.zh && !!demo184[0].demo.caption.en,
+  "18.4 只有 c03（綑綁法）有 tie-up 示範，中英說明齊全");
+ok(P184_DATA.cards.filter((c) => c.id !== "ch18-4-c03").every((c) => !c.demo),
+  "18.4 其餘三張教學卡保持靜態");
 
 /* ── 7. 進度記錄（新開頁面仍記得）────────────────────────────────────── */
 console.log("\n== 進度 ==");

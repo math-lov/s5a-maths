@@ -114,8 +114,15 @@
     "(n-k+1)! \\times k!",
     "4! \\times P^5_2 = 24 \\times 20 = 480",
     "\\frac{C^{10}_3 \\times C^{6}_1}{C^{16}_4} = \\frac{120 \\times 6}{1820} = \\frac{720}{1820} = \\frac{36}{91}"
-   ],
-   "warn": {
+    ],
+    "demo": {
+    "type": "tie-up",
+    "caption": {
+     "zh": "互動示範：上面的 5 人例子。把 A、B 綁成 1 個大單位後只剩 4 個主體，可以逐個位置試；最後再開框內的 AB／BA。",
+     "en": "Interactive demo of the 5-student example above. Tie A and B into one block and only 4 units are left — try the positions, then open the block to see AB and BA."
+    }
+    },
+    "warn": {
     "zh": "綑綁法兩大陷阱：① 數總單位時忘記「加 1」（5 人中有 2 人綁在一起，是 $5-2+1=4$ 個單位，不是直接相減寫成 $3!$）；② 綁完之後忘記乘回大單位內部的 $k!$。\n插空法的空隙包括頭尾：4 名男生有 $4+1=5$ 個空隙，不是 3 個；漏了兩端就會少計。\n分類相加之前，必須檢查各情況互不重疊（互斥），而且合起來剛好涵蓋題目所有要求，否則會重複計算或漏計。",
     "en": "Two traps in bundling: (1) forgetting the \"+1\" when counting units (2 students bundled out of 5 give $5-2+1=4$ units, not $3!$); (2) forgetting to multiply by the internal arrangements $k!$.\nSlotting-in spaces include both ends: 4 boys create $4+1=5$ spaces, not 3. Missing the two end spaces undercounts the answer.\nBefore adding cases, check that they do not overlap (mutually exclusive) and that together they cover exactly what the question asks; otherwise you double count or miss some."
    },
