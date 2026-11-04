@@ -35,8 +35,8 @@
     "en": "Parts of a circle"
    },
    "body": {
-    "zh": "- 弦：圓上兩點連成的線段。直徑是穿過圓心的弦，也是最長的弦。\n- 一條弦把圓分成兩段弧：短的是劣弧，長的是優弧；同時把圓分成兩塊，小的一塊是劣弓形，大的一塊是優弓形。\n- 頂點在圓心的是圓心角（$\\angle AOB$）；頂點在圓上的是圓周角（$\\angle APB$）。\n- 兩隻角「對着同一條弧」，才可以比較大小；否則要先找共同的那條弧。",
-    "en": "- A chord joins two points on a circle; a diameter is a chord through the centre and the longest one.\n- A chord cuts the circle into a minor arc and a major arc, and into a minor segment and a major segment.\n- An angle at the centre has its vertex at O; an angle at the circumference has its vertex on the circle.\n- Two angles can only be compared when they stand on the same arc."
+    "zh": "- 弦：圓上兩點連成的線段。直徑是穿過圓心的弦，也是最長的弦。\n- 一條弦把圓分成兩段弧：短的是劣弧，長的是優弧；同時把圓分成兩塊，小的一塊是劣弓形，大的一塊是優弓形。\n- 頂點在圓心的是圓心角（$\\angle AOB$）；頂點在圓上的是圓周角（$\\angle APB$）。\n- 兩隻角「對着同一條弧」，才可以比較大小；否則要先找共同的那條弧。\n- 同一個圓的所有半徑都相等：見到「圓心連到圓上兩點」，就要想起等腰三角形（底角相等）。",
+    "en": "- A chord joins two points on a circle; a diameter is a chord through the centre and the longest one.\n- A chord cuts the circle into a minor arc and a major arc, and into a minor segment and a major segment.\n- An angle at the centre has its vertex at O; an angle at the circumference has its vertex on the circle.\n- Two angles can only be compared when they stand on the same arc.\n- All radii of one circle are equal: whenever you see two lines from the centre to the circle, think of an isosceles triangle (equal base angles)."
    },
    "warn": {
     "zh": "- 「弧 $AB$」本身有兩條（優弧、優弧），寫證明時要講清楚是哪一條。\n- 圓心角一定比同一條弧上的圓周角大，所以由圓周角求圓心角是「乘 2」，不要除。",
@@ -170,8 +170,8 @@
         ]
        },
        {
-        "zh": "$OA = OP$（半徑），所以 $\\triangle OAP$ 是等腰三角形。",
-        "en": "$OA = OP$ (radii), so $\\triangle OAP$ is isosceles.",
+        "zh": "半徑相等：$OA = OP$，所以 $\\triangle OAP$ 是等腰三角形。",
+        "en": "Equal radii: $OA = OP$, so $\\triangle OAP$ is isosceles.",
         "ticks": [
          [
           "O",
@@ -181,6 +181,10 @@
           "P",
           "O"
          ]
+        ],
+        "radii": [
+         "A",
+         "P"
         ]
        },
        {
@@ -239,6 +243,10 @@
           "claim",
           38
          ]
+        ],
+        "radii": [
+         "B",
+         "P"
         ]
        },
        {
@@ -991,8 +999,8 @@
         ]
        },
        {
-        "zh": "$OB = OC$（半徑），所以 $\\triangle OBC$ 等腰：$\\angle OCB = \\angle OBC = 26^\\circ$。",
-        "en": "$OB = OC$ (radii), so $\\triangle OBC$ is isosceles and $\\angle OCB = \\angle OBC = 26^\\circ$.",
+        "zh": "半徑相等：$OB = OC$，所以 $\\triangle OBC$ 等腰，底角相等：$\\angle OCB = \\angle OBC = 26^\\circ$。",
+        "en": "Equal radii: $OB = OC$, so $\\triangle OBC$ is isosceles and its base angles are equal: $\\angle OCB = \\angle OBC = 26^\\circ$.",
         "ticks": [
          [
           "O",
@@ -1009,9 +1017,13 @@
           "B",
           "O",
           "26°",
-          "given",
+          "claim",
           20
          ]
+        ],
+        "radii": [
+         "B",
+         "C"
         ]
        },
        {
@@ -1051,8 +1063,8 @@
         ]
        },
        {
-        "zh": "$OA = OC$（半徑），所以 $\\triangle OAC$ 等腰：$\\angle OAC = \\angle OCA = 30^\\circ$。",
-        "en": "$OA = OC$ (radii), so $\\triangle OAC$ is isosceles and $\\angle OAC = \\angle OCA = 30^\\circ$.",
+        "zh": "又是半徑：$OA = OC$，所以 $\\triangle OAC$ 等腰，$\\angle OAC = \\angle OCA = 30^\\circ$。",
+        "en": "Radii again: $OA = OC$, so $\\triangle OAC$ is isosceles and $\\angle OAC = \\angle OCA = 30^\\circ$.",
         "ticks": [
          [
           "O",
@@ -1072,6 +1084,10 @@
           "claim",
           24
          ]
+        ],
+        "radii": [
+         "A",
+         "C"
         ]
        }
       ]
@@ -1225,8 +1241,8 @@
         ]
        },
        {
-        "zh": "$OA = OC$（半徑），所以 $\\triangle OAC$ 等腰：$\\angle OAC = \\angle ACO = 38^\\circ$。",
-        "en": "$OA = OC$ (radii), so $\\triangle OAC$ is isosceles and $\\angle OAC = \\angle ACO = 38^\\circ$.",
+        "zh": "半徑相等：$OA = OC$，所以 $\\triangle OAC$ 等腰，$\\angle OAC = \\angle ACO = 38^\\circ$。",
+        "en": "Equal radii: $OA = OC$, so $\\triangle OAC$ is isosceles and $\\angle OAC = \\angle ACO = 38^\\circ$.",
         "ticks": [
          [
           "O",
@@ -1246,6 +1262,10 @@
           "claim",
           24
          ]
+        ],
+        "radii": [
+         "A",
+         "C"
         ]
        },
        {
@@ -1470,8 +1490,8 @@
         ]
        },
        {
-        "zh": "OA = OC（半徑），所以 $\\angle OAC = 32^\\circ$。",
-        "en": "OA = OC (radii), so $\\angle OAC = 32^\\circ$.",
+        "zh": "半徑相等：$OA = OC$，所以 $\\triangle OAC$ 等腰，$\\angle OAC = \\angle OCA = 32^\\circ$。",
+        "en": "Equal radii: $OA = OC$, so $\\triangle OAC$ is isosceles and $\\angle OAC = \\angle OCA = 32^\\circ$.",
         "ticks": [
          [
           "O",
@@ -1491,6 +1511,10 @@
           "claim",
           24
          ]
+        ],
+        "radii": [
+         "A",
+         "C"
         ]
        },
        {
@@ -3371,8 +3395,8 @@
         ]
        },
        {
-        "zh": "$OC = OD$（半徑），所以 $\\triangle OCD$ 等腰：$\\angle OCD = \\angle ODC$。",
-        "en": "$OC = OD$ (radii), so $\\triangle OCD$ is isosceles and $\\angle OCD = \\angle ODC$.",
+        "zh": "半徑相等：$OC = OD$，所以 $\\triangle OCD$ 等腰，$\\angle OCD = \\angle ODC$。",
+        "en": "Equal radii: $OC = OD$, so $\\triangle OCD$ is isosceles and $\\angle OCD = \\angle ODC$.",
         "ticks": [
          [
           "O",
@@ -3400,6 +3424,10 @@
           "claim",
           26
          ]
+        ],
+        "radii": [
+         "C",
+         "D"
         ]
        },
        {

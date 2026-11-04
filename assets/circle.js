@@ -120,8 +120,12 @@
       role: "img", "aria-label": (anim.label && anim.label.en) || "circle figure"
     });
     var gBase = el("g"), gStep = el("g");
+    /* 每一步「正在講」的兩條線放在 gPulse：下一步會清走，底圖的線保持中性色，
+       不會愈疊愈花（舊做法會把弦、半徑逐隻色染上去）。 */
+    var gPulse = el("g", { class: "cg-pulse" });
     svg.appendChild(gBase);
     svg.appendChild(gStep);
+    svg.appendChild(gPulse);
 
     /* 圓與點：座標由角度算出 */
     var pts = {};
@@ -234,8 +238,29 @@
       var A = screen(pts[a]), B = screen(pts[b]);
       if (!A || !B) return;
       var ln = el("line", { class: "cg-ray " + colour, x1: A.x, y1: A.y, x2: B.x, y2: B.y });
-      gStep.appendChild(ln);
+      gPulse.appendChild(ln);
       drawOn(ln, delay, instant);
+    }
+
+    /* 等長記號：在線段中點畫一條小橫線（cls 可以指定顏色，例如半徑用 radii） */
+    function tick(a, b, cls, delay, instant) {
+      var A = screen(pts[a]), B = screen(pts[b]);
+      if (!A || !B) return;
+      var mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
+      var dx = B.x - A.x, dy = B.y - A.y, d = Math.hypot(dx, dy) || 1;
+      var nx = -dy / d, ny = dx / d;
+      var k = el("line", {
+        class: "cg-tick" + (cls ? " " + cls : ""),
+        x1: mx - nx * 5, y1: my - ny * 5, x2: mx + nx * 5, y2: my + ny * 5
+      });
+      gStep.appendChild(k);
+      if (instant) {
+        k.style.opacity = "1";
+        return k;
+      }
+      k.style.opacity = "0";
+      setTimeout(function () { k.style.opacity = "1"; }, delay || 140);
+      return k;
     }
 
     function label(txt, T, delay, instant) {
@@ -268,9 +293,15 @@
           .forEach(function (n) { n.parentNode.removeChild(n); });
       });
 
+      /* 每一步只顯示「這一步正在講」的線：先清走上一條，底圖保持中性 */
+      gPulse.innerHTML = "";
+
       (st.rays || []).forEach(function (R, j) {
         ray(R[0], R[1], R[2] || "claim", j * 220, instant);
       });
+
+      /* 半徑相等的一段放在畫角之後（見下面）：同一條線同時屬於角與半徑時，
+         綠色（半徑相等）要壓在最上面，才不會被橙色的邊蓋過。 */
 
       /* 平行記號：一組線段各畫一個「>>」 */
       (st.parallel || []).forEach(function (S, j) {
@@ -290,21 +321,7 @@
       });
 
       (st.ticks || []).forEach(function (t) {
-        var a = screen(pts[t[0]]), b = screen(pts[t[1]]);
-        if (!a || !b) return;
-        var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
-        var dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1;
-        var nx = -dy / d, ny = dx / d;
-        var k = el("line", {
-          class: "cg-tick", x1: mx - nx * 5, y1: my - ny * 5, x2: mx + nx * 5, y2: my + ny * 5
-        });
-        gStep.appendChild(k);
-        if (instant) {
-          k.style.opacity = "1";
-          return;
-        }
-        k.style.opacity = "0";
-        setTimeout(function () { k.style.opacity = "1"; }, 140);
+        tick(t[0], t[1], "", 140, instant);
       });
 
       /* 每一個角：先描兩條射線，再畫角弧，最後才寫上數值（慢一點，睇得清）。
@@ -351,6 +368,14 @@
         drawOn(p, 260 + j * 220, instant);
       });
 
+      /* 半徑相等：由圓心拉出的都是半徑，長度相同 → 等腰三角形。
+         畫綠色等長記號，並把這幾條半徑拉出來閃一閃（畫在角之後，壓在最上層）。 */
+      (st.radii || []).forEach(function (name, j) {
+        if (!centreName || !pts[name]) return;
+        ray(centreName, name, "radii", 420 + j * 180, instant);
+        tick(centreName, name, "radii", 560 + j * 180, instant);
+      });
+
       (st.notes || []).forEach(function (N) {
         var t = el("text", { class: "cg-note", x: N[1], y: N[2], "text-anchor": "middle" }, N[0]);
         gStep.appendChild(t);
@@ -378,6 +403,7 @@
     /* 重畫到第 n 步（n = 已畫的步數）：回看與重播都用這一個 */
     function renderUpTo(n) {
       gStep.innerHTML = "";
+      gPulse.innerHTML = "";
       Object.keys(pointGroups).forEach(function (k) {
         pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
       });
