@@ -187,6 +187,20 @@
         "stats": { "questions": 36, "marks": 140, "bonus": 0 },
         "status": "ready",
         "source": { "zh": "課本 Exercise 18.4（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER；18.4 沒有跨課題部分）", "en": "Textbook Exercise 18.4 (Class Exercise, Section Check, Level 1, Level 2 and SMART CORNER; 18.4 has no Cross Topics)" }
+      },
+      {
+        "id": "ch11-1",
+        "answerInput": true,
+        "group": "classwork",
+        "chapter": "ch11",
+        "code": "11.1",
+        "kind": { "zh": "課本練習", "en": "Book exercise" },
+        "unit": { "zh": "第 11 章 · 圓形的基本性質", "en": "Chapter 11 · Basic Properties of Circles" },
+        "title": { "zh": "11.1 圓形的基本性質 · 課本練習", "en": "11.1 Basic Properties of Circles · Book Exercise" },
+        "meta": { "paper": "Book 5A · Exercise 11.1" },
+        "stats": { "questions": 7, "marks": 24, "bonus": 0 },
+        "status": "ready",
+        "source": { "zh": "課本 Exercise 11.1（Section Check ＋ Level 1 Q10–12、14–16）＋ 官方題解；Q1–9（僅有圖）及 Q13、Q17–22、Level 2 稍後補上", "en": "Textbook Exercise 11.1 (Section Check and Level 1 Q10–12, Q14–16) with the official solutions; Q1–9 (figures only), Q13, Q17–22 and Level 2 to follow" }
       }
     ],
     "classwork": {
@@ -196,6 +210,18 @@
         "en": "Textbook exercises arranged by section, one section per page, with step-by-step solutions. Marks and (1M)/(1A) step marks are set by the teacher for checking your working."
       },
       "chapters": [
+        {
+          "id": "ch11",
+          "short": { "zh": "第 11 章", "en": "Chapter 11" },
+          "title": { "zh": "第 11 章 圓形的基本性質", "en": "Chapter 11 · Basic Properties of Circles" },
+          "intro": {
+            "zh": "第 11 章講圓形的基本性質。11.1 有四條定理：圓心角是圓周角的兩倍、半圓上的圓周角是 90°、它的逆定理，以及同弓形內的圓周角相等。每一條都做成教學卡，卡內的圖可以按「下一步」逐格畫出來；之後是 Exercise 11.1 的逐題題解。",
+            "en": "Chapter 11 is about the basic properties of circles. Section 11.1 has four theorems: the angle at the centre is twice the angle at the circumference, the angle in a semi-circle is 90°, its converse, and angles in the same segment are equal. Each has a teaching card whose figure can be built one step at a time, followed by worked solutions to Exercise 11.1."
+          },
+          "sections": [
+            { "code": "11.1", "part": "ch11-1", "title": { "zh": "11.1 圓形的基本性質", "en": "11.1 Basic properties of circles" } }
+          ]
+        },
         {
           "id": "ch17",
           "short": { "zh": "第 17 章", "en": "Chapter 17" },

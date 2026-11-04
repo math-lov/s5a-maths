@@ -486,7 +486,7 @@ CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 # 互動示範：卡片可寫 "demo": { "type": "tie-up" }，由 assets/demos.js 建立
 # （新增示範：先在 demos.js 的 S5A_DEMO.types 註冊，再把 type 加落這裡）
 DEMO_TYPES = ("tie-up", "slot-in", "grouping", "combination", "path", "complement",
-              "menu", "venn", "code", "venncalc", "floor")
+              "menu", "venn", "code", "venncalc", "floor", "circle")
 
 
 def check_intro(data: dict, where: str) -> None:

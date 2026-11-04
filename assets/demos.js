@@ -2683,12 +2683,18 @@
     return root;
   }
 
+  /* 圓形幾何：逐步圖解（assets/circle.js 提供畫圖與逐步播放） */
+  function circleDemo(host, o) {
+    if (!window.S5A_CIRCLE) return null;
+    return window.S5A_CIRCLE.mount(host, (o && o.anim) || o || {});
+  }
+
   global.S5A_DEMO = {
     types: {
       "tie-up": tieUp, "slot-in": slotIn, grouping: grouping,
       combination: combination, path: pathDemo, complement: complement,
       menu: menuDemo, venn: vennDemo, code: codeDemo, venncalc: vennCalc,
-      floor: floorDemo
+      floor: floorDemo, circle: circleDemo
     },
     tieUp: tieUp,
     slotIn: slotIn,
@@ -2701,6 +2707,7 @@
     code: codeDemo,
     venncalc: vennCalc,
     floor: floorDemo,
+    circle: circleDemo,
     langBar: langBar,
     setLang: setLang
   };

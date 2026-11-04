@@ -1,0 +1,247 @@
+/* 圓形幾何逐步圖解（Circle geometry, one step per click）
+   資料放在題目的 anim 欄或教學卡的 demo.opts.anim：
+   {
+     "points": { "O": {"centre": true}, "A": {"at": 112}, "C": {"at": 232},
+                 "E": {"cross": ["A","C","O","D"]} },
+     "segments": [["O","A"],["A","C"]],
+     "steps": [ { "zh": "…", "en": "…",
+                  "arcs":  [["O","A","B","112°","given"]],
+                  "lines": [["O","B","given"]],
+                  "ticks": [["O","A"]],
+                  "note":  ["…", x, y] } ]
+   }
+   angle 一律用「度」。座標由角度算出，所以畫出來的角就是題目寫的角。 */
+(function () {
+  "use strict";
+
+  var NS = "http://www.w3.org/2000/svg";
+  var SIZE = 420, CX = 210, CY = 210, R = 150;
+
+  var COLOUR = { given: "#e2660a", claim: "#4f46e5", accent: "#0f766e" };
+
+  function el(name, attrs, text) {
+    var e = document.createElementNS(NS, name);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+
+  function polar(deg) {
+    var t = deg * Math.PI / 180;
+    return { x: Math.cos(t), y: Math.sin(t) };
+  }
+
+  function screen(p) {
+    return { x: CX + p.x * R, y: CY - p.y * R };
+  }
+
+  function unit(v) {
+    var d = Math.hypot(v.x, v.y) || 1;
+    return { x: v.x / d, y: v.y / d };
+  }
+
+  /* 兩條直線（a-b 與 c-d）的交點；沒有交點就退回中點 */
+  function cross(a, b, c, d) {
+    var r = { x: b.x - a.x, y: b.y - a.y }, s = { x: d.x - c.x, y: d.y - c.y };
+    var den = r.x * s.y - r.y * s.x;
+    if (Math.abs(den) < 1e-9) return { x: (a.x + c.x) / 2, y: (a.y + c.y) / 2 };
+    var t = ((c.x - a.x) * s.y - (c.y - a.y) * s.x) / den;
+    return { x: a.x + t * r.x, y: a.y + t * r.y };
+  }
+
+  /* 角度弧：在頂點 v 上，由 p1 掃到 p2 */
+  function arcPath(v, p1, p2, radius) {
+    var u = unit({ x: p1.x - v.x, y: p1.y - v.y });
+    var w = unit({ x: p2.x - v.x, y: p2.y - v.y });
+    var a = { x: v.x + u.x * radius, y: v.y + u.y * radius };
+    var b = { x: v.x + w.x * radius, y: v.y + w.y * radius };
+    var cr = u.x * w.y - u.y * w.x;
+    var d = "M" + a.x + " " + a.y + "A" + radius + " " + radius + " 0 0 " +
+      (cr > 0 ? 1 : 0) + " " + b.x + " " + b.y;
+    var sum = { x: u.x + w.x, y: u.y + w.y };
+    var bis = Math.hypot(sum.x, sum.y) < 0.02 ? { x: -u.y, y: u.x } : unit(sum);
+    return { d: d, label: { x: v.x + bis.x * (radius + 16), y: v.y + bis.y * (radius + 16) + 4 } };
+  }
+
+  function mount(host, anim) {
+    anim = anim || {};
+    var wrap = document.createElement("div");
+    wrap.className = "cg";
+
+    var svg = el("svg", {
+      class: "cg-svg", viewBox: "0 0 " + SIZE + " " + SIZE,
+      role: "img", "aria-label": (anim.label && anim.label.en) || "circle figure"
+    });
+    var gBase = el("g"), gStep = el("g");
+    svg.appendChild(gBase);
+    svg.appendChild(gStep);
+
+    /* 圓與點：座標由角度算出 */
+    var pts = {};
+    var specs = anim.points || {};
+    var centreName = null;
+    Object.keys(specs).forEach(function (name) {
+      var s = specs[name] || {};
+      if (s.centre) {
+        pts[name] = { x: 0, y: 0 };
+        centreName = name;
+      } else if (typeof s.at === "number") {
+        pts[name] = polar(s.at);
+      }
+    });
+    /* 交點要等圓上的點都算好 */
+    Object.keys(specs).forEach(function (name) {
+      var s = specs[name] || {};
+      if (s.cross) {
+        var c = s.cross;
+        pts[name] = cross(pts[c[0]], pts[c[1]], pts[c[2]], pts[c[3]]);
+      }
+    });
+
+    if (anim.circle !== false && centreName) {
+      var o = screen(pts[centreName]);
+      gBase.appendChild(el("circle", { class: "cg-circle", cx: o.x, cy: o.y, r: R }));
+    }
+
+    (anim.segments || []).forEach(function (s) {
+      var a = screen(pts[s[0]]), b = screen(pts[s[1]]);
+      if (!a || !b) return;
+      gBase.appendChild(el("line", { class: "cg-seg", x1: a.x, y1: a.y, x2: b.x, y2: b.y }));
+    });
+
+    Object.keys(pts).forEach(function (name) {
+      var p = screen(pts[name]);
+      var isCentre = name === centreName;
+      gBase.appendChild(el("circle", {
+        class: "cg-dot" + (isCentre ? " centre" : ""),
+        cx: p.x, cy: p.y, r: isCentre ? 3 : 3.4
+      }));
+      var d = Math.hypot(p.x - CX, p.y - CY) || 1;
+      var off = isCentre ? { x: -13, y: -9 } : { x: (p.x - CX) / d * 14, y: (p.y - CY) / d * 14 + 4 };
+      gBase.appendChild(el("text", {
+        class: "cg-label", x: p.x + off.x, y: p.y + off.y, "text-anchor": "middle"
+      }, name));
+    });
+
+    /* 字幕與按鈕 */
+    var say = document.createElement("div");
+    say.className = "cg-say";
+    var sayZh = document.createElement("p");
+    sayZh.className = "cg-zh";
+    var sayEn = document.createElement("p");
+    sayEn.className = "cg-en";
+    say.appendChild(sayZh);
+    say.appendChild(sayEn);
+
+    var row = document.createElement("div");
+    row.className = "cg-row";
+    var next = document.createElement("button");
+    next.type = "button";
+    next.className = "btn btn-sm btn-primary cg-next";
+    var restart = document.createElement("button");
+    restart.type = "button";
+    restart.className = "btn btn-sm cg-restart";
+    restart.textContent = "重播 Restart";
+    restart.disabled = true;
+    var count = document.createElement("span");
+    count.className = "cg-count";
+    row.appendChild(next);
+    row.appendChild(restart);
+    row.appendChild(count);
+
+    wrap.appendChild(svg);
+    wrap.appendChild(say);
+    wrap.appendChild(row);
+    host.appendChild(wrap);
+
+    var steps = anim.steps || [];
+    var at = 0;
+
+    function label(txt, T, delay) {
+      var t = el("text", { class: "cg-val " + (T.colour || "claim"), x: T.label.x, y: T.label.y, "text-anchor": "middle" }, txt);
+      gStep.appendChild(t);
+      reveal(t, delay);
+      return t;
+    }
+
+    function reveal(node, delay) {
+      node.style.opacity = "0";
+      setTimeout(function () { node.style.opacity = "1"; }, delay || 0);
+    }
+
+    function draw(i) {
+      var st = steps[i] || {};
+      (st.lines || []).forEach(function (L) {
+        var a = screen(pts[L[0]]), b = screen(pts[L[1]]);
+        if (!a || !b) return;
+        var ln = el("line", { class: "cg-draw " + (L[2] || "given"), x1: a.x, y1: a.y, x2: b.x, y2: b.y });
+        gStep.appendChild(ln);
+        ln.style.opacity = "0";
+        setTimeout(function () { ln.style.opacity = "1"; }, 0);
+      });
+      (st.ticks || []).forEach(function (t) {
+        var a = screen(pts[t[0]]), b = screen(pts[t[1]]);
+        if (!a || !b) return;
+        var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+        var dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1;
+        var nx = -dy / d, ny = dx / d;
+        var k = el("line", {
+          class: "cg-tick", x1: mx - nx * 5, y1: my - ny * 5, x2: mx + nx * 5, y2: my + ny * 5
+        });
+        gStep.appendChild(k);
+        reveal(k, 60);
+      });
+      (st.arcs || []).forEach(function (A, j) {
+        var v = screen(pts[A[0]]), p1 = screen(pts[A[1]]), p2 = screen(pts[A[2]]);
+        if (!v || !p1 || !p2) return;
+        var radius = A[5] || 26;
+        var geo = arcPath(v, p1, p2, radius);
+        var path = el("path", { class: "cg-arc " + (A[4] || "claim"), d: geo.d });
+        gStep.appendChild(path);
+        reveal(path, j * 90);
+        if (A[3]) label(A[3], { label: geo.label, colour: A[4] }, 120 + j * 90);
+      });
+      (st.notes || []).forEach(function (N) {
+        var t = el("text", { class: "cg-note", x: N[1], y: N[2], "text-anchor": "middle" }, N[0]);
+        gStep.appendChild(t);
+        reveal(t, 160);
+      });
+    }
+
+    function update() {
+      next.textContent = at >= steps.length ? "完成 Done" : "下一步 Next step →";
+      next.disabled = at >= steps.length;
+      restart.disabled = at === 0;
+      count.textContent = at + " / " + steps.length;
+    }
+
+    next.onclick = function () {
+      if (at >= steps.length) return;
+      draw(at);
+      sayZh.textContent = steps[at].zh || "";
+      sayEn.textContent = steps[at].en || "";
+      at += 1;
+      update();
+    };
+
+    restart.onclick = function () {
+      gStep.innerHTML = "";
+      sayZh.textContent = "";
+      sayEn.textContent = "";
+      at = 0;
+      update();
+    };
+
+    var first = steps[0] || {};
+    sayZh.textContent = first.zh || "";
+    sayEn.textContent = first.en || "";
+    if (steps.length) {
+      sayZh.textContent = "";
+      sayEn.textContent = "";
+    }
+    update();
+    return wrap;
+  }
+
+  window.S5A_CIRCLE = { mount: mount };
+})();

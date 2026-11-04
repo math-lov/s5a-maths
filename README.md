@@ -197,6 +197,19 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 4. 跑 `tools/build.py`、`tools/preview_figures.py`、`tools/smoke_test.js`，全綠就可以發佈。
 5. `tools/smoke_test.js` 內的頁數／題數斷言要同步更新（照樣加一組斷言，別刪舊的）。
 
+## 圓形幾何的逐步圖解（`assets/circle.js`）
+
+第 11 章（`ch11-1.json`）用了一個新的圖解引擎：圖由角度算出，所以畫出來的角就是題目寫的角。
+
+* 題目加 `"anim"`：`points`（`{"centre": true}`、`{"at": 112}`、或交點 `{"cross": ["A","C","O","D"]}`）、
+  `segments`（底圖線段），以及 `steps[]`；每一拍可以寫 `arcs`（`["O","A","B","112°","given"]`）、
+  `lines`、`ticks`、`notes`，配中英各一句 `zh`／`en`。題目頁會在題幹下面多一張「逐步圖解」卡。
+* 教學卡加 `"demo": {"type": "circle", "opts": {"anim": {…}}}`，圖解就會嵌在卡內。
+* 顏色語意：已知量橙色 `#e2660a`（`given`）、推導量靛藍 `#4f46e5`（`claim`）、輔助線青綠 `#0f766e`（`accent`）。
+* 一次只走一步，按鈕是「下一步 Next step」；走完變「完成 Done」，「重播 Restart」由第一步重來。
+  不自動播放（與全站一致）。
+* 逐步圖解是**輔助**，正式的寫法仍然是 `solution.steps`（理由寫在括號內）。
+
 ## 內容原則
 
 * **全站中英雙語**：題目、選項（文字選項）、分項、題解與介面文字都有中英兩版，

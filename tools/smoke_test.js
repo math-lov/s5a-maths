@@ -30,6 +30,7 @@ const katexJs = read("vendor/katex/katex.min.js");
 const autoRenderJs = read("vendor/katex/auto-render.min.js");
 const appJs = read("assets/app.js");
 const demosJs = read("assets/demos.js");
+const circleJs = read("assets/circle.js");
 const indexJs = read("data/index.js");
 const figuresJs = read("data/figures.js");
 const dataFiles = fs.readdirSync(path.join(root, "data"))
@@ -70,6 +71,7 @@ function boot(page, search, storage, solPreference, legacySolPreference) {
   vm.runInContext(indexJs, ctx, { filename: "index.js" });
   vm.runInContext(figuresJs, ctx, { filename: "figures.js" });
   dataFiles.forEach((f) => vm.runInContext(read("data/" + f), ctx, { filename: f }));
+  vm.runInContext(circleJs, ctx, { filename: "circle.js" });  // 圓形幾何逐步圖解
   vm.runInContext(demosJs, ctx, { filename: "demos.js" });   // 互動示範（教學卡用）
   vm.runInContext(appJs, ctx, { filename: "app.js" });
   if (typeof ctx.window.__S5A_START === "function") ctx.window.__S5A_START();
@@ -97,8 +99,8 @@ ok(home.$$("#parts .part-btn").length === QUIZ_PARTS.length,
   "首頁「測驗檢討」只列 " + QUIZ_PARTS.length + " 份測驗（實際 " + home.$$("#parts .part-btn").length + "）");
 ok(home.$$("#classwork .part-btn").length === CW_CHAPTERS.length,
   "首頁「課本練習」只列 " + CW_CHAPTERS.length + " 個章（實際 " + home.$$("#classwork .part-btn").length + "）");
-ok(/第 17 章/.test((home.$("#classwork .part-btn .t-name") || {}).textContent || ""),
-  "課本練習的按鈕顯示章名（第 17 章）");
+ok(/第 \d+ 章/.test((home.$("#classwork .part-btn .t-name") || {}).textContent || ""),
+  "課本練習的按鈕顯示章名（第 N 章）");
 ok(home.$("#site-stats") === null, "首頁不再顯示全站統計（共 N 份測驗… 已刪除）");
 ok(!!home.$(".hero h1 .l-zh") && /5A 數學溫習站/.test(home.$(".hero h1 .l-zh").textContent) &&
   /5A Maths Revision/.test(home.$(".hero h1 .l-en").textContent), "主標題：中文「5A 數學溫習站」／英文「5A Maths Revision」");
@@ -454,7 +456,7 @@ ok(Object.keys(figs).every((k) => (figs[k].caption || {}).zh && (figs[k].caption
 
 /* ── 6b. 課本練習：章 → 節，以及第 17.2 節 ───────────────────────────── */
 console.log("\n== 課本練習（章 → 節）==");
-const CH17 = CW_CHAPTERS[0] || {};
+const CH17 = CW_CHAPTERS.filter((c) => c.id === "ch17")[0] || {};
 const chPage = boot("chapter.html", "?ch=ch17");
 ok(!!chPage.$("#chapter-body"), "章節頁有內容區");
 ok(/第 17 章/.test((chPage.$("#chapter-name") || {}).textContent || ""), "章節頁顯示章名（第 17 章）");
@@ -2861,6 +2863,43 @@ ok(/\.part-btn::before\b/.test(cssBar) && /\.part-btn\.doing::before/.test(cssBa
 ok(/已掌握 18%/.test((back.$(".part-btn .t-meta") || {}).textContent || ""),
   "首頁顯示已掌握百分比（2/11 = 18%）");
 ok(back.$$(".part-btn .ring.full").length === 0, "未完成時進度環不是 full");
+
+/* ── 6c. 第 11 章 11.1：圓形基本性質（教學卡 ＋ 逐步圖解）──────────── */
+console.log("\n== 第 11 章 · 11.1 圓形的基本性質 ==");
+const P11_DATA = JSON.parse(read("data/src/ch11-1.json"));
+const p11 = boot("quiz.html", "?c=ch11-1");
+ok(P11_DATA.cards.length === 5, "11.1 有五張教學卡（實際 " + P11_DATA.cards.length + "）");
+ok(P11_DATA.cards.filter((c) => c.demo && c.demo.type === "circle").length === 3,
+  "其中三張有 circle 逐步圖解示範");
+ok(p11.$$(".cg").length === 3, "總覽頁嵌入了 3 個圖解（實際 " + p11.$$(".cg").length + "）");
+ok(p11.$$(".cg-svg").every((s) => s.querySelectorAll(".cg-label").length >= 3),
+  "每個圖解都畫了點與字母");
+ok(p11.$$(".cg-next").every((b) => /Next step/.test(b.textContent)),
+  "每個圖解都有「下一步 Next step」按鈕");
+
+const p11q = boot("quiz.html", "?c=ch11-1&p=3");
+ok(!!p11q.$(".cg-svg"), "題目頁有逐步圖解");
+const cgNext = p11q.$(".cg-next");
+const arcsBefore = p11q.$$(".cg-arc").length;
+cgNext.click();
+ok(p11q.$$(".cg-arc").length + p11q.$$(".cg-draw").length + p11q.$$(".cg-tick").length > arcsBefore,
+  "按「下一步」會畫出第一拍");
+ok(/1 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),
+  "計數器由 1 開始（" + ((p11q.$(".cg-count") || {}).textContent || "") + "）");
+const cgRestart = p11q.$(".cg-restart");
+cgRestart.click();
+ok(!p11q.$(".cg-arc") && /0 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),
+  "「重播 Restart」清空圖形並回到第 0 步");
+
+ok(P11_DATA.sections[1].questions.every((q) => q.anim),
+  "Level 1 每題都有 anim 圖解資料");
+ok(P11_DATA.sections[1].questions.every((q) => {
+  const pts = (q.anim.points || {});
+  return Object.keys(pts).length >= 3 && (q.anim.steps || []).length >= 3;
+}), "每個圖解至少 3 個點與 3 拍");
+ok(P11_DATA.sections[1].questions.every((q) =>
+  (q.anim.steps || []).every((s) => (s.arcs || []).every((a) => a.length >= 4))),
+  "每一拍的角都寫明頂點、兩點、標籤與顏色");
 
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

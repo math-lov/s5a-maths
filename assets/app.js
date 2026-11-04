@@ -2118,6 +2118,17 @@
     function redraw() { renderPage(pages, cur, id, part); }
     refreshCurrent = redraw;
     body.appendChild(qc);
+    /* 圓形幾何：題目有 anim 就加一張逐步圖解卡（assets/circle.js） */
+    if (q.anim && window.S5A_CIRCLE) {
+      var animCard = el("div", "card anim-card");
+      var ah = el("div", "section-title");
+      ah.appendChild(pairSpan({ zh: "逐步圖解", en: "Figure, step by step" }));
+      animCard.appendChild(ah);
+      var holder = el("div", "anim-host");
+      animCard.appendChild(holder);
+      body.appendChild(animCard);
+      window.S5A_CIRCLE.mount(holder, q.anim);
+    }
     var ac = answerInputCard(q);
     if (ac) body.appendChild(ac);
     var pc = parseCard(q);
