@@ -377,6 +377,9 @@
           "claim",
           30
          ]
+        ],
+        "clearAngle": [
+         "P"
         ]
        }
       ]
@@ -481,6 +484,9 @@
           "claim",
           36
          ]
+        ],
+        "clearAngle": [
+         "O"
         ]
        },
        {
@@ -964,8 +970,8 @@
       ],
       "steps": [
        {
-        "zh": "已知：$\\angle AOB = 112^\\circ$，$\\angle OBC = 26^\\circ$。",
-        "en": "Given: $\\angle AOB = 112^\\circ$ and $\\angle OBC = 26^\\circ$.",
+        "zh": "已知 $\\angle AOB = 112^\\circ$、$\\angle OBC = 26^\\circ$。",
+        "en": "Given $\\angle AOB = 112^\\circ$ and $\\angle OBC = 26^\\circ$.",
         "arcs": [
          [
           "O",
@@ -985,8 +991,8 @@
         ]
        },
        {
-        "zh": "OB = OC（半徑），所以 $\\angle OCB$ = $\\angle OBC = 26^\\circ$。",
-        "en": "OB = OC (radii), so $\\angle OCB$ = $\\angle OBC = 26^\\circ$.",
+        "zh": "$OB = OC$（半徑），所以 $\\triangle OBC$ 等腰：$\\angle OCB = \\angle OBC = 26^\\circ$。",
+        "en": "$OB = OC$ (radii), so $\\triangle OBC$ is isosceles and $\\angle OCB = \\angle OBC = 26^\\circ$.",
         "ticks": [
          [
           "O",
@@ -996,18 +1002,29 @@
           "O",
           "C"
          ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "B",
+          "O",
+          "26°",
+          "given",
+          20
+         ]
         ]
        },
        {
-        "zh": "$\\angle ACB$ = ½ $\\angle AOB = 56^\\circ$（同弧 AB）。",
-        "en": "$\\angle ACB$ = ½$\\angle AOB = 56^\\circ$ (same arc AB).",
+        "zh": "兩隻角都對着弧 $AB$：$\\angle ACB = \\tfrac{1}{2}\\angle AOB = 56^\\circ$。",
+        "en": "Both angles stand on arc $AB$: $\\angle ACB = \\tfrac{1}{2}\\angle AOB = 56^\\circ$.",
         "arcs": [
          [
           "C",
           "A",
           "B",
           "56°",
-          "claim"
+          "claim",
+          32
          ]
         ],
         "circleArcs": [
@@ -1020,15 +1037,40 @@
         ]
        },
        {
-        "zh": "$\\angle OCA = 56^\\circ$ − 26° = 30°，而 OA = OC，所以 $\\angle OAC = 30^\\circ$。",
-        "en": "$\\angle OCA = 56^\\circ$ − 26° = 30°, and OA = OC, so $\\angle OAC = 30^\\circ$.",
+        "zh": "$\\angle OCA = \\angle ACB - \\angle OCB = 56^\\circ - 26^\\circ = 30^\\circ$。",
+        "en": "$\\angle OCA = \\angle ACB - \\angle OCB = 56^\\circ - 26^\\circ = 30^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "A",
+          "O",
+          "30°",
+          "claim",
+          44
+         ]
+        ]
+       },
+       {
+        "zh": "$OA = OC$（半徑），所以 $\\triangle OAC$ 等腰：$\\angle OAC = \\angle OCA = 30^\\circ$。",
+        "en": "$OA = OC$ (radii), so $\\triangle OAC$ is isosceles and $\\angle OAC = \\angle OCA = 30^\\circ$.",
+        "ticks": [
+         [
+          "O",
+          "A"
+         ],
+         [
+          "O",
+          "C"
+         ]
+        ],
         "arcs": [
          [
           "A",
           "O",
           "C",
           "30°",
-          "claim"
+          "claim",
+          24
          ]
         ]
        }
@@ -1183,8 +1225,8 @@
         ]
        },
        {
-        "zh": "OA = OC（半徑），所以 $\\angle OAC$ = $\\angle ACO = 38^\\circ$。",
-        "en": "OA = OC (radii), so $\\angle OAC$ = $\\angle ACO = 38^\\circ$.",
+        "zh": "$OA = OC$（半徑），所以 $\\triangle OAC$ 等腰：$\\angle OAC = \\angle ACO = 38^\\circ$。",
+        "en": "$OA = OC$ (radii), so $\\triangle OAC$ is isosceles and $\\angle OAC = \\angle ACO = 38^\\circ$.",
         "ticks": [
          [
           "O",
@@ -1207,21 +1249,61 @@
         ]
        },
        {
-        "zh": "△OAC 內角和：$\\angle AOC = 180^\\circ$ − 38° − 38° = 104°。",
-        "en": "Angle sum in △OAC: $\\angle AOC = 180^\\circ$ − 38° − 38° = 104°.",
+        "zh": "$\\triangle OAC$ 內角和：$\\angle AOC = 180^\\circ - 38^\\circ - 38^\\circ = 104^\\circ$。",
+        "en": "Angle sum of $\\triangle OAC$: $\\angle AOC = 180^\\circ - 38^\\circ - 38^\\circ = 104^\\circ$.",
         "arcs": [
          [
           "O",
           "A",
           "C",
           "104°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "但 $B$ 在較小的弧 $AC$ 上，$\\angle ABC$ 對着的是反角：$360^\\circ - 104^\\circ = 256^\\circ$。",
+        "en": "$B$ lies on the minor arc $AC$, so $\\angle ABC$ stands on the reflex angle: $360^\\circ - 104^\\circ = 256^\\circ$.",
+        "notes": [
+         [
+          "reflex ∠AOC = 360° − 104° = 256°",
+          206,
+          326
+         ]
+        ]
+       },
+       {
+        "zh": "把較大的弧 $AC$ 畫出來 —— 這就是 $\\angle ABC$ 所對的弧。",
+        "en": "Mark the major arc $AC$ — this is the arc $\\angle ABC$ stands on.",
+        "circleArcs": [
+         [
+          "A",
+          "C",
+          "B",
+          "accent"
+         ]
+        ]
+       },
+       {
+        "zh": "再畫出 $BA$ 與 $BC$，兩條射線夾出 $\\angle ABC$。",
+        "en": "Draw $BA$ and $BC$: the two rays that make $\\angle ABC$.",
+        "rays": [
+         [
+          "B",
+          "A",
+          "claim"
+         ],
+         [
+          "B",
+          "C",
           "claim"
          ]
         ]
        },
        {
-        "zh": "B 在較小的弧 AC 上，$\\angle ABC$ 對着反角 360° − 104° = 256°，所以 $\\angle ABC = 128^\\circ$。",
-        "en": "B lies on the minor arc AC, so $\\angle ABC$ stands on the reflex angle 360° − 104° = 256°: $\\angle ABC = 128^\\circ$.",
+        "zh": "所以 $\\angle ABC = 256^\\circ \\div 2 = 128^\\circ$（圓心角兩倍圓周角）。",
+        "en": "So $\\angle ABC = 256^\\circ \\div 2 = 128^\\circ$ (angle at centre twice angle at circumference).",
         "arcs": [
          [
           "B",
@@ -1261,12 +1343,22 @@
        {
         "part": "(a)",
         "title": {
+         "zh": "用反角",
+         "en": "Take the reflex angle"
+        },
+        "math": "\\text{reflex }\\angle AOC = 360^\\circ - 104^\\circ = 256^\\circ",
+        "zh": "因為 $B$ 在較小的弧 $AC$ 上，$\\angle ABC$ 對着的是反角，不是 $104^\\circ$：$360^\\circ - 104^\\circ = 256^\\circ$。",
+        "en": "Since $B$ lies on the minor arc $AC$, $\\angle ABC$ stands on the reflex angle, not on $104^\\circ$: $360^\\circ - 104^\\circ = 256^\\circ$."
+       },
+       {
+        "part": "(a)",
+        "title": {
          "zh": "用反角，因為 $B$ 在另一側",
          "en": "Use the reflex angle: B is on the other side"
         },
-        "math": "\\angle ABC = \\tfrac{1}{2}(360^\\circ - 104^\\circ) = 128^\\circ",
-        "zh": "$B$ 在較小的弧 $AC$ 上，所以 $\\angle ABC$ 對着的是較大的弧，要用反角：$\\angle ABC = \\tfrac{1}{2}(360^\\circ - 104^\\circ) = 128^\\circ$。",
-        "en": "B lies on the minor arc AC, so ∠ABC stands on the major arc and the reflex angle is used: ∠ABC = ½(360° − 104°) = 128°.",
+        "math": "\\angle ABC = \\tfrac{1}{2} \\times 256^\\circ = 128^\\circ",
+        "zh": "$\\angle ABC$ 是圓周角，等於反角的一半：$\\tfrac{1}{2} \\times 256^\\circ = 128^\\circ$。",
+        "en": "$\\angle ABC$ is an angle at the circumference, so it is half the reflex angle: $\\tfrac{1}{2} \\times 256^\\circ = 128^\\circ$.",
         "marking": "(1A)"
        }
       ],

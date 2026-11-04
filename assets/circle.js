@@ -63,6 +63,16 @@
     return { d: d, label: { x: v.x + bis.x * (radius + 16), y: v.y + bis.y * (radius + 16) + 4 } };
   }
 
+  /* 直角符號：在頂點 v 上，兩邊各取 s 長，畫一個小方角 */
+  function squarePath(v, p1, p2, s) {
+    var u = unit({ x: p1.x - v.x, y: p1.y - v.y });
+    var w = unit({ x: p2.x - v.x, y: p2.y - v.y });
+    var a = { x: v.x + u.x * s, y: v.y + u.y * s };
+    var c = { x: v.x + w.x * s, y: v.y + w.y * s };
+    var b = { x: a.x + w.x * s, y: a.y + w.y * s };
+    return "M" + a.x + " " + a.y + "L" + b.x + " " + b.y + "L" + c.x + " " + c.y;
+  }
+
   /* 圓周上由 A 到 B 的一段弧（screen 座標）；有 avoid 就選不穿越它的那一邊 */
   function circuitArc(a, b, avoid) {
     function heading(p) { return Math.atan2(p.y - CY, p.x - CX); }
@@ -231,6 +241,17 @@
         if (g) g.style.opacity = "1";
       });
 
+      /* 同一隻角之前畫過（例如先寫 ½ × 180°，之後改寫 90°）：
+         先把舊的弧與數值拿走，免得兩個標籤疊在一起 */
+      (st.clearAngle || []).forEach(function (name) {
+        Array.prototype.slice.call(gStep.querySelectorAll('[data-angle="' + name + '"]'))
+          .forEach(function (n) { n.parentNode.removeChild(n); });
+      });
+
+      (st.rays || []).forEach(function (R, j) {
+        ray(R[0], R[1], R[2] || "claim", j * 220, instant);
+      });
+
       (st.lines || []).forEach(function (L) {
         var a = screen(pts[L[0]]), b = screen(pts[L[1]]);
         if (!a || !b) return;
@@ -257,7 +278,8 @@
         setTimeout(function () { k.style.opacity = "1"; }, 140);
       });
 
-      /* 每一個角：先描兩條射線，再畫角弧，最後才寫上數值（慢一點，睇得清） */
+      /* 每一個角：先描兩條射線，再畫角弧，最後才寫上數值（慢一點，睇得清）。
+         直角（標籤剛好是 90°）改用直角符號，跟課本一致。 */
       (st.arcs || []).forEach(function (A, j) {
         var v = screen(pts[A[0]]), p1 = screen(pts[A[1]]), p2 = screen(pts[A[2]]);
         if (!v || !p1 || !p2) return;
@@ -268,11 +290,21 @@
           ray(A[0], A[2], colour, lead + 300, instant);
         }
         var radius = A[5] || 26;
-        var geo = arcPath(v, p1, p2, radius);
-        var path = el("path", { class: "cg-arc " + colour, d: geo.d });
+        var isRight = A[3] === "90°" || A[6] === "sq";
+        var path, geo;
+        if (isRight) {
+          path = el("path", { class: "cg-arc " + colour, d: squarePath(v, p1, p2, 13) });
+        } else {
+          geo = arcPath(v, p1, p2, radius);
+          path = el("path", { class: "cg-arc " + colour, d: geo.d });
+        }
+        path.setAttribute("data-angle", A[0]);
         gStep.appendChild(path);
         drawOn(path, lead + 560, instant);
-        if (A[3]) label(A[3], { label: geo.label, colour: colour }, lead + 900, instant);
+        if (A[3] && !isRight) {
+          var lab = label(A[3], { label: geo.label, colour: colour }, lead + 900, instant);
+          lab.setAttribute("data-angle", A[0]);
+        }
       });
 
       (st.circleArcs || []).forEach(function (C, j) {
