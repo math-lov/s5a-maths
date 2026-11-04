@@ -2492,16 +2492,16 @@
         "centre": true
        },
        "A": {
-        "at": 276
+        "at": 100
        },
        "B": {
-        "at": 0
+        "at": 184
        },
        "C": {
-        "at": 84
+        "at": 268
        },
        "D": {
-        "at": 200
+        "at": 24
        },
        "E": {
         "cross": [
@@ -2540,8 +2540,8 @@
       ],
       "steps": [
        {
-        "zh": "已知 $\\angle ABD = 38^\\circ$；又 $AB = BC$，所以 $\\triangle ABC$ 等腰，$\\angle BCA = \\angle BAC = 42^\\circ$。",
-        "en": "Given $\\angle ABD = 38^\\circ$; also $AB = BC$, so $\\triangle ABC$ is isosceles and $\\angle BCA = \\angle BAC = 42^\\circ$.",
+        "zh": "已知 $\\angle BAC = 42^\\circ$、$\\angle ABD = 38^\\circ$，而且 $AB = BC$。",
+        "en": "Given $\\angle BAC = 42^\\circ$, $\\angle ABD = 38^\\circ$ and $AB = BC$.",
         "ticks": [
          [
           "A",
@@ -2554,11 +2554,12 @@
         ],
         "arcs": [
          [
-          "C",
-          "B",
           "A",
+          "B",
+          "C",
           "42°",
-          "given"
+          "given",
+          20
          ],
          [
           "B",
@@ -2571,8 +2572,22 @@
         ]
        },
        {
-        "zh": "$\\angle BDA$ 與 $\\angle BCA$ 同對弧 $BA$：$\\angle BDA = 42^\\circ$（同弓形）。",
-        "en": "$\\angle BDA$ and $\\angle BCA$ stand on arc $BA$, so $\\angle BDA = 42^\\circ$ (same segment).",
+        "zh": "$AB = BC$，所以 $\\triangle ABC$ 是等腰三角形，底角相等：$\\angle BCA = \\angle BAC = 42^\\circ$。",
+        "en": "$AB = BC$, so $\\triangle ABC$ is isosceles and $\\angle BCA = \\angle BAC = 42^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "B",
+          "A",
+          "42°",
+          "claim",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle BDA$ 與 $\\angle BCA$ 都對着弧 $BA$（同弓形）：$\\angle BDA = 42^\\circ$。",
+        "en": "$\\angle BDA$ and $\\angle BCA$ both stand on arc $BA$: $\\angle BDA = 42^\\circ$.",
         "circleArcs": [
          [
           "B",
@@ -2588,20 +2603,21 @@
           "A",
           "42°",
           "claim",
-          26
+          24
          ]
         ]
        },
        {
-        "zh": "在 $\\triangle ABD$：$\\angle BAD = 180^\\circ - 38^\\circ - 42^\\circ = 100^\\circ$。",
-        "en": "In $\\triangle ABD$: $\\angle BAD = 180^\\circ - 38^\\circ - 42^\\circ = 100^\\circ$.",
+        "zh": "在 $\\triangle ABD$ 中用內角和：$\\angle BAD = 180^\\circ - 38^\\circ - 42^\\circ = 100^\\circ$。",
+        "en": "Angle sum of $\\triangle ABD$: $\\angle BAD = 180^\\circ - 38^\\circ - 42^\\circ = 100^\\circ$.",
         "arcs": [
          [
           "A",
           "B",
           "D",
           "100°",
-          "claim"
+          "claim",
+          44
          ]
         ]
        },
@@ -2611,8 +2627,8 @@
         "notes": [
          [
           "∠BAD = 100° ≠ 90°",
-          210,
-          396
+          330,
+          392
          ]
         ]
        }
