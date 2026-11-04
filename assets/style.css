@@ -1459,6 +1459,7 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .cg-draw.given { stroke: #e2660a; }
 .cg-draw.claim { stroke: #4f46e5; }
 .cg-draw.accent { stroke: #0f766e; }
+.cg-draw.ink { stroke: var(--text); stroke-opacity: .55; stroke-width: 1.2; }
 .cg-arc { fill: none; stroke-width: 1.8; stroke-linecap: round; transition: opacity .3s ease, stroke-dashoffset .55s cubic-bezier(.35,.65,.3,1); }
 .cg-arc.given { stroke: #e2660a; }
 .cg-arc.claim { stroke: #4f46e5; }
@@ -1473,6 +1474,7 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .cg-val.claim { fill: #4338ca; }
 .cg-val.accent { fill: #0f766e; }
 .cg-note { font-size: 11px; fill: var(--muted); }
+.cc .katex, .cg-say .katex { font-size: 1em; }
 .cg-say { margin: 10px auto 0; max-width: 540px; text-align: center; min-height: 38px; }
 .cg-zh { font-size: 14px; margin: 0; line-height: 1.6; }
 .cg-en { font-size: 12.5px; margin: 2px 0 0; color: var(--muted); line-height: 1.5; }
