@@ -1,262 +1,622 @@
 {
-  "site": {
-    "name": { "zh": "5A 數學溫習站", "en": "5A Maths Revision" },
-    "llmPrompt": true,
-    "tagline": {
-      "zh": "中五A班專用 · 逐題檢討，一題一頁",
-      "en": "Built for class 5A · one question per page"
+ "site": {
+  "name": {
+   "zh": "5A 數學溫習站",
+   "en": "5A Maths Revision"
+  },
+  "llmPrompt": true,
+  "tagline": {
+   "zh": "中五A班專用 · 逐題檢討，一題一頁",
+   "en": "Built for class 5A · one question per page"
+  },
+  "school": "S.K.H. Bishop Baker Secondary School",
+  "class": {
+   "zh": "2026–2027 年度 · 中五A班",
+   "en": "2026–2027 · S.5A"
+  },
+  "note": {
+   "zh": "這裡把校內測驗與課本練習的每一題連題解一頁一頁展示：題目與作答用英文，詳解中英對照，可按「中／EN／中英」切換。",
+   "en": "Every question from the class quiz and the textbook exercises is shown on its own page, together with a full worked solution. Questions are in English; explanations are bilingual."
+  },
+  "parts": [
+   {
+    "id": "ch10-test",
+    "group": "quiz",
+    "kind": {
+     "zh": "測驗檢討",
+     "en": "Quiz review"
     },
-    "school": "S.K.H. Bishop Baker Secondary School",
-    "class": { "zh": "2026–2027 年度 · 中五A班", "en": "2026–2027 · S.5A" },
-    "note": {
-      "zh": "這裡把校內測驗與課本練習的每一題連題解一頁一頁展示：題目與作答用英文，詳解中英對照，可按「中／EN／中英」切換。",
-      "en": "Every question from the class quiz and the textbook exercises is shown on its own page, together with a full worked solution. Questions are in English; explanations are bilingual."
+    "unit": {
+     "zh": "第 10 章 不等式",
+     "en": "Chapter 10 · Inequalities"
     },
-    "parts": [
+    "title": {
+     "zh": "第 10 章 測驗檢討",
+     "en": "Chapter 10 Quiz Review"
+    },
+    "meta": {
+     "paper": "S.5 Mathematics · Chapter Quiz",
+     "date": "25 / 9 / 2026",
+     "marks": 38,
+     "sections": [
       {
-        "id": "ch10-test",
-        "group": "quiz",
-        "kind": { "zh": "測驗檢討", "en": "Quiz review" },
-        "unit": { "zh": "第 10 章 不等式", "en": "Chapter 10 · Inequalities" },
-        "title": { "zh": "第 10 章 測驗檢討", "en": "Chapter 10 Quiz Review" },
-        "meta": {
-          "paper": "S.5 Mathematics · Chapter Quiz",
-          "date": "25 / 9 / 2026",
-          "marks": 38,
-          "sections": [
-            { "id": "A", "marks": 10, "title": { "zh": "甲部 · 多項選擇題", "en": "Section A · Multiple choice" } },
-            { "id": "B", "marks": 28, "title": { "zh": "乙部 · 長題目", "en": "Section B · Conventional questions" } }
-          ]
-        },
-        "stats": { "questions": 11, "marks": 38, "bonus": 3 },
-        "status": "ready",
-        "source": { "zh": "校本 Chapter Quiz（2026-09-25）", "en": "School chapter quiz (25 Sep 2026)" }
+       "id": "A",
+       "marks": 10,
+       "title": {
+        "zh": "甲部 · 多項選擇題",
+        "en": "Section A · Multiple choice"
+       }
       },
       {
-        "id": "ch17-quiz",
-        "answerInput": true,
-        "group": "quiz",
-        "kind": { "zh": "測驗檢討", "en": "Quiz review" },
-        "unit": { "zh": "第 17 章 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
-        "title": { "zh": "第 17 章 測驗檢討", "en": "Chapter 17 Quiz Review" },
-        "meta": {
-          "paper": "S.5 Mathematics · Chapter Quiz",
-          "date": "15 / 10 / 2026",
-          "marks": 37,
-          "sections": [
-            { "id": "A", "marks": 10, "title": { "zh": "甲部 · 多項選擇題", "en": "Section A · Multiple choice" } },
-            { "id": "B", "marks": 27, "title": { "zh": "乙部 · 長題目", "en": "Section B · Conventional questions" } }
-          ]
-        },
-        "stats": { "questions": 11, "marks": 37, "mc": 5, "long": 6, "bonus": 3 },
-        "status": "ready",
-        "source": { "zh": "校本 Chapter Quiz 第 17 章（2026-10-15）＋ 官方題解", "en": "School chapter quiz, Chapter 17 (15 Oct 2026), with the official solutions" }
-      },
-      {
-        "id": "ut-review",
-        "answerInput": true,
-        "group": "quiz",
-        "kind": { "zh": "測驗檢討", "en": "Quiz review" },
-        "unit": { "zh": "中五統測 · 乙部", "en": "S.5 Uniform Test · Section B" },
-        "title": { "zh": "統測乙部檢討 · 9 題 50 分", "en": "Uniform Test Section B Review" },
-        "meta": {
-          "paper": "S.5 Mathematics · 1st Uniform Test",
-          "date": "23 / 10 / 2026",
-          "marks": 50,
-          "sections": [
-            { "id": "B", "marks": 50, "title": { "zh": "乙部 · 長題目", "en": "Section B · Conventional questions" } }
-          ]
-        },
-        "stats": { "questions": 9, "marks": 50, "mc": 0, "long": 9, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "校本中五統測（2026-10-23）乙部 ＋ 官方題解 ＋ 全班成績分析（31 人）", "en": "School S.5 uniform test (23 Oct 2026), Section B, with the official solutions and the class performance data (31 students)" }
-      },
-      {
-        "id": "ch17-1",
-        "answerInput": true,
-        "group": "classwork",
-        "chapter": "ch17",
-        "code": "17.1",
-        "kind": { "zh": "課本練習", "en": "Book exercise" },
-        "unit": { "zh": "第 17 章 · 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
-        "title": { "zh": "17.1 計數基本原理 · 課本練習", "en": "17.1 Basic Counting Principles · Book Exercise" },
-        "meta": { "paper": "Book 5B · Exercise 17.1" },
-        "stats": { "questions": 37, "marks": 133, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "課本 Exercise 17.1（Class Exercise 17.1 ＋ Exercise 17.1）", "en": "Textbook Exercise 17.1" }
-      },
-      {
-        "id": "ch17-2",
-        "answerInput": true,
-        "group": "classwork",
-        "chapter": "ch17",
-        "code": "17.2",
-        "kind": { "zh": "課本練習", "en": "Book exercise" },
-        "unit": { "zh": "第 17 章 · 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
-        "title": { "zh": "17.2 排列 · 課本練習", "en": "17.2 Permutations · Book Exercise" },
-        "meta": { "paper": "Book 5B · Exercise 17.2" },
-        "stats": { "questions": 36, "marks": 185, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "課本 Exercise 17.2（Class Exercise 17.2 ＋ Exercise 17.2）", "en": "Textbook Exercise 17.2" }
-      },
-      {
-        "id": "ch17-3",
-        "answerInput": true,
-        "group": "classwork",
-        "chapter": "ch17",
-        "code": "17.3",
-        "kind": { "zh": "課本練習", "en": "Book exercise" },
-        "unit": { "zh": "第 17 章 · 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
-        "title": { "zh": "17.3 組合 · 課本練習", "en": "17.3 Combinations · Book Exercise" },
-        "meta": { "paper": "Book 5B · Exercise 17.3" },
-        "stats": { "questions": 35, "marks": 102, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "課本 Exercise 17.3（Class Exercise 17.3 ＋ Exercise 17.3）", "en": "Textbook Exercise 17.3" }
-      },
-      {
-        "id": "ch17-test",
-        "answerInput": true,
-        "group": "quiz",
-        "kind": { "zh": "測前溫習", "en": "Pre-test revision" },
-        "unit": { "zh": "第 17 章 · 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
-        "title": { "zh": "17 測前溫習 · 快測 ＋ 精選題", "en": "Chapter 17 Pre-test Revision · Quick Check + Selected Questions" },
-        "meta": {
-          "paper": "S.5 Mathematics · Chapter 17 Pre-test Revision",
-          "marks": 35,
-          "sections": [
-            { "id": "Q", "marks": 5, "title": { "zh": "快測 · 5 題（提交後對錯）", "en": "Quick check · 5 questions (submit to check)" } },
-            { "id": "A", "marks": 8, "title": { "zh": "甲部 · 多項選擇題", "en": "Section A · Multiple choice" } },
-            { "id": "B", "marks": 22, "title": { "zh": "乙部 · 長題目", "en": "Section B · Conventional questions" } }
-          ]
-        },
-        "stats": { "questions": 15, "marks": 35, "mc": 9, "long": 6, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "卷頭 5 題快測為老師自擬；甲部 4 題 MC ＋ 乙部 6 題長題改編自 EPH《Level 5 Assurance Pack》WS22 工作紙（22.1 排列與組合）＋ 官方答案", "en": "The 5-question quick check at the front is teacher-made; the 4 MC and 6 conventional questions are adapted from the EPH Level 5 Assurance Pack WS22 worksheet (22.1 Permutation and Combination), with official solutions" }
-      },
-      {
-        "id": "ch18-1",
-        "group": "classwork",
-        "chapter": "ch18",
-        "code": "18.1",
-        "kind": { "zh": "課本練習", "en": "Book exercise" },
-        "unit": { "zh": "第 18 章 · 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
-        "title": { "zh": "18.1 集合 · 課本練習", "en": "18.1 Sets · Book Exercise" },
-        "meta": { "paper": "Book 5B · Exercise 18.1" },
-        "stats": { "questions": 21, "marks": 87, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "課本 Exercise 18.1（Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER，Class Exercise 18.1 未收錄）", "en": "Textbook Exercise 18.1 (Section Check, Level 1, Level 2 and SMART CORNER; Class Exercise 18.1 not included)" }
-      },
-      {
-        "id": "ch18-2",
-        "answerInput": true,
-        "group": "classwork",
-        "chapter": "ch18",
-        "code": "18.2",
-        "kind": { "zh": "課本練習", "en": "Book exercise" },
-        "unit": { "zh": "第 18 章 · 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
-        "title": { "zh": "18.2 概率的加法定律 · 課本練習", "en": "18.2 Addition Law of Probability · Book Exercise" },
-        "meta": { "paper": "Book 5B · Exercise 18.2" },
-        "stats": { "questions": 39, "marks": 146, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "課本 Exercise 18.2（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER ＋ Cross Topics；Cross Topics 只收錄原書第 33、35、36 題）", "en": "Textbook Exercise 18.2 (Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics; only book Cross Topics Q33, Q35 and Q36 are included)" }
-      },
-      {
-        "id": "ch18-3",
-        "answerInput": true,
-        "group": "classwork",
-        "chapter": "ch18",
-        "code": "18.3",
-        "kind": { "zh": "課本練習", "en": "Book exercise" },
-        "unit": { "zh": "第 18 章 · 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
-        "title": { "zh": "18.3 概率的乘法 · 課本練習", "en": "18.3 Multiplication of Probabilities · Book Exercise" },
-        "meta": { "paper": "Book 5B · Exercise 18.3" },
-        "stats": { "questions": 55, "marks": 201, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "課本 Exercise 18.3 全部題目（Class Exercise ＋ Section Check ＋ Level 1 Q1–Q21 ＋ Level 2 Q22–Q41 ＋ SMART CORNER Q42–Q45 ＋ Cross Topics Q46–Q50；題號跟課本一致）", "en": "The complete Exercise 18.3 (Class Exercise, Section Check, Level 1 Q1–Q21, Level 2 Q22–Q41, SMART CORNER Q42–Q45 and Cross Topics Q46–Q50; question numbers follow the textbook)" }
-      },
-      {
-        "id": "ch18-4",
-        "answerInput": true,
-        "group": "classwork",
-        "chapter": "ch18",
-        "code": "18.4",
-        "kind": { "zh": "課本練習", "en": "Book exercise" },
-        "unit": { "zh": "第 18 章 · 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
-        "title": { "zh": "18.4 概率與計數 · 課本練習", "en": "18.4 Probability by Counting · Book Exercise" },
-        "meta": { "paper": "Book 5B · Exercise 18.4" },
-        "stats": { "questions": 36, "marks": 140, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "課本 Exercise 18.4（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER；18.4 沒有跨課題部分）", "en": "Textbook Exercise 18.4 (Class Exercise, Section Check, Level 1, Level 2 and SMART CORNER; 18.4 has no Cross Topics)" }
-      },
-      {
-        "id": "ch11-1",
-        "answerInput": true,
-        "group": "classwork",
-        "chapter": "ch11",
-        "code": "11.1",
-        "kind": { "zh": "課本練習", "en": "Book exercise" },
-        "unit": { "zh": "第 11 章 · 圓形的基本性質", "en": "Chapter 11 · Basic Properties of Circles" },
-        "title": { "zh": "11.1 圓形的基本性質 · 課本練習", "en": "11.1 Basic Properties of Circles · Book Exercise" },
-        "meta": { "paper": "Book 5A · Exercise 11.1" },
-        "stats": { "questions": 7, "marks": 24, "bonus": 0 },
-        "status": "ready",
-        "source": { "zh": "課本 Exercise 11.1（Section Check ＋ Level 1 Q10–12、14–16）＋ 官方題解；Q1–9（僅有圖）及 Q13、Q17–22、Level 2 稍後補上", "en": "Textbook Exercise 11.1 (Section Check and Level 1 Q10–12, Q14–16) with the official solutions; Q1–9 (figures only), Q13, Q17–22 and Level 2 to follow" }
+       "id": "B",
+       "marks": 28,
+       "title": {
+        "zh": "乙部 · 長題目",
+        "en": "Section B · Conventional questions"
+       }
       }
-    ],
-    "classwork": {
-      "title": { "zh": "課本練習", "en": "Classwork" },
-      "lead": {
-        "zh": "按上課進度整理的課本練習，每一節一版，附逐步題解。分數與步驟分 (1M)/(1A) 為老師自擬，方便核對思路。",
-        "en": "Textbook exercises arranged by section, one section per page, with step-by-step solutions. Marks and (1M)/(1A) step marks are set by the teacher for checking your working."
-      },
-      "chapters": [
-        {
-          "id": "ch11",
-          "short": { "zh": "第 11 章", "en": "Chapter 11" },
-          "title": { "zh": "第 11 章 圓形的基本性質", "en": "Chapter 11 · Basic Properties of Circles" },
-          "intro": {
-            "zh": "第 11 章講圓形的基本性質。11.1 有四條定理：圓心角是圓周角的兩倍、半圓上的圓周角是 90°、它的逆定理，以及同弓形內的圓周角相等。每一條都做成教學卡，卡內的圖可以按「下一步」逐格畫出來；之後是 Exercise 11.1 的逐題題解。",
-            "en": "Chapter 11 is about the basic properties of circles. Section 11.1 has four theorems: the angle at the centre is twice the angle at the circumference, the angle in a semi-circle is 90°, its converse, and angles in the same segment are equal. Each has a teaching card whose figure can be built one step at a time, followed by worked solutions to Exercise 11.1."
-          },
-          "sections": [
-            { "code": "11.1", "part": "ch11-1", "title": { "zh": "11.1 圓形的基本性質", "en": "11.1 Basic properties of circles" } }
-          ]
-        },
-        {
-          "id": "ch17",
-          "short": { "zh": "第 17 章", "en": "Chapter 17" },
-          "title": { "zh": "第 17 章 排列與組合", "en": "Chapter 17 · Permutation and Combination" },
-          "intro": {
-            "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。三節的課本練習都已提供逐步題解：先學「分類用加、分步用乘」，再學排列（有次序），最後學組合（不計次序）。長題每小題都有輸入格，填數字後按「提交答案」核對（接受精確答案或準確至 3 位有效數字）。章末另有「17 測前溫習」：卷頭 5 題快測（都要按「提交答案」才知對錯），跟住 4 題多項選擇 ＋ 6 題長題目，合共 15 題 35 分，長題改編自 EPH《Level 5 Assurance Pack》WS22 工作紙，考前可以用來總溫習。",
-            "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. All three sections now have step-by-step solutions: first add for cases and multiply for steps, then permutations (order matters) and finally combinations (order ignored). Each part of a long question has an input box: type your number and press Submit (an exact answer, or one correct to 3 significant figures, is accepted). There is also '17 Pre-test Revision' at the end of the chapter: a 5-question quick check (all submit to check), then 4 multiple-choice and 6 conventional questions, 15 questions and 35 marks in all, with the long questions adapted from the EPH Level 5 Assurance Pack WS22 worksheet for final revision before the test."
-          },
-          "sections": [
-            { "code": "17.1", "part": "ch17-1", "title": { "zh": "17.1 計數基本原理", "en": "17.1 Basic counting principles" } },
-            { "code": "17.2", "part": "ch17-2", "title": { "zh": "17.2 排列", "en": "17.2 Permutations" } },
-            { "code": "17.3", "part": "ch17-3", "title": { "zh": "17.3 組合", "en": "17.3 Combinations" } },
-            { "code": "17R", "part": "ch17-test", "title": { "zh": "17 測前溫習 · 快測 ＋ 精選題", "en": "17 Pre-test Revision · Quick Check + Selected Questions" } }
-          ]
-        },
-        {
-          "id": "ch18",
-          "short": { "zh": "第 18 章", "en": "Chapter 18" },
-          "title": { "zh": "第 18 章 概率的進一步認識", "en": "Chapter 18 · More about Probability" },
-          "intro": {
-            "zh": "第 18 章分四節：18.1 集合、18.2 概率的加法定律、18.3 概率的乘法、18.4 概率與計數。四節的課本練習（Exercise 18.1 至 18.4）已全部上線；各節標題以課本為準，有需要會再校正。",
-            "en": "Chapter 18 has four sections: 18.1 sets, 18.2 the addition law of probability, 18.3 multiplication of probabilities and 18.4 probability by counting. The book exercises for all four sections (Exercise 18.1 to 18.4) are now online. Section titles follow the textbook and may be adjusted later."
-          },
-          "sections": [
-            { "code": "18.1", "part": "ch18-1", "title": { "zh": "18.1 集合", "en": "18.1 Sets" } },
-            { "code": "18.2", "part": "ch18-2", "title": { "zh": "18.2 概率的加法定律", "en": "18.2 Addition Law of Probability" } },
-            { "code": "18.3", "part": "ch18-3", "title": { "zh": "18.3 概率的乘法", "en": "18.3 Multiplication of Probabilities" } },
-            { "code": "18.4", "part": "ch18-4", "title": { "zh": "18.4 概率與計數", "en": "18.4 Probability by counting" } }
-          ]
-        }
-      ]
+     ]
     },
-    "comingSoon": {
-      "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章三節、第 18 章四節、統測乙部檢討都已上線。",
-      "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17, all four sections of Chapter 18 and the Uniform Test Section B review are online."
+    "stats": {
+     "questions": 11,
+     "marks": 38,
+     "bonus": 3
+    },
+    "status": "ready",
+    "source": {
+     "zh": "校本 Chapter Quiz（2026-09-25）",
+     "en": "School chapter quiz (25 Sep 2026)"
     }
+   },
+   {
+    "id": "ch17-quiz",
+    "answerInput": true,
+    "group": "quiz",
+    "kind": {
+     "zh": "測驗檢討",
+     "en": "Quiz review"
+    },
+    "unit": {
+     "zh": "第 17 章 排列與組合",
+     "en": "Chapter 17 · Permutation and Combination"
+    },
+    "title": {
+     "zh": "第 17 章 測驗檢討",
+     "en": "Chapter 17 Quiz Review"
+    },
+    "meta": {
+     "paper": "S.5 Mathematics · Chapter Quiz",
+     "date": "15 / 10 / 2026",
+     "marks": 37,
+     "sections": [
+      {
+       "id": "A",
+       "marks": 10,
+       "title": {
+        "zh": "甲部 · 多項選擇題",
+        "en": "Section A · Multiple choice"
+       }
+      },
+      {
+       "id": "B",
+       "marks": 27,
+       "title": {
+        "zh": "乙部 · 長題目",
+        "en": "Section B · Conventional questions"
+       }
+      }
+     ]
+    },
+    "stats": {
+     "questions": 11,
+     "marks": 37,
+     "mc": 5,
+     "long": 6,
+     "bonus": 3
+    },
+    "status": "ready",
+    "source": {
+     "zh": "校本 Chapter Quiz 第 17 章（2026-10-15）＋ 官方題解",
+     "en": "School chapter quiz, Chapter 17 (15 Oct 2026), with the official solutions"
+    }
+   },
+   {
+    "id": "ut-review",
+    "answerInput": true,
+    "group": "quiz",
+    "kind": {
+     "zh": "測驗檢討",
+     "en": "Quiz review"
+    },
+    "unit": {
+     "zh": "中五統測 · 乙部",
+     "en": "S.5 Uniform Test · Section B"
+    },
+    "title": {
+     "zh": "統測乙部檢討 · 9 題 50 分",
+     "en": "Uniform Test Section B Review"
+    },
+    "meta": {
+     "paper": "S.5 Mathematics · 1st Uniform Test",
+     "date": "23 / 10 / 2026",
+     "marks": 50,
+     "sections": [
+      {
+       "id": "B",
+       "marks": 50,
+       "title": {
+        "zh": "乙部 · 長題目",
+        "en": "Section B · Conventional questions"
+       }
+      }
+     ]
+    },
+    "stats": {
+     "questions": 9,
+     "marks": 50,
+     "mc": 0,
+     "long": 9,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "校本中五統測（2026-10-23）乙部 ＋ 官方題解 ＋ 全班成績分析（31 人）",
+     "en": "School S.5 uniform test (23 Oct 2026), Section B, with the official solutions and the class performance data (31 students)"
+    }
+   },
+   {
+    "id": "ch17-1",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch17",
+    "code": "17.1",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 17 章 · 排列與組合",
+     "en": "Chapter 17 · Permutation and Combination"
+    },
+    "title": {
+     "zh": "17.1 計數基本原理 · 課本練習",
+     "en": "17.1 Basic Counting Principles · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5B · Exercise 17.1"
+    },
+    "stats": {
+     "questions": 37,
+     "marks": 133,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Exercise 17.1（Class Exercise 17.1 ＋ Exercise 17.1）",
+     "en": "Textbook Exercise 17.1"
+    }
+   },
+   {
+    "id": "ch17-2",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch17",
+    "code": "17.2",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 17 章 · 排列與組合",
+     "en": "Chapter 17 · Permutation and Combination"
+    },
+    "title": {
+     "zh": "17.2 排列 · 課本練習",
+     "en": "17.2 Permutations · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5B · Exercise 17.2"
+    },
+    "stats": {
+     "questions": 36,
+     "marks": 185,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Exercise 17.2（Class Exercise 17.2 ＋ Exercise 17.2）",
+     "en": "Textbook Exercise 17.2"
+    }
+   },
+   {
+    "id": "ch17-3",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch17",
+    "code": "17.3",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 17 章 · 排列與組合",
+     "en": "Chapter 17 · Permutation and Combination"
+    },
+    "title": {
+     "zh": "17.3 組合 · 課本練習",
+     "en": "17.3 Combinations · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5B · Exercise 17.3"
+    },
+    "stats": {
+     "questions": 35,
+     "marks": 102,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Exercise 17.3（Class Exercise 17.3 ＋ Exercise 17.3）",
+     "en": "Textbook Exercise 17.3"
+    }
+   },
+   {
+    "id": "ch17-test",
+    "answerInput": true,
+    "group": "quiz",
+    "kind": {
+     "zh": "測前溫習",
+     "en": "Pre-test revision"
+    },
+    "unit": {
+     "zh": "第 17 章 · 排列與組合",
+     "en": "Chapter 17 · Permutation and Combination"
+    },
+    "title": {
+     "zh": "17 測前溫習 · 快測 ＋ 精選題",
+     "en": "Chapter 17 Pre-test Revision · Quick Check + Selected Questions"
+    },
+    "meta": {
+     "paper": "S.5 Mathematics · Chapter 17 Pre-test Revision",
+     "marks": 35,
+     "sections": [
+      {
+       "id": "Q",
+       "marks": 5,
+       "title": {
+        "zh": "快測 · 5 題（提交後對錯）",
+        "en": "Quick check · 5 questions (submit to check)"
+       }
+      },
+      {
+       "id": "A",
+       "marks": 8,
+       "title": {
+        "zh": "甲部 · 多項選擇題",
+        "en": "Section A · Multiple choice"
+       }
+      },
+      {
+       "id": "B",
+       "marks": 22,
+       "title": {
+        "zh": "乙部 · 長題目",
+        "en": "Section B · Conventional questions"
+       }
+      }
+     ]
+    },
+    "stats": {
+     "questions": 15,
+     "marks": 35,
+     "mc": 9,
+     "long": 6,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "卷頭 5 題快測為老師自擬；甲部 4 題 MC ＋ 乙部 6 題長題改編自 EPH《Level 5 Assurance Pack》WS22 工作紙（22.1 排列與組合）＋ 官方答案",
+     "en": "The 5-question quick check at the front is teacher-made; the 4 MC and 6 conventional questions are adapted from the EPH Level 5 Assurance Pack WS22 worksheet (22.1 Permutation and Combination), with official solutions"
+    }
+   },
+   {
+    "id": "ch18-1",
+    "group": "classwork",
+    "chapter": "ch18",
+    "code": "18.1",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 18 章 · 概率的進一步認識",
+     "en": "Chapter 18 · More about Probability"
+    },
+    "title": {
+     "zh": "18.1 集合 · 課本練習",
+     "en": "18.1 Sets · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5B · Exercise 18.1"
+    },
+    "stats": {
+     "questions": 21,
+     "marks": 87,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Exercise 18.1（Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER，Class Exercise 18.1 未收錄）",
+     "en": "Textbook Exercise 18.1 (Section Check, Level 1, Level 2 and SMART CORNER; Class Exercise 18.1 not included)"
+    }
+   },
+   {
+    "id": "ch18-2",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch18",
+    "code": "18.2",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 18 章 · 概率的進一步認識",
+     "en": "Chapter 18 · More about Probability"
+    },
+    "title": {
+     "zh": "18.2 概率的加法定律 · 課本練習",
+     "en": "18.2 Addition Law of Probability · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5B · Exercise 18.2"
+    },
+    "stats": {
+     "questions": 39,
+     "marks": 146,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Exercise 18.2（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER ＋ Cross Topics；Cross Topics 只收錄原書第 33、35、36 題）",
+     "en": "Textbook Exercise 18.2 (Class Exercise, Section Check, Level 1, Level 2, SMART CORNER and Cross Topics; only book Cross Topics Q33, Q35 and Q36 are included)"
+    }
+   },
+   {
+    "id": "ch18-3",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch18",
+    "code": "18.3",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 18 章 · 概率的進一步認識",
+     "en": "Chapter 18 · More about Probability"
+    },
+    "title": {
+     "zh": "18.3 概率的乘法 · 課本練習",
+     "en": "18.3 Multiplication of Probabilities · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5B · Exercise 18.3"
+    },
+    "stats": {
+     "questions": 55,
+     "marks": 201,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Exercise 18.3 全部題目（Class Exercise ＋ Section Check ＋ Level 1 Q1–Q21 ＋ Level 2 Q22–Q41 ＋ SMART CORNER Q42–Q45 ＋ Cross Topics Q46–Q50；題號跟課本一致）",
+     "en": "The complete Exercise 18.3 (Class Exercise, Section Check, Level 1 Q1–Q21, Level 2 Q22–Q41, SMART CORNER Q42–Q45 and Cross Topics Q46–Q50; question numbers follow the textbook)"
+    }
+   },
+   {
+    "id": "ch18-4",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch18",
+    "code": "18.4",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 18 章 · 概率的進一步認識",
+     "en": "Chapter 18 · More about Probability"
+    },
+    "title": {
+     "zh": "18.4 概率與計數 · 課本練習",
+     "en": "18.4 Probability by Counting · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5B · Exercise 18.4"
+    },
+    "stats": {
+     "questions": 36,
+     "marks": 140,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Exercise 18.4（Class Exercise ＋ Section Check ＋ Level 1 ＋ Level 2 ＋ SMART CORNER；18.4 沒有跨課題部分）",
+     "en": "Textbook Exercise 18.4 (Class Exercise, Section Check, Level 1, Level 2 and SMART CORNER; 18.4 has no Cross Topics)"
+    }
+   },
+   {
+    "id": "ch11-1",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch11",
+    "code": "11.1",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 11 章 · 圓形的基本性質",
+     "en": "Chapter 11 · Basic Properties of Circles"
+    },
+    "title": {
+     "zh": "11.1 圓形的基本性質 · 課本練習",
+     "en": "11.1 Basic Properties of Circles · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5A · Exercise 11.1"
+    },
+    "stats": {
+     "questions": 7,
+     "marks": 24,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Exercise 11.1（Section Check ＋ Level 1 Q10–12、14–16）＋ 官方題解；Q1–9（僅有圖）及 Q13、Q17–22、Level 2 稍後補上",
+     "en": "Textbook Exercise 11.1 (Section Check and Level 1 Q10–12, Q14–16) with the official solutions; Q1–9 (figures only), Q13, Q17–22 and Level 2 to follow"
+    }
+   }
+  ],
+  "classwork": {
+   "title": {
+    "zh": "課本練習",
+    "en": "Classwork"
+   },
+   "lead": {
+    "zh": "按上課進度整理的課本練習，每一節一版，附逐步題解。分數與步驟分 (1M)/(1A) 為老師自擬，方便核對思路。",
+    "en": "Textbook exercises arranged by section, one section per page, with step-by-step solutions. Marks and (1M)/(1A) step marks are set by the teacher for checking your working."
+   },
+   "chapters": [
+    {
+     "id": "ch11",
+     "short": {
+      "zh": "第 11 章",
+      "en": "Chapter 11"
+     },
+     "title": {
+      "zh": "第 11 章 圓形的基本性質",
+      "en": "Chapter 11 · Basic Properties of Circles"
+     },
+     "intro": {
+      "zh": "第 11 章講圓形的基本性質，共四節：11.1 圓內的角、11.2 圓的弦、11.3 角、弧與弦、11.4 圓內接四邊形。現時先上線 11.1 —— 四條定理連證明，之後是 Exercise 11.1 的逐題題解；其餘三節稍後補上。",
+      "en": "Chapter 11 is about the basic properties of circles, in four sections: 11.1 angles in a circle, 11.2 chords of a circle, 11.3 angles, arcs and chords, and 11.4 cyclic quadrilaterals. Section 11.1 is online first — the four theorems with their proofs, followed by worked solutions to Exercise 11.1; the other three sections will follow."
+     },
+     "sections": [
+      {
+       "code": "11.1",
+       "part": "ch11-1",
+       "title": {
+        "zh": "11.1 圓形的基本性質",
+        "en": "11.1 Basic properties of circles"
+       }
+      }
+     ]
+    },
+    {
+     "id": "ch17",
+     "short": {
+      "zh": "第 17 章",
+      "en": "Chapter 17"
+     },
+     "title": {
+      "zh": "第 17 章 排列與組合",
+      "en": "Chapter 17 · Permutation and Combination"
+     },
+     "intro": {
+      "zh": "第 17 章分三節：17.1 計數基本原理、17.2 排列、17.3 組合。三節的課本練習都已提供逐步題解：先學「分類用加、分步用乘」，再學排列（有次序），最後學組合（不計次序）。長題每小題都有輸入格，填數字後按「提交答案」核對（接受精確答案或準確至 3 位有效數字）。章末另有「17 測前溫習」：卷頭 5 題快測（都要按「提交答案」才知對錯），跟住 4 題多項選擇 ＋ 6 題長題目，合共 15 題 35 分，長題改編自 EPH《Level 5 Assurance Pack》WS22 工作紙，考前可以用來總溫習。",
+      "en": "Chapter 17 has three sections: 17.1 basic counting principles, 17.2 permutations and 17.3 combinations. All three sections now have step-by-step solutions: first add for cases and multiply for steps, then permutations (order matters) and finally combinations (order ignored). Each part of a long question has an input box: type your number and press Submit (an exact answer, or one correct to 3 significant figures, is accepted). There is also '17 Pre-test Revision' at the end of the chapter: a 5-question quick check (all submit to check), then 4 multiple-choice and 6 conventional questions, 15 questions and 35 marks in all, with the long questions adapted from the EPH Level 5 Assurance Pack WS22 worksheet for final revision before the test."
+     },
+     "sections": [
+      {
+       "code": "17.1",
+       "part": "ch17-1",
+       "title": {
+        "zh": "17.1 計數基本原理",
+        "en": "17.1 Basic counting principles"
+       }
+      },
+      {
+       "code": "17.2",
+       "part": "ch17-2",
+       "title": {
+        "zh": "17.2 排列",
+        "en": "17.2 Permutations"
+       }
+      },
+      {
+       "code": "17.3",
+       "part": "ch17-3",
+       "title": {
+        "zh": "17.3 組合",
+        "en": "17.3 Combinations"
+       }
+      },
+      {
+       "code": "17R",
+       "part": "ch17-test",
+       "title": {
+        "zh": "17 測前溫習 · 快測 ＋ 精選題",
+        "en": "17 Pre-test Revision · Quick Check + Selected Questions"
+       }
+      }
+     ]
+    },
+    {
+     "id": "ch18",
+     "short": {
+      "zh": "第 18 章",
+      "en": "Chapter 18"
+     },
+     "title": {
+      "zh": "第 18 章 概率的進一步認識",
+      "en": "Chapter 18 · More about Probability"
+     },
+     "intro": {
+      "zh": "第 18 章分四節：18.1 集合、18.2 概率的加法定律、18.3 概率的乘法、18.4 概率與計數。四節的課本練習（Exercise 18.1 至 18.4）已全部上線；各節標題以課本為準，有需要會再校正。",
+      "en": "Chapter 18 has four sections: 18.1 sets, 18.2 the addition law of probability, 18.3 multiplication of probabilities and 18.4 probability by counting. The book exercises for all four sections (Exercise 18.1 to 18.4) are now online. Section titles follow the textbook and may be adjusted later."
+     },
+     "sections": [
+      {
+       "code": "18.1",
+       "part": "ch18-1",
+       "title": {
+        "zh": "18.1 集合",
+        "en": "18.1 Sets"
+       }
+      },
+      {
+       "code": "18.2",
+       "part": "ch18-2",
+       "title": {
+        "zh": "18.2 概率的加法定律",
+        "en": "18.2 Addition Law of Probability"
+       }
+      },
+      {
+       "code": "18.3",
+       "part": "ch18-3",
+       "title": {
+        "zh": "18.3 概率的乘法",
+        "en": "18.3 Multiplication of Probabilities"
+       }
+      },
+      {
+       "code": "18.4",
+       "part": "ch18-4",
+       "title": {
+        "zh": "18.4 概率與計數",
+        "en": "18.4 Probability by counting"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  "comingSoon": {
+   "zh": "之後會陸續加入其他章節測驗、課本練習與考試檢討 —— 資料放在 data/src/，加一個檔案就可以。第 17 章三節、第 18 章四節、統測乙部檢討都已上線。",
+   "en": "More chapter tests, classwork and exam reviews will be added; each part is a single file in data/src/. All three sections of Chapter 17, all four sections of Chapter 18 and the Uniform Test Section B review are online."
   }
+ }
 }

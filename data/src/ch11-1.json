@@ -5,25 +5,25 @@
   "en": "11.1 Basic Properties of Circles · Book Exercise"
  },
  "intro": {
-  "zh": "本節先把四條定理（圓心角、半圓、同弓形、逆定理）做成教學卡，再逐題做 Exercise 11.1。",
-  "en": "Four theorem cards first, then Exercise 11.1 question by question."
+  "zh": "11.1 講圓內的角：圓心角與圓周角，以及半圓、逆定理、同弓形三條定理；每條的教學卡都附證明。",
+  "en": "11.1 is about angles in a circle: the centre angle and the circumference angle, then the semi-circle, its converse and the same segment — each card with its proof."
  },
  "introSteps": [
   {
-   "zh": "第一步：認清名詞 —— 弦、直徑、劣弧、優弧、弓形、圓心角、圓周角。",
-   "en": "First name the parts: chord, diameter, minor and major arc, segment, angle at the centre, angle at the circumference."
+   "zh": "第一步：認清名詞 —— 弦、直徑、優弧與劣弧、弓形、圓心角、圓周角。",
+   "en": "First name the parts: chord, diameter, major and minor arc, segment, angle at the centre, angle at the circumference."
   },
   {
-   "zh": "第二步：圓心角是圓周角的兩倍（同弧），可見圓心角較大；反過來求圓心角就要乘 2。",
-   "en": "Second, the angle at the centre is twice the angle at the circumference on the same arc — and the other way round, divide by 2."
+   "zh": "第二步：定理一 —— 同弧上，圓心角是圓周角的兩倍；用半徑與外角證明，之後可以直接引用。",
+   "en": "Second, Theorem 1: on the same arc the centre angle is twice the circumference angle. It is proved with a radius and an exterior angle, and may then be quoted."
   },
   {
-   "zh": "第三步：半圓上的圓周角是 90°，反過來 90° 就代表該弦是直徑。",
-   "en": "Third, the angle in a semi-circle is 90°, and conversely a 90° angle at the circumference means the chord is a diameter."
+   "zh": "第三步：定理二與定理三 —— 半圓上的圓周角是 90°；反過來，圓周角是 90° 就代表那條弦是直徑。",
+   "en": "Third, Theorems 2 and 3: the angle in a semi-circle is 90°, and conversely a 90° angle at the circumference means the chord is a diameter."
   },
   {
-   "zh": "第四步：同弓形內的圓周角相等；每題先找「兩隻角是否對着同一條弧」。",
-   "en": "Fourth, angles in the same segment are equal — always ask which arc the two angles stand on."
+   "zh": "第四步：定理四 —— 同弓形內的圓周角相等；每題先問「兩隻角對着哪一條弧」。",
+   "en": "Fourth, Theorem 4: angles in the same segment are equal — always ask which arc the two angles stand on."
   }
  ],
  "cards": [
@@ -69,24 +69,28 @@
    "id": "ch11-1-c02",
    "topic": "ch11-1",
    "title": {
-    "zh": "圓心角 = 2 × 圓周角",
-    "en": "Angle at the centre = 2 × circumference angle"
+    "zh": "定理一：圓心角是圓周角的兩倍（附證明）",
+    "en": "Theorem 1: the angle at the centre is twice the angle at the circumference (with proof)"
    },
    "body": {
-    "zh": "- 兩隻角對着同一條弧 $AB$ 時，圓心角 = 2 × 圓周角：{{math:0}}\n- 由圓周角找圓心角要乘 2；由圓心角找圓周角要除以 2。\n- 若圓心角是反角（大於 180°），圓周角就是「反角 ÷ 2」，通常會大於 90°。\n- 用之前先確認：兩個頂點一個在圓心、一個在圓上，而且兩隻角都對着同一條弧。",
-    "en": "- When both angles stand on the same arc AB, the angle at the centre is twice the angle at the circumference: {{math:0}}\n- Multiply by 2 going from the circle to the centre, divide by 2 coming back.\n- If the centre angle used is the reflex angle, the circumference angle is half of the reflex angle.\n- Check first that one vertex is the centre, the other is on the circle, and both angles stand on the same arc."
+    "zh": "- 定理：兩隻角對着同一條弧 $AB$ 時，圓心角是圓周角的兩倍：{{math:0}}\n- 證明：連 $PO$ 並延長至圓上的 $Q$。\n- $OA = OP$（半徑），所以 $\\triangle OAP$ 是等腰三角形，$\\angle OAP = \\angle OPA = p$。\n- $\\angle AOQ$ 是 $\\triangle OAP$ 的外角，所以 $\\angle AOQ = p + p = 2p$；同理 $\\angle BOQ = 2q$。\n- 因此 $\\angle AOB = 2p + 2q = 2(p + q) = 2\\angle APB$。證明只用了等腰三角形與外角（先備知識）。",
+    "en": "- Theorem: when two angles stand on the same arc AB, the angle at the centre is twice the angle at the circumference: {{math:0}}\n- Proof: join PO and produce it to Q on the circle.\n- OA = OP (radii), so △OAP is isosceles and ∠OAP = ∠OPA = p.\n- ∠AOQ is the exterior angle of △OAP, so ∠AOQ = p + p = 2p; similarly ∠BOQ = 2q.\n- Hence ∠AOB = 2p + 2q = 2(p + q) = 2∠APB. The proof uses only isosceles triangles and the exterior angle (prior knowledge)."
    },
    "math": [
     "\\angle AOB = 2\\angle APB"
    ],
    "warn": {
-    "zh": "- 兩隻角的頂點都在圓上（同弓形）時，是「相等」而不是「兩倍」。\n- 用了反角就要寫「反角 $\\angle AOB$」，否則隻角會細了一半。",
-    "en": "- Two angles both with vertices on the circle are equal, not double.\n- If you use the reflex angle, say so — otherwise the answer is half of what it should be."
+    "zh": "- 兩隻角的頂點都在圓上（同弓形）時是「相等」，不是「兩倍」。\n- 若圓心角用反角，圓周角就是反角的一半，答案會大於 $90^\\circ$。",
+    "en": "- Two angles with both vertices on the circle are equal, not doubled.\n- If the reflex angle at the centre is used, the circumference angle is half of it and the answer is above 90°."
    },
    "vocab": [
     {
      "zh": "同弧",
      "en": "Same arc"
+    },
+    {
+     "zh": "外角",
+     "en": "Exterior angle"
     },
     {
      "zh": "反角",
@@ -96,8 +100,8 @@
    "demo": {
     "type": "circle",
     "caption": {
-     "zh": "按「下一步」逐格看：先標已知的圓心角，再畫同弧上的圓周角。",
-     "en": "Press Next step: mark the given angle at the centre, then the angle at the circumference on the same arc."
+     "zh": "按「下一步」逐格看這個證明：作半徑、兩個等腰三角形、兩次外角。",
+     "en": "Press Next step to follow the proof: draw the radius, two isosceles triangles, the exterior angle twice."
     },
     "opts": {
      "anim": {
@@ -113,6 +117,10 @@
        },
        "P": {
         "at": 90
+       },
+       "Q": {
+        "at": 270,
+        "hidden": true
        }
       },
       "segments": [
@@ -135,51 +143,108 @@
       ],
       "steps": [
        {
-        "zh": "已知圓心角 ∠AOB = 100°，它對着弧 AB。",
-        "en": "The given angle at the centre: ∠AOB = 100°, standing on arc AB.",
-        "arcs": [
+        "zh": "連 $PA$、$PB$，再連 $PO$ 並延長至圓上的 $Q$。",
+        "en": "Join PA and PB, then join PO and produce it to Q on the circle.",
+        "show": [
+         "Q"
+        ],
+        "lines": [
+         [
+          "P",
+          "O",
+          "ink"
+         ],
          [
           "O",
-          "A",
-          "B",
-          "100°",
-          "given"
+          "Q",
+          "ink"
          ]
-        ],
+        ]
+       },
+       {
+        "zh": "$OA = OP$（半徑），所以 $\\triangle OAP$ 等腰：$\\angle OAP = \\angle OPA = p$。",
+        "en": "OA = OP (radii), so △OAP is isosceles: ∠OAP = ∠OPA = p.",
         "ticks": [
          [
           "O",
           "A"
          ],
          [
+          "P",
+          "O"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
           "O",
-          "B"
+          "P",
+          "p",
+          "given",
+          24
+         ],
+         [
+          "P",
+          "A",
+          "O",
+          "p",
+          "given",
+          26
          ]
         ]
        },
        {
-        "zh": "P 在圓上，∠APB 對着同一條弧 AB。",
-        "en": "P is on the circle; ∠APB stands on the same arc AB.",
+        "zh": "$\\angle AOQ$ 是 $\\triangle OAP$ 的外角：$\\angle AOQ = p + p = 2p$。",
+        "en": "∠AOQ is the exterior angle of △OAP: ∠AOQ = p + p = 2p.",
         "arcs": [
          [
-          "P",
+          "O",
           "A",
-          "B",
-          "?",
-          "claim"
+          "Q",
+          "2p",
+          "claim",
+          30
          ]
         ]
        },
        {
-        "zh": "∠APB = ½ × 100° = 50°：圓心角是圓周角的兩倍。",
-        "en": "∠APB = ½ × 100° = 50°: the centre angle is twice the circumference angle.",
+        "zh": "另一邊同理：$\\angle OBP = \\angle OPB = q$，所以 $\\angle BOQ = 2q$。",
+        "en": "The same on the other side: ∠OBP = ∠OPB = q, so ∠BOQ = 2q.",
         "arcs": [
          [
           "P",
+          "B",
+          "O",
+          "q",
+          "given",
+          26
+         ],
+         [
+          "O",
+          "Q",
+          "B",
+          "2q",
+          "claim",
+          38
+         ]
+        ]
+       },
+       {
+        "zh": "所以 $\\angle AOB = 2p + 2q = 2(p + q) = 2\\angle APB$。",
+        "en": "So ∠AOB = 2p + 2q = 2(p + q) = 2∠APB.",
+        "notes": [
+         [
+          "∠AOB = 2∠APB",
+          118,
+          120
+         ]
+        ],
+        "circleArcs": [
+         [
           "A",
           "B",
-          "50°",
-          "claim"
+          "P",
+          "accent"
          ]
         ]
        }
@@ -192,19 +257,19 @@
    "id": "ch11-1-c03",
    "topic": "ch11-1",
    "title": {
-    "zh": "半圓上的圓周角 = 90°",
-    "en": "Angle in a semi-circle = 90°"
+    "zh": "定理二：半圓上的圓周角是 90°（附證明）",
+    "en": "Theorem 2: the angle in a semi-circle is 90° (with proof)"
    },
    "body": {
-    "zh": "- 若 $AB$ 是直徑，$P$ 在圓上，則 $\\angle APB = 90^\\circ$：{{math:0}}\n- 反過來：若圓周角是 $90^\\circ$，它對着的弦就是直徑（即弦穿過圓心）。\n- 證明時先寫「$\\angle AOB = 180^\\circ$（直徑）」，再用圓心角兩倍圓周角。\n- 直角記號是判斷的關鍵：見到圓周上的直角，就要想到直徑。",
-    "en": "- If AB is a diameter and P is on the circle, then ∠APB = 90°: {{math:0}}\n- Conversely, a 90° angle at the circumference stands on a diameter.\n- In a proof, first write ∠AOB = 180° (diameter), then use the centre-angle theorem.\n- The right-angle mark is the clue: a right angle on the circle means a diameter."
+    "zh": "- 定理：若 $AB$ 是直徑、$P$ 在圓上，則 $\\angle APB = 90^\\circ$：{{math:0}}\n- 證明：$AB$ 是直徑，所以 $A$、$O$、$B$ 共線，圓心角 $\\angle AOB = 180^\\circ$。\n- 由定理一，$\\angle APB = \\tfrac{1}{2}\\angle AOB = \\tfrac{1}{2} \\times 180^\\circ = 90^\\circ$。\n- 所以只要見到直徑，就知道半圓上任何一點的圓周角都是直角，不用量度。",
+    "en": "- Theorem: if AB is a diameter and P is on the circle, then ∠APB = 90°: {{math:0}}\n- Proof: AB is a diameter, so A, O and B are collinear and the centre angle ∠AOB = 180°.\n- By Theorem 1, ∠APB = ½∠AOB = ½ × 180° = 90°.\n- So a diameter always gives a right angle at the circumference, wherever P sits."
    },
    "math": [
     "\\angle \\text{in semi-circle} = 90^\\circ"
    ],
    "warn": {
-    "zh": "- 「$AB$ 是直徑」與「$\\angle APB = 90^\\circ$」是兩個方向，答題時要寫清楚用哪一個。\n- 直角必須是圓周角（頂點在圓上）；頂點在圓心的 90° 不代表直徑。",
-    "en": "- \"AB is a diameter\" and \"∠APB = 90°\" are the two directions — say which one you are using.\n- The 90° must be at the circumference; a 90° at the centre proves nothing about a diameter."
+    "zh": "- 直角必須在圓周上（頂點在圓上）；頂點在圓心的 $90^\\circ$ 不代表直徑。",
+    "en": "- The right angle must be at the circumference; a 90° angle at the centre tells you nothing about a diameter."
    },
    "vocab": [
     {
@@ -212,15 +277,15 @@
      "en": "Semi-circle"
     },
     {
-     "zh": "逆定理",
-     "en": "Converse"
+     "zh": "直徑",
+     "en": "Diameter"
     }
    ],
    "demo": {
     "type": "circle",
     "caption": {
-     "zh": "直徑 AB 把圓分成兩個半圓；P 無論移到哪裡，∠APB 都是 90°。",
-     "en": "A diameter AB splits the circle into two semi-circles; wherever P sits, ∠APB is 90°."
+     "zh": "這個定理是定理一的特例：直徑把圓心角變成 $180^\\circ$，圓周角就只剩一半。",
+     "en": "This is Theorem 1 in the special case where the diameter makes the centre angle 180°, so the circumference angle is half of it."
     },
     "opts": {
      "anim": {
@@ -254,8 +319,8 @@
       ],
       "steps": [
        {
-        "zh": "AB 是直徑，所以 ∠AOB = 180°（一條直線）。",
-        "en": "AB is a diameter, so ∠AOB = 180° — a straight line.",
+        "zh": "$AB$ 是直徑，所以 $A$、$O$、$B$ 共線，$\\angle AOB = 180^\\circ$。",
+        "en": "AB is a diameter, so A, O and B are collinear and ∠AOB = 180°.",
         "arcs": [
          [
           "O",
@@ -268,28 +333,30 @@
         ]
        },
        {
-        "zh": "∠APB 對着同一條弧，是圓心角的一半：½ × 180°。",
-        "en": "∠APB stands on the same arc, so it is half of the centre angle: ½ × 180°.",
+        "zh": "$\\angle APB$ 對着同一條弧，是圓心角的一半：$\\tfrac{1}{2} \\times 180^\\circ$。",
+        "en": "∠APB stands on the same arc and is half the centre angle: ½ × 180°.",
         "arcs": [
          [
           "P",
           "A",
           "B",
           "½ × 180°",
-          "claim"
+          "claim",
+          30
          ]
         ]
        },
        {
-        "zh": "所以 ∠APB = 90°：半圓上的圓周角一定是直角。",
-        "en": "So ∠APB = 90°: the angle in a semi-circle is always a right angle.",
+        "zh": "所以 $\\angle APB = 90^\\circ$：半圓上的圓周角一定是直角。",
+        "en": "So ∠APB = 90°: the angle in a semi-circle is a right angle.",
         "arcs": [
          [
           "P",
           "A",
           "B",
           "90°",
-          "claim"
+          "claim",
+          30
          ]
         ]
        }
@@ -302,19 +369,135 @@
    "id": "ch11-1-c04",
    "topic": "ch11-1",
    "title": {
-    "zh": "同弓形圓周角相等",
-    "en": "Angles in the same segment are equal"
+    "zh": "定理三：逆定理 —— 圓周角是 90° 就是直徑（附證明）",
+    "en": "Theorem 3 (converse): a 90° angle at the circumference means a diameter (with proof)"
    },
    "body": {
-    "zh": "- $X$、$Y$ 在圓上同一側、都對着弧 $AB$，則 $\\angle AXB = \\angle AYB$：{{math:0}}\n- 理由：兩隻角都等於「圓心角的一半」，所以彼此相等。\n- 這個定理常用來「搬角」：把一隻角搬到另一個頂點，再放進三角形或直線裡計算。\n- 判斷是否同弓形：兩個頂點要在同一條弧上（同一側），而不是在弦的兩邊。",
-    "en": "- If X and Y lie on the same arc AB, then ∠AXB = ∠AYB: {{math:0}}\n- Both are half of the same angle at the centre, so they are equal.\n- It is used to move an angle to another vertex before using a triangle or a straight line.\n- To check \"same segment\", the two vertices must be on the same arc, not on opposite sides of the chord."
+    "zh": "- 逆定理：若圓周角 $\\angle APB = 90^\\circ$，則它對着的弦 $AB$ 是直徑。\n- 證明：設 $\\angle APB = 90^\\circ$。\n- 由定理一，圓心角 $\\angle AOB = 2 \\times 90^\\circ = 180^\\circ$。\n- 圓心角是平角，代表 $A$、$O$、$B$ 三點共線，即 $AB$ 穿過圓心。\n- 所以 $AB$ 是直徑。這個方向常用來「證明某條線是直徑」。",
+    "en": "- Converse: if the angle at the circumference ∠APB = 90°, then the chord AB it stands on is a diameter.\n- Proof: suppose ∠APB = 90°.\n- By Theorem 1, the centre angle ∠AOB = 2 × 90° = 180°.\n- A straight angle at O means A, O and B are collinear, so AB passes through the centre.\n- Hence AB is a diameter. This direction is how you prove that a line is a diameter."
+   },
+   "warn": {
+    "zh": "- 兩個方向要分清楚：定理二由「直徑」得「直角」；逆定理由「直角」得「直徑」。\n- 寫逆定理時要寫「$\\angle AOB = 180^\\circ$，所以 $A$、$O$、$B$ 共線」，不可以直接跳去結論。",
+    "en": "- Keep the two directions apart: Theorem 2 goes from diameter to right angle; the converse goes from right angle to diameter.\n- Write the straight angle step (∠AOB = 180°, so A, O, B are collinear) before the conclusion."
+   },
+   "vocab": [
+    {
+     "zh": "逆定理",
+     "en": "Converse"
+    },
+    {
+     "zh": "共線",
+     "en": "Collinear"
+    }
+   ],
+   "demo": {
+    "type": "circle",
+    "caption": {
+     "zh": "由「圓周角 90°」倒過來推：先得圓心角 180°，再得三個點共線，最後才說 AB 是直徑。",
+     "en": "Work backwards from the 90°: get the 180° centre angle, then the three points in line, and only then call AB a diameter."
+    },
+    "opts": {
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 180
+       },
+       "B": {
+        "at": 0
+       },
+       "P": {
+        "at": 90
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "P",
+        "A"
+       ],
+       [
+        "P",
+        "B"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "設 $\\angle APB = 90^\\circ$。",
+        "en": "Suppose ∠APB = 90°.",
+        "arcs": [
+         [
+          "P",
+          "A",
+          "B",
+          "90°",
+          "given"
+         ]
+        ]
+       },
+       {
+        "zh": "由定理一，圓心角 $\\angle AOB = 2 \\times 90^\\circ = 180^\\circ$。",
+        "en": "By Theorem 1, the centre angle ∠AOB = 2 × 90° = 180°.",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "180°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "圓心角是平角，所以 $A$、$O$、$B$ 三點共線。",
+        "en": "A straight angle at O means A, O and B lie on one straight line.",
+        "lines": [
+         [
+          "A",
+          "B",
+          "accent"
+         ]
+        ]
+       },
+       {
+        "zh": "即 $AB$ 穿過圓心，所以 $AB$ 是直徑。",
+        "en": "That is, AB passes through the centre, so AB is a diameter.",
+        "notes": [
+         [
+          "AB 是直徑  AB is a diameter",
+          210,
+          392
+         ]
+        ]
+       }
+      ]
+     }
+    }
+   }
+  },
+  {
+   "id": "ch11-1-c05",
+   "topic": "ch11-1",
+   "title": {
+    "zh": "定理四：同弓形內的圓周角相等（附證明）",
+    "en": "Theorem 4: angles in the same segment are equal (with proof)"
+   },
+   "body": {
+    "zh": "- 定理：$X$、$Y$ 在同一條弧 $AB$ 上，則 $\\angle AXB = \\angle AYB$：{{math:0}}\n- 證明：設圓心角 $\\angle AOB = 2p$。\n- $\\angle AXB$ 是圓周角，對着弧 $AB$，由定理一：$\\angle AXB = \\tfrac{1}{2}\\angle AOB = p$。\n- 同理 $\\angle AYB = \\tfrac{1}{2}\\angle AOB = p$。\n- 兩隻角都等於同一個圓心角的一半，所以相等；推廣到弧上任何一點都成立。",
+    "en": "- Theorem: if X and Y lie on the same arc AB, then ∠AXB = ∠AYB: {{math:0}}\n- Proof: let the centre angle ∠AOB = 2p.\n- ∠AXB is an angle at the circumference on arc AB, so by Theorem 1, ∠AXB = ½∠AOB = p.\n- Similarly ∠AYB = ½∠AOB = p.\n- Both are half of the same centre angle, so they are equal — and the same holds for any point on that arc."
    },
    "math": [
     "\\angle AXB = \\angle AYB"
    ],
    "warn": {
-    "zh": "- 兩個頂點在弦的兩邊時，兩隻角互補（加起來 180°），不是相等。\n- 不要寫「同弓形」卻用了兩條不同的弧：先指出兩隻角都對着弧 $AB$。",
-    "en": "- If the two vertices are on opposite sides of the chord, the angles are supplementary, not equal.\n- Do not claim \"same segment\" while using two different arcs — name the arc first."
+    "zh": "- 兩個頂點在弦的兩邊時，兩隻角互補（加起來 $180^\\circ$），不是相等。\n- 答題時要指出「兩隻角都對着弧 $AB$」，不要只寫「同弓形」。",
+    "en": "- If the two vertices are on opposite sides of the chord, the angles are supplementary, not equal.\n- Name the arc: say both angles stand on arc AB, not merely \"same segment\"."
    },
    "vocab": [
     {
@@ -329,8 +512,8 @@
    "demo": {
     "type": "circle",
     "caption": {
-     "zh": "X 與 Y 都在弧 AB 上：無論在哪一點，∠AXB 與 ∠AYB 都等於圓心角的一半。",
-     "en": "X and Y both lie on arc AB: wherever they sit, ∠AXB = ∠AYB = half the centre angle."
+     "zh": "兩隻圓周角都等於同一個圓心角的一半，所以彼此相等。",
+     "en": "Both circumference angles are half of the same centre angle, so they are equal to each other."
     },
     "opts": {
      "anim": {
@@ -379,8 +562,8 @@
       ],
       "steps": [
        {
-        "zh": "圓心角 ∠AOB 對着弧 AB，設為 2p。",
-        "en": "The centre angle ∠AOB stands on arc AB; call it 2p.",
+        "zh": "設圓心角 $\\angle AOB = 2p$，它對着弧 $AB$。",
+        "en": "Let the centre angle ∠AOB = 2p; it stands on arc AB.",
         "arcs": [
          [
           "O",
@@ -389,11 +572,19 @@
           "2p",
           "given"
          ]
+        ],
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "O",
+          "accent"
+         ]
         ]
        },
        {
-        "zh": "X 在圓上：∠AXB = ½ ∠AOB = p。",
-        "en": "X is on the circle, so ∠AXB = ½ ∠AOB = p.",
+        "zh": "$X$ 在圓上，$\\angle AXB = \\tfrac{1}{2}\\angle AOB = p$。",
+        "en": "X is on the circle, so ∠AXB = ½∠AOB = p.",
         "arcs": [
          [
           "X",
@@ -405,8 +596,8 @@
         ]
        },
        {
-        "zh": "Y 也在同一條弧上：∠AYB = ½ ∠AOB = p。",
-        "en": "Y is on the same arc, so ∠AYB = ½ ∠AOB = p too.",
+        "zh": "$Y$ 在同一條弧上，$\\angle AYB = \\tfrac{1}{2}\\angle AOB = p$。",
+        "en": "Y is on the same arc, so ∠AYB = ½∠AOB = p too.",
         "arcs": [
          [
           "Y",
@@ -418,8 +609,16 @@
         ]
        },
        {
-        "zh": "所以 ∠AXB = ∠AYB：同弓形內的圓周角相等。",
+        "zh": "所以 $\\angle AXB = \\angle AYB$：同弓形內的圓周角相等。",
         "en": "Hence ∠AXB = ∠AYB: angles in the same segment are equal.",
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "O",
+          "accent"
+         ]
+        ],
         "notes": [
          [
           "∠AXB = ∠AYB",
@@ -434,7 +633,7 @@
    }
   },
   {
-   "id": "ch11-1-c05",
+   "id": "ch11-1-c06",
    "topic": "ch11-1",
    "title": {
     "zh": "寫題解的規矩",
@@ -768,6 +967,14 @@
           "B",
           "56°",
           "claim"
+         ]
+        ],
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "accent"
          ]
         ]
        },
@@ -1559,6 +1766,14 @@
           "B",
           "33°",
           "given"
+         ]
+        ],
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "accent"
          ]
         ]
        },

@@ -2,13 +2,15 @@
    資料放在題目的 anim 欄或教學卡的 demo.opts.anim：
    {
      "points": { "O": {"centre": true}, "A": {"at": 112}, "C": {"at": 232},
-                 "E": {"cross": ["A","C","O","D"]} },
+                 "E": {"cross": ["A","C","O","D"]}, "Q": {"at": 270, "hidden": true} },
      "segments": [["O","A"],["A","C"]],
      "steps": [ { "zh": "…", "en": "…",
-                  "arcs":  [["O","A","B","112°","given"]],
-                  "lines": [["O","B","given"]],
+                  "show":  ["Q"],                       // 隱藏的點，到這一步才出現
+                  "lines": [["P","Q","ink"]],
+                  "arcs":  [["O","A","B","112°","given"]],   // 會同時描出角的兩條射線
+                  "circleArcs": [["A","B","P","accent"]],     // 圓周上的一段弧（可給避開的點）
                   "ticks": [["O","A"]],
-                  "note":  ["…", x, y] } ]
+                  "notes": [["…", x, y]] } ]
    }
    angle 一律用「度」。座標由角度算出，所以畫出來的角就是題目寫的角。 */
 (function () {
@@ -16,8 +18,6 @@
 
   var NS = "http://www.w3.org/2000/svg";
   var SIZE = 420, CX = 210, CY = 210, R = 150;
-
-  var COLOUR = { given: "#e2660a", claim: "#4f46e5", accent: "#0f766e" };
 
   function el(name, attrs, text) {
     var e = document.createElementNS(NS, name);
@@ -63,6 +63,24 @@
     return { d: d, label: { x: v.x + bis.x * (radius + 16), y: v.y + bis.y * (radius + 16) + 4 } };
   }
 
+  /* 圓周上由 A 到 B 的一段弧（screen 座標）；有 avoid 就選不穿越它的那一邊 */
+  function circuitArc(a, b, avoid) {
+    function heading(p) { return Math.atan2(p.y - CY, p.x - CX); }
+    function norm(t) { while (t < 0) t += 2 * Math.PI; while (t >= 2 * Math.PI) t -= 2 * Math.PI; return t; }
+    var aA = heading(a), aB = heading(b);
+    var d1 = norm(aB - aA);
+    var sweep, delta;
+    if (avoid) {
+      var aV = heading(avoid);
+      if (norm(aV - aA) <= d1) { sweep = 0; delta = 2 * Math.PI - d1; }
+      else { sweep = 1; delta = d1; }
+    } else {
+      sweep = 1; delta = d1;
+    }
+    return "M" + a.x + " " + a.y + "A" + R + " " + R + " 0 " + (delta > Math.PI ? 1 : 0) +
+      " " + sweep + " " + b.x + " " + b.y;
+  }
+
   function mount(host, anim) {
     anim = anim || {};
     var wrap = document.createElement("div");
@@ -82,14 +100,9 @@
     var centreName = null;
     Object.keys(specs).forEach(function (name) {
       var s = specs[name] || {};
-      if (s.centre) {
-        pts[name] = { x: 0, y: 0 };
-        centreName = name;
-      } else if (typeof s.at === "number") {
-        pts[name] = polar(s.at);
-      }
+      if (s.centre) { pts[name] = { x: 0, y: 0 }; centreName = name; }
+      else if (typeof s.at === "number") pts[name] = polar(s.at);
     });
-    /* 交點要等圓上的點都算好 */
     Object.keys(specs).forEach(function (name) {
       var s = specs[name] || {};
       if (s.cross) {
@@ -109,18 +122,23 @@
       gBase.appendChild(el("line", { class: "cg-seg", x1: a.x, y1: a.y, x2: b.x, y2: b.y }));
     });
 
+    var pointGroups = {};
     Object.keys(pts).forEach(function (name) {
       var p = screen(pts[name]);
       var isCentre = name === centreName;
-      gBase.appendChild(el("circle", {
+      var g = el("g", { class: "cg-pt" });
+      g.appendChild(el("circle", {
         class: "cg-dot" + (isCentre ? " centre" : ""),
         cx: p.x, cy: p.y, r: isCentre ? 3 : 3.4
       }));
       var d = Math.hypot(p.x - CX, p.y - CY) || 1;
       var off = isCentre ? { x: -13, y: -9 } : { x: (p.x - CX) / d * 14, y: (p.y - CY) / d * 14 + 4 };
-      gBase.appendChild(el("text", {
+      g.appendChild(el("text", {
         class: "cg-label", x: p.x + off.x, y: p.y + off.y, "text-anchor": "middle"
       }, name));
+      if (specs[name].hidden) g.style.opacity = "0";
+      gBase.appendChild(g);
+      pointGroups[name] = g;
     });
 
     /* 字幕與按鈕 */
@@ -157,28 +175,54 @@
     var steps = anim.steps || [];
     var at = 0;
 
-    function label(txt, T, delay) {
-      var t = el("text", { class: "cg-val " + (T.colour || "claim"), x: T.label.x, y: T.label.y, "text-anchor": "middle" }, txt);
-      gStep.appendChild(t);
-      reveal(t, delay);
-      return t;
+    /* 描線：先設 dash，再放行；jsdom 沒有 getTotalLength 就只淡入 */
+    function drawOn(node, delay) {
+      var len = typeof node.getTotalLength === "function" ? node.getTotalLength() : 0;
+      if (len) {
+        node.style.strokeDasharray = len;
+        node.style.strokeDashoffset = len;
+      }
+      node.style.opacity = "0";
+      setTimeout(function () {
+        node.style.opacity = "1";
+        if (len) node.style.strokeDashoffset = "0";
+      }, delay || 0);
     }
 
-    function reveal(node, delay) {
-      node.style.opacity = "0";
-      setTimeout(function () { node.style.opacity = "1"; }, delay || 0);
+    function ray(a, b, colour, delay) {
+      var A = screen(pts[a]), B = screen(pts[b]);
+      if (!A || !B) return;
+      var ln = el("line", { class: "cg-ray " + colour, x1: A.x, y1: A.y, x2: B.x, y2: B.y });
+      gStep.appendChild(ln);
+      drawOn(ln, delay);
+    }
+
+    function label(txt, T, delay) {
+      var t = el("text", {
+        class: "cg-val " + (T.colour || "claim"), x: T.label.x, y: T.label.y, "text-anchor": "middle"
+      }, txt);
+      gStep.appendChild(t);
+      t.style.opacity = "0";
+      setTimeout(function () { t.style.opacity = "1"; }, delay || 0);
+      return t;
     }
 
     function draw(i) {
       var st = steps[i] || {};
+
+      (st.show || []).forEach(function (name) {
+        var g = pointGroups[name];
+        if (g) g.style.opacity = "1";
+      });
+
       (st.lines || []).forEach(function (L) {
         var a = screen(pts[L[0]]), b = screen(pts[L[1]]);
         if (!a || !b) return;
         var ln = el("line", { class: "cg-draw " + (L[2] || "given"), x1: a.x, y1: a.y, x2: b.x, y2: b.y });
         gStep.appendChild(ln);
-        ln.style.opacity = "0";
-        setTimeout(function () { ln.style.opacity = "1"; }, 0);
+        drawOn(ln, 0);
       });
+
       (st.ticks || []).forEach(function (t) {
         var a = screen(pts[t[0]]), b = screen(pts[t[1]]);
         if (!a || !b) return;
@@ -189,23 +233,55 @@
           class: "cg-tick", x1: mx - nx * 5, y1: my - ny * 5, x2: mx + nx * 5, y2: my + ny * 5
         });
         gStep.appendChild(k);
-        reveal(k, 60);
+        k.style.opacity = "0";
+        setTimeout(function () { k.style.opacity = "1"; }, 60);
       });
+
       (st.arcs || []).forEach(function (A, j) {
         var v = screen(pts[A[0]]), p1 = screen(pts[A[1]]), p2 = screen(pts[A[2]]);
         if (!v || !p1 || !p2) return;
+        var colour = A[4] || "claim";
+        var lead = j * 260;
+        /* 先描角的兩條射線，再畫角弧（跟題目播放器同一次序） */
+        if (!st.noRays) {
+          ray(A[0], A[1], colour, lead);
+          ray(A[0], A[2], colour, lead + 110);
+        }
         var radius = A[5] || 26;
         var geo = arcPath(v, p1, p2, radius);
-        var path = el("path", { class: "cg-arc " + (A[4] || "claim"), d: geo.d });
+        var path = el("path", { class: "cg-arc " + colour, d: geo.d });
         gStep.appendChild(path);
-        reveal(path, j * 90);
-        if (A[3]) label(A[3], { label: geo.label, colour: A[4] }, 120 + j * 90);
+        drawOn(path, lead + 220);
+        if (A[3]) label(A[3], { label: geo.label, colour: colour }, lead + 340);
       });
+
+      (st.circleArcs || []).forEach(function (C, j) {
+        var A = screen(pts[C[0]]), B = screen(pts[C[1]]);
+        if (!A || !B) return;
+        var avoid = C[2] ? screen(pts[C[2]]) : null;
+        var p = el("path", { class: "cg-arc " + (C[3] || "accent"), d: circuitArc(A, B, avoid) });
+        gStep.appendChild(p);
+        drawOn(p, 120 + j * 120);
+      });
+
       (st.notes || []).forEach(function (N) {
         var t = el("text", { class: "cg-note", x: N[1], y: N[2], "text-anchor": "middle" }, N[0]);
         gStep.appendChild(t);
-        reveal(t, 160);
+        t.style.opacity = "0";
+        setTimeout(function () { t.style.opacity = "1"; }, 160);
       });
+    }
+
+    /* 字幕內可以有 $...$：交給全站的 KaTeX 渲染（與題解同一個機制） */
+    function setSay(node, txt) {
+      node.textContent = txt || "";
+      if (!txt || !window.renderMathInElement) return;
+      try {
+        window.renderMathInElement(node, {
+          delimiters: [{ left: "$", right: "$", display: false }],
+          throwOnError: false, strict: false
+        });
+      } catch (e) { /* 退回純文字 */ }
     }
 
     function update() {
@@ -218,27 +294,23 @@
     next.onclick = function () {
       if (at >= steps.length) return;
       draw(at);
-      sayZh.textContent = steps[at].zh || "";
-      sayEn.textContent = steps[at].en || "";
+      setSay(sayZh, steps[at].zh);
+      setSay(sayEn, steps[at].en);
       at += 1;
       update();
     };
 
     restart.onclick = function () {
       gStep.innerHTML = "";
-      sayZh.textContent = "";
-      sayEn.textContent = "";
+      Object.keys(pointGroups).forEach(function (k) {
+        pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
+      });
+      setSay(sayZh, "");
+      setSay(sayEn, "");
       at = 0;
       update();
     };
 
-    var first = steps[0] || {};
-    sayZh.textContent = first.zh || "";
-    sayEn.textContent = first.en || "";
-    if (steps.length) {
-      sayZh.textContent = "";
-      sayEn.textContent = "";
-    }
     update();
     return wrap;
   }

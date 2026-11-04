@@ -617,6 +617,8 @@ body[data-lang="both"] .perf-chip .l-en { font-size: 11.5px; opacity: .85; }
 }
 .cc + .cc { margin-top: 14px; }
 .cc-title { margin: 0 0 8px; font-size: 16px; font-weight: 700; color: var(--primary-ink); letter-spacing: 0; }
+.cc-title .l-zh, .cc-title .l-en { display: block; }
+body[data-lang="both"] .cc-title .l-en { font-size: 13.5px; font-weight: 600; color: var(--muted); margin-top: 2px; }
 .cc-p { margin: 6px 0; font-size: 16px; line-height: 1.7; }
 .cc-ul { margin: 6px 0 6px 2px; padding-left: 22px; list-style: disc; font-size: 16px; line-height: 1.7; }
 .cc-ul li { margin: 4px 0; }
@@ -1453,15 +1455,19 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .cg-seg { stroke: var(--text); stroke-opacity: .5; stroke-width: 1.1; }
 .cg-dot { fill: var(--text); }
 .cg-label { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 12px; fill: var(--text); }
-.cg-draw { stroke-width: 1.8; stroke-linecap: round; transition: opacity .35s ease; }
+.cg-draw { stroke-width: 1.8; stroke-linecap: round; transition: opacity .3s ease, stroke-dashoffset .5s cubic-bezier(.35,.65,.3,1); }
 .cg-draw.given { stroke: #e2660a; }
 .cg-draw.claim { stroke: #4f46e5; }
 .cg-draw.accent { stroke: #0f766e; }
-.cg-arc { fill: none; stroke-width: 1.6; stroke-linecap: round; transition: opacity .35s ease; }
+.cg-arc { fill: none; stroke-width: 1.8; stroke-linecap: round; transition: opacity .3s ease, stroke-dashoffset .55s cubic-bezier(.35,.65,.3,1); }
 .cg-arc.given { stroke: #e2660a; }
 .cg-arc.claim { stroke: #4f46e5; }
 .cg-arc.accent { stroke: #0f766e; }
 .cg-tick { stroke: var(--text); stroke-width: 1.2; }
+.cg-ray { stroke-width: 2.4; stroke-linecap: round; transition: opacity .3s ease, stroke-dashoffset .5s cubic-bezier(.35,.65,.3,1); }
+.cg-ray.given { stroke: #e2660a; }
+.cg-ray.claim { stroke: #4f46e5; }
+.cg-ray.accent { stroke: #0f766e; }
 .cg-val { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 12.5px; transition: opacity .35s ease; }
 .cg-val.given { fill: #b45309; }
 .cg-val.claim { fill: #4338ca; }

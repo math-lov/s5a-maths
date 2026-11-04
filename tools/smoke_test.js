@@ -2868,10 +2868,10 @@ ok(back.$$(".part-btn .ring.full").length === 0, "未完成時進度環不是 fu
 console.log("\n== 第 11 章 · 11.1 圓形的基本性質 ==");
 const P11_DATA = JSON.parse(read("data/src/ch11-1.json"));
 const p11 = boot("quiz.html", "?c=ch11-1");
-ok(P11_DATA.cards.length === 5, "11.1 有五張教學卡（實際 " + P11_DATA.cards.length + "）");
-ok(P11_DATA.cards.filter((c) => c.demo && c.demo.type === "circle").length === 3,
-  "其中三張有 circle 逐步圖解示範");
-ok(p11.$$(".cg").length === 3, "總覽頁嵌入了 3 個圖解（實際 " + p11.$$(".cg").length + "）");
+ok(P11_DATA.cards.length === 6, "11.1 有六張教學卡（實際 " + P11_DATA.cards.length + "）");
+ok(P11_DATA.cards.filter((c) => c.demo && c.demo.type === "circle").length === 4,
+  "其中四張有 circle 逐步圖解示範（定理一至定理四，連證明）");
+ok(p11.$$(".cg").length === 4, "總覽頁嵌入了 4 個圖解（實際 " + p11.$$(".cg").length + "）");
 ok(p11.$$(".cg-svg").every((s) => s.querySelectorAll(".cg-label").length >= 3),
   "每個圖解都畫了點與字母");
 ok(p11.$$(".cg-next").every((b) => /Next step/.test(b.textContent)),
