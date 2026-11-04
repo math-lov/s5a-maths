@@ -71,7 +71,13 @@ function boot(page, search, storage, solPreference, legacySolPreference) {
   vm.runInContext(autoRenderJs, ctx, { filename: "auto-render.min.js" });
   vm.runInContext(indexJs, ctx, { filename: "index.js" });
   vm.runInContext(figuresJs, ctx, { filename: "figures.js" });
-  dataFiles.forEach((f) => vm.runInContext(read("data/" + f), ctx, { filename: f }));
+  /* 只載入這一頁真正用到的那一份題庫（每頁只開一個課題）：
+     全部載入會令每個 jsdom context 都揹住十幾萬字，幾百個 context 就爆記憶體。 */
+  const needId = /[?&]c=([a-z0-9-]+)/.exec(search || "");
+  const wantFile = needId ? needId[1] + ".js" : null;
+  dataFiles
+    .filter((f) => !wantFile || f === wantFile)
+    .forEach((f) => vm.runInContext(read("data/" + f), ctx, { filename: f }));
   vm.runInContext(circleJs, ctx, { filename: "circle.js" });  // 圓形幾何逐步圖解
   vm.runInContext(partsJs, ctx, { filename: "parts.js" });    // 圓的各部分（八個名詞）
   vm.runInContext(demosJs, ctx, { filename: "demos.js" });   // 互動示範（教學卡用）

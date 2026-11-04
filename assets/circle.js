@@ -143,10 +143,34 @@
         pts[name] = cross(pts[c[0]], pts[c[1]], pts[c[2]], pts[c[3]]);
       }
     });
+    /* 延長線上的點：由 a 經 b 再走 k（以半徑為單位） */
+    Object.keys(specs).forEach(function (name) {
+      var s = specs[name] || {};
+      if (s.extend) {
+        var a = pts[s.extend[0]], b = pts[s.extend[1]];
+        var ux = b.x - a.x, uy = b.y - a.y, d = Math.hypot(ux, uy) || 1;
+        var k = s.k === undefined ? 0.5 : s.k;
+        pts[name] = { x: b.x + ux / d * k, y: b.y + uy / d * k };
+      }
+      /* 兩點之間的點：t = 0 在 a、t = 1 在 b */
+      if (s.between) {
+        var p0 = pts[s.between[0]], p1 = pts[s.between[1]];
+        var t = s.between[2] === undefined ? 0.5 : s.between[2];
+        pts[name] = { x: p0.x + (p1.x - p0.x) * t, y: p0.y + (p1.y - p0.y) * t };
+      }
+    });
 
     if (anim.circle !== false && centreName) {
-      var o = screen(pts[centreName]);
-      gBase.appendChild(el("circle", { class: "cg-circle", cx: o.x, cy: o.y, r: R }));
+      if (anim.semi) {
+        /* 半圓：只畫兩個端點之間、經過第三點的那一段弧 */
+        var sa = screen(pts[anim.semi[0]]), sb = screen(pts[anim.semi[1]]);
+        var thru = anim.semi[2] ? screen(pts[anim.semi[2]]) : null;
+        var avoid = thru ? { x: 2 * frame.cx - thru.x, y: 2 * frame.cy - thru.y } : null;
+        gBase.appendChild(el("path", { class: "cg-circle", d: circuitArc(sa, sb, avoid) }));
+      } else {
+        var o = screen(pts[centreName]);
+        gBase.appendChild(el("circle", { class: "cg-circle", cx: o.x, cy: o.y, r: R }));
+      }
     }
 
     (anim.segments || []).forEach(function (s) {

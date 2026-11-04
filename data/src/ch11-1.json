@@ -913,8 +913,1630 @@
     "zh": "基礎練習 · Level 1",
     "en": "Level 1"
    },
-   "marks": 38,
+   "marks": 61,
    "questions": [
+    {
+     "id": "ch11-1-l1-1",
+     "code": "1",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "In the figure, $BAD$ is a straight line and $O$ is the centre of the circle. It is given that $\\angle DAC = 100^\\circ$. Find $x$.",
+      "zh": "圖中 $BAD$ 是一條直線，$O$ 是圓心。已知 $\\angle DAC = 100^\\circ$，求 $x$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$x$",
+       "zh": "$x$",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 160^\\circ",
+       "note": {
+        "zh": "直線上的鄰角，然後圓心角兩倍圓周角",
+        "en": "Adjacent angles on a line, then the centre-angle theorem"
+       }
+      }
+     ],
+     "anim": {
+      "cx": 210,
+      "cy": 215,
+      "r": 125,
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 90
+       },
+       "B": {
+        "at": 190
+       },
+       "C": {
+        "at": 350
+       },
+       "D": {
+        "extend": [
+         "B",
+         "A"
+        ],
+        "k": 0.4
+       }
+      },
+      "segments": [
+       [
+        "B",
+        "D"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "O",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle DAC = 100^\\circ$，而且 $B$、$A$、$D$ 共線。",
+        "en": "Given $\\angle DAC = 100^\\circ$, with $B$, $A$, $D$ in a straight line.",
+        "arcs": [
+         [
+          "A",
+          "D",
+          "C",
+          "100°",
+          "given"
+         ]
+        ]
+       },
+       {
+        "zh": "直線上的鄰角：$\\angle BAC = 180^\\circ - 100^\\circ = 80^\\circ$。",
+        "en": "Adjacent angles on a straight line: $\\angle BAC = 180^\\circ - 100^\\circ = 80^\\circ$.",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "80°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "所以 $x = 2 \\times 80^\\circ = 160^\\circ$（圓心角是圓周角的兩倍）。",
+        "en": "So $x = 2 \\times 80^\\circ = 160^\\circ$ (angle at centre twice angle at ce).",
+        "arcs": [
+         [
+          "O",
+          "B",
+          "C",
+          "160°",
+          "claim",
+          34
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "直線上的鄰角",
+         "en": "Adjacent angles on a line"
+        },
+        "math": "\\angle BAC = 180^\\circ - 100^\\circ = 80^\\circ",
+        "zh": "$BAD$ 是一條直線，所以 $\\angle BAC$ 與 $100^\\circ$ 相加是 $180^\\circ$，得 $\\angle BAC = 80^\\circ$。",
+        "en": "$BAD$ is a straight line, so $\\angle BAC$ and $100^\\circ$ add to $180^\\circ$; $\\angle BAC = 80^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "圓心角兩倍圓周角",
+         "en": "Centre angle is twice the circumference angle"
+        },
+        "math": "x = 2 \\times 80^\\circ = 160^\\circ",
+        "zh": "兩隻角都對着弧 $BC$，圓心角是圓周角的兩倍，所以 $x = 2 \\times 80^\\circ = 160^\\circ$。",
+        "en": "$x$ and $\\angle BAC$ stand on arc $BC$, so $x = 2 \\times 80^\\circ = 160^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $100^\\circ$ 當成 $\\angle BAC$，忘記它是直線另一邊的角。",
+        "en": "Taking 100° as ∠BAC — it is the angle on the other side of the straight line."
+       }
+      ],
+      "tip": {
+       "zh": "先看直線補角，再用圓心角兩倍。",
+       "en": "Find the angle on the straight line first, then double it."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-2",
+     "code": "2",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "In the figure, $O$ is the centre of the circle. It is given that $\\angle AOC = 170^\\circ$. Find $x$.",
+      "zh": "圖中 $O$ 是圓心。已知 $\\angle AOC = 170^\\circ$，求 $x$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$x$",
+       "zh": "$x$",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 95^\\circ",
+       "note": {
+        "zh": "先用反角，再取一半",
+        "en": "Take the reflex angle first, then halve it"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 100
+       },
+       "B": {
+        "at": 10
+       },
+       "C": {
+        "at": 290
+       }
+      },
+      "segments": [
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "C"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知圓心角 $\\angle AOC = 170^\\circ$。",
+        "en": "Given the centre angle $\\angle AOC = 170^\\circ$.",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "C",
+          "170°",
+          "given"
+         ]
+        ]
+       },
+       {
+        "zh": "反角 $\\angle AOC = 360^\\circ - 170^\\circ = 190^\\circ$。",
+        "en": "Reflex $\\angle AOC = 360^\\circ - 170^\\circ = 190^\\circ$.",
+        "notes": [
+         [
+          "reflex ∠AOC = 190°",
+          210,
+          388
+         ]
+        ]
+       },
+       {
+        "zh": "$B$ 在較小的弧上，所以 $x$ 對着的是反角：$x = 190^\\circ \\div 2 = 95^\\circ$。",
+        "en": "$B$ lies on the minor arc, so $x$ stands on the reflex angle: $x = 190^\\circ \\div 2 = 95^\\circ$.",
+        "circleArcs": [
+         [
+          "A",
+          "C",
+          "B",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "95°",
+          "claim"
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "先求反角",
+         "en": "Find the reflex angle"
+        },
+        "math": "\\text{reflex }\\angle AOC = 360^\\circ - 170^\\circ = 190^\\circ",
+        "zh": "$B$ 在較小的弧上，$x$ 對着的是反角：$360^\\circ - 170^\\circ = 190^\\circ$。",
+        "en": "$B$ is on the minor arc, so $x$ stands on the reflex angle: $360^\\circ - 170^\\circ = 190^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "取一半",
+         "en": "Halve it"
+        },
+        "math": "x = 190^\\circ \\div 2 = 95^\\circ",
+        "zh": "圓周角是圓心角的一半：$x = 190^\\circ \\div 2 = 95^\\circ$。",
+        "en": "The angle at the circumference is half the centre angle: $x = 190^\\circ \\div 2 = 95^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "用 $170^\\circ \\div 2 = 85^\\circ$，忘記 $B$ 在較小的弧上，要取反角。",
+        "en": "Using 170° ÷ 2 = 85°, forgetting that B is on the minor arc so the reflex angle is needed."
+       }
+      ],
+      "tip": {
+       "zh": "先畫出 $B$ 的位置：在弧 $AC$ 上就要用反角。",
+       "en": "Locate B first: on arc AC means the reflex angle."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-3",
+     "code": "3",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $QP \\parallel RO$ and $O$ is the centre of the circle. $PR$ and $QO$ intersect at $S$. It is given that $\\angle PRO = 33^\\circ$. Find $y$.",
+      "zh": "圖中 $QP \\parallel RO$，$O$ 是圓心，$PR$ 與 $QO$ 交於 $S$。已知 $\\angle PRO = 33^\\circ$，求 $y$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$y$",
+       "zh": "$y$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "y = 99^\\circ",
+       "note": {
+        "zh": "內錯角 → 圓心角 → 外角",
+        "en": "Alternate angles, centre angle, then the exterior angle"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "P": {
+        "at": 166
+       },
+       "Q": {
+        "at": 214
+       },
+       "R": {
+        "at": 280
+       },
+       "S": {
+        "cross": [
+         "P",
+         "R",
+         "Q",
+         "O"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "Q",
+        "P"
+       ],
+       [
+        "P",
+        "R"
+       ],
+       [
+        "Q",
+        "O"
+       ],
+       [
+        "O",
+        "R"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $QP \\parallel RO$，$\\angle PRO = 33^\\circ$。",
+        "en": "Given $QP \\parallel RO$ and $\\angle PRO = 33^\\circ$.",
+        "parallel": [
+         [
+          "Q",
+          "P"
+         ],
+         [
+          "O",
+          "R"
+         ]
+        ],
+        "arcs": [
+         [
+          "R",
+          "P",
+          "O",
+          "33°",
+          "given"
+         ]
+        ]
+       },
+       {
+        "zh": "內錯角：$\\angle QPR = \\angle PRO = 33^\\circ$。",
+        "en": "Alternate angles: $\\angle QPR = \\angle PRO = 33^\\circ$.",
+        "arcs": [
+         [
+          "P",
+          "Q",
+          "R",
+          "33°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle QOR$ 是同弧 $QR$ 的圓心角：$\\angle QOR = 2 \\times 33^\\circ = 66^\\circ$。",
+        "en": "$\\angle QOR$ is the centre angle on arc $QR$: $\\angle QOR = 2 \\times 33^\\circ = 66^\\circ$.",
+        "circleArcs": [
+         [
+          "Q",
+          "R",
+          "P",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "O",
+          "Q",
+          "R",
+          "66°",
+          "claim",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "$y$ 是 $\\triangle OSR$ 在 $S$ 的外角：$y = 66^\\circ + 33^\\circ = 99^\\circ$。",
+        "en": "$y$ is the exterior angle of $\\triangle OSR$ at $S$: $y = 66^\\circ + 33^\\circ = 99^\\circ$.",
+        "arcs": [
+         [
+          "S",
+          "Q",
+          "R",
+          "99°",
+          "claim",
+          34
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "內錯角",
+         "en": "Alternate angles"
+        },
+        "math": "\\angle QPR = \\angle PRO = 33^\\circ",
+        "zh": "$QP \\parallel RO$，$PR$ 是截線，內錯角相等：$\\angle QPR = \\angle PRO = 33^\\circ$。",
+        "en": "$QP \\parallel RO$ with transversal $PR$, so the alternate angles are equal: $\\angle QPR = 33^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "圓心角",
+         "en": "Centre angle"
+        },
+        "math": "\\angle QOR = 2 \\times 33^\\circ = 66^\\circ",
+        "zh": "兩隻角都對着弧 $QR$，圓心角是圓周角的兩倍，所以 $\\angle QOR = 2 \\times 33^\\circ = 66^\\circ$。",
+        "en": "$\\angle QOR$ and $\\angle QPR$ stand on arc $QR$, so $\\angle QOR = 66^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "外角",
+         "en": "Exterior angle"
+        },
+        "math": "y = 66^\\circ + 33^\\circ = 99^\\circ",
+        "zh": "在 $\\triangle OSR$ 中，$y$ 是 $S$ 的外角，等於兩個內對角之和：$y = \\angle QOR + \\angle PRO = 99^\\circ$。",
+        "en": "In $\\triangle OSR$, $y$ is the exterior angle at $S$: $y = \\angle QOR + \\angle PRO = 99^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle QPR$ 與 $\\angle PRO$ 當成同弓形（它們是內錯角，靠 $QP \\parallel RO$）。",
+        "en": "Calling ∠QPR and ∠PRO \"same segment\" — they are alternate angles from QP ∥ RO."
+       }
+      ],
+      "tip": {
+       "zh": "平行線給內錯角，圓心角再翻倍，最後用外角一次過加起來。",
+       "en": "Parallel lines give the alternate angle, the centre angle doubles it, then one exterior angle adds them."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-4",
+     "code": "4",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $AC$ is a diameter of the circle with centre $O$. It is given that $\\angle BAC = 3x$ and $\\angle ACB = 2x$. Find $x$.",
+      "zh": "圖中 $AC$ 是圓的直徑，圓心為 $O$。已知 $\\angle BAC = 3x$、$\\angle ACB = 2x$，求 $x$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$x$",
+       "zh": "$x$",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 18",
+       "note": {
+        "zh": "半圓上的圓周角是 90°",
+        "en": "The angle in a semi-circle is 90°"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 60
+       },
+       "B": {
+        "at": 348
+       },
+       "C": {
+        "at": 240
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "C"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "$AC$ 是直徑，所以 $\\angle ABC = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$AC$ is a diameter, so $\\angle ABC = 90^\\circ$ (angle in a semi-circle).",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "90°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "已知 $\\angle BAC = 3x$、$\\angle ACB = 2x$。",
+        "en": "Given $\\angle BAC = 3x$ and $\\angle ACB = 2x$.",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "3x",
+          "given",
+          30
+         ],
+         [
+          "C",
+          "A",
+          "B",
+          "2x",
+          "given",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "$\\triangle ABC$ 內角和：$90^\\circ + 3x + 2x = 180^\\circ$，所以 $5x = 90^\\circ$，$x = 18$。",
+        "en": "Angle sum of $\\triangle ABC$: $90^\\circ + 3x + 2x = 180^\\circ$, so $5x = 90^\\circ$ and $x = 18$.",
+        "notes": [
+         [
+          "5x = 90°",
+          210,
+          392
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓上的圓周角",
+         "en": "Angle in a semi-circle"
+        },
+        "math": "\\angle ABC = 90^\\circ",
+        "zh": "因為 $AC$ 是直徑，所以 $\\angle ABC = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$AC$ is a diameter, so $\\angle ABC = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "三角形內角和",
+         "en": "Angle sum of a triangle"
+        },
+        "math": "5x + 90^\\circ = 180^\\circ \\Rightarrow x = 18",
+        "zh": "在三角形 $ABC$ 中用內角和：$90^\\circ + 3x + 2x = 180^\\circ$，所以 $5x = 90^\\circ$，$x = 18$。",
+        "en": "In $\\triangle ABC$: $90^\\circ + 3x + 2x = 180^\\circ$, so $5x = 90^\\circ$ and $x = 18$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "忘記 $AC$ 是直徑，沒有先寫 $\\angle ABC = 90^\\circ$ 就解方程。",
+        "en": "Forgetting that AC is a diameter, so the 90° is never used."
+       }
+      ],
+      "tip": {
+       "zh": "見到直徑，先在半圓上寫 90°，再把未知數放進三角形內角和。",
+       "en": "See a diameter, write 90° at the circumference first, then use the angle sum."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-5",
+     "code": "5",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $SQ$ is a diameter, $SR \\parallel PQ$ and $O$ is the centre. It is given that $\\angle PQS = 62^\\circ$. Find $y$.",
+      "zh": "圖中 $SQ$ 是直徑，$SR \\parallel PQ$，$O$ 是圓心。已知 $\\angle PQS = 62^\\circ$，求 $y$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$y$",
+       "zh": "$y$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "y = 28^\\circ",
+       "note": {
+        "zh": "半圓 90°、內錯角、三角形內角和",
+        "en": "Semi-circle 90°, alternate angles, then the angle sum"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "S": {
+        "at": 90
+       },
+       "P": {
+        "at": 214
+       },
+       "Q": {
+        "at": 270
+       },
+       "R": {
+        "at": 34
+       }
+      },
+      "segments": [
+       [
+        "S",
+        "Q"
+       ],
+       [
+        "S",
+        "R"
+       ],
+       [
+        "R",
+        "Q"
+       ],
+       [
+        "P",
+        "Q"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle PQS = 62^\\circ$，而且 $SR \\parallel PQ$、$SQ$ 是直徑。",
+        "en": "Given $\\angle PQS = 62^\\circ$, with $SR \\parallel PQ$ and $SQ$ a diameter.",
+        "parallel": [
+         [
+          "S",
+          "R"
+         ],
+         [
+          "P",
+          "Q"
+         ]
+        ],
+        "arcs": [
+         [
+          "Q",
+          "P",
+          "S",
+          "62°",
+          "given"
+         ]
+        ]
+       },
+       {
+        "zh": "$SQ$ 是直徑，所以 $\\angle QRS = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$SQ$ is a diameter, so $\\angle QRS = 90^\\circ$ (angle in a semi-circle).",
+        "arcs": [
+         [
+          "R",
+          "Q",
+          "S",
+          "90°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "內錯角：$\\angle QSR = \\angle PQS = 62^\\circ$。",
+        "en": "Alternate angles: $\\angle QSR = \\angle PQS = 62^\\circ$.",
+        "arcs": [
+         [
+          "S",
+          "Q",
+          "R",
+          "62°",
+          "claim",
+          28
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle QRS$：$y = 180^\\circ - 90^\\circ - 62^\\circ = 28^\\circ$。",
+        "en": "In $\\triangle QRS$: $y = 180^\\circ - 90^\\circ - 62^\\circ = 28^\\circ$.",
+        "arcs": [
+         [
+          "Q",
+          "S",
+          "R",
+          "28°",
+          "claim",
+          30
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓上的直角",
+         "en": "Right angle in the semi-circle"
+        },
+        "math": "\\angle QRS = 90^\\circ",
+        "zh": "因為 $SQ$ 是直徑，所以圓周角 $\\angle QRS = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$SQ$ is a diameter, so $\\angle QRS = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "內錯角",
+         "en": "Alternate angles"
+        },
+        "math": "\\angle QSR = \\angle PQS = 62^\\circ",
+        "zh": "$SR \\parallel PQ$，$SQ$ 是截線，內錯角相等：$\\angle QSR = 62^\\circ$。",
+        "en": "$SR \\parallel PQ$ with transversal $SQ$, so $\\angle QSR = \\angle PQS = 62^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "三角形內角和",
+         "en": "Angle sum"
+        },
+        "math": "y = 180^\\circ - 90^\\circ - 62^\\circ = 28^\\circ",
+        "zh": "在三角形 $QRS$ 中用內角和：$y = 180^\\circ - 90^\\circ - 62^\\circ = 28^\\circ$。",
+        "en": "In $\\triangle QRS$: $y = 180^\\circ - 90^\\circ - 62^\\circ = 28^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $62^\\circ$ 當成 $\\angle QSR$ 就直接用，沒有寫出「內錯角」的理由。",
+        "en": "Using 62° as ∠QSR without the alternate-angle reason."
+       }
+      ],
+      "tip": {
+       "zh": "直徑 → 90°，平行 → 內錯角，最後三角形內角和。",
+       "en": "Diameter gives 90°, parallel gives the alternate angle, then the angle sum."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-6",
+     "code": "6",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $DOGF$ is a straight line, $O$ is the centre and $DF$ is a diameter. It is given that $EF = EG$ and $\\angle EFG = 64^\\circ$. Find $z$.",
+      "zh": "圖中 $DOGF$ 是一條直線，$O$ 是圓心，$DF$ 是直徑。已知 $EF = EG$ 及 $\\angle EFG = 64^\\circ$，求 $z$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$z$",
+       "zh": "$z$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "z = 26^\\circ",
+       "note": {
+        "zh": "等腰三角形 → 半圓 90° → 內角和",
+        "en": "Isosceles triangle, then the semi-circle right angle"
+       }
+      }
+     ],
+     "anim": {
+      "semi": [
+       "D",
+       "F",
+       "E"
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "D": {
+        "at": 180
+       },
+       "F": {
+        "at": 0
+       },
+       "E": {
+        "at": 52
+       },
+       "G": {
+        "between": [
+         "D",
+         "F",
+         0.615
+        ]
+       }
+      },
+      "segments": [
+       [
+        "D",
+        "F"
+       ],
+       [
+        "E",
+        "D"
+       ],
+       [
+        "E",
+        "F"
+       ],
+       [
+        "E",
+        "G"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $EF = EG$，$\\angle EFG = 64^\\circ$。",
+        "en": "Given $EF = EG$ and $\\angle EFG = 64^\\circ$.",
+        "ticks": [
+         [
+          "E",
+          "F"
+         ],
+         [
+          "E",
+          "G"
+         ]
+        ],
+        "arcs": [
+         [
+          "F",
+          "E",
+          "G",
+          "64°",
+          "given"
+         ]
+        ]
+       },
+       {
+        "zh": "$EF = EG$，所以 $\\triangle EFG$ 等腰：$\\angle EGF = \\angle EFG = 64^\\circ$。",
+        "en": "$EF = EG$, so $\\triangle EFG$ is isosceles and $\\angle EGF = \\angle EFG = 64^\\circ$.",
+        "arcs": [
+         [
+          "G",
+          "E",
+          "F",
+          "64°",
+          "claim",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "$DF$ 是直徑，所以 $\\angle DEF = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$DF$ is a diameter, so $\\angle DEF = 90^\\circ$ (angle in a semi-circle).",
+        "arcs": [
+         [
+          "E",
+          "D",
+          "F",
+          "90°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle DEF$：$z = 180^\\circ - 90^\\circ - 64^\\circ = 26^\\circ$。",
+        "en": "In $\\triangle DEF$: $z = 180^\\circ - 90^\\circ - 64^\\circ = 26^\\circ$.",
+        "arcs": [
+         [
+          "D",
+          "E",
+          "F",
+          "26°",
+          "claim",
+          30
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等腰三角形",
+         "en": "Isosceles triangle"
+        },
+        "math": "\\angle EGF = \\angle EFG = 64^\\circ",
+        "zh": "$EF = EG$，所以 $\\triangle EFG$ 是等腰三角形，$\\angle EGF = \\angle EFG = 64^\\circ$。",
+        "en": "$EF = EG$, so $\\triangle EFG$ is isosceles and $\\angle EGF = \\angle EFG = 64^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓上的直角",
+         "en": "Right angle in the semi-circle"
+        },
+        "math": "\\angle DEF = 90^\\circ",
+        "zh": "因為 $DF$ 是直徑，所以 $\\angle DEF = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$DF$ is a diameter, so $\\angle DEF = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "三角形內角和",
+         "en": "Angle sum"
+        },
+        "math": "z = 180^\\circ - 90^\\circ - 64^\\circ = 26^\\circ",
+        "zh": "在三角形 $DEF$ 中用內角和：$z = 180^\\circ - 90^\\circ - 64^\\circ = 26^\\circ$。",
+        "en": "In $\\triangle DEF$: $z = 180^\\circ - 90^\\circ - 64^\\circ = 26^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $64^\\circ$ 當成 $\\angle EGF$ 的對角，其實 $G$ 在 $DF$ 上，$\\angle EGF$ 與 $\\angle EGD$ 互補。",
+        "en": "Misplacing the 64°: G lies on DF, so ∠EGF and ∠EGD are supplementary."
+       }
+      ],
+      "tip": {
+       "zh": "先做等腰，再找半圓的直角，最後才用 $\\triangle DEF$。",
+       "en": "Isosceles first, then the semi-circle right angle, then △DEF."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-7",
+     "code": "7",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $AC$ and $BD$ intersect at $E$. It is given that $\\angle BDC = 26^\\circ$ and $\\angle BEC = 68^\\circ$. Find $x$.",
+      "zh": "圖中 $AC$ 與 $BD$ 交於 $E$。已知 $\\angle BDC = 26^\\circ$ 及 $\\angle BEC = 68^\\circ$，求 $x$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$x$",
+       "zh": "$x$",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 42^\\circ",
+       "note": {
+        "zh": "同弓形搬角，再用外角",
+        "en": "Move the angle, then use the exterior angle"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 90
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 232
+       },
+       "D": {
+        "at": 6
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle BDC = 26^\\circ$、$\\angle BEC = 68^\\circ$。",
+        "en": "Given $\\angle BDC = 26^\\circ$ and $\\angle BEC = 68^\\circ$.",
+        "arcs": [
+         [
+          "D",
+          "B",
+          "C",
+          "26°",
+          "given"
+         ],
+         [
+          "E",
+          "B",
+          "C",
+          "68°",
+          "given",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle BAC$ 與 $\\angle BDC$ 同對弧 $BC$：$\\angle BAC = 26^\\circ$。",
+        "en": "$\\angle BAC$ and $\\angle BDC$ stand on arc $BC$, so $\\angle BAC = 26^\\circ$.",
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "26°",
+          "claim",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle ABE$，$\\angle BEC$ 是 $E$ 的外角：$x + 26^\\circ = 68^\\circ$，所以 $x = 42^\\circ$。",
+        "en": "In $\\triangle ABE$, $\\angle BEC$ is the exterior angle at $E$: $x + 26^\\circ = 68^\\circ$, so $x = 42^\\circ$.",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "E",
+          "42°",
+          "claim",
+          28
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形",
+         "en": "Same segment"
+        },
+        "math": "\\angle BAC = \\angle BDC = 26^\\circ",
+        "zh": "兩隻角都對着同一條弧 $BC$（同弓形），所以 $\\angle BAC = \\angle BDC = 26^\\circ$。",
+        "en": "$\\angle BAC$ and $\\angle BDC$ stand on arc $BC$, so $\\angle BAC = 26^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "外角",
+         "en": "Exterior angle"
+        },
+        "math": "x + 26^\\circ = 68^\\circ \\Rightarrow x = 42^\\circ",
+        "zh": "在 $\\triangle ABE$ 中，$\\angle BEC$ 是外角，等於兩個內對角之和：$x + 26^\\circ = 68^\\circ$，$x = 42^\\circ$。",
+        "en": "In $\\triangle ABE$, $\\angle BEC$ is the exterior angle: $x + 26^\\circ = 68^\\circ$, so $x = 42^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $68^\\circ$ 當成 $\\angle AEB$ 的內角直接用，忘記 $\\angle AEB$ 與 $\\angle BEC$ 互補。",
+        "en": "Using 68° as an interior angle of △ABE — it is the exterior angle at E."
+       }
+      ],
+      "tip": {
+       "zh": "相交弦的題：先用同弓形把角搬到三角形，再用外角。",
+       "en": "With crossing chords: move the angle by same segment, then use the exterior angle."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-8",
+     "code": "8",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $AC$ and $BD$ intersect at $E$. It is given that $\\angle BAC = 40^\\circ$ and $BC = CD$. Find $x$.",
+      "zh": "圖中 $AC$ 與 $BD$ 交於 $E$。已知 $\\angle BAC = 40^\\circ$ 及 $BC = CD$，求 $x$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$x$",
+       "zh": "$x$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 100^\\circ",
+       "note": {
+        "zh": "同弓形 → 等腰 → 內角和",
+        "en": "Same segment, isosceles, angle sum"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 60
+       },
+       "B": {
+        "at": 190
+       },
+       "C": {
+        "at": 270
+       },
+       "D": {
+        "at": 350
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle BAC = 40^\\circ$，$BC = CD$。",
+        "en": "Given $\\angle BAC = 40^\\circ$ and $BC = CD$.",
+        "ticks": [
+         [
+          "B",
+          "C"
+         ],
+         [
+          "C",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "40°",
+          "given"
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle BDC$ 與 $\\angle BAC$ 同對弧 $BC$：$\\angle BDC = 40^\\circ$。",
+        "en": "$\\angle BDC$ and $\\angle BAC$ stand on arc $BC$, so $\\angle BDC = 40^\\circ$.",
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "D",
+          "B",
+          "C",
+          "40°",
+          "claim",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "$BC = CD$，所以 $\\triangle BCD$ 等腰：$\\angle CBD = \\angle BDC = 40^\\circ$。",
+        "en": "$BC = CD$, so $\\triangle BCD$ is isosceles and $\\angle CBD = \\angle BDC = 40^\\circ$.",
+        "arcs": [
+         [
+          "B",
+          "C",
+          "D",
+          "40°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle BCD$：$x = 180^\\circ - 40^\\circ - 40^\\circ = 100^\\circ$。",
+        "en": "In $\\triangle BCD$: $x = 180^\\circ - 40^\\circ - 40^\\circ = 100^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "B",
+          "D",
+          "100°",
+          "claim",
+          34
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形",
+         "en": "Same segment"
+        },
+        "math": "\\angle BDC = \\angle BAC = 40^\\circ",
+        "zh": "兩隻角都對着同一條弧 $BC$（同弓形），所以 $\\angle BDC = \\angle BAC = 40^\\circ$。",
+        "en": "$\\angle BDC$ and $\\angle BAC$ stand on arc $BC$, so $\\angle BDC = 40^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等腰三角形",
+         "en": "Isosceles triangle"
+        },
+        "math": "\\angle CBD = \\angle BDC = 40^\\circ",
+        "zh": "$BC = CD$，所以 $\\triangle BCD$ 是等腰三角形，$\\angle CBD = \\angle BDC = 40^\\circ$。",
+        "en": "$BC = CD$, so $\\triangle BCD$ is isosceles and $\\angle CBD = \\angle BDC = 40^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "三角形內角和",
+         "en": "Angle sum"
+        },
+        "math": "x = 180^\\circ - 40^\\circ - 40^\\circ = 100^\\circ",
+        "zh": "在三角形 $BCD$ 中用內角和：$x = 180^\\circ - 40^\\circ - 40^\\circ = 100^\\circ$。",
+        "en": "In $\\triangle BCD$: $x = 180^\\circ - 40^\\circ - 40^\\circ = 100^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $BC = CD$ 當成 $BD = CD$，於是用了錯的底角。",
+        "en": "Reading BC = CD as BD = CD and using the wrong base angles."
+       }
+      ],
+      "tip": {
+       "zh": "等長的兩條弦在圓上，先找等腰三角形的底角，再算 $x$。",
+       "en": "Equal chords give an isosceles triangle: find its base angles, then x."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-9",
+     "code": "9",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $AC$ and $BD$ intersect at $E$ and $AB \\parallel DC$. It is given that $\\angle CED = 80^\\circ$. Find $x$.",
+      "zh": "圖中 $AC$ 與 $BD$ 交於 $E$，$AB \\parallel DC$。已知 $\\angle CED = 80^\\circ$，求 $x$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$x$",
+       "zh": "$x$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 50^\\circ",
+       "note": {
+        "zh": "內錯角 ＋ 同弓形，再用內角和",
+        "en": "Alternate angles and same segment, then the angle sum"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 100
+       },
+       "B": {
+        "at": 170
+       },
+       "C": {
+        "at": 270
+       },
+       "D": {
+        "at": 0
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AB \\parallel DC$，$\\angle CED = 80^\\circ$。",
+        "en": "Given $AB \\parallel DC$ and $\\angle CED = 80^\\circ$.",
+        "parallel": [
+         [
+          "A",
+          "B"
+         ],
+         [
+          "D",
+          "C"
+         ]
+        ],
+        "arcs": [
+         [
+          "E",
+          "C",
+          "D",
+          "80°",
+          "given"
+         ]
+        ]
+       },
+       {
+        "zh": "內錯角：$\\angle BAC = \\angle ACD = x$。",
+        "en": "Alternate angles: $\\angle BAC = \\angle ACD = x$.",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "x",
+          "claim",
+          26
+         ],
+         [
+          "C",
+          "A",
+          "D",
+          "x",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "同弓形：$\\angle BDC = \\angle BAC = x$。",
+        "en": "Same segment: $\\angle BDC = \\angle BAC = x$.",
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "D",
+          "B",
+          "C",
+          "x",
+          "claim",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle CDE$ 中：$x + x + 80^\\circ = 180^\\circ$，所以 $x = 50^\\circ$。",
+        "en": "In $\\triangle CDE$: $x + x + 80^\\circ = 180^\\circ$, so $x = 50^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "A",
+          "D",
+          "50°",
+          "claim",
+          30
+         ]
+        ],
+        "notes": [
+         [
+          "2x = 100°",
+          210,
+          392
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "內錯角",
+         "en": "Alternate angles"
+        },
+        "math": "\\angle BAC = \\angle ACD = x",
+        "zh": "$AB \\parallel DC$，$AC$ 是截線，內錯角相等：$\\angle BAC = \\angle ACD = x$。",
+        "en": "$AB \\parallel DC$ with transversal $AC$, so $\\angle BAC = \\angle ACD = x$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形",
+         "en": "Same segment"
+        },
+        "math": "\\angle BDC = \\angle BAC = x",
+        "zh": "兩隻角都對着同一條弧 $BC$（同弓形），所以 $\\angle BDC = \\angle BAC = x$。",
+        "en": "$\\angle BDC$ and $\\angle BAC$ stand on arc $BC$, so $\\angle BDC = x$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "三角形內角和",
+         "en": "Angle sum"
+        },
+        "math": "2x + 80^\\circ = 180^\\circ \\Rightarrow x = 50^\\circ",
+        "zh": "在三角形 $CDE$ 中用內角和：$x + x + 80^\\circ = 180^\\circ$，所以 $x = 50^\\circ$。",
+        "en": "In $\\triangle CDE$: $x + x + 80^\\circ = 180^\\circ$, so $x = 50^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "忘記 $AB \\parallel DC$，於是找不到 $\\angle ACD = x$，方程只剩一個未知數。",
+        "en": "Missing AB ∥ DC, so ∠ACD = x is never established and the equation has only one x."
+       }
+      ],
+      "tip": {
+       "zh": "平行給內錯角、圓給同弓形，兩者一起把三個角寫成 $x$、$x$、$80^\\circ$。",
+       "en": "Parallel gives the alternate angle, the circle gives the same segment; together the triangle has x, x and 80°."
+      }
+     }
+    },
     {
      "id": "ch11-1-l1-10",
      "code": "10",
