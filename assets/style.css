@@ -1445,6 +1445,76 @@ body[data-lang="both"] .demo-shell h1 .l-en {
   body { background: #fff; }
 }
 
+/* ── 圓的各部分（assets/parts.js）：兩個固定圖 ＋ 各自的名詞按鈕 ───── */
+.parts { margin: 4px 0 0; }
+.parts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 720px) { .parts-grid { grid-template-columns: 1fr; } }
+
+.parts-fig {
+  margin: 0; padding: 6px 6px 4px;
+  background: #fdfcfb; border: 1px solid var(--line); border-radius: 12px;
+}
+.parts-chips {
+  display: flex; flex-wrap: wrap; gap: 6px; justify-content: center;
+  padding: 2px 2px 6px; min-height: 28px;
+}
+.parts-chip {
+  font: inherit; font-size: 11.5px; color: var(--text);
+  background: transparent; border: 1px solid var(--line); border-radius: 999px;
+  padding: 3px 10px 4px; cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.parts-chip:hover { border-color: var(--primary-line); }
+.parts-chip[aria-pressed="true"] {
+  color: #fff; background: var(--accent); border-color: var(--accent);
+  box-shadow: 0 6px 16px -10px rgba(249, 115, 22, .9);
+}
+body[data-lang="both"] .parts-chip .l-en { margin-left: 6px; opacity: .85; }
+
+.parts-svg { display: block; width: 100%; height: auto; }
+.parts-svg.dim { opacity: .3; }
+.parts-svg { transition: opacity .3s ease; }
+
+.parts-cap {
+  margin-top: 2px; text-align: center;
+  font-size: 10.5px; letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+}
+body[data-lang="both"] .parts-cap .l-en { margin-left: 8px; }
+
+.parts-say { margin: 10px 0 0; text-align: center; min-height: 44px; }
+.parts-say .l-zh { display: block; font-size: 14px; line-height: 1.6; }
+.parts-say .l-en { display: block; font-size: 12.5px; line-height: 1.5; color: var(--muted); margin-top: 2px; }
+body[data-lang="zh"] .parts-say .l-en { display: none; }
+body[data-lang="en"] .parts-say .l-zh { display: none; }
+
+.p-circle { fill: none; stroke: var(--line); stroke-width: 1.4; }
+.p-dot { fill: var(--text); }
+.p-dot.centre { fill: var(--muted); }
+.p-chord { stroke: var(--line); stroke-width: 1.6; }
+.p-letter {
+  font-family: Georgia, "Times New Roman", serif; font-style: italic;
+  font-size: 12px; fill: var(--text);
+}
+.part {
+  opacity: 0; pointer-events: none;
+  transition: opacity .28s ease, filter .28s ease;
+}
+.part.on { opacity: 1; filter: drop-shadow(0 0 4px rgba(249, 115, 22, .35)); }
+.p-line {
+  stroke: var(--accent); stroke-width: 2.1; stroke-linecap: round;
+  transition: stroke-dashoffset .55s cubic-bezier(.35, .65, .3, 1);
+}
+.p-arc {
+  fill: none; stroke: var(--accent); stroke-width: 1.9; stroke-linecap: round;
+  transition: stroke-dashoffset .6s cubic-bezier(.35, .65, .3, 1);
+}
+.p-region {
+  fill: rgba(249, 115, 22, .12); stroke: var(--accent);
+  stroke-width: 1.4; stroke-dasharray: 5 4;
+}
+.p-name { font-size: 10.5px; fill: var(--accent); }
+.p-name.small { font-size: 9.5px; }
+
 /* ── 圓形幾何：逐步圖解（assets/circle.js） ───────────────────────── */
 .cg { margin: 12px 0 0; }
 .cg-svg {

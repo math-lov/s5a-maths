@@ -63,7 +63,14 @@
      "zh": "圓周角",
      "en": "Angle at the circumference"
     }
-   ]
+   ],
+   "demo": {
+    "type": "parts",
+    "caption": {
+     "zh": "兩個圖各有自己的名詞按鈕：按一下，對應的部分會亮起並畫出來。",
+     "en": "Each figure has its own switches: pick one and that part lights up and draws itself."
+    }
+   }
   },
   {
    "id": "ch11-1-c02",

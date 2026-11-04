@@ -31,6 +31,7 @@ const autoRenderJs = read("vendor/katex/auto-render.min.js");
 const appJs = read("assets/app.js");
 const demosJs = read("assets/demos.js");
 const circleJs = read("assets/circle.js");
+const partsJs = read("assets/parts.js");
 const indexJs = read("data/index.js");
 const figuresJs = read("data/figures.js");
 const dataFiles = fs.readdirSync(path.join(root, "data"))
@@ -72,6 +73,7 @@ function boot(page, search, storage, solPreference, legacySolPreference) {
   vm.runInContext(figuresJs, ctx, { filename: "figures.js" });
   dataFiles.forEach((f) => vm.runInContext(read("data/" + f), ctx, { filename: f }));
   vm.runInContext(circleJs, ctx, { filename: "circle.js" });  // 圓形幾何逐步圖解
+  vm.runInContext(partsJs, ctx, { filename: "parts.js" });    // 圓的各部分（八個名詞）
   vm.runInContext(demosJs, ctx, { filename: "demos.js" });   // 互動示範（教學卡用）
   vm.runInContext(appJs, ctx, { filename: "app.js" });
   if (typeof ctx.window.__S5A_START === "function") ctx.window.__S5A_START();
@@ -2872,6 +2874,12 @@ ok(P11_DATA.cards.length === 6, "11.1 有六張教學卡（實際 " + P11_DATA.c
 ok(P11_DATA.cards.filter((c) => c.demo && c.demo.type === "circle").length === 4,
   "其中四張有 circle 逐步圖解示範（定理一至定理四，連證明）");
 ok(p11.$$(".cg").length === 4, "總覽頁嵌入了 4 個圖解（實際 " + p11.$$(".cg").length + "）");
+ok(p11.$$(".parts").length === 1 && p11.$$(".parts-svg").length === 2,
+  "「圓的各部分」有兩個固定圖（實際 " + p11.$$(".parts-svg").length + "）");
+ok(p11.$$(".parts-chip").length === 8,
+  "八個名詞各有一個按鈕（實際 " + p11.$$(".parts-chip").length + "）");
+ok(p11.$$(".parts-chip[aria-pressed=\"true\"]").length === 1,
+  "開頁時只亮起一個名詞（和弦）");
 ok(p11.$$(".cg-svg").every((s) => s.querySelectorAll(".cg-label").length >= 3),
   "每個圖解都畫了點與字母");
 ok(p11.$$(".cg-next").every((b) => /Next step/.test(b.textContent)),

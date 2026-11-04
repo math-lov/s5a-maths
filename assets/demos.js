@@ -2683,6 +2683,12 @@
     return root;
   }
 
+  /* 圓的各部分：八個名詞 ＋ 兩個固定圖（assets/parts.js） */
+  function partsDemo(host) {
+    if (!window.S5A_PARTS) return null;
+    return window.S5A_PARTS.mount(host);
+  }
+
   /* 圓形幾何：逐步圖解（assets/circle.js 提供畫圖與逐步播放） */
   function circleDemo(host, o) {
     if (!window.S5A_CIRCLE) return null;
@@ -2694,7 +2700,7 @@
       "tie-up": tieUp, "slot-in": slotIn, grouping: grouping,
       combination: combination, path: pathDemo, complement: complement,
       menu: menuDemo, venn: vennDemo, code: codeDemo, venncalc: vennCalc,
-      floor: floorDemo, circle: circleDemo
+      floor: floorDemo, circle: circleDemo, parts: partsDemo
     },
     tieUp: tieUp,
     slotIn: slotIn,
@@ -2708,6 +2714,7 @@
     venncalc: vennCalc,
     floor: floorDemo,
     circle: circleDemo,
+    parts: partsDemo,
     langBar: langBar,
     setLang: setLang
   };
