@@ -19,6 +19,12 @@
   var NS = "http://www.w3.org/2000/svg";
   var SIZE = 420, CX = 210, CY = 210, R = 150;
 
+  /* 每幅圖可以有自己的圓心與半徑（anim.cx / anim.cy / anim.r）：
+     有些題目的點在圓外（例如 AB 與 DC 延長後交於 F），圓要縮細才畫得下。 */
+  function setFrame(f) {
+    CX = f.cx; CY = f.cy; R = f.r;
+  }
+
   function el(name, attrs, text) {
     var e = document.createElementNS(NS, name);
     Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
@@ -104,6 +110,8 @@
 
   function mount(host, anim) {
     anim = anim || {};
+    var frame = { cx: anim.cx || 210, cy: anim.cy || 210, r: anim.r || 150 };
+    setFrame(frame);
     var wrap = document.createElement("div");
     wrap.className = "cg";
 
@@ -245,6 +253,7 @@
     }
 
     function draw(i, instant) {
+      setFrame(frame);   // 同一頁可能有多幅圖，各自用自己的圓心與半徑
       var st = steps[i] || {};
 
       (st.show || []).forEach(function (name) {

@@ -898,7 +898,7 @@
     "zh": "基礎練習 · Level 1",
     "en": "Level 1"
    },
-   "marks": 30,
+   "marks": 38,
    "questions": [
     {
      "id": "ch11-1-l1-10",
@@ -2672,6 +2672,547 @@
       "tip": {
        "zh": "「是否直徑」＝檢查 $\\angle BAD$ 是否 $90^\\circ$：先用等腰與同弓形求出它。",
        "en": "To test a diameter, check whether ∠BAD = 90° — get it from the isosceles triangle and the same segment."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-18",
+     "code": "18",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABCD$ is a circle. $AC$ and $BD$ intersect at $E$. $AB$ produced and $DC$ produced meet at $F$. It is given that $\\angle AED = 94^\\circ$ and $\\angle AFD = 42^\\circ$. Find $\\angle FAC$.",
+      "zh": "圖中 $ABCD$ 是圓，$AC$ 與 $BD$ 交於 $E$，$AB$ 與 $DC$ 延長後交於 $F$。已知 $\\angle AED = 94^\\circ$ 及 $\\angle AFD = 42^\\circ$，求 $\\angle FAC$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle FAC$",
+       "zh": "$\\angle FAC$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle FAC = 26^\\circ",
+       "note": {
+        "zh": "兩次外角，一次過解出 x",
+        "en": "Two exterior angles, then solve for x"
+       }
+      }
+     ],
+     "anim": {
+      "label": {
+       "en": "F is outside the circle; AB and DC are produced to meet there."
+      },
+      "cx": 210,
+      "cy": 210,
+      "r": 118,
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 18.9
+       },
+       "B": {
+        "at": 110.9
+       },
+       "C": {
+        "at": 162.9
+       },
+       "D": {
+        "at": 242.9
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       },
+       "F": {
+        "cross": [
+         "A",
+         "B",
+         "D",
+         "C"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "F"
+       ],
+       [
+        "D",
+        "F"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle AED = 94^\\circ$、$\\angle AFD = 42^\\circ$；$F$ 在圓外，$A$、$B$、$F$ 共線，$D$、$C$、$F$ 共線。",
+        "en": "Given $\\angle AED = 94^\\circ$ and $\\angle AFD = 42^\\circ$; $F$ is outside the circle, with $A$, $B$, $F$ in line and $D$, $C$, $F$ in line.",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "D",
+          "94°",
+          "given"
+         ],
+         [
+          "F",
+          "A",
+          "D",
+          "42°",
+          "given",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "設 $\\angle FAC = x$。$\\angle FDB$ 與它同對弧 $BC$（同弓形），所以 $\\angle FDB = x$。",
+        "en": "Let $\\angle FAC = x$. $\\angle FDB$ stands on the same arc $BC$, so $\\angle FDB = x$.",
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "F",
+          "C",
+          "x",
+          "given",
+          30
+         ],
+         [
+          "D",
+          "F",
+          "B",
+          "x",
+          "claim",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle ACD$ 是 $\\triangle AFC$ 的外角：$\\angle ACD = x + 42^\\circ$。",
+        "en": "$\\angle ACD$ is the exterior angle of $\\triangle AFC$: $\\angle ACD = x + 42^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "A",
+          "D",
+          "x + 42°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle AED$ 是 $\\triangle CDE$ 的外角：$94^\\circ = (x + 42^\\circ) + x$，即 $2x = 52^\\circ$。",
+        "en": "$\\angle AED$ is the exterior angle of $\\triangle CDE$: $94^\\circ = (x + 42^\\circ) + x$, so $2x = 52^\\circ$.",
+        "notes": [
+         [
+          "2x = 52°",
+          210,
+          385
+         ]
+        ]
+       },
+       {
+        "zh": "所以 $x = 26^\\circ$，即 $\\angle FAC = 26^\\circ$。",
+        "en": "Hence $x = 26^\\circ$, that is $\\angle FAC = 26^\\circ$.",
+        "arcs": [
+         [
+          "A",
+          "F",
+          "C",
+          "26°",
+          "claim",
+          30
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形搬角",
+         "en": "Move the angle (same segment)"
+        },
+        "math": "\\angle FDB = \\angle FAC = x",
+        "zh": "$\\angle FAC$ 與 $\\angle FDB$ 都對着弧 $BC$，所以相等；設 $\\angle FAC = x$，則 $\\angle FDB = x$。",
+        "en": "$\\angle FAC$ and $\\angle FDB$ stand on arc $BC$, so they are equal; write $\\angle FAC = x$, then $\\angle FDB = x$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△AFC 的外角",
+         "en": "Exterior angle of △AFC"
+        },
+        "math": "\\angle ACD = x + 42^\\circ",
+        "zh": "$\\angle ACD$ 是 $\\triangle AFC$ 在 $C$ 的外角，等於兩個內對角之和：$\\angle ACD = x + 42^\\circ$。",
+        "en": "$\\angle ACD$ is the exterior angle of $\\triangle AFC$ at $C$, so it equals the sum of the two interior opposite angles: $x + 42^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△CDE 的外角，解出 x",
+         "en": "Exterior angle of △CDE, solve for x"
+        },
+        "math": "2x + 42^\\circ = 94^\\circ",
+        "zh": "在三角形 $AFC$ 中，$C$ 的外角等於兩個內對角之和，所以 $\\angle ACD = x + 42^\\circ$。",
+        "en": "$\\angle AED$ is the exterior angle of $\\triangle CDE$ at $E$: $94^\\circ = (x + 42^\\circ) + x$, so $2x = 52^\\circ$ and $x = 26^\\circ$.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "寫出答案",
+         "en": "State the answer"
+        },
+        "math": "\\angle FAC = 26^\\circ",
+        "zh": "再看三角形 $CDE$：$E$ 的外角是 $94^\\circ$，即等於 $(x + 42^\\circ) + x$，所以 $2x = 52^\\circ$。",
+        "en": "Hence $\\angle FAC = 26^\\circ$."
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle AFD = 42^\\circ$ 直接當成 $\\triangle AFC$ 的內角，忘記 $F$、$A$、$B$ 共線。",
+        "en": "Treating ∠AFD = 42° as an angle inside △AFC, forgetting that F, A, B are in line."
+       }
+      ],
+      "tip": {
+       "zh": "圓外一點 F：兩隻角都用外角——先寫 $x + 42$，再一次過解 $2x + 42 = 94$。",
+       "en": "With an external point F, use the exterior angle twice: write x + 42 first, then solve 2x + 42 = 94 in one line."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-19",
+     "code": "19",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABCD$ is a circle. $AC$ and $BD$ intersect at $E$. $AB$ produced and $DC$ produced meet at $F$. It is given that $BD = BF$, $\\angle BDC = 25^\\circ$ and $\\angle CAD = 65^\\circ$. Find $\\angle BCA$.",
+      "zh": "圖中 $ABCD$ 是圓，$AC$ 與 $BD$ 交於 $E$，$AB$ 與 $DC$ 延長後交於 $F$。已知 $BD = BF$、$\\angle BDC = 25^\\circ$ 及 $\\angle CAD = 65^\\circ$，求 $\\angle BCA$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle BCA$",
+       "zh": "$\\angle BCA$",
+       "marks": 5
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle BCA = 40^\\circ",
+       "note": {
+        "zh": "等腰 △BDF → 同弓形 → △ADF 內角和 → 再同弓形",
+        "en": "Isosceles △BDF, then same segment twice, with △ADF in between"
+       }
+      }
+     ],
+     "anim": {
+      "label": {
+       "en": "F is outside the circle, with BD = BF."
+      },
+      "cx": 210,
+      "cy": 210,
+      "r": 92,
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 21.2
+       },
+       "B": {
+        "at": 101.2
+       },
+       "C": {
+        "at": 151.2
+       },
+       "D": {
+        "at": 281.2
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       },
+       "F": {
+        "cross": [
+         "A",
+         "B",
+         "D",
+         "C"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "F"
+       ],
+       [
+        "D",
+        "F"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "A",
+        "D"
+       ],
+       [
+        "B",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle BDC = 25^\\circ$、$\\angle CAD = 65^\\circ$，而且 $BD = BF$。",
+        "en": "Given $\\angle BDC = 25^\\circ$, $\\angle CAD = 65^\\circ$ and $BD = BF$.",
+        "ticks": [
+         [
+          "B",
+          "D"
+         ],
+         [
+          "B",
+          "F"
+         ]
+        ],
+        "arcs": [
+         [
+          "D",
+          "B",
+          "C",
+          "25°",
+          "given"
+         ],
+         [
+          "A",
+          "C",
+          "D",
+          "65°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "$BD = BF$，所以 $\\triangle BDF$ 等腰，底角相等：$\\angle BFD = \\angle BDF = 25^\\circ$。",
+        "en": "$BD = BF$, so $\\triangle BDF$ is isosceles and its base angles are equal: $\\angle BFD = \\angle BDF = 25^\\circ$.",
+        "arcs": [
+         [
+          "F",
+          "A",
+          "D",
+          "25°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle CAF$ 與 $\\angle BDC$ 同對弧 $BC$：$\\angle CAF = 25^\\circ$。",
+        "en": "$\\angle CAF$ and $\\angle BDC$ stand on arc $BC$, so $\\angle CAF = 25^\\circ$.",
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "C",
+          "F",
+          "25°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle ADF$：$\\angle FAD = 25^\\circ + 65^\\circ = 90^\\circ$，所以 $\\angle ADF = 180^\\circ - 90^\\circ - 25^\\circ = 65^\\circ$。",
+        "en": "In $\\triangle ADF$: $\\angle FAD = 25^\\circ + 65^\\circ = 90^\\circ$, so $\\angle ADF = 180^\\circ - 90^\\circ - 25^\\circ = 65^\\circ$.",
+        "arcs": [
+         [
+          "A",
+          "F",
+          "D",
+          "90°",
+          "claim",
+          34
+         ],
+         [
+          "D",
+          "A",
+          "F",
+          "65°",
+          "claim",
+          48
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle BDA = \\angle ADF - \\angle BDC = 65^\\circ - 25^\\circ = 40^\\circ$。",
+        "en": "$\\angle BDA = \\angle ADF - \\angle BDC = 65^\\circ - 25^\\circ = 40^\\circ$.",
+        "arcs": [
+         [
+          "D",
+          "B",
+          "A",
+          "40°",
+          "claim",
+          22
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle BCA$ 與 $\\angle BDA$ 同對弧 $AB$：$\\angle BCA = 40^\\circ$。",
+        "en": "$\\angle BCA$ and $\\angle BDA$ stand on arc $AB$, so $\\angle BCA = 40^\\circ$.",
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "B",
+          "A",
+          "40°",
+          "claim",
+          28
+         ]
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等腰三角形",
+         "en": "Isosceles triangle"
+        },
+        "math": "\\angle BFD = \\angle BDF = 25^\\circ",
+        "zh": "$BD = BF$，所以 $\\triangle BDF$ 是等腰三角形，底角相等：$\\angle BFD = \\angle BDF = \\angle BDC = 25^\\circ$。",
+        "en": "$BD = BF$, so $\\triangle BDF$ is isosceles and its base angles are equal: $\\angle BFD = \\angle BDF = \\angle BDC = 25^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形搬角",
+         "en": "Same segment"
+        },
+        "math": "\\angle CAF = \\angle BDC = 25^\\circ",
+        "zh": "因為 $BD = BF$，三角形 $BDF$ 是等腰三角形，兩隻底角相等：$\\angle BFD = \\angle BDF = 25^\\circ$。",
+        "en": "$\\angle CAF$ and $\\angle BDC$ stand on arc $BC$, so $\\angle CAF = 25^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△ADF 的內角和",
+         "en": "Angle sum of △ADF"
+        },
+        "math": "\\angle ADF = 180^\\circ - 90^\\circ - 25^\\circ = 65^\\circ",
+        "zh": "兩隻角都對着同一條弧 $BC$，所以 $\\angle CAF = \\angle BDC = 25^\\circ$。",
+        "en": "$\\angle FAD = \\angle CAF + \\angle CAD = 25^\\circ + 65^\\circ = 90^\\circ$. In $\\triangle ADF$, $\\angle ADF = 180^\\circ - 90^\\circ - 25^\\circ = 65^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "相減得 ∠BDA",
+         "en": "Subtract to get ∠BDA"
+        },
+        "math": "\\angle BDA = 65^\\circ - 25^\\circ = 40^\\circ",
+        "zh": "在三角形 $ADF$ 中：$\\angle FAD = 25^\\circ + 65^\\circ = 90^\\circ$，用內角和得 $\\angle ADF = 65^\\circ$。",
+        "en": "$\\angle BDA = \\angle ADF - \\angle BDC = 65^\\circ - 25^\\circ = 40^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "再一次同弓形",
+         "en": "Same segment again"
+        },
+        "math": "\\angle BCA = \\angle BDA = 40^\\circ",
+        "zh": "先寫大角，再減去小角，便得到 $\\angle BDA$：$65^\\circ - 25^\\circ = 40^\\circ$。",
+        "en": "$\\angle BCA$ and $\\angle BDA$ stand on arc $AB$, so $\\angle BCA = 40^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle BFD$ 當成 $65^\\circ$：等腰三角形的底角是 $\\angle BDC = 25^\\circ$，不是 $\\angle CAD$。",
+        "en": "Taking ∠BFD as 65°: the base angles of the isosceles triangle are equal to ∠BDC = 25°, not to ∠CAD."
+       },
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "忘記 $F$、$A$、$B$ 共線，誤以為 $\\angle FAD$ 要另外求。",
+        "en": "Forgetting that F, A, B are in line, so ∠FAD is just ∠CAF + ∠CAD."
+       }
+      ],
+      "tip": {
+       "zh": "有圓外點 F 的題：先用等腰三角形，再兩次同弓形，中間夾一次三角形內角和。",
+       "en": "When F is outside the circle: isosceles triangle first, then same segment twice, with one angle sum in between."
       }
      }
     },
