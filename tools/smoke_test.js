@@ -2886,6 +2886,13 @@ ok(p11q.$$(".cg-arc").length + p11q.$$(".cg-draw").length + p11q.$$(".cg-tick").
   "按「下一步」會畫出第一拍");
 ok(/1 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),
   "計數器由 1 開始（" + ((p11q.$(".cg-count") || {}).textContent || "") + "）");
+cgNext.click();
+ok(/2 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""), "再按一下就到第 2 步");
+const cgBack = p11q.$(".cg-back");
+ok(!!cgBack && !cgBack.disabled, "有「上一步 Back」按鈕，而且走到第 2 步時可用");
+cgBack.click();
+ok(/1 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),
+  "「上一步」退回第 1 步（" + ((p11q.$(".cg-count") || {}).textContent || "") + "）");
 const cgRestart = p11q.$(".cg-restart");
 cgRestart.click();
 ok(!p11q.$(".cg-arc") && /0 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),

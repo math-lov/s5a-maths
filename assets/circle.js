@@ -153,6 +153,11 @@
 
     var row = document.createElement("div");
     row.className = "cg-row";
+    var back = document.createElement("button");
+    back.type = "button";
+    back.className = "btn btn-sm cg-back";
+    back.textContent = "← 上一步 Back";
+    back.disabled = true;
     var next = document.createElement("button");
     next.type = "button";
     next.className = "btn btn-sm btn-primary cg-next";
@@ -163,6 +168,7 @@
     restart.disabled = true;
     var count = document.createElement("span");
     count.className = "cg-count";
+    row.appendChild(back);
     row.appendChild(next);
     row.appendChild(restart);
     row.appendChild(count);
@@ -175,9 +181,15 @@
     var steps = anim.steps || [];
     var at = 0;
 
-    /* 描線：先設 dash，再放行；jsdom 沒有 getTotalLength 就只淡入 */
-    function drawOn(node, delay) {
+    /* 描線：先設 dash，再放行；jsdom 沒有 getTotalLength 就只淡入。
+       instant：回看時一次過畫好，不再逐格動。 */
+    function drawOn(node, delay, instant) {
       var len = typeof node.getTotalLength === "function" ? node.getTotalLength() : 0;
+      if (instant) {
+        node.style.opacity = "1";
+        if (len) node.style.strokeDashoffset = "0";
+        return;
+      }
       if (len) {
         node.style.strokeDasharray = len;
         node.style.strokeDashoffset = len;
@@ -189,25 +201,29 @@
       }, delay || 0);
     }
 
-    function ray(a, b, colour, delay) {
+    function ray(a, b, colour, delay, instant) {
       var A = screen(pts[a]), B = screen(pts[b]);
       if (!A || !B) return;
       var ln = el("line", { class: "cg-ray " + colour, x1: A.x, y1: A.y, x2: B.x, y2: B.y });
       gStep.appendChild(ln);
-      drawOn(ln, delay);
+      drawOn(ln, delay, instant);
     }
 
-    function label(txt, T, delay) {
+    function label(txt, T, delay, instant) {
       var t = el("text", {
         class: "cg-val " + (T.colour || "claim"), x: T.label.x, y: T.label.y, "text-anchor": "middle"
       }, txt);
       gStep.appendChild(t);
+      if (instant) {
+        t.style.opacity = "1";
+        return t;
+      }
       t.style.opacity = "0";
       setTimeout(function () { t.style.opacity = "1"; }, delay || 0);
       return t;
     }
 
-    function draw(i) {
+    function draw(i, instant) {
       var st = steps[i] || {};
 
       (st.show || []).forEach(function (name) {
@@ -220,7 +236,7 @@
         if (!a || !b) return;
         var ln = el("line", { class: "cg-draw " + (L[2] || "given"), x1: a.x, y1: a.y, x2: b.x, y2: b.y });
         gStep.appendChild(ln);
-        drawOn(ln, 0);
+        drawOn(ln, 0, instant);
       });
 
       (st.ticks || []).forEach(function (t) {
@@ -233,26 +249,30 @@
           class: "cg-tick", x1: mx - nx * 5, y1: my - ny * 5, x2: mx + nx * 5, y2: my + ny * 5
         });
         gStep.appendChild(k);
+        if (instant) {
+          k.style.opacity = "1";
+          return;
+        }
         k.style.opacity = "0";
-        setTimeout(function () { k.style.opacity = "1"; }, 60);
+        setTimeout(function () { k.style.opacity = "1"; }, 140);
       });
 
+      /* 每一個角：先描兩條射線，再畫角弧，最後才寫上數值（慢一點，睇得清） */
       (st.arcs || []).forEach(function (A, j) {
         var v = screen(pts[A[0]]), p1 = screen(pts[A[1]]), p2 = screen(pts[A[2]]);
         if (!v || !p1 || !p2) return;
         var colour = A[4] || "claim";
-        var lead = j * 260;
-        /* 先描角的兩條射線，再畫角弧（跟題目播放器同一次序） */
+        var lead = j * 520;
         if (!st.noRays) {
-          ray(A[0], A[1], colour, lead);
-          ray(A[0], A[2], colour, lead + 110);
+          ray(A[0], A[1], colour, lead, instant);
+          ray(A[0], A[2], colour, lead + 300, instant);
         }
         var radius = A[5] || 26;
         var geo = arcPath(v, p1, p2, radius);
         var path = el("path", { class: "cg-arc " + colour, d: geo.d });
         gStep.appendChild(path);
-        drawOn(path, lead + 220);
-        if (A[3]) label(A[3], { label: geo.label, colour: colour }, lead + 340);
+        drawOn(path, lead + 560, instant);
+        if (A[3]) label(A[3], { label: geo.label, colour: colour }, lead + 900, instant);
       });
 
       (st.circleArcs || []).forEach(function (C, j) {
@@ -261,14 +281,18 @@
         var avoid = C[2] ? screen(pts[C[2]]) : null;
         var p = el("path", { class: "cg-arc " + (C[3] || "accent"), d: circuitArc(A, B, avoid) });
         gStep.appendChild(p);
-        drawOn(p, 120 + j * 120);
+        drawOn(p, 260 + j * 220, instant);
       });
 
       (st.notes || []).forEach(function (N) {
         var t = el("text", { class: "cg-note", x: N[1], y: N[2], "text-anchor": "middle" }, N[0]);
         gStep.appendChild(t);
+        if (instant) {
+          t.style.opacity = "1";
+          return;
+        }
         t.style.opacity = "0";
-        setTimeout(function () { t.style.opacity = "1"; }, 160);
+        setTimeout(function () { t.style.opacity = "1"; }, 420);
       });
     }
 
@@ -284,9 +308,28 @@
       } catch (e) { /* 退回純文字 */ }
     }
 
+    /* 重畫到第 n 步（n = 已畫的步數）：回看與重播都用這一個 */
+    function renderUpTo(n) {
+      gStep.innerHTML = "";
+      Object.keys(pointGroups).forEach(function (k) {
+        pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
+      });
+      for (var i = 0; i < n; i++) draw(i, true);
+      if (n > 0) {
+        setSay(sayZh, steps[n - 1].zh);
+        setSay(sayEn, steps[n - 1].en);
+      } else {
+        setSay(sayZh, "");
+        setSay(sayEn, "");
+      }
+      at = n;
+      update();
+    }
+
     function update() {
       next.textContent = at >= steps.length ? "完成 Done" : "下一步 Next step →";
       next.disabled = at >= steps.length;
+      back.disabled = at === 0;
       restart.disabled = at === 0;
       count.textContent = at + " / " + steps.length;
     }
@@ -300,16 +343,12 @@
       update();
     };
 
-    restart.onclick = function () {
-      gStep.innerHTML = "";
-      Object.keys(pointGroups).forEach(function (k) {
-        pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
-      });
-      setSay(sayZh, "");
-      setSay(sayEn, "");
-      at = 0;
-      update();
+    back.onclick = function () {
+      if (at <= 0) return;
+      renderUpTo(at - 1);
     };
+
+    restart.onclick = function () { renderUpTo(0); };
 
     update();
     return wrap;
