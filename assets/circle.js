@@ -73,6 +73,17 @@
     return "M" + a.x + " " + a.y + "L" + b.x + " " + b.y + "L" + c.x + " " + c.y;
   }
 
+  /* 平行記號：在線段中點畫一個「>>」 */
+  function parallelPath(a, b) {
+    var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+    var dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1;
+    var ux = dx / d, uy = dy / d, nx = -uy, ny = ux;
+    var s = 6;
+    var p1 = { x: mx - ux * s + nx * s, y: my - uy * s + ny * s };
+    var p3 = { x: mx - ux * s - nx * s, y: my - uy * s - ny * s };
+    return "M" + p1.x + " " + p1.y + "L" + mx + " " + my + "L" + p3.x + " " + p3.y;
+  }
+
   /* 圓周上由 A 到 B 的一段弧（screen 座標）；有 avoid 就選不穿越它的那一邊 */
   function circuitArc(a, b, avoid) {
     function heading(p) { return Math.atan2(p.y - CY, p.x - CX); }
@@ -252,6 +263,15 @@
         ray(R[0], R[1], R[2] || "claim", j * 220, instant);
       });
 
+      /* 平行記號：一組線段各畫一個「>>」 */
+      (st.parallel || []).forEach(function (S, j) {
+        var A = screen(pts[S[0]]), B = screen(pts[S[1]]);
+        if (!A || !B) return;
+        var p = el("path", { class: "cg-par", d: parallelPath(A, B) });
+        gStep.appendChild(p);
+        drawOn(p, 280 + j * 180, instant);
+      });
+
       (st.lines || []).forEach(function (L) {
         var a = screen(pts[L[0]]), b = screen(pts[L[1]]);
         if (!a || !b) return;
@@ -291,6 +311,10 @@
         }
         var radius = A[5] || 26;
         var isRight = A[3] === "90°" || A[6] === "sq";
+        /* 同一個頂點、同一個半徑 = 同一個位置：新的角會取代舊的（例如 56° 拆成 26° + 30°） */
+        Array.prototype.slice.call(
+          gStep.querySelectorAll('[data-angle="' + A[0] + '"][data-r="' + radius + '"]')
+        ).forEach(function (n) { n.parentNode.removeChild(n); });
         var path, geo;
         if (isRight) {
           path = el("path", { class: "cg-arc " + colour, d: squarePath(v, p1, p2, 13) });
@@ -299,11 +323,13 @@
           path = el("path", { class: "cg-arc " + colour, d: geo.d });
         }
         path.setAttribute("data-angle", A[0]);
+        path.setAttribute("data-r", radius);
         gStep.appendChild(path);
         drawOn(path, lead + 560, instant);
         if (A[3] && !isRight) {
           var lab = label(A[3], { label: geo.label, colour: colour }, lead + 900, instant);
           lab.setAttribute("data-angle", A[0]);
+          lab.setAttribute("data-r", radius);
         }
       });
 

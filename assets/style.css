@@ -1465,6 +1465,7 @@ body[data-lang="both"] .demo-shell h1 .l-en {
 .cg-arc.claim { stroke: #4f46e5; }
 .cg-arc.accent { stroke: #0f766e; }
 .cg-tick { stroke: var(--text); stroke-width: 1.2; }
+.cg-par { fill: none; stroke: var(--text); stroke-width: 1.4; stroke-linecap: round; transition: opacity .3s ease, stroke-dashoffset .5s ease; }
 .cg-ray { stroke-width: 2.4; stroke-linecap: round; transition: opacity .3s ease, stroke-dashoffset .5s cubic-bezier(.35,.65,.3,1); }
 .cg-ray.given { stroke: #e2660a; }
 .cg-ray.claim { stroke: #4f46e5; }
