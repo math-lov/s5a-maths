@@ -208,6 +208,20 @@ def check_question(q: dict, where: str, fig_ids: set, need_input: bool = False) 
         if fid not in fig_ids:
             err("S8 %s：引用了不存在的圖 %s" % (tag, fid))
 
+    # S19 逐步圖解：題目要求的那隻角要在圖上一開始就標出來（證明題除外）
+    anim = q.get("anim")
+    if isinstance(anim, dict):
+        goal = anim.get("goal")
+        chars = "".join(str((p or {}).get("en") or "") + str((p or {}).get("zh") or "")
+                        for p in (q.get("parts") or []))
+        proof = bool(re.search(r"\bprove\b|證明", chars, re.I))
+        if goal:
+            for a in goal:
+                if not isinstance(a, list) or len(a) < 3:
+                    err("S19 %s：anim.goal 每項要係 [頂點, 點1, 點2, 標籤]" % tag)
+        elif not proof:
+            warn("S19 %s：anim 沒有 goal（題目要求的那隻角應該一開始就標出來）" % tag)
+
     sol = q.get("solution") or {}
     steps = sol.get("steps") or []
     if not steps:

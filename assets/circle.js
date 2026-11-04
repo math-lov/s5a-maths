@@ -123,7 +123,11 @@
     /* 每一步「正在講」的兩條線放在 gPulse：下一步會清走，底圖的線保持中性色，
        不會愈疊愈花（舊做法會把弦、半徑逐隻色染上去）。 */
     var gPulse = el("g", { class: "cg-pulse" });
+    /* 題目要求的那隻角：一開始就畫，之後每一步都留住（虛線），
+       令學生由「已知」一路看着「想求」的那隻角。 */
+    var gGoal = el("g", { class: "cg-goal" });
     svg.appendChild(gBase);
+    svg.appendChild(gGoal);
     svg.appendChild(gStep);
     svg.appendChild(gPulse);
 
@@ -425,9 +429,35 @@
     }
 
     /* 重畫到第 n 步（n = 已畫的步數）：回看與重播都用這一個 */
+    /* 目標角：anim.goal 由第一步就在；之後任何一拍寫 goal 就由那一拍起加上去 */
+    function goalArcs(list) {
+      (list || []).forEach(function (A) {
+        var v = screen(pts[A[0]]), p1 = screen(pts[A[1]]), p2 = screen(pts[A[2]]);
+        if (!v || !p1 || !p2) return;
+        var colour = A[4] || "goal";
+        var radius = A[5] || 46;
+        var geo = arcPath(v, p1, p2, radius);
+        gGoal.appendChild(el("path", { class: "cg-goal-arc " + colour, d: geo.d }));
+        if (A[3]) {
+          gGoal.appendChild(el("text", {
+            class: "cg-goal-val " + colour, x: geo.label.x, y: geo.label.y, "text-anchor": "middle"
+          }, A[3]));
+        }
+      });
+    }
+
+    function syncGoals(n) {
+      gGoal.innerHTML = "";
+      goalArcs(anim.goal);
+      for (var i = 0; i < n; i++) {
+        if (steps[i] && steps[i].goal) goalArcs(steps[i].goal);
+      }
+    }
+
     function renderUpTo(n) {
       gStep.innerHTML = "";
       gPulse.innerHTML = "";
+      syncGoals(n);
       Object.keys(pointGroups).forEach(function (k) {
         pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
       });
@@ -457,6 +487,7 @@
       setSay(sayZh, steps[at].zh);
       setSay(sayEn, steps[at].en);
       at += 1;
+      syncGoals(at);
       update();
     };
 
@@ -467,6 +498,7 @@
 
     restart.onclick = function () { renderUpTo(0); };
 
+    syncGoals(0);   // 一開頁就把「想求的那隻角」標出來
     update();
     return wrap;
   }

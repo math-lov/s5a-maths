@@ -1547,6 +1547,18 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
 .cg-val.claim { fill: #4338ca; }
 .cg-val.accent { fill: #0f766e; }
 .cg-val.radii { fill: #15803d; }
+/* 題目要求的那隻角：開頁就在，之後每一步都留住（虛線） */
+.cg-goal-arc {
+  fill: none; stroke: #7c8698; stroke-width: 1.6;
+  stroke-dasharray: 5 3; stroke-linecap: round;
+}
+.cg-goal-arc.given { stroke: #e2660a; stroke-dasharray: none; }
+.cg-goal-val {
+  font-family: Georgia, "Times New Roman", serif; font-style: italic;
+  font-size: 13.5px; fill: #5b6675;
+}
+.cg-goal-val.given { fill: #b45309; }
+
 .cg-note { font-size: 11px; fill: var(--muted); }
 .cc .katex, .cg-say .katex { font-size: 1em; }
 .cg-say { margin: 10px auto 0; max-width: 540px; text-align: center; min-height: 38px; }
