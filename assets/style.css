@@ -1555,9 +1555,30 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
 .cg-goal-arc.given { stroke: #e2660a; stroke-dasharray: none; }
 .cg-goal-val {
   font-family: Georgia, "Times New Roman", serif; font-style: italic;
-  font-size: 13.5px; fill: #5b6675;
+  font-size: 12px; fill: #5b6675;
 }
 .cg-goal-val.given { fill: #b45309; }
+
+/* 最後一步：角先閃一閃，然後才落答案 */
+@keyframes cgShine {
+  0%   { stroke-width: 1.8; filter: none; }
+  25%  { stroke-width: 4; filter: drop-shadow(0 0 5px rgba(226, 102, 10, .9)); }
+  100% { stroke-width: 1.8; filter: none; }
+}
+.cg-shine { animation: cgShine 1.1s ease-in-out 2; }
+
+@keyframes cgPop {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.cg-answer {
+  font-family: Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 17px;
+  fill: #b45309;
+  opacity: 0;
+  animation: cgPop .45s ease-out both;
+}
 
 .cg-note { font-size: 11px; fill: var(--muted); }
 .cc .katex, .cg-say .katex { font-size: 1em; }

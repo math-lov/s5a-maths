@@ -294,6 +294,13 @@
       return k;
     }
 
+    /* 答案牌：圖底中央寫「x = 160°」這種結論，閃完之後才出現 */
+    function answerBadge(txt) {
+      gStep.appendChild(el("text", {
+        class: "cg-answer", x: SIZE / 2, y: SIZE - 10, "text-anchor": "middle"
+      }, txt));
+    }
+
     function label(txt, T, delay, instant) {
       var t = el("text", {
         class: "cg-val " + (T.colour || "claim"), x: T.label.x, y: T.label.y, "text-anchor": "middle"
@@ -357,6 +364,7 @@
 
       /* 每一個角：先描兩條射線，再畫角弧，最後才寫上數值（慢一點，睇得清）。
          直角（標籤剛好是 90°）改用直角符號，跟課本一致。 */
+      var arcsDrawn = [];
       (st.arcs || []).forEach(function (A, j) {
         var v = screen(pts[A[0]]), p1 = screen(pts[A[1]]), p2 = screen(pts[A[2]]);
         if (!v || !p1 || !p2) return;
@@ -382,6 +390,7 @@
         path.setAttribute("data-angle", A[0]);
         path.setAttribute("data-r", radius);
         gStep.appendChild(path);
+        arcsDrawn.push(path);
         drawOn(path, lead + 560, instant);
         if (A[3] && !isRight) {
           var lab = label(A[3], { label: geo.label, colour: colour }, lead + 900, instant);
@@ -389,6 +398,20 @@
           lab.setAttribute("data-r", radius);
         }
       });
+
+      /* 最後一步：答案角先閃兩下，靜下來才把答案寫出來 */
+      if (st.final) {
+        if (!instant) {
+          arcsDrawn.forEach(function (p) { p.classList.add("cg-shine"); });
+        }
+        if (st.answer) {
+          if (instant) {
+            answerBadge(st.answer);
+          } else {
+            setTimeout(function () { answerBadge(st.answer); }, 1300);
+          }
+        }
+      }
 
       (st.circleArcs || []).forEach(function (C, j) {
         var A = screen(pts[C[0]]), B = screen(pts[C[1]]);
@@ -438,7 +461,7 @@
         var v = screen(pts[A[0]]), p1 = screen(pts[A[1]]), p2 = screen(pts[A[2]]);
         if (!v || !p1 || !p2) return;
         var colour = A[4] || "goal";
-        var radius = A[5] || 46;
+        var radius = A[5] || 34;
         var geo = arcPath(v, p1, p2, radius);
         gGoal.appendChild(el("path", { class: "cg-goal-arc " + colour, d: geo.d }));
         if (A[3]) {

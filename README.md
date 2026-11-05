@@ -219,6 +219,8 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 * 一次只走一步，按鈕是「下一步 Next step」；走完變「完成 Done」，「重播 Restart」由第一步重來。
   不自動播放（與全站一致）。
 * 逐步圖解是**輔助**，正式的寫法仍然是 `solution.steps`（理由寫在括號內）。
+* **收尾動畫**：最後一步寫 `"final": true` 與 `"answer": "x = 160°"`，答案角會先閃兩下，
+  然後圖底中央才彈出答案牌。
 * **定理簡稱（`ref`）**：每一拍寫 `"ref": "∠s in the same segment"`，會印在字幕下面做一行
   小字草書——跟課本一樣，用的時候順手寫出理由（`∠ at centre twice ∠ at ce`、`∠ in semi-circle`、
   `base ∠s, isos. △`、`ext. ∠ of △`、`alt. ∠s, AB ∥ CD`、`∠ sum of △` 等）。

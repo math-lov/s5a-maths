@@ -1028,7 +1028,9 @@
           34
          ]
         ],
-        "ref": "∠ at centre twice ∠ at ce"
+        "ref": "∠ at centre twice ∠ at ce",
+        "final": true,
+        "answer": "x = 160°"
        }
       ],
       "goal": [
@@ -1186,7 +1188,9 @@
           "claim"
          ]
         ],
-        "ref": "∠ at centre twice ∠ at ce"
+        "ref": "∠ at centre twice ∠ at ce",
+        "final": true,
+        "answer": "x = 95°"
        }
       ],
       "goal": [
@@ -1381,7 +1385,9 @@
           34
          ]
         ],
-        "ref": "ext. ∠ of △"
+        "ref": "ext. ∠ of △",
+        "final": true,
+        "answer": "y = 99°"
        }
       ],
       "goal": [
@@ -1531,7 +1537,9 @@
           392
          ]
         ],
-        "ref": "∠ sum of △"
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "x = 18"
        }
       ],
       "goal": [
@@ -1723,7 +1731,9 @@
           30
          ]
         ],
-        "ref": "∠ sum of △"
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "y = 28°"
        }
       ],
       "goal": [
@@ -1925,7 +1935,9 @@
           30
          ]
         ],
-        "ref": "∠ sum of △"
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "z = 26°"
        }
       ],
       "goal": [
@@ -2125,7 +2137,9 @@
           28
          ]
         ],
-        "ref": "ext. ∠ of △"
+        "ref": "ext. ∠ of △",
+        "final": true,
+        "answer": "x = 42°"
        }
       ],
       "goal": [
@@ -2331,7 +2345,9 @@
           34
          ]
         ],
-        "ref": "∠ sum of △"
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "x = 100°"
        }
       ],
       "goal": [
@@ -2563,7 +2579,9 @@
           392
          ]
         ],
-        "ref": "∠ sum of △"
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "x = 50°"
        }
       ],
       "goal": [
@@ -2809,7 +2827,9 @@
          "A",
          "C"
         ],
-        "ref": "radii, isos. △"
+        "ref": "radii, isos. △",
+        "final": true,
+        "answer": "∠OAC = 30°"
        }
       ],
       "goal": [
@@ -3065,7 +3085,9 @@
           "claim"
          ]
         ],
-        "ref": "∠ at centre twice ∠ at ce"
+        "ref": "∠ at centre twice ∠ at ce",
+        "final": true,
+        "answer": "∠ABC = 128°"
        }
       ],
       "goal": [
@@ -3321,7 +3343,9 @@
           "claim"
          ]
         ],
-        "ref": "radii, isos. △"
+        "ref": "radii, isos. △",
+        "final": true,
+        "answer": "∠ODC = 48°"
        }
       ],
       "semi": [
@@ -3573,7 +3597,9 @@
           30
          ]
         ],
-        "ref": "adj. ∠s"
+        "ref": "adj. ∠s",
+        "final": true,
+        "answer": "∠BCE = 48°"
        }
       ],
       "goal": [
@@ -3768,7 +3794,9 @@
           "claim"
          ]
         ],
-        "ref": "∠ sum of △"
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "∠ABD = 32°"
        }
       ],
       "semi": [
@@ -4003,7 +4031,9 @@
           "claim"
          ]
         ],
-        "ref": "∠ sum of △"
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "∠CAD = 24°"
        }
       ],
       "semi": [
@@ -4227,7 +4257,9 @@
           396
          ]
         ],
-        "ref": "AAS"
+        "ref": "AAS",
+        "final": true,
+        "answer": "AD = BC"
        }
       ]
      },
@@ -4464,7 +4496,9 @@
           392
          ]
         ],
-        "ref": "converse of ∠ in semi-circle"
+        "ref": "converse of ∠ in semi-circle",
+        "final": true,
+        "answer": "∠BAD = 100°, not a diameter"
        }
       ],
       "goal": [
@@ -4716,7 +4750,9 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "final": true,
+        "answer": "∠FAC = 26°"
        }
       ],
       "goal": [
@@ -5011,7 +5047,9 @@
           28
          ]
         ],
-        "ref": "∠s in the same segment"
+        "ref": "∠s in the same segment",
+        "final": true,
+        "answer": "∠BCA = 40°"
        }
       ],
       "goal": [
@@ -5284,7 +5322,9 @@
           396
          ]
         ],
-        "ref": "same angle"
+        "ref": "same angle",
+        "final": true,
+        "answer": "∠BAC = ∠OCD"
        }
       ],
       "goal": [
