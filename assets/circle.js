@@ -56,16 +56,20 @@
   }
 
   /* 角度弧：在頂點 v 上，由 p1 掃到 p2 */
-  function arcPath(v, p1, p2, radius) {
+  function arcPath(v, p1, p2, radius, reflex) {
     var u = unit({ x: p1.x - v.x, y: p1.y - v.y });
     var w = unit({ x: p2.x - v.x, y: p2.y - v.y });
     var a = { x: v.x + u.x * radius, y: v.y + u.y * radius };
     var b = { x: v.x + w.x * radius, y: v.y + w.y * radius };
     var cr = u.x * w.y - u.y * w.x;
-    var d = "M" + a.x + " " + a.y + "A" + radius + " " + radius + " 0 0 " +
-      (cr > 0 ? 1 : 0) + " " + b.x + " " + b.y;
+    var flag = cr > 0 ? 1 : 0;
+    var large = 0;
+    if (reflex) { flag = 1 - flag; large = 1; }   // 反角：畫另一邊、用大弧
+    var d = "M" + a.x + " " + a.y + "A" + radius + " " + radius + " 0 " + large + " " +
+      flag + " " + b.x + " " + b.y;
     var sum = { x: u.x + w.x, y: u.y + w.y };
     var bis = Math.hypot(sum.x, sum.y) < 0.02 ? { x: -u.y, y: u.x } : unit(sum);
+    if (reflex) bis = { x: -bis.x, y: -bis.y };    // 數值寫在反角那一邊
     return { d: d, label: { x: v.x + bis.x * (radius + 16), y: v.y + bis.y * (radius + 16) + 4 } };
   }
 
@@ -384,7 +388,7 @@
         if (isRight) {
           path = el("path", { class: "cg-arc " + colour, d: squarePath(v, p1, p2, 13) });
         } else {
-          geo = arcPath(v, p1, p2, radius);
+          geo = arcPath(v, p1, p2, radius, A[6] === "reflex");
           path = el("path", { class: "cg-arc " + colour, d: geo.d });
         }
         path.setAttribute("data-angle", A[0]);

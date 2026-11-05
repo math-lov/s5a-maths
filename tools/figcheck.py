@@ -93,6 +93,8 @@ def check_file(path):
                     if not all(k in pts for k in (v, p1, p2)):
                         continue
                     real = ang(pts[p1], pts[v], pts[p2])
+                    if len(a) > 6 and a[6] == "reflex" and real is not None:
+                        real = 360.0 - real      # 第 7 個元素寫 reflex：量的是反角
                     m = NUM.match(str(lab))
                     if m:
                         want = float(m.group(1))

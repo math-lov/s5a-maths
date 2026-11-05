@@ -1159,14 +1159,27 @@
        {
         "zh": "反角 $\\angle AOC = 360^\\circ - 170^\\circ = 190^\\circ$。",
         "en": "Reflex $\\angle AOC = 360^\\circ - 170^\\circ = 190^\\circ$.",
-        "notes": [
+        "notes": [],
+        "ref": "∠s at a pt.",
+        "arcs": [
          [
-          "reflex ∠AOC = 190°",
-          210,
-          388
+          "O",
+          "A",
+          "C",
+          "190°",
+          "claim",
+          36,
+          "reflex"
          ]
         ],
-        "ref": "∠s at a pt."
+        "circleArcs": [
+         [
+          "A",
+          "C",
+          "B",
+          "accent"
+         ]
+        ]
        },
        {
         "zh": "$B$ 在較小的弧上，所以 $x$ 對着的是反角：$x = 190^\\circ \\div 2 = 95^\\circ$。",
@@ -3036,14 +3049,19 @@
        {
         "zh": "但 $B$ 在較小的弧 $AC$ 上，$\\angle ABC$ 對着的是反角：$360^\\circ - 104^\\circ = 256^\\circ$。",
         "en": "$B$ lies on the minor arc $AC$, so $\\angle ABC$ stands on the reflex angle: $360^\\circ - 104^\\circ = 256^\\circ$.",
-        "notes": [
+        "notes": [],
+        "ref": "∠s at a pt.",
+        "arcs": [
          [
-          "reflex ∠AOC = 360° − 104° = 256°",
-          206,
-          326
+          "O",
+          "A",
+          "C",
+          "256°",
+          "claim",
+          36,
+          "reflex"
          ]
-        ],
-        "ref": "∠s at a pt."
+        ]
        },
        {
         "zh": "把較大的弧 $AC$ 畫出來 —— 這就是 $\\angle ABC$ 所對的弧。",
