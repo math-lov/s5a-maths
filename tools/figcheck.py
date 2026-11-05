@@ -45,7 +45,9 @@ def build_points(anim):
         if s.get("centre"):
             pts[name] = (0.0, 0.0)
         elif "at" in s:
-            pts[name] = polar(s["at"])
+            u = polar(s["at"])
+            k = s.get("r", 1)          # r：圓外的點
+            pts[name] = (u[0] * k, u[1] * k)
     for name in specs:
         s = specs[name]
         if "cross" in s:

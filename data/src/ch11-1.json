@@ -5903,6 +5903,249 @@
      }
     }
    ]
+  },
+  {
+   "id": "L2",
+   "title": {
+    "zh": "進階練習 · Level 2",
+    "en": "Level 2"
+   },
+   "marks": 3,
+   "questions": [
+    {
+     "id": "ch11-1-l2-23",
+     "code": "23",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $AD$ is a diameter of the circle $ABCD$. $AD$ produced and $BC$ produced meet at $E$. It is given that $\\angle OAB = 50^\\circ$ and $\\angle OEC = 26^\\circ$. Find $\\angle OCB$.",
+      "zh": "圖中 $AD$ 是圓 $ABCD$ 的直徑，$AD$ 與 $BC$ 延長後交於 $E$。已知 $\\angle OAB = 50^\\circ$、$\\angle OEC = 26^\\circ$，求 $\\angle OCB$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle OCB$",
+       "zh": "$\\angle OCB$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle OCB = 54^\\circ",
+       "note": {
+        "zh": "兩次等腰：△OAB 與 △OBC",
+        "en": "Two isosceles triangles"
+       }
+      }
+     ],
+     "anim": {
+      "cx": 250,
+      "cy": 190,
+      "r": 100,
+      "goal": [
+       [
+        "C",
+        "O",
+        "B",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 45
+       },
+       "B": {
+        "at": 125
+       },
+       "C": {
+        "at": 197
+       },
+       "D": {
+        "at": 225
+       },
+       "E": {
+        "cross": [
+         "A",
+         "D",
+         "B",
+         "C"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "B",
+        "E"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle OAB = 50^\\circ$、$\\angle OEC = 26^\\circ$；$AD$ 是直徑，所以 $O$ 在 $AE$ 上。",
+        "en": "Given $\\angle OAB = 50^\\circ$ and $\\angle OEC = 26^\\circ$; $AD$ is a diameter, so $O$ lies on $AE$.",
+        "arcs": [
+         [
+          "A",
+          "O",
+          "B",
+          "50°",
+          "given",
+          26
+         ],
+         [
+          "E",
+          "O",
+          "C",
+          "26°",
+          "given",
+          30
+         ]
+        ]
+       },
+       {
+        "zh": "$OA = OB$（半徑），所以 $\\triangle OAB$ 等腰：$\\angle OBA = \\angle OAB = 50^\\circ$。",
+        "en": "$OA = OB$ (radii), so $\\triangle OAB$ is isosceles and $\\angle OBA = 50^\\circ$.",
+        "radii": [
+         "A",
+         "B"
+        ],
+        "arcs": [
+         [
+          "B",
+          "O",
+          "A",
+          "50°",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "radii, isos. △"
+       },
+       {
+        "zh": "在 $\\triangle ABE$ 中：$\\angle ABE = 180^\\circ - 50^\\circ - 26^\\circ = 104^\\circ$，所以 $\\angle OBC = 104^\\circ - 50^\\circ = 54^\\circ$。",
+        "en": "In $\\triangle ABE$: $\\angle ABE = 180^\\circ - 50^\\circ - 26^\\circ = 104^\\circ$, so $\\angle OBC = 54^\\circ$.",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "E",
+          "104°",
+          "claim",
+          28
+         ],
+         [
+          "B",
+          "O",
+          "C",
+          "54°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "∠ sum of △"
+       },
+       {
+        "zh": "$OB = OC$（半徑），所以 $\\angle OCB = \\angle OBC = 54^\\circ$。",
+        "en": "$OB = OC$ (radii), so $\\angle OCB = \\angle OBC = 54^\\circ$.",
+        "radii": [
+         "B",
+         "C"
+        ],
+        "arcs": [
+         [
+          "C",
+          "O",
+          "B",
+          "54°",
+          "claim",
+          30
+         ]
+        ],
+        "ref": "radii, isos. △",
+        "final": true,
+        "answer": "∠OCB = 54°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△OAB 等腰",
+         "en": "△OAB is isosceles"
+        },
+        "math": "\\angle OBA = 50^\\circ",
+        "zh": "因為 $OA$ 與 $OB$ 都是半徑，所以三角形 $OAB$ 是等腰三角形，兩隻底角相等，得 $\\angle OBA = \\angle OAB = 50^\\circ$。",
+        "en": "$OA = OB$ (radii), so $\\angle OBA = \\angle OAB = 50^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△ABE 的內角和",
+         "en": "Angle sum of △ABE"
+        },
+        "math": "\\angle OBC = 54^\\circ",
+        "zh": "因為 $E$、$A$、$O$、$D$ 共線，所以 $\\angle BAE = \\angle OAB = 50^\\circ$。在三角形 $ABE$ 中，$\\angle ABE = 180^\\circ - 50^\\circ - 26^\\circ = 104^\\circ$，減去 $\\angle OBA$ 便得 $\\angle OBC = 54^\\circ$。",
+        "en": "$E$, $A$, $O$, $D$ are collinear, so $\\angle BAE = 50^\\circ$. In $\\triangle ABE$, $\\angle ABE = 104^\\circ$, so $\\angle OBC = 54^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△OBC 等腰",
+         "en": "△OBC is isosceles"
+        },
+        "math": "\\angle OCB = 54^\\circ",
+        "zh": "最後用半徑相等：$OB = OC$，所以三角形 $OBC$ 等腰，兩隻底角相等，$\\angle OCB = \\angle OBC = 54^\\circ$。",
+        "en": "$OB = OC$ (radii), so $\\angle OCB = \\angle OBC = 54^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "忘記 $O$ 在 $AE$ 上（$AD$ 是直徑），以為 $\\angle BAE$ 要另外求。",
+        "en": "Forgetting that O lies on AE because AD is a diameter."
+       }
+      ],
+      "tip": {
+       "zh": "圓心在直徑上：把「已知角」搬到三角形的一邊，再用兩次等腰。",
+       "en": "The centre lies on the diameter: move the given angle into a triangle, then use radii twice."
+      }
+     }
+    }
+   ]
   }
  ]
 }

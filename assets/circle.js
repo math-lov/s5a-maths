@@ -142,7 +142,11 @@
     Object.keys(specs).forEach(function (name) {
       var s = specs[name] || {};
       if (s.centre) { pts[name] = { x: 0, y: 0 }; centreName = name; }
-      else if (typeof s.at === "number") pts[name] = polar(s.at);
+      else if (typeof s.at === "number") {
+        var u = polar(s.at);
+        var k = (typeof s.r === "number") ? s.r : 1;   // r：圓外的點（例如 BC 延長線上的 D）
+        pts[name] = { x: u.x * k, y: u.y * k };
+      }
     });
     Object.keys(specs).forEach(function (name) {
       var s = specs[name] || {};
