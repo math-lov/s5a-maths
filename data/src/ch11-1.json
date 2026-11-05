@@ -913,7 +913,7 @@
     "zh": "基礎練習 · Level 1",
     "en": "Level 1"
    },
-   "marks": 61,
+   "marks": 69,
    "questions": [
     {
      "id": "ch11-1-l1-1",
@@ -5418,6 +5418,487 @@
       "tip": {
        "zh": "證明兩角相等：把它們各自換成同一隻角（這裡是 $\\angle BDC$）。",
        "en": "To prove two angles equal, turn each into the same angle — here ∠BDC."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-21",
+     "code": "21",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABCD$ is a circle. $AC$ and $BD$ intersect at $E$. (a) Prove that $\\triangle ABE \\sim \\triangle DCE$. (b) It is given that $AE = 12$ cm, $CE = 24$ cm and $DE = 18$ cm. Find $BE$.",
+      "zh": "圖中 $ABCD$ 是圓，$AC$ 與 $BD$ 交於 $E$。(a) 證明 $\\triangle ABE \\sim \\triangle DCE$。(b) 已知 $AE = 12$ cm、$CE = 24$ cm、$DE = 18$ cm，求 $BE$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove that $\\triangle ABE \\sim \\triangle DCE$.",
+       "zh": "證明 $\\triangle ABE \\sim \\triangle DCE$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find $BE$.",
+       "zh": "求 $BE$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\triangle ABE \\sim \\triangle DCE",
+       "input": null,
+       "note": {
+        "zh": "AAA",
+        "en": "AAA"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "BE = 16\\text{ cm}",
+       "note": {
+        "zh": "對應邊成比例",
+        "en": "Corresponding sides"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 90
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 270
+       },
+       "D": {
+        "at": 10
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle ABD$ 與 $\\angle ACD$ 都對着弧 $AD$。",
+        "en": "$\\angle ABD$ and $\\angle ACD$ both stand on arc $AD$.",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "D",
+          "",
+          "given",
+          22
+         ],
+         [
+          "C",
+          "A",
+          "D",
+          "",
+          "given",
+          22
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "$\\angle BAC$ 與 $\\angle BDC$ 都對着弧 $BC$，所以相等。",
+        "en": "$\\angle BAC$ and $\\angle BDC$ both stand on arc $BC$, so they are equal.",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "",
+          "claim",
+          24
+         ],
+         [
+          "D",
+          "B",
+          "C",
+          "",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "$\\angle AEB = \\angle CED$（對頂角），所以 $\\triangle ABE \\sim \\triangle DCE$（AAA）。",
+        "en": "$\\angle AEB = \\angle CED$ (vertically opposite), so $\\triangle ABE \\sim \\triangle DCE$ (AAA).",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "B",
+          "x",
+          "claim",
+          20
+         ],
+         [
+          "E",
+          "C",
+          "D",
+          "x",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "vert. opp. ∠s, AAA"
+       },
+       {
+        "zh": "對應邊成比例：$\\tfrac{AE}{DE} = \\tfrac{BE}{CE}$，即 $\\tfrac{12}{18} = \\tfrac{BE}{24}$。",
+        "en": "Corresponding sides: $\\tfrac{AE}{DE} = \\tfrac{BE}{CE}$, that is $\\tfrac{12}{18} = \\tfrac{BE}{24}$.",
+        "ticks": [
+         [
+          "A",
+          "E"
+         ],
+         [
+          "D",
+          "E"
+         ]
+        ],
+        "ref": "corr. sides, ~ △s"
+       },
+       {
+        "zh": "所以 $BE = 16$ cm。",
+        "en": "So $BE = 16$ cm.",
+        "final": true,
+        "answer": "BE = 16 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形（一）",
+         "en": "Same segment (1)"
+        },
+        "math": "\\angle ABD = \\angle ACD",
+        "zh": "$\\angle ABD$ 與 $\\angle ACD$ 都對着弧 $AD$，所以相等。",
+        "en": "$\\angle ABD$ and $\\angle ACD$ stand on arc $AD$, so they are equal.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形（二）＋對頂角",
+         "en": "Same segment (2) and vertically opposite"
+        },
+        "math": "\\angle BAC = \\angle BDC,\\ \\angle AEB = \\angle CED",
+        "zh": "$\\angle BAC = \\angle BDC$（同對弧 $BC$），$\\angle AEB = \\angle CED$（對頂角），所以兩三角形相似（AAA）。",
+        "en": "$\\angle BAC = \\angle BDC$ (arc $BC$) and $\\angle AEB = \\angle CED$ (vertically opposite), so the triangles are similar (AAA).",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "對應邊成比例",
+         "en": "Corresponding sides"
+        },
+        "math": "\\frac{AE}{DE} = \\frac{BE}{CE}",
+        "zh": "由相似，對應邊成比例：$\\tfrac{12}{18} = \\tfrac{BE}{24}$。",
+        "en": "From the similarity, corresponding sides are proportional: $\\tfrac{12}{18} = \\tfrac{BE}{24}$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "解出 $BE$",
+         "en": "Solve for BE"
+        },
+        "math": "BE = 16\\text{ cm}",
+        "zh": "由相似三角形，對應邊成比例：$\\tfrac{AE}{DE} = \\tfrac{BE}{CE}$，即 $\\tfrac{12}{18} = \\tfrac{BE}{24}$。",
+        "en": "$BE = \\tfrac{12 \\times 24}{18} = 16$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\triangle ABE$ 與 $\\triangle DCE$ 的對應頂點寫錯（$A \\leftrightarrow D$、$B \\leftrightarrow C$）。",
+        "en": "Pairing the wrong vertices: A ↔ D and B ↔ C, not A ↔ C."
+       }
+      ],
+      "tip": {
+       "zh": "相交弦的相似三角形：兩對同弓形 ＋ 一對對頂角，之後對應邊成比例。",
+       "en": "Crossing chords give similar triangles: two pairs of same-segment angles plus vertically opposite."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l1-22",
+     "code": "22",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $BC$ is a diameter of the circle $ABCD$. $AC$ and $BD$ intersect at $E$. It is given that $AD \\parallel BC$ and $\\angle ACB = 32^\\circ$. Find $\\angle ACD$.",
+      "zh": "圖中 $BC$ 是圓 $ABCD$ 的直徑，$AC$ 與 $BD$ 交於 $E$。已知 $AD \\parallel BC$ 及 $\\angle ACB = 32^\\circ$，求 $\\angle ACD$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle ACD$",
+       "zh": "$\\angle ACD$",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle ACD = 26^\\circ",
+       "note": {
+        "zh": "內錯角 → 半圓 90° → 同弓形 → 內角和",
+        "en": "Alternate angles, semi-circle, same segment, angle sum"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "C",
+        "A",
+        "D",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "B": {
+        "at": 160
+       },
+       "C": {
+        "at": 340
+       },
+       "A": {
+        "at": 96
+       },
+       "D": {
+        "at": 44
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AD \\parallel BC$，內錯角相等：$\\angle CAD = \\angle ACB = 32^\\circ$。",
+        "en": "$AD \\parallel BC$, so the alternate angles are equal: $\\angle CAD = \\angle ACB = 32^\\circ$.",
+        "parallel": [
+         [
+          "A",
+          "D"
+         ],
+         [
+          "B",
+          "C"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "C",
+          "D",
+          "32°",
+          "given",
+          24
+         ]
+        ],
+        "ref": "alt. ∠s, AD ∥ BC"
+       },
+       {
+        "zh": "$BC$ 是直徑，所以 $\\angle BDC = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$BC$ is a diameter, so $\\angle BDC = 90^\\circ$ (angle in a semi-circle).",
+        "arcs": [
+         [
+          "D",
+          "B",
+          "C",
+          "90°",
+          "given",
+          22
+         ]
+        ],
+        "ref": "∠ in semi-circle"
+       },
+       {
+        "zh": "$\\angle CBD$ 與 $\\angle CAD$ 同對弧 $CD$：$\\angle CBD = 32^\\circ$。",
+        "en": "$\\angle CBD$ and $\\angle CAD$ stand on arc $CD$, so $\\angle CBD = 32^\\circ$.",
+        "circleArcs": [
+         [
+          "C",
+          "D",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "C",
+          "D",
+          "32°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "在 $\\triangle BCD$ 中：$32^\\circ + (32^\\circ + \\angle ACD) + 90^\\circ = 180^\\circ$，所以 $\\angle ACD = 26^\\circ$。",
+        "en": "In $\\triangle BCD$: $32^\\circ + (32^\\circ + \\angle ACD) + 90^\\circ = 180^\\circ$, so $\\angle ACD = 26^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "A",
+          "D",
+          "26°",
+          "claim",
+          30
+         ]
+        ],
+        "final": true,
+        "answer": "∠ACD = 26°",
+        "ref": "∠ sum of △"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "內錯角",
+         "en": "Alternate angles"
+        },
+        "math": "\\angle CAD = 32^\\circ",
+        "zh": "因為 $AD \\parallel BC$，內錯角相等，所以 $\\angle CAD = \\angle ACB = 32^\\circ$。",
+        "en": "$AD \\parallel BC$, so $\\angle CAD = \\angle ACB = 32^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓上的直角",
+         "en": "Right angle in the semi-circle"
+        },
+        "math": "\\angle BDC = 90^\\circ",
+        "zh": "因為 $BC$ 是直徑，所以圓周角 $\\angle BDC = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$BC$ is a diameter, so $\\angle BDC = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形",
+         "en": "Same segment"
+        },
+        "math": "\\angle CBD = \\angle CAD = 32^\\circ",
+        "zh": "兩隻角都對着同一條弧 $CD$（同弓形），所以 $\\angle CBD = \\angle CAD = 32^\\circ$。",
+        "en": "$\\angle CBD$ and $\\angle CAD$ stand on arc $CD$, so $\\angle CBD = 32^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "內角和",
+         "en": "Angle sum"
+        },
+        "math": "\\angle ACD = 180^\\circ - 90^\\circ - 64^\\circ = 26^\\circ",
+        "zh": "在三角形 $BCD$ 中用內角和：$32^\\circ + (32^\\circ + \\angle ACD) + 90^\\circ = 180^\\circ$，所以 $\\angle ACD = 26^\\circ$。",
+        "en": "In $\\triangle BCD$: $32^\\circ + (32^\\circ + \\angle ACD) + 90^\\circ = 180^\\circ$, so $\\angle ACD = 26^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle ACB = 32^\\circ$ 當成 $\\angle ACD$ 的一部分卻忘記 $\\angle BCD = \\angle BCA + \\angle ACD$。",
+        "en": "Forgetting that ∠BCD is split into ∠BCA + ∠ACD."
+       }
+      ],
+      "tip": {
+       "zh": "梯形（$AD \\parallel BC$）加直徑：先搬內錯角，再用半圓 90°，最後一次內角和。",
+       "en": "A trapezium with a diameter: alternate angles, the semi-circle right angle, then one angle sum."
       }
      }
     }
