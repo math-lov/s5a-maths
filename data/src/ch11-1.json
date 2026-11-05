@@ -1012,7 +1012,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "adj. ∠s on st. line"
        },
        {
         "zh": "所以 $x = 2 \\times 80^\\circ = 160^\\circ$（圓心角是圓周角的兩倍）。",
@@ -1026,7 +1027,8 @@
           "claim",
           34
          ]
-        ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
        }
       ],
       "goal": [
@@ -1161,7 +1163,8 @@
           210,
           388
          ]
-        ]
+        ],
+        "ref": "∠s at a pt."
        },
        {
         "zh": "$B$ 在較小的弧上，所以 $x$ 對着的是反角：$x = 190^\\circ \\div 2 = 95^\\circ$。",
@@ -1182,7 +1185,8 @@
           "95°",
           "claim"
          ]
-        ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
        }
       ],
       "goal": [
@@ -1338,7 +1342,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "alt. ∠s, QP ∥ RO"
        },
        {
         "zh": "$\\angle QOR$ 是同弧 $QR$ 的圓心角：$\\angle QOR = 2 \\times 33^\\circ = 66^\\circ$。",
@@ -1360,7 +1365,8 @@
           "claim",
           26
          ]
-        ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
        },
        {
         "zh": "$y$ 是 $\\triangle OSR$ 在 $S$ 的外角：$y = 66^\\circ + 33^\\circ = 99^\\circ$。",
@@ -1374,7 +1380,8 @@
           "claim",
           34
          ]
-        ]
+        ],
+        "ref": "ext. ∠ of △"
        }
       ],
       "goal": [
@@ -1506,7 +1513,8 @@
           "given",
           24
          ]
-        ]
+        ],
+        "ref": "∠ in semi-circle"
        },
        {
         "zh": "已知 $\\angle BAC = 3x$、$\\angle ACB = 2x$。",
@@ -1522,7 +1530,8 @@
           210,
           392
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        }
       ],
       "goal": [
@@ -1683,7 +1692,8 @@
           "given",
           24
          ]
-        ]
+        ],
+        "ref": "∠ in semi-circle"
        },
        {
         "zh": "內錯角：$\\angle QSR = \\angle PQS = 62^\\circ$。",
@@ -1697,7 +1707,8 @@
           "claim",
           28
          ]
-        ]
+        ],
+        "ref": "alt. ∠s, SR ∥ PQ"
        },
        {
         "zh": "在 $\\triangle QRS$：$y = 180^\\circ - 90^\\circ - 62^\\circ = 28^\\circ$。",
@@ -1711,7 +1722,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        }
       ],
       "goal": [
@@ -1882,7 +1894,8 @@
           "claim",
           26
          ]
-        ]
+        ],
+        "ref": "base ∠s, isos. △"
        },
        {
         "zh": "$DF$ 是直徑，所以 $\\angle DEF = 90^\\circ$（半圓上的圓周角）。",
@@ -1896,7 +1909,8 @@
           "given",
           24
          ]
-        ]
+        ],
+        "ref": "∠ in semi-circle"
        },
        {
         "zh": "在 $\\triangle DEF$：$z = 180^\\circ - 90^\\circ - 64^\\circ = 26^\\circ$。",
@@ -1910,7 +1924,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        }
       ],
       "goal": [
@@ -2094,7 +2109,8 @@
           "claim",
           26
          ]
-        ]
+        ],
+        "ref": "∠s in the same segment"
        },
        {
         "zh": "在 $\\triangle ABE$，$\\angle BEC$ 是 $E$ 的外角：$x + 26^\\circ = 68^\\circ$，所以 $x = 42^\\circ$。",
@@ -2108,7 +2124,8 @@
           "claim",
           28
          ]
-        ]
+        ],
+        "ref": "ext. ∠ of △"
        }
       ],
       "goal": [
@@ -2283,7 +2300,8 @@
           "claim",
           26
          ]
-        ]
+        ],
+        "ref": "∠s in the same segment"
        },
        {
         "zh": "$BC = CD$，所以 $\\triangle BCD$ 等腰：$\\angle CBD = \\angle BDC = 40^\\circ$。",
@@ -2297,7 +2315,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "base ∠s, isos. △"
        },
        {
         "zh": "在 $\\triangle BCD$：$x = 180^\\circ - 40^\\circ - 40^\\circ = 100^\\circ$。",
@@ -2311,7 +2330,8 @@
           "claim",
           34
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        }
       ],
       "goal": [
@@ -2497,7 +2517,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "alt. ∠s, AB ∥ DC"
        },
        {
         "zh": "同弓形：$\\angle BDC = \\angle BAC = x$。",
@@ -2519,7 +2540,8 @@
           "claim",
           24
          ]
-        ]
+        ],
+        "ref": "∠s in the same segment"
        },
        {
         "zh": "在 $\\triangle CDE$ 中：$x + x + 80^\\circ = 180^\\circ$，所以 $x = 50^\\circ$。",
@@ -2540,7 +2562,8 @@
           210,
           392
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        }
       ],
       "goal": [
@@ -2718,7 +2741,8 @@
         "radii": [
          "B",
          "C"
-        ]
+        ],
+        "ref": "radii, isos. △"
        },
        {
         "zh": "兩隻角都對着弧 $AB$：$\\angle ACB = \\tfrac{1}{2}\\angle AOB = 56^\\circ$。",
@@ -2740,7 +2764,8 @@
           "C",
           "accent"
          ]
-        ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
        },
        {
         "zh": "$\\angle OCA = \\angle ACB - \\angle OCB = 56^\\circ - 26^\\circ = 30^\\circ$。",
@@ -2754,7 +2779,8 @@
           "claim",
           32
          ]
-        ]
+        ],
+        "ref": "adj. ∠s"
        },
        {
         "zh": "又是半徑：$OA = OC$，所以 $\\triangle OAC$ 等腰，$\\angle OAC = \\angle OCA = 30^\\circ$。",
@@ -2782,7 +2808,8 @@
         "radii": [
          "A",
          "C"
-        ]
+        ],
+        "ref": "radii, isos. △"
        }
       ],
       "goal": [
@@ -2968,7 +2995,8 @@
         "radii": [
          "A",
          "C"
-        ]
+        ],
+        "ref": "radii, isos. △"
        },
        {
         "zh": "$\\triangle OAC$ 內角和：$\\angle AOC = 180^\\circ - 38^\\circ - 38^\\circ = 104^\\circ$。",
@@ -2982,7 +3010,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        },
        {
         "zh": "但 $B$ 在較小的弧 $AC$ 上，$\\angle ABC$ 對着的是反角：$360^\\circ - 104^\\circ = 256^\\circ$。",
@@ -2993,7 +3022,8 @@
           206,
           326
          ]
-        ]
+        ],
+        "ref": "∠s at a pt."
        },
        {
         "zh": "把較大的弧 $AC$ 畫出來 —— 這就是 $\\angle ABC$ 所對的弧。",
@@ -3034,7 +3064,8 @@
           "128°",
           "claim"
          ]
-        ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
        }
       ],
       "goal": [
@@ -3225,7 +3256,8 @@
         "radii": [
          "A",
          "C"
-        ]
+        ],
+        "ref": "radii, isos. △"
        },
        {
         "zh": "AE = OE，所以 $\\angle AOE$ = $\\angle OAE = 32^\\circ$。",
@@ -3249,7 +3281,8 @@
           "claim",
           32
          ]
-        ]
+        ],
+        "ref": "base ∠s, isos. △"
        },
        {
         "zh": "$\\angle ACD$ = ½ $\\angle AOD$ = ½ × 32° = 16°。",
@@ -3263,7 +3296,8 @@
           "claim",
           22
          ]
-        ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
        },
        {
         "zh": "OD = OC，所以 $\\angle ODC$ = $\\angle OCD = 32^\\circ$ + 16° = 48°。",
@@ -3286,7 +3320,8 @@
           "48°",
           "claim"
          ]
-        ]
+        ],
+        "ref": "radii, isos. △"
        }
       ],
       "semi": [
@@ -3499,7 +3534,8 @@
           "87°",
           "claim"
          ]
-        ]
+        ],
+        "ref": "int. ∠s, AB ∥ DC"
        },
        {
         "zh": "$\\angle DCE$ 是圓周角，對着弧 $DE$：$\\angle DCE = \\tfrac{1}{2} \\times 78^\\circ = 39^\\circ$。",
@@ -3521,7 +3557,8 @@
           "claim",
           44
          ]
-        ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
        },
        {
         "zh": "所以 $\\angle BCE = \\angle BCD - \\angle DCE = 87^\\circ - 39^\\circ = 48^\\circ$。",
@@ -3535,7 +3572,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "adj. ∠s"
        }
       ],
       "goal": [
@@ -3700,7 +3738,8 @@
           "58°",
           "claim"
          ]
-        ]
+        ],
+        "ref": "base ∠s, isos. △"
        },
        {
         "zh": "BC 是直徑，所以 $\\angle BAC = 90^\\circ$（半圓上的圓周角）。",
@@ -3714,7 +3753,8 @@
           "claim",
           24
          ]
-        ]
+        ],
+        "ref": "∠ in semi-circle"
        },
        {
         "zh": "在 △ABC 中，$\\angle ABD$ = $\\angle ABC = 180^\\circ$ − 90° − 58° = 32°。",
@@ -3727,7 +3767,8 @@
           "32°",
           "claim"
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        }
       ],
       "semi": [
@@ -3908,7 +3949,8 @@
           "66°",
           "claim"
          ]
-        ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
        },
        {
         "zh": "BO ∥ CD，所以 $\\angle ADC$ = $\\angle AOB = 66^\\circ$（同位角）。",
@@ -3931,7 +3973,8 @@
           "C",
           "D"
          ]
-        ]
+        ],
+        "ref": "corr. ∠s, BO ∥ CD"
        },
        {
         "zh": "AD 是直徑，所以 $\\angle ACD = 90^\\circ$（半圓上的圓周角）。",
@@ -3945,7 +3988,8 @@
           "claim",
           24
          ]
-        ]
+        ],
+        "ref": "∠ in semi-circle"
        },
        {
         "zh": "△ACD 內角和：$\\angle CAD = 180^\\circ$ − 90° − 66° = 24°。",
@@ -3958,7 +4002,8 @@
           "24°",
           "claim"
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        }
       ],
       "semi": [
@@ -4124,7 +4169,8 @@
           "given",
           22
          ]
-        ]
+        ],
+        "ref": "∠ in semi-circle"
        },
        {
         "zh": "$AD \\parallel BC$，內錯角相等：$\\angle ADB = \\angle CBD$。",
@@ -4156,7 +4202,8 @@
           "claim",
           24
          ]
-        ]
+        ],
+        "ref": "alt. ∠s, AD ∥ BC"
        },
        {
         "zh": "$BD = DB$（公共邊）。",
@@ -4167,7 +4214,8 @@
           "D",
           "accent"
          ]
-        ]
+        ],
+        "ref": "common side"
        },
        {
         "zh": "由 AAS，$\\triangle ABD \\cong \\triangle CDB$，所以 $AD = BC$（全等三角形的對應邊）。",
@@ -4178,7 +4226,8 @@
           210,
           396
          ]
-        ]
+        ],
+        "ref": "AAS"
        }
       ]
      },
@@ -4364,7 +4413,8 @@
           "claim",
           26
          ]
-        ]
+        ],
+        "ref": "base ∠s, isos. △"
        },
        {
         "zh": "$\\angle BDA$ 與 $\\angle BCA$ 都對着弧 $BA$（同弓形）：$\\angle BDA = 42^\\circ$。",
@@ -4386,7 +4436,8 @@
           "claim",
           24
          ]
-        ]
+        ],
+        "ref": "∠s in the same segment"
        },
        {
         "zh": "在 $\\triangle ABD$ 中用內角和：$\\angle BAD = 180^\\circ - 38^\\circ - 42^\\circ = 100^\\circ$。",
@@ -4400,7 +4451,8 @@
           "claim",
           44
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        },
        {
         "zh": "$\\angle BAD \\ne 90^\\circ$，所以 $BD$ 不是直徑（逆定理不成立）。",
@@ -4411,7 +4463,8 @@
           330,
           392
          ]
-        ]
+        ],
+        "ref": "converse of ∠ in semi-circle"
        }
       ],
       "goal": [
@@ -4621,7 +4674,8 @@
           "claim",
           26
          ]
-        ]
+        ],
+        "ref": "∠s in the same segment"
        },
        {
         "zh": "$\\angle ACD$ 是 $\\triangle AFC$ 的外角：$\\angle ACD = x + 42^\\circ$。",
@@ -4635,7 +4689,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "ext. ∠ of △"
        },
        {
         "zh": "$\\angle AED$ 是 $\\triangle CDE$ 的外角：$94^\\circ = (x + 42^\\circ) + x$，即 $2x = 52^\\circ$。",
@@ -4646,7 +4701,8 @@
           210,
           385
          ]
-        ]
+        ],
+        "ref": "ext. ∠ of △"
        },
        {
         "zh": "所以 $x = 26^\\circ$，即 $\\angle FAC = 26^\\circ$。",
@@ -4870,7 +4926,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "base ∠s, isos. △"
        },
        {
         "zh": "$\\angle CAF$ 與 $\\angle BDC$ 同對弧 $BC$：$\\angle CAF = 25^\\circ$。",
@@ -4892,7 +4949,8 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "ref": "∠s in the same segment"
        },
        {
         "zh": "在 $\\triangle ADF$：$\\angle FAD = 25^\\circ + 65^\\circ = 90^\\circ$，所以 $\\angle ADF = 180^\\circ - 90^\\circ - 25^\\circ = 65^\\circ$。",
@@ -4914,7 +4972,8 @@
           "claim",
           48
          ]
-        ]
+        ],
+        "ref": "∠ sum of △"
        },
        {
         "zh": "$\\angle BDA = \\angle ADF - \\angle BDC = 65^\\circ - 25^\\circ = 40^\\circ$。",
@@ -4928,7 +4987,8 @@
           "claim",
           22
          ]
-        ]
+        ],
+        "ref": "adj. ∠s"
        },
        {
         "zh": "$\\angle BCA$ 與 $\\angle BDA$ 同對弧 $AB$：$\\angle BCA = 40^\\circ$。",
@@ -4950,7 +5010,8 @@
           "claim",
           28
          ]
-        ]
+        ],
+        "ref": "∠s in the same segment"
        }
       ],
       "goal": [
@@ -5142,7 +5203,8 @@
           "given",
           24
          ]
-        ]
+        ],
+        "ref": "∠ in semi-circle"
        },
        {
         "zh": "$\\angle BAC$ 與 $\\angle BDC$ 同對弧 $BC$：$\\angle BAC = \\angle BDC$。",
@@ -5172,7 +5234,8 @@
           "claim",
           22
          ]
-        ]
+        ],
+        "ref": "∠s in the same segment"
        },
        {
         "zh": "半徑相等：$OC = OD$，所以 $\\triangle OCD$ 等腰，$\\angle OCD = \\angle ODC$。",
@@ -5208,7 +5271,8 @@
         "radii": [
          "C",
          "D"
-        ]
+        ],
+        "ref": "radii, isos. △"
        },
        {
         "zh": "$\\angle BDC$ 就是 $\\angle ODC$，所以 $\\angle BAC = \\angle OCD$。",
@@ -5219,7 +5283,8 @@
           210,
           396
          ]
-        ]
+        ],
+        "ref": "same angle"
        }
       ],
       "goal": [

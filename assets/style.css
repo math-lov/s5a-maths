@@ -1562,8 +1562,18 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
 .cg-note { font-size: 11px; fill: var(--muted); }
 .cc .katex, .cg-say .katex { font-size: 1em; }
 .cg-say { margin: 10px auto 0; max-width: 540px; text-align: center; min-height: 38px; }
-.cg-zh { font-size: 14px; margin: 0; line-height: 1.6; }
-.cg-en { font-size: 12.5px; margin: 2px 0 0; color: var(--muted); line-height: 1.5; }
+.cg-zh { font-size: 16px; margin: 0; line-height: 1.6; }
+.cg-en { font-size: 14px; margin: 2px 0 0; color: var(--muted); line-height: 1.5; }
+/* 這一步用了哪條定理：跟課本一樣寫簡稱（∠s in the same segment 等） */
+.cg-ref {
+  margin: 6px 0 0;
+  font-size: 12.5px;
+  letter-spacing: .01em;
+  color: var(--muted);
+  font-style: italic;
+}
+.cg-ref:empty { display: none; }
+
 .cg-row { display: flex; gap: 8px; align-items: center; justify-content: center; margin-top: 8px; }
 .cg-count { font-size: 12.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .cg-next:disabled, .cg-restart:disabled { opacity: .45; cursor: default; }

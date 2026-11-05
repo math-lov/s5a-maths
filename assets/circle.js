@@ -207,10 +207,13 @@
     say.className = "cg-say";
     var sayZh = document.createElement("p");
     sayZh.className = "cg-zh";
+    var sayRef = document.createElement("p");   // 這一步用了哪條定理（課本的簡寫）
+    sayRef.className = "cg-ref";
     var sayEn = document.createElement("p");
     sayEn.className = "cg-en";
     say.appendChild(sayZh);
     say.appendChild(sayEn);
+    say.appendChild(sayRef);
 
     var row = document.createElement("div");
     row.className = "cg-row";
@@ -465,9 +468,11 @@
       if (n > 0) {
         setSay(sayZh, steps[n - 1].zh);
         setSay(sayEn, steps[n - 1].en);
+        sayRef.textContent = steps[n - 1].ref || "";
       } else {
         setSay(sayZh, "");
         setSay(sayEn, "");
+        sayRef.textContent = "";
       }
       at = n;
       update();
@@ -486,6 +491,7 @@
       draw(at);
       setSay(sayZh, steps[at].zh);
       setSay(sayEn, steps[at].en);
+      sayRef.textContent = steps[at].ref || "";
       at += 1;
       syncGoals(at);
       update();

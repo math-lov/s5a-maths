@@ -219,6 +219,9 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 * 一次只走一步，按鈕是「下一步 Next step」；走完變「完成 Done」，「重播 Restart」由第一步重來。
   不自動播放（與全站一致）。
 * 逐步圖解是**輔助**，正式的寫法仍然是 `solution.steps`（理由寫在括號內）。
+* **定理簡稱（`ref`）**：每一拍寫 `"ref": "∠s in the same segment"`，會印在字幕下面做一行
+  小字草書——跟課本一樣，用的時候順手寫出理由（`∠ at centre twice ∠ at ce`、`∠ in semi-circle`、
+  `base ∠s, isos. △`、`ext. ∠ of △`、`alt. ∠s, AB ∥ CD`、`∠ sum of △` 等）。
 * **目標角（goal）**：題目要求的那隻角，用 `"goal": [["A","O","C","?"] ]` 寫在 `anim` 上，
   開頁就畫（虛線），之後每一步都留住，學生由「已知」一路看着「想求」的那隻角。
   問 x／y／z 的就把標籤寫 `x`，問 ∠OAC 的就寫 `?`；有多個小題時，`goal` 放 (a) 的，
