@@ -5910,7 +5910,7 @@
     "zh": "進階練習 · Level 2",
     "en": "Level 2"
    },
-   "marks": 3,
+   "marks": 24,
    "questions": [
     {
      "id": "ch11-1-l2-23",
@@ -6142,6 +6142,1257 @@
       "tip": {
        "zh": "圓心在直徑上：把「已知角」搬到三角形的一邊，再用兩次等腰。",
        "en": "The centre lies on the diameter: move the given angle into a triangle, then use radii twice."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l2-24",
+     "code": "24",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $BC$ is the diameter of the semi-circle $ABC$. $BC$ is produced to a point $D$ such that $AB = AD$. If $AC = CD$, find $\\angle ADC$.",
+      "zh": "圖中 $BC$ 是半圓 $ABC$ 的直徑，$BC$ 延長至 $D$ 使 $AB = AD$。若 $AC = CD$，求 $\\angle ADC$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle ADC$",
+       "zh": "$\\angle ADC$",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle ADC = 30^\\circ",
+       "note": {
+        "zh": "兩組等腰 ＋ 半圓 90° ＋ 內角和",
+        "en": "Two isosceles triangles, the semi-circle 90°, then the angle sum"
+       }
+      }
+     ],
+     "anim": {
+      "semi": [
+       "B",
+       "C",
+       "A"
+      ],
+      "goal": [
+       [
+        "D",
+        "A",
+        "C",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 0
+       },
+       "A": {
+        "at": 60
+       },
+       "D": {
+        "at": 0,
+        "r": 2
+       }
+      },
+      "segments": [
+       [
+        "B",
+        "C"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "A",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AC = CD$，所以 $\\triangle ACD$ 等腰：$\\angle CAD = \\angle ADC$。",
+        "en": "Given $AC = CD$, so $\\triangle ACD$ is isosceles and $\\angle CAD = \\angle ADC$.",
+        "ticks": [
+         [
+          "A",
+          "C"
+         ],
+         [
+          "C",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "D",
+          "C",
+          "A",
+          "x",
+          "claim",
+          30
+         ]
+        ],
+        "ref": "base ∠s, isos. △"
+       },
+       {
+        "zh": "已知 $AB = AD$，所以 $\\triangle ABD$ 等腰：$\\angle ABC = \\angle ADC = x$。",
+        "en": "Given $AB = AD$, so $\\triangle ABD$ is isosceles and $\\angle ABC = \\angle ADC = x$.",
+        "ticks": [
+         [
+          "A",
+          "B"
+         ],
+         [
+          "A",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "D",
+          "x",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "base ∠s, isos. △"
+       },
+       {
+        "zh": "$BC$ 是直徑，所以 $\\angle BAC = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$BC$ is a diameter, so $\\angle BAC = 90^\\circ$ (angle in a semi-circle).",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "90°",
+          "given",
+          24
+         ]
+        ],
+        "ref": "∠ in semi-circle"
+       },
+       {
+        "zh": "在 $\\triangle ABD$ 中：$x + x + (90^\\circ + x) = 180^\\circ$，所以 $3x = 90^\\circ$，$x = 30^\\circ$。",
+        "en": "In $\\triangle ABD$: $x + x + (90^\\circ + x) = 180^\\circ$, so $3x = 90^\\circ$ and $x = 30^\\circ$.",
+        "arcs": [
+         [
+          "D",
+          "A",
+          "C",
+          "30°",
+          "claim",
+          34
+         ]
+        ],
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "∠ADC = 30°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△ACD 等腰",
+         "en": "△ACD is isosceles"
+        },
+        "math": "\\angle CAD = \\angle ADC",
+        "zh": "已知 $AC = CD$，所以三角形 $ACD$ 是等腰三角形，兩隻底角相等：$\\angle CAD = \\angle ADC$。",
+        "en": "$AC = CD$, so $\\angle CAD = \\angle ADC$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△ABD 等腰",
+         "en": "△ABD is isosceles"
+        },
+        "math": "\\angle ABC = \\angle ADC",
+        "zh": "已知 $AB = AD$，所以三角形 $ABD$ 也是等腰三角形，$\\angle ABC = \\angle ADC$。",
+        "en": "$AB = AD$, so $\\angle ABC = \\angle ADC$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓上的直角",
+         "en": "Right angle in the semi-circle"
+        },
+        "math": "\\angle BAC = 90^\\circ",
+        "zh": "因為 $BC$ 是直徑，所以圓周角 $\\angle BAC = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$BC$ is a diameter, so $\\angle BAC = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△ABD 的內角和",
+         "en": "Angle sum of △ABD"
+        },
+        "math": "3\\angle ADC + 90^\\circ = 180^\\circ",
+        "zh": "在 $\\triangle ABD$ 中，三個角是 $\\angle ABC$、$\\angle ADC$、$\\angle BAD = 90^\\circ + \\angle CAD$，所以 $3\\angle ADC + 90^\\circ = 180^\\circ$，$\\angle ADC = 30^\\circ$。",
+        "en": "In $\\triangle ABD$: $3\\angle ADC + 90^\\circ = 180^\\circ$, so $\\angle ADC = 30^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle BAD$ 當成 $90^\\circ$，忘記它還包含 $\\angle CAD$。",
+        "en": "Taking ∠BAD as 90°, forgetting the extra ∠CAD inside it."
+       }
+      ],
+      "tip": {
+       "zh": "三隻相等的角都用 $x$ 表示，再放進同一個三角形用內角和。",
+       "en": "Give the equal angles one letter x, then use one angle sum."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l2-26",
+     "code": "26",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABC$ is a circle with centre $O$. It is given that $AB = AC$ and $\\angle BAC = \\theta$. (a) Express $\\angle OCA$ in terms of $\\theta$. (b) If $OC$ is the angle bisector of $\\angle ACB$, find $\\theta$.",
+      "zh": "圖中 $ABC$ 是圓，圓心為 $O$。已知 $AB = AC$、$\\angle BAC = \\theta$。(a) 以 $\\theta$ 表示 $\\angle OCA$。(b) 若 $OC$ 平分 $\\angle ACB$，求 $\\theta$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle OCA$ in terms of $\\theta$",
+       "zh": "以 $\\theta$ 表示 $\\angle OCA$",
+       "marks": 3
+      },
+      {
+       "label": "(b)",
+       "en": "$\\theta$",
+       "zh": "$\\theta$",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle OCA = \\tfrac{\\theta}{2}",
+       "note": {
+        "zh": "兩隻圓周角相減",
+        "en": "Subtract the two angles at C"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\theta = 60^\\circ",
+       "note": {
+        "zh": "角平分線",
+        "en": "Angle bisector"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "C",
+        "O",
+        "A",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 90
+       },
+       "B": {
+        "at": 230
+       },
+       "C": {
+        "at": 310
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "O",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AB = AC$，$\\angle BAC = \\theta$。",
+        "en": "Given $AB = AC$ and $\\angle BAC = \\theta$.",
+        "ticks": [
+         [
+          "A",
+          "B"
+         ],
+         [
+          "A",
+          "C"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "θ",
+          "given",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle BOC$ 是同弧 $BC$ 的圓心角：$\\angle BOC = 2\\theta$。",
+        "en": "$\\angle BOC$ is the centre angle on arc $BC$: $\\angle BOC = 2\\theta$.",
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "O",
+          "B",
+          "C",
+          "2θ",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
+       },
+       {
+        "zh": "$OB = OC$（半徑），所以 $\\triangle OBC$ 等腰：$\\angle OCB = \\dfrac{180^\\circ - 2\\theta}{2} = 90^\\circ - \\theta$。",
+        "en": "$OB = OC$ (radii), so $\\triangle OBC$ is isosceles and $\\angle OCB = 90^\\circ - \\theta$.",
+        "radii": [
+         "B",
+         "C"
+        ],
+        "arcs": [
+         [
+          "C",
+          "O",
+          "B",
+          "90−θ",
+          "claim",
+          18
+         ]
+        ],
+        "ref": "radii, isos. △"
+       },
+       {
+        "zh": "$AB = AC$，所以 $\\triangle ABC$ 等腰：$\\angle ACB = \\dfrac{180^\\circ - \\theta}{2} = 90^\\circ - \\dfrac{\\theta}{2}$。",
+        "en": "$AB = AC$, so $\\triangle ABC$ is isosceles and $\\angle ACB = 90^\\circ - \\tfrac{\\theta}{2}$.",
+        "arcs": [
+         [
+          "C",
+          "A",
+          "B",
+          "90−θ/2",
+          "claim",
+          36
+         ]
+        ],
+        "ref": "base ∠s, isos. △"
+       },
+       {
+        "zh": "所以 $\\angle OCA = \\angle ACB - \\angle OCB = \\dfrac{\\theta}{2}$。",
+        "en": "So $\\angle OCA = \\angle ACB - \\angle OCB = \\tfrac{\\theta}{2}$.",
+        "arcs": [
+         [
+          "C",
+          "O",
+          "A",
+          "θ/2",
+          "claim",
+          54
+         ]
+        ],
+        "ref": "adj. ∠s"
+       },
+       {
+        "zh": "（b）若 $OC$ 平分 $\\angle ACB$，則 $\\angle OCA = \\angle OCB$：$\\dfrac{\\theta}{2} = 90^\\circ - \\theta$，得 $\\theta = 60^\\circ$。",
+        "en": "(b) If $OC$ bisects $\\angle ACB$, $\\angle OCA = \\angle OCB$: $\\tfrac{\\theta}{2} = 90^\\circ - \\theta$, so $\\theta = 60^\\circ$.",
+        "final": true,
+        "answer": "θ = 60°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "圓心角",
+         "en": "Centre angle"
+        },
+        "math": "\\angle BOC = 2\\theta",
+        "zh": "兩隻角都對着同一條弧 $BC$，圓心角是圓周角的兩倍，所以 $\\angle BOC = 2\\theta$。",
+        "en": "$\\angle BOC = 2\\theta$ (angle at centre).",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "$\\triangle OBC$ 等腰",
+         "en": "△OBC is isosceles"
+        },
+        "math": "\\angle OCB = 90^\\circ - \\theta",
+        "zh": "因為 $OB$ 與 $OC$ 都是半徑，三角形 $OBC$ 是等腰三角形，兩隻底角相等，用內角和得 $\\angle OCB = \\dfrac{180^\\circ - 2\\theta}{2} = 90^\\circ - \\theta$。",
+        "en": "$OB = OC$ (radii), so $\\angle OCB = 90^\\circ - \\theta$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "相減",
+         "en": "Subtract"
+        },
+        "math": "\\angle OCA = \\tfrac{\\theta}{2}",
+        "zh": "已知 $AB = AC$，三角形 $ABC$ 也是等腰三角形，用內角和得 $\\angle ACB = \\dfrac{180^\\circ - \\theta}{2} = 90^\\circ - \\dfrac{\\theta}{2}$。",
+        "en": "$\\angle OCA = \\angle ACB - \\angle OCB = \\tfrac{\\theta}{2}$.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "角平分線",
+         "en": "Angle bisector"
+        },
+        "math": "\\theta = 60^\\circ",
+        "zh": "兩隻角都在 $C$，用大減細：$\\angle OCA = \\angle ACB - \\angle OCB = \\dfrac{\\theta}{2}$。",
+        "en": "$\\tfrac{\\theta}{2} = 90^\\circ - \\theta$, so $\\theta = 60^\\circ$.",
+        "marking": "(1M)(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle OCA$ 直接當成 $\\angle ACB$ 的一半，忘記 $OC$ 不一定平分。",
+        "en": "Assuming OC bisects ∠ACB — it does not in general."
+       }
+      ],
+      "tip": {
+       "zh": "同一個頂點的兩隻角，用「大減細」；兩隻等腰三角形各給一個式子。",
+       "en": "Subtract the two angles at C; each isosceles triangle gives one expression."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l2-29",
+     "code": "29",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $ABCD$ is a circle with centre $O$. It is given that $\\angle BAD = 70^\\circ$ and $\\angle BDC = 26^\\circ$. Find $\\angle COD$.",
+      "zh": "圖中 $ABCD$ 是圓，圓心為 $O$。已知 $\\angle BAD = 70^\\circ$、$\\angle BDC = 26^\\circ$，求 $\\angle COD$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle COD$",
+       "zh": "$\\angle COD$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle COD = 88^\\circ",
+       "note": {
+        "zh": "兩個圓心角相減",
+        "en": "Subtract the two centre angles"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "O",
+        "C",
+        "D",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 110
+       },
+       "B": {
+        "at": 190
+       },
+       "C": {
+        "at": 242
+       },
+       "D": {
+        "at": 330
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "O",
+        "C"
+       ],
+       [
+        "O",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $\\angle BAD = 70^\\circ$、$\\angle BDC = 26^\\circ$。",
+        "en": "Given $\\angle BAD = 70^\\circ$ and $\\angle BDC = 26^\\circ$.",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "D",
+          "70°",
+          "given",
+          26
+         ],
+         [
+          "D",
+          "B",
+          "C",
+          "26°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "$\\angle BOD = 2\\angle BAD = 140^\\circ$（圓心角）。",
+        "en": "$\\angle BOD = 2\\angle BAD = 140^\\circ$ (centre angle).",
+        "arcs": [
+         [
+          "O",
+          "B",
+          "D",
+          "140°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
+       },
+       {
+        "zh": "$\\angle BOC = 2\\angle BDC = 52^\\circ$（圓心角）。",
+        "en": "$\\angle BOC = 2\\angle BDC = 52^\\circ$ (centre angle).",
+        "arcs": [
+         [
+          "O",
+          "B",
+          "C",
+          "52°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
+       },
+       {
+        "zh": "所以 $\\angle COD = 140^\\circ - 52^\\circ = 88^\\circ$。",
+        "en": "So $\\angle COD = 140^\\circ - 52^\\circ = 88^\\circ$.",
+        "arcs": [
+         [
+          "O",
+          "C",
+          "D",
+          "88°",
+          "claim",
+          30
+         ]
+        ],
+        "ref": "adj. ∠s",
+        "final": true,
+        "answer": "∠COD = 88°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "圓心角（一）",
+         "en": "Centre angle (1)"
+        },
+        "math": "\\angle BOD = 140^\\circ",
+        "zh": "兩隻角同對弧 $BD$，圓心角是圓周角的兩倍，所以 $\\angle BOD = 2 \\times 70^\\circ = 140^\\circ$。",
+        "en": "$\\angle BOD = 2\\angle BAD = 140^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "圓心角（二）",
+         "en": "Centre angle (2)"
+        },
+        "math": "\\angle BOC = 52^\\circ",
+        "zh": "同樣地，$\\angle BOC$ 與 $\\angle BDC$ 同對弧 $BC$，所以 $\\angle BOC = 2 \\times 26^\\circ = 52^\\circ$。",
+        "en": "$\\angle BOC = 2\\angle BDC = 52^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "相減",
+         "en": "Subtract"
+        },
+        "math": "\\angle COD = 88^\\circ",
+        "zh": "兩個圓心角相減就是所求：$\\angle COD = \\angle BOD - \\angle BOC = 140^\\circ - 52^\\circ = 88^\\circ$。",
+        "en": "$\\angle COD = 140^\\circ - 52^\\circ = 88^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle BAD$ 與 $\\angle BDC$ 所對的弧搞亂，於是把兩個圓心角相加。",
+        "en": "Adding the two centre angles instead of subtracting."
+       }
+      ],
+      "tip": {
+       "zh": "把兩個圓心角都畫出來，$\\angle COD$ 就是兩者之差。",
+       "en": "Draw both centre angles; ∠COD is their difference."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l2-30",
+     "code": "30",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABCDE$ is a circle with centre $O$. $AD$ and $OE$ intersect at $F$. It is given that $AE \\parallel BO$, $\\angle BOE = 116^\\circ$ and $\\angle DFE = 110^\\circ$. Find $\\angle BCD$.",
+      "zh": "圖中 $ABCDE$ 是圓，圓心為 $O$。$AD$ 與 $OE$ 交於 $F$。已知 $AE \\parallel BO$、$\\angle BOE = 116^\\circ$、$\\angle DFE = 110^\\circ$，求 $\\angle BCD$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle BCD$",
+       "zh": "$\\angle BCD$",
+       "marks": 5
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle BCD = 104^\\circ",
+       "note": {
+        "zh": "圓心角 → 內角 → 外角 → 同弓形",
+        "en": "Centre angle, interior angle, exterior angle, same segment"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "C",
+        "B",
+        "D",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 102
+       },
+       "B": {
+        "at": 166
+       },
+       "C": {
+        "at": 200
+       },
+       "D": {
+        "at": 318
+       },
+       "E": {
+        "at": 50
+       },
+       "F": {
+        "cross": [
+         "A",
+         "D",
+         "O",
+         "E"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "E"
+       ],
+       [
+        "E",
+        "A"
+       ],
+       [
+        "A",
+        "D"
+       ],
+       [
+        "O",
+        "E"
+       ],
+       [
+        "C",
+        "E"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AE \\parallel BO$、$\\angle BOE = 116^\\circ$、$\\angle DFE = 110^\\circ$。",
+        "en": "Given $AE \\parallel BO$, $\\angle BOE = 116^\\circ$ and $\\angle DFE = 110^\\circ$.",
+        "parallel": [
+         [
+          "A",
+          "E"
+         ],
+         [
+          "B",
+          "O"
+         ]
+        ],
+        "arcs": [
+         [
+          "O",
+          "B",
+          "E",
+          "116°",
+          "given",
+          26
+         ],
+         [
+          "F",
+          "D",
+          "E",
+          "110°",
+          "given",
+          22
+         ]
+        ]
+       },
+       {
+        "zh": "連 $CE$：$\\angle BCE = \\tfrac{1}{2}\\angle BOE = 58^\\circ$（同弧 $BE$ 的圓心角）。",
+        "en": "Join $CE$: $\\angle BCE = \\tfrac{1}{2}\\angle BOE = 58^\\circ$.",
+        "circleArcs": [
+         [
+          "B",
+          "E",
+          "C",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "B",
+          "E",
+          "58°",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "∠ at centre twice ∠ at ce"
+       },
+       {
+        "zh": "$AE \\parallel BO$，同旁內角互補：$\\angle AEO = 180^\\circ - 116^\\circ = 64^\\circ$。",
+        "en": "$AE \\parallel BO$, so interior angles: $\\angle AEO = 180^\\circ - 116^\\circ = 64^\\circ$.",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "O",
+          "64°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "int. ∠s, AE ∥ BO"
+       },
+       {
+        "zh": "$\\angle DFE$ 是 $\\triangle AFE$ 的外角：$\\angle DAE = 110^\\circ - 64^\\circ = 46^\\circ$。",
+        "en": "$\\angle DFE$ is the exterior angle of $\\triangle AFE$: $\\angle DAE = 46^\\circ$.",
+        "arcs": [
+         [
+          "A",
+          "D",
+          "E",
+          "46°",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "ext. ∠ of △"
+       },
+       {
+        "zh": "同弓形：$\\angle DCE = \\angle DAE = 46^\\circ$。",
+        "en": "Same segment: $\\angle DCE = \\angle DAE = 46^\\circ$.",
+        "circleArcs": [
+         [
+          "D",
+          "E",
+          "C",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "D",
+          "E",
+          "46°",
+          "claim",
+          28
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "所以 $\\angle BCD = 58^\\circ + 46^\\circ = 104^\\circ$。",
+        "en": "So $\\angle BCD = 58^\\circ + 46^\\circ = 104^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "B",
+          "D",
+          "104°",
+          "claim",
+          44
+         ]
+        ],
+        "ref": "adj. ∠s",
+        "final": true,
+        "answer": "∠BCD = 104°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "連 $CE$",
+         "en": "Join CE"
+        },
+        "math": "\\angle BCE = 58^\\circ",
+        "zh": "先連 $CE$；$\\angle BCE$ 與圓心角 $\\angle BOE$ 都對着弧 $BE$，所以 $\\angle BCE = 58^\\circ$。",
+        "en": "Join $CE$: $\\angle BCE = 58^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同旁內角",
+         "en": "Interior angles"
+        },
+        "math": "\\angle AEO = 64^\\circ",
+        "zh": "因為 $AE \\parallel BO$，同旁內角互補，所以 $\\angle AEO = 180^\\circ - 116^\\circ = 64^\\circ$。",
+        "en": "$AE \\parallel BO$, so $\\angle AEO = 64^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "外角",
+         "en": "Exterior angle"
+        },
+        "math": "\\angle DAE = 46^\\circ",
+        "zh": "因為 $AE \\parallel BO$，同旁內角互補，所以 $\\angle AEO = 180^\\circ - 116^\\circ = 64^\\circ$。",
+        "en": "$\\angle DAE = 110^\\circ - 64^\\circ = 46^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形",
+         "en": "Same segment"
+        },
+        "math": "\\angle DCE = 46^\\circ",
+        "zh": "在三角形 $AFE$ 中，$\\angle DFE$ 是 $F$ 的外角，等於兩個內對角之和，所以 $\\angle DAE = 110^\\circ - 64^\\circ = 46^\\circ$。",
+        "en": "$\\angle DCE = \\angle DAE = 46^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "相加",
+         "en": "Add"
+        },
+        "math": "\\angle BCD = 104^\\circ",
+        "zh": "兩隻角都對着弧 $DE$（同弓形），所以 $\\angle DCE = \\angle DAE = 46^\\circ$。",
+        "en": "$\\angle BCD = 58^\\circ + 46^\\circ = 104^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "沒有連 $CE$，於是把 $\\angle BCD$ 當成一隻角去求。",
+        "en": "Not joining CE, so ∠BCD is treated as one angle instead of two."
+       }
+      ],
+      "tip": {
+       "zh": "先把 $\\angle BCD$ 拆成兩隻角，缺的那隻由平行線與外角找出來。",
+       "en": "Split ∠BCD in two; the missing part comes from the parallel lines and an exterior angle."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l2-32",
+     "code": "32",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $AC$ is a diameter of the circle $ABCD$. $AC$ and $BD$ intersect at $E$. It is given that $BE = CE$ and $\\angle BEC = 104^\\circ$. Prove that $AB \\parallel DC$.",
+      "zh": "圖中 $AC$ 是圓 $ABCD$ 的直徑，$AC$ 與 $BD$ 交於 $E$。已知 $BE = CE$、$\\angle BEC = 104^\\circ$，證明 $AB \\parallel DC$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove that $AB \\parallel DC$.",
+       "zh": "證明 $AB \\parallel DC$。",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "AB \\parallel DC",
+       "input": null,
+       "note": {
+        "zh": "同旁內角互補",
+        "en": "Interior angles add to 180°"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 0
+       },
+       "B": {
+        "at": 76
+       },
+       "C": {
+        "at": 180
+       },
+       "D": {
+        "at": 256
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $BE = CE$、$\\angle BEC = 104^\\circ$。",
+        "en": "Given $BE = CE$ and $\\angle BEC = 104^\\circ$.",
+        "ticks": [
+         [
+          "B",
+          "E"
+         ],
+         [
+          "C",
+          "E"
+         ]
+        ],
+        "arcs": [
+         [
+          "E",
+          "B",
+          "C",
+          "104°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "$BE = CE$，所以 $\\triangle BCE$ 等腰：$\\angle CBE = \\angle BCE = \\dfrac{180^\\circ - 104^\\circ}{2} = 38^\\circ$。",
+        "en": "$BE = CE$, so $\\triangle BCE$ is isosceles and $\\angle CBE = \\angle BCE = 38^\\circ$.",
+        "arcs": [
+         [
+          "B",
+          "C",
+          "E",
+          "38°",
+          "claim",
+          22
+         ],
+         [
+          "C",
+          "B",
+          "E",
+          "38°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "base ∠s, isos. △"
+       },
+       {
+        "zh": "$AC$ 是直徑，所以 $\\angle ABC = 90^\\circ$（半圓上的圓周角）；$\\angle ABD = 90^\\circ - 38^\\circ = 52^\\circ$。",
+        "en": "$AC$ is a diameter, so $\\angle ABC = 90^\\circ$ and $\\angle ABD = 52^\\circ$.",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "90°",
+          "given",
+          26
+         ],
+         [
+          "B",
+          "A",
+          "D",
+          "52°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "∠ in semi-circle"
+       },
+       {
+        "zh": "同弓形：$\\angle ACD = \\angle ABD = 52^\\circ$。",
+        "en": "Same segment: $\\angle ACD = \\angle ABD = 52^\\circ$.",
+        "circleArcs": [
+         [
+          "A",
+          "D",
+          "C",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "A",
+          "D",
+          "52°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "所以 $\\angle BCD = 38^\\circ + 52^\\circ = 90^\\circ$，而 $\\angle ABC + \\angle BCD = 180^\\circ$，故 $AB \\parallel DC$。",
+        "en": "So $\\angle BCD = 38^\\circ + 52^\\circ = 90^\\circ$, and $\\angle ABC + \\angle BCD = 180^\\circ$, hence $AB \\parallel DC$.",
+        "arcs": [
+         [
+          "C",
+          "B",
+          "D",
+          "90°",
+          "claim",
+          30
+         ]
+        ],
+        "parallel": [
+         [
+          "A",
+          "B"
+         ],
+         [
+          "D",
+          "C"
+         ]
+        ],
+        "ref": "int. ∠s supp.",
+        "final": true,
+        "answer": "AB ∥ DC"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "△BCE 等腰",
+         "en": "△BCE is isosceles"
+        },
+        "math": "\\angle CBE = \\angle BCE = 38^\\circ",
+        "zh": "已知 $BE = CE$，而且 $\\angle BEC = 104^\\circ$；先處理等腰三角形 $BCE$ 的兩隻底角。",
+        "en": "$\\angle CBE = \\angle BCE = 38^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓上的直角",
+         "en": "Right angle in the semi-circle"
+        },
+        "math": "\\angle ABD = 90^\\circ - 38^\\circ = 52^\\circ",
+        "zh": "因為 $BE = CE$，三角形 $BCE$ 是等腰三角形，兩隻底角相等：$\\angle CBE = \\angle BCE = \\dfrac{180^\\circ - 104^\\circ}{2} = 38^\\circ$。",
+        "en": "$\\angle ABC = 90^\\circ$, so $\\angle ABD = 52^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形",
+         "en": "Same segment"
+        },
+        "math": "\\angle ACD = 52^\\circ",
+        "zh": "因為 $AC$ 是直徑，圓周角 $\\angle ABC = 90^\\circ$，所以 $\\angle ABD = 90^\\circ - 38^\\circ = 52^\\circ$。",
+        "en": "$\\angle ACD = 52^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同旁內角互補",
+         "en": "Interior angles"
+        },
+        "math": "\\angle BCD = 90^\\circ",
+        "zh": "$\\angle BCD = 38^\\circ + 52^\\circ = 90^\\circ$，而 $\\angle ABC = 90^\\circ$，同旁內角相加為 $180^\\circ$，所以 $AB \\parallel DC$。",
+        "en": "$\\angle BCD = 90^\\circ$ and $\\angle ABC = 90^\\circ$, so $AB \\parallel DC$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle BCD$ 只算 $\\angle BCE$，忘記加上 $\\angle ACD$。",
+        "en": "Forgetting that ∠BCD = ∠BCE + ∠ACD."
+       }
+      ],
+      "tip": {
+       "zh": "證明平行：兩隻同旁內角相加 180° 就夠；先把它們各自的來源找出來。",
+       "en": "To prove parallel lines, show the interior angles add to 180°."
       }
      }
     }

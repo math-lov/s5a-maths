@@ -1153,8 +1153,9 @@
       mk.appendChild(pairSpan({ zh: q.marks + " 分", en: q.marks + " marks" }));
       head.appendChild(mk);
     }
-    head.appendChild(el("span", "q-diff",
-      "★".repeat(q.difficulty || 1) + "☆".repeat(3 - (q.difficulty || 1))));
+    /* 難度只畫三格：資料若寫錯（例如 4），夾住避免 repeat(-1) 拋錯令整頁空白 */
+    var diff = Math.max(1, Math.min(3, Number(q.difficulty) || 1));
+    head.appendChild(el("span", "q-diff", "★".repeat(diff) + "☆".repeat(3 - diff)));
     if (q.bonus) {
       var bn = el("span", "q-bonus");
       bn.appendChild(pairSpan(UI.bonus));

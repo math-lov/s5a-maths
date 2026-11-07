@@ -197,6 +197,10 @@ def check_question(q: dict, where: str, fig_ids: set, need_input: bool = False) 
             return
     if q["type"] not in ("mc", "long", "tf"):
         err("S1 %s：type 只可以是 mc、long 或 tf" % tag)
+    # S1 難度只畫三格（★☆☆）；寫 4 會令前端 repeat(-1) 拋錯、整頁空白
+    if not isinstance(q.get("difficulty", 1), int) or not 1 <= q.get("difficulty", 1) <= 3:
+        err("S1 %s：difficulty 只可以是 1、2 或 3（現時 %r）"
+            % (tag, q.get("difficulty")))
     stem = q.get("stem") or {}
     check_text(tag + " stem.en", stem.get("en", ""), need_zh=False)
     if not stem.get("zh"):
