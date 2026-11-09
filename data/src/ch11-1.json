@@ -8427,6 +8427,335 @@
      }
     }
    ]
+  },
+  {
+   "id": "SMART",
+   "title": {
+    "zh": "智慧角 · SMART CORNER",
+    "en": "SMART CORNER"
+   },
+   "marks": 6,
+   "questions": [
+    {
+     "id": "ch11-1-sm-33",
+     "code": "33",
+     "type": "long",
+     "marks": 6,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABCD$ is a circle. It is given that $AD \\parallel BC$, $BC = CD = 15$ cm, $\\angle BAD = 60^\\circ$ and $\\angle BDC = 30^\\circ$. (a) Is $AD$ a diameter of the circle? Explain. (b) Someone claims that the area of $\\triangle ABD$ is less than $200$ cm$^2$. Do you agree? Explain.",
+      "zh": "圖中 $ABCD$ 是圓。已知 $AD \\parallel BC$、$BC = CD = 15$ cm、$\\angle BAD = 60^\\circ$、$\\angle BDC = 30^\\circ$。(a) $AD$ 是否圓的直徑？試解釋。(b) 有人聲稱 $\\triangle ABD$ 的面積小於 $200$ cm$^2$，你是否同意？試解釋。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Is $AD$ a diameter?",
+       "zh": "$AD$ 是否直徑？",
+       "marks": 3
+      },
+      {
+       "label": "(b)",
+       "en": "Is the area of $\\triangle ABD$ less than 200 cm$^2$?",
+       "zh": "$\\triangle ABD$ 的面積是否小於 200 cm$^2$？",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\text{Yes: } AD \\text{ is a diameter}",
+       "input": null,
+       "note": {
+        "zh": "弧 AB、BC、CD 各 60°，所以弧 AD = 180°",
+        "en": "Arcs AB, BC, CD are 60° each, so arc AD = 180°"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\text{Yes: } 112.5\\sqrt{3} \\approx 195 < 200",
+       "input": null,
+       "note": {
+        "zh": "半圓上的直角 ＋ ½ × AB × BD",
+        "en": "Right angle in the semi-circle, then ½ × AB × BD"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "A",
+        "B",
+        "D",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 90
+       },
+       "B": {
+        "at": 150
+       },
+       "C": {
+        "at": 210
+       },
+       "D": {
+        "at": 270
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AD \\parallel BC$、$BC = CD = 15$ cm、$\\angle BAD = 60^\\circ$、$\\angle BDC = 30^\\circ$。",
+        "en": "Given $AD \\parallel BC$, $BC = CD = 15$ cm, $\\angle BAD = 60^\\circ$ and $\\angle BDC = 30^\\circ$.",
+        "parallel": [
+         [
+          "A",
+          "D"
+         ],
+         [
+          "B",
+          "C"
+         ]
+        ],
+        "ticks": [
+         [
+          "B",
+          "C"
+         ],
+         [
+          "C",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "B",
+          "D",
+          "60°",
+          "given",
+          26
+         ],
+         [
+          "D",
+          "B",
+          "C",
+          "30°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "$BC = CD$，所以 $\\triangle BCD$ 等腰：$\\angle CBD = \\angle BDC = 30^\\circ$。",
+        "en": "$BC = CD$, so $\\triangle BCD$ is isosceles and $\\angle CBD = \\angle BDC = 30^\\circ$.",
+        "arcs": [
+         [
+          "B",
+          "C",
+          "D",
+          "30°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "base ∠s, isos. △"
+       },
+       {
+        "zh": "$AD \\parallel BC$ 給內錯角：$\\angle ADB = \\angle DBC = 30^\\circ$。",
+        "en": "$AD \\parallel BC$ gives the alternate angle: $\\angle ADB = \\angle DBC = 30^\\circ$.",
+        "arcs": [
+         [
+          "D",
+          "A",
+          "B",
+          "30°",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "alt. ∠s, AD ∥ BC"
+       },
+       {
+        "zh": "同弓形：$\\angle CAD = \\angle CBD = 30^\\circ$。",
+        "en": "Same segment: $\\angle CAD = \\angle CBD = 30^\\circ$.",
+        "circleArcs": [
+         [
+          "C",
+          "D",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "C",
+          "D",
+          "30°",
+          "claim",
+          42
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "三個 $30^\\circ$ 的圓周角對着弧 $AB$、$BC$、$CD$，所以弧 $AD = 360^\\circ - 3 \\times 60^\\circ = 180^\\circ$，$AD$ 是直徑 —— 是。",
+        "en": "The three $30^\\circ$ angles stand on arcs $AB$, $BC$, $CD$, so arc $AD = 180^\\circ$ and $AD$ is a diameter — yes.",
+        "circleArcs": [
+         [
+          "D",
+          "A",
+          "B",
+          "accent"
+         ]
+        ],
+        "notes": [
+         [
+          "arc AD = 180°",
+          210,
+          392
+         ]
+        ]
+       },
+       {
+        "zh": "（b）$AD$ 是直徑，所以 $\\angle ABD = 90^\\circ$；由弧 $BC = 60^\\circ$ 得半徑 $15$ cm。",
+        "en": "(b) $AD$ is a diameter, so $\\angle ABD = 90^\\circ$; arc $BC = 60^\\circ$ gives the radius $15$ cm.",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "D",
+          "90°",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "∠ in semi-circle"
+       },
+       {
+        "zh": "$AD = 30$、$AB = 15$、$BD = 15\\sqrt{3}$，面積 $= \\tfrac{1}{2} \\times 15 \\times 15\\sqrt{3} \\approx 195 < 200$ cm$^2$ —— 同意。",
+        "en": "$AD = 30$, $AB = 15$, $BD = 15\\sqrt{3}$, so the area $= 112.5\\sqrt{3} \\approx 195 < 200$ cm$^2$ — agree.",
+        "final": true,
+        "answer": "Yes — area ≈ 195 < 200"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等腰三角形",
+         "en": "Isosceles triangle"
+        },
+        "math": "\\angle CBD = \\angle BDC = 30^\\circ",
+        "zh": "已知 $BC = CD$，三角形 $BCD$ 是等腰三角形，兩隻底角相等：$\\angle CBD = \\angle BDC = 30^\\circ$。",
+        "en": "$BC = CD$, so $\\angle CBD = 30^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "內錯角與同弓形",
+         "en": "Alternate and same-segment angles"
+        },
+        "math": "\\angle ADB = 30^\\circ,\\ \\angle CAD = 30^\\circ",
+        "zh": "因為 $AD \\parallel BC$，內錯角相等，所以 $\\angle ADB = \\angle DBC = 30^\\circ$；兩隻角同對弧 $CD$，所以 $\\angle CAD = \\angle CBD = 30^\\circ$。",
+        "en": "$\\angle ADB = 30^\\circ$ and $\\angle CAD = 30^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "三個 60° 的弧",
+         "en": "Three arcs of 60°"
+        },
+        "math": "\\text{arc } AD = 180^\\circ",
+        "zh": "三個 $30^\\circ$ 圓周角分別對着弧 $AB$、$BC$、$CD$，每條弧 $60^\\circ$，所以弧 $AD = 360^\\circ - 180^\\circ = 180^\\circ$，$AD$ 是直徑。",
+        "en": "Arcs $AB$, $BC$, $CD$ are $60^\\circ$ each, so arc $AD = 180^\\circ$ and $AD$ is a diameter.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "半圓上的直角與半徑",
+         "en": "Right angle and radius"
+        },
+        "math": "\\angle ABD = 90^\\circ,\\ R = 15",
+        "zh": "$AD$ 是直徑，所以 $\\angle ABD = 90^\\circ$；弧 $BC = 60^\\circ$ 且 $BC = 15$ cm，得半徑 $R = 15$ cm，故 $AD = 30$ cm。",
+        "en": "$\\angle ABD = 90^\\circ$ and $R = 15$ cm, so $AD = 30$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "三邊",
+         "en": "The three sides"
+        },
+        "math": "AB = 15,\\ BD = 15\\sqrt{3}",
+        "zh": "半徑 $R = 15$ cm，用正弦求兩條弦的長度：$AB = 2R\\sin 30^\\circ = 15$ cm，$BD = 2R\\sin 60^\\circ = 15\\sqrt{3}$ cm。",
+        "en": "$AB = 15$ cm and $BD = 15\\sqrt{3}$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "面積",
+         "en": "Area"
+        },
+        "math": "\\tfrac{1}{2} \\times 15 \\times 15\\sqrt{3} = 112.5\\sqrt{3} \\approx 195",
+        "zh": "三角形 $ABD$ 的面積 $= \\tfrac{1}{2} \\times AB \\times BD = 112.5\\sqrt{3} \\approx 195$ cm$^2$，小於 200，所以同意。",
+        "en": "Area $= 112.5\\sqrt{3} \\approx 195 < 200$, so agree.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "只寫 $\\angle BAD = 60^\\circ$ 就說 $AD$ 是直徑，沒有證明弧 $AD = 180^\\circ$。",
+        "en": "Jumping from ∠BAD = 60° to \"diameter\" without showing arc AD = 180°."
+       },
+       {
+        "label": "(b)",
+        "labelEn": "(b)",
+        "zh": "用 $\\tfrac{1}{2} \\times 30 \\times 15$ 之類的底高配搭，但高不是 15。",
+        "en": "Using 30 and 15 as base and height — 15 is a side, not the height."
+       }
+      ],
+      "tip": {
+       "zh": "先由等腰、內錯角、同弓形找出三個 30°，化成一組 60° 的弧；再有直徑就可以用直角三角形求面積。",
+       "en": "Find the three 30° angles first; they turn into three 60° arcs, which give the diameter — then use the right triangle."
+      }
+     }
+    }
+   ]
   }
  ]
 }
