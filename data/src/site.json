@@ -477,6 +477,38 @@
      "zh": "課本 Exercise 11.1 全部題目（Section Check、Level 1 Q1–Q22、Level 2 Q23–Q32、SMART CORNER Q33）＋ 官方題解",
      "en": "The complete Exercise 11.1 (Section Check, Level 1 Q1–Q22, Level 2 Q23–Q32 and SMART CORNER Q33) with the official solutions"
     }
+   },
+   {
+    "id": "ch11-2",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch11",
+    "code": "11.2",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 11 章 · 圓形的基本性質",
+     "en": "Chapter 11 · Basic Properties of Circles"
+    },
+    "title": {
+     "zh": "11.2 圓的弦 · 課本練習",
+     "en": "11.2 Chords of a Circle · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5A · Exercise 11.2"
+    },
+    "stats": {
+     "questions": 0,
+     "marks": 0,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "教學卡：弦的五條定理（附證明）；練習題稍後補上",
+     "en": "Teaching cards for the five chord theorems (with proofs); the exercise follows"
+    }
    }
   ],
   "classwork": {
@@ -500,8 +532,8 @@
       "en": "Chapter 11 · Basic Properties of Circles"
      },
      "intro": {
-      "zh": "第 11 章講圓形的基本性質，共四節：11.1 圓內的角、11.2 圓的弦、11.3 角、弧與弦、11.4 圓內接四邊形。現時先上線 11.1 —— 四條定理連證明，之後是 Exercise 11.1 的逐題題解；其餘三節稍後補上。",
-      "en": "Chapter 11 is about the basic properties of circles, in four sections: 11.1 angles in a circle, 11.2 chords of a circle, 11.3 angles, arcs and chords, and 11.4 cyclic quadrilaterals. Section 11.1 is online first — the four theorems with their proofs, followed by worked solutions to Exercise 11.1; the other three sections will follow."
+      "zh": "第 11 章講圓形的基本性質，共四節：11.1 圓內的角、11.2 圓的弦、11.3 角、弧與弦、11.4 圓內接四邊形。11.1 與 11.2 已上線：每條定理一張教學卡（附證明與逐步圖解），之後是 Exercise 11.1 的逐題題解。",
+      "en": "Chapter 11 covers the basic properties of circles in four sections: 11.1 angles in a circle, 11.2 chords, 11.3 angles, arcs and chords, and 11.4 cyclic quadrilaterals. Sections 11.1 and 11.2 are online, each theorem as a teaching card with its proof and a step-by-step figure, followed by worked Exercise 11.1."
      },
      "sections": [
       {
@@ -510,6 +542,14 @@
        "title": {
         "zh": "11.1 圓形的基本性質",
         "en": "11.1 Basic properties of circles"
+       }
+      },
+      {
+       "code": "11.2",
+       "part": "ch11-2",
+       "title": {
+        "zh": "11.2 圓的弦",
+        "en": "11.2 Chords of a circle"
        }
       }
      ]
