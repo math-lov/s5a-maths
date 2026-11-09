@@ -1269,7 +1269,7 @@
     "zh": "基礎練習 · Level 1",
     "en": "Level 1"
    },
-   "marks": 6,
+   "marks": 10,
    "questions": [
     {
      "id": "ch11-2-l1-7",
@@ -1436,6 +1436,191 @@
       "tip": {
        "zh": "半徑、圓心到弦的距離、半條弦，永遠是一個直角三角形。",
        "en": "Radius, distance to the chord and half the chord always form a right triangle."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-8",
+     "code": "8",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $AB$ is the diameter of the semi-circle $ABCD$. $BD$ and $OC$ intersect at $E$. It is given that $BD = 20$ cm and $CE = 2$ cm. Find the area of the semi-circle in terms of $\\pi$.",
+      "zh": "圖中 $AB$ 是半圓 $ABCD$ 的直徑，$BD$ 與 $OC$ 交於 $E$。已知 $BD = 20$ cm、$CE = 2$ cm，求半圓的面積（以 $\\pi$ 表示）。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Area of the semi-circle",
+       "zh": "半圓的面積",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "338\\pi\\text{ cm}^2",
+       "note": {
+        "zh": "垂線平分弦 → 勾股定理 → 半圓面積",
+        "en": "Perpendicular bisects the chord, then Pythagoras"
+       },
+       "input": null
+      }
+     ],
+     "anim": {
+      "semi": [
+       "A",
+       "B",
+       "D"
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 180
+       },
+       "B": {
+        "at": 0
+       },
+       "C": {
+        "at": 22.62
+       },
+       "D": {
+        "at": 45.24
+       },
+       "E": {
+        "cross": [
+         "B",
+         "D",
+         "O",
+         "C"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "O",
+        "C"
+       ],
+       [
+        "O",
+        "B"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AB$ 是直徑、$BD = 20$ cm、$CE = 2$ cm，而 $OC \\perp BD$ 於 $E$。",
+        "en": "Given $AB$ is a diameter, $BD = 20$ cm, $CE = 2$ cm and $OC \\perp BD$ at $E$.",
+        "arcs": [
+         [
+          "E",
+          "B",
+          "O",
+          "90°",
+          "given",
+          16
+         ]
+        ]
+       },
+       {
+        "zh": "$OE$ 由圓心垂直於弦 $BD$，所以平分它：$BE = DE = 10$ cm。",
+        "en": "$OE \\perp BD$, so it bisects the chord: $BE = DE = 10$ cm.",
+        "ticks": [
+         [
+          "B",
+          "E"
+         ],
+         [
+          "E",
+          "D"
+         ]
+        ],
+        "ref": "⊥ from centre bisects chord"
+       },
+       {
+        "zh": "設半徑 $r$，$OE = r - 2$；在 $\\triangle OBE$：$r^2 = (r-2)^2 + 10^2$，得 $r = 26$ cm。",
+        "en": "With radius $r$, $OE = r - 2$; in $\\triangle OBE$: $r^2 = (r-2)^2 + 10^2$, so $r = 26$ cm.",
+        "radii": [
+         "B"
+        ],
+        "ref": "Pyth. theorem"
+       },
+       {
+        "zh": "半圓面積 $= \\tfrac{1}{2} \\pi (26)^2 = 338\\pi$ cm$^2$。",
+        "en": "Area of the semi-circle $= \\tfrac{1}{2} \\pi (26)^2 = 338\\pi$ cm$^2$.",
+        "final": true,
+        "answer": "338π cm²"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "垂線平分弦",
+         "en": "The perpendicular bisects the chord"
+        },
+        "math": "BE = DE = 10\\text{ cm}",
+        "zh": "因為 $OE \\perp BD$，圓心到弦的垂線平分弦，所以 $E$ 是 $BD$ 的中點，$BE = 10$ cm。",
+        "en": "$BE = DE = 10$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "設半徑",
+         "en": "Let the radius be r"
+        },
+        "math": "OE = r - 2",
+        "zh": "設半徑為 $r$ cm；$OC$ 與 $OB$ 都是半徑，所以 $OE = OC - CE = r - 2$。",
+        "en": "$OE = r - 2$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "勾股定理",
+         "en": "Pythagoras"
+        },
+        "math": "r = 26",
+        "zh": "在直角三角形 $OBE$ 中用勾股定理：$r^2 = (r-2)^2 + 10^2$，展開得 $4r = 104$，所以 $r = 26$。",
+        "en": "$r^2 = (r-2)^2 + 10^2$, so $r = 26$.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓面積",
+         "en": "Area of the semi-circle"
+        },
+        "math": "338\\pi\\text{ cm}^2",
+        "zh": "把半徑代回半圓面積公式：$\\tfrac{1}{2} \\pi (26)^2 = 338\\pi$ cm$^2$。",
+        "en": "$\\tfrac{1}{2}\\pi(26)^2 = 338\\pi$ cm$^2$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $CE = 2$ 直接當成 $OE$；其實 $OE = r - 2$，要連半徑一齊考慮。",
+        "en": "Using CE = 2 as OE — in fact OE = r − 2."
+       }
+      ],
+      "tip": {
+       "zh": "圓心到弦的垂線一定平分弦；之後半徑、圓心距、半條弦就是一個直角三角形。",
+       "en": "The perpendicular from the centre bisects the chord; radius, distance and half-chord then form a right triangle."
       }
      }
     },
