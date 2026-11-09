@@ -230,6 +230,33 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
   在 (b) 的第一步加 `"goal"` 到該拍，之後同樣會保留。
   `build.py` 會檢查（S19）：有圖解但沒有 goal 就出警告（證明題除外）。
 
+## 對圖流程（figpack → 外部 → figimport）
+
+圖常常「畫得準但排錯」時，用這一套：
+
+1. `python -X utf8 tools/figpack.py --part ch11-2 --images 56-84`
+   會開一個 `tools/_audit/<part>/`：每題一個資料夾（`spec.json` = 現時圖規格、`note.md` = 題目與指示），
+   另外 `book/` 有 Word 檔抽出的圖與一張有編號的 `contact.png`。
+2. 把整個資料夾交給另一個（視覺）模型或自己看：它只需指出差異，或在 `spec.json` 改 `anim`。
+3. 交回來的 JSON 用
+   `python -X utf8 tools/figimport.py <patch.json>`
+   匯入。它會**先驗證**（每個角要量得中 ±0.9°、平行要真平行、點要定位得到），
+   全部通過才寫入 `data/src/*.json`；有任何一項不過就整批唔寫，並列出問題。
+   想只看結果：加 `--check-only`。
+
+圖規格的四種寫法：
+
+```
+"O": {"centre": true}
+"A": {"at": 112}                      圓上的點（角度，0 = 右，逆時針）
+"D": {"at": 0, "r": 2}                圓外的點（r = 半徑倍數）
+"E": {"cross": ["A","C","B","D"]}     直線 AC 與 BD 的交點
+"P": {"extend": ["B","A"], "k": 0.4}  由 B 經 A 再走 0.4 個半徑
+"M": {"between": ["A","B", 0.5]}      線段上的點
+```
+
+`tools/figcheck.py` 與 `figimport.py` 共用同一份檢查（`check_anim()`），所以兩邊標準一致。
+
 ## 內容原則
 
 * **全站中英雙語**：題目、選項（文字選項）、分項、題解與介面文字都有中英兩版，
