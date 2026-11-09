@@ -1269,8 +1269,388 @@
     "zh": "基礎練習 · Level 1",
     "en": "Level 1"
    },
-   "marks": 0,
-   "questions": []
+   "marks": 6,
+   "questions": [
+    {
+     "id": "ch11-2-l1-7",
+     "code": "7",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $AC$ and $OB$ intersect at $D$ such that $AC \\perp OB$. It is given that the radius of the circle is 20 cm and $BD = 8$ cm. Find $AC$.",
+      "zh": "圖中 $AC$ 與 $OB$ 交於 $D$，且 $AC \\perp OB$。已知圓的半徑是 20 cm，$BD = 8$ cm，求 $AC$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$AC$",
+       "zh": "$AC$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "AC = 32\\text{ cm}",
+       "note": {
+        "zh": "先求 $OD$，再用勾股定理與垂線平分弦",
+        "en": "Find OD, then Pythagoras and the perpendicular bisects the chord"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "B": {
+        "at": 90
+       },
+       "A": {
+        "at": 216.87
+       },
+       "C": {
+        "at": 323.13
+       },
+       "D": {
+        "at": 270,
+        "r": 0.6
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "C"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AC \\perp OB$ 於 $D$，半徑 20 cm，$BD = 8$ cm。",
+        "en": "Given $AC \\perp OB$ at $D$, radius 20 cm and $BD = 8$ cm.",
+        "arcs": [
+         [
+          "D",
+          "C",
+          "O",
+          "90°",
+          "given",
+          16
+         ]
+        ]
+       },
+       {
+        "zh": "$OD = OB - BD = 20 - 8 = 12$ cm。",
+        "en": "$OD = OB - BD = 20 - 8 = 12$ cm.",
+        "notes": [
+         [
+          "OD = 12 cm",
+          110,
+          352
+         ]
+        ]
+       },
+       {
+        "zh": "在直角三角形 $OAD$ 中：$AD = \\sqrt{20^2 - 12^2} = 16$ cm。",
+        "en": "In right triangle $OAD$: $AD = \\sqrt{20^2 - 12^2} = 16$ cm.",
+        "radii": [
+         "A"
+        ],
+        "ref": "Pyth. theorem"
+       },
+       {
+        "zh": "$OD \\perp AC$ 且過圓心，所以 $CD = AD = 16$ cm，$AC = 32$ cm。",
+        "en": "$OD \\perp AC$ through the centre, so $CD = AD = 16$ cm and $AC = 32$ cm.",
+        "ticks": [
+         [
+          "A",
+          "D"
+         ],
+         [
+          "D",
+          "C"
+         ]
+        ],
+        "ref": "⊥ from centre bisects chord",
+        "final": true,
+        "answer": "AC = 32 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "求 $OD$",
+         "en": "Find OD"
+        },
+        "math": "OD = 20 - 8 = 12",
+        "zh": "圓心到 $B$ 是半徑 20 cm，減去 $BD = 8$ cm，得 $OD = 12$ cm。",
+        "en": "$OD = 12$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "勾股定理",
+         "en": "Pythagoras"
+        },
+        "math": "AD = \\sqrt{20^2 - 12^2} = 16",
+        "zh": "先求圓心到弦的距離：$OD = OB - BD = 20 - 8 = 12$ cm。",
+        "en": "$AD = \\sqrt{20^2 - 12^2} = 16$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "垂線平分弦",
+         "en": "The perpendicular bisects the chord"
+        },
+        "math": "AC = 2 \\times 16 = 32",
+        "zh": "$OD \\perp AC$ 且 $OD$ 過圓心，所以 $OD$ 平分 $AC$：$AC = 2 \\times 16 = 32$ cm。",
+        "en": "$AC = 2 \\times AD = 32$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $OD$ 寫成 $20 + 8$，或忘記 $OD$ 平分弦而要再乘 2。",
+        "en": "Adding instead of subtracting for OD, or forgetting to double AD."
+       }
+      ],
+      "tip": {
+       "zh": "半徑、圓心到弦的距離、半條弦，永遠是一個直角三角形。",
+       "en": "Radius, distance to the chord and half the chord always form a right triangle."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-9",
+     "code": "9",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $M$ and $N$ are the mid-points of $AB$ and $BC$ respectively. It is given that reflex $\\angle MON = 264^\\circ$. Find $\\angle ABC$.",
+      "zh": "圖中 $M$、$N$ 分別是 $AB$、$BC$ 的中點。已知反角 $\\angle MON = 264^\\circ$，求 $\\angle ABC$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle ABC$",
+       "zh": "$\\angle ABC$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle ABC = 84^\\circ",
+       "note": {
+        "zh": "中點垂線 ＋ 四邊形內角和",
+        "en": "Midpoint perpendiculars and the quadrilateral"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "B",
+        "A",
+        "C",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 10
+       },
+       "B": {
+        "at": 100
+       },
+       "C": {
+        "at": 202
+       },
+       "M": {
+        "at": 55,
+        "r": 0.707
+       },
+       "N": {
+        "at": 151,
+        "r": 0.629
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "O",
+        "N"
+       ],
+       [
+        "O",
+        "B"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $M$、$N$ 分別是弦 $AB$ 與 $BC$ 的中點，反角 $\\angle MON = 264^\\circ$。",
+        "en": "$M$, $N$ are the mid-points of $AB$, $BC$ and reflex $\\angle MON = 264^\\circ$.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "B"
+         ],
+         [
+          "B",
+          "N"
+         ],
+         [
+          "N",
+          "C"
+         ]
+        ]
+       },
+       {
+        "zh": "圓心連到弦的中點，所以 $OM \\perp AB$、$ON \\perp BC$，兩隻角都是 $90^\\circ$。",
+        "en": "Lines to the midpoints are perpendicular, so $\\angle BMO = \\angle BNO = 90^\\circ$.",
+        "arcs": [
+         [
+          "M",
+          "B",
+          "O",
+          "90°",
+          "claim",
+          16
+         ],
+         [
+          "N",
+          "B",
+          "O",
+          "90°",
+          "claim",
+          16
+         ]
+        ],
+        "ref": "line to mid-pt. ⊥ chord"
+       },
+       {
+        "zh": "周角：$\\angle MON = 360^\\circ - 264^\\circ = 96^\\circ$。",
+        "en": "Angles at a point: $\\angle MON = 360^\\circ - 264^\\circ = 96^\\circ$.",
+        "arcs": [
+         [
+          "O",
+          "M",
+          "N",
+          "96°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "∠s at a pt."
+       },
+       {
+        "zh": "四邊形 $BMON$ 內角和：$\\angle ABC + 96^\\circ + 180^\\circ = 360^\\circ$，所以 $\\angle ABC = 84^\\circ$。",
+        "en": "In $BMON$: $\\angle ABC + 96^\\circ + 180^\\circ = 360^\\circ$, so $\\angle ABC = 84^\\circ$.",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "84°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "∠ sum of polygon",
+        "final": true,
+        "answer": "∠ABC = 84°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "中點給直角",
+         "en": "Midpoints give right angles"
+        },
+        "math": "\\angle BMO = \\angle BNO = 90^\\circ",
+        "zh": "已知 $M$、$N$ 分別是弦 $AB$ 與 $BC$ 的中點，而反角 $\\angle MON = 264^\\circ$。",
+        "en": "$\\angle BMO = \\angle BNO = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "周角",
+         "en": "Angles at a point"
+        },
+        "math": "\\angle MON = 96^\\circ",
+        "zh": "圓心連到弦的中點，那條線一定垂直於弦，所以 $\\angle BMO = \\angle BNO = 90^\\circ$。",
+        "en": "$\\angle MON = 96^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "四邊形內角和",
+         "en": "Angle sum"
+        },
+        "math": "\\angle ABC = 84^\\circ",
+        "zh": "同一點周圍的角相加是 $360^\\circ$，所以 $\\angle MON = 360^\\circ - 264^\\circ = 96^\\circ$。",
+        "en": "$\\angle ABC = 84^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $264^\\circ$ 當成 $\\angle MON$ 直接用，得 $360-264-180=...$ 之前沒有先取 $96^\\circ$。",
+        "en": "Using 264° directly instead of taking 360° − 264° = 96°."
+       }
+      ],
+      "tip": {
+       "zh": "與 Class Exercise 第 1 題同一套路：兩個 90° 加一個周角。",
+       "en": "Same method as Class Exercise Q1: two right angles and the angles at a point."
+      }
+     }
+    }
+   ]
   }
  ]
 }
