@@ -92,9 +92,17 @@
        {
         "zh": "連 $OA$、$OB$，兩條都是半徑。",
         "en": "Join $OA$ and $OB$ — both radii.",
-        "radii": [
-         "A",
-         "B"
+        "lines": [
+         [
+          "O",
+          "A",
+          "radii"
+         ],
+         [
+          "O",
+          "B",
+          "radii"
+         ]
         ]
        },
        {
@@ -193,9 +201,17 @@
        {
         "zh": "連 $OA$、$OB$，$OA = OB$（半徑）。",
         "en": "Join $OA$ and $OB$: $OA = OB$ (radii).",
-        "radii": [
-         "A",
-         "B"
+        "lines": [
+         [
+          "O",
+          "A",
+          "radii"
+         ],
+         [
+          "O",
+          "B",
+          "radii"
+         ]
         ]
        },
        {
@@ -309,9 +325,17 @@
        {
         "zh": "連 $OA$、$OB$：$O$ 是圓心，所以 $OA = OB$。",
         "en": "Join $OA$, $OB$: $OA = OB$ since $O$ is the centre.",
-        "radii": [
-         "A",
-         "B"
+        "lines": [
+         [
+          "O",
+          "A",
+          "radii"
+         ],
+         [
+          "O",
+          "B",
+          "radii"
+         ]
         ]
        },
        {
@@ -425,9 +449,17 @@
        {
         "zh": "連 $OA$、$OC$，兩條都是半徑，所以相等。",
         "en": "Join $OA$ and $OC$ — both radii, so equal.",
-        "radii": [
-         "A",
-         "C"
+        "lines": [
+         [
+          "O",
+          "A",
+          "radii"
+         ],
+         [
+          "O",
+          "C",
+          "radii"
+         ]
         ]
        },
        {
@@ -566,9 +598,17 @@
        {
         "zh": "連 $OA$、$OC$，$OA = OC$（半徑）。",
         "en": "Join $OA$, $OC$: $OA = OC$ (radii).",
-        "radii": [
-         "A",
-         "C"
+        "lines": [
+         [
+          "O",
+          "A",
+          "radii"
+         ],
+         [
+          "O",
+          "C",
+          "radii"
+         ]
         ]
        },
        {

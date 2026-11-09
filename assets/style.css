@@ -1529,6 +1529,7 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
 .cg-draw.given { stroke: #e2660a; }
 .cg-draw.claim { stroke: #4f46e5; }
 .cg-draw.accent { stroke: #0f766e; }
+.cg-draw.radii { stroke: #15803d; stroke-width: 2.2; }
 .cg-draw.ink { stroke: var(--text); stroke-opacity: .55; stroke-width: 1.2; }
 .cg-arc { fill: none; stroke-width: 1.8; stroke-linecap: round; transition: opacity .3s ease, stroke-dashoffset .55s cubic-bezier(.35,.65,.3,1); }
 .cg-arc.given { stroke: #e2660a; }
