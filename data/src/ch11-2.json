@@ -1507,16 +1507,12 @@
        [
         "O",
         "C"
-       ],
-       [
-        "O",
-        "B"
        ]
       ],
       "steps": [
        {
-        "zh": "已知 $AB$ 是直徑、$BD = 20$ cm、$CE = 2$ cm，而 $OC \\perp BD$ 於 $E$。",
-        "en": "Given $AB$ is a diameter, $BD = 20$ cm, $CE = 2$ cm and $OC \\perp BD$ at $E$.",
+        "zh": "已知 $AB$ 是直徑、$BD = 20$ cm、$CE = 2$ cm；圖中 $OC \\perp BD$ 於 $E$。",
+        "en": "Given $AB$ is a diameter, $BD = 20$ cm, $CE = 2$ cm; the figure shows $OC \\perp BD$ at $E$.",
         "arcs": [
          [
           "E",
@@ -1557,7 +1553,8 @@
         "final": true,
         "answer": "338π cm²"
        }
-      ]
+      ],
+      "cy": 258
      },
      "solution": {
       "steps": [
