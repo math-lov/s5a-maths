@@ -468,14 +468,14 @@
      "paper": "Book 5A · Exercise 11.1"
     },
     "stats": {
-     "questions": 29,
-     "marks": 98,
+     "questions": 33,
+     "marks": 115,
      "bonus": 0
     },
     "status": "ready",
     "source": {
-     "zh": "課本 Exercise 11.1 的 Section Check 與 Level 1（Q1–Q22）＋ 官方題解；Level 2（Q23–Q32）整理中",
-     "en": "Section Check and Level 1 (Q1–Q22) of Exercise 11.1 with the official solutions; Level 2 (Q23–Q32) in progress"
+     "zh": "課本 Exercise 11.1 全部題目（Section Check、Level 1 Q1–Q22、Level 2 Q23–Q32）＋ 官方題解",
+     "en": "The complete Exercise 11.1 (Section Check, Level 1 Q1–Q22 and Level 2 Q23–Q32) with the official solutions"
     }
    }
   ],

@@ -5910,7 +5910,7 @@
     "zh": "進階練習 · Level 2",
     "en": "Level 2"
    },
-   "marks": 24,
+   "marks": 41,
    "questions": [
     {
      "id": "ch11-1-l2-23",
@@ -6370,6 +6370,360 @@
      }
     },
     {
+     "id": "ch11-1-l2-25",
+     "code": "25",
+     "type": "long",
+     "marks": 6,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $BE$ is a diameter of the circle $ABCDE$. $BE$ intersects $AC$ and $AD$ at $F$ and $G$ respectively. It is given that $AC \\parallel ED$ and $\\angle DAE = 34^\\circ$. (a) Find $\\angle BED$. (b) If $EB$ is the angle bisector of $\\angle AED$, find $\\angle BAC$.",
+      "zh": "圖中 $BE$ 是圓 $ABCDE$ 的直徑，$BE$ 分別與 $AC$、$AD$ 交於 $F$、$G$。已知 $AC \\parallel ED$、$\\angle DAE = 34^\\circ$。(a) 求 $\\angle BED$。(b) 若 $EB$ 平分 $\\angle AED$，求 $\\angle BAC$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle BED$",
+       "zh": "$\\angle BED$",
+       "marks": 3
+      },
+      {
+       "label": "(b)",
+       "en": "$\\angle BAC$",
+       "zh": "$\\angle BAC$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle BED = 56^\\circ",
+       "note": {
+        "zh": "半圓 90° → 同弓形",
+        "en": "Semi-circle 90°, then same segment"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\angle BAC = 22^\\circ",
+       "note": {
+        "zh": "等腰 → 內錯角 → 相減",
+        "en": "Isosceles, alternate angles, subtract"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "E",
+        "B",
+        "D",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "B": {
+        "at": 180
+       },
+       "E": {
+        "at": 0
+       },
+       "A": {
+        "at": 68
+       },
+       "D": {
+        "at": 292
+       },
+       "C": {
+        "at": 224
+       },
+       "F": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "E"
+        ]
+       },
+       "G": {
+        "cross": [
+         "A",
+         "D",
+         "B",
+         "E"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "E"
+       ],
+       [
+        "E",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "A",
+        "D"
+       ],
+       [
+        "B",
+        "E"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $BE$ 是直徑、$AC \\parallel ED$、$\\angle DAE = 34^\\circ$。",
+        "en": "Given $BE$ is a diameter, $AC \\parallel ED$ and $\\angle DAE = 34^\\circ$.",
+        "parallel": [
+         [
+          "A",
+          "C"
+         ],
+         [
+          "E",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "D",
+          "E",
+          "34°",
+          "given",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "$BE$ 是直徑，所以 $\\angle BAE = 90^\\circ$（半圓上的圓周角）。",
+        "en": "$BE$ is a diameter, so $\\angle BAE = 90^\\circ$ (angle in a semi-circle).",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "E",
+          "90°",
+          "given",
+          24
+         ]
+        ],
+        "ref": "∠ in semi-circle"
+       },
+       {
+        "zh": "同弓形：$\\angle BAD = \\angle BED$（都對弧 $BD$）。",
+        "en": "Same segment: $\\angle BAD = \\angle BED$ (arc $BD$).",
+        "circleArcs": [
+         [
+          "B",
+          "D",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "B",
+          "D",
+          "x",
+          "claim",
+          30
+         ],
+         [
+          "E",
+          "B",
+          "D",
+          "x",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "$\\angle BAD = 90^\\circ - 34^\\circ = 56^\\circ$，所以 $\\angle BED = 56^\\circ$。",
+        "en": "$\\angle BAD = 90^\\circ - 34^\\circ = 56^\\circ$, so $\\angle BED = 56^\\circ$.",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "D",
+          "56°",
+          "claim",
+          30
+         ],
+         [
+          "E",
+          "B",
+          "D",
+          "56°",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "adj. ∠s"
+       },
+       {
+        "zh": "（b）$EB$ 平分 $\\angle AED$，所以 $\\angle AEB = \\angle BED = 56^\\circ$。",
+        "en": "(b) $EB$ bisects $\\angle AED$, so $\\angle AEB = \\angle BED = 56^\\circ$.",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "B",
+          "56°",
+          "claim",
+          32
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle ADE$ 中：$\\angle ADE = 180^\\circ - 34^\\circ - 112^\\circ = 34^\\circ$；$AC \\parallel ED$ 給內錯角，$\\angle CAD = 34^\\circ$。",
+        "en": "In $\\triangle ADE$: $\\angle ADE = 34^\\circ$; $AC \\parallel ED$ gives $\\angle CAD = 34^\\circ$.",
+        "arcs": [
+         [
+          "D",
+          "A",
+          "E",
+          "34°",
+          "claim",
+          22
+         ],
+         [
+          "A",
+          "C",
+          "D",
+          "34°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "∠ sum of △, alt. ∠s"
+       },
+       {
+        "zh": "所以 $\\angle BAC = 90^\\circ - 34^\\circ - 34^\\circ = 22^\\circ$。",
+        "en": "So $\\angle BAC = 90^\\circ - 34^\\circ - 34^\\circ = 22^\\circ$.",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "22°",
+          "claim",
+          48
+         ]
+        ],
+        "ref": "adj. ∠s",
+        "final": true,
+        "answer": "∠BAC = 22°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓上的直角",
+         "en": "Right angle in the semi-circle"
+        },
+        "math": "\\angle BAE = 90^\\circ",
+        "zh": "因為 $BE$ 是直徑，半圓上的圓周角是直角，所以 $\\angle BAE = 90^\\circ$。",
+        "en": "$BE$ is a diameter, so $\\angle BAE = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形",
+         "en": "Same segment"
+        },
+        "math": "\\angle BAD = \\angle BED",
+        "zh": "$\\angle BAD$ 與 $\\angle BED$ 都對着弧 $BD$，所以相等。",
+        "en": "$\\angle BAD = \\angle BED$ (arc $BD$).",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "相減",
+         "en": "Subtract"
+        },
+        "math": "\\angle BED = 56^\\circ",
+        "zh": "用相減得 $\\angle BAD = 90^\\circ - 34^\\circ = 56^\\circ$；同弓形角相等，所以 $\\angle BED = 56^\\circ$。",
+        "en": "$\\angle BAD = 56^\\circ$, so $\\angle BED = 56^\\circ$.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "角平分線",
+         "en": "Angle bisector"
+        },
+        "math": "\\angle AEB = 56^\\circ",
+        "zh": "因為 $EB$ 平分 $\\angle AED$，兩邊相等，所以 $\\angle AEB = \\angle BED = 56^\\circ$。",
+        "en": "$\\angle AEB = 56^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "內錯角與內角和",
+         "en": "Alternate angles and angle sum"
+        },
+        "math": "\\angle CAD = 34^\\circ",
+        "zh": "在三角形 $ADE$ 中用內角和，得 $\\angle ADE = 34^\\circ$；再由 $AC \\parallel ED$ 的內錯角得 $\\angle CAD = 34^\\circ$。",
+        "en": "$\\angle ADE = 34^\\circ$ and $\\angle CAD = 34^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "相減",
+         "en": "Subtract"
+        },
+        "math": "\\angle BAC = 22^\\circ",
+        "zh": "整隻 $\\angle BAE$ 減去兩隻已知角：$\\angle BAC = 90^\\circ - 34^\\circ - 34^\\circ = 22^\\circ$。",
+        "en": "$\\angle BAC = 90^\\circ - 34^\\circ - 34^\\circ = 22^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle BAE = 90^\\circ$ 誤當成 $\\angle BAD$，忘記減去 $\\angle DAE$。",
+        "en": "Taking ∠BAD as 90°, forgetting to subtract ∠DAE."
+       }
+      ],
+      "tip": {
+       "zh": "直徑給 90°，同弓形把角搬去 $E$，平行線再給一隻內錯角。",
+       "en": "The diameter gives 90°, same-segment moves it to E, and the parallel line gives one more angle."
+      }
+     }
+    },
+    {
      "id": "ch11-1-l2-26",
      "code": "26",
      "type": "long",
@@ -6619,6 +6973,411 @@
       "tip": {
        "zh": "同一個頂點的兩隻角，用「大減細」；兩隻等腰三角形各給一個式子。",
        "en": "Subtract the two angles at C; each isosceles triangle gives one expression."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l2-27",
+     "code": "27",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $AC$ is a diameter of the circle $ABCD$. It is given that $AB = AD$. Prove that $CA$ is the angle bisector of $\\angle BAD$.",
+      "zh": "圖中 $AC$ 是圓 $ABCD$ 的直徑。已知 $AB = AD$，證明 $CA$ 平分 $\\angle BAD$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove that $CA$ bisects $\\angle BAD$.",
+       "zh": "證明 $CA$ 平分 $\\angle BAD$。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle BAC = \\angle DAC",
+       "input": null,
+       "note": {
+        "zh": "RHS 全等",
+        "en": "RHS congruence"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 60
+       },
+       "C": {
+        "at": 240
+       },
+       "B": {
+        "at": 170
+       },
+       "D": {
+        "at": 310
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "A",
+        "D"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "連 $BC$、$CD$；已知 $AC$ 是直徑、$AB = AD$。",
+        "en": "Join $BC$ and $CD$; $AC$ is a diameter and $AB = AD$.",
+        "ticks": [
+         [
+          "A",
+          "B"
+         ],
+         [
+          "A",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "90°",
+          "given",
+          24
+         ],
+         [
+          "D",
+          "A",
+          "C",
+          "90°",
+          "given",
+          24
+         ]
+        ],
+        "ref": "∠ in semi-circle"
+       },
+       {
+        "zh": "$AC$ 是公共邊，$\\angle ABC = \\angle ADC = 90^\\circ$，所以 $\\triangle ABC \\cong \\triangle ADC$（RHS）。",
+        "en": "$AC$ is common and $\\angle ABC = \\angle ADC = 90^\\circ$, so $\\triangle ABC \\cong \\triangle ADC$ (RHS).",
+        "ticks": [
+         [
+          "A",
+          "C"
+         ]
+        ],
+        "ref": "common side, RHS"
+       },
+       {
+        "zh": "對應角相等：$\\angle BAC = \\angle DAC$，所以 $CA$ 平分 $\\angle BAD$。",
+        "en": "Corresponding angles: $\\angle BAC = \\angle DAC$, so $CA$ bisects $\\angle BAD$.",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "x",
+          "claim",
+          34
+         ],
+         [
+          "A",
+          "C",
+          "D",
+          "x",
+          "claim",
+          34
+         ]
+        ],
+        "ref": "corr. ∠s, ≅ △s",
+        "final": true,
+        "answer": "∠BAC = ∠DAC"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半圓上的直角",
+         "en": "Right angles in the semi-circle"
+        },
+        "math": "\\angle ABC = \\angle ADC = 90^\\circ",
+        "zh": "先連 $BC$ 與 $CD$；因為 $AC$ 是直徑，兩個圓周角都是 $90^\\circ$。",
+        "en": "$\\angle ABC = \\angle ADC = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "RHS 全等",
+         "en": "RHS congruence"
+        },
+        "math": "\\triangle ABC \\cong \\triangle ADC",
+        "zh": "$AC = AC$（公共邊）、$AB = AD$（已知）、兩隻直角，所以 $\\triangle ABC \\cong \\triangle ADC$（RHS）。",
+        "en": "$\\triangle ABC \\cong \\triangle ADC$ (RHS).",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "對應角",
+         "en": "Corresponding angles"
+        },
+        "math": "\\angle BAC = \\angle DAC",
+        "zh": "全等三角形的對應角相等，所以 $\\angle BAC = \\angle DAC$，即 $CA$ 平分 $\\angle BAD$。",
+        "en": "$\\angle BAC = \\angle DAC$, so $CA$ bisects $\\angle BAD$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "用 SSS 或 SAS，但 $BC = CD$ 未證，所以只可以用 RHS。",
+        "en": "Trying SSS/SAS before proving BC = CD — only RHS is available."
+       }
+      ],
+      "tip": {
+       "zh": "直徑 → 兩隻 90° → 直角三角形 → RHS；再取對應角。",
+       "en": "Diameter gives two 90° angles, so the triangles are congruent by RHS."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l2-28",
+     "code": "28",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABCD$ is a circle. It is given that $AC = 39$ cm, $AD = 36$ cm and $CD = 15$ cm. (a) Prove that $AC$ is a diameter of the circle. (b) Suppose that $\\angle ACB = 25^\\circ$. Someone claims that $AD < BC$. Do you agree? Explain.",
+      "zh": "圖中 $ABCD$ 是圓。已知 $AC = 39$ cm、$AD = 36$ cm、$CD = 15$ cm。(a) 證明 $AC$ 是圓的直徑。(b) 設 $\\angle ACB = 25^\\circ$。有人聲稱 $AD < BC$，你是否同意？試解釋。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove that $AC$ is a diameter.",
+       "zh": "證明 $AC$ 是直徑。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Is $AD < BC$?",
+       "zh": "$AD < BC$ 嗎？",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "AC \\text{ is a diameter}",
+       "input": null,
+       "note": {
+        "zh": "$36^2 + 15^2 = 39^2$，逆勾股定理",
+        "en": "Converse of Pythagoras"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "BC \\approx 35.3 \\text{ cm} < 36 \\text{ cm} = AD",
+       "note": {
+        "zh": "$BC = 39\\cos 25^\\circ$",
+        "en": "$BC = 39\\cos 25^\\circ$"
+       },
+       "input": null
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "B",
+        "A",
+        "C",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 90
+       },
+       "C": {
+        "at": 270
+       },
+       "B": {
+        "at": 140
+       },
+       "D": {
+        "at": 315.2
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AC = 39$、$AD = 36$、$CD = 15$（cm）。",
+        "en": "Given $AC = 39$, $AD = 36$ and $CD = 15$ (cm).",
+        "notes": [
+         [
+          "36² + 15² = 1296 + 225 = 1521",
+          210,
+          392
+         ]
+        ]
+       },
+       {
+        "zh": "$AC^2 = 39^2 = 1521$，而 $AD^2 + CD^2 = 1521$，所以 $\\angle ADC = 90^\\circ$（逆勾股定理）。",
+        "en": "$AC^2 = 1521 = AD^2 + CD^2$, so $\\angle ADC = 90^\\circ$ (converse of Pythagoras).",
+        "arcs": [
+         [
+          "D",
+          "A",
+          "C",
+          "90°",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "converse of Pyth. theorem"
+       },
+       {
+        "zh": "圓周角是 $90^\\circ$，所以 $AC$ 是直徑（逆定理：半圓上的圓周角）。",
+        "en": "The angle is $90^\\circ$, so $AC$ is a diameter (converse of ∠ in semi-circle).",
+        "circleArcs": [
+         [
+          "A",
+          "C",
+          "B",
+          "accent"
+         ]
+        ]
+       },
+       {
+        "zh": "（b）已知 $\\angle ACB = 25^\\circ$，在直角三角形 $ABC$ 中 $BC = 39\\cos 25^\\circ \\approx 35.3$ cm。",
+        "en": "(b) With $\\angle ACB = 25^\\circ$, $BC = 39\\cos 25^\\circ \\approx 35.3$ cm.",
+        "arcs": [
+         [
+          "C",
+          "A",
+          "B",
+          "25°",
+          "given",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "因為 $35.3 < 36$，即 $BC < AD$，所以聲稱 $AD < BC$ 不成立。",
+        "en": "Since $35.3 < 36$, $BC < AD$, so the claim $AD < BC$ is false.",
+        "final": true,
+        "answer": "BC ≈ 35.3 < 36 = AD"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "逆勾股定理",
+         "en": "Converse of Pythagoras"
+        },
+        "math": "AD^2 + CD^2 = 36^2 + 15^2 = 1521 = 39^2 = AC^2",
+        "zh": "在 $\\triangle ACD$ 中，$AD^2 + CD^2 = 1521 = AC^2$，所以 $\\angle ADC = 90^\\circ$（逆勾股定理）。",
+        "en": "$AD^2 + CD^2 = AC^2$, so $\\angle ADC = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "逆定理",
+         "en": "Converse of the semi-circle theorem"
+        },
+        "math": "AC \\text{ is a diameter}",
+        "zh": "圓周角 $\\angle ADC = 90^\\circ$，根據逆定理，$AC$ 是圓的直徑。",
+        "en": "Since the angle in the segment is $90^\\circ$, $AC$ is a diameter.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "求 $BC$",
+         "en": "Find BC"
+        },
+        "math": "BC = 39\\cos 25^\\circ \\approx 35.3\\text{ cm}",
+        "zh": "因為 $AC$ 是直徑，$\\angle ABC = 90^\\circ$，在直角三角形 $ABC$ 中 $BC = 39\\cos 25^\\circ \\approx 35.3$ cm。",
+        "en": "$\\angle ABC = 90^\\circ$, so $BC = 39\\cos 25^\\circ \\approx 35.3$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "比較",
+         "en": "Compare"
+        },
+        "math": "BC < AD",
+        "zh": "因為 $35.3 < 36$，即 $BC < AD$，所以不同意該聲稱。",
+        "en": "Since $BC < AD$, the claim is false.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b)",
+        "labelEn": "(b)",
+        "zh": "用了 $\\sin 25^\\circ$ 求 $BC$（應該用 $\\cos$，因為 $BC$ 是 $25^\\circ$ 的鄰邊）。",
+        "en": "Using sin 25° instead of cos 25° — BC is the adjacent side."
+       }
+      ],
+      "tip": {
+       "zh": "三邊長先驗勾股（逆定理判直角），再判直徑；比較長短要先算出來。",
+       "en": "Check Pythagoras to get the right angle, then the diameter; compute before comparing."
       }
      }
     },
@@ -7128,6 +7887,256 @@
       "tip": {
        "zh": "先把 $\\angle BCD$ 拆成兩隻角，缺的那隻由平行線與外角找出來。",
        "en": "Split ∠BCD in two; the missing part comes from the parallel lines and an exterior angle."
+      }
+     }
+    },
+    {
+     "id": "ch11-1-l2-31",
+     "code": "31",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABCD$ is a circle. $AC$ and $BD$ intersect at $E$. It is given that $AE = DE$. Prove that $BE = CE$.",
+      "zh": "圖中 $ABCD$ 是圓，$AC$ 與 $BD$ 交於 $E$。已知 $AE = DE$，證明 $BE = CE$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove that $BE = CE$.",
+       "zh": "證明 $BE = CE$。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "BE = CE",
+       "input": null,
+       "note": {
+        "zh": "AAS 全等",
+        "en": "AAS congruence"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 170
+       },
+       "B": {
+        "at": 289
+       },
+       "C": {
+        "at": 10
+       },
+       "D": {
+        "at": 129.1
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "連 $AB$、$CD$；已知 $AE = DE$。",
+        "en": "Join $AB$ and $CD$; given $AE = DE$.",
+        "ticks": [
+         [
+          "A",
+          "E"
+         ],
+         [
+          "D",
+          "E"
+         ]
+        ]
+       },
+       {
+        "zh": "同弓形：$\\angle ABD = \\angle ACD$（都對弧 $AD$）。",
+        "en": "Same segment: $\\angle ABD = \\angle ACD$ (arc $AD$).",
+        "circleArcs": [
+         [
+          "A",
+          "D",
+          "B",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "D",
+          "x",
+          "claim",
+          24
+         ],
+         [
+          "C",
+          "A",
+          "D",
+          "x",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "同弓形：$\\angle BAC = \\angle BDC$（都對弧 $BC$）。",
+        "en": "Same segment: $\\angle BAC = \\angle BDC$ (arc $BC$).",
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "y",
+          "claim",
+          24
+         ],
+         [
+          "D",
+          "B",
+          "C",
+          "y",
+          "claim",
+          24
+         ]
+        ],
+        "ref": "∠s in the same segment"
+       },
+       {
+        "zh": "$\\angle AEB = \\angle DEC$（對頂角），加上 $AE = DE$，所以 $\\triangle ABE \\cong \\triangle DCE$（AAS）。",
+        "en": "$\\angle AEB = \\angle DEC$ (vert. opp.) with $AE = DE$, so $\\triangle ABE \\cong \\triangle DCE$ (AAS).",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "B",
+          "z",
+          "claim",
+          20
+         ],
+         [
+          "E",
+          "D",
+          "C",
+          "z",
+          "claim",
+          20
+         ]
+        ],
+        "ref": "vert. opp. ∠s, AAS"
+       },
+       {
+        "zh": "對應邊相等：$BE = CE$。",
+        "en": "Corresponding sides: $BE = CE$.",
+        "ticks": [
+         [
+          "B",
+          "E"
+         ],
+         [
+          "C",
+          "E"
+         ]
+        ],
+        "ref": "corr. sides, ≅ △s",
+        "final": true,
+        "answer": "BE = CE"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "兩對同弓形",
+         "en": "Two pairs, same segment"
+        },
+        "math": "\\angle ABD = \\angle ACD,\\ \\angle BAC = \\angle BDC",
+        "zh": "先連 $AB$ 與 $CD$；兩隻角都對着弧 $AD$，所以 $\\angle ABD = \\angle ACD$；同樣都對着弧 $BC$，所以 $\\angle BAC = \\angle BDC$。",
+        "en": "$\\angle ABD = \\angle ACD$ and $\\angle BAC = \\angle BDC$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "AAS 全等",
+         "en": "AAS congruence"
+        },
+        "math": "\\triangle ABE \\cong \\triangle DCE",
+        "zh": "加上 $AE = DE$（已知）與對頂角，兩三角形全等（AAS）。",
+        "en": "With $AE = DE$ and the vertically opposite angles, $\\triangle ABE \\cong \\triangle DCE$ (AAS).",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "對應邊",
+         "en": "Corresponding sides"
+        },
+        "math": "BE = CE",
+        "zh": "全等三角形的對應邊相等，所以 $BE = CE$。",
+        "en": "Corresponding sides are equal, so $BE = CE$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "用 $AE = DE$ 當成邊與邊相等就說三角形全等，沒有寫出兩對角。",
+        "en": "Using only AE = DE without the two pairs of equal angles."
+       }
+      ],
+      "tip": {
+       "zh": "要證兩條線段相等，多數是證兩個三角形全等；相交弦給兩對同弓形角。",
+       "en": "To prove segments equal, prove the triangles congruent; crossing chords give two pairs of equal angles."
       }
      }
     },
