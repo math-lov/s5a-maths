@@ -219,11 +219,12 @@ def check_question(q: dict, where: str, fig_ids: set, need_input: bool = False) 
         chars = "".join(str((p or {}).get("en") or "") + str((p or {}).get("zh") or "")
                         for p in (q.get("parts") or []))
         proof = bool(re.search(r"\bprove\b|證明", chars, re.I))
+        asks_angle = ("∠" in chars) or ("angle" in chars.lower())
         if goal:
             for a in goal:
                 if not isinstance(a, list) or len(a) < 3:
                     err("S19 %s：anim.goal 每項要係 [頂點, 點1, 點2, 標籤]" % tag)
-        elif not proof:
+        elif not proof and asks_angle:
             warn("S19 %s：anim 沒有 goal（題目要求的那隻角應該一開始就標出來）" % tag)
 
     sol = q.get("solution") or {}
