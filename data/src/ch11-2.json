@@ -1269,7 +1269,7 @@
     "zh": "基礎練習 · Level 1",
     "en": "Level 1"
    },
-   "marks": 37,
+   "marks": 39,
    "questions": [
     {
      "id": "ch11-2-l1-1",
@@ -3226,6 +3226,609 @@
       "tip": {
        "zh": "先找一個直角三角形，再搬到同弧的另一隻角。",
        "en": "Get a right triangle first, then move the angle along the same arc."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-12",
+     "code": "12",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $ABCD$ is a circle. $AC$ and $BD$ intersect at $E$. It is given that $AC \\perp BD$, $AC = 10$ cm, $CE = 5$ cm and $BD = 14$ cm. (a) Is $BD$ a diameter of the circle? Explain. (b) Find the radius of the circle.",
+      "zh": "圖中 $ABCD$ 是圓，$AC$ 與 $BD$ 交於 $E$。已知 $AC \\perp BD$、$AC = 10$ cm、$CE = 5$ cm、$BD = 14$ cm。(a) $BD$ 是否圓的直徑？試解釋。(b) 求圓的半徑。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Is $BD$ a diameter?",
+       "zh": "$BD$ 是否直徑？",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "The radius",
+       "zh": "半徑",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\text{Yes: } BD \\text{ is a diameter}",
+       "input": null,
+       "note": {
+        "zh": "BD 是 AC 的垂直平分線，必經圓心",
+        "en": "BD is the perpendicular bisector of AC"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "7\\text{ cm}",
+       "note": {
+        "zh": "直徑的一半",
+        "en": "Half the diameter"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "B": {
+        "at": 210
+       },
+       "D": {
+        "at": 30
+       },
+       "E": {
+        "at": 210,
+        "r": 0.7
+       },
+       "A": {
+        "at": 164.42
+       },
+       "C": {
+        "at": 255.58
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AC \\perp BD$ 於 $E$，$AC = 10$ cm、$CE = 5$ cm、$BD = 14$ cm。",
+        "en": "Given $AC \\perp BD$ at $E$, $AC = 10$ cm, $CE = 5$ cm and $BD = 14$ cm.",
+        "arcs": [
+         [
+          "E",
+          "C",
+          "D",
+          "90°",
+          "given",
+          16
+         ]
+        ],
+        "notes": [
+         [
+          "CE = 5 cm",
+          300,
+          250
+         ],
+         [
+          "BD = 14 cm",
+          130,
+          300
+         ]
+        ]
+       },
+       {
+        "zh": "$AE = AC - CE = 10 - 5 = 5$ cm $= CE$，所以 $E$ 是 $AC$ 的中點。",
+        "en": "$AE = AC - CE = 5$ cm $= CE$, so $E$ is the midpoint of $AC$.",
+        "ticks": [
+         [
+          "A",
+          "E"
+         ],
+         [
+          "E",
+          "C"
+         ]
+        ]
+       },
+       {
+        "zh": "$BD \\perp AC$ 且穿過中點，即 $BD$ 是 $AC$ 的垂直平分線；垂直平分線必經圓心，所以 $BD$ 是直徑 —— 是。",
+        "en": "$BD$ is the perpendicular bisector of $AC$, so it passes through the centre: $BD$ is a diameter — yes.",
+        "notes": [
+         [
+          "BD passes through O",
+          210,
+          388
+         ]
+        ],
+        "ref": "⊥ bisector of chord",
+        "final": true,
+        "answer": "Yes — BD is a diameter"
+       },
+       {
+        "zh": "（b）$BD$ 是直徑，所以半徑 $= 14 \\div 2 = 7$ cm。",
+        "en": "(b) $BD$ is a diameter, so the radius is $14 \\div 2 = 7$ cm.",
+        "notes": [
+         [
+          "r = 7 cm",
+          210,
+          392
+         ]
+        ],
+        "ref": "radius = ½ diameter",
+        "final": true,
+        "answer": "r = 7 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "E 是中點",
+         "en": "E is the midpoint"
+        },
+        "math": "AE = CE = 5",
+        "zh": "已知 $AC = 10$、$CE = 5$，所以 $AE = 5 = CE$，$E$ 是 $AC$ 的中點。",
+        "en": "$AE = CE = 5$, so $E$ is the midpoint.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "垂直平分線過圓心",
+         "en": "Perpendicular bisector through the centre"
+        },
+        "math": "BD \\text{ is a diameter}",
+        "zh": "$BD \\perp AC$ 於中點 $E$，所以 $BD$ 是 $AC$ 的垂直平分線，必經圓心；因此 $BD$ 是直徑。",
+        "en": "$BD$ passes through the centre, so it is a diameter.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "半徑",
+         "en": "Radius"
+        },
+        "math": "r = 7\\text{ cm}",
+        "zh": "因為 $BD$ 是直徑，半徑就是直徑的一半：$14 \\div 2 = 7$ cm。",
+        "en": "The radius is $7$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "只說「看起來穿過圓心」；要寫出 $BD$ 是 $AC$ 的垂直平分線。",
+        "en": "Saying it \"looks like\" it passes through O without the bisector reason."
+       }
+      ],
+      "tip": {
+       "zh": "垂直平分弦的直線一定過圓心；過圓心的弦就是直徑。",
+       "en": "The perpendicular bisector of a chord passes through the centre — and that chord is a diameter."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-13",
+     "code": "13",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "en": "In the figure, $M$ and $N$ are points on $AB$ and $CD$ such that $MON$ is a straight line. It is given that $AB \\perp OM$, $CD \\perp ON$, $BM = 18$ cm, $BN = 30$ cm and $CD = 36$ cm. Find $ON$.",
+      "zh": "圖中 $M$、$N$ 分別在 $AB$、$CD$ 上，$MON$ 是一條直線。已知 $AB \\perp OM$、$CD \\perp ON$、$BM = 18$ cm、$BN = 30$ cm、$CD = 36$ cm，求 $ON$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$ON$",
+       "zh": "$ON$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "ON = 12\\text{ cm}",
+       "note": {
+        "zh": "先求 $MN = 24$，等弦等距令 $O$ 是中點",
+        "en": "MN = 24, then equal chords make O the midpoint"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "M": {
+        "at": 165,
+        "r": 0.555
+       },
+       "N": {
+        "at": 345,
+        "r": 0.555
+       },
+       "A": {
+        "at": 108.7
+       },
+       "B": {
+        "at": 221.3
+       },
+       "C": {
+        "at": 288.7
+       },
+       "D": {
+        "at": 41.3
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "M",
+        "O"
+       ],
+       [
+        "O",
+        "N"
+       ],
+       [
+        "B",
+        "N"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AB \\perp OM$、$CD \\perp ON$、$MON$ 是直線，$BM = 18$、$BN = 30$、$CD = 36$。",
+        "en": "Given $AB \\perp OM$, $CD \\perp ON$, $MON$ a straight line, $BM = 18$, $BN = 30$ and $CD = 36$.",
+        "arcs": [
+         [
+          "M",
+          "B",
+          "O",
+          "90°",
+          "given",
+          14
+         ],
+         [
+          "N",
+          "C",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "notes": [
+         [
+          "BM = 18 cm",
+          150,
+          320
+         ],
+         [
+          "BN = 30 cm",
+          250,
+          350
+         ],
+         [
+          "CD = 36 cm",
+          350,
+          200
+         ]
+        ]
+       },
+       {
+        "zh": "在直角三角形 $BMN$ 中：$MN = \\sqrt{30^2 - 18^2} = 24$ cm。",
+        "en": "In right triangle $BMN$: $MN = \\sqrt{30^2 - 18^2} = 24$ cm.",
+        "ref": "Pyth. theorem"
+       },
+       {
+        "zh": "$OM \\perp AB$ 所以 $M$ 是 $AB$ 的中點，$AB = 36 = CD$。",
+        "en": "$OM \\perp AB$ gives $M$ the midpoint, so $AB = 36 = CD$.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "B"
+         ]
+        ],
+        "ref": "⊥ from centre bisects chord"
+       },
+       {
+        "zh": "等弦等距：$OM = ON$；而 $MON$ 是直線，所以 $O$ 是 $MN$ 的中點，$ON = 12$ cm。",
+        "en": "Equal chords give $OM = ON$, so $O$ is the midpoint of $MN$ and $ON = 12$ cm.",
+        "ticks": [
+         [
+          "O",
+          "M"
+         ],
+         [
+          "O",
+          "N"
+         ]
+        ],
+        "ref": "equal chords, equidistant",
+        "final": true,
+        "answer": "ON = 12 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "勾股定理",
+         "en": "Pythagoras"
+        },
+        "math": "MN = \\sqrt{30^2 - 18^2} = 24",
+        "zh": "已知 $AB \\perp OM$、$CD \\perp ON$，而 $M$、$N$ 分別在兩條弦上，$MON$ 是一條直線。",
+        "en": "$MN = 24$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "弦長相等",
+         "en": "Equal chords"
+        },
+        "math": "AB = 2 \\times 18 = 36 = CD",
+        "zh": "因為 $OM \\perp AB$，圓心到弦的垂線平分弦，所以 $AB = 2 \\times 18 = 36$ cm，與 $CD$ 相等。",
+        "en": "$AB = 36 = CD$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等距",
+         "en": "Equidistant"
+        },
+        "math": "ON = 12",
+        "zh": "等弦與圓心等距，所以 $OM = ON$；$MON$ 是直線，故 $ON = \\tfrac{1}{2}(24) = 12$ cm。",
+        "en": "$ON = 12$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "忘記先證 $AB = CD$，直接當 $OM = ON$ 是已知。",
+        "en": "Assuming OM = ON without first showing AB = CD."
+       }
+      ],
+      "tip": {
+       "zh": "把 $B$、$M$、$N$ 看成一個直角三角形（18-24-30），再連繫等弦等距。",
+       "en": "See B, M, N as an 18-24-30 right triangle, then use equal chords."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-14",
+     "code": "14",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "en": "In the figure, $M$ and $N$ are points on $AB$ and $CD$ such that $AM = BM$ and $ON \\perp CD$. It is given that $OD = 15$ cm, $OM = 9$ cm and $CD = 24$ cm. Find $ON$ and $AB$.",
+      "zh": "圖中 $M$、$N$ 分別在 $AB$、$CD$ 上，$AM = BM$、$ON \\perp CD$。已知 $OD = 15$ cm、$OM = 9$ cm、$CD = 24$ cm，求 $ON$ 及 $AB$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$ON$ and $AB$",
+       "zh": "$ON$ 及 $AB$",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "ON = 9\\text{ cm},\\ AB = 24\\text{ cm}",
+       "note": {
+        "zh": "兩條弦都是 12-9-15 直角三角形",
+        "en": "Both chords give a 12-9-15 triangle"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "M": {
+        "at": 155,
+        "r": 0.6
+       },
+       "N": {
+        "at": 295,
+        "r": 0.6
+       },
+       "A": {
+        "at": 101.87
+       },
+       "B": {
+        "at": 208.13
+       },
+       "C": {
+        "at": 241.87
+       },
+       "D": {
+        "at": 348.13
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "O",
+        "N"
+       ],
+       [
+        "O",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $OD = 15$ cm、$OM = 9$ cm、$CD = 24$ cm，$ON \\perp CD$。",
+        "en": "Given $OD = 15$ cm, $OM = 9$ cm, $CD = 24$ cm and $ON \\perp CD$.",
+        "arcs": [
+         [
+          "N",
+          "C",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "notes": [
+         [
+          "15 cm",
+          330,
+          250
+         ],
+         [
+          "9 cm",
+          90,
+          240
+         ],
+         [
+          "24 cm",
+          300,
+          360
+         ]
+        ]
+       },
+       {
+        "zh": "$ON \\perp CD$，所以 $ND = 12$ cm；在 $\\triangle OND$：$ON = \\sqrt{15^2 - 12^2} = 9$ cm。",
+        "en": "$ND = 12$ cm, so $ON = \\sqrt{15^2 - 12^2} = 9$ cm.",
+        "ticks": [
+         [
+          "C",
+          "N"
+         ],
+         [
+          "N",
+          "D"
+         ]
+        ],
+        "ref": "Pyth. theorem"
+       },
+       {
+        "zh": "$AM = BM$，$M$ 是中點，所以 $OM \\perp AB$；$OM = 9$，$AB = 2\\sqrt{15^2 - 9^2} = 24$ cm。",
+        "en": "$M$ is the midpoint, so $OM \\perp AB$; $AB = 2\\sqrt{15^2 - 9^2} = 24$ cm.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "B"
+         ]
+        ],
+        "arcs": [
+         [
+          "M",
+          "A",
+          "O",
+          "90°",
+          "claim",
+          14
+         ]
+        ],
+        "ref": "line to mid-pt. ⊥ chord",
+        "final": true,
+        "answer": "ON = 9 cm, AB = 24 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半弦",
+         "en": "Half chord"
+        },
+        "math": "ND = 12",
+        "zh": "因為 $ON \\perp CD$，圓心到弦的垂線平分弦，所以 $ND = \\tfrac{1}{2} \\times 24 = 12$ cm。",
+        "en": "$ND = 12$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "勾股定理",
+         "en": "Pythagoras"
+        },
+        "math": "ON = \\sqrt{15^2 - 12^2} = 9",
+        "zh": "在直角三角形 $OND$ 中用勾股定理：$ON = \\sqrt{15^2 - 12^2} = 9$ cm。",
+        "en": "$ON = 9$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "另一條弦",
+         "en": "The other chord"
+        },
+        "math": "AB = 2\\sqrt{15^2 - 9^2} = 24",
+        "zh": "因為 $AM = BM$，圓心連中點垂直於 $AB$；再用勾股定理得 $AB = 2\\sqrt{15^2 - 9^2} = 24$ cm。",
+        "en": "$AB = 24$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $CD = 24$ 當成半弦，或忘了 $OM \\perp AB$。",
+        "en": "Using 24 as the half-chord, or forgetting OM ⊥ AB."
+       }
+      ],
+      "tip": {
+       "zh": "兩條弦各自是一個直角三角形：半徑是斜邊，圓心距與半弦是兩股。",
+       "en": "Each chord gives a right triangle: radius, distance and half-chord."
       }
      }
     },
