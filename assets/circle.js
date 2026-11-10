@@ -155,6 +155,23 @@
         pts[name] = cross(pts[c[0]], pts[c[1]], pts[c[2]], pts[c[3]]);
       }
     });
+    /* 兩條切線的交點（三角形外接於圓時的三個頂點）：
+       {"tangent": [角度1, 角度2], "of": "O", "r": 0.6}
+       —— 在圓上該角度處的切線，兩條切線的交點就是頂點。
+       of = 圓心（預設 O），r = 該圓的半徑（相對主半徑，預設 1）。 */
+    Object.keys(specs).forEach(function (name) {
+      var s = specs[name] || {};
+      if (!s.tangent) return;
+      var t1 = s.tangent[0] * Math.PI / 180, t2 = s.tangent[1] * Math.PI / 180;
+      var den = Math.sin(t2 - t1);
+      if (Math.abs(den) < 1e-9) return;
+      var k = (s.r === undefined ? 1 : s.r);
+      var o = s.of && pts[s.of] ? pts[s.of] : { x: 0, y: 0 };
+      pts[name] = {
+        x: o.x + k * (Math.sin(t2) - Math.sin(t1)) / den,
+        y: o.y - k * (Math.cos(t2) - Math.cos(t1)) / den
+      };
+    });
     /* 延長線上的點：由 a 經 b 再走 k（以半徑為單位） */
     Object.keys(specs).forEach(function (name) {
       var s = specs[name] || {};
@@ -184,6 +201,18 @@
         gBase.appendChild(el("circle", { class: "cg-circle", cx: o.x, cy: o.y, r: R }));
       }
     }
+
+    /* 多個圓：同心圓、兩個相交圓都用這個。
+       "circles": [ {"c": "O", "r": 1}, {"c": "P", "r": 0.45} ]
+       c = 圓心的點名，r = 相對半徑（1 = 主半徑 R）。 */
+    (anim.circles || []).forEach(function (C) {
+      var o = screen(pts[C.c]);
+      if (!o) return;
+      gBase.appendChild(el("circle", {
+        class: "cg-circle" + (C.class ? " " + C.class : ""),
+        cx: o.x, cy: o.y, r: R * (C.r === undefined ? 1 : C.r)
+      }));
+    });
 
     (anim.segments || []).forEach(function (s) {
       var a = screen(pts[s[0]]), b = screen(pts[s[1]]);

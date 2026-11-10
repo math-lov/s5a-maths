@@ -60,6 +60,17 @@ def build_points(anim):
                     pts[name] = p
     for name in specs:
         s = specs[name]
+        if "tangent" in s:
+            t1 = math.radians(s["tangent"][0])
+            t2 = math.radians(s["tangent"][1])
+            den = math.sin(t2 - t1)
+            if abs(den) > 1e-9:
+                k = s.get("r", 1)
+                o = pts.get(s.get("of", "O"), (0.0, 0.0)) if s.get("of") else (0.0, 0.0)
+                pts[name] = (o[0] + k * (math.sin(t2) - math.sin(t1)) / den,
+                             o[1] - k * (math.cos(t2) - math.cos(t1)) / den)
+    for name in specs:
+        s = specs[name]
         if "extend" in s:
             a, b = s["extend"]
             if a in pts and b in pts:
