@@ -4320,7 +4320,7 @@
     "zh": "進階練習 · Level 2",
     "en": "Level 2"
    },
-   "marks": 21,
+   "marks": 29,
    "questions": [
     {
      "id": "ch11-2-l2-17",
@@ -5461,6 +5461,478 @@
       "tip": {
        "zh": "正交弦：各自取半弦求圓心距，再用座標差找 $AB$。",
        "en": "Perpendicular chords: halve each, find the distances, then use the coordinate gaps."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l2-25",
+     "code": "25",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "zh": "圖中三條弦 $AB$、$CD$、$EF$ 等長，且分別垂直於 $OL$、$OM$、$ON$。已知 $\\angle QPR = 79^\\circ$，求 $\\angle QOR$。",
+      "en": "In the figure the chords $AB$, $CD$, $EF$ are equal and perpendicular to $OL$, $OM$, $ON$ respectively. Given $\\angle QPR = 79^\\circ$, find $\\angle QOR$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$\\angle QOR$",
+       "zh": "$\\angle QOR$",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle QOR = 129.5^\\circ",
+       "note": {
+        "zh": "等弦等距 → 內心 → 底角一半",
+        "en": "Equal chords give an incentre, then half the base angles"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "O",
+        "Q",
+        "R",
+        "?"
+       ]
+      ],
+      "circles": [
+       {
+        "c": "O",
+        "r": 1
+       }
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "L": {
+        "at": 140.5
+       },
+       "N": {
+        "at": 39.5
+       },
+       "M": {
+        "at": 270
+       },
+       "P": {
+        "tangent": [
+         140.5,
+         39.5
+        ]
+       },
+       "Q": {
+        "tangent": [
+         140.5,
+         270
+        ]
+       },
+       "R": {
+        "tangent": [
+         39.5,
+         270
+        ]
+       }
+      },
+      "segments": [
+       [
+        "P",
+        "Q"
+       ],
+       [
+        "P",
+        "R"
+       ],
+       [
+        "Q",
+        "R"
+       ],
+       [
+        "O",
+        "L"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "O",
+        "N"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "三條弦等長，$OL \\perp AB$、$OM \\perp CD$、$ON \\perp EF$，所以 $OL = OM = ON$。",
+        "en": "Equal chords give equal distances: $OL = OM = ON$.",
+        "arcs": [
+         [
+          "L",
+          "P",
+          "O",
+          "90°",
+          "given",
+          14
+         ],
+         [
+          "M",
+          "Q",
+          "O",
+          "90°",
+          "given",
+          14
+         ],
+         [
+          "N",
+          "P",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "ticks": [
+         [
+          "O",
+          "L"
+         ],
+         [
+          "O",
+          "M"
+         ],
+         [
+          "O",
+          "N"
+         ]
+        ],
+        "ref": "equal chords, equidistant"
+       },
+       {
+        "zh": "在四邊形 $PLON$ 中，$\\angle PLO = \\angle PNO = 90^\\circ$，所以 $\\angle LON = 180^\\circ - 79^\\circ = 101^\\circ$。",
+        "en": "In $PLON$: $\\angle LON = 180^\\circ - 79^\\circ = 101^\\circ$.",
+        "arcs": [
+         [
+          "O",
+          "L",
+          "N",
+          "101°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "∠ sum of quadrilateral"
+       },
+       {
+        "zh": "切線長相等，所以 $QO$ 平分 $\\angle PQR$、$RO$ 平分 $\\angle PRQ$。",
+        "en": "Equal tangents give $QO$ and $RO$ as angle bisectors.",
+        "ref": "tangent lengths"
+       },
+       {
+        "zh": "在 $\\triangle OQR$：$\\angle QOR = 180^\\circ - \\frac{1}{2}(180^\\circ - 79^\\circ) = 129.5^\\circ$。",
+        "en": "In $\\triangle OQR$: $\\angle QOR = 180^\\circ - 50.5^\\circ = 129.5^\\circ$.",
+        "rays": [
+         [
+          "O",
+          "Q",
+          "claim"
+         ],
+         [
+          "O",
+          "R",
+          "claim"
+         ]
+        ],
+        "arcs": [
+         [
+          "O",
+          "Q",
+          "R",
+          "129.5°",
+          "claim",
+          30
+         ]
+        ],
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "∠QOR = 129.5°"
+       }
+      ],
+      "r": 95,
+      "cy": 235
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等弦等距",
+         "en": "Equal chords are equidistant"
+        },
+        "math": "OL = OM = ON",
+        "zh": "三條弦等長且都與圓心等距，所以 $OL = OM = ON$，$O$ 就是內切圓的圓心。",
+        "en": "$OL = OM = ON$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "四邊形內角和",
+         "en": "Quadrilateral"
+        },
+        "math": "\\angle LON = 101^\\circ",
+        "zh": "四邊形 PLON 有兩個直角，對角互補，所以 LON 等於 180 度減去頂角 QPR。",
+        "en": "$\\angle LON = 101^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "角平分線",
+         "en": "Bisectors"
+        },
+        "math": "\\angle OQR + \\angle ORQ = 50.5^\\circ",
+        "zh": "由切線長相等，$QO$、$RO$ 分別平分 $\\angle PQR$ 與 $\\angle PRQ$，兩者之和是 $(180^\\circ - 79^\\circ) \\div 2 = 50.5^\\circ$。",
+        "en": "The bisectors give $50.5^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "三角形內角和",
+         "en": "Triangle"
+        },
+        "math": "\\angle QOR = 129.5^\\circ",
+        "zh": "在三角形 $OQR$ 中用內角和：$\\angle QOR = 180^\\circ - 50.5^\\circ = 129.5^\\circ$。",
+        "en": "$\\angle QOR = 129.5^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle LON$ 當成 $\\angle QOR$；兩者相差 $28.5^\\circ$。",
+        "en": "Mistaking ∠LON for ∠QOR."
+       }
+      ],
+      "tip": {
+       "zh": "等弦等距 → 圓心是內心 → 兩條角平分線 → 三角形內角和。",
+       "en": "Equal chords make the centre an incentre; then two bisectors and one angle sum."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l2-26",
+     "code": "26",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "zh": "圖中 $AC$ 是直徑，圓面積 $16\\pi$ cm$^2$，$P$、$Q$ 分別是 $AB$、$BC$ 的垂足。(a) 求 $AB$。(b) 四邊形 $OPBQ$ 的面積是否 16 cm$^2$？",
+      "en": "In the figure $AC$ is a diameter, the area of the circle is $16\\pi$ cm$^2$, and $P$, $Q$ are the feet from $O$ to $AB$, $BC$. (a) Find $AB$. (b) Is the area of $OPBQ$ equal to 16 cm$^2$?"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$AB$",
+       "zh": "$AB$",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Area of $OPBQ$",
+       "zh": "$OPBQ$ 的面積",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "AB = 4\\sqrt{2}\\text{ cm}",
+       "note": {
+        "zh": "半徑 4，弦 4√2",
+        "en": "Radius 4, chord 4√2"
+       },
+       "input": null
+      },
+      {
+       "part": "(b)",
+       "math": "8\\text{ cm}^2 \\ne 16\\text{ cm}^2",
+       "input": null,
+       "note": {
+        "zh": "正方形邊長 2√2",
+        "en": "A square of side 2√2"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 180
+       },
+       "C": {
+        "at": 0
+       },
+       "B": {
+        "at": 90
+       },
+       "P": {
+        "at": 135,
+        "r": 0.707
+       },
+       "Q": {
+        "at": 45,
+        "r": 0.707
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "C"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "O",
+        "P"
+       ],
+       [
+        "O",
+        "Q"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "圓面積 $16\\pi$，所以半徑 $r = 4$ cm；$P$、$Q$ 是垂足。",
+        "en": "The area is $16\\pi$, so $r = 4$ cm; $P$, $Q$ are the feet.",
+        "arcs": [
+         [
+          "P",
+          "B",
+          "O",
+          "90°",
+          "given",
+          14
+         ],
+         [
+          "Q",
+          "B",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "ticks": [
+         [
+          "O",
+          "P"
+         ],
+         [
+          "O",
+          "Q"
+         ]
+        ]
+       },
+       {
+        "zh": "$AC$ 是直徑，所以 $\\angle ABC = 90^\\circ$；$OP = OQ$ 且三個直角，$OPBQ$ 是正方形。",
+        "en": "$\\angle ABC = 90^\\circ$, and with $OP = OQ$ the quadrilateral is a square.",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "90°",
+          "given",
+          20
+         ]
+        ],
+        "ref": "∠ in semi-circle"
+       },
+       {
+        "zh": "$OP = 4\\cos 45^\\circ = 2\\sqrt{2}$，所以 $AB = 2 \\times 4\\sin 45^\\circ = 4\\sqrt{2}$ cm。",
+        "en": "$AB = 4\\sqrt{2}$ cm.",
+        "ref": "Pyth. theorem"
+       },
+       {
+        "zh": "面積 $= (2\\sqrt{2})^2 = 8$ cm$^2 \\ne 16$ cm$^2$，所以聲稱不成立。",
+        "en": "The area is $8$ cm$^2$, not 16.",
+        "final": true,
+        "answer": "8 cm² ≠ 16 cm²"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半徑",
+         "en": "Radius"
+        },
+        "math": "r = 4",
+        "zh": "已知圓面積 $= 16\\pi$ cm$^2$，所以半徑 $r = 4$ cm；$P$、$Q$ 是兩個垂足。",
+        "en": "$r = 4$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "弦長",
+         "en": "Chord"
+        },
+        "math": "AB = 4\\sqrt{2}",
+        "zh": "$AB$ 對着 $90^\\circ$ 的圓心角，所以 $AB = 2 \\times 4 \\sin 45^\\circ = 4\\sqrt{2}$ cm。",
+        "en": "$AB = 4\\sqrt{2}$ cm.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "正方形",
+         "en": "Square"
+        },
+        "math": "OP = 2\\sqrt{2}",
+        "zh": "$\\angle ABC = 90^\\circ$（直徑），加上兩個垂足直角，$OPBQ$ 是長方形；$OP = OQ$ 使它成為正方形，邊長 $2\\sqrt{2}$。",
+        "en": "It is a square of side $2\\sqrt{2}$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "面積",
+         "en": "Area"
+        },
+        "math": "8 \\ne 16",
+        "zh": "正方形面積 $= (2\\sqrt{2})^2 = 8$ cm$^2$，不等於 16，所以不同意。",
+        "en": "The area is $8$ cm$^2$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(b)",
+        "labelEn": "(b)",
+        "zh": "把 $OP$ 當成半徑 4，於是面積算成 16。",
+        "en": "Using the radius 4 as OP."
+       }
+      ],
+      "tip": {
+       "zh": "兩個垂足 ＋ 半圓的直角 = 正方形；邊長是半徑乘 $\\cos 45^\\circ$。",
+       "en": "Two feet plus the semi-circle right angle give a square of side r cos 45°."
       }
      }
     }
