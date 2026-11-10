@@ -2163,6 +2163,9 @@ ok(R_QS.slice(0, 4).map((q) => q.answer).join("") === "BBBB" &&
   "快測答案：Q1–Q4 都係 B，Q5 多選 A、B、D");
 ok(R_MC.map((q) => q.answer).join("") === "BBCCDADBBC",
   "甲部 10 題 MC 答案＝B、B、C、C、D、A、D、B、B、C（與官方答案表一致）");
+ok(R_QS.slice(2, 4).every((q) => Object.values(q.options).every((v) =>
+  v && typeof v === "object" && v.zh && v.en)),
+  "Q3／Q4 的「揀方法」選項寫成 {zh, en}，切到 EN 時不會夾雜中文");
 ok(R_QS.filter((q) => q.type === "long").reduce((a, q) => a + q.marks, 0) === 66 &&
   R_QS.filter((q) => q.type === "long").map((q) => q.marks).join(",") === "8,8,4,7,7,4,5,5,6,12",
   "長題分數 8、8、4、7、7、4、5、5、6、12，合共 66 分");

@@ -208,8 +208,14 @@
       }
      ],
      "options": {
-      "A": "直接相加 Direct addition",
-      "B": "反面 Complement"
+      "A": {
+       "en": "Direct addition",
+       "zh": "直接相加"
+      },
+      "B": {
+       "en": "Take the complement",
+       "zh": "反面"
+      }
      },
      "answer": "B",
      "answers": [
@@ -297,8 +303,14 @@
       }
      ],
      "options": {
-      "A": "當作一次過抽兩粒（組合）Treat as one draw (combinations)",
-      "B": "每次獨立相乘（有放回）Multiply each draw, with replacement"
+      "A": {
+       "en": "Treat it as one draw of two balls (combinations)",
+       "zh": "當作一次過抽兩粒（組合）"
+      },
+      "B": {
+       "en": "Multiply each draw (with replacement)",
+       "zh": "每次獨立相乘（有放回）"
+      }
      },
      "answer": "B",
      "answers": [

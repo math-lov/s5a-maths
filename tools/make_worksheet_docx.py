@@ -382,7 +382,10 @@ def add_mc(doc, sec, qs):
                 pp = c.paragraphs[0]
                 pp.paragraph_format.space_after = Pt(1)
                 pp.paragraph_format.left_indent = Cm(0.6)
-                style_run(pp.add_run("(%s) %s" % (k, ascii_only(plain(opts[k])))), 10.5)
+                val = opts[k]
+                # 文字選項可以寫成 {en, zh}（網站會跟語言切換），工作紙只印英文
+                text = plain(en(val)) if isinstance(val, dict) else ascii_only(plain(val))
+                style_run(pp.add_run("(%s) %s" % (k, text)), 10.5)
         if quick.get("input"):
             add_input_line(doc, quick)
         if quick.get("rows"):
