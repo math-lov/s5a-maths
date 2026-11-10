@@ -4320,7 +4320,7 @@
     "zh": "進階練習 · Level 2",
     "en": "Level 2"
    },
-   "marks": 37,
+   "marks": 44,
    "questions": [
     {
      "id": "ch11-2-l2-17",
@@ -5662,6 +5662,270 @@
      }
     },
     {
+     "id": "ch11-2-l2-24",
+     "code": "24",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "zh": "圖中弦 $AD$ 與 $BC$ 等長且關於 $OE$ 對稱，$M$、$N$ 分別是兩弦的中點，兩弦延長交於圓外 $E$。已知 $\\angle ABE = 76^\\circ$。(a) 證明 $\\triangle ABE$ 是等腰三角形。(b) 求 $\\angle MOE$。",
+      "en": "In the figure the equal chords $AD$ and $BC$ are symmetric about $OE$, $M$ and $N$ are their midpoints, and the chords produced meet at $E$ outside the circle. Given $\\angle ABE = 76^\\circ$, (a) prove that $\\triangle ABE$ is isosceles, (b) find $\\angle MOE$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove $\\triangle ABE$ is isosceles",
+       "zh": "證明 $\\triangle ABE$ 是等腰三角形",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "$\\angle MOE$",
+       "zh": "$\\angle MOE$",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "EA = EB",
+       "input": null,
+       "note": {
+        "zh": "兩弦關於 $OE$ 對稱",
+        "en": "The chords are symmetric about OE"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\angle MOE = 76^\\circ",
+       "note": {
+        "zh": "同弓形 ＋ 直角減",
+        "en": "Same segment, then subtract from 90°"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "O",
+        "M",
+        "E",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 116
+       },
+       "D": {
+        "at": 36
+       },
+       "B": {
+        "at": 244
+       },
+       "C": {
+        "at": 324
+       },
+       "M": {
+        "at": 76,
+        "r": 0.766
+       },
+       "N": {
+        "at": 284,
+        "r": 0.766
+       },
+       "E": {
+        "at": 0,
+        "r": 3.17
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "E"
+       ],
+       [
+        "B",
+        "E"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "O",
+        "E"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "O",
+        "N"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AD = BC$ 且關於 $OE$ 對稱，$M$、$N$ 分別是兩弦的中點，$\\angle ABE = 76^\\circ$。",
+        "en": "$AD = BC$ symmetric about $OE$, $M$ and $N$ are midpoints, $\\angle ABE = 76^\\circ$.",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "E",
+          "76°",
+          "given",
+          24
+         ]
+        ],
+        "ticks": [
+         [
+          "O",
+          "M"
+         ],
+         [
+          "O",
+          "N"
+         ]
+        ]
+       },
+       {
+        "zh": "$OM \\perp AD$、$ON \\perp BC$，等弦等距所以 $OM = ON$。",
+        "en": "$OM = ON$ since the chords are equal.",
+        "arcs": [
+         [
+          "M",
+          "A",
+          "O",
+          "90°",
+          "given",
+          14
+         ],
+         [
+          "N",
+          "B",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "ref": "equal chords, equidistant"
+       },
+       {
+        "zh": "兩弦關於 $OE$ 對稱，$E$ 在對稱軸上，所以 $EA = EB$，$\\triangle ABE$ 等腰。",
+        "en": "By symmetry about $OE$, $EA = EB$.",
+        "ticks": [
+         [
+          "E",
+          "A"
+         ],
+         [
+          "E",
+          "B"
+         ]
+        ],
+        "ref": "symmetry about OE"
+       },
+       {
+        "zh": "等腰三角形的底角相等，所以 $\\angle AEB = 180^\\circ - 2 \\times 76^\\circ = 28^\\circ$。",
+        "en": "$\\angle AEB = 180^\\circ - 152^\\circ = 28^\\circ$.",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "B",
+          "28°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "∠ sum of △"
+       },
+       {
+        "zh": "$OE$ 平分 $\\angle AEB$，所以 $\\angle AEO = 14^\\circ$；$OM \\perp AD$ 給 $\\angle MOE = 90^\\circ - 14^\\circ = 76^\\circ$。",
+        "en": "$\\angle AEO = 14^\\circ$, so $\\angle MOE = 90^\\circ - 14^\\circ = 76^\\circ$.",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "O",
+          "14°",
+          "claim",
+          56
+         ],
+         [
+          "O",
+          "M",
+          "E",
+          "76°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "symmetry, then 90° − 14°",
+        "final": true,
+        "answer": "∠MOE = 76°"
+       }
+      ],
+      "cx": 150,
+      "r": 78
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "對稱",
+         "en": "Symmetry"
+        },
+        "math": "EA = EB",
+        "zh": "兩條等弦關於 $OE$ 對稱，而 $E$ 在對稱軸上，所以 $EA = EB$，$\\triangle ABE$ 是等腰三角形。",
+        "en": "$EA = EB$ by symmetry.",
+        "marking": "(1M)(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "頂角",
+         "en": "Apex angle"
+        },
+        "math": "\\angle AEB = 28^\\circ",
+        "zh": "等腰三角形兩底角相等，所以 $\\angle AEB = 180^\\circ - 2 \\times 76^\\circ = 28^\\circ$。",
+        "en": "$\\angle AEB = 28^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "直角",
+         "en": "Right angle"
+        },
+        "math": "\\angle MOE = 76^\\circ",
+        "zh": "$OE$ 是對稱軸，平分 $\\angle AEB$ 得 $14^\\circ$；$OM \\perp AD$，所以 $\\angle MOE = 90^\\circ - 14^\\circ = 76^\\circ$。",
+        "en": "$\\angle MOE = 76^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "只寫「看起來對稱」，沒有指出兩弦等長且關於 $OE$ 對稱。",
+        "en": "Saying \"by symmetry\" without stating the equal chords."
+       }
+      ],
+      "tip": {
+       "zh": "對稱軸上的點到兩端等距；垂直弦的半徑再減 $14^\\circ$ 就得答案。",
+       "en": "Points on the axis of symmetry are equidistant; subtract 14° from the right angle."
+      }
+     }
+    },
+    {
      "id": "ch11-2-l2-25",
      "code": "25",
      "type": "long",
@@ -6130,6 +6394,253 @@
       "tip": {
        "zh": "兩個垂足 ＋ 半圓的直角 = 正方形；邊長是半徑乘 $\\cos 45^\\circ$。",
        "en": "Two feet plus the semi-circle right angle give a square of side r cos 45°."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l2-27",
+     "code": "27",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 3,
+     "stem": {
+      "zh": "圖中 $OC$ 延長至圓外 $F$，弦 $AB$ 與 $DE$ 關於 $OF$ 對稱，$M$、$N$ 分別是兩弦的中點，兩弦延長交於 $F$。證明 (a) $OF$ 平分 $\\angle MON$；(b) $CM = CN$。",
+      "en": "In the figure $OC$ is produced to $F$ outside the circle; the chords $AB$ and $DE$ are symmetric about $OF$, $M$ and $N$ are their midpoints and the chords produced meet at $F$. Prove that (a) $OF$ bisects $\\angle MON$, (b) $CM = CN$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove $OF$ bisects $\\angle MON$",
+       "zh": "證明 $OF$ 平分 $\\angle MON$",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Prove $CM = CN$",
+       "zh": "證明 $CM = CN$",
+       "marks": 1
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle MOF = \\angle NOF",
+       "input": null,
+       "note": {
+        "zh": "對稱",
+        "en": "By symmetry"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "CM = CN",
+       "input": null,
+       "note": {
+        "zh": "對稱",
+        "en": "By symmetry"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "C": {
+        "at": 0
+       },
+       "A": {
+        "at": 120
+       },
+       "B": {
+        "at": 20
+       },
+       "D": {
+        "at": 240
+       },
+       "E": {
+        "at": 340
+       },
+       "M": {
+        "at": 70,
+        "r": 0.643
+       },
+       "N": {
+        "at": 290,
+        "r": 0.643
+       },
+       "F": {
+        "at": 0,
+        "r": 1.88
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "F"
+       ],
+       [
+        "D",
+        "F"
+       ],
+       [
+        "O",
+        "F"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "O",
+        "N"
+       ],
+       [
+        "C",
+        "M"
+       ],
+       [
+        "C",
+        "N"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知弦 $AB$ 與 $DE$ 關於 $OF$ 對稱，$M$、$N$ 分別是兩弦的中點，兩弦延長交於 $F$。",
+        "en": "The chords $AB$ and $DE$ are symmetric about $OF$; $M$, $N$ are midpoints; the chords meet at $F$.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "B"
+         ],
+         [
+          "D",
+          "N"
+         ],
+         [
+          "N",
+          "E"
+         ]
+        ]
+       },
+       {
+        "zh": "$OM \\perp AB$、$ON \\perp DE$，兩弦等長所以 $OM = ON$。",
+        "en": "$OM = ON$ because the chords are equal.",
+        "arcs": [
+         [
+          "M",
+          "A",
+          "O",
+          "90°",
+          "given",
+          14
+         ],
+         [
+          "N",
+          "D",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "ref": "line to mid-pt. ⊥ chord"
+       },
+       {
+        "zh": "對稱把 $OM$ 映到 $ON$，所以 $\\angle MOF = \\angle NOF$，即 $OF$ 平分 $\\angle MON$。",
+        "en": "The symmetry maps $OM$ to $ON$, so $\\angle MOF = \\angle NOF$.",
+        "arcs": [
+         [
+          "O",
+          "M",
+          "F",
+          "70°",
+          "claim",
+          22
+         ],
+         [
+          "O",
+          "F",
+          "N",
+          "70°",
+          "claim",
+          30
+         ]
+        ],
+        "ref": "symmetry about OF"
+       },
+       {
+        "zh": "同樣由對稱，$C$（在對稱軸上）到 $M$、$N$ 的距離相等：$CM = CN$。",
+        "en": "Since $C$ is on the axis, $CM = CN$.",
+        "ticks": [
+         [
+          "C",
+          "M"
+         ],
+         [
+          "C",
+          "N"
+         ]
+        ],
+        "ref": "symmetry about OF",
+        "final": true,
+        "answer": "OF bisects ∠MON, CM = CN"
+       }
+      ],
+      "cx": 185,
+      "r": 100
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等距",
+         "en": "Equal distances"
+        },
+        "math": "OM = ON",
+        "zh": "$AB = DE$（對稱），$OM \\perp AB$、$ON \\perp DE$，等弦等距所以 $OM = ON$。",
+        "en": "$OM = ON$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "角平分",
+         "en": "Bisector"
+        },
+        "math": "\\angle MOF = \\angle NOF",
+        "zh": "兩弦關於 $OF$ 對稱，$OM$ 與 $ON$ 也互為鏡像，所以 $\\angle MOF = \\angle NOF$，$OF$ 平分 $\\angle MON$。",
+        "en": "$OF$ bisects $\\angle MON$.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(b)",
+        "title": {
+         "zh": "對稱距離",
+         "en": "Symmetric distances"
+        },
+        "math": "CM = CN",
+        "zh": "$C$ 在對稱軸 $OF$ 上，所以它到 $M$、$N$ 的距離相等：$CM = CN$。",
+        "en": "$CM = CN$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "用「看起來對稱」代替「$OM = ON$ ＋ 鏡像」。",
+        "en": "Relying on appearance instead of equal distances."
+       }
+      ],
+      "tip": {
+       "zh": "對稱軸：上面的點到鏡像兩點等距，軸也平分兩條半徑的夾角。",
+       "en": "On an axis of symmetry: equal distances to mirror points, and the axis bisects the angle between the radii."
       }
      }
     },
