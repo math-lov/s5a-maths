@@ -4320,7 +4320,7 @@
     "zh": "進階練習 · Level 2",
     "en": "Level 2"
    },
-   "marks": 29,
+   "marks": 37,
    "questions": [
     {
      "id": "ch11-2-l2-17",
@@ -5465,6 +5465,203 @@
      }
     },
     {
+     "id": "ch11-2-l2-23",
+     "code": "23",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "zh": "圖中兩個同心圓半徑分別為 25 cm 與 39 cm，$A$、$E$、$O$ 共線。割線 $ABCD$ 交兩圓於 $B$、$C$，$OM \\perp AD$。已知 $AE = 14$ cm、$AB = 16$ cm，求 $OM$。",
+      "en": "In the figure two concentric circles have radii 25 cm and 39 cm, $A$, $E$, $O$ are collinear, and the secant $ABCD$ meets the inner circle at $B$ and $C$ with $OM \\perp AD$. Given $AE = 14$ cm and $AB = 16$ cm, find $OM$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$OM$",
+       "zh": "$OM$",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "OM = 15\\text{ cm}",
+       "note": {
+        "zh": "先求 $AC$，再取中點",
+        "en": "Find AC, then its midpoint"
+       }
+      }
+     ],
+     "anim": {
+      "circles": [
+       {
+        "c": "O",
+        "r": 1
+       },
+       {
+        "c": "O",
+        "r": 0.641
+       }
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 180
+       },
+       "E": {
+        "at": 180,
+        "r": 0.641
+       },
+       "D": {
+        "at": 45.24
+       },
+       "B": {
+        "at": 143.13,
+        "r": 0.641
+       },
+       "C": {
+        "at": 82.11,
+        "r": 0.641
+       },
+       "M": {
+        "at": 112.62,
+        "r": 0.385
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "O"
+       ],
+       [
+        "O",
+        "E"
+       ],
+       [
+        "A",
+        "D"
+       ],
+       [
+        "O",
+        "M"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知兩圓半徑 25 與 39，$AE = 14$ cm、$AB = 16$ cm，$OM \\perp AD$。",
+        "en": "Radii 25 and 39, $AE = 14$ cm, $AB = 16$ cm and $OM \\perp AD$.",
+        "arcs": [
+         [
+          "M",
+          "A",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "notes": [
+         [
+          "25 cm",
+          150,
+          250
+         ],
+         [
+          "14 cm",
+          110,
+          190
+         ],
+         [
+          "16 cm",
+          210,
+          120
+         ]
+        ]
+       },
+       {
+        "zh": "由 $A$ 對內圓的冪：$AB \\times AC = AE \\times (AE + 50)$，即 $16 \\, AC = 14 \\times 64$，得 $AC = 56$。",
+        "en": "Power of $A$ on the inner circle: $16 \\, AC = 14 \\times 64$, so $AC = 56$.",
+        "ref": "intersecting chords"
+       },
+       {
+        "zh": "$M$ 是弦 $AD$ 的中點，所以 $AM = (16 + 56) \\div 2 = 36$ cm。",
+        "en": "$AM = (AB + AC) \\div 2 = 36$ cm.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "D"
+         ]
+        ],
+        "ref": "⊥ from centre bisects chord"
+       },
+       {
+        "zh": "在 $\\triangle OAM$：$OM = \\sqrt{39^2 - 36^2} = 15$ cm。",
+        "en": "$OM = \\sqrt{39^2 - 36^2} = 15$ cm.",
+        "radii": [
+         "A"
+        ],
+        "final": true,
+        "answer": "OM = 15 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "冪",
+         "en": "Power of a point"
+        },
+        "math": "AC = 56",
+        "zh": "$A$ 對內圓的冪：$AB \\times AC = AE \\times (AE + 50)$，即 $16\\,AC = 14 \\times 64$，所以 $AC = 56$ cm。",
+        "en": "$AC = 56$ cm.",
+        "marking": "(1M)(1A)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "中點",
+         "en": "Midpoint"
+        },
+        "math": "AM = 36",
+        "zh": "由點 $A$ 向內圓作兩條割線，用冪的性質：$AB \\times AC = AE \\times (AE + 50)$，即 $16\\,AC = 14 \\times 64$，所以 $AC = 56$ cm。",
+        "en": "$AM = 36$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "勾股定理",
+         "en": "Pythagoras"
+        },
+        "math": "OM = 15",
+        "zh": "圓心到弦的垂線平分弦，所以 $M$ 是中點：$AM = (16 + 56) \\div 2 = 36$ cm。",
+        "en": "$OM = 15$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "忘記內圓的半徑要乘 2（$AE + 50$ 才是另一段的距離）。",
+        "en": "Forgetting the extra 2 × 25 in the power equation."
+       }
+      ],
+      "tip": {
+       "zh": "一個點、兩條割線：先寫冪，再取中點，最後勾股定理。",
+       "en": "One point, two secants: power, then the midpoint, then Pythagoras."
+      }
+     }
+    },
+    {
      "id": "ch11-2-l2-25",
      "code": "25",
      "type": "long",
@@ -5933,6 +6130,199 @@
       "tip": {
        "zh": "兩個垂足 ＋ 半圓的直角 = 正方形；邊長是半徑乘 $\\cos 45^\\circ$。",
        "en": "Two feet plus the semi-circle right angle give a square of side r cos 45°."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l2-28",
+     "code": "28",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "zh": "圖中兩個圓相交於 $A$、$B$，圓心分別為 $O$、$P$，$OP = 44$ cm，半徑分別為 39 cm 與 17 cm。$E$ 在 $OP$ 上且 $AB \\perp OP$。求 $AB$ 及 $CE$。",
+      "en": "In the figure the two circles meet at $A$ and $B$, with centres $O$ and $P$, $OP = 44$ cm and radii 39 cm and 17 cm. $E$ lies on $OP$ with $AB \\perp OP$. Find $AB$ and $CE$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "$AB$ and $CE$",
+       "zh": "$AB$ 及 $CE$",
+       "marks": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "AB = 30\\text{ cm},\\ CE = 9\\text{ cm}",
+       "note": {
+        "zh": "兩圓各用一次勾股定理",
+        "en": "Pythagoras in each circle"
+       }
+      }
+     ],
+     "anim": {
+      "circles": [
+       {
+        "c": "O",
+        "r": 1
+       },
+       {
+        "c": "P",
+        "r": 0.436
+       }
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "P": {
+        "at": 0,
+        "r": 1.128
+       },
+       "A": {
+        "at": 22.62
+       },
+       "B": {
+        "at": 337.38
+       },
+       "E": {
+        "at": 0,
+        "r": 0.923
+       },
+       "C": {
+        "at": 0,
+        "r": 0.692
+       }
+      },
+      "segments": [
+       [
+        "O",
+        "P"
+       ],
+       [
+        "A",
+        "B"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $OP = 44$ cm，大半徑 39、小半徑 17，$AB \\perp OP$ 於 $E$。",
+        "en": "$OP = 44$ cm, radii 39 and 17, $AB \\perp OP$ at $E$.",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "notes": [
+         [
+          "39 cm",
+          150,
+          300
+         ],
+         [
+          "17 cm",
+          330,
+          320
+         ],
+         [
+          "44 cm",
+          210,
+          390
+         ]
+        ]
+       },
+       {
+        "zh": "設 $OE = x$，則在兩圓中同一個 $AE$：$39^2 - x^2 = 17^2 - (44 - x)^2$，得 $x = 36$。",
+        "en": "With $OE = x$: $39^2 - x^2 = 17^2 - (44-x)^2$, so $x = 36$.",
+        "ref": "Pyth. theorem"
+       },
+       {
+        "zh": "$AE = \\sqrt{39^2 - 36^2} = 15$，所以 $AB = 30$ cm。",
+        "en": "$AE = 15$, so $AB = 30$ cm.",
+        "ticks": [
+         [
+          "A",
+          "E"
+         ],
+         [
+          "E",
+          "B"
+         ]
+        ],
+        "ref": "⊥ from centre bisects chord"
+       },
+       {
+        "zh": "$OE = 36$、小圓的半段 $PC = 17$，所以 $CE = 36 - (44 - 17) = 9$ cm。",
+        "en": "$CE = 9$ cm.",
+        "final": true,
+        "answer": "AB = 30 cm, CE = 9 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "設 $OE$",
+         "en": "Let OE"
+        },
+        "math": "39^2 - x^2 = 17^2 - (44-x)^2",
+        "zh": "設 $OE = x$，$PE = 44 - x$；同一個 $AE$ 給兩條式，解得 $x = 36$。",
+        "en": "$x = 36$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "公共弦",
+         "en": "Common chord"
+        },
+        "math": "AE = 15",
+        "zh": "在直角三角形 $OAE$ 中：$AE = \\sqrt{39^2 - 36^2} = 15$ cm，所以 $AB = 2 \\times 15 = 30$ cm。",
+        "en": "$AB = 30$ cm.",
+        "marking": "(1A)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "小圓的一段",
+         "en": "On the small circle"
+        },
+        "math": "OC = 27",
+        "zh": "小圓左端 $C$ 在 $OP$ 上，$PC = 17$，所以 $OC = 44 - 17 = 27$ cm。",
+        "en": "$OC = 27$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "相減",
+         "en": "Subtract"
+        },
+        "math": "CE = 9",
+        "zh": "兩段相減便得所求：CE 等於 OE 減 OC，即 36 減 27 得 9 cm。",
+        "en": "$CE = 9$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $OP = 44$ 當成兩個半徑相加（39 + 17 = 56 ≠ 44）。",
+        "en": "Thinking OP is the sum of the radii."
+       }
+      ],
+      "tip": {
+       "zh": "兩圓相交：公共弦垂直於連心線，兩邊各用一次勾股定理。",
+       "en": "For two intersecting circles the common chord is perpendicular to the line of centres."
       }
      }
     }
