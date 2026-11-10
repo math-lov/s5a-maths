@@ -53,28 +53,51 @@ REPL = {"\\,": " ", "\\;": " ", "\\!": "", "\\times": "×", "\\div": "÷",
         "\\text": ""}
 
 
+FRAC_RE = re.compile(r"\\frac\s*\{([^{}]*)\}\s*\{([^{}]*)\}")
+
+
+def _frac_to_text(m):
+    num, den = m.group(1), m.group(2)
+    if any(ch in num or ch in den for ch in "+- "):
+        return "(%s)/(%s)" % (num, den)
+    return "%s/%s" % (num, den)
+
+
 def plain(s):
-    """把 KaTeX 字串變成可以列印的純文字。"""
+    """把 KaTeX 字串變成可以列印的純文字。
+
+    先處理 \\frac{a}{b}（工作紙最常見），再逐個字處理 ^{...}／_{...}，
+    所以多位數的上標（$C^{20}_4$）同分數（$\\frac{1}{2}$）都印得對。
+    """
     if s is None:
         return ""
     t = str(s)
+    for _ in range(4):
+        t2 = FRAC_RE.sub(_frac_to_text, t)
+        if t2 == t:
+            break
+        t = t2
     for k, v in REPL.items():
         t = t.replace(k, v)
-    t = t.replace("$", "").replace("{", "").replace("}", "")
-    # 上標／下標
+    t = t.replace("$", "")
     res = []
     i = 0
     while i < len(t):
         ch = t[i]
         if ch in "^_" and i + 1 < len(t):
             kind = SUP if ch == "^" else SUBS
-            group = t[i + 1]
-            if group == "{":
-                j = t.find("}", i + 2)
-                if j > 0:
-                    group, i = t[i + 2:j], j
+            j = i + 1
+            if t[j] == "{":
+                k = t.find("}", j)
+                group = t[j + 1:k] if k > 0 else t[j + 1:]
+                i = (k + 1) if k > 0 else len(t)
+            else:
+                group = t[j]
+                i = j + 1
             res.append("".join(kind.get(c, c) for c in group))
-            i += 2
+            continue
+        if ch in "{}":
+            i += 1
             continue
         res.append(ch)
         i += 1
@@ -233,7 +256,9 @@ def header_block(doc, part, site_part):
 def section_heading(doc, text_en, marks):
     p = para(doc, "", size=12.5, bold=True, space_before=8, space_after=4, keep=True)
     style_run(p.add_run(text_en), 12.5, True, BLUE)
-    style_run(p.add_run(" (%s marks)" % marks), 10, False, GREY)
+    # 標題本身已寫明分數（例如「20 marks in all」）就唔好再印一次
+    if "marks" not in (text_en or "").lower():
+        style_run(p.add_run(" (%s marks)" % marks), 10, False, GREY)
 
 
 def add_input_line(doc, quick):
@@ -257,8 +282,9 @@ def add_row_table(doc, quick):
     if not head or not rows:
         return
     value_cols = len(rows[0].get("cells") or [])
-    # head 最後一欄如果係「剔／Tick」，就係打勾欄（否則每欄都對應一個 cells 值）
-    has_tick = len(head) == value_cols + 1
+    # head 最後一欄如果係「剔／Tick」，就係打勾欄；多選題（multi）冇寫都補一欄，
+    # 否則紙本冇位剔（網站會自動補，紙本亦要一致）。
+    has_tick = len(head) == value_cols + 1 or bool(quick.get("multi"))
     tick_col = 1 + value_cols if has_tick else None      # 0 欄係「(A)」咁嘅選項代號
     ncol = 1 + value_cols + (1 if has_tick else 0)
     t = doc.add_table(rows=1 + len(rows), cols=ncol)
@@ -270,7 +296,13 @@ def add_row_table(doc, quick):
         pp = c.paragraphs[0]
         pp.paragraph_format.space_after = Pt(1)
         pp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        style_run(pp.add_run(head[j - 1] if j else ""), 10.5, True, INK)
+        if j == 0:
+            label = ""
+        elif j == tick_col and j - 1 >= len(head):
+            label = "Tick"
+        else:
+            label = head[j - 1] if j - 1 < len(head) else ""
+        style_run(pp.add_run(label), 10.5, True, INK)
     for i, row in enumerate(rows, start=1):
         cells = t.rows[i].cells
         for j in range(ncol):
@@ -362,7 +394,10 @@ def add_long(doc, sec, qs):
     total = sec.get("marks") or sum(q["marks"] for q in qs)
     title = en(sec.get("title")) or "Conventional questions"
     section_heading(doc, title, total)
-    for q in qs:
+    for i, q in enumerate(qs):
+        # 8 分以上的大題自己開一頁，否則答題線會溢出到下一頁，留下一版空白
+        if i and q["marks"] >= 8:
+            doc.add_page_break()
         p = para(doc, "", space_after=1, space_before=8, keep=True)
         style_run(p.add_run("%s " % q["code"]), 11, True, INK)
         style_run(p.add_run("[%d marks]" % q["marks"]), 9.5, False, GREY)
@@ -374,33 +409,69 @@ def add_long(doc, sec, qs):
             style_run(sub.add_run("  [%d mark%s]" % (part.get("marks", 0),
                                                      "" if part.get("marks", 0) == 1 else "s")),
                       9.5, False, GREY)
-        rows = max(5, q["marks"] + 2)
+        rows = max(5, min(q["marks"] + 2, 10))
         ruled_lines(doc, rows)
         para(doc, "", size=6, space_after=0)
+
+
+FORMULA_SHEETS = {
+    "permcombi": [
+        ("Permutations", [
+            "Arrange all n objects: n!",
+            "Arrange r objects chosen from n: P(n,r) = n! ÷ (n − r)!",
+            "Tie-up (must sit together): arrange one unit fewer, then multiply by the orders inside the block",
+            "Slot-in (must not sit together): seat the others first; gaps = number of people + 1, at most one person per gap",
+        ]),
+        ("Combinations", [
+            "Choose r objects from n (order ignored): C(n,r) = n! ÷ (r! × (n − r)!)",
+            "P(n,r) = C(n,r) × r! (arrangements = choices × orders)",
+            "Case splitting: add between cases, multiply within a case",
+            "'At least ...': all ways − the ways that fail the condition (complement)",
+            "'At most n': 0, 1, …, n gives n + 1 cases",
+        ]),
+        ("Counting principles", [
+            "Cases (choose one way): add; steps (do one after another): multiply",
+            "'Or' = add between cases, but first check whether the cases overlap (if so, subtract the intersection)",
+            "Passwords / codes: order matters, so use permutations; handle the restricted positions first",
+        ]),
+    ],
+    "probability": [
+        ("Sets", [
+            "n(A ∪ B) = n(A) + n(B) − n(A ∩ B); n(A only) = n(A) − n(A ∩ B)",
+            "If A and B cannot happen together, n(A ∩ B) = 0 and you simply add",
+            "The whole class: (A only) + (B only) + (both) + (neither) = total",
+        ]),
+        ("The addition law", [
+            "P(A ∪ B) = P(A) + P(B) − P(A ∩ B)",
+            "Always subtract the overlap once — otherwise the outcomes in both sets are counted twice",
+            "Check: a probability can never be greater than 1",
+        ]),
+        ("Multiplication and trees", [
+            "Two stages, or independent events: P(A and B) = P(A) × P(B)",
+            "Multiply along a route of the tree, add between the routes",
+            "With replacement: the denominator does not change; without replacement: it shrinks",
+            "Moving a ball from one bag to another: split into cases by its colour, then multiply each case's probabilities and add",
+        ]),
+        ("Probability by counting", [
+            "P = number of favourable outcomes ÷ number of all equally likely outcomes",
+            "Use the same counting method on both sides: C with C, P with P",
+            "'At least ...': 1 − P(none);  'At most n': add the cases 0, 1, …, n",
+            "Check how many of each colour actually exist before counting a case (e.g. 4 red is impossible with 2 red)",
+            "Two-stage questions: check that the first-stage case probabilities add up to 1",
+        ]),
+    ],
+}
 
 
 def add_formula_page(doc, part):
     doc.add_page_break()
     para(doc, "Formula sheet and common traps",
          size=14, bold=True, color=BLUE, space_after=8)
-    para(doc, "Permutations", size=11.5, bold=True, space_before=4, space_after=2)
-    for s in ["Arrange all n objects: n!",
-              "Arrange r objects chosen from n: P(n,r) = n! ÷ (n − r)!",
-              "Tie-up (must sit together): arrange one unit fewer, then multiply by the orders inside the block",
-              "Slot-in (must not sit together): seat the others first; gaps = number of people + 1, at most one person per gap"]:
-        para(doc, "・" + s, size=10, space_after=2, indent=0.4)
-    para(doc, "Combinations", size=11.5, bold=True, space_before=8, space_after=2)
-    for s in ["Choose r objects from n (order ignored): C(n,r) = n! ÷ (r! × (n − r)!)",
-              "P(n,r) = C(n,r) × r! (arrangements = choices × orders)",
-              "Case splitting: add between cases, multiply within a case",
-              "'At least ...': all ways − the ways that fail the condition (complement)",
-              "'At most n': 0, 1, …, n gives n + 1 cases"]:
-        para(doc, "・" + s, size=10, space_after=2, indent=0.4)
-    para(doc, "Counting principles", size=11.5, bold=True, space_before=8, space_after=2)
-    for s in ["Cases (choose one way): add; steps (do one after another): multiply",
-              "'Or' = add between cases, but first check whether the cases overlap (if so, subtract the intersection)",
-              "Passwords / codes: order matters, so use permutations; handle the restricted positions first"]:
-        para(doc, "・" + s, size=10, space_after=2, indent=0.4)
+    key = "probability" if str(part.get("id", "")).startswith("ch18") else "permcombi"
+    for heading, lines in FORMULA_SHEETS[key]:
+        para(doc, heading, size=11.5, bold=True, space_before=8, space_after=2)
+        for s in lines:
+            para(doc, "・" + s, size=10, space_after=2, indent=0.4)
 
 
 def add_footer(section):

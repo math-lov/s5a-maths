@@ -1,0 +1,3254 @@
+{
+ "id": "ch18-test",
+ "title": {
+  "zh": "18 溫習 · 快測 ＋ 精選題",
+  "en": "Chapter 18 Revision · Quick Check + Selected Questions"
+ },
+ "intro": {
+  "zh": "全卷 25 題、91 分：卷頭 5 題快測要按「提交答案」才知對錯；之後甲部 10 題 MC、乙部 10 題長題，長題每小題都有輸入格。",
+  "en": "25 questions, 91 marks: a 5-question quick check (submit to check), then Section A with 10 MC (20 marks) and Section B with 10 conventional questions (66 marks), each part with an answer box."
+ },
+ "sections": [
+  {
+   "id": "Q",
+   "marks": 5,
+   "title": {
+    "zh": "快測 · 5 題（每題 1 分，共 5 分）",
+    "en": "Quick check · 5 questions (1 mark each, 5 marks in all)"
+   },
+   "questions": [
+    {
+     "id": "ch18-Q1",
+     "code": "Q1",
+     "type": "mc",
+     "marks": 1,
+     "difficulty": 1,
+     "quick": {
+      "mode": "submit"
+     },
+     "stem": {
+      "en": "In a class of 40 students, 25 join the Mathematics Club, 18 join the Science Club and 7 join both clubs. How many students join the Mathematics Club only?",
+      "zh": "班上有 40 人，25 人參加數學學會，18 人參加科學學會，7 人兩個學會都參加。只參加數學學會的有多少人？"
+     },
+     "keywords": [
+      {
+       "en": "join Mathematics only",
+       "zh": "「只數學」＝數學組員減去兩樣都參加的人"
+      }
+     ],
+     "options": {
+      "A": "7",
+      "B": "18",
+      "C": "25",
+      "D": "32"
+     },
+     "answer": "B",
+     "answers": [
+      {
+       "math": "25 - 7 = 18",
+       "note": {
+        "zh": "即選項 B",
+        "en": "Option B"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 「只數學」要扣走兩樣都參加的人",
+         "en": "Step 1 · 'Mathematics only' removes those in both clubs"
+        },
+        "math": "n(A) - n(A \\cap B) = 25 - 7",
+        "zh": "25 人參加數學學會，但當中有 7 人同時參加科學學會；「只數學」唔包括佢哋，所以要由 25 減走 7。",
+        "en": "25 students join the Mathematics Club, but 7 of them also join the Science Club; 'Mathematics only' excludes them, so subtract 7 from 25.",
+        "highlight": [
+         "25 - 7 = 18"
+        ]
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 計數並核對",
+         "en": "Step 2 · Evaluate and check"
+        },
+        "math": "25 - 7 = 18",
+        "zh": "只數學 $= 18$ 人；順便核對：只科學 $= 18 - 7 = 11$，三部分加起來 $18 + 11 + 7 = 36$，加埋兩樣都唔參加的 4 人，剛好 40 人。",
+        "en": "Mathematics only = 18. A quick check: Science only = 18 − 7 = 11, and 18 + 11 + 7 = 36, plus the 4 students in neither club, gives the class of 40."
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$7$ 係「兩個學會都參加」的人數，唔係「只參加數學」的人數。",
+        "en": "7 is the number who join both clubs, not the number who join Mathematics only."
+       },
+       {
+        "opt": "C",
+        "zh": "$25$ 係數學學會的總人數，已經包括嗰 7 個兩樣都參加的人；題目要「只數學」，一定要扣。",
+        "en": "25 is the whole Mathematics Club, which already includes the 7 who join both; 'Mathematics only' must subtract them."
+       },
+       {
+        "opt": "D",
+        "zh": "$32 = 25 + 7$：把兩樣都參加的人再加一次，重複計算咗。",
+        "en": "32 = 25 + 7 adds the 7 a second time — double counting."
+       }
+      ],
+      "tip": {
+       "zh": "「只 A」即係「A 有、B 冇」，要用 $n(A) - n(A \\cap B)$ 扣走兩樣都有的人；「A 或 B」就用 $n(A) + n(B) - n(A \\cap B)$，兩條式唔同，唔好調亂。",
+       "en": "'A only' = n(A) − n(A ∩ B); 'A or B' uses n(A) + n(B) − n(A ∩ B)."
+      }
+     }
+    },
+    {
+     "id": "ch18-Q2",
+     "code": "Q2",
+     "type": "mc",
+     "marks": 1,
+     "difficulty": 1,
+     "quick": {
+      "mode": "submit"
+     },
+     "stem": {
+      "en": "A fair die is rolled once. Find the probability that the number obtained is even or a multiple of 3.",
+      "zh": "擲一粒均勻骰子一次，求點數是偶數或 3 的倍數的概率。"
+     },
+     "keywords": [
+      {
+       "en": "even or a multiple of 3",
+       "zh": "「或」＝加法定律，但要減交集（6 同時符合）"
+      }
+     ],
+     "options": {
+      "A": "$\\frac{1}{2}$",
+      "B": "$\\frac{2}{3}$",
+      "C": "$\\frac{5}{6}$",
+      "D": "$\\frac{7}{6}$"
+     },
+     "answer": "B",
+     "answers": [
+      {
+       "math": "\\frac{3}{6} + \\frac{2}{6} - \\frac{1}{6} = \\frac{2}{3}",
+       "note": {
+        "zh": "即選項 B",
+        "en": "Option B"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 兩類結果有重疊",
+         "en": "Step 1 · The two classes overlap"
+        },
+        "math": "\\{\\text{even}\\} \\cap \\{\\text{multiple of 3}\\} = \\{6\\}",
+        "zh": "偶數有 2、4、6（3 個），3 的倍數有 3、6（2 個）；6 同時屬於兩類，相加之後會被數兩次，所以要減一次。",
+        "en": "Even numbers are 2, 4, 6 (three of them); multiples of 3 are 3, 6 (two). The 6 belongs to both classes and would be counted twice, so subtract it once."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 用加法定律",
+         "en": "Step 2 · Apply the addition law"
+        },
+        "math": "\\frac{3}{6} + \\frac{2}{6} - \\frac{1}{6} = \\frac{4}{6} = \\frac{2}{3}",
+        "zh": "用加法定律：$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$，代入得 $\\frac{3}{6} + \\frac{2}{6} - \\frac{1}{6} = \\frac{2}{3}$，約簡之後就係三分二。",
+        "en": "P(A ∪ B) = P(A) + P(B) − P(A ∩ B) = 3/6 + 2/6 − 1/6 = 2/3.",
+        "highlight": [
+         "\\frac{3}{6} + \\frac{2}{6} - \\frac{1}{6} = \\frac{2}{3}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$\\frac{1}{2}$ 只計了偶數（$\\frac{3}{6}$），漏晒 3、6 呢類「3 的倍數」。",
+        "en": "1/2 counts the even numbers only (3/6) and ignores 3 and 6 as multiples of 3."
+       },
+       {
+        "opt": "C",
+        "zh": "$\\frac{5}{6} = \\frac{3}{6} + \\frac{2}{6}$，冇減交集：6 被數咗兩次。",
+        "en": "5/6 = 3/6 + 2/6 without subtracting the overlap: the 6 is counted twice."
+       },
+       {
+        "opt": "D",
+        "zh": "$\\frac{7}{6}$ 大過 1，概率唔可能超過 1 —— 呢個係「加咗但冇減」再加錯項的典型。",
+        "en": "7/6 exceeds 1, and a probability can never exceed 1 — a sign that terms were added without removing the overlap."
+       }
+      ],
+      "tip": {
+       "zh": "加法定律：$P(A \\cup B) = P(A) + P(B) - P(A \\cap B)$。只要兩類有共同結果，就一定要減一次。",
+       "en": "Addition law: P(A ∪ B) = P(A) + P(B) − P(A ∩ B). If the two classes share an outcome, subtract it once."
+      }
+     }
+    },
+    {
+     "id": "ch18-Q3",
+     "code": "Q3",
+     "type": "mc",
+     "marks": 1,
+     "difficulty": 2,
+     "quick": {
+      "mode": "submit",
+      "input": {
+       "answer": "0.994",
+       "label": {
+        "zh": "至少命中一次的概率",
+        "en": "P(at least one score)"
+       }
+      }
+     },
+     "stem": {
+      "en": "A basketball player takes 3 free throws. The probabilities that he scores are 0.7, 0.8 and 0.9 respectively. Which method should be used to find the probability that he scores at least once, and what is that probability?",
+      "zh": "球員射 3 個罰球，命中的概率分別是 0.7、0.8、0.9。求「至少命中一次」的概率：應該用哪一種方法？概率是多少？"
+     },
+     "keywords": [
+      {
+       "en": "at least once",
+       "zh": "「至少一次」→ 反面：1 − 全部唔中"
+      }
+     ],
+     "options": {
+      "A": "直接相加 Direct addition",
+      "B": "反面 Complement"
+     },
+     "answer": "B",
+     "answers": [
+      {
+       "math": "1 - 0.3 \\times 0.2 \\times 0.1 = 0.994",
+       "note": {
+        "zh": "選 B（反面），$1 - 0.006 = 0.994$",
+        "en": "B (complement), 1 − 0.006 = 0.994"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 判斷用邊種方法",
+         "en": "Step 1 · Choose the method"
+        },
+        "math": "1 - P(\\text{all miss})",
+        "zh": "「至少命中一次」包括中 1 次、2 次、3 次三個 case；直接相加要分三次，而且三次的事件唔互斥。反面只有一個 case：三次都唔中。",
+        "en": "'At least one score' covers one, two or three scores — three cases whose events are not mutually exclusive. The complement has just one case: all three missed.",
+        "highlight": [
+         "1 - P(\\text{all miss})"
+        ]
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 三次都唔中",
+         "en": "Step 2 · All three missed"
+        },
+        "math": "0.3 \\times 0.2 \\times 0.1 = 0.006",
+        "zh": "每次唔中的概率係 $1 - 0.7 = 0.3$、$1 - 0.8 = 0.2$、$1 - 0.9 = 0.1$；三次獨立，所以相乘：$0.3 \\times 0.2 \\times 0.1 = 0.006$。",
+        "en": "The probabilities of missing are 0.3, 0.2 and 0.1; the three throws are independent, so multiply: 0.3 × 0.2 × 0.1 = 0.006."
+       },
+       {
+        "title": {
+         "zh": "第 3 步 · 用 1 減",
+         "en": "Step 3 · Subtract from 1"
+        },
+        "math": "1 - 0.006 = 0.994",
+        "zh": "所以至少命中一次的概率是 $1 - 0.006 = 0.994$，輸入格填 0.994。",
+        "en": "P(at least one) = 1 − 0.006 = 0.994; type 0.994 in the box.",
+        "highlight": [
+         "1 - 0.006 = 0.994"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$0.7 + 0.8 + 0.9 = 2.4$ 大過 1：概率相加只可以用於互斥事件，「至少一次」的三個 case 會互相重疊。",
+        "en": "0.7 + 0.8 + 0.9 = 2.4 exceeds 1: probabilities may only be added for mutually exclusive events, and the 'at least once' cases overlap."
+       }
+      ],
+      "tip": {
+       "zh": "「至少一次」$= 1 - P(一次都冇)$；「全部都要」才直接連乘。",
+       "en": "'At least once' = 1 − P(none); multiply directly only when every event must happen."
+      }
+     }
+    },
+    {
+     "id": "ch18-Q4",
+     "code": "Q4",
+     "type": "mc",
+     "marks": 1,
+     "difficulty": 2,
+     "quick": {
+      "mode": "submit",
+      "input": {
+       "answer": "25/64",
+       "label": {
+        "zh": "兩次都紅的概率",
+        "en": "P(both red)"
+       }
+      }
+     },
+     "stem": {
+      "en": "A bag contains 5 red balls and 3 blue balls. A ball is drawn at random, its colour is noted, and the ball is put back into the bag. This is done twice. Which method should be used to find the probability that both balls drawn are red, and what is that probability?",
+      "zh": "袋中有 5 粒紅波、3 粒藍波。每次隨機抽 1 粒，記下顏色後放回袋中，共抽 2 次。求兩次都抽到紅波的概率：應該用哪一種方法？概率是多少？"
+     },
+     "keywords": [
+      {
+       "en": "put back into the bag",
+       "zh": "「放回」＝有放回，第二次分母唔變"
+      }
+     ],
+     "options": {
+      "A": "當作一次過抽兩粒（組合）Treat as one draw (combinations)",
+      "B": "每次獨立相乘（有放回）Multiply each draw, with replacement"
+     },
+     "answer": "B",
+     "answers": [
+      {
+       "math": "\\frac{5}{8} \\times \\frac{5}{8} = \\frac{25}{64}",
+       "note": {
+        "zh": "選 B（獨立相乘），$\\frac{25}{64}$",
+        "en": "B (multiply each draw), 25/64"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 「放回」代表兩次獨立",
+         "en": "Step 1 · Replacing the ball makes the draws independent"
+        },
+        "math": "\\frac{5}{8} \\times \\frac{5}{8}",
+        "zh": "抽完放回，袋中仍然是 5 紅 3 藍，所以第一次同第二次的概率一樣，而且互相唔影響：直接用乘法。",
+        "en": "Because the ball goes back, the bag still holds 5 red and 3 blue, so both draws have the same probability and do not affect each other: multiply.",
+        "highlight": [
+         "\\frac{5}{8} \\times \\frac{5}{8}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 計數",
+         "en": "Step 2 · Evaluate"
+        },
+        "math": "\\frac{5}{8} \\times \\frac{5}{8} = \\frac{25}{64}",
+        "zh": "兩次抽到紅波都係五分八，相乘得 $\\frac{25}{64}$，輸入格就填 25/64。",
+        "en": "5/8 × 5/8 = 25/64; type 25/64 in the box."
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$\\frac{C^{5}_2}{C^{8}_2} = \\frac{5}{14}$ 係「一次過抽 2 粒、冇放回」的答案；有放回時第二次仍然係 5/8，分母唔會變成 8 選 2。",
+        "en": "C(5,2)/C(8,2) = 5/14 is the no-replacement answer; with replacement the second draw is still out of 8, so combinations do not apply."
+       }
+      ],
+      "tip": {
+       "zh": "有放回＝每次獨立，直接連乘；冇放回＝分母遞減，或者用組合 $\\frac{C^{r}_k C^{b}_{n-k}}{C^{r+b}_n}$。",
+       "en": "With replacement: independent, multiply. Without replacement: shrink the denominator, or use C(r,k)C(b,n−k)/C(r+b,n)."
+      }
+     }
+    },
+    {
+     "id": "ch18-Q5",
+     "code": "Q5",
+     "type": "mc",
+     "marks": 1,
+     "difficulty": 2,
+     "quick": {
+      "mode": "submit",
+      "multi": true,
+      "head": [
+       {
+        "zh": "情況",
+        "en": "Case"
+       }
+      ],
+      "rows": [
+       {
+        "opt": "A",
+        "cells": [
+         {
+          "zh": "抽 4 人，求 2 男 2 女的概率",
+          "en": "draw 4, P(2 boys and 2 girls)"
+         }
+        ]
+       },
+       {
+        "opt": "B",
+        "cells": [
+         {
+          "zh": "抽 4 人，求至少 1 個男生的概率",
+          "en": "draw 4, P(at least 1 boy)"
+         }
+        ]
+       },
+       {
+        "opt": "C",
+        "cells": [
+         {
+          "zh": "抽 4 人排成一列，求指定 2 人相鄰的概率",
+          "en": "draw 4 and arrange them in a row, P(two given students adjacent)"
+         }
+        ]
+       },
+       {
+        "opt": "D",
+        "cells": [
+         {
+          "zh": "抽 4 人，求一個女生都冇的概率",
+          "en": "draw 4, P(no girls)"
+         }
+        ]
+       }
+      ]
+     },
+     "stem": {
+      "en": "4 students are selected at random from 12 boys and 8 girls. In the table below, tick every case in which the denominator of the probability is $C^{20}_4$.",
+      "zh": "從 12 男 8 女中隨機選 4 人。下表中，剔出所有「概率的分母是 $C^{20}_4$」的情況。"
+     },
+     "keywords": [
+      {
+       "en": "denominator",
+       "zh": "分母＝「所有可能的結果」，要跟題目的抽法（抽一組用 C、排隊用 P）"
+      }
+     ],
+     "options": {
+      "A": "抽 4 人，2 男 2 女",
+      "B": "抽 4 人，至少 1 男",
+      "C": "抽 4 人排成一列，指定 2 人相鄰",
+      "D": "抽 4 人，沒有女生"
+     },
+     "answer": [
+      "A",
+      "B",
+      "D"
+     ],
+     "answers": [
+      {
+       "math": "\\text{A, B, D}",
+       "note": {
+        "zh": "A、B、D 都係「抽 4 人」，分母 $C^{20}_4$；C 要排隊，分母係 $P^{20}_4$",
+        "en": "A, B and D all draw 4 students, so the denominator is C(20,4); C arranges them, so the denominator is P(20,4)"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 分母＝所有可能的結果",
+         "en": "Step 1 · The denominator counts all possible outcomes"
+        },
+        "math": "C^{20}_4",
+        "zh": "20 人抽 4 人，唔理次序，所以全部結果有 $C^{20}_4 = 4845$ 個。A、B、D 都只係「抽 4 人」，只係要求的條件唔同，分母一樣。",
+        "en": "Choosing 4 out of 20 ignores order, so there are C(20,4) = 4845 outcomes. A, B and D all simply draw 4 students — only the condition differs, so the denominator is the same.",
+        "highlight": [
+         "C^{20}_4"
+        ]
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · C 要排隊，分母改用排列",
+         "en": "Step 2 · Case C arranges the students, so use P"
+        },
+        "math": "P^{20}_4",
+        "zh": "C 講「排成一列」：同一組 4 人，次序唔同就係唔同結果，所以分母係 $P^{20}_4 = 20 \\times 19 \\times 18 \\times 17$，唔係 $C^{20}_4$，唔剔。",
+        "en": "Case C arranges the four in a row: the same four students in a different order is a different outcome, so the denominator is P(20,4), not C(20,4). Do not tick it."
+       }
+      ],
+      "traps": [
+       {
+        "opt": "C",
+        "zh": "「排成一列」＝次序緊要，分母要由 $C^{20}_4$ 換成 $P^{20}_4$；分子同樣要按排隊計。",
+        "en": "'In a row' means order matters: the denominator becomes P(20,4), and the numerator must be counted the same way."
+       }
+      ],
+      "tip": {
+       "zh": "分母要跟題目的抽法：抽一組用 $C$，排隊／有職位用 $P$；分子同分母一定要同一種計法。",
+       "en": "The denominator follows the sampling: choose a group → C; arrange or assign posts → P. The numerator must use the same counting method."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "A",
+   "marks": 20,
+   "title": {
+    "zh": "甲部 · 多項選擇題（每題 2 分，共 20 分）",
+    "en": "Section A · Multiple choice (2 marks each, 20 marks in all)"
+   },
+   "questions": [
+    {
+     "id": "ch18-A1",
+     "code": "A1",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "There are 12 boys and 10 girls in a class. If 4 students of the same gender are selected to form a group, how many different groups can be formed?",
+      "zh": "班上有 12 位男生和 10 位女生。若選出 4 位同性別的同學組成一個小組，可以組成多少個不同的小組？"
+     },
+     "keywords": [
+      {
+       "en": "of the same gender",
+       "zh": "「同性別」＝分 4 男／4 女兩個 case"
+      },
+      {
+       "en": "form a group",
+       "zh": "組隊無分次序 → 用組合 $C$"
+      }
+     ],
+     "options": {
+      "A": "495",
+      "B": "705",
+      "C": "7315",
+      "D": "$103\\,950$"
+     },
+     "answer": "B",
+     "answers": [
+      {
+       "math": "C^{12}_4 + C^{10}_4 = 495 + 210 = 705",
+       "note": {
+        "zh": "即選項 B",
+        "en": "Option B"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 分兩個 case：全男或全女",
+         "en": "Step 1 · Two cases: all boys or all girls"
+        },
+        "math": "C^{12}_4 + C^{10}_4",
+        "zh": "「同性別」只有兩種可能：4 個都係男，或者 4 個都係女；兩者唔可能同時發生，所以用加法。每組唔理次序，用組合。",
+        "en": "'Same gender' allows only two cases: four boys or four girls. They cannot happen together, so add; each group ignores order, so use combinations.",
+        "highlight": [
+         "C^{12}_4 + C^{10}_4"
+        ]
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 計數",
+         "en": "Step 2 · Evaluate"
+        },
+        "math": "C^{12}_4 + C^{10}_4 = 495 + 210 = 705",
+        "zh": "全男有 $C^{12}_4 = 495$ 組，全女有 $C^{10}_4 = 210$ 組，兩類相加合共 $495 + 210 = 705$ 組。",
+        "en": "C(12,4) = 495 and C(10,4) = 210, giving 495 + 210 = 705 groups."
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$495 = C^{12}_4$ 只計了全男，漏咗全女嗰個 case。",
+        "en": "495 = C(12,4) counts all-boy groups only and forgets the all-girl case."
+       },
+       {
+        "opt": "C",
+        "zh": "$7315 = C^{22}_4$：把 22 人一齊抽 4 人，完全冇「同性別」這個限制。",
+        "en": "7315 = C(22,4) draws 4 from all 22 students and ignores the same-gender restriction."
+       },
+       {
+        "opt": "D",
+        "zh": "$495 \\times 210$：兩個 case 係「或者」的關係，應該相加，唔係相乘（相乘會變成「4 男同 4 女一齊」）。",
+        "en": "495 × 210 multiplies the two cases, but 'all boys or all girls' must be added; multiplying would mean picking 4 boys and 4 girls together."
+       }
+      ],
+      "tip": {
+       "zh": "「或」＝分類相加；見到「同性別」「同顏色」「同類」，就要分 case 各自用 $C$，最後加埋。",
+       "en": "'Or' means adding cases; with 'same gender', 'same colour' or 'same type', count each case with C and add."
+      }
+     }
+    },
+    {
+     "id": "ch18-A2",
+     "code": "A2",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 1,
+     "stem": {
+      "en": "A queue is formed by 2 boys and 5 girls. If all the boys are next to each other, how many different queues can be formed?",
+      "zh": "2 位男生與 5 位女生排成一條隊伍。若所有男生必須相鄰，可以排成多少條不同的隊伍？"
+     },
+     "keywords": [
+      {
+       "en": "next to each other",
+       "zh": "必須相鄰 → 綑綁法（件數減 1）"
+      }
+     ],
+     "options": {
+      "A": "720",
+      "B": "1440",
+      "C": "2880",
+      "D": "5040"
+     },
+     "answer": "B",
+     "answers": [
+      {
+       "math": "6! \\times 2! = 1440",
+       "note": {
+        "zh": "即選項 B",
+        "en": "Option B"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 兩位男生綑成一件",
+         "en": "Step 1 · Tie the two boys into one block"
+        },
+        "math": "6!",
+        "zh": "兩位男生必須相鄰，就當佢哋綁成一件：$2$ 男變成 1 件，加上 5 位女生，共 $1 + 5 = 6$ 件，排一排有 $6! = 720$ 種。",
+        "en": "The two boys must stay together, so tie them into one unit: 1 unit + 5 girls = 6 units, arranged in 6! = 720 ways."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 框內兩人可以對調",
+         "en": "Step 2 · The two inside the block can swap"
+        },
+        "math": "6! \\times 2! = 720 \\times 2 = 1440",
+        "zh": "綁埋之後仲要考慮框內的次序：兩個男生可以互換位，有 $2! = 2$ 種，所以要乘返：$720 \\times 2 = 1440$。",
+        "en": "Inside the block the two boys can swap, giving 2! = 2 orders, so multiply back: 720 × 2 = 1440.",
+        "highlight": [
+         "6! \\times 2! = 1440"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$720 = 6!$ 只排了 6 件，漏乘框內的 $2!$（兩個男生對調就係另一條隊伍）。",
+        "en": "720 = 6! arranges the six units but forgets the 2! inside the block; swapping the two boys gives a different queue."
+       },
+       {
+        "opt": "C",
+        "zh": "$2880 = 720 \\times 4$：多乘了一次，框內只有 $2! = 2$ 種，唔係 4 種。",
+        "en": "2880 = 720 × 4 multiplies once too often; the block has only 2! = 2 internal orders."
+       },
+       {
+        "opt": "D",
+        "zh": "$5040 = 7!$：當成 7 個人任意排，即係兩個男生冇「必須相鄰」這個限制。",
+        "en": "5040 = 7! arranges all seven freely, ignoring that the boys must be adjacent."
+       }
+      ],
+      "tip": {
+       "zh": "「必須相鄰」用綑綁法：件數 = 人數 − 1，排完件數再乘框內排列。",
+       "en": "'Must be adjacent' → tie-up: units = people − 1, arrange the units then multiply the internal arrangements."
+      }
+     }
+    },
+    {
+     "id": "ch18-A3",
+     "code": "A3",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "Peter arranges 7 different English books and 2 different Chinese books in a row. If the Chinese books cannot be next to each other, how many different arrangements can be formed?",
+      "zh": "彼得把 7 本不同的英文書與 2 本不同的中文書排成一列。若兩本中文書不能相鄰，可以有多少種不同的排列？"
+     },
+     "keywords": [
+      {
+       "en": "cannot be next to each other",
+       "zh": "唔可以相鄰 → 插空法"
+      },
+      {
+       "en": "7 English books",
+       "zh": "先排英文書，再插中文書"
+      }
+     ],
+     "options": {
+      "A": "$40\\,320$",
+      "B": "$80\\,640$",
+      "C": "$282\\,240$",
+      "D": "$3\\,628\\,800$"
+     },
+     "answer": "C",
+     "answers": [
+      {
+       "math": "7! \\times P^{8}_2 = 5040 \\times 56 = 282\\,240",
+       "note": {
+        "zh": "即選項 C",
+        "en": "Option C"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 先排英文書，數空隙",
+         "en": "Step 1 · Arrange the English books and count the gaps"
+        },
+        "math": "7! = 5040",
+        "zh": "7 本英文書先排：$7! = 5040$ 種。7 本書排成一列會形成 $7 + 1 = 8$ 個空隙（左右兩端都算）。",
+        "en": "Arrange the seven English books first: 7! = 5040. Seven books in a row create 7 + 1 = 8 gaps, counting both ends."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 兩本中文書插入不同空隙",
+         "en": "Step 2 · Put the two Chinese books in different gaps"
+        },
+        "math": "P^{8}_2 = 8 \\times 7 = 56",
+        "zh": "兩本中文書要分開放（否則就相鄰），由 8 個空隙揀 2 個，而且兩本書唔同：$P^{8}_2 = 8 \\times 7 = 56$。",
+        "en": "The two Chinese books must go into different gaps, chosen from 8, and they are different books: P(8,2) = 8 × 7 = 56."
+       },
+       {
+        "title": {
+         "zh": "第 3 步 · 相乘",
+         "en": "Step 3 · Multiply"
+        },
+        "math": "7! \\times P^{8}_2 = 5040 \\times 56 = 282\\,240",
+        "zh": "先排英文書、再插中文書，兩步相乘：$5040 \\times 56 = 282\\,240$ 種排列。",
+        "en": "5040 × 56 = 282 240 arrangements.",
+        "highlight": [
+         "7! \\times P^{8}_2 = 282\\,240"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$40\\,320 = 7!$：只排了英文書，兩本中文書完全冇放落去。",
+        "en": "40 320 = 7! arranges the English books only and never places the Chinese books."
+       },
+       {
+        "opt": "B",
+        "zh": "$80\\,640 = 7! \\times 2!$：只用 $2!$ 處理兩本中文書的次序，冇考慮 8 個空隙（等於當佢哋只有一種放法）。",
+        "en": "80 640 = 7! × 2! only orders the two Chinese books and ignores the 8 gaps, as if there were just one way to place them."
+       },
+       {
+        "opt": "D",
+        "zh": "$3\\,628\\,800$ 係 9! 再乘大數：完全冇處理「唔可以相鄰」，等於 9 本書任意排的數量級。",
+        "en": "3 628 800 is of the order of 9! — it treats the nine books as freely arranged and ignores the restriction."
+       }
+      ],
+      "tip": {
+       "zh": "「唔可以相鄰」用插空法：先排其他人，空隙數 = 人數 + 1，再把要分開的物件插入不同空隙（用 $P$，因為物件唔同）。",
+       "en": "'Cannot be adjacent' → slot-in: arrange the others first, gaps = people + 1, then place the separated items in different gaps (use P because the items differ)."
+      }
+     }
+    },
+    {
+     "id": "ch18-A4",
+     "code": "A4",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 16 boys in a group. If 6 boys are selected from the group to form a team consisting of 1 captain, 1 vice-captain and 4 members, how many different teams can be formed?",
+      "zh": "某組有 16 位男生。若從中選出 6 人組成一支隊伍，包括 1 位隊長、1 位副隊長及 4 位隊員，可以組成多少支不同的隊伍？"
+     },
+     "keywords": [
+      {
+       "en": "captain, vice-captain",
+       "zh": "兩個職位唔同 → 隊長／副隊長用排列 $P$"
+      },
+      {
+       "en": "4 members",
+       "zh": "普通隊員無分次序 → 用組合 $C$"
+      }
+     ],
+     "options": {
+      "A": "8008",
+      "B": "$120\\,120$",
+      "C": "$240\\,240$",
+      "D": "$480\\,480$"
+     },
+     "answer": "C",
+     "answers": [
+      {
+       "math": "P^{16}_2 \\times C^{14}_4 = 240 \\times 1001 = 240\\,240",
+       "note": {
+        "zh": "即選項 C",
+        "en": "Option C"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 先分職位（有次序）",
+         "en": "Step 1 · Assign the posts first (order matters)"
+        },
+        "math": "P^{16}_2 = 16 \\times 15 = 240",
+        "zh": "隊長同副隊長係兩個唔同的職位，甲做隊長與乙做隊長係兩支不同的隊伍，所以由 16 人揀 2 人分職位：$P^{16}_2 = 16 \\times 15 = 240$。",
+        "en": "Captain and vice-captain are different posts, so swapping the two gives a different team: choose 2 of 16 for the posts, P(16,2) = 16 × 15 = 240."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 再由餘下 14 人揀 4 個隊員",
+         "en": "Step 2 · Choose 4 members from the remaining 14"
+        },
+        "math": "C^{14}_4 = 1001",
+        "zh": "4 位隊員無分次序，所以由剩下的 $16 - 2 = 14$ 人揀 4 人：$C^{14}_4 = 1001$。",
+        "en": "The four members have no order, so choose 4 from the remaining 14: C(14,4) = 1001."
+       },
+       {
+        "title": {
+         "zh": "第 3 步 · 相乘",
+         "en": "Step 3 · Multiply"
+        },
+        "math": "240 \\times 1001 = 240\\,240",
+        "zh": "分職位同揀隊員兩步相乘：$240 \\times 1001 = 240\\,240$ 支隊伍。",
+        "en": "240 × 1001 = 240 240 teams.",
+        "highlight": [
+         "240 \\times 1001 = 240\\,240"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$8008 = C^{16}_6$：只係揀了 6 個人，完全冇分隊長同副隊長。",
+        "en": "8008 = C(16,6) only chooses six people and assigns no posts."
+       },
+       {
+        "opt": "B",
+        "zh": "$120\\,120 = 240\\,240 \\div 2!$：把隊長與副隊長當成同一種職位（除以 2 抹走咗兩者的分別）。",
+        "en": "120 120 = 240 240 ÷ 2! treats captain and vice-captain as the same post."
+       },
+       {
+        "opt": "D",
+        "zh": "$480\\,480 = 240\\,240 \\times 2!$：反過來多乘了一次 2!，重複計算職位的次序。",
+        "en": "480 480 = 240 240 × 2! multiplies an extra 2! and double counts the ordering of the posts."
+       }
+      ],
+      "tip": {
+       "zh": "有職位＝有次序，先用 $P$ 分職位，再用 $C$ 揀普通成員；兩步係「先後」關係，所以相乘。",
+       "en": "Named posts mean order: assign them with P, then choose the ordinary members with C; the two steps happen together, so multiply."
+      }
+     }
+    },
+    {
+     "id": "ch18-A5",
+     "code": "A5",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 2 blue pens, 5 red pens and 3 green pens in a bag. If 4 pens are randomly drawn from the bag at the same time, find the probability that at least 1 red pen is drawn.",
+      "zh": "袋中有 2 枝藍筆、5 枝紅筆及 3 枝綠筆。若同時隨機抽出 4 枝筆，求至少抽到 1 枝紅筆的概率。"
+     },
+     "keywords": [
+      {
+       "en": "at least 1 red pen",
+       "zh": "「至少 1 枝」→ 反面：0 枝紅"
+      },
+      {
+       "en": "5 non-red pens",
+       "zh": "非紅筆 = 2 藍 + 3 綠 = 5 枝"
+      }
+     ],
+     "options": {
+      "A": "$\\frac{1}{42}$",
+      "B": "$\\frac{1}{3}$",
+      "C": "$\\frac{20}{21}$",
+      "D": "$\\frac{41}{42}$"
+     },
+     "answer": "D",
+     "answers": [
+      {
+       "math": "1 - \\frac{C^{5}_4}{C^{10}_4} = 1 - \\frac{5}{210} = \\frac{41}{42}",
+       "note": {
+        "zh": "即選項 D",
+        "en": "Option D"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 反面：0 枝紅筆",
+         "en": "Step 1 · Complement: no red pen at all"
+        },
+        "math": "\\frac{C^{5}_4}{C^{10}_4}",
+        "zh": "全部抽法 $C^{10}_4 = 210$；「0 枝紅」即 4 枝全部由 5 枝非紅（2 藍 + 3 綠）中揀，有 $C^{5}_4 = 5$ 種。",
+        "en": "All draws: C(10,4) = 210. 'No red' means all 4 come from the 5 non-red pens (2 blue + 3 green), giving C(5,4) = 5 ways."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 用 1 減",
+         "en": "Step 2 · Subtract from 1"
+        },
+        "math": "1 - \\frac{5}{210} = \\frac{41}{42}",
+        "zh": "用一減去反面的概率：$P(\\text{至少 1 紅}) = 1 - \\frac{5}{210} = \\frac{205}{210} = \\frac{41}{42}$。",
+        "en": "P(at least 1 red) = 1 − 5/210 = 205/210 = 41/42.",
+        "highlight": [
+         "1 - \\frac{5}{210} = \\frac{41}{42}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$\\frac{1}{42} = \\frac{5}{210}$ 係「0 枝紅」的概率，剛好同題目要的相反。",
+        "en": "1/42 = 5/210 is the probability of no red at all — exactly the opposite of what is asked."
+       },
+       {
+        "opt": "B",
+        "zh": "$\\frac{1}{3} = \\frac{C^{8}_4}{C^{10}_4}$：呢個係「0 枝藍筆」的概率（8 = 5 紅 + 3 綠），答錯咗另一條問題。",
+        "en": "1/3 = C(8,4)/C(10,4) is the probability of no blue pen (8 = 5 red + 3 green) — a different question."
+       },
+       {
+        "opt": "C",
+        "zh": "$\\frac{20}{21} = 1 - \\frac{10}{210}$：分子用咗 $C^{5}_2 = 10$，但抽 4 枝就要揀 4 枝，分子應該係 $C^{5}_4 = 5$。",
+        "en": "20/21 = 1 − 10/210 uses C(5,2) = 10, but four pens are drawn, so the numerator should be C(5,4) = 5."
+       }
+      ],
+      "tip": {
+       "zh": "「至少 1」用反面最快：$1 - P(\\text{一個都冇})$；分子分母都要用 $C$，而且「揀幾多」要對得上（呢題 4 枝）。",
+       "en": "For 'at least one', use 1 − P(none). Keep C on both sides and make sure the number chosen matches the draw."
+      }
+     }
+    },
+    {
+     "id": "ch18-A6",
+     "code": "A6",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 8 story books, 4 history books and 4 music books in a bag. If 4 books are randomly drawn from the bag at the same time, find the probability that at most 1 story book is drawn.",
+      "zh": "袋中有 8 本故事書、4 本歷史書及 4 本音樂書。若同時隨機抽出 4 本書，求最多抽到 1 本故事書的概率。"
+     },
+     "keywords": [
+      {
+       "en": "at most 1 story book",
+       "zh": "「最多 1 本」＝0 本 ＋ 1 本，兩個 case 相加"
+      },
+      {
+       "en": "4 history + 4 music",
+       "zh": "非故事書共 8 本，抽「0 本故事」時由呢 8 本揀"
+      }
+     ],
+     "options": {
+      "A": "$\\frac{37}{130}$",
+      "B": "$\\frac{16}{65}$",
+      "C": "$\\frac{1}{2}$",
+      "D": "$\\frac{33}{130}$"
+     },
+     "answer": "A",
+     "answers": [
+      {
+       "math": "\\frac{C^{8}_0 C^{8}_4 + C^{8}_1 C^{8}_3}{C^{16}_4} = \\frac{70 + 448}{1820} = \\frac{37}{130}",
+       "note": {
+        "zh": "即選項 A",
+        "en": "Option A"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 分母＝全部抽法",
+         "en": "Step 1 · Denominator: all draws"
+        },
+        "math": "C^{16}_4 = 1820",
+        "zh": "全袋 $8 + 4 + 4 = 16$ 本書，抽 4 本：$C^{16}_4 = 1820$ 種。故事書 8 本，非故事書（歷史＋音樂）$4 + 4 = 8$ 本。",
+        "en": "The bag holds 8 + 4 + 4 = 16 books; drawing 4 gives C(16,4) = 1820. There are 8 story books and 8 non-story books (history + music)."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 分 0 本與 1 本兩個 case",
+         "en": "Step 2 · Split into 0 and 1 story book"
+        },
+        "math": "C^{8}_0 C^{8}_4 + C^{8}_1 C^{8}_3 = 70 + 448",
+        "zh": "0 本故事：4 本全部由 8 本非故事書揀，$C^{8}_4 = 70$；1 本故事：由 8 本故事書揀 1 本、再由 8 本非故事書揀 3 本，$8 \\times 56 = 448$。",
+        "en": "Zero story books: all 4 from the 8 non-story books, C(8,4) = 70. One story book: 8 × C(8,3) = 8 × 56 = 448."
+       },
+       {
+        "title": {
+         "zh": "第 3 步 · 相加再除",
+         "en": "Step 3 · Add and divide"
+        },
+        "math": "\\frac{70 + 448}{1820} = \\frac{518}{1820} = \\frac{37}{130}",
+        "zh": "兩個 case 的方法數相加得 518，再除以全部 1820：$\\frac{518}{1820} = \\frac{37}{130}$。",
+        "en": "518/1820 = 37/130.",
+        "highlight": [
+         "\\frac{518}{1820} = \\frac{37}{130}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "B",
+        "zh": "$\\frac{16}{65} = \\frac{448}{1820}$：只計了「1 本故事書」，漏咗「0 本」這個 case。",
+        "en": "16/65 = 448/1820 counts one story book only and forgets the zero-story case."
+       },
+       {
+        "opt": "C",
+        "zh": "$\\frac{1}{2}$ 係靠估：4 本之中最多 1 本故事書其實只佔約 0.285，遠細過一半。",
+        "en": "1/2 is a guess: at most one story book out of four is only about 0.285."
+       },
+       {
+        "opt": "D",
+        "zh": "$\\frac{33}{130} = \\frac{462}{1820}$：分子算漏了一個 case；正確分子係 $70 + 448 = 518$。",
+        "en": "33/130 = 462/1820 has a term missing from the numerator; the correct total is 70 + 448 = 518."
+       }
+      ],
+      "tip": {
+       "zh": "「至多 1 本」要把「0 本」同「1 本」都計；每個 case 用「該類揀 k × 其他類揀其餘」。",
+       "en": "'At most 1' includes both zero and one; each case uses (choose k of that type) × (choose the rest of the others)."
+      }
+     }
+    },
+    {
+     "id": "ch18-A7",
+     "code": "A7",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "Bag P contains 2 red balls and 6 green balls while bag Q contains 2 red balls and 3 green balls. If a bag is randomly chosen and a ball is randomly drawn from the bag, find the probability that a green ball is drawn.",
+      "zh": "袋 P 有 2 粒紅波及 6 粒綠波，袋 Q 有 2 粒紅波及 3 粒綠波。若隨機選一個袋，再從該袋隨機抽出一粒波，求抽到綠波的概率。"
+     },
+     "keywords": [
+      {
+       "en": "a bag is randomly chosen",
+       "zh": "先選袋（各 $\\frac{1}{2}$），再在袋內抽"
+      },
+      {
+       "en": "two stages",
+       "zh": "分步 → 每條路徑「選袋 × 抽綠」，兩條路徑相加"
+      }
+     ],
+     "options": {
+      "A": "$\\frac{1}{2}$",
+      "B": "$\\frac{11}{20}$",
+      "C": "$\\frac{5}{8}$",
+      "D": "$\\frac{27}{40}$"
+     },
+     "answer": "D",
+     "answers": [
+      {
+       "math": "\\frac{1}{2} \\times \\frac{6}{8} + \\frac{1}{2} \\times \\frac{3}{5} = \\frac{3}{8} + \\frac{3}{10} = \\frac{27}{40}",
+       "note": {
+        "zh": "即選項 D",
+        "en": "Option D"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 分兩條路徑",
+         "en": "Step 1 · Two routes"
+        },
+        "math": "\\frac{1}{2} \\times \\frac{6}{8} + \\frac{1}{2} \\times \\frac{3}{5}",
+        "zh": "抽到綠波有兩條路：揀袋 P 再抽綠（概率 $\\frac{1}{2} \\times \\frac{6}{8}$），或者揀袋 Q 再抽綠（$\\frac{1}{2} \\times \\frac{3}{5}$）。兩條路互斥，所以相加。",
+        "en": "There are two routes to a green ball: choose bag P then draw green (1/2 × 6/8), or choose bag Q then draw green (1/2 × 3/5). The routes are mutually exclusive, so add.",
+        "highlight": [
+         "\\frac{1}{2} \\times \\frac{6}{8} + \\frac{1}{2} \\times \\frac{3}{5}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 計數",
+         "en": "Step 2 · Evaluate"
+        },
+        "math": "\\frac{3}{8} + \\frac{3}{10} = \\frac{15}{40} + \\frac{12}{40} = \\frac{27}{40}",
+        "zh": "通分相加：$\\frac{3}{8} + \\frac{3}{10} = \\frac{15}{40} + \\frac{12}{40} = \\frac{27}{40}$，所以抽到綠波的概率係四十分之二十七。",
+        "en": "3/8 + 3/10 = 15/40 + 12/40 = 27/40."
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$\\frac{1}{2} = \\frac12 \\times \\frac68 + \\frac12 \\times \\frac28$：袋 Q 只有 5 粒波，分母唔可以寫 8。",
+        "en": "1/2 = ½ × 6/8 + ½ × 2/8 wrongly uses 8 as the denominator for bag Q, which holds only 5 balls."
+       },
+       {
+        "opt": "B",
+        "zh": "$\\frac{11}{20}$：袋 Q 的綠波比例寫錯（袋 Q 係 3 綠，唔係 2 綠），兩條路徑相加之後就得出呢個數。",
+        "en": "11/20 comes from a wrong green fraction for bag Q (3 green, not 2), added to the bag-P route."
+       },
+       {
+        "opt": "C",
+        "zh": "$\\frac{5}{8} = \\frac12 \\times \\frac68 + \\frac12 \\times \\frac48$：袋 Q 當成有 8 粒波（實際 5 粒）。",
+        "en": "5/8 = ½ × 6/8 + ½ × 4/8 treats bag Q as having 8 balls (it has 5)."
+       }
+      ],
+      "tip": {
+       "zh": "「先選袋、再抽波」用乘法（$\\frac12 \\times$ 袋內比例），兩條路徑用加法；每個袋的分母要按自己袋內的總數。",
+       "en": "Multiply along each route (½ × the bag's own fraction) and add the routes; each bag's denominator is its own total."
+      }
+     }
+    },
+    {
+     "id": "ch18-A8",
+     "code": "A8",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "Bag A contains 2 red balls and 3 green balls while bag B contains 1 red ball and 3 green balls. A ball is randomly chosen from bag A and put into bag B, and then a ball is randomly drawn from bag B. Find the probability that a red ball is drawn from bag B.",
+      "zh": "袋 A 有 2 粒紅波及 3 粒綠波，袋 B 有 1 粒紅波及 3 粒綠波。從袋 A 隨機抽出一粒波放入袋 B，然後從袋 B 隨機抽出一粒波。求從袋 B 抽到紅波的概率。"
+     },
+     "keywords": [
+      {
+       "en": "put into bag B",
+       "zh": "袋 B 的內容會變 → 要按「搬過去嗰粒係咩色」分 case"
+      },
+      {
+       "en": "red ball is drawn from bag B",
+       "zh": "每個 case：搬的概率 × 之後抽紅的概率"
+      }
+     ],
+     "options": {
+      "A": "$\\frac{1}{4}$",
+      "B": "$\\frac{7}{25}$",
+      "C": "$\\frac{13}{40}$",
+      "D": "$\\frac{11}{20}$"
+     },
+     "answer": "B",
+     "answers": [
+      {
+       "math": "\\frac{2}{5} \\times \\frac{2}{5} + \\frac{3}{5} \\times \\frac{1}{5} = \\frac{4}{25} + \\frac{3}{25} = \\frac{7}{25}",
+       "note": {
+        "zh": "即選項 B",
+        "en": "Option B"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · case 1：搬到紅波",
+         "en": "Step 1 · Case 1: a red ball is moved"
+        },
+        "math": "\\frac{2}{5} \\times \\frac{2}{5} = \\frac{4}{25}",
+        "zh": "由袋 A 搬紅波的概率係 $\\frac{2}{5}$；搬完之後袋 B 變成 2 紅 3 綠（共 5 粒），抽到紅波係 $\\frac{2}{5}$。乘起來：$\\frac{2}{5} \\times \\frac{2}{5} = \\frac{4}{25}$。",
+        "en": "Moving a red ball has probability 2/5; bag B then holds 2 red and 3 green (5 in all), so a red draw has probability 2/5. Multiply: 2/5 × 2/5 = 4/25."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · case 2：搬到綠波",
+         "en": "Step 2 · Case 2: a green ball is moved"
+        },
+        "math": "\\frac{3}{5} \\times \\frac{1}{5} = \\frac{3}{25}",
+        "zh": "搬綠波的概率係 $\\frac{3}{5}$；袋 B 變成 1 紅 4 綠，抽到紅波只有 $\\frac{1}{5}$。所以 $\\frac{3}{5} \\times \\frac{1}{5} = \\frac{3}{25}$。",
+        "en": "Moving a green ball has probability 3/5; bag B becomes 1 red and 4 green, so a red draw has probability 1/5. Thus 3/5 × 1/5 = 3/25."
+       },
+       {
+        "title": {
+         "zh": "第 3 步 · 兩個 case 相加",
+         "en": "Step 3 · Add the two cases"
+        },
+        "math": "\\frac{4}{25} + \\frac{3}{25} = \\frac{7}{25}",
+        "zh": "兩個 case 互斥，所以直接相加：$\\frac{4}{25} + \\frac{3}{25} = \\frac{7}{25}$。",
+        "en": "4/25 + 3/25 = 7/25.",
+        "highlight": [
+         "\\frac{4}{25} + \\frac{3}{25} = \\frac{7}{25}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$\\frac{1}{4}$ 只睇袋 B 原本的 1 紅 3 綠，完全冇理搬過去嗰粒波。",
+        "en": "1/4 looks only at bag B's original 1 red and 3 green and ignores the transferred ball."
+       },
+       {
+        "opt": "C",
+        "zh": "$\\frac{13}{40} = \\frac12 \\times \\frac25 + \\frac12 \\times \\frac14$：把兩個 case 當成各佔一半；實際上搬紅、搬綠的概率係 $\\frac{2}{5}$ 同 $\\frac{3}{5}$。",
+        "en": "13/40 = ½ × 2/5 + ½ × 1/4 assumes the two cases are equally likely; the transfer probabilities are 2/5 and 3/5."
+       },
+       {
+        "opt": "D",
+        "zh": "$\\frac{11}{20}$ 大過正確答案：多數係漏乘「搬過去嗰粒」的概率，或者同一個 case 加咗兩次。",
+        "en": "11/20 is too large: usually from forgetting to multiply by the transfer probability, or adding a case twice."
+       }
+      ],
+      "tip": {
+       "zh": "「搬完再抽」一定要分 case：每個 case 都係「搬到的概率 × 之後抽到的概率」，最後相加。",
+       "en": "When a ball is moved first, split into cases; each case is (probability of the move) × (probability of the later draw), then add."
+      }
+     }
+    },
+    {
+     "id": "ch18-A9",
+     "code": "A9",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "James needs to solve 3 problems. The probabilities that he can solve each problem are 0.8, 0.9 and 0.2 respectively. The probability that James can solve at most 2 problems is",
+      "zh": "詹姆斯需要解 3 道題。他能解出每道題的概率分別是 0.8、0.9 及 0.2。他能解出最多 2 道題的概率是"
+     },
+     "keywords": [
+      {
+       "en": "at most 2 problems",
+       "zh": "「最多 2 題」→ 反面：3 題全對"
+      },
+      {
+       "en": "independent",
+       "zh": "每題獨立 → 全對的概率直接連乘"
+      }
+     ],
+     "options": {
+      "A": "0.064",
+      "B": "0.856",
+      "C": "0.84",
+      "D": "0.904"
+     },
+     "answer": "B",
+     "answers": [
+      {
+       "math": "1 - 0.8 \\times 0.9 \\times 0.2 = 1 - 0.144 = 0.856",
+       "note": {
+        "zh": "即選項 B",
+        "en": "Option B"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 反面只有一個 case：3 題全對",
+         "en": "Step 1 · The complement is a single case: all three solved"
+        },
+        "math": "0.8 \\times 0.9 \\times 0.2 = 0.144",
+        "zh": "「最多 2 題」的反面係「3 題全對」；三題獨立，所以連乘：$0.8 \\times 0.9 \\times 0.2 = 0.144$。",
+        "en": "'At most 2' is complemented by 'all 3 solved'; the problems are independent, so multiply: 0.8 × 0.9 × 0.2 = 0.144."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 用 1 減",
+         "en": "Step 2 · Subtract from 1"
+        },
+        "math": "1 - 0.144 = 0.856",
+        "zh": "用一減去三題全對的概率：$1 - 0.144 = 0.856$，即最多解到兩題的概率。",
+        "en": "1 − 0.144 = 0.856.",
+        "highlight": [
+         "1 - 0.144 = 0.856"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$0.064 = 0.8 \\times 0.1 \\times 0.8$：只計了「只解出第 1 題」這一個 case，唔係「最多 2 題」。",
+        "en": "0.064 = 0.8 × 0.1 × 0.8 counts just 'only the first problem solved', not 'at most 2'."
+       },
+       {
+        "opt": "C",
+        "zh": "$0.84 = 1 - 0.144 - 0.016$：連「3 題全錯」（$0.2 \\times 0.1 \\times 0.8 = 0.016$）都當成要剔除；但全錯都符合「最多 2 題」。",
+        "en": "0.84 = 1 − 0.144 − 0.016 also removes 'all three wrong' (0.2 × 0.1 × 0.8 = 0.016), which still satisfies 'at most 2'."
+       },
+       {
+        "opt": "D",
+        "zh": "$0.904$ 大過正確答案：多數係某個 case 加咗兩次，或者把「全對」的概率加返落去。",
+        "en": "0.904 is larger than the answer: typically a case added twice, or the 'all solved' probability added back."
+       }
+      ],
+      "tip": {
+       "zh": "「最多 n 題」（n 細過題數）用反面最快：$1 - P(\\text{全部答對})$。要記住全錯都符合「最多」。",
+       "en": "For 'at most n' with n below the total, use 1 − P(all correct). Remember that all-wrong also satisfies 'at most'."
+      }
+     }
+    },
+    {
+     "id": "ch18-A10",
+     "code": "A10",
+     "type": "mc",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "en": "In a tournament, Patrick needs to play 3 matches. The probabilities that he can win each match are 0.6, 0.7 and 0.8 respectively. The probability that Patrick can win at least 1 match is",
+      "zh": "在某項比賽中，帕特里克需要出賽 3 場。他勝出每場的概率分別是 0.6、0.7 及 0.8。他至少勝出 1 場的概率是"
+     },
+     "keywords": [
+      {
+       "en": "at least 1 match",
+       "zh": "「至少 1 場」→ 反面：3 場全輸"
+      },
+      {
+       "en": "0.4, 0.3, 0.2",
+       "zh": "每場輸的概率 = 1 − 勝出概率"
+      }
+     ],
+     "options": {
+      "A": "0.164",
+      "B": "0.856",
+      "C": "0.976",
+      "D": "0.98"
+     },
+     "answer": "C",
+     "answers": [
+      {
+       "math": "1 - 0.4 \\times 0.3 \\times 0.2 = 1 - 0.024 = 0.976",
+       "note": {
+        "zh": "即選項 C",
+        "en": "Option C"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "第 1 步 · 反面：3 場全輸",
+         "en": "Step 1 · Complement: lose all three"
+        },
+        "math": "0.4 \\times 0.3 \\times 0.2 = 0.024",
+        "zh": "輸的概率係 $1 - 0.6 = 0.4$、$1 - 0.7 = 0.3$、$1 - 0.8 = 0.2$；三場獨立，全輸 $= 0.4 \\times 0.3 \\times 0.2 = 0.024$。",
+        "en": "The losing probabilities are 0.4, 0.3 and 0.2; independent matches give 0.4 × 0.3 × 0.2 = 0.024 for losing all."
+       },
+       {
+        "title": {
+         "zh": "第 2 步 · 用 1 減",
+         "en": "Step 2 · Subtract from 1"
+        },
+        "math": "1 - 0.024 = 0.976",
+        "zh": "用一減去三場全輸的概率：$1 - 0.024 = 0.976$，即至少贏一場。",
+        "en": "1 − 0.024 = 0.976.",
+        "highlight": [
+         "1 - 0.024 = 0.976"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "opt": "A",
+        "zh": "$0.164$ 細得太多：多數係只計「贏一場」的某一個 case（例如 $0.6 \\times 0.3 \\times 0.2$），而且漏咗其餘 case。",
+        "en": "0.164 is far too small: usually one 'exactly one win' case (e.g. 0.6 × 0.3 × 0.2) with the others missing."
+       },
+       {
+        "opt": "B",
+        "zh": "$0.856$ 係上一題（第 9 題）的答案：反面錯用了 $0.8 \\times 0.9 \\times 0.2 = 0.144$，數字抄錯題。",
+        "en": "0.856 is the previous question's answer: it uses 0.8 × 0.9 × 0.2 = 0.144, the wrong set of numbers."
+       },
+       {
+        "opt": "D",
+        "zh": "$0.98 = 1 - 0.02$：反面只用咗兩個「輸」的概率，漏咗第三場。",
+        "en": "0.98 = 1 − 0.02 uses only two of the three losing probabilities."
+       }
+      ],
+      "tip": {
+       "zh": "「至少 1 場」＝ 1 − 「全部輸」；先寫低每場「輸」的概率（1 − p），再連乘。",
+       "en": "'At least one' = 1 − 'all lost'; write each losing probability (1 − p) first, then multiply."
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "B",
+   "marks": 66,
+   "title": {
+    "zh": "乙部 · 長題目（共 66 分）",
+    "en": "Section B · Conventional questions (66 marks in all)"
+   },
+   "questions": [
+    {
+     "id": "ch18-B1",
+     "code": "B1",
+     "type": "long",
+     "marks": 8,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 12 boys and 9 girls in a running club. 4 members are randomly selected from the club to form a relay team.",
+      "zh": "某田徑會有 12 位男生及 9 位女生。現從會中隨機選出 4 位成員組成接力隊。"
+     },
+     "keywords": [
+      {
+       "en": "form a relay team",
+       "zh": "組隊唔分次序 → 用組合 $C$"
+      },
+      {
+       "en": "at least 1 boy",
+       "zh": "「至少 1 男」→ 反面（全部 − 冇男）"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)(i)",
+       "en": "How many different teams can be formed if there are no restrictions?",
+       "zh": "若沒有任何限制，可以組成多少支不同的隊伍？",
+       "marks": 2
+      },
+      {
+       "label": "(a)(ii)",
+       "en": "How many different teams can be formed if the team consists of no boys?",
+       "zh": "若隊伍中沒有男生，可以組成多少支不同的隊伍？",
+       "marks": 2
+      },
+      {
+       "label": "(a)(iii)",
+       "en": "How many different teams can be formed if the team consists of at least 1 boy?",
+       "zh": "若隊伍中至少有 1 位男生，可以組成多少支不同的隊伍？",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Using the results in (a), find the probability that the team consists of at least 1 boy.",
+       "zh": "利用 (a) 的結果，求隊伍中至少有 1 位男生的概率。",
+       "marks": 2
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "There are 12 boys and 9 girls in a running club.",
+       "zh": "田徑會有 12 男 9 女，合共 21 人。",
+       "move": {
+        "zh": "先記低總人數 21，之後所有組合都由呢個總數出。",
+        "en": "Note the total of 21 members; every combination later comes from this total."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "4 members are randomly selected from the club to form a relay team.",
+       "zh": "隨機選 4 人組隊。",
+       "move": {
+        "zh": "「選 4 人組隊」＝唔理次序，分母／全部方法數用 $C^{21}_4$。",
+        "en": "'Select 4 to form a team' ignores order, so the total number of ways is C(21,4)."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)(i)",
+       "en": "How many different teams can be formed if there are no restrictions?",
+       "zh": "冇限制時有幾多支隊伍？",
+       "move": {
+        "zh": "由 21 人直接揀 4 人，用組合。",
+        "en": "Choose 4 from 21 directly with a combination."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)(ii)",
+       "en": "How many different teams can be formed if the team consists of no boys?",
+       "zh": "冇男生時有幾多支隊伍？",
+       "move": {
+        "zh": "冇男生＝4 人全部由 9 位女生中揀。",
+        "en": "'No boys' means all 4 come from the 9 girls."
+       },
+       "step": 2
+      },
+      {
+       "from": "(a)(iii)",
+       "en": "How many different teams can be formed if the team consists of at least 1 boy?",
+       "zh": "至少 1 位男生時有幾多支隊伍？",
+       "move": {
+        "zh": "「至少 1 男」= 全部 − 冇男，用反面。",
+        "en": "'At least 1 boy' = all teams − teams with no boys: use the complement."
+       },
+       "step": 3
+      },
+      {
+       "from": "(b)",
+       "en": "Using the results in (a), find the probability that the team consists of at least 1 boy.",
+       "zh": "用 (a) 的結果求「至少 1 男」的概率。",
+       "move": {
+        "zh": "概率 = 符合條件的方法數 ÷ 全部方法數，即 (a)(iii) ÷ (a)(i)。",
+        "en": "Probability = favourable ways ÷ total ways, i.e. (a)(iii) ÷ (a)(i)."
+       },
+       "step": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)(i)",
+       "math": "C^{21}_4 = 5985",
+       "input": "5985",
+       "note": {
+        "zh": "(a)(i) 5 985 支",
+        "en": "(a)(i) 5 985 teams"
+       }
+      },
+      {
+       "part": "(a)(ii)",
+       "math": "C^{9}_4 = 126",
+       "input": "126",
+       "note": {
+        "zh": "(a)(ii) 126 支",
+        "en": "(a)(ii) 126 teams"
+       }
+      },
+      {
+       "part": "(a)(iii)",
+       "math": "5985 - 126 = 5859",
+       "input": "5859",
+       "note": {
+        "zh": "(a)(iii) 5 859 支",
+        "en": "(a)(iii) 5 859 teams"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{5859}{5985} = \\frac{93}{95}",
+       "input": "93/95",
+       "note": {
+        "zh": "(b) $\\frac{93}{95}$",
+        "en": "(b) 93/95"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a)(i) 第 1 步 · 由 21 人揀 4 人",
+         "en": "(a)(i) Step 1 · Choose 4 from 21"
+        },
+        "math": "C^{21}_4 = 5985",
+        "zh": "總共 $12 + 9 = 21$ 人。組隊唔分次序，所以係 $C^{21}_4 = \\frac{21 \\times 20 \\times 19 \\times 18}{4!} = 5985$。",
+        "en": "There are 12 + 9 = 21 members. Order does not matter in a team, so C(21,4) = (21 × 20 × 19 × 18)/4! = 5985.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "C^{21}_4 = 5985"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(a)(ii) 第 1 步 · 冇男生即 4 個全女",
+         "en": "(a)(ii) Step 1 · No boys means all four are girls"
+        },
+        "math": "C^{9}_4 = 126",
+        "zh": "隊伍冇男生，即 4 人全部由 9 位女生中揀：$C^{9}_4 = 126$。",
+        "en": "With no boys, all four come from the 9 girls: C(9,4) = 126.",
+        "marking": "(1M + 1A)"
+       },
+       {
+        "title": {
+         "zh": "(a)(iii) 第 1 步 · 用反面：全部減冇男",
+         "en": "(a)(iii) Step 1 · Complement: all teams minus no-boy teams"
+        },
+        "math": "5985 - 126 = 5859",
+        "zh": "「至少 1 男」的反面係「0 男」，所以 $5985 - 126 = 5859$。",
+        "en": "'At least 1 boy' is complemented by 'no boys', so 5985 − 126 = 5859.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "5985 - 126 = 5859"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 符合條件 ÷ 全部",
+         "en": "(b) Step 1 · Favourable out of all"
+        },
+        "math": "\\frac{5859}{5985} = \\frac{93}{95}",
+        "zh": "分母用 (a)(i) 的 5985（全部抽法），分子用 (a)(iii) 的 5859：$\\frac{5859}{5985} = \\frac{93}{95}$。",
+        "en": "The denominator is 5985 from (a)(i) (all selections) and the numerator is 5859 from (a)(iii): 5859/5985 = 93/95.",
+        "marking": "(1M + 1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)(iii) 用 $C^{12}_1 \\times C^{20}_3$",
+        "labelEn": "(a)(iii) using C(12,1) × C(20,3)",
+        "zh": "先揀 1 個男生、再在剩餘 20 人揀 3 個：同一個隊伍會被數幾次（兩個男生會輪流做「先揀嗰個」），答案會大好多。",
+        "en": "Picking one boy then 3 of the remaining 20 counts the same team several times (each boy takes a turn as 'the one chosen first')."
+       },
+       {
+        "label": "(b) 分母寫錯",
+        "labelEn": "(b) wrong denominator",
+        "zh": "分母一定要係 (a)(i) 的 5985（全部抽法）；寫 5859、21 或 $C^{12}_1$ 都唔係「所有可能的結果」。",
+        "en": "The denominator must be 5985 from (a)(i); 5859, 21 or C(12,1) is not the set of all outcomes."
+       }
+      ],
+      "tip": {
+       "zh": "「至少 1 個」一律先想反面：全部 − 一個都冇；有「同類／同性別」限制時，反面通常少好多 case。",
+       "en": "For 'at least one', think complement first: all − none. When the restriction is 'same type', the complement usually has far fewer cases."
+      }
+     }
+    },
+    {
+     "id": "ch18-B2",
+     "code": "B2",
+     "type": "long",
+     "marks": 8,
+     "difficulty": 2,
+     "stem": {
+      "en": "In a bag, there are 2 gold rings, 5 silver rings and 8 bronze rings. 4 rings are randomly drawn from the bag at the same time.",
+      "zh": "袋中有 2 隻金戒指、5 隻銀戒指及 8 隻銅戒指。現從袋中同時隨機抽出 4 隻戒指。"
+     },
+     "keywords": [
+      {
+       "en": "2 + 5 + 8 = 15 rings",
+       "zh": "總數 15 隻，抽 4 隻 → 分母 $C^{15}_4$"
+      },
+      {
+       "en": "4 bronze rings",
+       "zh": "4 隻全部銅 → $C^{8}_4$"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)(i)",
+       "en": "In how many ways can the rings be drawn if there are no restrictions?",
+       "zh": "若沒有任何限制，共有多少種抽法？",
+       "marks": 2
+      },
+      {
+       "label": "(a)(ii)",
+       "en": "In how many ways can the rings be drawn if 4 bronze rings are drawn?",
+       "zh": "若抽出的 4 隻都是銅戒指，共有多少種抽法？",
+       "marks": 2
+      },
+      {
+       "label": "(a)(iii)",
+       "en": "Find the probability that 4 bronze rings are drawn.",
+       "zh": "求抽出 4 隻銅戒指的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that 4 silver rings are drawn.",
+       "zh": "求抽出 4 隻銀戒指的概率。",
+       "marks": 2
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "In a bag, there are 2 gold rings, 5 silver rings and 8 bronze rings.",
+       "zh": "袋中有 2 金、5 銀、8 銅，合共 15 隻。",
+       "move": {
+        "zh": "先算總數 $2 + 5 + 8 = 15$，之後分母都用呢個數。",
+        "en": "Total 2 + 5 + 8 = 15 rings; every denominator comes from this total."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "4 rings are randomly drawn from the bag at the same time.",
+       "zh": "同時抽 4 隻。",
+       "move": {
+        "zh": "「同時抽」＝唔理次序，全部抽法係 $C^{15}_4$。",
+        "en": "'At the same time' ignores order, so all draws are C(15,4)."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)(i)",
+       "en": "In how many ways can the rings be drawn if there are no restrictions?",
+       "zh": "冇限制時有幾多種抽法？",
+       "move": {
+        "zh": "15 隻抽 4 隻，用組合。",
+        "en": "Choose 4 of 15 with a combination."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)(ii)",
+       "en": "In how many ways can the rings be drawn if 4 bronze rings are drawn?",
+       "zh": "4 隻全銅時有幾多種抽法？",
+       "move": {
+        "zh": "由 8 隻銅戒指中揀 4 隻。",
+        "en": "Choose 4 of the 8 bronze rings."
+       },
+       "step": 2
+      },
+      {
+       "from": "(a)(iii)",
+       "en": "Find the probability that 4 bronze rings are drawn.",
+       "zh": "求 4 隻全銅的概率。",
+       "move": {
+        "zh": "概率就係「4 隻全銅的方法數」除以「全部抽法」。",
+        "en": "Probability = (a)(ii) ÷ (a)(i)."
+       },
+       "step": 3
+      },
+      {
+       "from": "(b)",
+       "en": "Find the probability that 4 silver rings are drawn.",
+       "zh": "求 4 隻全銀的概率。",
+       "move": {
+        "zh": "換成 5 隻銀戒指揀 4 隻做分子，分母唔變。",
+        "en": "Use 4 of the 5 silver rings as the numerator; the denominator stays."
+       },
+       "step": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)(i)",
+       "math": "C^{15}_4 = 1365",
+       "input": "1365",
+       "note": {
+        "zh": "(a)(i) 1 365 種",
+        "en": "(a)(i) 1 365 ways"
+       }
+      },
+      {
+       "part": "(a)(ii)",
+       "math": "C^{8}_4 = 70",
+       "input": "70",
+       "note": {
+        "zh": "(a)(ii) 70 種",
+        "en": "(a)(ii) 70 ways"
+       }
+      },
+      {
+       "part": "(a)(iii)",
+       "math": "\\frac{70}{1365} = \\frac{2}{39}",
+       "input": "2/39",
+       "note": {
+        "zh": "(a)(iii) $\\frac{2}{39}$",
+        "en": "(a)(iii) 2/39"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{C^{5}_4}{C^{15}_4} = \\frac{5}{1365} = \\frac{1}{273}",
+       "input": "1/273",
+       "note": {
+        "zh": "(b) $\\frac{1}{273}$",
+        "en": "(b) 1/273"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a)(i) 第 1 步 · 15 隻抽 4 隻",
+         "en": "(a)(i) Step 1 · 4 out of 15"
+        },
+        "math": "C^{15}_4 = 1365",
+        "zh": "$2 + 5 + 8 = 15$ 隻戒指，抽 4 隻唔理次序：$C^{15}_4 = 1365$。",
+        "en": "There are 2 + 5 + 8 = 15 rings; drawing 4 ignores order: C(15,4) = 1365.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "C^{15}_4 = 1365"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(a)(ii) 第 1 步 · 4 隻全部來自 8 隻銅",
+         "en": "(a)(ii) Step 1 · All four from the 8 bronze rings"
+        },
+        "math": "C^{8}_4 = 70",
+        "zh": "4 隻全銅，即由 8 隻銅戒指中揀 4 隻：$C^{8}_4 = 70$。",
+        "en": "All four bronze means choosing 4 of the 8 bronze rings: C(8,4) = 70.",
+        "marking": "(1M + 1A)"
+       },
+       {
+        "title": {
+         "zh": "(a)(iii) 第 1 步 · 分子除以分母",
+         "en": "(a)(iii) Step 1 · Divide"
+        },
+        "math": "\\frac{70}{1365} = \\frac{2}{39}",
+        "zh": "分子 70 除以全部抽法 1365，約簡後得 $\\frac{70}{1365} = \\frac{2}{39}$。",
+        "en": "70/1365 = 2/39.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "\\frac{70}{1365} = \\frac{2}{39}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 換成銀戒指",
+         "en": "(b) Step 1 · Swap in the silver rings"
+        },
+        "math": "\\frac{C^{5}_4}{C^{15}_4} = \\frac{5}{1365} = \\frac{1}{273}",
+        "zh": "5 隻銀戒指揀 4 隻：$C^{5}_4 = 5$，所以 $\\frac{5}{1365} = \\frac{1}{273}$。",
+        "en": "Choose 4 of the 5 silver rings: C(5,4) = 5, so 5/1365 = 1/273.",
+        "marking": "(1M + 1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)(ii) 用 $8^4$ 或 $P^{8}_4$",
+        "labelEn": "(a)(ii) using 8^4 or P(8,4)",
+        "zh": "同時抽 4 隻戒指唔理次序，所以係 $C^{8}_4 = 70$；$8^4$ 同 $P^{8}_4$ 都當咗「抽完放回」或「有次序」。",
+        "en": "Drawing four rings at once ignores order, so use C(8,4) = 70; 8^4 and P(8,4) both assume replacement or order."
+       },
+       {
+        "label": "(a)(iii) 分母寫 15",
+        "labelEn": "(a)(iii) denominator written as 15",
+        "zh": "分母要係全部抽法 1365，唔係戒指總數 15，亦唔係 $C^{8}_4$。",
+        "en": "The denominator is all 1365 draws, not the 15 rings and not C(8,4)."
+       },
+       {
+        "label": "(b) 用 $\\frac{5}{15}$",
+        "labelEn": "(b) using 5/15",
+        "zh": "$\\frac{5}{15}$ 只係「銀戒指佔全部」的比例，完全冇計「抽 4 隻」這件事。",
+        "en": "5/15 only gives the share of silver rings and ignores that four are drawn."
+       }
+      ],
+      "tip": {
+       "zh": "「同時抽 n 個」一律用 $C$；分子係「要的那類揀 k × 其他類揀其餘」。",
+       "en": "'Draw n at the same time' always uses C; the numerator is (choose k of the wanted type) × (choose the rest of the others)."
+      }
+     }
+    },
+    {
+     "id": "ch18-B3",
+     "code": "B3",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "Refer to Question 2. A bag contains 2 gold rings, 5 silver rings and 8 bronze rings, and 4 rings are randomly drawn from the bag at the same time.",
+      "zh": "參看第 2 題。袋中有 2 隻金戒指、5 隻銀戒指及 8 隻銅戒指，同時隨機抽出 4 隻。"
+     },
+     "keywords": [
+      {
+       "en": "same colour",
+       "zh": "「同色」＝全金／全銀／全銅，但金只有 2 隻"
+      },
+      {
+       "en": "at least 2 rings of different colours",
+       "zh": "「至少 2 種顏色」→ 反面：全部同色"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that 4 rings of the same colour are drawn.",
+       "zh": "求抽出 4 隻同色戒指的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that at least 2 rings of different colours are drawn.",
+       "zh": "求抽出的戒指中至少有 2 種不同顏色的概率。",
+       "marks": 2
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "Refer to Question 2.",
+       "zh": "參看第 2 題：袋中有 2 金、5 銀、8 銅，共 15 隻。",
+       "move": {
+        "zh": "數字照用第 2 題：總數 15，分母 $C^{15}_4 = 1365$。",
+        "en": "Reuse Question 2: 15 rings in all, denominator C(15,4) = 1365."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "A bag contains 2 gold rings, 5 silver rings and 8 bronze rings, and 4 rings are randomly drawn from the bag at the same time.",
+       "zh": "從袋中同時抽 4 隻。",
+       "move": {
+        "zh": "抽 4 隻唔理次序，全部抽法仍然是 1365。",
+        "en": "Drawing four at once still gives 1365 total ways."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)",
+       "en": "Find the probability that 4 rings of the same colour are drawn.",
+       "zh": "求 4 隻同色的概率。",
+       "move": {
+        "zh": "逐個顏色檢查「夠唔夠 4 隻」：金只有 2 隻，所以只有全銀、全銅兩個 case。",
+        "en": "Check each colour for four available: only 2 gold rings exist, so only all-silver and all-bronze survive."
+       },
+       "step": 1
+      },
+      {
+       "from": "(b)",
+       "en": "Find the probability that at least 2 rings of different colours are drawn.",
+       "zh": "求至少 2 種顏色的概率。",
+       "move": {
+        "zh": "「至少 2 種顏色」＝ 1 − P(全部同色)，用 (a) 的結果。",
+        "en": "'At least 2 colours' = 1 − P(all one colour), using part (a)."
+       },
+       "step": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{C^{5}_4 + C^{8}_4}{C^{15}_4} = \\frac{75}{1365} = \\frac{5}{91}",
+       "input": "5/91",
+       "note": {
+        "zh": "(a) $\\frac{5}{91}$",
+        "en": "(a) 5/91"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{5}{91} = \\frac{86}{91}",
+       "input": "86/91",
+       "note": {
+        "zh": "(b) $\\frac{86}{91}$",
+        "en": "(b) 86/91"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a) 第 1 步 · 只有全銀、全銅兩個 case",
+         "en": "(a) Step 1 · Only all-silver and all-bronze count"
+        },
+        "math": "\\frac{C^{5}_4 + C^{8}_4}{C^{15}_4} = \\frac{5 + 70}{1365} = \\frac{5}{91}",
+        "zh": "同色要 4 隻都同色：金戒指只有 2 隻，冇可能抽到 4 隻金；所以只有「4 銀」$C^{5}_4 = 5$ 同「4 銅」$C^{8}_4 = 70$。合共 $\\frac{75}{1365} = \\frac{5}{91}$。",
+        "en": "Four of one colour: only 2 gold rings exist, so 4 gold is impossible. Only 4 silver (C(5,4) = 5) and 4 bronze (C(8,4) = 70) remain: 75/1365 = 5/91.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "\\frac{75}{1365} = \\frac{5}{91}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 用反面",
+         "en": "(b) Step 1 · Use the complement"
+        },
+        "math": "1 - \\frac{5}{91} = \\frac{86}{91}",
+        "zh": "「至少 2 種顏色」的反面係「全部同一顏色」，即 (a) 的 $\\frac{5}{91}$；所以 $1 - \\frac{5}{91} = \\frac{86}{91}$。",
+        "en": "'At least 2 colours' is complemented by 'all one colour', the 5/91 from (a): 1 − 5/91 = 86/91.",
+        "marking": "(1M + 1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 把 4 隻金都算入",
+        "labelEn": "(a) counting 4 gold rings",
+        "zh": "金戒指只有 2 隻，$C^{2}_4 = 0$；如果寫成「三種顏色任揀」，就會多計。",
+        "en": "Only 2 gold rings exist and C(2,4) = 0; treating it as three equally available colours overcounts."
+       },
+       {
+        "label": "(b) 逐個 case 直接加",
+        "labelEn": "(b) adding cases one by one",
+        "zh": "「至少 2 種顏色」包括 2 色同 3 色的好多組合，直接加會漏 case；用反面只需減一項。",
+        "en": "'At least 2 colours' covers many 2-colour and 3-colour splits; adding them misses cases, while the complement needs one subtraction."
+       }
+      ],
+      "tip": {
+       "zh": "「至少 2 種」＝ 1 − 全部同一種；先問「反面係咩」，再檢查每種顏色「夠唔夠數」。",
+       "en": "'At least two kinds' = 1 − all the same kind. Ask what the complement is, then check whether each colour has enough items."
+      }
+     }
+    },
+    {
+     "id": "ch18-B4",
+     "code": "B4",
+     "type": "long",
+     "marks": 7,
+     "difficulty": 2,
+     "stem": {
+      "en": "There are 9 boys and 11 girls in a class. 4 students are randomly selected from the class to form a committee.",
+      "zh": "班上有 9 位男生及 11 位女生。現從班中隨機選出 4 位同學組成委員會。"
+     },
+     "keywords": [
+      {
+       "en": "form a committee",
+       "zh": "委員無分職位 → 用組合 $C$"
+      },
+      {
+       "en": "the numbers are different",
+       "zh": "「男女數目不同」→ 反面：2 男 2 女"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)(i)",
+       "en": "In how many ways can the committee be formed if there are 2 boys and 2 girls in the committee?",
+       "zh": "若委員會由 2 位男生及 2 位女生組成，共有多少種組成方法？",
+       "marks": 2
+      },
+      {
+       "label": "(a)(ii)",
+       "en": "Find the probability that there are 2 boys and 2 girls in the committee.",
+       "zh": "求委員會由 2 位男生及 2 位女生組成的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that the number of boys and the number of girls in the committee are different.",
+       "zh": "求委員會中男生數目與女生數目不同的概率。",
+       "marks": 3
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "There are 9 boys and 11 girls in a class.",
+       "zh": "班上有 9 男 11 女，合共 20 人。",
+       "move": {
+        "zh": "總數 20 人，4 人委員會的全部分法係 $C^{20}_4 = 4845$。",
+        "en": "20 students in all, so there are C(20,4) = 4845 committees in total."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "4 students are randomly selected from the class to form a committee.",
+       "zh": "隨機選 4 人組成委員會。",
+       "move": {
+        "zh": "選委員唔分次序，所以全部方法數用組合。",
+        "en": "Selecting committee members ignores order, so use combinations."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)(i)",
+       "en": "In how many ways can the committee be formed if there are 2 boys and 2 girls in the committee?",
+       "zh": "2 男 2 女時有幾多種分法？",
+       "move": {
+        "zh": "男、女分開揀，再用乘法：$C^{9}_2 \\times C^{11}_2$。",
+        "en": "Choose boys and girls separately, then multiply: C(9,2) × C(11,2)."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)(ii)",
+       "en": "Find the probability that there are 2 boys and 2 girls in the committee.",
+       "zh": "求 2 男 2 女的概率。",
+       "move": {
+        "zh": "分子 (a)(i) ÷ 分母 4845。",
+        "en": "Numerator from (a)(i) over the denominator 4845."
+       },
+       "step": 2
+      },
+      {
+       "from": "(b)",
+       "en": "Find the probability that the number of boys and the number of girls in the committee are different.",
+       "zh": "求男女數目不同的概率。",
+       "move": {
+        "zh": "4 人而男女數目相同，只有 2 男 2 女一種；所以用 $1 - $ (a)(ii)。",
+        "en": "With 4 members, equal numbers means exactly 2 boys and 2 girls; so use 1 − (a)(ii)."
+       },
+       "step": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)(i)",
+       "math": "C^{9}_2 \\times C^{11}_2 = 36 \\times 55 = 1980",
+       "input": "1980",
+       "note": {
+        "zh": "(a)(i) 1 980 種",
+        "en": "(a)(i) 1 980 ways"
+       }
+      },
+      {
+       "part": "(a)(ii)",
+       "math": "\\frac{1980}{C^{20}_4} = \\frac{1980}{4845} = \\frac{132}{323}",
+       "input": "132/323",
+       "note": {
+        "zh": "(a)(ii) $\\frac{132}{323}$",
+        "en": "(a)(ii) 132/323"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{132}{323} = \\frac{191}{323}",
+       "input": "191/323",
+       "note": {
+        "zh": "(b) $\\frac{191}{323}$",
+        "en": "(b) 191/323"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a)(i) 第 1 步 · 男女分開揀再相乘",
+         "en": "(a)(i) Step 1 · Choose boys and girls separately, then multiply"
+        },
+        "math": "C^{9}_2 \\times C^{11}_2 = 36 \\times 55 = 1980",
+        "zh": "2 位男生由 9 人揀：$C^{9}_2 = 36$；2 位女生由 11 人揀：$C^{11}_2 = 55$。兩步一齊發生，所以相乘：$36 \\times 55 = 1980$。",
+        "en": "2 boys from 9: C(9,2) = 36; 2 girls from 11: C(11,2) = 55. Both happen together, so multiply: 36 × 55 = 1980.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "36 \\times 55 = 1980"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(a)(ii) 第 1 步 · 除以全部委員組合",
+         "en": "(a)(ii) Step 1 · Divide by all committees"
+        },
+        "math": "\\frac{1980}{4845} = \\frac{132}{323}",
+        "zh": "全部方法數 $C^{20}_4 = 4845$，所以概率係 $\\frac{1980}{4845} = \\frac{132}{323}$。",
+        "en": "All committees number C(20,4) = 4845, so the probability is 1980/4845 = 132/323.",
+        "marking": "(1M + 1A)"
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 反面只有「2 男 2 女」",
+         "en": "(b) Step 1 · The complement is '2 boys and 2 girls'"
+        },
+        "math": "1 - \\frac{132}{323} = \\frac{191}{323}",
+        "zh": "4 人而男女數目相同，只可能係 2 男 2 女（3-1、4-0 都唔同）。所以 $1 - \\frac{132}{323} = \\frac{191}{323}$。",
+        "en": "Equal numbers with 4 members can only be 2 and 2 (3-1 and 4-0 differ). So 1 − 132/323 = 191/323.",
+        "marking": "(1M + 1M + 1A)",
+        "highlight": [
+         "1 - \\frac{132}{323} = \\frac{191}{323}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)(i) 用 $P^{9}_2 P^{11}_2$",
+        "labelEn": "(a)(i) using P(9,2) × P(11,2)",
+        "zh": "委員會唔分職位，同一個組合會被數多次；揀人一律用 $C$，除非題目有職位。",
+        "en": "A committee has no posts, so permutations count the same group several times; use C unless posts are named."
+       },
+       {
+        "label": "(b) 直接逐個 case 加",
+        "labelEn": "(b) adding each case directly",
+        "zh": "「數目不同」有 (0,4)、(1,3)、(3,1)、(4,0) 四個 case，容易漏；用反面只減 2-2 一項。",
+        "en": "'Different numbers' covers (0,4), (1,3), (3,1) and (4,0) — easy to miss one; the complement has a single term."
+       }
+      ],
+      "tip": {
+       "zh": "「男女數目相同／不同」：4 人只有 2-2 一種相同，用反面最快；6 人就有 3-3 一種，道理一樣。",
+       "en": "For 'equal / different numbers': with 4 members only 2-2 is equal, so complement wins; with 6 members only 3-3, same idea."
+      }
+     }
+    },
+    {
+     "id": "ch18-B5",
+     "code": "B5",
+     "type": "long",
+     "marks": 7,
+     "difficulty": 3,
+     "stem": {
+      "en": "There are 9 red balls, 4 yellow balls and 7 green balls in a bag. 5 balls are randomly drawn from the bag at the same time.",
+      "zh": "袋中有 9 粒紅球、4 粒黃球及 7 粒綠球。現從袋中同時隨機抽出 5 粒球。"
+     },
+     "keywords": [
+      {
+       "en": "exactly 4 yellow",
+       "zh": "「恰好 4 黃」＝4 黃 × 其餘 1 粒非黃"
+      },
+      {
+       "en": "not more than 2 yellow",
+       "zh": "「不多過 2 黃」→ 反面：3 黃或 4 黃"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that exactly 4 yellow balls are drawn.",
+       "zh": "求恰好抽出 4 粒黃球的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find the probability that exactly 3 yellow balls are drawn.",
+       "zh": "求恰好抽出 3 粒黃球的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(c)",
+       "en": "Find the probability that not more than 2 yellow balls are drawn.",
+       "zh": "求抽出不多於 2 粒黃球的概率。",
+       "marks": 3
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "There are 9 red balls, 4 yellow balls and 7 green balls in a bag.",
+       "zh": "袋中有 9 紅、4 黃、7 綠，合共 20 粒。",
+       "move": {
+        "zh": "非黃球有 $9 + 7 = 16$ 粒；全部抽法 $C^{20}_5$。",
+        "en": "There are 9 + 7 = 16 non-yellow balls; all draws number C(20,5)."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "5 balls are randomly drawn from the bag at the same time.",
+       "zh": "同時抽 5 粒。",
+       "move": {
+        "zh": "同時抽＝唔理次序，全部抽法 $C^{20}_5 = 15504$。",
+        "en": "'At the same time' ignores order: C(20,5) = 15 504 draws."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)",
+       "en": "Find the probability that exactly 4 yellow balls are drawn.",
+       "zh": "求恰好 4 黃的概率。",
+       "move": {
+        "zh": "4 粒由 4 粒黃中揀，剩下 1 粒由 16 粒非黃中揀。",
+        "en": "Four from the 4 yellow, and the remaining one from the 16 non-yellow."
+       },
+       "step": 1
+      },
+      {
+       "from": "(b)",
+       "en": "Find the probability that exactly 3 yellow balls are drawn.",
+       "zh": "求恰好 3 黃的概率。",
+       "move": {
+        "zh": "3 粒由 4 粒黃中揀，其餘 2 粒由 16 粒非黃中揀。",
+        "en": "Three from the 4 yellow, and the other two from the 16 non-yellow."
+       },
+       "step": 2
+      },
+      {
+       "from": "(c)",
+       "en": "Find the probability that not more than 2 yellow balls are drawn.",
+       "zh": "求不多於 2 黃的概率。",
+       "move": {
+        "zh": "「不多於 2」的反面係「3 或 4」（5 粒最多 4 黃），所以 $1 - $ (b) $-$ (a)。",
+        "en": "'Not more than 2' is complemented by '3 or 4' (5 balls cannot hold 5 yellow), so 1 − (b) − (a)."
+       },
+       "step": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{C^{4}_4 \\times C^{16}_1}{C^{20}_5} = \\frac{16}{15504} = \\frac{1}{969}",
+       "input": "1/969",
+       "note": {
+        "zh": "(a) $\\frac{1}{969}$",
+        "en": "(a) 1/969"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{C^{4}_3 \\times C^{16}_2}{C^{20}_5} = \\frac{480}{15504} = \\frac{10}{323}",
+       "input": "10/323",
+       "note": {
+        "zh": "(b) $\\frac{10}{323}$",
+        "en": "(b) 10/323"
+       }
+      },
+      {
+       "part": "(c)",
+       "math": "1 - \\frac{1}{969} - \\frac{10}{323} = \\frac{938}{969}",
+       "input": "938/969",
+       "note": {
+        "zh": "(c) $\\frac{938}{969}$",
+        "en": "(c) 938/969"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a) 第 1 步 · 4 黃 ＋ 1 粒非黃",
+         "en": "(a) Step 1 · Four yellow plus one non-yellow"
+        },
+        "math": "\\frac{C^{4}_4 \\times C^{16}_1}{C^{20}_5} = \\frac{16}{15504} = \\frac{1}{969}",
+        "zh": "4 粒黃由 4 粒黃全部取出：$C^{4}_4 = 1$；第 5 粒要由 16 粒非黃中揀：$C^{16}_1 = 16$。所以 $\\frac{16}{15504} = \\frac{1}{969}$。",
+        "en": "All 4 yellow are taken: C(4,4) = 1; the fifth ball comes from the 16 non-yellow: C(16,1) = 16. So 16/15504 = 1/969.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "\\frac{16}{15504} = \\frac{1}{969}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 3 黃 ＋ 2 粒非黃",
+         "en": "(b) Step 1 · Three yellow plus two non-yellow"
+        },
+        "math": "\\frac{C^{4}_3 \\times C^{16}_2}{C^{20}_5} = \\frac{4 \\times 120}{15504} = \\frac{10}{323}",
+        "zh": "3 粒黃由 4 粒中揀有 4 種，其餘 2 粒由 16 粒非黃中揀有 120 種，所以 $\\frac{4 \\times 120}{15504} = \\frac{480}{15504} = \\frac{10}{323}$。",
+        "en": "C(4,3) = 4 and C(16,2) = 120, so 480/15504 = 10/323.",
+        "marking": "(1M + 1A)"
+       },
+       {
+        "title": {
+         "zh": "(c) 第 1 步 · 反面只有 3 黃、4 黃",
+         "en": "(c) Step 1 · The complement is 3 or 4 yellow"
+        },
+        "math": "1 - \\frac{1}{969} - \\frac{10}{323} = \\frac{938}{969}",
+        "zh": "抽 5 粒，黃波最多 4 粒，所以「多過 2 粒」只有 3 黃同 4 黃兩個 case：$1 - \\frac{1}{969} - \\frac{10}{323} = \\frac{938}{969}$。",
+        "en": "Five balls can hold at most 4 yellow, so 'more than 2' means 3 or 4 yellow: 1 − 1/969 − 10/323 = 938/969.",
+        "marking": "(1M + 1M + 1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 只寫 $C^{4}_4$",
+        "labelEn": "(a) writing only C(4,4)",
+        "zh": "抽 5 粒而 4 粒黃，第 5 粒仍然要揀，所以分子係 $C^{4}_4 \\times C^{16}_1 = 16$，唔係 1。",
+        "en": "Five balls are drawn, so the fifth must still be chosen: the numerator is C(4,4) × C(16,1) = 16, not 1."
+       },
+       {
+        "label": "(c) 把 5 黃都當成可能",
+        "labelEn": "(c) treating 5 yellow as possible",
+        "zh": "袋中只有 4 粒黃球，抽 5 粒唔可能全黃；反面只需計 3 黃同 4 黃。",
+        "en": "There are only 4 yellow balls, so 5 yellow is impossible; the complement has just 3 and 4 yellow."
+       }
+      ],
+      "tip": {
+       "zh": "「恰好 k 個」＝該類揀 k × 其他類揀其餘；「不多於」用反面時，先問「最多可以有幾多個」。",
+       "en": "'Exactly k' = choose k of that type × the rest of the others; for 'not more than', first ask how many of that type is even possible."
+      }
+     }
+    },
+    {
+     "id": "ch18-B6",
+     "code": "B6",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 2,
+     "stem": {
+      "en": "A bag contains 5 red cards and 11 blue cards. If 6 cards are randomly drawn from the bag at the same time,",
+      "zh": "袋中有 5 張紅卡及 11 張藍卡。若同時隨機抽出 6 張卡，"
+     },
+     "keywords": [
+      {
+       "en": "3 red and 3 blue",
+       "zh": "6 張分兩色 → 3-3"
+      },
+      {
+       "en": "the numbers are different",
+       "zh": "紅藍數目不同 → 反面：3-3"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "find the probability that 3 red cards and 3 blue cards are drawn;",
+       "zh": "求抽出 3 張紅卡及 3 張藍卡的概率；",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "find the probability that the number of red cards drawn and the number of blue cards drawn are different.",
+       "zh": "求抽出紅卡數目與藍卡數目不同的概率。",
+       "marks": 2
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "A bag contains 5 red cards and 11 blue cards.",
+       "zh": "袋中有 5 紅、11 藍，合共 16 張。",
+       "move": {
+        "zh": "總數 16 張，抽 6 張的全部方法 $C^{16}_6 = 8008$。",
+        "en": "16 cards in all; drawing 6 gives C(16,6) = 8008 ways."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "If 6 cards are randomly drawn from the bag at the same time,",
+       "zh": "同時抽 6 張，",
+       "move": {
+        "zh": "同時抽＝唔理次序，分母用 $C^{16}_6$。",
+        "en": "'At the same time' ignores order, so the denominator is C(16,6)."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)",
+       "en": "find the probability that 3 red cards and 3 blue cards are drawn;",
+       "zh": "求 3 紅 3 藍的概率；",
+       "move": {
+        "zh": "紅、藍分開揀再相乘：$C^{5}_3 \\times C^{11}_3$。",
+        "en": "Choose reds and blues separately, then multiply: C(5,3) × C(11,3)."
+       },
+       "step": 1
+      },
+      {
+       "from": "(b)",
+       "en": "find the probability that the number of red cards drawn and the number of blue cards drawn are different.",
+       "zh": "求紅藍數目不同的概率。",
+       "move": {
+        "zh": "6 張而數目相同，只有 3-3 一種，所以用 $1 - $ (a)。",
+        "en": "With 6 cards, equal numbers means exactly 3-3, so use 1 − (a)."
+       },
+       "step": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{C^{5}_3 \\times C^{11}_3}{C^{16}_6} = \\frac{1650}{8008} = \\frac{75}{364}",
+       "input": "75/364",
+       "note": {
+        "zh": "(a) $\\frac{75}{364}$",
+        "en": "(a) 75/364"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{75}{364} = \\frac{289}{364}",
+       "input": "289/364",
+       "note": {
+        "zh": "(b) $\\frac{289}{364}$",
+        "en": "(b) 289/364"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a) 第 1 步 · 3 紅 3 藍",
+         "en": "(a) Step 1 · Three red and three blue"
+        },
+        "math": "\\frac{C^{5}_3 \\times C^{11}_3}{C^{16}_6} = \\frac{10 \\times 165}{8008} = \\frac{75}{364}",
+        "zh": "紅卡揀 3 張有 10 種，藍卡揀 3 張有 165 種，全部抽法有 8008 種，所以 $\\frac{1650}{8008} = \\frac{75}{364}$。",
+        "en": "C(5,3) = 10 and C(11,3) = 165, over C(16,6) = 8008: 1650/8008 = 75/364.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "\\frac{1650}{8008} = \\frac{75}{364}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 反面只有 3-3",
+         "en": "(b) Step 1 · The complement is 3-3 only"
+        },
+        "math": "1 - \\frac{75}{364} = \\frac{289}{364}",
+        "zh": "6 張而紅藍數目相同，只可能係 3 紅 3 藍：$1 - \\frac{75}{364} = \\frac{289}{364}$。",
+        "en": "With 6 cards, equal numbers means 3 red and 3 blue only: 1 − 75/364 = 289/364.",
+        "marking": "(1M + 1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 分母用 $C^{16}_3$",
+        "labelEn": "(a) denominator C(16,3)",
+        "zh": "抽 6 張，分母係 $C^{16}_6 = 8008$；寫 $C^{16}_3$ 等於只抽 3 張。",
+        "en": "Six cards are drawn, so the denominator is C(16,6) = 8008; C(16,3) would draw only three."
+       },
+       {
+        "label": "(b) 直接加 4-2、5-1 等 case",
+        "labelEn": "(b) adding 4-2, 5-1 cases",
+        "zh": "5 紅 11 藍抽 6 張，「數目不同」有 0-6、1-5、2-4、4-2、5-1 五個 case，好易漏；用反面只減 3-3。",
+        "en": "With 5 red and 11 blue, 'different' covers 0-6, 1-5, 2-4, 4-2 and 5-1 — easy to miss one; the complement subtracts only 3-3."
+       }
+      ],
+      "tip": {
+       "zh": "偶數張而分兩色，「數目相同」只有一半一半一種；奇數張（例如 5 張）就永遠唔會相同，概率係 1。",
+       "en": "With an even number of cards in two colours, equal counts mean exactly half and half; with an odd number (say 5) they can never be equal, so the probability is 1."
+      }
+     }
+    },
+    {
+     "id": "ch18-B7",
+     "code": "B7",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 2,
+     "stem": {
+      "en": "A bag contains 13 gold medals and 4 silver medals. If 5 medals are randomly drawn from the bag at the same time, find",
+      "zh": "袋中有 13 面金牌及 4 面銀牌。若同時隨機抽出 5 面獎牌，求"
+     },
+     "keywords": [
+      {
+       "en": "exactly 4 silver",
+       "zh": "「恰好 4 銀」＝4 銀 ＋ 1 金"
+      },
+      {
+       "en": "at least 3 gold",
+       "zh": "抽 5 面而「至少 3 金」→ 3 金、4 金、5 金三個 case"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "the probability that exactly 4 silver medals are drawn.",
+       "zh": "恰好抽出 4 面銀牌的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "the probability that at least 3 gold medals are drawn.",
+       "zh": "至少抽出 3 面金牌的概率。",
+       "marks": 3
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "A bag contains 13 gold medals and 4 silver medals.",
+       "zh": "袋中有 13 金、4 銀，合共 17 面。",
+       "move": {
+        "zh": "總數 17 面，抽 5 面的全部方法 $C^{17}_5 = 6188$。",
+        "en": "17 medals in all; drawing 5 gives C(17,5) = 6188 ways."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "If 5 medals are randomly drawn from the bag at the same time, find",
+       "zh": "同時抽出 5 面，求",
+       "move": {
+        "zh": "同時抽＝唔理次序，分子分母都用 $C$。",
+        "en": "'At the same time' ignores order, so use C in both numerator and denominator."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)",
+       "en": "the probability that exactly 4 silver medals are drawn.",
+       "zh": "恰好 4 銀的概率。",
+       "move": {
+        "zh": "4 面銀全部取出，第 5 面由 13 面金中揀。",
+        "en": "All 4 silver are taken and the fifth medal comes from the 13 gold."
+       },
+       "step": 1
+      },
+      {
+       "from": "(b)",
+       "en": "the probability that at least 3 gold medals are drawn.",
+       "zh": "至少 3 金的概率。",
+       "move": {
+        "zh": "抽 5 面，金牌可以 3、4、5 面：三個 case 逐個計再相加。",
+        "en": "With 5 medals drawn, gold can be 3, 4 or 5: count each case and add."
+       },
+       "step": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{C^{4}_4 \\times C^{13}_1}{C^{17}_5} = \\frac{13}{6188} = \\frac{1}{476}",
+       "input": "1/476",
+       "note": {
+        "zh": "(a) $\\frac{1}{476}$",
+        "en": "(a) 1/476"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{5863}{6188} = \\frac{451}{476}",
+       "input": "451/476",
+       "note": {
+        "zh": "(b) $\\frac{451}{476}$",
+        "en": "(b) 451/476"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a) 第 1 步 · 4 銀 ＋ 1 金",
+         "en": "(a) Step 1 · Four silver and one gold"
+        },
+        "math": "\\frac{C^{4}_4 \\times C^{13}_1}{C^{17}_5} = \\frac{13}{6188} = \\frac{1}{476}",
+        "zh": "4 面銀全部取出：$C^{4}_4 = 1$；第 5 面由 13 面金中揀：$C^{13}_1 = 13$。所以 $\\frac{13}{6188} = \\frac{1}{476}$。",
+        "en": "All four silver are taken: C(4,4) = 1; the fifth comes from the 13 gold: C(13,1) = 13. So 13/6188 = 1/476.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "\\frac{13}{6188} = \\frac{1}{476}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 三個 case 相加",
+         "en": "(b) Step 1 · Add the three cases"
+        },
+        "math": "\\frac{C^{13}_3 C^{4}_2 + C^{13}_4 C^{4}_1 + C^{13}_5}{C^{17}_5} = \\frac{286 \\times 6 + 715 \\times 4 + 1287}{6188} = \\frac{5863}{6188}",
+        "zh": "3 金 2 銀、4 金 1 銀、5 金三個 case 互斥，所以分子相加：$286 \\times 6 + 715 \\times 4 + 1287 = 1716 + 2860 + 1287 = 5863$。",
+        "en": "The cases 3+2, 4+1 and 5+0 are mutually exclusive, so add: 286 × 6 + 715 × 4 + 1287 = 1716 + 2860 + 1287 = 5863.",
+        "marking": "(1M + 1M)"
+       },
+       {
+        "title": {
+         "zh": "(b) 第 2 步 · 約簡",
+         "en": "(b) Step 2 · Simplify"
+        },
+        "math": "\\frac{5863}{6188} = \\frac{451}{476}",
+        "zh": "分子分母同時除以 13 約簡：$\\frac{5863}{6188} = \\frac{451}{476}$。",
+        "en": "5863/6188 = 451/476.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 分子只寫 13 但分母寫 17",
+        "labelEn": "(a) denominator written as 17",
+        "zh": "分母要係全部抽法 6188；17 只係獎牌總數，冇計「抽 5 面」。",
+        "en": "The denominator is the 6188 draws; 17 is merely the number of medals."
+       },
+       {
+        "label": "(b) 只計 3 金 2 銀",
+        "labelEn": "(b) counting only 3 gold 2 silver",
+        "zh": "「至少 3 金」仲包括 4 金 1 銀同 5 金（唔可能 6 金，因為只抽 5 面）。",
+        "en": "'At least 3 gold' also includes 4+1 and 5+0 (6 gold is impossible when only 5 are drawn)."
+       }
+      ],
+      "tip": {
+       "zh": "「至少 k 個」但總數細，逐個 case 加好過用反面；每個 case 都要「金揀幾多 × 銀揀幾多」。",
+       "en": "When the total is small, adding the qualifying cases beats the complement; each case is (choose gold) × (choose silver)."
+      }
+     }
+    },
+    {
+     "id": "ch18-B8",
+     "code": "B8",
+     "type": "long",
+     "marks": 5,
+     "difficulty": 3,
+     "stem": {
+      "en": "There are 8 red cups, 3 pink cups and 7 black cups in a cupboard. If 4 cups are randomly drawn from the cupboard at the same time,",
+      "zh": "櫃中有 8 隻紅杯、3 隻粉紅杯及 7 隻黑杯。若同時隨機抽出 4 隻杯，"
+     },
+     "keywords": [
+      {
+       "en": "exactly 2 black",
+       "zh": "「恰好 2 黑」＝2 黑 × 其餘 2 隻非黑"
+      },
+      {
+       "en": "at most 2 black",
+       "zh": "「最多 2 黑」→ 反面：3 黑或 4 黑"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "find the probability that exactly 2 black cups are drawn.",
+       "zh": "求恰好抽出 2 隻黑杯的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "find the probability that at most 2 black cups are drawn.",
+       "zh": "求最多抽出 2 隻黑杯的概率。",
+       "marks": 3
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "There are 8 red cups, 3 pink cups and 7 black cups in a cupboard.",
+       "zh": "櫃中有 8 紅、3 粉紅、7 黑，合共 18 隻。",
+       "move": {
+        "zh": "非黑杯有 $8 + 3 = 11$ 隻；抽 4 隻的全部方法 $C^{18}_4 = 3060$。",
+        "en": "There are 8 + 3 = 11 non-black cups; drawing 4 gives C(18,4) = 3060 ways."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "If 4 cups are randomly drawn from the cupboard at the same time,",
+       "zh": "同時抽出 4 隻杯，",
+       "move": {
+        "zh": "同時抽＝唔理次序，分母 $C^{18}_4$。",
+        "en": "'At the same time' ignores order, so the denominator is C(18,4)."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)",
+       "en": "find the probability that exactly 2 black cups are drawn.",
+       "zh": "求恰好 2 黑杯的概率。",
+       "move": {
+        "zh": "2 隻由 7 隻黑中揀，其餘 2 隻由 11 隻非黑中揀。",
+        "en": "Two from the 7 black and the other two from the 11 non-black."
+       },
+       "step": 1
+      },
+      {
+       "from": "(b)",
+       "en": "find the probability that at most 2 black cups are drawn.",
+       "zh": "求最多 2 黑杯的概率。",
+       "move": {
+        "zh": "「最多 2」的反面係「3 或 4」，只需要兩項。",
+        "en": "'At most 2' is complemented by '3 or 4 black', only two terms."
+       },
+       "step": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{C^{7}_2 \\times C^{11}_2}{C^{18}_4} = \\frac{1155}{3060} = \\frac{77}{204}",
+       "input": "77/204",
+       "note": {
+        "zh": "(a) $\\frac{77}{204}$",
+        "en": "(a) 77/204"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "1 - \\frac{420}{3060} = \\frac{44}{51}",
+       "input": "44/51",
+       "note": {
+        "zh": "(b) $\\frac{44}{51}$",
+        "en": "(b) 44/51"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a) 第 1 步 · 2 黑 ＋ 2 非黑",
+         "en": "(a) Step 1 · Two black and two non-black"
+        },
+        "math": "\\frac{C^{7}_2 \\times C^{11}_2}{C^{18}_4} = \\frac{21 \\times 55}{3060} = \\frac{77}{204}",
+        "zh": "黑杯揀 2 隻有 21 種，其餘 2 隻由 11 隻非黑中揀有 55 種，全部抽法 3060 種，所以 $\\frac{1155}{3060} = \\frac{77}{204}$。",
+        "en": "C(7,2) = 21 and C(11,2) = 55, over C(18,4) = 3060: 1155/3060 = 77/204.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "\\frac{1155}{3060} = \\frac{77}{204}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 反面：3 黑或 4 黑",
+         "en": "(b) Step 1 · Complement: 3 or 4 black"
+        },
+        "math": "\\frac{C^{7}_3 C^{11}_1 + C^{7}_4}{C^{18}_4} = \\frac{385 + 35}{3060} = \\frac{420}{3060}",
+        "zh": "3 隻黑加 1 隻其他顏色有 $35 \\times 11 = 385$ 種，4 隻全黑有 $C^{7}_4 = 35$ 種，合共 420 種，除以 3060。",
+        "en": "3 black + 1 other: 35 × 11 = 385; 4 black: C(7,4) = 35; total 420/3060.",
+        "marking": "(1M + 1M)"
+       },
+       {
+        "title": {
+         "zh": "(b) 第 2 步 · 1 減反面",
+         "en": "(b) Step 2 · Subtract the complement"
+        },
+        "math": "1 - \\frac{420}{3060} = \\frac{44}{51}",
+        "zh": "用一減去反面的概率，再約簡：$1 - \\frac{420}{3060} = \\frac{2640}{3060} = \\frac{44}{51}$。",
+        "en": "1 − 420/3060 = 2640/3060 = 44/51.",
+        "marking": "(1A)",
+        "highlight": [
+         "1 - \\frac{420}{3060} = \\frac{44}{51}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 分母用 $C^{18}_2$",
+        "labelEn": "(a) denominator C(18,2)",
+        "zh": "抽 4 隻，分母係 $C^{18}_4 = 3060$；$C^{18}_2$ 等於只抽 2 隻。",
+        "en": "Four cups are drawn, so the denominator is C(18,4) = 3060; C(18,2) would draw two."
+       },
+       {
+        "label": "(b) 漏咗 4 隻全黑",
+        "labelEn": "(b) missing four black",
+        "zh": "反面有兩個 case：3 黑 1 其他、4 隻全黑；漏咗後者會令答案偏大。",
+        "en": "The complement has two cases: 3 black + 1 other, and 4 black; dropping the second makes the answer too large."
+       }
+      ],
+      "tip": {
+       "zh": "「最多 k」的反面係「k+1 到最多」；先數反面有幾個 case，通常比正面少。",
+       "en": "'At most k' complements to 'k+1 and above'; count how few cases the complement has."
+      }
+     }
+    },
+    {
+     "id": "ch18-B9",
+     "code": "B9",
+     "type": "long",
+     "marks": 6,
+     "difficulty": 3,
+     "stem": {
+      "en": "In a cupboard, there are 6 black cups and 8 white cups. From the cupboard, 2 cups are randomly chosen at the same time.",
+      "zh": "櫃中有 6 隻黑杯及 8 隻白杯。現從櫃中同時隨機抽出 2 隻杯。"
+     },
+     "keywords": [
+      {
+       "en": "2 cups chosen are white",
+       "zh": "2 隻全白：$C^{8}_2 / C^{14}_2$"
+      },
+      {
+       "en": "put into the drawer",
+       "zh": "兩階段：先抽 2 隻的顏色決定之後抽屜的組合"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find the probability that the 2 cups chosen are white.",
+       "zh": "求抽出的 2 隻杯都是白色的概率。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "In a drawer, there are 7 white cups. The 2 cups chosen from the cupboard are put into the drawer and then 4 cups are randomly chosen at the same time from the drawer. Find the probability that the 4 cups chosen are of the same colour.",
+       "zh": "抽屜中有 7 隻白杯。把從櫃中抽出的 2 隻杯放入抽屜，然後從抽屜同時隨機抽出 4 隻杯。求抽出的 4 隻杯都是同色的概率。",
+       "marks": 4
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "In a cupboard, there are 6 black cups and 8 white cups.",
+       "zh": "櫃中有 6 黑 8 白，合共 14 隻。",
+       "move": {
+        "zh": "抽 2 隻的全部方法 $C^{14}_2 = 91$。",
+        "en": "Choosing 2 from 14 gives C(14,2) = 91 ways."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "From the cupboard, 2 cups are randomly chosen at the same time.",
+       "zh": "從櫃中同時抽 2 隻。",
+       "move": {
+        "zh": "同時抽唔理次序，所以用組合。",
+        "en": "Drawing at the same time ignores order, so use combinations."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)",
+       "en": "Find the probability that the 2 cups chosen are white.",
+       "zh": "求 2 隻全白的概率。",
+       "move": {
+        "zh": "2 隻都由 8 隻白杯揀：$C^{8}_2$。",
+        "en": "Both come from the 8 white cups: C(8,2)."
+       },
+       "step": 1
+      },
+      {
+       "from": "(b)",
+       "en": "In a drawer, there are 7 white cups.",
+       "zh": "抽屜中有 7 隻白杯。",
+       "move": {
+        "zh": "放進去之後，抽屜的顏色組合取決於由櫃抽出的 2 隻係咩色。",
+        "en": "After the transfer, the drawer's contents depend on the colours taken from the cupboard."
+       },
+       "step": 2
+      },
+      {
+       "from": "(b)",
+       "en": "The 2 cups chosen from the cupboard are put into the drawer and then 4 cups are randomly chosen at the same time from the drawer.",
+       "zh": "把 2 隻杯放入抽屜，再從抽屜同時抽 4 隻。",
+       "move": {
+        "zh": "抽屜有 9 隻，抽 4 隻的分母一律係 $C^{9}_4 = 126$。",
+        "en": "The drawer then holds 9 cups, so every denominator is C(9,4) = 126."
+       },
+       "step": 3
+      },
+      {
+       "from": "(b)",
+       "en": "Find the probability that the 4 cups chosen are of the same colour.",
+       "zh": "求 4 隻同色的概率。",
+       "move": {
+        "zh": "逐個 case（2 白／1 白 1 黑／2 黑）乘自己之後「4 隻同色」的概率，再加權相加。",
+        "en": "For each case (2 white, 1+1, 2 black), multiply by its own 'all same colour' probability, then add."
+       },
+       "step": 4
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\frac{C^{8}_2}{C^{14}_2} = \\frac{28}{91} = \\frac{4}{13}",
+       "input": "4/13",
+       "note": {
+        "zh": "(a) $\\frac{4}{13}$",
+        "en": "(a) 4/13"
+       }
+      },
+      {
+       "part": "(b)",
+       "math": "\\frac{28}{91} \\times 1 + \\frac{48}{91} \\times \\frac{C^{8}_4}{C^{9}_4} + \\frac{15}{91} \\times \\frac{C^{7}_4}{C^{9}_4} = \\frac{353}{546}",
+       "input": "353/546",
+       "note": {
+        "zh": "(b) $\\frac{353}{546}$",
+        "en": "(b) 353/546"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a) 第 1 步 · 2 隻全白",
+         "en": "(a) Step 1 · Both cups white"
+        },
+        "math": "\\frac{C^{8}_2}{C^{14}_2} = \\frac{28}{91} = \\frac{4}{13}",
+        "zh": "白杯揀 2 隻有 28 種，全部抽法有 91 種，所以概率係 $\\frac{28}{91} = \\frac{4}{13}$。",
+        "en": "C(8,2) = 28 over C(14,2) = 91 gives 28/91 = 4/13.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "\\frac{28}{91} = \\frac{4}{13}"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b) 第 1 步 · 三個 case 的概率",
+         "en": "(b) Step 1 · Probabilities of the three cases"
+        },
+        "math": "P(2W) = \\frac{28}{91},\\ P(1W1B) = \\frac{48}{91},\\ P(2B) = \\frac{15}{91}",
+        "zh": "2 白 $\\frac{28}{91}$；1 白 1 黑 $\\frac{8 \\times 6}{91} = \\frac{48}{91}$；2 黑 $\\frac{C^{6}_2}{91} = \\frac{15}{91}$。三者相加等於 1，可以核對。",
+        "en": "2 white: 28/91; 1 white 1 black: (8 × 6)/91 = 48/91; 2 black: C(6,2)/91 = 15/91. They add to 1, a useful check.",
+        "marking": "(1M + 1M)"
+       },
+       {
+        "title": {
+         "zh": "(b) 第 2 步 · 每個 case 之後抽屜的組合",
+         "en": "(b) Step 2 · What the drawer holds after each case"
+        },
+        "math": "9W0B:\\ 1,\\quad 8W1B:\\ \\frac{C^{8}_4}{C^{9}_4},\\quad 7W2B:\\ \\frac{C^{7}_4}{C^{9}_4}",
+        "zh": "放 2 白入去：9 白 0 黑 → 4 隻一定同色（概率 1）；放 1 白 1 黑：8 白 1 黑 → 只可以全白，$\\frac{70}{126}$；放 2 黑：7 白 2 黑 → 全白 $\\frac{35}{126}$（全黑要 4 隻黑，但只有 2 隻，唔可能）。",
+        "en": "Two white: 9 white, 0 black → all four certainly white (probability 1). One of each: 8 white, 1 black → all white, 70/126. Two black: 7 white, 2 black → all white, 35/126 (four black is impossible with only 2).",
+        "marking": "(1M)"
+       },
+       {
+        "title": {
+         "zh": "(b) 第 3 步 · 加權相加",
+         "en": "(b) Step 3 · Weighted sum"
+        },
+        "math": "\\frac{28}{91} \\times 1 + \\frac{48}{91} \\times \\frac{70}{126} + \\frac{15}{91} \\times \\frac{35}{126} = \\frac{353}{546}",
+        "zh": "三個 case 各自乘自己之後的條件概率，再加權相加：$\\frac{28}{91} + \\frac{48}{91} \\times \\frac{70}{126} + \\frac{15}{91} \\times \\frac{35}{126} = \\frac{353}{546}$。",
+        "en": "28/91 + (48/91)(70/126) + (15/91)(35/126) = 353/546.",
+        "marking": "(1A)",
+        "highlight": [
+         "\\frac{353}{546}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 分母用 6 或 8",
+        "labelEn": "(a) denominator 6 or 8",
+        "zh": "由 14 隻杯抽 2 隻，分母係 $C^{14}_2 = 91$。",
+        "en": "Two of 14 cups are drawn, so the denominator is C(14,2) = 91."
+       },
+       {
+        "label": "(b) 只計最後一步",
+        "labelEn": "(b) counting only the last stage",
+        "zh": "要先按 (a) 的三個 case 加權，再乘各自「4 隻同色」的概率；直接用 $\\frac{C^{9}_4}{C^{9}_4}$ 會變成 1。",
+        "en": "Weight each case from (a) by its own 'all same' probability; using just the last stage would give 1."
+       }
+      ],
+      "tip": {
+       "zh": "兩階段抽樣：第一階段的每個 case 都要「概率 × 之後的條件概率」，最後相加；先檢查各 case 概率加起來是否 1。",
+       "en": "Two-stage sampling: each first-stage case contributes (probability × later conditional probability), then add; check that the case probabilities sum to 1."
+      }
+     }
+    },
+    {
+     "id": "ch18-B10",
+     "code": "B10",
+     "type": "long",
+     "marks": 12,
+     "difficulty": 3,
+     "stem": {
+      "en": "In a jar, there are 6 blue marbles and 5 red marbles. In a box, there are 7 blue marbles. From the jar, 2 marbles are randomly drawn at the same time. The 2 marbles drawn from the jar are put into the box and then 4 marbles are randomly drawn at the same time from the box.",
+      "zh": "瓶中有 6 粒藍色波子及 5 粒紅色波子；盒中有 7 粒藍色波子。現從瓶中同時隨機抽出 2 粒波子，把它們放入盒中，然後從盒中同時隨機抽出 4 粒波子。"
+     },
+     "keywords": [
+      {
+       "en": "the whole process",
+       "zh": "整個過程＝先抽 2 粒，再抽 4 粒，兩步相乘"
+      },
+      {
+       "en": "of the same colour",
+       "zh": "盒中紅波最多 2 粒，所以「同色」只可能全部藍"
+      }
+     ],
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "In how many ways can the marbles be drawn in the whole process if there are no restrictions?",
+       "zh": "若沒有任何限制，整個過程共有多少種抽法？",
+       "marks": 2
+      },
+      {
+       "label": "(b)(i)",
+       "en": "How many ways are there if 2 blue marbles are drawn from the jar and then 4 blue marbles are drawn from the box?",
+       "zh": "若從瓶中抽出 2 粒藍波子，再從盒中抽出 4 粒藍波子，共有多少種抽法？",
+       "marks": 1
+      },
+      {
+       "label": "(b)(ii)",
+       "en": "What is the corresponding probability?",
+       "zh": "對應的概率是多少？",
+       "marks": 2
+      },
+      {
+       "label": "(c)(i)",
+       "en": "How many ways are there if 1 blue marble and 1 red marble are drawn from the jar, and then 4 blue marbles are drawn from the box?",
+       "zh": "若從瓶中抽出 1 粒藍波子及 1 粒紅波子，再從盒中抽出 4 粒藍波子，共有多少種抽法？",
+       "marks": 2
+      },
+      {
+       "label": "(c)(ii)",
+       "en": "How many ways are there if 2 red marbles are drawn from the jar, and then 4 blue marbles are drawn from the box?",
+       "zh": "若從瓶中抽出 2 粒紅波子，再從盒中抽出 4 粒藍波子，共有多少種抽法？",
+       "marks": 2
+      },
+      {
+       "label": "(d)",
+       "en": "Find the probability that the 4 marbles drawn from the box are of the same colour.",
+       "zh": "求從盒中抽出的 4 粒波子都是同色的概率。",
+       "marks": 3
+      }
+     ],
+     "parse": [
+      {
+       "from": "",
+       "en": "In a jar, there are 6 blue marbles and 5 red marbles.",
+       "zh": "瓶中有 6 藍 5 紅，合共 11 粒。",
+       "move": {
+        "zh": "由瓶中抽 2 粒的全部方法 $C^{11}_2 = 55$。",
+        "en": "Drawing 2 from the 11 jar marbles gives C(11,2) = 55 ways."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "In a box, there are 7 blue marbles.",
+       "zh": "盒中有 7 粒藍波子（冇紅波）。",
+       "move": {
+        "zh": "放入 2 粒之後，盒內有 9 粒，抽 4 粒的分母一律係 $C^{9}_4 = 126$。",
+        "en": "After two marbles are added the box holds 9, so every denominator is C(9,4) = 126."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "From the jar, 2 marbles are randomly drawn at the same time.",
+       "zh": "先從瓶中同時抽 2 粒。",
+       "move": {
+        "zh": "同時抽唔理次序，用組合；第二階段的方法數要按「抽到咩色」分 case。",
+        "en": "Draw at the same time with combinations; the second stage depends on the colours drawn."
+       },
+       "step": 1
+      },
+      {
+       "from": "",
+       "en": "The 2 marbles drawn from the jar are put into the box and then 4 marbles are randomly drawn at the same time from the box.",
+       "zh": "把 2 粒放入盒中，再從盒中同時抽 4 粒。",
+       "move": {
+        "zh": "兩個階段係「先後」，所以方法數相乘。",
+        "en": "The two stages happen in turn, so their numbers of ways multiply."
+       },
+       "step": 1
+      },
+      {
+       "from": "(a)",
+       "en": "In how many ways can the marbles be drawn in the whole process if there are no restrictions?",
+       "zh": "冇限制時整個過程有幾多種抽法？",
+       "move": {
+        "zh": "先抽 2 粒 $C^{11}_2$，再抽 4 粒 $C^{9}_4$，相乘。",
+        "en": "C(11,2) for the jar draw times C(9,4) for the box draw."
+       },
+       "step": 1
+      },
+      {
+       "from": "(b)(i)",
+       "en": "How many ways are there if 2 blue marbles are drawn from the jar and then 4 blue marbles are drawn from the box?",
+       "zh": "2 藍再 4 藍有幾多種？",
+       "move": {
+        "zh": "瓶：$C^{6}_2$；盒：變成 9 藍，抽 4 粒 $C^{9}_4$。",
+        "en": "Jar: C(6,2); box: now 9 blue, so C(9,4)."
+       },
+       "step": 2
+      },
+      {
+       "from": "(b)(ii)",
+       "en": "What is the corresponding probability?",
+       "zh": "對應概率係幾多？",
+       "move": {
+        "zh": "用 (b)(i) 的方法數除以 (a) 的全部方法數。",
+        "en": "Divide (b)(i) by (a)."
+       },
+       "step": 3
+      },
+      {
+       "from": "(c)(i)",
+       "en": "How many ways are there if 1 blue marble and 1 red marble are drawn from the jar, and then 4 blue marbles are drawn from the box?",
+       "zh": "1 藍 1 紅再 4 藍有幾多種？",
+       "move": {
+        "zh": "瓶：$6 \\times 5$；盒：變成 8 藍 1 紅，抽 4 藍係 $C^{8}_4$。",
+        "en": "Jar: 6 × 5; box: 8 blue and 1 red, so 4 blue is C(8,4)."
+       },
+       "step": 4
+      },
+      {
+       "from": "(c)(ii)",
+       "en": "How many ways are there if 2 red marbles are drawn from the jar, and then 4 blue marbles are drawn from the box?",
+       "zh": "2 紅再 4 藍有幾多種？",
+       "move": {
+        "zh": "瓶：$C^{5}_2$；盒：變成 7 藍 2 紅，抽 4 藍係 $C^{7}_4$。",
+        "en": "Jar: C(5,2); box: 7 blue and 2 red, so 4 blue is C(7,4)."
+       },
+       "step": 5
+      },
+      {
+       "from": "(d)",
+       "en": "Find the probability that the 4 marbles drawn from the box are of the same colour.",
+       "zh": "求盒中 4 粒同色的概率。",
+       "move": {
+        "zh": "盒中紅波最多 2 粒，所以「同色」只可能全藍；把 (b)(i)、(c)(i)、(c)(ii) 三項相加再除以 (a)。",
+        "en": "The box holds at most 2 red, so 'same colour' means all blue: add (b)(i), (c)(i) and (c)(ii), then divide by (a)."
+       },
+       "step": 6
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "C^{11}_2 \\times C^{9}_4 = 55 \\times 126 = 6930",
+       "input": "6930",
+       "note": {
+        "zh": "(a) 6 930 種",
+        "en": "(a) 6 930 ways"
+       }
+      },
+      {
+       "part": "(b)(i)",
+       "math": "C^{6}_2 \\times C^{9}_4 = 15 \\times 126 = 1890",
+       "input": "1890",
+       "note": {
+        "zh": "(b)(i) 1 890 種",
+        "en": "(b)(i) 1 890 ways"
+       }
+      },
+      {
+       "part": "(b)(ii)",
+       "math": "\\frac{1890}{6930} = \\frac{3}{11}",
+       "input": "3/11",
+       "note": {
+        "zh": "(b)(ii) $\\frac{3}{11}$",
+        "en": "(b)(ii) 3/11"
+       }
+      },
+      {
+       "part": "(c)(i)",
+       "math": "6 \\times 5 \\times C^{8}_4 = 30 \\times 70 = 2100",
+       "input": "2100",
+       "note": {
+        "zh": "(c)(i) 2 100 種",
+        "en": "(c)(i) 2 100 ways"
+       }
+      },
+      {
+       "part": "(c)(ii)",
+       "math": "C^{5}_2 \\times C^{7}_4 = 10 \\times 35 = 350",
+       "input": "350",
+       "note": {
+        "zh": "(c)(ii) 350 種",
+        "en": "(c)(ii) 350 ways"
+       }
+      },
+      {
+       "part": "(d)",
+       "math": "\\frac{1890 + 2100 + 350}{6930} = \\frac{4340}{6930} = \\frac{62}{99}",
+       "input": "62/99",
+       "note": {
+        "zh": "(d) $\\frac{62}{99}$",
+        "en": "(d) 62/99"
+       }
+      }
+     ],
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "zh": "(a) 第 1 步 · 兩個階段相乘",
+         "en": "(a) Step 1 · Multiply the two stages"
+        },
+        "math": "C^{11}_2 \\times C^{9}_4 = 55 \\times 126 = 6930",
+        "zh": "瓶中 11 粒抽 2 粒：$C^{11}_2 = 55$；放入盒後有 $7 + 2 = 9$ 粒，抽 4 粒：$C^{9}_4 = 126$。兩階段一齊發生，所以相乘：$55 \\times 126 = 6930$。",
+        "en": "Draw 2 of 11 from the jar: C(11,2) = 55. The box then holds 7 + 2 = 9, so drawing 4 gives C(9,4) = 126. Multiply: 55 × 126 = 6930.",
+        "marking": "(1M + 1A)",
+        "highlight": [
+         "55 \\times 126 = 6930"
+        ]
+       },
+       {
+        "title": {
+         "zh": "(b)(i) 第 1 步 · 2 藍之後盒內 9 粒全藍",
+         "en": "(b)(i) Step 1 · After two blue, the box holds 9 blue"
+        },
+        "math": "C^{6}_2 \\times C^{9}_4 = 15 \\times 126 = 1890",
+        "zh": "瓶中 6 藍揀 2：$C^{6}_2 = 15$；盒中變成 $7 + 2 = 9$ 粒全藍，抽 4 粒：$C^{9}_4 = 126$；相乘 $= 1890$。",
+        "en": "Choose 2 of the 6 blue in the jar: C(6,2) = 15; the box becomes 9 blue, so C(9,4) = 126; product 1890.",
+        "marking": "(1M)"
+       },
+       {
+        "title": {
+         "zh": "(b)(ii) 第 1 步 · 除以全部",
+         "en": "(b)(ii) Step 1 · Divide by the total"
+        },
+        "math": "\\frac{1890}{6930} = \\frac{3}{11}",
+        "zh": "對應概率就係方法數除以全部：$\\frac{1890}{6930} = \\frac{3}{11}$。",
+        "en": "1890/6930 = 3/11.",
+        "marking": "(1M + 1A)"
+       },
+       {
+        "title": {
+         "zh": "(c)(i) 第 1 步 · 1 藍 1 紅，盒內 8 藍 1 紅",
+         "en": "(c)(i) Step 1 · One blue one red; box holds 8 blue and 1 red"
+        },
+        "math": "6 \\times 5 \\times C^{8}_4 = 30 \\times 70 = 2100",
+        "zh": "瓶：藍 6 粒揀 1、紅 5 粒揀 1，共 $6 \\times 5 = 30$ 種；盒中變成 8 藍 1 紅，抽 4 藍係 $C^{8}_4 = 70$；相乘 $= 2100$。",
+        "en": "Jar: 6 blue × 5 red = 30 ways. The box then holds 8 blue and 1 red, so 4 blue is C(8,4) = 70. Product 2100.",
+        "marking": "(1M + 1A)"
+       },
+       {
+        "title": {
+         "zh": "(c)(ii) 第 1 步 · 2 紅，盒內 7 藍 2 紅",
+         "en": "(c)(ii) Step 1 · Two red; box holds 7 blue and 2 red"
+        },
+        "math": "C^{5}_2 \\times C^{7}_4 = 10 \\times 35 = 350",
+        "zh": "瓶：5 紅揀 2，$C^{5}_2 = 10$；盒中變成 7 藍 2 紅，抽 4 藍係 $C^{7}_4 = 35$；相乘 $= 350$。",
+        "en": "Jar: C(5,2) = 10. The box becomes 7 blue and 2 red, so 4 blue is C(7,4) = 35. Product 350.",
+        "marking": "(1M + 1A)"
+       },
+       {
+        "title": {
+         "zh": "(d) 第 1 步 · 同色只能全藍，三項相加",
+         "en": "(d) Step 1 · Same colour means all blue; add the three cases"
+        },
+        "math": "\\frac{1890 + 2100 + 350}{6930} = \\frac{4340}{6930} = \\frac{62}{99}",
+        "zh": "盒中紅波最多只有 2 粒，抽 4 粒唔可能全紅，所以「4 粒同色」＝「4 粒全藍」，即 (b)(i)、(c)(i)、(c)(ii) 三種情況：$\\frac{1890 + 2100 + 350}{6930} = \\frac{4340}{6930} = \\frac{62}{99}$。",
+        "en": "The box never holds more than 2 red, so four of the same colour must all be blue — the cases (b)(i), (c)(i) and (c)(ii): (1890 + 2100 + 350)/6930 = 4340/6930 = 62/99.",
+        "marking": "(1M + 1M + 1A)",
+        "highlight": [
+         "\\frac{4340}{6930} = \\frac{62}{99}"
+        ]
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a) 只乘其中一個階段",
+        "labelEn": "(a) multiplying only one stage",
+        "zh": "「先抽 2 粒、再抽 4 粒」係兩個階段，方法數要相乘；只寫 55 或 126 都只計了一半。",
+        "en": "'Draw 2 then draw 4' is two stages, so the counts multiply; 55 or 126 alone is only half the process."
+       },
+       {
+        "label": "(c)(i) 再乘 $2!$",
+        "labelEn": "(c)(i) multiplying by 2!",
+        "zh": "「1 藍 1 紅」的抽法係 $6 \\times 5 = 30$（等於 $C^{6}_1 C^{5}_1$），同時抽出，唔涉及次序，唔使再乘 $2!$。",
+        "en": "One blue and one red gives 6 × 5 = 30 ways (C(6,1)C(5,1)); they are drawn together, so no extra 2! is needed."
+       },
+       {
+        "label": "(d) 跟官方答案 $\\frac{149}{198}$",
+        "labelEn": "(d) following the official answer 149/198",
+        "zh": "官方題解的分子 $5215$ 用咗 $C^{5}_4$、$C^{6}_4$，等於假設盒內另有 5 粒紅波；但 (a) 的 $C^{9}_4$ 證明盒內只有 7 粒藍。按題目原文，答案是 $\\frac{62}{99}$。",
+        "en": "The official numerator 5215 uses C(5,4) and C(6,4), i.e. it assumes the box also holds 5 red marbles, yet (a)'s C(9,4) shows the box holds 7 blue only. By the printed wording the answer is 62/99."
+       }
+      ],
+      "tip": {
+       "zh": "兩階段題目：先問「第二階段的分母變咗幾多」，再逐個第一階段 case 乘；「同色」要先數每種顏色最多有幾粒。",
+       "en": "Two-stage problems: first ask what the second-stage denominator becomes, then multiply per case; for 'same colour', count the maximum of each colour first."
+      }
+     }
+    }
+   ]
+  }
+ ],
+ "introSteps": [
+  {
+   "zh": "先做卷頭「快測」5 題（5 分）\n· Q1、Q2：揀答案，再按「提交答案」。\n· Q3、Q4：先揀方法（直接相加／反面、組合／獨立相乘），再喺輸入格填概率。\n· Q5：喺表格剔出所有「分母係 $C^{20}_4$」的情況。",
+   "en": "Start with the 5-question quick check (5 marks)\n· Q1 and Q2: choose an option, then press Submit.\n· Q3 and Q4: choose the method (addition or complement, combinations or independent multiplication), then type the probability.\n· Q5: tick every case in the table whose denominator is C(20,4)."
+  },
+  {
+   "zh": "做完快測就停一停，之後嘅題目要自己做\n甲部 10 題多項選擇（每題 2 分，共 20 分）；乙部 10 題長題目（共 66 分），每題都有 (a)(b) 細問，寫低步驟先對答案。",
+   "en": "When the quick check is done, work on the rest on your own\nSection A: 10 multiple-choice questions (2 marks each, 20 marks). Section B: 10 conventional questions (66 marks), each split into (a), (b) parts - write your working before you check."
+  },
+  {
+   "zh": "乙部每小題都有輸入格\n計數題填整數；概率填分數（例如 62/99）或準確至 3 位有效數字的小數。第 10(b) 題分開兩格：(b)(i) 方法數、(b)(ii) 概率。",
+   "en": "Every part of Section B has an answer box\nType a whole number for counting answers, or a fraction (e.g. 62/99) or a decimal correct to 3 significant figures for a probability. Question 10(b) is split into (b)(i) number of ways and (b)(ii) probability."
+  },
+  {
+   "zh": "改編自校內 Ch.18 Revision Worksheet（原卷 86 分，涵蓋第 17、18 章）\n第 1–4 題 MC 同第 10 題用到第 17 章的排列組合，其餘以第 18 章的概率為主。第 10(d) 題官方答案 $\\frac{149}{198}$ 與題目原文不符，按原文應為 $\\frac{62}{99}$，題解內有說明。",
+   "en": "Adapted from the school Ch.18 Revision Worksheet (86 marks, covering Chapters 17 and 18)\nMC 1-4 and Question 10 use Chapter 17 permutations and combinations; the rest is Chapter 18 probability. The official answer to 10(d), 149/198, does not match the printed wording; by the wording it should be 62/99, as explained in the solution."
+  }
+ ]
+}

@@ -2139,20 +2139,102 @@ ansSub(utQ19t).click();
 ok(utQ19t.$$(".ans-row.ok").length === 2,
   "第 19 題填 2 與 6.38（568/89 準確至 3 位有效數字）都當正確");
 
+/* ── 6b-3. 溫習：第 18 章「18 溫習」（卷頭快測 ＋ 校內 Ch.18 Revision Worksheet）── */
+console.log("\n== 第 18 章 · 18 溫習（溫習頁）==");
+const rPart = INDEX.parts.find((p) => p.id === "ch18-test");
+ok(!!rPart && rPart.group === "quiz" && rPart.kind.zh === "溫習" &&
+  /第 18 章/.test(rPart.unit.zh),
+  "首頁「測驗檢討」有「18 溫習」，unit 標明第 18 章");
+ok(rPart.stats.questions === 25 && rPart.stats.marks === 91 && rPart.meta.marks === 91 &&
+  rPart.meta.sections.map((s) => s.marks).join("+") === "5+20+66",
+  "18 溫習：25 題 91 分（快測 5 分 ＋ 甲部 20 分 ＋ 乙部 66 分）");
+ok(/Ch\.18 Revision Worksheet/.test(rPart.source.zh) && /10\(d\)/.test(rPart.source.zh),
+  "課題註明來源（校內 Ch.18 Revision Worksheet）並記下 10(d) 官方答案的更正");
+
+const R_JS = read("data/ch18-test.js");
+const R_DATA = JSON.parse(R_JS.slice(R_JS.indexOf("{"), R_JS.lastIndexOf("}") + 1));
+const R_QS = R_DATA.sections.reduce((a, s) => a.concat(s.questions || []), []);
+const R_MC = R_QS.filter((q) => q.type === "mc" && !q.quick);
+ok(R_DATA.sections.map((s) => s.id).join(",") === "Q,A,B" &&
+  R_DATA.sections.map((s) => s.questions.length).join(",") === "5,10,10",
+  "Q 節 5 題快測、甲部 10 題 MC、乙部 10 題長題");
+ok(R_QS.slice(0, 4).map((q) => q.answer).join("") === "BBBB" &&
+  JSON.stringify(R_QS[4].answer) === '["A","B","D"]',
+  "快測答案：Q1–Q4 都係 B，Q5 多選 A、B、D");
+ok(R_MC.map((q) => q.answer).join("") === "BBCCDADBBC",
+  "甲部 10 題 MC 答案＝B、B、C、C、D、A、D、B、B、C（與官方答案表一致）");
+ok(R_QS.filter((q) => q.type === "long").reduce((a, q) => a + q.marks, 0) === 66 &&
+  R_QS.filter((q) => q.type === "long").map((q) => q.marks).join(",") === "8,8,4,7,7,4,5,5,6,12",
+  "長題分數 8、8、4、7、7、4、5、5、6、12，合共 66 分");
+ok(R_QS.filter((q) => q.type === "long").every((q) =>
+  q.answers.length === q.parts.length && q.answers.every((a) => typeof a.input === "string")),
+  "乙部每小題一對一，全部都有輸入格（整數或分數）");
+const rB10Data = R_QS.find((q) => q.id === "ch18-B10");
+ok(rB10Data.answers[5].input === "62/99" && /\\frac\{62\}\{99\}/.test(rB10Data.answers[5].math),
+  "10(d) 按題目原文取 62/99（官方 149/198 與盒內只有 7 粒藍波矛盾）");
+ok(R_QS.every((q) => q.difficulty >= 1 && q.difficulty <= 3),
+  "18 溫習：difficulty 都在 1–3");
+
+const rOv = boot("quiz.html", "?c=ch18-test&p=0");
+ok(/18 溫習/.test((rOv.$("#quiz-name") || {}).textContent || "") &&
+  rOv.$$("#pagenav .pg").length === 26 && rOv.$$("#pagenav .pg-sec").length === 3 &&
+  rOv.$$(".katex-error").length === 0,
+  "總覽頁：25 題（＋總覽）、快測／甲部／乙部三個分隔、KaTeX 零錯誤（實際 " +
+  rOv.$$("#pagenav .pg").length + " 頁）");
+ok(rOv.$$(".how-paper .how-row").length === 4,
+  "總覽頁以 4 步「點做這份卷」列出做法");
+
+const rQ5 = boot("quiz.html", "?c=ch18-test&p=5");
+ok(rQ5.$$(".quick-grid .opt.cell").length === 4 &&
+  rQ5.$$(".quick-grid tbody tr, .quick-grid tr").length === 5,
+  "Q5 表格：1 行表頭 ＋ 4 行情況，每行一個剔格");
+
+const rB1 = boot("quiz.html", "?c=ch18-test&p=16", null, "show");
+ok(rB1.$$(".ans-row").length === 4, "B1 有 4 個輸入格（(a)(i)、(a)(ii)、(a)(iii)、(b)）");
+ansType(rB1, 3, "0.979");
+ansSub(rB1).click();
+ok(rB1.$$(".ans-row.ok").length === 1,
+  "B1(b) 填 0.979（93/95 準確至 3 位有效數字）都當正確");
+
+const rB10 = boot("quiz.html", "?c=ch18-test&p=25", null, "show");
+ok(rB10.$$(".ans-row").length === 6 &&
+  rB10.$$(".ans-row .ans-part").map((n) => n.textContent).join("") ===
+  "(a)(b)(i)(b)(ii)(c)(i)(c)(ii)(d)",
+  "B10 六格：(a)、(b)(i)、(b)(ii)、(c)(i)、(c)(ii)、(d)");
+ansType(rB10, 5, "62/99");
+ansSub(rB10).click();
+ok(rB10.$$(".ans-row.ok").length === 1, "B10(d) 填 62/99 當正確");
+const rB10b = boot("quiz.html", "?c=ch18-test&p=25", null, "show");
+ansType(rB10b, 5, "149/198");
+ansSub(rB10b).click();
+ok(rB10b.$$(".ans-row.ok").length === 0, "B10(d) 填官方的 149/198 不算正確");
+
+const R_SAMPLE = [1, 5, 6, 15, 16, 25];
+const allR = R_SAMPLE.map((i) => boot("quiz.html", "?c=ch18-test&p=" + i, null, "show"));
+ok(allR.every((t) => t.$$(".sol-card .steps .step").length > 0 &&
+  !!t.$(".sol-card .tip") && t.$$(".sol-card .trap").length > 0),
+  "18 溫習抽樣 6 頁（快測／MC／長題）：都有逐步題解、常見錯誤與「帶得走的技巧」");
+ok(allR.every((t) => t.$$(".katex-error").length === 0 &&
+  !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "18 溫習抽樣頁 KaTeX 零錯誤，題幹中英對照");
+ok(R_QS.every((q) => (q.solution.traps || []).length > 0),
+  "18 溫習 25 題在資料層全部有 traps（弱生知道錯在哪一步）");
+
 /* ── 6c. 課本練習：第 18 章 → 18.1 集合 ──────────────────────────────── */
 console.log("\n== 第 18 章 · 18.1 集合（課本練習頁）==");
 const CH18 = CW_CHAPTERS.filter((c) => c.id === "ch18")[0] || {};
-ok(!!CH18 && (CH18.sections || []).length === 4, "首頁列出第 18 章，章內分 4 節");
+ok(!!CH18 && (CH18.sections || []).length === 5, "首頁列出第 18 章，章內分 4 節 ＋ 18R 溫習");
 const ch18Page = boot("chapter.html", "?ch=ch18");
 ok(/第 18 章/.test((ch18Page.$("#chapter-name") || {}).textContent || ""),
   "章節頁顯示第 18 章名稱");
-ok(ch18Page.$$("#chapter-body .part-btn").length === 4, "第 18 章章節頁列出 4 節");
+ok(ch18Page.$$("#chapter-body .part-btn").length === 5, "第 18 章章節頁列出 5 節");
 const live18 = ch18Page.$$("#chapter-body .part-btn").filter((b) => !b.disabled);
-ok(ch18Page.$$("#chapter-body .part-btn[disabled]").length === 0 && live18.length === 4,
-  "四節全部上線（沒有「即將推出」；實際上線 " + live18.length + " 節）");
+ok(ch18Page.$$("#chapter-body .part-btn[disabled]").length === 0 && live18.length === 5,
+  "四節 ＋ 溫習全部上線（沒有「即將推出」；實際上線 " + live18.length + " 節）");
 ok(/18\.1/.test(live18[0].textContent) && /18\.2/.test(live18[1].textContent) &&
-  /18\.3/.test(live18[2].textContent) && /18\.4/.test(live18[3].textContent),
-  "四節依次是 18.1、18.2、18.3、18.4");
+  /18\.3/.test(live18[2].textContent) && /18\.4/.test(live18[3].textContent) &&
+  /18 溫習/.test(live18[4].textContent),
+  "五節依次是 18.1、18.2、18.3、18.4、18 溫習");
 live18[0].click();
 ok(/c=ch18-1/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
   "按「18.1」會去 quiz.html?c=ch18-1");
@@ -2165,6 +2247,9 @@ ok(/c=ch18-3/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
 live18[3].click();
 ok(/c=ch18-4/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
   "按「18.4」會去 quiz.html?c=ch18-4");
+live18[4].click();
+ok(/c=ch18-test/.test(ch18Page.ctx.window.__S5A_LAST_NAV || ""),
+  "按「18 溫習」會去 quiz.html?c=ch18-test");
 
 const P181 = INDEX.parts.filter((p) => p.id === "ch18-1")[0] || {};
 ok(P181.stats && P181.stats.questions === 21 && P181.stats.marks === 87,
