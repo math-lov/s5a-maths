@@ -1269,8 +1269,1015 @@
     "zh": "基礎練習 · Level 1",
     "en": "Level 1"
    },
-   "marks": 10,
+   "marks": 37,
    "questions": [
+    {
+     "id": "ch11-2-l1-1",
+     "code": "1",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $O$ 是圓心，$M$ 是弦 $PQ$ 的中點，$\\angle POM = 49^\\circ$。求 $z$。",
+      "en": "In the figure $O$ is the centre, $M$ is the mid-point of chord $PQ$ and $\\angle POM = 49^\\circ$. Find $z$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "z = 41°",
+       "zh": "z = 41°",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "z = 41°",
+       "input": null,
+       "note": {
+        "zh": "中點垂線 → 直角三角形，用內角和",
+        "en": "中點垂線 → 直角三角形，用內角和"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "P",
+        "O",
+        "M",
+        "z"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "P": {
+        "at": 175
+       },
+       "Q": {
+        "at": 273
+       },
+       "M": {
+        "at": 224,
+        "r": 0.656
+       }
+      },
+      "segments": [
+       [
+        "P",
+        "Q"
+       ],
+       [
+        "O",
+        "P"
+       ],
+       [
+        "O",
+        "M"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $M$ 是弦 $PQ$ 的中點，$OM$ 由圓心連到中點，所以 $OM \\perp PQ$。",
+        "en": "$M$ is the mid-point of $PQ$, so $OM \\perp PQ$.",
+        "ticks": [
+         [
+          "P",
+          "M"
+         ],
+         [
+          "M",
+          "Q"
+         ]
+        ],
+        "ref": "line to mid-pt. ⊥ chord"
+       },
+       {
+        "zh": "所以 $\\angle OMP = 90^\\circ$；已知 $\\angle POM = 49^\\circ$。",
+        "en": "So $\\angle OMP = 90^\\circ$ and $\\angle POM = 49^\\circ$.",
+        "arcs": [
+         [
+          "M",
+          "O",
+          "P",
+          "90°",
+          "claim",
+          16
+         ],
+         [
+          "O",
+          "P",
+          "M",
+          "49°",
+          "given",
+          24
+         ]
+        ],
+        "ref": "line to mid-pt. ⊥ chord"
+       },
+       {
+        "zh": "在 $\\triangle OPM$ 中：$z = 180^\\circ - 90^\\circ - 49^\\circ = 41^\\circ$。",
+        "en": "In $\\triangle OPM$: $z = 180^\\circ - 90^\\circ - 49^\\circ = 41^\\circ$.",
+        "arcs": [
+         [
+          "P",
+          "O",
+          "M",
+          "41°",
+          "claim",
+          30
+         ]
+        ],
+        "ref": "∠ sum of △",
+        "final": true,
+        "answer": "z = 41°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "中點給直角",
+         "en": "Midpoint gives a right angle"
+        },
+        "math": "\\angle OMP = 90^\\circ",
+        "zh": "因為 $M$ 是弦 $PQ$ 的中點，圓心連中點的線垂直於弦，所以 $\\angle OMP = 90^\\circ$。",
+        "en": "$OM \\perp PQ$, so $\\angle OMP = 90^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "內角和",
+         "en": "Angle sum"
+        },
+        "math": "z = 41^\\circ",
+        "zh": "把兩個已知角相加再從 $180^\\circ$ 減去：$z = 180^\\circ - 90^\\circ - 49^\\circ = 41^\\circ$。",
+        "en": "$z = 41^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "忘了中點連線垂直於弦，用了 $OP = OM$。",
+        "en": "Forgetting that the line to the midpoint is perpendicular to the chord."
+       }
+      ],
+      "tip": {
+       "zh": "見到「中點」就連去圓心，一定得到直角與直角三角形。",
+       "en": "Join the centre to a midpoint — you always get a right angle."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-2",
+     "code": "2",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $OM \\perp AB$，$OM = 21$ cm、$OB = 29$ cm。求 $x$（即 $AB$）。",
+      "en": "In the figure $OM \\perp AB$, $OM = 21$ cm and $OB = 29$ cm. Find $x$, i.e. $AB$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "x = 40 cm",
+       "zh": "x = 40 cm",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 40 cm",
+       "input": null,
+       "note": {
+        "zh": "勾股定理求半弦，再乘 2",
+        "en": "勾股定理求半弦，再乘 2"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 226.4
+       },
+       "B": {
+        "at": 313.6
+       },
+       "M": {
+        "at": 270,
+        "r": 0.724
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "O",
+        "B"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $OM \\perp AB$，$OM = 21$ cm、半徑 $OB = 29$ cm。",
+        "en": "$OM \\perp AB$, $OM = 21$ cm and the radius $OB = 29$ cm.",
+        "arcs": [
+         [
+          "M",
+          "O",
+          "B",
+          "90°",
+          "given",
+          16
+         ]
+        ],
+        "notes": [
+         [
+          "OM = 21 cm",
+          150,
+          300
+         ],
+         [
+          "OB = 29 cm",
+          322,
+          250
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle OMB$：$MB = \\sqrt{29^2 - 21^2} = 20$ cm。",
+        "en": "In $\\triangle OMB$: $MB = \\sqrt{29^2 - 21^2} = 20$ cm.",
+        "radii": [
+         "B"
+        ],
+        "ref": "Pyth. theorem"
+       },
+       {
+        "zh": "$OM \\perp AB$ 過圓心，所以平分 $AB$：$x = 2 \\times 20 = 40$ cm。",
+        "en": "$OM$ bisects $AB$, so $x = 2 \\times 20 = 40$ cm.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "B"
+         ]
+        ],
+        "ref": "⊥ from centre bisects chord",
+        "final": true,
+        "answer": "x = 40 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "勾股定理",
+         "en": "Pythagoras"
+        },
+        "math": "MB = 20",
+        "zh": "在直角三角形 $OMB$ 中用勾股定理：$MB = \\sqrt{29^2 - 21^2} = 20$ cm。",
+        "en": "$MB = 20$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "垂線平分弦",
+         "en": "Half chord doubled"
+        },
+        "math": "x = 40",
+        "zh": "圓心到弦的垂線平分弦，所以整條弦 $AB = 2MB = 40$ cm。",
+        "en": "$AB = 2 \\times 20 = 40$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "只答 $MB = 20$，忘了乘 2 才是全條弦。",
+        "en": "Stopping at MB = 20 instead of doubling it."
+       }
+      ],
+      "tip": {
+       "zh": "半徑、圓心距、半條弦必成直角三角形：見到兩條就找第三條。",
+       "en": "Radius, distance and half-chord form a right triangle."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-3",
+     "code": "3",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $GE$ 是直徑，弦 $DF \\perp GE$ 於 $N$，$DN = 6$ cm、$DF = 12$ cm。求 $y$。",
+      "en": "In the figure $GE$ is a diameter, $DF \\perp GE$ at $N$, $DN = 6$ cm and $DF = 12$ cm. Find $y$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "y = 90°",
+       "zh": "y = 90°",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "y = 90°",
+       "input": null,
+       "note": {
+        "zh": "直徑垂直於弦，所以 $y$ 是直角",
+        "en": "直徑垂直於弦，所以 $y$ 是直角"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "G": {
+        "at": 135
+       },
+       "E": {
+        "at": 315
+       },
+       "D": {
+        "at": 255
+       },
+       "F": {
+        "at": 15
+       },
+       "N": {
+        "at": 315,
+        "r": 0.5
+       }
+      },
+      "segments": [
+       [
+        "G",
+        "E"
+       ],
+       [
+        "D",
+        "F"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $DN = 6$ cm、$DF = 12$ cm，所以 $N$ 是 $DF$ 的中點。",
+        "en": "$DN = 6$ cm and $DF = 12$ cm, so $N$ is the mid-point of $DF$.",
+        "ticks": [
+         [
+          "D",
+          "N"
+         ],
+         [
+          "N",
+          "F"
+         ]
+        ],
+        "notes": [
+         [
+          "6 cm",
+          300,
+          120
+         ],
+         [
+          "12 cm",
+          300,
+          300
+         ]
+        ]
+       },
+       {
+        "zh": "$GE$ 是直徑且經過 $N$（弦的中點），所以 $GE \\perp DF$。",
+        "en": "$GE$ passes through the midpoint $N$, so $GE \\perp DF$.",
+        "arcs": [
+         [
+          "N",
+          "D",
+          "E",
+          "90°",
+          "claim",
+          18
+         ]
+        ],
+        "ref": "line to mid-pt. ⊥ chord"
+       },
+       {
+        "zh": "所以 $y = \\angle ONE = 90^\\circ$。",
+        "en": "So $y = 90^\\circ$.",
+        "arcs": [
+         [
+          "N",
+          "F",
+          "E",
+          "90°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "adj. ∠s on st. line",
+        "final": true,
+        "answer": "y = 90°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "中點",
+         "en": "Midpoint"
+        },
+        "math": "DN = NF = 6",
+        "zh": "已知 $DN = 6$ cm 而全長 $DF = 12$ cm，所以 $N$ 正好是 $DF$ 的中點。",
+        "en": "$N$ is the midpoint of $DF$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "中點連線垂直",
+         "en": "Perpendicular"
+        },
+        "math": "y = 90^\\circ",
+        "zh": "圓心與弦的中點的連線垂直於弦，所以 $y = 90^\\circ$。",
+        "en": "$y = 90^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "以為 $y$ 要另行計算；其實它就是直角。",
+        "en": "Thinking y needs working — it is the right angle itself."
+       }
+      ],
+      "tip": {
+       "zh": "直徑穿過弦的中點 = 垂直於弦。",
+       "en": "A diameter through the midpoint of a chord is perpendicular to it."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-4",
+     "code": "4",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $OM \\perp AB$、$ON \\perp CD$，$AM = 7$ cm、$OM = 5$ cm、$CD = 14$ cm。求 $x$。",
+      "en": "In the figure $OM \\perp AB$ and $ON \\perp CD$, $AM = 7$ cm, $OM = 5$ cm and $CD = 14$ cm. Find $x$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "x = 5 cm",
+       "zh": "x = 5 cm",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "x = 5 cm",
+       "input": null,
+       "note": {
+        "zh": "等弦與圓心等距",
+        "en": "等弦與圓心等距"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 85.3
+       },
+       "B": {
+        "at": 194.7
+       },
+       "M": {
+        "at": 140,
+        "r": 0.581
+       },
+       "C": {
+        "at": 305.3
+       },
+       "D": {
+        "at": 54.7
+       },
+       "N": {
+        "at": 0,
+        "r": 0.581
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "O",
+        "N"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AM = 7$ cm，$OM \\perp AB$，所以 $AB = 14$ cm；又 $CD = 14$ cm。",
+        "en": "$AM = 7$ cm with $OM \\perp AB$ gives $AB = 14$ cm, and $CD = 14$ cm.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "B"
+         ]
+        ],
+        "arcs": [
+         [
+          "M",
+          "A",
+          "O",
+          "90°",
+          "given",
+          16
+         ],
+         [
+          "N",
+          "C",
+          "O",
+          "90°",
+          "given",
+          16
+         ]
+        ],
+        "notes": [
+         [
+          "7 cm",
+          150,
+          120
+         ],
+         [
+          "5 cm",
+          250,
+          175
+         ],
+         [
+          "14 cm",
+          350,
+          300
+         ]
+        ]
+       },
+       {
+        "zh": "兩條弦相等，所以與圓心的距離相等：$ON = OM$。",
+        "en": "Equal chords are equidistant from the centre: $ON = OM$.",
+        "radii": [
+         "D"
+        ],
+        "ref": "equal chords, equidistant"
+       },
+       {
+        "zh": "所以 $x = ON = 5$ cm。",
+        "en": "So $x = 5$ cm.",
+        "final": true,
+        "answer": "x = 5 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "垂線平分弦",
+         "en": "Bisect the chord"
+        },
+        "math": "AB = 2 \\times 7 = 14",
+        "zh": "圓心到弦的垂線平分弦，所以 $AB = 2 \\times 7 = 14$ cm，與 $CD$ 相等。",
+        "en": "$AB = 14 = CD$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等弦等距",
+         "en": "Equal chords"
+        },
+        "math": "x = 5",
+        "zh": "等弦與圓心等距，所以 $ON = OM = 5$ cm。",
+        "en": "$ON = OM = 5$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $AM$ 當成整條 $AB$（漏了乘 2）。",
+        "en": "Using AM as the whole chord."
+       }
+      ],
+      "tip": {
+       "zh": "先由半弦求出整條弦，再比較兩弦是否等長。",
+       "en": "Double the half-chord first, then compare the two chords."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-5",
+     "code": "5",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $MON$ 是一條直線，$PQ \\parallel RS$，$PM = SN$，兩弦相距 16 cm。求 $y$。",
+      "en": "In the figure $MON$ is a straight line, $PQ \\parallel RS$, $PM = SN$ and the chords are 16 cm apart. Find $y$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "y = 8 cm",
+       "zh": "y = 8 cm",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "y = 8 cm",
+       "input": null,
+       "note": {
+        "zh": "等弦等距 → $ON = OM$ → 各佔一半",
+        "en": "等弦等距 → $ON = OM$ → 各佔一半"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "M": {
+        "at": 155,
+        "r": 0.707
+       },
+       "N": {
+        "at": 335,
+        "r": 0.707
+       },
+       "P": {
+        "at": 110
+       },
+       "Q": {
+        "at": 200
+       },
+       "R": {
+        "at": 290
+       },
+       "S": {
+        "at": 20
+       }
+      },
+      "segments": [
+       [
+        "P",
+        "Q"
+       ],
+       [
+        "R",
+        "S"
+       ],
+       [
+        "M",
+        "N"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $PQ \\parallel RS$、$PM = SN$，而 $M$、$N$ 分別是兩弦的中點。",
+        "en": "$PQ \\parallel RS$, $PM = SN$, with $M$, $N$ the midpoints of the chords.",
+        "ticks": [
+         [
+          "P",
+          "M"
+         ],
+         [
+          "S",
+          "N"
+         ]
+        ],
+        "parallel": [
+         [
+          "P",
+          "Q"
+         ],
+         [
+          "R",
+          "S"
+         ]
+        ]
+       },
+       {
+        "zh": "$PM = SN$ 代表兩條弦的一半相等，所以 $PQ = RS$。",
+        "en": "$PM = SN$ means the half-chords are equal, so $PQ = RS$.",
+        "arcs": [
+         [
+          "M",
+          "P",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "ref": "line to mid-pt. ⊥ chord"
+       },
+       {
+        "zh": "等弦與圓心等距：$OM = ON$；而 $MN = 16$ cm，所以 $y = ON = 8$ cm。",
+        "en": "Equal chords are equidistant, so $OM = ON$ and $y = 8$ cm.",
+        "ticks": [
+         [
+          "O",
+          "M"
+         ],
+         [
+          "O",
+          "N"
+         ]
+        ],
+        "ref": "equal chords, equidistant",
+        "final": true,
+        "answer": "y = 8 cm"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "兩弦相等",
+         "en": "Equal chords"
+        },
+        "math": "PQ = RS",
+        "zh": "已知 $PM = SN$，而 $M$、$N$ 分別是中點，所以兩條弦的一半相等，即 $PQ = RS$。",
+        "en": "$PQ = RS$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等距",
+         "en": "Equidistant"
+        },
+        "math": "y = 8",
+        "zh": "等弦與圓心等距，所以 $OM = ON$，$y = \\tfrac{1}{2}(16) = 8$ cm。",
+        "en": "$y = 8$ cm.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 16 cm 當成 $ON$，忘記它是兩弦之間的總距離。",
+        "en": "Taking 16 cm as ON instead of the whole gap."
+       }
+      ],
+      "tip": {
+       "zh": "兩條平行弦之間的距離被圓心平分（因為兩弦等長）。",
+       "en": "The gap between two equal parallel chords is bisected by the centre."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-6",
+     "code": "6",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $MOD$ 是一條直線，$OM \\perp AB$、$ON \\perp CD$，$AB = 16$ cm、$OM = 15$ cm、$ON = 15$ cm。求 $z$（半徑 $OD$）。",
+      "en": "In the figure $MOD$ is a straight line, $OM \\perp AB$ and $ON \\perp CD$, with $AB = 16$ cm, $OM = 15$ cm and $ON = 15$ cm. Find $z$, the radius $OD$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "z = 17",
+       "zh": "z = 17",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "z = 17",
+       "input": null,
+       "note": {
+        "zh": "勾股定理：$8$ 與 $15$",
+        "en": "勾股定理：$8$ 與 $15$"
+       }
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 67
+       },
+       "B": {
+        "at": 123
+       },
+       "M": {
+        "at": 95,
+        "r": 0.882
+       },
+       "C": {
+        "at": 221
+       },
+       "D": {
+        "at": 275
+       },
+       "N": {
+        "at": 248,
+        "r": 0.891
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "M",
+        "O"
+       ],
+       [
+        "O",
+        "D"
+       ],
+       [
+        "O",
+        "N"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $AB = 16$ cm、$OM \\perp AB$，所以 $AM = MB = 8$ cm。",
+        "en": "$AB = 16$ cm with $OM \\perp AB$, so $AM = MB = 8$ cm.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "B"
+         ]
+        ],
+        "arcs": [
+         [
+          "M",
+          "A",
+          "O",
+          "90°",
+          "given",
+          14
+         ],
+         [
+          "N",
+          "C",
+          "O",
+          "90°",
+          "given",
+          14
+         ]
+        ],
+        "notes": [
+         [
+          "16 cm",
+          210,
+          60
+         ],
+         [
+          "15 cm",
+          150,
+          150
+         ],
+         [
+          "15 cm",
+          250,
+          330
+         ]
+        ]
+       },
+       {
+        "zh": "在 $\\triangle OAM$：半徑 $OA = \\sqrt{15^2 + 8^2} = 17$ cm。",
+        "en": "In $\\triangle OAM$: $OA = \\sqrt{15^2 + 8^2} = 17$ cm.",
+        "radii": [
+         "A"
+        ],
+        "ref": "Pyth. theorem"
+       },
+       {
+        "zh": "$OD$ 也是半徑，所以 $z = 17$。",
+        "en": "$OD$ is also a radius, so $z = 17$.",
+        "radii": [
+         "D"
+        ],
+        "final": true,
+        "answer": "z = 17"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "半弦",
+         "en": "Half chord"
+        },
+        "math": "AM = 8",
+        "zh": "圓心到弦的垂線平分弦，所以 $AM = \\tfrac{1}{2} \\times 16 = 8$ cm。",
+        "en": "$AM = 8$ cm.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "勾股定理",
+         "en": "Pythagoras"
+        },
+        "math": "z = 17",
+        "zh": "在直角三角形 $OAM$ 中用勾股定理：$OA = \\sqrt{15^2 + 8^2} = 17$ cm。",
+        "en": "$z = 17$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "用 16 而不是 8 去計勾股定理。",
+        "en": "Using 16 instead of 8 in Pythagoras."
+       }
+      ],
+      "tip": {
+       "zh": "圓心距與半弦永遠是直角三角形的兩股，斜邊就是半徑。",
+       "en": "Distance and half-chord are the legs; the radius is the hypotenuse."
+      }
+     }
+    },
     {
      "id": "ch11-2-l1-7",
      "code": "7",
@@ -1832,6 +2839,622 @@
       "tip": {
        "zh": "與 Class Exercise 第 1 題同一套路：兩個 90° 加一個周角。",
        "en": "Same method as Class Exercise Q1: two right angles and the angles at a point."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-10",
+     "code": "10",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $BC$ 是半圓的直徑，$M$ 是 $AD$ 的中點，$\\angle AOM = 30^\\circ$。證明 $\\triangle AOD$ 是等邊三角形。",
+      "en": "In the figure $BC$ is the diameter of the semi-circle, $M$ is the mid-point of $AD$ and $\\angle AOM = 30^\\circ$. Prove that $\\triangle AOD$ is an equilateral triangle."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove that $\\triangle AOD$ is equilateral.",
+       "zh": "證明 $\\triangle AOD$ 是等邊三角形。",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\triangle AOD \\text{ is equilateral}",
+       "input": null,
+       "note": {
+        "zh": "半徑相等 ＋ 圓心角 60°",
+        "en": "半徑相等 ＋ 圓心角 60°"
+       }
+      }
+     ],
+     "anim": {
+      "semi": [
+       "B",
+       "C",
+       "A"
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 0
+       },
+       "A": {
+        "at": 120
+       },
+       "D": {
+        "at": 60
+       },
+       "M": {
+        "at": 90,
+        "r": 0.866
+       }
+      },
+      "segments": [
+       [
+        "B",
+        "C"
+       ],
+       [
+        "A",
+        "D"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $M$ 是 $AD$ 的中點，$\\angle AOM = 30^\\circ$。",
+        "en": "$M$ is the mid-point of $AD$ and $\\angle AOM = 30^\\circ$.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "O",
+          "A",
+          "M",
+          "30°",
+          "given",
+          22
+         ]
+        ]
+       },
+       {
+        "zh": "$OM$ 由圓心連到中點，所以 $OM \\perp AD$。",
+        "en": "$OM$ joins the centre to the midpoint, so $OM \\perp AD$.",
+        "arcs": [
+         [
+          "M",
+          "A",
+          "O",
+          "90°",
+          "claim",
+          14
+         ]
+        ],
+        "ref": "line to mid-pt. ⊥ chord"
+       },
+       {
+        "zh": "$OM$ 是 $AD$ 的垂直平分線，所以 $OA = OD$（半徑）之外，$\\angle AOD = 2 \\times 30^\\circ = 60^\\circ$。",
+        "en": "The symmetry gives $\\angle AOD = 2 \\times 30^\\circ = 60^\\circ$.",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "D",
+          "60°",
+          "claim",
+          30
+         ]
+        ],
+        "ref": "reflection in OM"
+       },
+       {
+        "zh": "$OA = OD$（半徑）且夾角 $60^\\circ$，所以 $\\triangle AOD$ 是等邊三角形。",
+        "en": "$OA = OD$ with $60^\\circ$ between them, so $\\triangle AOD$ is equilateral.",
+        "radii": [
+         "A",
+         "D"
+        ],
+        "ref": "radii, isos. △ with 60°",
+        "final": true,
+        "answer": "△AOD is equilateral"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "中點垂線",
+         "en": "Perpendicular at the midpoint"
+        },
+        "math": "OM \\perp AD",
+        "zh": "已知 $M$ 是弦 $AD$ 的中點，而 $\\angle AOM = 30^\\circ$。",
+        "en": "$OM \\perp AD$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "兩邊對稱",
+         "en": "Symmetric halves"
+        },
+        "math": "\\angle AOD = 60^\\circ",
+        "zh": "圓心連到弦的中點，那條線垂直於弦，所以 $OM \\perp AD$。",
+        "en": "$\\angle AOD = 60^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等邊",
+         "en": "Equilateral"
+        },
+        "math": "\\triangle AOD \\text{ equilateral}",
+        "zh": "$OA = OD$ 且夾角 $60^\\circ$，兩隻底角也是 $60^\\circ$，所以 $\\triangle AOD$ 等邊。",
+        "en": "Two equal sides with $60^\\circ$ give an equilateral triangle.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "只寫 $OA = OD$ 就說等邊，漏了 $60^\\circ$。",
+        "en": "Claiming equilateral from OA = OD alone."
+       }
+      ],
+      "tip": {
+       "zh": "垂直平分 ＋ 半徑相等 = 等腰；再加 $60^\\circ$ 就是等邊。",
+       "en": "Perpendicular bisector plus equal radii gives isosceles; with 60° it is equilateral."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-11",
+     "code": "11",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $BD$ 是直徑，弦 $AC \\perp BD$ 於 $M$ 且 $AM = MC$，$\\angle BDC = 29^\\circ$。求 $\\angle ABD$。",
+      "en": "In the figure $BD$ is a diameter, $AC \\perp BD$ at $M$ with $AM = MC$, and $\\angle BDC = 29^\\circ$. Find $\\angle ABD$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "\\angle ABD = 61^\\circ",
+       "zh": "\\angle ABD = 61^\\circ",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle ABD = 61^\\circ",
+       "input": null,
+       "note": {
+        "zh": "直角 ＋ 同弓形",
+        "en": "直角 ＋ 同弓形"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "B",
+        "A",
+        "D",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "B": {
+        "at": 0
+       },
+       "D": {
+        "at": 180
+       },
+       "C": {
+        "at": 58
+       },
+       "A": {
+        "at": 302
+       },
+       "M": {
+        "at": 0,
+        "r": 0.53
+       }
+      },
+      "segments": [
+       [
+        "B",
+        "D"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "C",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $BD$ 是直徑、$AC \\perp BD$、$AM = MC$，$\\angle BDC = 29^\\circ$。",
+        "en": "$BD$ is a diameter, $AC \\perp BD$, $AM = MC$ and $\\angle BDC = 29^\\circ$.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "C"
+         ]
+        ],
+        "arcs": [
+         [
+          "M",
+          "C",
+          "D",
+          "90°",
+          "given",
+          14
+         ],
+         [
+          "D",
+          "B",
+          "C",
+          "29°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "在直角三角形 $MCD$ 中：$\\angle MCD = 90^\\circ - 29^\\circ = 61^\\circ$。",
+        "en": "In right triangle $MCD$: $\\angle MCD = 61^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "M",
+          "D",
+          "61°",
+          "claim",
+          22
+         ]
+        ],
+        "ref": "∠ sum of △"
+       },
+       {
+        "zh": "同弓形：$\\angle ABD = \\angle ACD = 61^\\circ$。",
+        "en": "Same segment: $\\angle ABD = \\angle ACD = 61^\\circ$.",
+        "circleArcs": [
+         [
+          "A",
+          "D",
+          "B",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "D",
+          "61°",
+          "claim",
+          28
+         ]
+        ],
+        "ref": "∠s in the same segment",
+        "final": true,
+        "answer": "∠ABD = 61°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "直角三角形",
+         "en": "Right triangle"
+        },
+        "math": "\\angle MCD = 61^\\circ",
+        "zh": "已知 $BD$ 是直徑，$AC \\perp BD$ 於 $M$，且 $AM = MC$，而 $\\angle BDC = 29^\\circ$。",
+        "en": "$\\angle MCD = 61^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "同弓形",
+         "en": "Same segment"
+        },
+        "math": "\\angle ABD = 61^\\circ",
+        "zh": "在直角三角形 $MCD$ 中，用內角和得 $\\angle MCD = 90^\\circ - 29^\\circ = 61^\\circ$。",
+        "en": "$\\angle ABD = 61^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "把 $\\angle ABD$ 與 $\\angle ACD$ 對錯弧；兩隻都對弧 $AD$。",
+        "en": "Pairing the wrong arcs."
+       }
+      ],
+      "tip": {
+       "zh": "先找一個直角三角形，再搬到同弧的另一隻角。",
+       "en": "Get a right triangle first, then move the angle along the same arc."
+      }
+     }
+    },
+    {
+     "id": "ch11-2-l1-15",
+     "code": "15",
+     "type": "long",
+     "marks": 3,
+     "difficulty": 2,
+     "stem": {
+      "zh": "圖中 $M$、$N$ 分別是 $AB$、$CD$ 的中點，$BON$ 是一條直線，$AB = CD$，$\\angle OBM = 40^\\circ$。求 $\\angle ONM$。",
+      "en": "In the figure $M$, $N$ are the mid-points of $AB$, $CD$, $BON$ is a straight line, $AB = CD$ and $\\angle OBM = 40^\\circ$. Find $\\angle ONM$."
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "\\angle ONM = 25^\\circ",
+       "zh": "\\angle ONM = 25^\\circ",
+       "marks": 3
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle ONM = 25^\\circ",
+       "input": null,
+       "note": {
+        "zh": "等腰三角形 ＋ 內角和",
+        "en": "等腰三角形 ＋ 內角和"
+       }
+      }
+     ],
+     "anim": {
+      "goal": [
+       [
+        "N",
+        "O",
+        "M",
+        "?"
+       ]
+      ],
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "B": {
+        "at": 215
+       },
+       "A": {
+        "at": 115
+       },
+       "M": {
+        "at": 165,
+        "r": 0.643
+       },
+       "N": {
+        "at": 35,
+        "r": 0.643
+       },
+       "C": {
+        "at": 345
+       },
+       "D": {
+        "at": 85
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "B",
+        "O"
+       ],
+       [
+        "O",
+        "N"
+       ],
+       [
+        "O",
+        "M"
+       ],
+       [
+        "M",
+        "N"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 $M$、$N$ 是中點，$AB = CD$，$\\angle OBM = 40^\\circ$。",
+        "en": "$M$, $N$ are midpoints, $AB = CD$ and $\\angle OBM = 40^\\circ$.",
+        "ticks": [
+         [
+          "A",
+          "M"
+         ],
+         [
+          "M",
+          "B"
+         ],
+         [
+          "C",
+          "N"
+         ],
+         [
+          "N",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "O",
+          "M",
+          "40°",
+          "given",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "$OM \\perp AB$，所以在 $\\triangle OBM$ 中 $\\angle BOM = 90^\\circ - 40^\\circ = 50^\\circ$。",
+        "en": "$OM \\perp AB$, so $\\angle BOM = 50^\\circ$.",
+        "arcs": [
+         [
+          "O",
+          "B",
+          "M",
+          "50°",
+          "claim",
+          22
+         ],
+         [
+          "M",
+          "B",
+          "O",
+          "90°",
+          "claim",
+          14
+         ]
+        ],
+        "ref": "∠ sum of △"
+       },
+       {
+        "zh": "$BON$ 是直線，所以 $\\angle MON = 180^\\circ - 50^\\circ = 130^\\circ$。",
+        "en": "Since $BON$ is a straight line, $\\angle MON = 130^\\circ$.",
+        "arcs": [
+         [
+          "O",
+          "M",
+          "N",
+          "130°",
+          "claim",
+          26
+         ]
+        ],
+        "ref": "adj. ∠s on st. line"
+       },
+       {
+        "zh": "$AB = CD$ 所以 $OM = ON$，$\\triangle OMN$ 等腰，$\\angle ONM = (180^\\circ - 130^\\circ) \\div 2 = 25^\\circ$。",
+        "en": "Equal chords give $OM = ON$, so $\\angle ONM = 25^\\circ$.",
+        "ticks": [
+         [
+          "O",
+          "M"
+         ],
+         [
+          "O",
+          "N"
+         ]
+        ],
+        "ref": "equal chords, equidistant",
+        "final": true,
+        "answer": "∠ONM = 25°"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "中點垂線",
+         "en": "Perpendicular"
+        },
+        "math": "\\angle BOM = 50^\\circ",
+        "zh": "已知 $M$、$N$ 分別是 $AB$、$CD$ 的中點，$AB = CD$，而 $\\angle OBM = 40^\\circ$。",
+        "en": "$\\angle BOM = 50^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "直線補角",
+         "en": "Straight line"
+        },
+        "math": "\\angle MON = 130^\\circ",
+        "zh": "因為 $OM \\perp AB$，在直角三角形 $OBM$ 中 $\\angle BOM = 90^\\circ - 40^\\circ = 50^\\circ$。",
+        "en": "$\\angle MON = 130^\\circ$.",
+        "marking": "(1M)"
+       },
+       {
+        "part": "(a)",
+        "title": {
+         "zh": "等腰",
+         "en": "Isosceles"
+        },
+        "math": "\\angle ONM = 25^\\circ",
+        "zh": "而 $BON$ 是一條直線，所以 $\\angle MON = 180^\\circ - 50^\\circ = 130^\\circ$。",
+        "en": "$\\angle ONM = 25^\\circ$.",
+        "marking": "(1A)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "(a)",
+        "labelEn": "(a)",
+        "zh": "用 $\\angle BON$ 的位置搞錯方向，把 $130^\\circ$ 寫成 $50^\\circ$。",
+        "en": "Mixing up the straight-line angle."
+       }
+      ],
+      "tip": {
+       "zh": "等弦 → 等距 → 等腰；再配合直線補角，全部用內角和收尾。",
+       "en": "Equal chords give equal distances, hence isosceles; then a straight line and the angle sum."
       }
      }
     }
