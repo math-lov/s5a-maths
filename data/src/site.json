@@ -377,8 +377,8 @@
      "zh": "校本 Ch.18 Revision Worksheet（原卷 86 分，涵蓋第 17、18 章）＋ 官方題解；卷頭 5 題快測為老師自擬。第 10(d) 題官方答案有誤，按題目原文為 62/99",
      "en": "School Ch.18 Revision Worksheet (86 marks, Chapters 17 and 18) with the official solutions; the 5-question quick check at the front is teacher-made. The official answer to 10(d) is wrong: by the printed wording it is 62/99"
     }
-    },
-    {
+   },
+   {
     "id": "ch18-1",
     "group": "classwork",
     "chapter": "ch18",
@@ -559,8 +559,8 @@
      "paper": "Book 5A · Exercise 11.2"
     },
     "stats": {
-     "questions": 18,
-     "marks": 49,
+     "questions": 25,
+     "marks": 74,
      "bonus": 0
     },
     "status": "ready",
