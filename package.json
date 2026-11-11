@@ -7,7 +7,7 @@
     "build": "python tools/build.py",
     "check": "python tools/build.py --check",
     "figures": "python tools/preview_figures.py",
-    "test": "node tools/smoke_test.js"
+    "test": "node --max-old-space-size=8192 tools/smoke_test.js"
   },
   "devDependencies": {
     "jsdom": "30.0.1"

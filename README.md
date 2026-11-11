@@ -50,7 +50,7 @@ $py = "python -X utf8"
 
 # 3) 學生流程測試（jsdom；jsdom／katex 可以借用 DSEPass 的 node_modules）
 $env:NODE_PATH = "C:\Code Buddy\DSEPass\node_modules"
-node tools\smoke_test.js        # 要見到 all smoke tests passed
+node --max-old-space-size=8192 tools\smoke_test.js        # 要見到 all smoke tests passed
 
 # 4) 本機預覽（直接開檔案也可以，因為沒有 fetch）
 start index.html

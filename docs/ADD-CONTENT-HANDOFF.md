@@ -6,7 +6,7 @@
 ## 0. 一句話流程
 
 改 `data/src/*.json` → `python tools/build.py`（**0 錯 0 警**）→ 有改圖就 `preview_figures.py` →
-`node tools/smoke_test.js`（**all smoke tests passed**）→ `git add/commit/push` → 約 1 分鐘上線。
+`node --max-old-space-size=8192 tools/smoke_test.js`（**all smoke tests passed**）→ `git add/commit/push` → 約 1 分鐘上線。
 
 ## 1. 站點資料
 
@@ -157,6 +157,22 @@
 * 重做會收起題解、解鎖原題、清空原題答案／提示及獨立確認，保留檢討記錄和失分原因。舊課題不受這個重做機制影響。
 * `build.py` S20 驗證 review 的雙語內容、選項索引、提示及圖表資料；`smoke_test.js` 測試讀題、錯誤回饋、重做、存檔遷移與獨立確認。
 
+### 4e. 11.2 圓的弦：動畫對照原題（2026-11-11）
+
+已對照 `source/SMS_bkexe_5A11_e.docx` 與 `source/SMS_sol_5A11_e.docx` 檢查 31 題及 5 張定理卡。
+
+* Level 1 首三題依課本為 x = 40 cm、y = 90°、z = 41°；舊站題序曾對調，已校正。
+* 第 16 題的大三角形用 SSS 證全等。第 17 題用 COD = 62°、BAC = 31°、ABO = 59°。
+* 第 18 題半徑 2.5 cm 是已知，所求為 AB = 4.8 cm。第 20、28 題按原題保留兩個小題。
+* 第 22 題按原圖 AE = 54、BE = 78，故 AB = 30√10 cm。
+* 第 25 題是三條割線及三條等弦，不是切線；用等弦與圓心等距、RHS 及 O 點周角。
+* 第 27 題依參考答案的勘誤補上 AB = DE，題幹清楚註明原題漏印。證明用 RHS、SAS，不以圖形看似對稱作為已知。
+* `anim.readable` 加大圖中字體；`intro` 為雙語起始提示；`segmentLabels` 標示線段數值（以 `id` 更新）；`clearLabels` 清理舊數值；`polygons` 只突出當前使用的圖形；`dimensions` 為距離括線，可用 `dx`、`dy` 避開點名。
+* 角度題用 `anim.goal` 在開始標出所求角；最後一拍設 `clearGoal: true`，解答後清除問號，返回上一拍會恢復。
+* 等長刻號分組：`ticks: [["A", "M", 2]]` 的第三項為刻號數目（1–3），不同長度不可沿用相同組別。`radii` 預設用單刻號。
+* 必跑 `python -X utf8 tools/verify_ch11_2.py`：直接用幾何座標驗算原題數值、點序及等長記號，另以 `tools/figcheck.py` 檢查所有題目和定理卡的角度／平行線。這些檢查不依賴 SVG 渲染結果。
+* 完整 smoke suite 會保留大量 jsdom 視窗，`npm test` 已設定 8 GB 的 Node heap 上限；這只是測試程序的設定，不影響網站。首頁／章節測試只載入 metadata，不再無故載入所有題庫。
+
 ## 5. 檢查（加完內容必跑）
 
 ```powershell
@@ -168,7 +184,7 @@ python -X utf8 tools/build.py --check    # 只想檢查，不寫檔
 python -X utf8 tools/preview_figures.py  # 改過 figures.json／make_figures.py 才需要 → tools/_preview/*.png 肉眼睇
 
 $env:NODE_PATH = "C:\Code Buddy\DSEPass\node_modules"
-node tools\smoke_test.js                 # 要見到 all smoke tests passed
+node --max-old-space-size=8192 tools\smoke_test.js                 # 要見到 all smoke tests passed
 node tools/preview_prompt.js ch10-A1 zh  # 想睇某題生成的 AI 提問內容
 ```
 

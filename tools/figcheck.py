@@ -79,7 +79,8 @@ def build_points(anim):
                 k = s.get("k", 0.5)
                 pts[name] = (pts[b][0] + ux / d * k, pts[b][1] + uy / d * k)
         if "between" in s:
-            a, b, t = s["between"][0], s["between"][1], s["between"][2]
+            a, b = s["between"][:2]
+            t = s["between"][2] if len(s["between"]) > 2 else 0.5
             if a in pts and b in pts:
                 pts[name] = (pts[a][0] + (pts[b][0] - pts[a][0]) * t,
                              pts[a][1] + (pts[b][1] - pts[a][1]) * t)
@@ -117,9 +118,9 @@ def check_anim(anim, tag):
                                % (tag, i, lab, real if real is not None else -1))
         par = st.get("parallel") or []
         for seg in par:
-            if len(seg) != 2 or seg[0] not in pts or seg[1] not in pts:
+            if len(seg) < 2 or seg[0] not in pts or seg[1] not in pts:
                 bad.append("%s step %d：平行記號的點不存在 %s" % (tag, i, seg))
-        if len(par) >= 2 and all(all(k in pts for k in s) for s in par[:2]):
+        if len(par) >= 2 and all(all(k in pts for k in s[:2]) for s in par[:2]):
             u = sub(pts[par[0][1]], pts[par[0][0]])
             w = sub(pts[par[1][1]], pts[par[1][0]])
             nu, nw = math.hypot(*u), math.hypot(*w)
@@ -143,6 +144,10 @@ def check_file(path):
             anim = q.get("anim")
             if anim:
                 bad += check_anim(anim, "%s Q%s" % (path, q.get("code")))
+    for card in d.get("cards", []):
+        anim = ((card.get("demo") or {}).get("opts") or {}).get("anim")
+        if anim:
+            bad += check_anim(anim, "%s card %s" % (path, card.get("id")))
     return bad
 
 

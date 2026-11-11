@@ -202,7 +202,7 @@ $ch = "C:\Program Files\Google\Chrome\Application\chrome.exe"
 3. 每次改完必跑：
    ```
    python -X utf8 tools/build.py            # 要 0 錯 0 警
-   $env:NODE_PATH = "C:\Code Buddy\DSEPass\node_modules"; node tools\smoke_test.js
+   $env:NODE_PATH = "C:\Code Buddy\DSEPass\node_modules"; node --max-old-space-size=8192 tools\smoke_test.js
    ```
    smoke test 有 200+ 斷言，包括把真 `style.css` 注入 jsdom 驗 computed style，以及 `.part-btn::before`／四狀態 token 等 CSS 斷言 —— **改 CSS 前要留意呢啲斷言**
 4. 加新斷言時跟隨現有風格（`ok(...)` + 中文說明）

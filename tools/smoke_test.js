@@ -1,9 +1,9 @@
 /* 5A 數學溫習站 · 學生流程 smoke test（jsdom + 真 KaTeX）
  *
  * 用法：
- *   node tools/smoke_test.js
+ *   npm test
  * 若 jsdom／katex 不在本機 node_modules，先設 NODE_PATH 指向已有安裝的地方：
- *   $env:NODE_PATH="C:\Code Buddy\DSEPass\node_modules"; node tools/smoke_test.js
+ *   $env:NODE_PATH="C:\Code Buddy\DSEPass\node_modules"; npm test
  */
 const fs = require("fs");
 const path = require("path");
@@ -74,9 +74,11 @@ function boot(page, search, storage, solPreference, legacySolPreference) {
   /* 只載入這一頁真正用到的那一份題庫（每頁只開一個課題）：
      全部載入會令每個 jsdom context 都揹住十幾萬字，幾百個 context 就爆記憶體。 */
   const needId = /[?&]c=([a-z0-9-]+)/.exec(search || "");
-  const wantFile = needId ? needId[1] + ".js" : null;
+  // Home/chapter pages use metadata only, matching the production page loaders.
+  const defaultId = page === "quiz.html" ? ctx.window.S5A_INDEX.parts[0].id : null;
+  const wantFile = needId ? needId[1] + ".js" : (defaultId ? defaultId + ".js" : null);
   dataFiles
-    .filter((f) => !wantFile || f === wantFile)
+    .filter((f) => f === wantFile)
     .forEach((f) => vm.runInContext(read("data/" + f), ctx, { filename: f }));
   vm.runInContext(circleJs, ctx, { filename: "circle.js" });  // 圓形幾何逐步圖解
   vm.runInContext(partsJs, ctx, { filename: "parts.js" });    // 圓的各部分（八個名詞）
@@ -3197,6 +3199,39 @@ chordPage.$(".cg-restart").click();
 ok(chordPage.$$(".cg-length,.cg-arc,.cg-area,.cg-measure,.cg-draw,.cg-tick").length === 0 &&
   /0 \/ 7/.test(chordPage.$(".cg-count").textContent),
   "Restart restores the original figure and step 0");
+
+const chordById = (id) => chordQuestions.find((q) => q.id === "ch11-2-" + id);
+ok(/40/.test(chordById("l1-1").answers[0].math) &&
+  /90/.test(chordById("l1-2").answers[0].math) &&
+  /41/.test(chordById("l1-3").answers[0].math),
+  "Level 1 questions 1, 2, 3 match the original x, y, z question order");
+ok(/SSS/.test(chordById("l1-16").solution.steps[1].en) &&
+  /59/.test(chordById("l2-17").solution.steps.at(-1).en) &&
+  /4.8/.test(chordById("l2-18").answers[0].math) &&
+  /30\\sqrt\{10\}/.test(chordById("l2-22").answers[0].math) &&
+  /omitted/.test(chordById("l2-27").stem.en),
+  "Correct SSS proof, Q17 explanation, Q18 requested chord, Q22 surd and Q27 missing condition");
+ok(["l2-20", "l2-28"].every((id) => chordById(id).parts.length === 2 && chordById(id).answers.length === 2),
+  "Q20 and Q28 keep the two separate parts from the source paper");
+ok(chordPart.cards.every((card) => card.demo.opts.anim.readable) &&
+  chordQuestions.every((q) => q.anim.readable && q.anim.intro.en && q.anim.intro.zh),
+  "All 31 questions and five concept cards have readable diagrams and bilingual starting captions");
+let wholeChordValid = true, goalsClear = true;
+for (const question of chordQuestions) {
+  chordPage.doc.body.replaceChildren();
+  chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, question.anim);
+  const hasGoal = !!(question.anim.goal || []).length;
+  if (hasGoal && !chordPage.$(".cg-goal-arc")) goalsClear = false;
+  for (const step of question.anim.steps) chordPage.$(".cg-next").click();
+  if (hasGoal && question.anim.steps.at(-1).clearGoal && chordPage.$(".cg-goal-arc")) goalsClear = false;
+  if (chordPage.$$(".cg-svg [d]").some((node) => /NaN|undefined/.test(node.getAttribute("d"))) ||
+      chordPage.$$(".katex-error").length) wholeChordValid = false;
+  chordPage.$(".cg-back").click();
+  if (hasGoal && !chordPage.$(".cg-goal-arc")) goalsClear = false;
+  chordPage.$(".cg-restart").click();
+}
+ok(wholeChordValid, "All 31 animations complete without invalid SVG coordinates or KaTeX errors");
+ok(goalsClear, "Target angles appear initially, clear when solved, and return on Back");
 
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

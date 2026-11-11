@@ -124,7 +124,7 @@
     wrap.className = "cg";
 
     var svg = el("svg", {
-      class: "cg-svg", viewBox: "0 0 " + SIZE + " " + SIZE,
+      class: "cg-svg" + (anim.readable ? " cg-readable" : ""), viewBox: "0 0 " + SIZE + " " + SIZE,
       role: "img", "aria-label": (anim.label && anim.label.en) || "circle figure"
     });
     var gBase = el("g"), gStep = el("g");
@@ -374,6 +374,11 @@
     function draw(i, instant) {
       setFrame(frame);   // 同一頁可能有多幅圖，各自用自己的圓心與半徑
       var st = steps[i] || {};
+      (st.clearLabels || []).forEach(function (id) {
+        Array.prototype.slice.call(gStep.querySelectorAll("[data-length]")).forEach(function (node) {
+          if (node.getAttribute("data-length") === id) node.remove();
+        });
+      });
       gFocus.innerHTML = "";
       (st.polygons || []).forEach(function (names) {
         var points = names.map(function (name) { var p = screen(pts[name]); return p.x + "," + p.y; }).join(" ");
@@ -528,7 +533,7 @@
         g.appendChild(el("path", { class: "cg-measure-line", d: "M" + x1 + " " + y1 + "L" + x2 + " " + y2 +
           "M" + (x1 - nx * 6) + " " + (y1 - ny * 6) + "L" + (x1 + nx * 6) + " " + (y1 + ny * 6) +
           "M" + (x2 - nx * 6) + " " + (y2 - ny * 6) + "L" + (x2 + nx * 6) + " " + (y2 + ny * 6) }));
-        g.appendChild(el("text", { class: "cg-length", x: (x1 + x2) / 2 + nx * 23, y: (y1 + y2) / 2 + ny * 23, "text-anchor": "middle" }, D.text));
+        g.appendChild(el("text", { class: "cg-length", x: (x1 + x2) / 2 + nx * 23 + (D.dx || 0), y: (y1 + y2) / 2 + ny * 23 + (D.dy || 0), "text-anchor": "middle" }, D.text));
         gStep.appendChild(g); drawOn(g, 0, instant);
       });
     }
@@ -565,10 +570,12 @@
 
     function syncGoals(n) {
       gGoal.innerHTML = "";
-      goalArcs(anim.goal);
+      var active = (anim.goal || []).slice();
       for (var i = 0; i < n; i++) {
-        if (steps[i] && steps[i].goal) goalArcs(steps[i].goal);
+        if (steps[i] && steps[i].clearGoal) active = [];
+        if (steps[i] && steps[i].goal) active = active.concat(steps[i].goal);
       }
+      goalArcs(active);
     }
 
     function renderUpTo(n) {
