@@ -1639,6 +1639,8 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
 
 .cg-note { font-size: 11px; fill: var(--muted); }
 .cg-area { fill: var(--primary); fill-opacity: .09; stroke: none; }
+.cg-region { fill: var(--primary); fill-opacity: .2; stroke: none; }
+.cg-arc-guide { fill: none; stroke: var(--primary-bar); stroke-width: 1.2; }
 .cg-length { font-family: Georgia, "Times New Roman", serif; font-size: 15px; fill: var(--primary-ink); paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
 .cg-length.given { fill: var(--text); }
 .cg-readable .cg-label { font-size: 15px; }

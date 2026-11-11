@@ -13,6 +13,7 @@
                   "notes": [["…", x, y]] } ]
    }
    Optional step fields: polygons (current triangle), segmentLabels (named lengths),
+   arcMeasures (lengths on circular arcs, also allowed initially on anim),
    dimensions (perpendicular distance), ticks [a,b,count], parallel [a,b,t].
    Points may set labelOffset: [dx,dy]. anim.intro supplies the starting caption.
    angle 一律用「度」。座標由角度算出，所以畫出來的角就是題目寫的角。 */
@@ -208,6 +209,18 @@
       }
     }
 
+    /* A segment is bounded by its selected arc and the chord. Optional holes
+       let an area question shade a semicircle with a segment removed. */
+    function regionPath(region) {
+      return circuitArc(screen(pts[region.from]), screen(pts[region.to]),
+        region.avoid ? screen(pts[region.avoid]) : null) + "Z";
+    }
+    (anim.regions || []).forEach(function (region) {
+      var path = regionPath(region);
+      (region.holes || []).forEach(function (hole) { path += regionPath(hole); });
+      gBase.appendChild(el("path", { class: "cg-region", d: path, "fill-rule": "evenodd" }));
+    });
+
     /* 多個圓：同心圓、兩個相交圓都用這個。
        "circles": [ {"c": "O", "r": 1}, {"c": "P", "r": 0.45} ]
        c = 圓心的點名，r = 相對半徑（1 = 主半徑 R）。 */
@@ -371,9 +384,48 @@
       return t;
     }
 
+    /* Arc lengths belong on curved guides, never on the straight chord.
+       Named measures replace earlier values and are rebuilt on Back/Restart. */
+    function arcMeasures(list, instant) {
+      (list || []).forEach(function (measure) {
+        var id = measure.id || measure.from + measure.to;
+        Array.prototype.slice.call(gStep.querySelectorAll("[data-arc-measure]")).forEach(function (old) {
+          if (old.getAttribute("data-arc-measure") === id) old.remove();
+        });
+        var a = screen(pts[measure.from]), b = screen(pts[measure.to]);
+        var start = Math.atan2(a.y - CY, a.x - CX), end = Math.atan2(b.y - CY, b.x - CX);
+        var turn = 2 * Math.PI;
+        function norm(t) { return (t % turn + turn) % turn; }
+        var delta = norm(end - start), sweep = 1;
+        if (measure.avoid) {
+          var avoid = screen(pts[measure.avoid]);
+          if (norm(Math.atan2(avoid.y - CY, avoid.x - CX) - start) <= delta) {
+            delta = turn - delta; sweep = 0;
+          }
+        } else if (delta > Math.PI) { delta = turn - delta; sweep = 0; }
+        var radius = R + (measure.offset === undefined ? 22 : measure.offset);
+        function atAngle(t, rr) { return { x: CX + Math.cos(t) * rr, y: CY + Math.sin(t) * rr }; }
+        var p = atAngle(start, radius), q = atAngle(end, radius);
+        var group = el("g", { "data-arc-measure": id });
+        var path = el("path", { class: "cg-arc-guide", d: "M" + p.x + " " + p.y + "A" + radius + " " + radius + " 0 " +
+          (delta > Math.PI ? 1 : 0) + " " + sweep + " " + q.x + " " + q.y });
+        group.appendChild(path);
+        [start, end].forEach(function (angle) {
+          var inner = atAngle(angle, radius - 4), outer = atAngle(angle, radius + 4);
+          group.appendChild(el("line", { class: "cg-arc-guide", x1: inner.x, y1: inner.y, x2: outer.x, y2: outer.y }));
+        });
+        var mid = atAngle(start + (sweep ? 1 : -1) * delta / 2, radius + 15);
+        group.appendChild(el("text", { class: "cg-length " + (measure.colour || "claim"),
+          x: mid.x + (measure.dx || 0), y: mid.y + 5 + (measure.dy || 0), "text-anchor": "middle" }, measure.text));
+        gStep.appendChild(group);
+        drawOn(path, 0, instant);
+      });
+    }
+
     function draw(i, instant) {
       setFrame(frame);   // 同一頁可能有多幅圖，各自用自己的圓心與半徑
       var st = steps[i] || {};
+      arcMeasures(st.arcMeasures, instant);
       (st.clearLabels || []).forEach(function (id) {
         Array.prototype.slice.call(gStep.querySelectorAll("[data-length]")).forEach(function (node) {
           if (node.getAttribute("data-length") === id) node.remove();
@@ -583,6 +635,7 @@
       gStep.innerHTML = "";
       gPulse.innerHTML = "";
       gFocus.innerHTML = "";
+      arcMeasures(anim.arcMeasures, true);
       syncGoals(n);
       Object.keys(pointGroups).forEach(function (k) {
         pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
@@ -630,6 +683,7 @@
 
     restart.onclick = function () { renderUpTo(0); };
 
+    arcMeasures(anim.arcMeasures, true);
     syncGoals(0);   // 一開頁就把「想求的那隻角」標出來
     setSay(sayZh, (anim.intro || {}).zh || "");
     setSay(sayEn, (anim.intro || {}).en || "");

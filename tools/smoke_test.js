@@ -452,7 +452,7 @@ ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")
   "每頁都有語言設定");
 
 const figs = JSON.parse(figuresJs.slice(figuresJs.indexOf("{"), figuresJs.lastIndexOf("}") + 1));
-ok(Object.keys(figs).length === 36, "圖共 36 幅（原有 33 幅 ＋ 3 幅第 11.1 節判斷題圖；實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).length === 40, "圖共 40 幅（原有 33 幅 ＋ 3 幅第 11.1 節及 4 幅第 11.3 節判斷題圖；實際 " + Object.keys(figs).length + "）");
 ok(Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length === 13,
   "其中 13 幅屬於第 18.1 節（文氏圖；實際 " +
   Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length + "）");

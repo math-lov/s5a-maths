@@ -170,8 +170,8 @@
      "zh": "校本 Chapter Quiz 第 18 章（2026–2027 學年）＋ 官方評分參考",
      "en": "School Chapter 18 quiz (2026–2027) with the official marking scheme"
     }
-    },
-    {
+   },
+   {
     "id": "ut-review",
     "answerInput": true,
     "group": "quiz",
@@ -619,6 +619,38 @@
      "zh": "課本 Exercise 11.2 全部題目（Class Exercise、Level 1 Q1–Q16、Level 2 Q17–Q28）＋ 官方題解",
      "en": "The complete Exercise 11.2 (Class Exercise, Level 1 Q1–Q16, Level 2 Q17–Q28) with the official solutions"
     }
+   },
+   {
+    "id": "ch11-3",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch11",
+    "code": "11.3",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 11 章 · 圓形的基本性質",
+     "en": "Chapter 11 · Basic Properties of Circles"
+    },
+    "title": {
+     "en": "11.3 Angles, Arcs and Chords · Book Exercise",
+     "zh": "11.3 角、弧與弦 · 課本練習"
+    },
+    "meta": {
+     "paper": "Book 5A · Exercise 11.3"
+    },
+    "stats": {
+     "questions": 19,
+     "marks": 50,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "en": "Exercise 11.3 with the supplied original questions and official solutions.",
+     "zh": "參考課本 Exercise 11.3 原題及官方題解。"
+    }
    }
   ],
   "classwork": {
@@ -642,8 +674,8 @@
       "en": "Chapter 11 · Basic Properties of Circles"
      },
      "intro": {
-      "zh": "第 11 章講圓形的基本性質，共四節：11.1 圓內的角、11.2 圓的弦、11.3 角、弧與弦、11.4 圓內接四邊形。11.1 與 11.2 已上線：每條定理一張教學卡（附證明與逐步圖解），之後是 Exercise 11.1 的逐題題解。",
-      "en": "Chapter 11 covers the basic properties of circles in four sections: 11.1 angles in a circle, 11.2 chords, 11.3 angles, arcs and chords, and 11.4 cyclic quadrilaterals. Sections 11.1 and 11.2 are online, each theorem as a teaching card with its proof and a step-by-step figure, followed by worked Exercise 11.1."
+      "en": "Chapter 11 has four sections. Sections 11.1–11.3 are online with bilingual teaching cards, step-by-step figures and worked exercises.",
+      "zh": "第 11 章共四節。11.1–11.3 已上線，附中英教學卡、逐步圖解及課本練習題解。"
      },
      "sections": [
       {
@@ -660,6 +692,14 @@
        "title": {
         "zh": "11.2 圓的弦",
         "en": "11.2 Chords of a circle"
+       }
+      },
+      {
+       "code": "11.3",
+       "part": "ch11-3",
+       "title": {
+        "en": "11.3 Angles, arcs and chords",
+        "zh": "11.3 角、弧與弦"
        }
       }
      ]
