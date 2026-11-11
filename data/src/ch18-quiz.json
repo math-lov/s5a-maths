@@ -5,8 +5,8 @@
   "en": "Chapter 18 Quiz Review"
  },
  "intro": {
-  "zh": "這份測驗卷面 32 分：甲部 6 題多項選擇題（12 分）、乙部 4 條長題目（20 分），另有一題 5 分加分題。",
-  "en": "The quiz is out of 32 marks: six multiple-choice questions in Section A (12 marks) and four conventional questions in Section B (20 marks), plus a 5-mark bonus question."
+  "zh": "這份測驗卷面 32 分：甲部 6 題多項選擇題（12 分）、乙部 4 條長題目（20 分），另有一題 3 分加分題。",
+  "en": "The quiz is out of 32 marks: six multiple-choice questions in Section A (12 marks) and four conventional questions in Section B (20 marks), plus a 3-mark bonus question."
  },
  "sections": [
   {
@@ -2308,7 +2308,7 @@
      "id": "ch18-quiz-bonus",
      "code": "Bonus",
      "type": "long",
-     "marks": 5,
+     "marks": 3,
      "difficulty": 3,
      "bonus": true,
      "stem": {
@@ -2338,13 +2338,13 @@
        "label": "(a)",
        "en": "Find the probability that the sum of the numbers on the balls drawn is odd.",
        "zh": "求抽出的球的編號之和為奇數的概率。",
-       "marks": 2
+       "marks": 1
       },
       {
        "label": "(b)",
        "en": "Given that the sum of the numbers on the balls drawn is even, find the probability that only one even number is obtained.",
        "zh": "已知抽出的球的編號之和為偶數，求只有一個偶數的概率。",
-       "marks": 3
+       "marks": 2
       }
      ],
      "answers": [
@@ -2376,8 +2376,7 @@
         },
         "math": "\\text{odd sum} \\iff 1\\text{ or }3\\text{ odd numbers}",
         "zh": "共有五個奇數、四個偶數。三數之和為奇數時，當中有一個或三個奇數。",
-        "en": "There are 5 odd numbers and 4 even numbers. A sum of 3 numbers is odd when the selection has 1 odd number or 3 odd numbers.",
-        "marking": "(1M)"
+        "en": "There are 5 odd numbers and 4 even numbers. A sum of 3 numbers is odd when the selection has 1 odd number or 3 odd numbers."
        },
        {
         "title": {
@@ -2403,12 +2402,12 @@
          "en": "Step 4 · (a) Add the two cases"
         },
         "math": "\\frac{5}{42} + \\frac{15}{42} = \\frac{20}{42} = \\frac{10}{21}",
-        "zh": "三奇與一奇兩種情況不能同時發生，把它們的概率相加。",
-        "en": "Add the three-odd and one-odd cases. They cannot happen together.",
-        "marking": "(1A)",
+        "zh": "三奇與一奇兩種情況不能同時發生，把它們的概率相加。 (a) 答案 10/21 得 1 分答案分。",
+        "en": "Add the three-odd and one-odd cases. They cannot happen together. Part (a): 1 accuracy mark for 10/21.",
         "highlight": [
          "\\frac{10}{21}"
-        ]
+        ],
+        "marking": "(1A)"
        },
        {
         "title": {
@@ -2417,8 +2416,7 @@
         },
         "math": "P(A) = 1 - \\frac{10}{21} = \\frac{11}{21}",
         "zh": "設 A 為和是偶數。和不是奇數就是偶數，所以用 1 減去 (a) 的答案。",
-        "en": "Let A mean an even sum. A sum is either odd or even. Subtract the answer from (a) from 1.",
-        "marking": "(1A)"
+        "en": "Let A mean an even sum. A sum is either odd or even. Subtract the answer from (a) from 1."
        },
        {
         "title": {
@@ -2428,19 +2426,28 @@
         "math": "3 \\times \\frac{4}{9} \\times \\frac{5}{8} \\times \\frac{4}{7} = \\frac{240}{504} = \\frac{10}{21}",
         "zh": "設 B 為剛好一偶，另外兩球必須是奇數。先算偶奇奇，再乘 3 包括偶數球的三個位置。兩奇加一偶的和必為偶數，所以 B 的選法全部在 A 內。",
         "en": "Let B mean exactly 1 even ball. The other 2 balls must be odd. Count even-odd-odd, then multiply by 3 for the three positions of the even ball. Two odd numbers plus one even number always give an even sum. So every B selection is also in A.",
-        "marking": "(1M)",
         "highlight": [
          "\\frac{10}{21}"
         ]
        },
        {
         "title": {
-         "zh": "第 7 步 · (b) 條件概率",
-         "en": "Step 7 · (b) Conditional probability"
+         "en": "Step 7 · (b) Set up conditional probability",
+         "zh": "第 7 步 · (b) 列出條件概率"
         },
-        "math": "P(B \\mid A) = \\frac{P(B \\cap A)}{P(A)} = \\frac{\\frac{10}{21}}{\\frac{11}{21}} = \\frac{10}{11}",
-        "zh": "已知和為偶數，就只考慮 A 內的選法。用 P(B 與 A 同時發生) 除以 P(A)，得到 10/11。",
-        "en": "Given an even sum, consider only selections in A. Divide P(B and A) by P(A). This gives 10/11.",
+        "math": "P(B \\mid A) = \\frac{P(B \\cap A)}{P(A)} = \\frac{\\frac{10}{21}}{\\frac{11}{21}}",
+        "zh": "運用條件概率：P(B 與 A 同時發生) 除以 P(A)。列式時，分子 10/21 或分母 11/21 其中一項正確，便得 1 分方法分，毋須兩項都正確。只算對其中一項，但沒有列出條件概率，不得這方法分。",
+        "en": "Use conditional probability: divide P(B and A) by P(A). Earn 1 method mark if either the numerator 10/21 or the denominator 11/21 is correct in this setup. Both need not be correct. A correct component on its own, without a conditional-probability setup, does not earn this mark.",
+        "marking": "(1M)"
+       },
+       {
+        "title": {
+         "en": "Step 8 · (b) Final answer",
+         "zh": "第 8 步 · (b) 最終答案"
+        },
+        "math": "\\frac{10}{21} \\div \\frac{11}{21} = \\frac{10}{11}",
+        "en": "The correct final answer is 10/11. This earns the remaining 1 accuracy mark.",
+        "zh": "最終答案 10/11 正確，另得 1 分答案分。",
         "marking": "(1A)",
         "highlight": [
          "\\frac{10}{11}"
@@ -2495,8 +2502,8 @@
          "en": "Count selections instead of draw orders",
          "zh": "另一個做法：直接數選法"
         },
-        "en": "Order does not affect the sum. There are C(9,3) = 84 equally likely selections. An odd sum has C(5,3) + C(5,1)C(4,2) = 40 selections. An even sum has 44 selections. Of these, C(4,1)C(5,2) = 40 contain exactly one even ball, so (b) is 40/44 = 10/11.",
-        "zh": "次序不影響總和。全部有 C(9,3) = 84 種機會均等的選法。奇數和有 C(5,3) + C(5,1)C(4,2) = 40 種，偶數和有 44 種。其中 C(4,1)C(5,2) = 40 種剛好一偶，所以 (b) 為 40/44 = 10/11。"
+        "en": "Order does not affect the sum. There are C(9,3) = 84 equally likely selections. An odd sum has C(5,3) + C(5,1)C(4,2) = 40 selections. An even sum has 44 selections. Of these, C(4,1)C(5,2) = 40 contain exactly one even ball, so (b) is 40/44 = 10/11. For the conditional-probability setup using counts, either numerator 40 or denominator 44 correct earns the 1 method mark.",
+        "zh": "次序不影響總和。全部有 C(9,3) = 84 種機會均等的選法。奇數和有 C(5,3) + C(5,1)C(4,2) = 40 種，偶數和有 44 種。其中 C(4,1)C(5,2) = 40 種剛好一偶，所以 (b) 為 40/44 = 10/11。 用選法數列出條件概率時，分子 40 或分母 44 其中一項正確，便得該 1 分方法分。"
        }
       ]
      },
@@ -2640,7 +2647,7 @@
       {
        "from": "(a)",
        "en": "Find the probability that the sum of the numbers on the balls drawn is odd.",
-       "zh": "求抽出的球的編號之和為奇數的概率的概率。",
+       "zh": "求抽出的球的編號之和為奇數的概率。",
        "move": {
         "en": "List compositions with 1 or 3 odd numbers.",
         "zh": "列出一奇和三奇的情況。"
@@ -2682,8 +2689,8 @@
    "zh": "核對原題和小題後，只有能不看題解解釋兩者的做法，才確認能獨立完成。另一天也再試一次。"
   },
   {
-   "en": "The original paper has 32 marks, plus a 5-mark bonus. Type exact fractions such as 3/14, or decimals rounded to 3 significant figures.",
-   "zh": "原卷共 32 分，另有 5 分加分題。答案可輸入準確分數，例如 3/14，或準確至三位有效數字的小數。"
+   "en": "The original paper has 32 marks, plus a 3-mark bonus. Type exact fractions such as 3/14, or decimals rounded to 3 significant figures.",
+   "zh": "原卷共 32 分，另有 3 分加分題。答案可輸入準確分數，例如 3/14，或準確至三位有效數字的小數。"
   }
  ]
 }

@@ -2021,13 +2021,20 @@ ok(!!cqPart && cqPart.group === "quiz" && cqPart.kind.zh === "測驗檢討" &&
   cqPart.answerInput === true,
   "第 18 章測驗檢討已上線（測驗檢討、開 answerInput）");
 ok(cqPart.stats.questions === 11 && cqPart.stats.marks === 32 &&
-  cqPart.stats.bonus === 5 &&
+  cqPart.stats.bonus === 3 &&
   cqPart.meta.sections.map((s) => s.marks).join("+") === "12+20",
-  "第 18 章測驗檢討：11 題 32 分（甲 12 ＋ 乙 20）＋ 5 分加分題");
+  "第 18 章測驗檢討：11 題 32 分（甲 12 ＋ 乙 20）＋ 3 分加分題");
 const CQ_JS = read("data/ch18-quiz.js");
 const CQ_DATA = JSON.parse(CQ_JS.slice(CQ_JS.indexOf("{"), CQ_JS.lastIndexOf("}") + 1));
 const CQ_QS = CQ_DATA.sections.reduce((a, s) => a.concat(s.questions || []), []);
 const CQ_MC = CQ_QS.filter((q) => q.type === "mc");
+const CQ_BONUS = CQ_QS.find((q) => q.bonus);
+ok(CQ_BONUS.marks === 3 && CQ_BONUS.parts.map((p) => p.marks).join(",") === "1,2" &&
+  CQ_BONUS.solution.steps[3].marking === "(1A)" &&
+  CQ_BONUS.solution.steps[6].marking === "(1M)" &&
+  CQ_BONUS.solution.steps[7].marking === "(1A)" &&
+  /either the numerator 10\/21 or the denominator 11\/21 is correct/.test(CQ_BONUS.solution.steps[6].en),
+  "Bonus: (a) 1A; (b) conditional-probability 1M with either numerator or denominator correct, plus final-answer 1A");
 ok(CQ_DATA.sections.map((s) => s.id).join(",") === "A,B" &&
   CQ_DATA.sections.map((s) => s.questions.length).join(",") === "6,5",
   "甲部 6 題 MC、乙部 4 條長題 ＋ 1 題加分題（共 11 題）");
