@@ -2013,6 +2013,66 @@ ok(ansPass("ch17-test", 10, 0, "12") && !ansPass("ch17-test", 10, 0, "12.04") &&
   !ansPass("ch17-test", 10, 0, "11.9"),
   "整數答案（17 測前 B1(a)＝12）要準確：12 對；12.04（3 位有效數字一樣）、11.9 都當錯");
 
+/* ── 6b-6b. 第 18 章測驗檢討（ch18-quiz：官方試卷 ＋ 評分參考）──────────── */
+console.log("\n== 第 18 章 · 測驗檢討（Chapter 18 Quiz Review）==");
+const cqPart = INDEX.parts.find((p) => p.id === "ch18-quiz");
+ok(!!cqPart && cqPart.group === "quiz" && cqPart.kind.zh === "測驗檢討" &&
+  cqPart.title.en === "Chapter 18 Quiz Review" && /第 18 章/.test(cqPart.unit.zh) &&
+  cqPart.answerInput === true,
+  "第 18 章測驗檢討已上線（測驗檢討、開 answerInput）");
+ok(cqPart.stats.questions === 11 && cqPart.stats.marks === 32 &&
+  cqPart.stats.bonus === 5 &&
+  cqPart.meta.sections.map((s) => s.marks).join("+") === "12+20",
+  "第 18 章測驗檢討：11 題 32 分（甲 12 ＋ 乙 20）＋ 5 分加分題");
+const CQ_JS = read("data/ch18-quiz.js");
+const CQ_DATA = JSON.parse(CQ_JS.slice(CQ_JS.indexOf("{"), CQ_JS.lastIndexOf("}") + 1));
+const CQ_QS = CQ_DATA.sections.reduce((a, s) => a.concat(s.questions || []), []);
+const CQ_MC = CQ_QS.filter((q) => q.type === "mc");
+ok(CQ_DATA.sections.map((s) => s.id).join(",") === "A,B" &&
+  CQ_DATA.sections.map((s) => s.questions.length).join(",") === "6,5",
+  "甲部 6 題 MC、乙部 4 條長題 ＋ 1 題加分題（共 11 題）");
+ok(CQ_MC.map((q) => q.answer).join("") === "DABACC" &&
+  CQ_MC.every((q) => q.marks === 2),
+  "甲部官方答案＝D、A、B、A、C、C（每題 2 分）");
+ok(CQ_QS.filter((q) => q.type === "long").every((q) =>
+  q.parts.reduce((a, p) => a + p.marks, 0) === q.marks &&
+  q.answers.length === q.parts.length &&
+  q.answers.every((a) => typeof a.input === "string" && a.input) &&
+  (q.solution.steps || []).reduce((a, st) =>
+    a + ((st.marking || "").match(/1[MA]/g) || []).length, 0) === q.marks),
+  "長題：parts 分數加總＝題目分數、answers 與 parts 一對一、步驟分加總相符");
+const cqOv = boot("quiz.html", "?c=ch18-quiz&p=0", null, "show");
+ok(cqOv.$$("#pagenav .pg").length === 12 &&
+  cqOv.$$("#pagenav .pg-sec").length === 2 &&
+  cqOv.$$(".katex-error").length === 0,
+  "第 18 章測驗檢討總覽：11 題（＋總覽）、甲／乙部兩個分隔、KaTeX 零錯誤");
+ok(cqOv.$$(".how-paper .how-row").length === CQ_DATA.introSteps.length &&
+  cqOv.$$(".how-paper .how-row .l-en").length === CQ_DATA.introSteps.length,
+  "總覽渲染「點做這份卷」4 條中英步驟");
+ok(CQ_QS.every((q) => (q.solution.steps || []).length > 0 &&
+  !!q.solution.tip && (q.solution.traps || []).length > 0),
+  "11 題資料層都有題解步驟、「帶得走的技巧」與常見錯誤");
+const cqAll = [1, 7].map((p) =>
+  boot("quiz.html", "?c=ch18-quiz&p=" + p, null, "show"));
+ok(cqAll.every((t) => t.$$(".katex-error").length === 0 &&
+  t.$$(".sol-card .steps .step").length > 0 && !!t.$(".sol-card .tip") &&
+  t.$$(".sol-card .trap").length > 0 &&
+  !!t.$(".q-stem .l-zh") && !!t.$(".q-stem .l-en")),
+  "A1 與 B1 兩頁：逐步題解、技巧、常見錯誤、中英題幹、KaTeX 零錯誤");
+const cqB2 = boot("quiz.html", "?c=ch18-quiz&p=8", null, "hide");
+ok(cqB2.$$(".ans-row").length === 2 &&
+  cqB2.$$(".ans-part").map((n) => n.textContent).join("") === "(a)(b)",
+  "B2 兩小題各有一個輸入格");
+ansType(cqB2, 0, "3/14");
+ansType(cqB2, 1, "71/126");
+ansSub(cqB2).click();
+ok(cqB2.$$(".ans-row.ok").length === 2, "B2 輸入 3/14、71/126 都當正確");
+const cqBonus = boot("quiz.html", "?c=ch18-quiz&p=11", null, "hide");
+ansType(cqBonus, 1, "10/11");
+ansSub(cqBonus).click();
+ok(cqBonus.$$(".ans-row")[1].classList.contains("ok"),
+  "加分題 (b) 輸入 10/11 當正確");
+
 /* ── 6b-7. 統測乙部檢討（ut-review，2026-10-27）─────────────────────────
    來源：source/UT/Sample paper section B.pdf（乙部 9 題）
         ＋ source/UT/26-27s5math.1ut (solution).docx（官方題解）
