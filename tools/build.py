@@ -28,6 +28,7 @@
       每小題的答案會自動由 answers[].math 最後一段抽出（該段只有一個數、而且冇未知數
       才抽得準；不等式／代數式例如 "x\\le -5"、"\\frac{n}{2^n}" 一律抽唔到），
       抽唔到就要明寫 answers[].input（唔設輸入格就寫 null）；input 的數字要對得上 math
+  S20 選用 review：雙語思考提示、錯誤回饋、小題選項／答案與圖解資料
 """
 
 from __future__ import annotations
@@ -421,6 +422,75 @@ def check_question(q: dict, where: str, fig_ids: set, need_input: bool = False) 
         check_text(a_tag + ".en", a.get("en", ""))
 
     check_parse(q, tag)
+    check_review(q, tag)
+
+
+def check_review(q: dict, tag: str) -> None:
+    """S20: validate optional review prompts, transfer checks and diagrams."""
+    review = q.get("review")
+    if review is None:
+        return
+    if not isinstance(review, dict):
+        err("S20 %s：review must be an object" % tag)
+        return
+
+    def pair(value, label):
+        if not isinstance(value, dict):
+            err("S20 %s %s：expected bilingual text" % (tag, label))
+            return
+        check_text("S20 %s %s.en" % (tag, label), value.get("en", ""))
+        check_text("S20 %s %s.zh" % (tag, label), value.get("zh", ""), need_zh=True)
+
+    prompts = review.get("prompts")
+    if not isinstance(prompts, list) or not prompts:
+        err("S20 %s：review needs thinking prompts" % tag)
+    else:
+        for i, prompt in enumerate(prompts):
+            pair(prompt, "prompt %d" % i)
+    check = review.get("check") or {}
+    if not isinstance(check, dict):
+        err("S20 %s：check must be an object" % tag)
+        check = {}
+    for key in ("prompt", "explanation", "hint"):
+        pair(check.get(key), "check." + key)
+    choices = check.get("choices") or []
+    if not isinstance(choices, list) or len(choices) < 2:
+        err("S20 %s：follow-up check needs at least two choices" % tag)
+        choices = []
+    for i, choice in enumerate(choices):
+        pair(choice, "choice %d" % i)
+    answer = check.get("answer")
+    if type(answer) is not int or not 0 <= answer < len(choices):
+        err("S20 %s：follow-up answer must index a choice" % tag)
+    for option, feedback in (review.get("feedback") or {}).items():
+        if option not in (q.get("options") or {}) or option == q.get("answer"):
+            err("S20 %s：feedback must refer to a wrong option" % tag)
+        pair(feedback, "feedback " + option)
+    for part, values in (review.get("answerFeedback") or {}).items():
+        if part not in [p.get("label") for p in q.get("parts", [])]:
+            err("S20 %s：answer feedback refers to an unknown part" % tag)
+        for value, feedback in values.items():
+            pair(feedback, "answer feedback " + value)
+    visual = review.get("visual")
+    if visual:
+        if visual.get("type") not in ("venn", "block", "table", "tree"):
+            err("S20 %s：unknown review visual type" % tag)
+        pair(visual.get("caption"), "visual caption")
+        if visual.get("type") == "venn":
+            check_text("S20 %s visual.alt" % tag, visual.get("alt", ""))
+        if visual.get("type") in ("table", "tree"):
+            headers, rows = visual.get("headers", []), visual.get("rows", [])
+            if visual.get("type") == "tree" and (len(headers) != 3 or len(rows) != 4):
+                err("S20 %s：two-bag tree requires 3 columns and 4 paths" % tag)
+            if not headers or not rows:
+                err("S20 %s：visual needs headers and rows" % tag)
+            for header in headers:
+                pair(header, "visual header")
+            for row in rows:
+                if len(row) != len(headers):
+                    err("S20 %s：visual row width differs from headers" % tag)
+                for cell in row:
+                    pair(cell, "visual cell")
 
 
 # ── 拆句層（逐句讀題）──────────────────────────────────────────────────────

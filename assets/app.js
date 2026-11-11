@@ -172,9 +172,10 @@
       s.hints = s.hints || {};    // { qid: 已顯示的提示步數 }
       s.tf = s.tf || {};          // 判斷題逐小題：{ "qid/(a)": true }
       s.ans = s.ans || {};        // 長題輸入答案：{ "qid/(a)": "1440" }
+      s.review = s.review || {};
       return s;
     } catch (e) {
-      return { done: {}, picked: {}, hints: {}, tf: {}, ans: {} };
+      return { done: {}, picked: {}, hints: {}, tf: {}, ans: {}, review: {} };
     }
   }
   var store = loadStore();
@@ -567,7 +568,7 @@
     if (rb) rb.onclick = function () {
       var ask = getLang() === "en" ? UI.resetAsk.en : UI.resetAsk.zh;
       if (!confirm(ask)) return;
-      store = { done: {}, picked: {}, hints: {}, tf: {} };
+      store = { done: {}, picked: {}, hints: {}, tf: {}, ans: {}, review: {} };
       saveStore();
       location.reload();
     };
@@ -713,6 +714,11 @@
       }
       PART = part;
       META = meta;
+      (part.sections || []).forEach(function (section) {
+        (section.questions || []).forEach(function (question) {
+          if (question.review) reviewState(question);
+        });
+      });
       var pages = buildPages(part);
       var cur = Math.min(pageFromUrl(), pages.length - 1);
 
@@ -783,13 +789,18 @@
   function gotoPage(id, n) { go("quiz.html?c=" + encodeURIComponent(id) + "&p=" + n); }
 
   function progressText(part) {
-    var total = 0, done = 0;
+    var total = 0, done = 0, reviewed = 0;
     (part.sections || []).forEach(function (sec) {
       (sec.questions || []).forEach(function (q) {
         total++;
         if (store.done[q.id]) done++;
+        if (q.review && reviewState(q).reviewed) reviewed++;
       });
     });
+    if (part.id === "ch18-quiz") return {
+      zh: "檢討 " + reviewed + "/" + total + " · 獨立 " + done + "/" + total,
+      en: "Reviewed " + reviewed + "/" + total + " · Independent " + done + "/" + total
+    };
     return {
       zh: "已掌握 " + done + " / " + total + " 題",
       en: done + " / " + total + " mastered"
@@ -1051,6 +1062,16 @@
     head.appendChild(oc);
     card.appendChild(head);
     if (part.intro) card.appendChild(pair(part.intro, "div", "bi"));
+    if (part.id === "ch18-quiz") {
+      var reviewed = 0, independent = 0;
+      pages.forEach(function (page) {
+        if (page.q && page.q.review) {
+          if (reviewState(page.q).reviewed) reviewed++;
+          if (store.done[page.q.id]) independent++;
+        }
+      });
+      card.appendChild(pair({ zh: "已檢討 " + reviewed + "/11 · 能獨立完成（自我確認）" + independent + "/11", en: "Reviewed " + reviewed + "/11 · Independent (self-confirmed) " + independent + "/11" }, "p", "bi review-status"));
+    }
     /* 引言太長會變成一大段：資料可以用 introSteps[] 拆成幾個編號步驟 */
     if ((part.introSteps || []).length) {
       var how = el("div", "how how-paper");
@@ -1143,8 +1164,210 @@
     return n;
   }
 
+  // Review data is opt-in: other papers keep their existing learning flow.
+  function reviewState(q) {
+    if (!store.review[q.id]) {
+      store.review[q.id] = { reviewed: !!store.done[q.id], checked: false };
+      delete store.done[q.id]; // Previous completion becomes reviewed, not independent.
+      saveStore();
+    }
+    return store.review[q.id];
+  }
+
+  function reviewEnglish(text) {
+    var wrap = el("div", "review-reading");
+    var original = el("div", "review-original l-en");
+    original.lang = "en";
+    richInto(original, text.en || "");
+    autoRender(original);
+    wrap.appendChild(original);
+    var translation = el("details", "review-translation l-zh");
+    translation.open = !!store.reviewBilingual;
+    translation.appendChild(el("summary", null, "中文意思"));
+    var zh = el("div");
+    zh.lang = "zh-Hant";
+    richInto(zh, text.zh || "");
+    autoRender(zh);
+    translation.appendChild(zh);
+    wrap.appendChild(translation);
+    return wrap;
+  }
+
+  function refreshReviewPractice(q) {
+    var current = qs(".review-practice");
+    if (current && refreshCurrent) {
+      current.replaceWith(reviewPractice(q, refreshCurrent));
+      rerenderAll();
+    }
+  }
+
+  function reviewThinking(q) {
+    var card = el("div", "card review-thinking");
+    card.appendChild(pair({ zh: "先想一想，再看計算", en: "Think first, then calculate" }, "h2", "bi"));
+    (q.review.prompts || []).forEach(function (prompt, i) {
+      var d = el("details", "review-prompt");
+      var label = { zh: "思考提示 " + (i + 1), en: "Thinking prompt " + (i + 1) };
+      var summary = el("summary"); summary.appendChild(pairSpan(label)); d.appendChild(summary);
+      d.appendChild(pair(prompt, "div", "bi"));
+      card.appendChild(d);
+    });
+    return card;
+  }
+
+  function reviewSpan(text) {
+    if (text.en === text.zh) {
+      var single = el("span"); richInto(single, text.en); autoRender(single); return single;
+    }
+    return pairSpan(text);
+  }
+
+  function reviewVisual(q) {
+    var v = q.review.visual;
+    if (!v) return null;
+    var d = el("details", "review-visual");
+    var summary = el("summary");
+    summary.appendChild(reviewSpan({ zh: "圖解：看清楚情況", en: "Diagram: see the cases" }));
+    d.appendChild(summary);
+    d.appendChild(pair(v.caption, "p", "bi"));
+    if (v.type === "venn") {
+      // Values are text nodes; colours are supplemented by labels and outlines.
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("viewBox", "0 0 360 170");
+      svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", v.alt);
+      [[135, 80], [225, 80]].forEach(function (xy) {
+        var c = document.createElementNS(svg.namespaceURI, "circle");
+        c.setAttribute("cx", xy[0]); c.setAttribute("cy", xy[1]); c.setAttribute("r", "64");
+        c.setAttribute("class", "review-venn-circle"); svg.appendChild(c);
+      });
+      [[106, 86, "25"], [180, 86, "5"], [254, 86, "20"], [106, 162, "5 only"], [254, 162, "6 only"]].forEach(function (a) {
+        var t = document.createElementNS(svg.namespaceURI, "text");
+        t.setAttribute("x", a[0]); t.setAttribute("y", a[1]); t.setAttribute("text-anchor", "middle");
+        t.textContent = a[2]; svg.appendChild(t);
+      });
+      d.appendChild(svg);
+    }
+    if (v.type === "block") {
+      var block = el("div", "review-block");
+      block.appendChild(el("strong", null, "[ Cathy → Dora ]"));
+      block.appendChild(el("span", null, "+ 6 other students = 7 objects"));
+      d.appendChild(block);
+    }
+    if (v.type === "tree") {
+      var tree = el("ul", "review-tree");
+      [0, 2].forEach(function (start) {
+        var branch = el("li"); branch.appendChild(reviewSpan(v.rows[start][0]));
+        var leaves = el("ul");
+        v.rows.slice(start, start + 2).forEach(function (row) {
+          var leaf = el("li"); leaf.appendChild(reviewSpan(row[1]));
+          leaf.appendChild(el("span", null, " → ")); leaf.appendChild(reviewSpan(row[2]));
+          leaves.appendChild(leaf);
+        });
+        branch.appendChild(leaves); tree.appendChild(branch);
+      });
+      d.appendChild(tree);
+    }
+    if (v.headers && v.type !== "tree") {
+      var table = el("table", "review-table");
+      var caption = document.createElement("caption");
+      caption.appendChild(reviewSpan(v.caption)); table.appendChild(caption);
+      var tr = el("tr");
+      v.headers.forEach(function (h) { var th = el("th"); th.scope = "col"; th.appendChild(reviewSpan(h)); tr.appendChild(th); });
+      var thead = el("thead"); thead.appendChild(tr); table.appendChild(thead);
+      var tbody = el("tbody");
+      v.rows.forEach(function (r) {
+        var row = el("tr");
+        r.forEach(function (cell) { var td = el("td"); td.appendChild(reviewSpan(cell)); row.appendChild(td); });
+        tbody.appendChild(row);
+      });
+      table.appendChild(tbody); d.appendChild(table);
+    }
+    return d;
+  }
+
+  function reviewPractice(q, redraw) {
+    var r = reviewState(q), check = q.review.check;
+    var card = el("div", "card review-practice");
+    card.appendChild(pair({ zh: "檢討後，再試一小題", en: "After reviewing, try one more" }, "h2", "bi"));
+    var status = el("div", "review-status");
+    function statusText() {
+      setPair(status, {
+        zh: "已核對原題：" + (r.checked ? "是" : "未完成") + " · 已檢討：" + (r.reviewed ? "是" : "未完成") + " · 能獨立完成：" + (store.done[q.id] ? "已自我確認" : "未確認"),
+        en: "Original answer checked: " + (r.checked ? "yes" : "not yet") + " · Reviewed: " + (r.reviewed ? "yes" : "not yet") + " · Independent: " + (store.done[q.id] ? "self-confirmed" : "not yet")
+      });
+    }
+    statusText(); card.appendChild(status);
+    var reflection = el("details", "review-reflection");
+    var reflectionSummary = el("summary");
+    reflectionSummary.appendChild(reviewSpan({ zh: "失分或卡住的原因", en: "What caused difficulty?" }));
+    reflection.appendChild(reflectionSummary);
+    reflection.appendChild(pair({ zh: "可選多項，只儲存在這個瀏覽器。", en: "Choose any that apply. Saved in this browser." }, "p", "bi small muted"));
+    var reasons = [["english", "英文意思", "English wording"], ["concept", "概念", "Concept"], ["method", "選擇方法", "Choosing a method"], ["calculation", "計算", "Calculation"], ["working", "步驟不完整", "Incomplete working"]];
+    var group = el("div", "review-reasons");
+    reasons.forEach(function (reason) {
+      var lab = el("label"), cb = el("input"); cb.type = "checkbox";
+      cb.checked = !!(r.reasons || {})[reason[0]];
+      cb.onchange = function () { r.reasons = r.reasons || {}; r.reasons[reason[0]] = cb.checked; saveStore(); };
+      lab.appendChild(cb); lab.appendChild(reviewSpan({ zh: reason[1], en: reason[2] })); group.appendChild(lab);
+    });
+    reflection.appendChild(group); card.appendChild(reflection);
+    card.appendChild(pair(check.prompt, "p", "bi"));
+    var choices = el("div", "review-choices"), picked = null;
+    check.choices.forEach(function (choice, i) {
+      var lab = el("label", "review-choice"), radio = el("input");
+      radio.type = "radio"; radio.name = "transfer-" + q.id; radio.value = String(i);
+      radio.onchange = function () { picked = i; submit.disabled = false; };
+      lab.appendChild(radio); lab.appendChild(reviewSpan(choice)); choices.appendChild(lab);
+    });
+    card.appendChild(choices);
+    var submit = el("button", "btn btn-sm"); submit.type = "button"; submit.disabled = true;
+    submit.setAttribute("data-review-check", "1"); setPair(submit, UI.check);
+    var feedback = el("div", "review-check-feedback"); feedback.setAttribute("role", "status");
+    if (r.checkPassed) feedback.appendChild(pair(check.explanation, "div", "bi"));
+    var attestation = el("label", "review-attestation"), confirm = el("input"); confirm.type = "checkbox";
+    attestation.appendChild(confirm);
+    attestation.appendChild(reviewSpan({ zh: "我能不看題解，解釋原題和這小題的做法。", en: "I can explain the original question and this check without looking at the solution." }));
+    var independent = el("button", "btn btn-sm btn-primary"); independent.type = "button";
+    independent.setAttribute("data-review-independent", "1");
+    setPair(independent, { zh: "確認能獨立完成", en: "Confirm independent understanding" });
+    function arm() { independent.disabled = !(reviewState(q).checked && r.checkPassed && confirm.checked); }
+    confirm.onchange = arm;
+    submit.onclick = function () {
+      var correct = picked === check.answer;
+      r.checkPassed = correct;
+      if (!correct) {
+        delete store.done[q.id]; statusText();
+        var currentPage = qs("#pagenav .pg.current");
+        if (currentPage) currentPage.classList.remove("done");
+        setProgress(qs("#quiz-progress"), PART);
+      }
+      saveStore();
+      setPair(feedback, correct ? check.explanation : { zh: "再想一想：" + check.hint.zh, en: "Try again: " + check.hint.en });
+      feedback.className = "review-check-feedback " + (correct ? "ok" : "bad");
+      arm();
+    };
+    independent.onclick = function () {
+      if (independent.disabled) return;
+      r.reviewed = true; store.done[q.id] = true; saveStore(); redraw();
+    };
+    card.appendChild(submit); card.appendChild(feedback); card.appendChild(attestation); card.appendChild(independent);
+    card.appendChild(pair({ zh: "先提交並核對原題，再完成這小題和自我確認。這是自己的學習記錄，不是測驗分數。", en: "First submit and check the original answer. Then complete this check and the self-confirmation. This records your learning, not a test mark." }, "p", "bi small muted"));
+    var retry = el("button", "btn btn-sm btn-ghost"); retry.type = "button";
+    retry.setAttribute("data-review-retry", "1");
+    setPair(retry, { zh: "收起答案，重新做原題", en: "Hide answers and retry the original" });
+    retry.onclick = function () {
+      r.checked = false; r.checkPassed = false;
+      delete store.done[q.id]; delete store.picked[q.id]; delete store.hints[q.id]; delete PEEKED[q.id];
+      Object.keys(store.ans).forEach(function (key) { if (key.indexOf(q.id + "/") === 0) delete store.ans[key]; });
+      saveStore(); setSolHidden(true);
+    };
+    card.appendChild(retry); arm();
+    return card;
+  }
+
   function questionCard(q) {
     var card = el("div", "card q-card");
+    if (q.review) card.classList.add("review-question");
     card.setAttribute("data-qid", q.id);
     var head = el("div", "q-head");
     head.appendChild(el("span", "q-code", q.code));
@@ -1162,6 +1385,17 @@
       head.appendChild(bn);
     }
     card.appendChild(head);
+
+    if (q.review) {
+      var bilingual = el("label", "review-bilingual l-zh");
+      var full = el("input"); full.type = "checkbox"; full.checked = !!store.reviewBilingual;
+      full.onchange = function () {
+        store.reviewBilingual = full.checked; saveStore();
+        qsa(".review-translation", card).forEach(function (d) { d.open = full.checked; });
+      };
+      bilingual.appendChild(full); bilingual.appendChild(el("span", null, "顯示完整中英題目"));
+      card.appendChild(bilingual);
+    }
 
     /* 全班表現 chips（q.classPerf）：平均分、答對率、由易到難排名
        —— 學生一開這一題就知道全班考成點，知道自己不是唯一卡住的人。 */
@@ -1206,17 +1440,32 @@
         kw.appendChild(c);
         autoRender(c);
       });
-      card.appendChild(kw);
+      if (!q.review) card.appendChild(kw);
     }
 
     var stem = el("div", "q-stem");
-    if (q.stem && q.stem.zh) {
+    if (q.review) {
+      stem.appendChild(reviewEnglish(q.stem));
+    } else if (q.stem && q.stem.zh) {
       stem.appendChild(pair(q.stem, "div", "bi"));
     } else {
       richInto(stem, (q.stem && q.stem.en) || "");
       autoRender(stem);
     }
     card.appendChild(stem);
+    if (q.review && kw) {
+      var vocab = el("details", "review-vocab");
+      var summary = el("summary");
+      summary.appendChild(pairSpan({ zh: "字詞與拆句支援", en: "Words and sentence support" }));
+      vocab.appendChild(summary);
+      vocab.appendChild(kw);
+      var reading = parseCard(q);
+      if (reading) {
+        qs("details", reading).open = true;
+        vocab.appendChild(reading);
+      }
+      card.appendChild(vocab);
+    }
 
     // 題目圖
     (q.figures || []).forEach(function (fid) {
@@ -1245,7 +1494,9 @@
         var li = el("li");
         if (pt.label) li.appendChild(el("span", "lab", pt.label));
         var v;
-        if (pt.zh) {
+        if (q.review) {
+          v = reviewEnglish(pt);
+        } else if (pt.zh) {
           v = pair(pt, "div", "bi");
         } else {
           v = el("div");
@@ -1601,6 +1852,9 @@
         txt.appendChild(main);
         txt.appendChild(sub);
         box.appendChild(txt);
+        if (!ok && q.review && q.review.feedback && q.review.feedback[state.picked]) {
+          box.appendChild(pair(q.review.feedback[state.picked], "div", "bi review-target"));
+        }
         fbHost.appendChild(box);
       }
       btnCheck.onclick = function () {
@@ -1609,13 +1863,15 @@
         state.tries++;
         store.picked[q.id] = state.picked;
         if (correct) {
-          store.done[q.id] = true;
+          if (q.review) reviewState(q).checked = true;
+          else store.done[q.id] = true;
           saveStore();
           lockAll(q.answer);
           showFeedback(true);
           var curBtn = qs("#pagenav .pg.current");
-          if (curBtn) curBtn.classList.add("done");
+          if (curBtn && !q.review) curBtn.classList.add("done");
           setProgress(qs("#quiz-progress"), PART);
+          if (q.review) refreshReviewPractice(q);
         } else {
           delete store.done[q.id];
           saveStore();
@@ -1626,15 +1882,15 @@
             lockAll(q.answer);
             showFeedback(false, true);
           } else {
+            showFeedback(false, false);
             state.picked = null;
             markPicked();
             btnCheck.disabled = true;
-            showFeedback(false, false);
           }
         }
       };
       /* 之前答對過 → 回到這一題時直接顯示正確答案 */
-      if (store.done[q.id]) {
+      if (q.review ? reviewState(q).checked : store.done[q.id]) {
         lockAll(q.answer);
         btnCheck.disabled = true;
       }
@@ -1760,9 +2016,10 @@
       if (a.part) row.appendChild(el("span", "ans-part", a.part));
       var inp = el("input", "ans-input");
       inp.setAttribute("type", "text");
-      inp.setAttribute("inputmode", "decimal");
+      inp.setAttribute("inputmode", "text");
       inp.setAttribute("autocomplete", "off");
       inp.setAttribute("data-ans", a.part || String(i));
+      inp.setAttribute("aria-label", q.code + " " + (a.part || String(i + 1)) + " answer / 答案");
       inp.value = store.ans[q.id + "/" + (a.part || i)] || "";
       row.appendChild(inp);
       var mk = el("span", "ans-mark", "");
@@ -1782,13 +2039,14 @@
     bar.appendChild(fbHost);
     card.appendChild(bar);
 
-    /* 對答案：只保留數字、小數點與分數斜線，逗號／空格／%／單位一律唔計 */
+    /* Only remove spacing and thousands separators. Never discard signs or units:
+       -0.14 and 0.14% are not the probability 0.14. */
     function norm(s) {
       return String(s || "")
         .replace(/[\uff10-\uff19]/g, function (c) {
           return String.fromCharCode(c.charCodeAt(0) - 0xfee0);
         })
-        .replace(/[^0-9./]/g, "")
+        .replace(/[\s,]/g, "")
         .replace(/\.$/, "");
     }
     /* 值比對（2026-10-16 老師指示）：除咗同一個字串，亦接受
@@ -1869,21 +2127,32 @@
         store.ans[it.key] = typed;
         it.row.classList.remove("bad");
         it.mark.textContent = "";
+        var previousHint = qs(".review-answer-hint", it.row);
+        if (previousHint) previousHint.remove();
         if (!typed) return;
         if (isOk(it.a, typed)) lockRow(it);
         else {
           it.row.classList.add("bad");
           it.mark.textContent = "✗";
+          var previous = qs(".review-answer-hint", it.row);
+          if (previous) previous.remove();
+          if (q.review) {
+            var byPart = (q.review.answerFeedback || {})[it.a.part] || {};
+            var targeted = byPart[norm(typed)];
+            if (targeted) it.row.appendChild(pair(targeted, "div", "bi review-answer-hint"));
+          }
         }
       });
       var allOk = items.every(function (it) { return it.ok; });
-      if (allOk) store.done[q.id] = true;
-      else delete store.done[q.id];
+      if (q.review) reviewState(q).checked = allOk;
+      if (allOk) {
+        if (!q.review) store.done[q.id] = true;
+      } else delete store.done[q.id];
       saveStore();
       if (allOk) {
         feedback(true);
         var curBtn = qs("#pagenav .pg.current");
-        if (curBtn) curBtn.classList.add("done");
+        if (curBtn && !q.review) curBtn.classList.add("done");
         setProgress(qs("#quiz-progress"), PART);
       } else {
         /* 冇填過新答案（例如第一次只填了其中一格）就唔好講「有幾格唔啱」，
@@ -1891,10 +2160,11 @@
         feedback(false, anyTyped ? null : UI.ansNeedFill);
       }
       arm();
+      if (q.review) refreshReviewPractice(q);
     };
     items.forEach(function (it) { it.inp.oninput = arm; });
     /* 之前全部答對過 → 回到這一題時直接顯示已核對 */
-    if (store.done[q.id]) {
+    if (q.review ? reviewState(q).checked : store.done[q.id]) {
       items.forEach(function (it) {
         if (isOk(it.a, store.ans[it.key] || "")) lockRow(it);
       });
@@ -1920,6 +2190,10 @@
     card.appendChild(answerBox(q));
 
     var sol = q.solution || {};
+    if (q.review) {
+      var diagram = reviewVisual(q);
+      if (diagram) card.appendChild(diagram);
+    }
     /* 收起題解時：逐步要提示（KA hint 模式），只顯示已揭曉的步驟 */
     var all = sol.steps || [];
     var total = all.length;
@@ -2066,8 +2340,8 @@
         var hb = el("button", "btn btn-sm btn-primary");
         hb.setAttribute("data-hint", String(shown + 1));
         hb.appendChild(pairSpan({
-          zh: "顯示提示（第 " + (shown + 1) + " / " + total + " 步）",
-          en: "Show hint (step " + (shown + 1) + " / " + total + ")"
+          zh: (q.review ? "顯示計算步驟（第 " : "顯示提示（第 ") + (shown + 1) + " / " + total + " 步）",
+          en: (q.review ? "Show worked step (" : "Show hint (step ") + (shown + 1) + " / " + total + ")"
         }));
         hb.onclick = revealNext;
         hr.appendChild(hb);
@@ -2119,6 +2393,7 @@
     function redraw() { renderPage(pages, cur, id, part); }
     refreshCurrent = redraw;
     body.appendChild(qc);
+    if (q.review) body.appendChild(reviewThinking(q));
     /* 圓形幾何：題目有 anim 就加一張逐步圖解卡（assets/circle.js） */
     if (q.anim && window.S5A_CIRCLE) {
       var animCard = el("div", "card anim-card");
@@ -2133,8 +2408,9 @@
     var ac = answerInputCard(q);
     if (ac) body.appendChild(ac);
     var pc = parseCard(q);
-    if (pc) body.appendChild(pc);
+    if (pc && !q.review) body.appendChild(pc);
     body.appendChild(solutionCard(q, p.sec, redraw));
+    if (q.review) body.appendChild(reviewPractice(q, redraw));
 
     var foot = el("div", "card foot-nav");
     var row = el("div", "row");
@@ -2145,11 +2421,21 @@
     var marked = el("button", "btn btn-sm" + (store.done[q.id] ? " btn-primary" : " btn-ghost"));
     /* ✓ 同箭頭一樣放雙語之外：並列模式只出一次（「已掌握 Mastered ✓」） */
     function labelMarked() {
+      if (q.review) {
+        if (reviewState(q).reviewed) setPairArrow(marked, { zh: "已檢討", en: "Reviewed" }, "✓", "end");
+        else setPair(marked, { zh: "標記為已檢討", en: "Mark as reviewed" });
+        return;
+      }
       if (store.done[q.id]) setPairArrow(marked, UI.marked, "✓", "end");
       else setPair(marked, UI.mark);
     }
     labelMarked();
     marked.onclick = function () {
+      if (q.review) {
+        reviewState(q).reviewed = !reviewState(q).reviewed;
+        if (!reviewState(q).reviewed) delete store.done[q.id];
+        saveStore(); redraw(); return;
+      }
       if (store.done[q.id]) delete store.done[q.id];
       else store.done[q.id] = true;
       saveStore();

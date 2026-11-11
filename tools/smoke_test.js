@@ -2048,7 +2048,7 @@ ok(cqOv.$$("#pagenav .pg").length === 12 &&
   "第 18 章測驗檢討總覽：11 題（＋總覽）、甲／乙部兩個分隔、KaTeX 零錯誤");
 ok(cqOv.$$(".how-paper .how-row").length === CQ_DATA.introSteps.length &&
   cqOv.$$(".how-paper .how-row .l-en").length === CQ_DATA.introSteps.length,
-  "總覽渲染「點做這份卷」4 條中英步驟");
+  "總覽渲染全部中英檢討步驟");
 ok(CQ_QS.every((q) => (q.solution.steps || []).length > 0 &&
   !!q.solution.tip && (q.solution.traps || []).length > 0),
   "11 題資料層都有題解步驟、「帶得走的技巧」與常見錯誤");
@@ -2072,6 +2072,69 @@ ansType(cqBonus, 1, "10/11");
 ansSub(cqBonus).click();
 ok(cqBonus.$$(".ans-row")[1].classList.contains("ok"),
   "加分題 (b) 輸入 10/11 當正確");
+
+console.log("\n== Quiz 18 review: reading, feedback, retry and independent checks ==");
+ok(CQ_QS.every((q) => q.review && q.review.prompts.length && q.review.check && q.parse.length),
+  "Every original question has reading support, thinking prompts and a follow-up check");
+ok(CQ_QS.filter((q) => q.review.visual).length === 6,
+  "Six questions have labelled diagrams or tables");
+const reviewA4 = boot("quiz.html", "?c=ch18-quiz&p=4", null, "hide");
+ok(!!reviewA4.$(".review-original") && !reviewA4.$(".review-translation").open &&
+  !reviewA4.$(".review-vocab").open && !reviewA4.$(".review-prompt").open,
+  "English original is visible; translation, language support and thinking hints start collapsed");
+const bilingual = reviewA4.$(".review-bilingual input");
+bilingual.checked = true;
+bilingual.dispatchEvent(new reviewA4.dom.window.Event("change"));
+ok(reviewA4.$(".review-translation").open && reviewA4.store().reviewBilingual,
+  "Full bilingual reading preference opens translations and is saved");
+reviewA4.$('[data-opt="B"]').click(); reviewA4.$('[data-check]').click();
+ok(/7 blue out of 15/.test(reviewA4.$(".review-target").textContent),
+  "A4's first wrong answer gets feedback about changing cup counts");
+reviewA4.$('[data-opt="C"]').click(); reviewA4.$('[data-check]').click();
+ok(reviewA4.$$(".opt:disabled").length === 4 && !reviewA4.store().done["ch18-quiz-A4"],
+  "Revealing the answer after two errors does not mark independent understanding");
+reviewA4.$('[data-review-retry]').click();
+ok(reviewA4.$$(".opt:disabled").length === 0 && reviewA4.$$(".step").length === 0,
+  "Retry unlocks MC and hides worked steps");
+reviewA4.$('[data-opt="A"]').click(); reviewA4.$('[data-check]').click();
+ok(reviewA4.store().review["ch18-quiz-A4"].checked && !reviewA4.store().done["ch18-quiz-A4"],
+  "Correct original answer records answer checking, not independent understanding");
+const choose = reviewA4.$('.review-choice input[value="1"]');
+choose.checked = true; choose.dispatchEvent(new reviewA4.dom.window.Event("change"));
+reviewA4.$('[data-review-check]').click();
+ok(reviewA4.$('[data-review-independent]').disabled,
+  "A correct follow-up still needs explicit self-confirmation");
+const attest = reviewA4.$('.review-attestation input');
+attest.checked = true; attest.dispatchEvent(new reviewA4.dom.window.Event("change"));
+reviewA4.$('[data-review-independent]').click();
+ok(reviewA4.store().done["ch18-quiz-A4"] && reviewA4.store().review["ch18-quiz-A4"].reviewed,
+  "Checked original + correct follow-up + self-confirmation records independent understanding");
+const reviewRestored = boot("quiz.html", "?c=ch18-quiz&p=4", JSON.stringify(reviewA4.store()), "hide");
+ok(reviewRestored.store().done["ch18-quiz-A4"] && /self-confirmed/.test(reviewRestored.$(".review-status").textContent),
+  "Reviewed and independent states survive reloading");
+reviewRestored.$('[data-review-retry]').click();
+ok(!reviewRestored.store().done["ch18-quiz-A4"] && reviewRestored.store().review["ch18-quiz-A4"].reviewed,
+  "Retry preserves reviewed status and clears independent completion");
+const legacyReview = boot("quiz.html", "?c=ch18-quiz&p=1",
+  JSON.stringify({ done: { "ch18-quiz-A1": true } }), "hide");
+ok(!legacyReview.store().done["ch18-quiz-A1"] && legacyReview.store().review["ch18-quiz-A1"].reviewed,
+  "Previous mastery records migrate to reviewed without claiming independent understanding");
+const reviewB1 = boot("quiz.html", "?c=ch18-quiz&p=7", null, "hide");
+for (const invalid of ["-0.14", "0.14%", "abc0.14", "1/0"]) {
+  ansType(reviewB1, 0, invalid); ansSub(reviewB1).click();
+  ok(!reviewB1.$$(".ans-row")[0].classList.contains("ok"), "Reject invalid probability: " + invalid);
+}
+ansType(reviewB1, 2, "0.5"); ansSub(reviewB1).click();
+ok(/equally likely/.test(reviewB1.$(".review-answer-hint").textContent),
+  "B1's 0.5 response gets targeted feedback about the biased die");
+ansType(reviewB1, 0, "７/５０"); ansType(reviewB1, 1, "0.58"); ansType(reviewB1, 2, "0.42");
+ansSub(reviewB1).click();
+ok(reviewB1.$$(".ans-row.ok").length === 3 && reviewB1.store().review["ch18-quiz-B1"].checked &&
+  !reviewB1.store().done["ch18-quiz-B1"] && !reviewB1.$(".review-answer-hint"),
+  "Equivalent full-width fractions accepted; stale hints cleared; answer checking separate from mastery");
+reviewB1.$('[data-review-retry]').click();
+ok(reviewB1.$$(".ans-input").every((input) => !input.disabled && input.value === ""),
+  "Long-question retry clears all input answers and unlocks them");
 
 /* ── 6b-7. 統測乙部檢討（ut-review，2026-10-27）─────────────────────────
    來源：source/UT/Sample paper section B.pdf（乙部 9 題）

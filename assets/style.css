@@ -72,6 +72,62 @@
 }
 
 * { box-sizing: border-box; }
+
+/* Quiz review support: English first; translations and worked diagrams are optional. */
+.review-original { font-size: 19px; line-height: 1.65; }
+body[data-lang="zh"] .review-question .review-original { display: block; }
+.review-translation { font-size: 16px; margin: var(--sp-2) 0; }
+.review-translation summary, .review-vocab > summary, .review-prompt > summary,
+.review-visual > summary { cursor: pointer; color: var(--primary-ink); font-weight: 700; }
+.review-translation > div { padding: var(--sp-2) 0; }
+.review-bilingual { display: flex; align-items: center; gap: var(--sp-2); font-size: 14px; margin: var(--sp-2) 0; }
+.review-vocab { margin: var(--sp-3) 0; padding: var(--sp-3); background: var(--band); border-radius: var(--radius-sm); }
+.review-vocab .kw { margin-top: var(--sp-3); }
+.review-vocab .parse-card { margin: var(--sp-3) 0 0; padding: var(--sp-3); box-shadow: none; }
+.review-thinking h2, .review-practice h2 { font-size: 20px; margin: 0 0 var(--sp-3); }
+.review-prompt, .review-visual { padding: var(--sp-3); border: 1px solid var(--line); border-radius: var(--radius-sm); margin: var(--sp-2) 0; }
+.review-prompt[open] > .bi, .review-visual[open] > p { margin-top: var(--sp-3); }
+.review-visual svg { width: 100%; max-width: 420px; display: block; margin: auto; color: var(--text); }
+.review-visual svg text { fill: var(--text); font: 17px Georgia, serif; }
+.review-venn-circle { fill: var(--primary-soft); fill-opacity: .5; stroke: var(--primary); stroke-width: 2; }
+.review-block { display: grid; gap: var(--sp-3); text-align: center; padding: var(--sp-3); }
+.review-block strong { border: 2px solid var(--primary); border-radius: var(--radius-sm); padding: var(--sp-3); }
+.review-table { width: 100%; table-layout: fixed; border-collapse: collapse; font-size: 15px; }
+.review-table caption { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.review-table th, .review-table td { border: 1px solid var(--line); padding: var(--sp-2); overflow-wrap: anywhere; vertical-align: top; }
+.review-table th { background: var(--band); }
+.review-table .bi > span { display: block; }
+.review-tree, .review-tree ul { list-style: none; padding-left: var(--sp-4); }
+.review-tree > li { margin: var(--sp-3) 0; font-weight: 700; }
+.review-tree ul { border-left: 2px solid var(--primary-line); margin-left: var(--sp-2); }
+.review-tree ul li { margin: var(--sp-2) 0; font-weight: 400; overflow-wrap: anywhere; }
+.review-status { font-size: 14px; padding: var(--sp-3); background: var(--band); border-radius: var(--radius-sm); }
+.review-reasons { display: flex; flex-wrap: wrap; gap: var(--sp-2); }
+.review-reasons label, .review-choice, .review-attestation { display: flex; align-items: flex-start; gap: var(--sp-2); padding: var(--sp-3); border: 1px solid var(--line); border-radius: var(--radius-sm); font-size: 16px; cursor: pointer; }
+.review-reasons input, .review-choice input, .review-attestation input { flex: none; margin-top: 6px; accent-color: var(--primary); }
+.review-choices { display: grid; gap: var(--sp-2); margin: var(--sp-3) 0; }
+.review-choice:has(input:checked) { border-color: var(--primary); background: var(--primary-soft); }
+.review-attestation { margin: var(--sp-3) 0; }
+.review-check-feedback { padding: var(--sp-2) 0; }
+.review-check-feedback.ok { color: var(--ok-dark); }
+.review-check-feedback.bad { color: var(--err); }
+.review-target { flex-basis: 100%; padding-top: var(--sp-2); }
+.feedback:has(.review-target) { flex-wrap: wrap; }
+.ans-row:has(.review-answer-hint) { flex-wrap: wrap; }
+.review-answer-hint { flex-basis: 100%; font-size: 15px; color: var(--accent-ink); }
+.review-practice .btn { max-width: 100%; white-space: normal; }
+.review-reading { min-width: 0; }
+.review-practice .bi > .l-zh, .review-practice .bi > .l-en,
+.review-tree .bi > .l-zh, .review-tree .bi > .l-en { display: block; }
+body[data-lang="both"] .review-prompt summary .l-en,
+body[data-lang="both"] .review-visual summary .l-en,
+body[data-lang="both"] .review-vocab > summary .l-en { margin-left: var(--sp-2); }
+.review-reflection { margin: var(--sp-3) 0; }
+.review-reflection > summary { cursor: pointer; font-weight: 700; color: var(--primary-ink); }
+.review-reflection > summary .bi { display: inline-block; vertical-align: top; }
+body[data-lang="zh"] .review-practice .l-en, body[data-lang="zh"] .review-tree .l-en,
+body[data-lang="en"] .review-practice .l-zh, body[data-lang="en"] .review-tree .l-zh { display: none; }
+
 html { -webkit-text-size-adjust: 100%; }
 
 body {
