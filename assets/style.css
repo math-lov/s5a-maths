@@ -1638,6 +1638,11 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
 }
 
 .cg-note { font-size: 11px; fill: var(--muted); }
+.cg-area { fill: var(--primary); fill-opacity: .09; stroke: none; }
+.cg-length { font-family: Georgia, "Times New Roman", serif; font-size: 15px; fill: var(--primary-ink); paint-order: stroke; stroke: var(--card); stroke-width: 4px; stroke-linejoin: round; }
+.cg-length.given { fill: var(--text); }
+.cg-measure-guide { fill: none; stroke: var(--primary-bar); stroke-width: 1; stroke-dasharray: 4 4; }
+.cg-measure-line { fill: none; stroke: var(--primary); stroke-width: 1.6; }
 .cc .katex, .cg-say .katex { font-size: 1em; }
 .cg-say { margin: 10px auto 0; max-width: 540px; text-align: center; min-height: 38px; }
 .cg-zh { font-size: 16px; margin: 0; line-height: 1.6; }

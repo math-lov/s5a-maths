@@ -3140,5 +3140,63 @@ ok(P11_DATA.sections[1].questions.every((q) =>
   (q.anim.steps || []).every((s) => (s.arcs || []).every((a) => a.length >= 4))),
   "每一拍的角都寫明頂點、兩點、標籤與顏色");
 
+console.log("\n== 11.2 CE3: construct the chord distance step by step ==");
+const chordPart = JSON.parse(read("data/src/ch11-2.json"));
+const chordQuestions = chordPart.sections.flatMap((section) => section.questions);
+const chordCE3 = chordQuestions.find((q) => q.id === "ch11-2-ce-3");
+const chordAnim = chordCE3.anim;
+function chordPoint(name) {
+  const point = chordAnim.points[name];
+  if (point.centre) return [0, 0];
+  const radians = point.at * Math.PI / 180;
+  return [Math.cos(radians), Math.sin(radians)];
+}
+const chordA = chordPoint("A"), chordB = chordPoint("B"), chordC = chordPoint("C"), chordD = chordPoint("D");
+ok(Math.abs(chordA[0] - chordB[0]) < 1e-10 && Math.abs(chordC[0] - chordD[0]) < 1e-10 &&
+  chordA[0] < 0 && chordD[0] > 0 && chordA[1] > 0 && chordB[1] < 0 &&
+  Math.abs((chordA[1] - chordB[1]) * 10 - 16) < 1e-10 &&
+  Math.abs((chordD[0] - chordA[0]) * 10 - 12) < 1e-10,
+  "Matches source orientation; radius 10, vertical chords 16, separation exactly 12");
+// Reuse the completed geometry context; avoid retaining another full KaTeX window.
+const chordPage = p11q;
+chordPage.doc.body.replaceChildren();
+chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, chordAnim);
+ok(chordPage.$$(".cg-seg").length === 2 && chordPage.$$(".cg-draw").length === 0 &&
+  chordPage.$$(".cg-pt").filter((node) => node.style.opacity === "0").length === 3 &&
+  /original figure/.test(chordPage.$(".cg-en").textContent),
+  "Initial diagram contains only the original chords; O, M, N and construction lines are not revealed");
+chordPage.$(".cg-next").click();
+ok(chordPage.$$(".cg-length").map((node) => node.textContent).join(",") === "16 cm,16 cm",
+  "Step 1 labels the two given 16 cm chords");
+chordPage.$(".cg-next").click();
+ok(chordPage.$$(".cg-pt").every((node) => node.style.opacity !== "0") &&
+  chordPage.$$(".cg-arc").length === 2 && chordPage.$$(".cg-draw").length === 1,
+  "Step 2 reveals the perpendicular MN and both right angles");
+chordPage.$(".cg-next").click();
+ok(chordPage.$$(".cg-tick").length === 8 &&
+  chordPage.$('[data-length="AM"]').textContent === "8 cm" &&
+  !chordPage.$('[data-length="OA"]'),
+  "Step 3 bisects chords with paired ticks and 8 cm labels, before drawing the radius");
+chordPage.$(".cg-next").click();
+ok(!!chordPage.$(".cg-area") && chordPage.$('[data-length="OA"]').textContent === "10 cm" &&
+  !chordPage.$('[data-length="OM"]'),
+  "Step 4 highlights right triangle OMA and its 10 cm hypotenuse before revealing OM");
+chordPage.$(".cg-next").click();
+ok(chordPage.$('[data-length="OM"]').textContent === "6 cm" && !chordPage.$('[data-length="ON"]'),
+  "Step 5 shows only the first 6 cm distance");
+chordPage.$(".cg-next").click();
+ok(chordPage.$('[data-length="ON"]').textContent === "6 cm" && !chordPage.$(".cg-area"),
+  "Step 6 uses equal chords to find ON and removes the previous triangle highlight");
+chordPage.$(".cg-next").click();
+ok(!!chordPage.$('[data-dimension="MN"]') && /12 cm/.test(chordPage.$(".cg-measure").textContent),
+  "Final step measures the full chord-to-chord distance, not just one radius-to-chord distance");
+chordPage.$(".cg-back").click();
+ok(!chordPage.$(".cg-measure") && !chordPage.$(".cg-answer") && !!chordPage.$('[data-length="ON"]'),
+  "Back removes the final measurement while retaining the two proven 6 cm distances");
+chordPage.$(".cg-restart").click();
+ok(chordPage.$$(".cg-length,.cg-arc,.cg-area,.cg-measure,.cg-draw,.cg-tick").length === 0 &&
+  /0 \/ 7/.test(chordPage.$(".cg-count").textContent),
+  "Restart restores the original figure and step 0");
+
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

@@ -12,6 +12,9 @@
                   "ticks": [["O","A"]],
                   "notes": [["…", x, y]] } ]
    }
+   Optional step fields: polygons (current triangle), segmentLabels (named lengths),
+   dimensions (perpendicular distance), ticks [a,b,count], parallel [a,b,t].
+   Points may set labelOffset: [dx,dy]. anim.intro supplies the starting caption.
    angle 一律用「度」。座標由角度算出，所以畫出來的角就是題目寫的角。 */
 (function () {
   "use strict";
@@ -84,8 +87,9 @@
   }
 
   /* 平行記號：在線段中點畫一個「>>」 */
-  function parallelPath(a, b) {
-    var mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+  function parallelPath(a, b, t) {
+    t = typeof t === "number" ? t : 0.5;
+    var mx = a.x + (b.x - a.x) * t, my = a.y + (b.y - a.y) * t;
     var dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1;
     var ux = dx / d, uy = dy / d, nx = -uy, ny = ux;
     var s = 6;
@@ -124,6 +128,7 @@
       role: "img", "aria-label": (anim.label && anim.label.en) || "circle figure"
     });
     var gBase = el("g"), gStep = el("g");
+    var gFocus = el("g", { class: "cg-focus" });
     /* 每一步「正在講」的兩條線放在 gPulse：下一步會清走，底圖的線保持中性色，
        不會愈疊愈花（舊做法會把弦、半徑逐隻色染上去）。 */
     var gPulse = el("g", { class: "cg-pulse" });
@@ -131,6 +136,7 @@
        令學生由「已知」一路看着「想求」的那隻角。 */
     var gGoal = el("g", { class: "cg-goal" });
     svg.appendChild(gBase);
+    svg.appendChild(gFocus);
     svg.appendChild(gGoal);
     svg.appendChild(gStep);
     svg.appendChild(gPulse);
@@ -231,6 +237,7 @@
       }));
       var d = Math.hypot(p.x - CX, p.y - CY) || 1;
       var off = isCentre ? { x: -13, y: -9 } : { x: (p.x - CX) / d * 14, y: (p.y - CY) / d * 14 + 4 };
+      if (specs[name].labelOffset) off = { x: specs[name].labelOffset[0], y: specs[name].labelOffset[1] };
       g.appendChild(el("text", {
         class: "cg-label", x: p.x + off.x, y: p.y + off.y, "text-anchor": "middle"
       }, name));
@@ -281,6 +288,12 @@
 
     var steps = anim.steps || [];
     var at = 0;
+    var pending = [];
+    function later(fn, delay) { pending.push(setTimeout(fn, delay)); }
+    function cancelPending() {
+      pending.forEach(function (id) { clearTimeout(id); });
+      pending = [];
+    }
 
     /* 描線：先設 dash，再放行；jsdom 沒有 getTotalLength 就只淡入。
        instant：回看時一次過畫好，不再逐格動。 */
@@ -296,7 +309,7 @@
         node.style.strokeDashoffset = len;
       }
       node.style.opacity = "0";
-      setTimeout(function () {
+      later(function () {
         node.style.opacity = "1";
         if (len) node.style.strokeDashoffset = "0";
       }, delay || 0);
@@ -311,23 +324,29 @@
     }
 
     /* 等長記號：在線段中點畫一條小橫線（cls 可以指定顏色，例如半徑用 radii） */
-    function tick(a, b, cls, delay, instant) {
+    function tick(a, b, cls, delay, instant, count) {
       var A = screen(pts[a]), B = screen(pts[b]);
       if (!A || !B) return;
       var mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
       var dx = B.x - A.x, dy = B.y - A.y, d = Math.hypot(dx, dy) || 1;
       var nx = -dy / d, ny = dx / d;
-      var k = el("line", {
-        class: "cg-tick" + (cls ? " " + cls : ""),
-        x1: mx - nx * 5, y1: my - ny * 5, x2: mx + nx * 5, y2: my + ny * 5
-      });
+      var k = el("g", { "data-tick": a + b });
+      count = Math.max(1, Math.min(3, Number(count) || 1));
+      for (var i = 0; i < count; i++) {
+        var shift = (i - (count - 1) / 2) * 6;
+        var x = mx + dx / d * shift, y = my + dy / d * shift;
+        k.appendChild(el("line", {
+          class: "cg-tick" + (cls ? " " + cls : ""),
+          x1: x - nx * 5, y1: y - ny * 5, x2: x + nx * 5, y2: y + ny * 5
+        }));
+      }
       gStep.appendChild(k);
       if (instant) {
         k.style.opacity = "1";
         return k;
       }
       k.style.opacity = "0";
-      setTimeout(function () { k.style.opacity = "1"; }, delay || 140);
+      later(function () { k.style.opacity = "1"; }, delay || 140);
       return k;
     }
 
@@ -348,13 +367,18 @@
         return t;
       }
       t.style.opacity = "0";
-      setTimeout(function () { t.style.opacity = "1"; }, delay || 0);
+      later(function () { t.style.opacity = "1"; }, delay || 0);
       return t;
     }
 
     function draw(i, instant) {
       setFrame(frame);   // 同一頁可能有多幅圖，各自用自己的圓心與半徑
       var st = steps[i] || {};
+      gFocus.innerHTML = "";
+      (st.polygons || []).forEach(function (names) {
+        var points = names.map(function (name) { var p = screen(pts[name]); return p.x + "," + p.y; }).join(" ");
+        gFocus.appendChild(el("polygon", { class: "cg-area", points: points }));
+      });
 
       (st.show || []).forEach(function (name) {
         var g = pointGroups[name];
@@ -382,7 +406,7 @@
       (st.parallel || []).forEach(function (S, j) {
         var A = screen(pts[S[0]]), B = screen(pts[S[1]]);
         if (!A || !B) return;
-        var p = el("path", { class: "cg-par", d: parallelPath(A, B) });
+        var p = el("path", { class: "cg-par", d: parallelPath(A, B, S[2]) });
         gStep.appendChild(p);
         drawOn(p, 280 + j * 180, instant);
       });
@@ -396,7 +420,7 @@
       });
 
       (st.ticks || []).forEach(function (t) {
-        tick(t[0], t[1], "", 140, instant);
+        tick(t[0], t[1], "", 140, instant, t[2]);
       });
 
       /* 每一個角：先描兩條射線，再畫角弧，最後才寫上數值（慢一點，睇得清）。
@@ -445,7 +469,7 @@
           if (instant) {
             answerBadge(st.answer);
           } else {
-            setTimeout(function () { answerBadge(st.answer); }, 1300);
+            later(function () { answerBadge(st.answer); }, 1300);
           }
         }
       }
@@ -475,7 +499,37 @@
           return;
         }
         t.style.opacity = "0";
-        setTimeout(function () { t.style.opacity = "1"; }, 420);
+        later(function () { t.style.opacity = "1"; }, 420);
+      });
+
+      (st.segmentLabels || []).forEach(function (L) {
+        if (L.id) {
+          Array.prototype.slice.call(gStep.querySelectorAll("[data-length]")).forEach(function (old) {
+            if (old.getAttribute("data-length") === L.id) old.remove();
+          });
+        }
+        var a = screen(pts[L.between[0]]), b = screen(pts[L.between[1]]);
+        var t = el("text", {
+          class: "cg-length " + (L.colour || "claim"),
+          x: (a.x + b.x) / 2 + (L.dx || 0), y: (a.y + b.y) / 2 + (L.dy || 0),
+          "text-anchor": "middle", "data-length": L.id || ""
+        }, L.text);
+        gStep.appendChild(t); drawOn(t, 0, instant);
+      });
+
+      (st.dimensions || []).forEach(function (D) {
+        var a = screen(pts[D.between[0]]), b = screen(pts[D.between[1]]);
+        var u = unit({ x: b.x - a.x, y: b.y - a.y });
+        var nx = -u.y, ny = u.x, offset = D.offset || 48;
+        var x1 = a.x + nx * offset, y1 = a.y + ny * offset;
+        var x2 = b.x + nx * offset, y2 = b.y + ny * offset;
+        var g = el("g", { class: "cg-measure", "data-dimension": D.between.join("") });
+        g.appendChild(el("path", { class: "cg-measure-guide", d: "M" + a.x + " " + a.y + "L" + x1 + " " + y1 + "M" + b.x + " " + b.y + "L" + x2 + " " + y2 }));
+        g.appendChild(el("path", { class: "cg-measure-line", d: "M" + x1 + " " + y1 + "L" + x2 + " " + y2 +
+          "M" + (x1 - nx * 6) + " " + (y1 - ny * 6) + "L" + (x1 + nx * 6) + " " + (y1 + ny * 6) +
+          "M" + (x2 - nx * 6) + " " + (y2 - ny * 6) + "L" + (x2 + nx * 6) + " " + (y2 + ny * 6) }));
+        g.appendChild(el("text", { class: "cg-length", x: (x1 + x2) / 2 + nx * 23, y: (y1 + y2) / 2 + ny * 23, "text-anchor": "middle" }, D.text));
+        gStep.appendChild(g); drawOn(g, 0, instant);
       });
     }
 
@@ -518,8 +572,10 @@
     }
 
     function renderUpTo(n) {
+      cancelPending();
       gStep.innerHTML = "";
       gPulse.innerHTML = "";
+      gFocus.innerHTML = "";
       syncGoals(n);
       Object.keys(pointGroups).forEach(function (k) {
         pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
@@ -530,8 +586,8 @@
         setSay(sayEn, steps[n - 1].en);
         sayRef.textContent = steps[n - 1].ref || "";
       } else {
-        setSay(sayZh, "");
-        setSay(sayEn, "");
+        setSay(sayZh, (anim.intro || {}).zh || "");
+        setSay(sayEn, (anim.intro || {}).en || "");
         sayRef.textContent = "";
       }
       at = n;
@@ -548,6 +604,9 @@
 
     next.onclick = function () {
       if (at >= steps.length) return;
+      // Finish earlier steps immediately before starting the next one. This also
+      // cancels delayed labels so Back/Restart cannot show an obsolete answer.
+      renderUpTo(at);
       draw(at);
       setSay(sayZh, steps[at].zh);
       setSay(sayEn, steps[at].en);
@@ -565,6 +624,8 @@
     restart.onclick = function () { renderUpTo(0); };
 
     syncGoals(0);   // 一開頁就把「想求的那隻角」標出來
+    setSay(sayZh, (anim.intro || {}).zh || "");
+    setSay(sayEn, (anim.intro || {}).en || "");
     update();
     return wrap;
   }

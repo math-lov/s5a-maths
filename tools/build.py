@@ -753,7 +753,7 @@ STAMP_RE = re.compile(r"window\.__V\s*=\s*[^;]+;")
 # 學生就可能沿用快取的舊樣式（＝改了 CSS 但看不到）。這裡一併把 href 加上 ?v=。
 CSS_RE = re.compile(r'href="assets/style\.css(\?v=[0-9a-f]+)?"')
 STAMP_HTML = ("index.html", "quiz.html", "chapter.html")
-STAMP_ASSETS = ("assets/app.js", "assets/demos.js", "assets/style.css", "data/index.js", "data/figures.js")
+STAMP_ASSETS = ("assets/app.js", "assets/circle.js", "assets/demos.js", "assets/style.css", "data/index.js", "data/figures.js")
 
 
 def content_stamp(part_files) -> str:

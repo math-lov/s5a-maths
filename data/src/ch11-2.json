@@ -1088,29 +1088,72 @@
       }
      ],
      "anim": {
+      "label": {
+       "en": "Two vertical parallel equal chords AB and CD in a circle. The animation constructs the perpendicular distance MN through the centre O.",
+       "zh": "圓內兩條直立平行等弦 AB、CD。動畫逐步作出經圓心 O 的垂直距離 MN。"
+      },
+      "intro": {
+       "en": "Start with the original figure. The radius is 10 cm. Find the perpendicular distance between the two 16 cm chords. Press Next step to construct it.",
+       "zh": "先看原題的圖：半徑為 10 cm，兩條弦各長 16 cm。求兩弦的垂直距離，按「下一步」逐步作圖。"
+      },
       "points": {
        "O": {
-        "centre": true
+        "centre": true,
+        "hidden": true,
+        "labelOffset": [
+         0,
+         22
+        ]
        },
        "A": {
-        "at": 143.13
+        "at": 126.86989764584402,
+        "labelOffset": [
+         -15,
+         -10
+        ]
        },
        "B": {
-        "at": 36.87
+        "at": -126.86989764584402,
+        "labelOffset": [
+         -15,
+         20
+        ]
        },
        "C": {
-        "at": 216.87
+        "at": -53.13010235415599,
+        "labelOffset": [
+         15,
+         20
+        ]
        },
        "D": {
-        "at": 323.13
+        "at": 53.13010235415599,
+        "labelOffset": [
+         15,
+         -10
+        ]
        },
        "M": {
-        "at": 90,
-        "r": 0.6
+        "between": [
+         "A",
+         "B"
+        ],
+        "hidden": true,
+        "labelOffset": [
+         -16,
+         22
+        ]
        },
        "N": {
-        "at": 270,
-        "r": 0.6
+        "between": [
+         "D",
+         "C"
+        ],
+        "hidden": true,
+        "labelOffset": [
+         16,
+         22
+        ]
        }
       },
       "segments": [
@@ -1119,58 +1162,66 @@
         "B"
        ],
        [
-        "C",
-        "D"
-       ],
-       [
-        "O",
-        "M"
-       ],
-       [
-        "O",
-        "N"
-       ],
-       [
-        "M",
-        "N"
-       ],
-       [
-        "O",
-        "A"
-       ],
-       [
-        "O",
-        "D"
+        "D",
+        "C"
        ]
       ],
       "steps": [
        {
-        "zh": "兩條平行的等弦 $AB$、$CD$，各長 16 cm；半徑 10 cm。",
-        "en": "Two parallel equal chords $AB$, $CD$ of 16 cm in a circle of radius 10 cm.",
+        "en": "AB and CD are parallel. Each chord is 16 cm long. Keep their positions as in the question.",
+        "zh": "AB 與 CD 平行，每條弦長 16 cm，方向與原題相同。",
         "parallel": [
          [
           "A",
-          "B"
+          "B",
+          0.18
          ],
          [
+          "D",
           "C",
-          "D"
+          0.18
          ]
         ],
-        "ticks": [
-         [
-          "A",
-          "B"
-         ],
-         [
-          "C",
-          "D"
-         ]
+        "segmentLabels": [
+         {
+          "id": "AB",
+          "between": [
+           "A",
+           "B"
+          ],
+          "text": "16 cm",
+          "dx": -42,
+          "dy": 5,
+          "colour": "given"
+         },
+         {
+          "id": "CD",
+          "between": [
+           "D",
+           "C"
+          ],
+          "text": "16 cm",
+          "dx": 42,
+          "dy": 5,
+          "colour": "given"
+         }
         ]
        },
        {
-        "zh": "由圓心向兩條弦作垂線，垂足 $M$、$N$ 就是中點，$AM = 8$ cm。",
-        "en": "The perpendiculars from the centre meet the chords at their midpoints, so $AM = 8$ cm.",
+        "en": "Mark the centre O. Draw OM perpendicular to AB and ON perpendicular to CD. Since the chords are parallel, M, O and N lie on one straight line. MN is the distance we need.",
+        "zh": "標出圓心 O，作 OM 垂直 AB、ON 垂直 CD。兩弦平行，所以 M、O、N 在同一直線上。所求距離就是 MN。",
+        "show": [
+         "O",
+         "M",
+         "N"
+        ],
+        "lines": [
+         [
+          "M",
+          "N",
+          "ink"
+         ]
+        ],
         "arcs": [
          [
           "M",
@@ -1182,28 +1233,200 @@
          ],
          [
           "N",
-          "C",
+          "D",
           "O",
           "90°",
           "given",
           16
          ]
-        ]
-       },
-       {
-        "zh": "在 $\\triangle OAM$ 中：$OM = \\sqrt{10^2 - 8^2} = 6$ cm；同理 $ON = 6$ cm。",
-        "en": "In $\\triangle OAM$: $OM = \\sqrt{10^2 - 8^2} = 6$ cm; similarly $ON = 6$ cm.",
-        "radii": [
-         "A",
-         "D"
         ],
-        "ref": "Pyth. theorem"
+        "noRays": true,
+        "ref": "Perpendicular distance / 垂直距離"
        },
        {
-        "zh": "兩條弦在圓心的兩側，所以距離 $= OM + ON = 6 + 6 = 12$ cm。",
-        "en": "The chords are on opposite sides of the centre, so the distance is $OM + ON = 12$ cm.",
+        "en": "A perpendicular from the centre bisects a chord. Therefore $AM = MB = DN = NC = 16 \\div 2 = 8$ cm.",
+        "zh": "圓心到弦的垂線平分弦，所以 $AM = MB = DN = NC = 16 \\div 2 = 8$ cm。",
+        "ticks": [
+         [
+          "A",
+          "M",
+          2
+         ],
+         [
+          "M",
+          "B",
+          2
+         ],
+         [
+          "D",
+          "N",
+          2
+         ],
+         [
+          "N",
+          "C",
+          2
+         ]
+        ],
+        "segmentLabels": [
+         {
+          "id": "AM",
+          "between": [
+           "A",
+           "M"
+          ],
+          "text": "8 cm",
+          "dx": -30,
+          "dy": 5,
+          "colour": "claim"
+         },
+         {
+          "id": "DN",
+          "between": [
+           "D",
+           "N"
+          ],
+          "text": "8 cm",
+          "dx": 30,
+          "dy": 5,
+          "colour": "claim"
+         }
+        ],
+        "ref": "Perpendicular from centre bisects chord / 圓心到弦的垂線平分弦"
+       },
+       {
+        "en": "Join OA, a radius of 10 cm. Focus on the shaded right-angled triangle OMA: the hypotenuse is OA, not OM. Thus $OM^2 + 8^2 = 10^2$.",
+        "zh": "連接半徑 OA，長 10 cm。看陰影直角三角形 OMA：斜邊是 OA，不是 OM。因此 $OM^2 + 8^2 = 10^2$。",
+        "lines": [
+         [
+          "O",
+          "A",
+          "radii"
+         ]
+        ],
+        "rays": [
+         [
+          "A",
+          "M",
+          "claim"
+         ],
+         [
+          "M",
+          "O",
+          "claim"
+         ],
+         [
+          "O",
+          "A",
+          "radii"
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "M",
+          "A"
+         ]
+        ],
+        "segmentLabels": [
+         {
+          "id": "OA",
+          "between": [
+           "O",
+           "A"
+          ],
+          "text": "10 cm",
+          "dx": 20,
+          "dy": -9,
+          "colour": "given"
+         }
+        ],
+        "ref": "Pythagoras: hypotenuse² = other side² + other side² / 勾股定理"
+       },
+       {
+        "en": "Now find one perpendicular distance: $OM = \\sqrt{10^2 - 8^2} = \\sqrt{36} = 6$ cm. This is only the distance from the centre to AB.",
+        "zh": "先求一邊的垂直距離：$OM = \\sqrt{10^2 - 8^2} = \\sqrt{36} = 6$ cm。這只是圓心到 AB 的距離。",
+        "rays": [
+         [
+          "O",
+          "M",
+          "claim"
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "M",
+          "A"
+         ]
+        ],
+        "segmentLabels": [
+         {
+          "id": "OM",
+          "between": [
+           "O",
+           "M"
+          ],
+          "text": "6 cm",
+          "dx": 0,
+          "dy": -12,
+          "colour": "claim"
+         }
+        ],
+        "ref": "Pythagoras / 勾股定理"
+       },
+       {
+        "en": "Equal chords have equal perpendicular distances from the centre. Since AB = CD, $ON = OM = 6$ cm.",
+        "zh": "等弦與圓心等距。因為 AB = CD，所以 $ON = OM = 6$ cm。",
+        "rays": [
+         [
+          "O",
+          "M",
+          "claim"
+         ],
+         [
+          "O",
+          "N",
+          "claim"
+         ]
+        ],
+        "segmentLabels": [
+         {
+          "id": "ON",
+          "between": [
+           "O",
+           "N"
+          ],
+          "text": "6 cm",
+          "dx": 0,
+          "dy": -12,
+          "colour": "claim"
+         }
+        ],
+        "ref": "Equal chords, equidistant from centre / 等弦與圓心等距"
+       },
+       {
+        "en": "The two chords are on opposite sides of O. Add the two distances: $MN = OM + ON = 6 + 6 = 12$ cm. The bracket measures the full distance between the chords.",
+        "zh": "兩弦分居圓心 O 的兩側，把兩段距離相加：$MN = OM + ON = 6 + 6 = 12$ cm。括線標示兩弦之間的完整距離。",
+        "rays": [
+         [
+          "M",
+          "N",
+          "radii"
+         ]
+        ],
+        "dimensions": [
+         {
+          "between": [
+           "M",
+           "N"
+          ],
+          "offset": 64,
+          "text": "12 cm"
+         }
+        ],
         "final": true,
-        "answer": "distance = 12 cm"
+        "answer": "MN = 12 cm"
        }
       ]
      },
@@ -1216,8 +1439,8 @@
          "en": "The foot is the midpoint"
         },
         "math": "AM = DN = 8\\text{ cm}",
-        "zh": "由圓心作垂線到兩弦，垂足 $M$、$N$ 分別是中點，所以 $AM = DN = 8$ cm。",
-        "en": "$AM = DN = 8$ cm.",
+        "zh": "由圓心 O 向兩條平行弦作垂線，垂足為 M、N。垂線平分弦，所以 AM = DN = 16 ÷ 2 = 8 cm；M、O、N 共線。",
+        "en": "Draw OM perpendicular to AB and ON perpendicular to CD. A perpendicular from the centre bisects a chord, so AM = DN = 16 ÷ 2 = 8 cm. Since the chords are parallel, M, O and N are collinear.",
         "marking": "(1M)"
        },
        {
@@ -1227,8 +1450,8 @@
          "en": "Pythagoras"
         },
         "math": "OM = ON = \\sqrt{10^2 - 8^2} = 6",
-        "zh": "在直角三角形中：$OM = \\sqrt{10^2 - 8^2} = 6$ cm，同理 $ON = 6$ cm。",
-        "en": "$OM = ON = 6$ cm.",
+        "zh": "在直角三角形 OMA 中，OA = 10 cm 是斜邊，AM = 8 cm。用勾股定理得 OM = 6 cm。等弦與圓心等距，所以 ON = OM = 6 cm。",
+        "en": "In right-angled triangle OMA, OA = 10 cm is the hypotenuse and AM = 8 cm. Pythagoras gives OM = 6 cm. Equal chords are equidistant from the centre, so ON = OM = 6 cm.",
         "marking": "(1M)"
        },
        {
@@ -1237,9 +1460,9 @@
          "zh": "相加",
          "en": "Add"
         },
-        "math": "MN = 12\\text{ cm}",
+        "math": "MN = OM + ON = 6 + 6 = 12\\text{ cm}",
         "zh": "兩弦分居圓心兩側，所以 $MN = OM + ON = 6 + 6 = 12$ cm。",
-        "en": "$MN = 6 + 6 = 12$ cm.",
+        "en": "The chords are on opposite sides of O. Add the distances: MN = OM + ON = 6 + 6 = 12 cm.",
         "marking": "(1A)"
        }
       ],
@@ -1252,8 +1475,8 @@
        }
       ],
       "tip": {
-       "zh": "等弦 → 與圓心等距；每條弦用一次勾股定理，再看兩弦在圓心的同側還是兩側。",
-       "en": "Equal chords are equidistant from the centre; use Pythagoras once per chord, then add or subtract."
+       "en": "Use half the chord in the right-angled triangle. Calculate OM once, then use equal chords to find ON. Here the chords are on opposite sides of the centre, so add OM and ON.",
+       "zh": "直角三角形要用半條弦。先算 OM，再用等弦與圓心等距求 ON。本題兩弦分居圓心兩側，所以把 OM、ON 相加。"
       }
      }
     }
