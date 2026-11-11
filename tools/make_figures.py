@@ -8,6 +8,7 @@
   venn     文氏圖（兩個相交圓、可加一個內圈 C、可填色與放元素）
   tree     樹狀圖（由左至右的probability tree：分支寫概率，最右寫結果與
            結果的說明，例如 HHT　2 HEADS 1 TAIL）
+  svg      在 figures.json 內直接編寫的向量圖（如圓形幾何題的原圖）
 所有座標都是「數學座標」，由這裡換算成像素，所以調範圍不會走位。
 箭嘴用實心三角形自己畫（不用 SVG marker），確保任何渲染器都看到。
 """
@@ -675,6 +676,8 @@ def render(fig_id: str, spec) -> dict:
         svg = venn(spec)
     elif kind == "tree":
         svg = tree(spec)
+    elif kind == "svg":
+        svg = spec["svg"]
     else:
         raise ValueError("未知圖形類型：%s（%s）" % (kind, fig_id))
     out = {"id": fig_id, "svg": svg, "caption": spec.get("caption", {})}

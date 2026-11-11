@@ -491,5 +491,29 @@
       "zh": "$L_1$ 與 $L_2$ 相交於 $x$ 軸上的 $A(8,\\ 0)$；$L_2$ 與 $y$ 軸交於 $B(0,\\ -5)$，在 $x$ 軸之下。",
       "en": "$L_1$ and $L_2$ meet at $A(8,\\ 0)$ on the $x$-axis; $L_2$ cuts the $y$-axis at $B(0,\\ -5)$, below the $x$-axis."
     }
+  },
+  "ch11-1-sc-i": {
+  "type": "svg",
+  "svg": "<svg viewBox=\"0 0 360 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Figure I: B lies on the minor arc AC; O is the centre.\"><title>Figure I: B lies on the minor arc AC; O is the centre.</title><g fill=\"none\" stroke=\"#273548\" stroke-width=\"2\"><circle cx=\"180\" cy=\"155\" r=\"115\"/><path d=\"M71.935 115.668 L91.905 228.921\"/><path d=\"M91.905 228.921 L180.000 270.000\"/><path d=\"M180.000 155.000 L71.935 115.668\"/><path d=\"M180.000 155.000 L180.000 270.000\"/></g><g fill=\"none\" stroke=\"#5145cd\" stroke-width=\"2\"></g><g fill=\"#273548\"><circle cx=\"180.000\" cy=\"155.000\" r=\"2.6\"/><circle cx=\"71.935\" cy=\"115.668\" r=\"2.6\"/><circle cx=\"91.905\" cy=\"228.921\" r=\"2.6\"/><circle cx=\"180.000\" cy=\"270.000\" r=\"2.6\"/></g><g font-family=\"STIX Two Text, Georgia, serif\" font-style=\"italic\" font-size=\"19\" text-anchor=\"middle\"><text x=\"166.000\" y=\"145.000\" fill=\"#273548\">O</text><text x=\"55.961\" y=\"114.853\" fill=\"#273548\">A</text><text x=\"78.882\" y=\"244.848\" fill=\"#273548\">B</text><text x=\"180.000\" y=\"292.000\" fill=\"#273548\">C</text></g></svg>",
+  "caption": {
+    "zh": "圖 I：第 (a) 題；O 是圓心。",
+    "en": "Figure I — part (a). O is the centre."
   }
+},
+  "ch11-1-sc-ii": {
+  "type": "svg",
+  "svg": "<svg viewBox=\"0 0 360 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Figure II: QR is a diameter; angles a = QPO, b = QSR, c = QOP, d = SRQ.\"><title>Figure II: QR is a diameter; angles a = QPO, b = QSR, c = QOP, d = SRQ.</title><g fill=\"none\" stroke=\"#273548\" stroke-width=\"2\"><path d=\"M65 215 A115 115 0 0 1 295 215\"/><path d=\"M65.000 215.000 L98.683 133.683\"/><path d=\"M98.683 133.683 L180.000 215.000\"/><path d=\"M65.000 215.000 L228.601 110.775\"/><path d=\"M228.601 110.775 L295.000 215.000\"/><path d=\"M65.000 215.000 L295.000 215.000\"/></g><g fill=\"none\" stroke=\"#5145cd\" stroke-width=\"2\"><path d=\"M89.498 155.856 A24 24 0 0 0 115.653 150.653\"/><path d=\"M208.360 123.670 A24 24 0 0 0 241.496 131.016\"/><path d=\"M156.000 215.000 A24 24 0 0 1 163.029 198.029\"/><path d=\"M282.105 194.759 A24 24 0 0 0 271.000 215.000\"/></g><g fill=\"#273548\"><circle cx=\"180.000\" cy=\"215.000\" r=\"2.6\"/><circle cx=\"65.000\" cy=\"215.000\" r=\"2.6\"/><circle cx=\"98.683\" cy=\"133.683\" r=\"2.6\"/><circle cx=\"228.601\" cy=\"110.775\" r=\"2.6\"/><circle cx=\"295.000\" cy=\"215.000\" r=\"2.6\"/></g><g font-family=\"STIX Two Text, Georgia, serif\" font-style=\"italic\" font-size=\"19\" text-anchor=\"middle\"><text x=\"166.000\" y=\"237.000\" fill=\"#273548\">O</text><text x=\"48.000\" y=\"220.000\" fill=\"#273548\">Q</text><text x=\"86.662\" y=\"126.662\" fill=\"#273548\">P</text><text x=\"235.786\" y=\"100.367\" fill=\"#273548\">S</text><text x=\"312.000\" y=\"220.000\" fill=\"#273548\">R</text><text x=\"106.096\" y=\"175.953\" fill=\"#5145cd\">a</text><text x=\"220.376\" y=\"152.874\" fill=\"#5145cd\">b</text><text x=\"144.893\" y=\"205.458\" fill=\"#5145cd\">c</text><text x=\"261.684\" y=\"201.722\" fill=\"#5145cd\">d</text></g></svg>",
+  "caption": {
+    "zh": "圖 II：第 (b)、(c) 題；QR 是直徑，O 是圓心。",
+    "en": "Figure II — parts (b) and (c). QR is a diameter; O is the centre."
+  }
+},
+  "ch11-1-sc-iii": {
+  "type": "svg",
+  "svg": "<svg viewBox=\"0 0 360 300\" xmlns=\"http://www.w3.org/2000/svg\" role=\"img\" aria-label=\"Figure III: AC and BD meet at E at right angles.\"><title>Figure III: AC and BD meet at E at right angles.</title><g fill=\"none\" stroke=\"#273548\" stroke-width=\"2\"><circle cx=\"180\" cy=\"155\" r=\"115\"/><path d=\"M215.537 45.629 L65.000 155.000\"/><path d=\"M65.000 155.000 L215.537 264.371\"/><path d=\"M215.537 45.629 L295.000 155.000\"/><path d=\"M215.537 45.629 L215.537 264.371\"/><path d=\"M65.000 155.000 L295.000 155.000\"/></g><g fill=\"none\" stroke=\"#5145cd\" stroke-width=\"2\"><path d=\"M203.53695435311897 155 v12 h12\"/></g><g fill=\"#273548\"><circle cx=\"215.537\" cy=\"45.629\" r=\"2.6\"/><circle cx=\"65.000\" cy=\"155.000\" r=\"2.6\"/><circle cx=\"215.537\" cy=\"264.371\" r=\"2.6\"/><circle cx=\"295.000\" cy=\"155.000\" r=\"2.6\"/><circle cx=\"215.537\" cy=\"155.000\" r=\"2.6\"/></g><g font-family=\"STIX Two Text, Georgia, serif\" font-style=\"italic\" font-size=\"19\" text-anchor=\"middle\"><text x=\"220.790\" y=\"34.461\" fill=\"#273548\">A</text><text x=\"48.000\" y=\"160.000\" fill=\"#273548\">B</text><text x=\"220.790\" y=\"285.539\" fill=\"#273548\">C</text><text x=\"312.000\" y=\"160.000\" fill=\"#273548\">D</text><text x=\"227.537\" y=\"178.000\" fill=\"#273548\">E</text></g></svg>",
+  "caption": {
+    "zh": "圖 III：第 (d)、(e) 題；AC 與 BD 交於 E，且 AC ⟂ BD。",
+    "en": "Figure III — parts (d) and (e). AC and BD meet at E; AC ⟂ BD."
+  }
+}
 }
