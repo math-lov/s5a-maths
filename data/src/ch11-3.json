@@ -83,8 +83,8 @@
       ],
       "steps": [
        {
-        "en": "Start with two equal arcs: $\\widehat{AB}=\\widehat{CD}=6\\text{ cm}$.",
-        "zh": "先看兩段已知相等的弧：$\\widehat{AB}=\\widehat{CD}=6\\text{ cm}$。",
+        "en": "Start with two equal arcs: $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}=6\\text{ cm}$.",
+        "zh": "先看兩段已知相等的弧：$\\overset{\\frown}{AB}=\\overset{\\frown}{CD}=6\\text{ cm}$。",
         "arcs": [],
         "circleArcs": [
          [
@@ -138,8 +138,8 @@
         ]
        },
        {
-        "en": "The converse also holds: $\\angle AOB=\\angle COD\\Longrightarrow\\widehat{AB}=\\widehat{CD}$.",
-        "zh": "反過來，相等的圓心角也對着等弧：$\\angle AOB=\\angle COD\\Longrightarrow\\widehat{AB}=\\widehat{CD}$。",
+        "en": "The converse also holds: $\\angle AOB=\\angle COD\\Longrightarrow\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$.",
+        "zh": "反過來，相等的圓心角也對着等弧：$\\angle AOB=\\angle COD\\Longrightarrow\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$。",
         "arcs": [
          [
           "O",
@@ -390,8 +390,8 @@
       ],
       "steps": [
        {
-        "en": "Start with equal corresponding arcs $\\widehat{AB}=\\widehat{CD}$.",
-        "zh": "先找兩段相等而且對應的弧：$\\widehat{AB}=\\widehat{CD}$。",
+        "en": "Start with equal corresponding arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$.",
+        "zh": "先找兩段相等而且對應的弧：$\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$。",
         "circleArcs": [
          [
           "A",
@@ -486,8 +486,8 @@
     "zh": "弧長與圓心角成比例"
    },
    "body": {
-    "en": "In the same circle, $\\dfrac{\\widehat{AB}}{\\widehat{CD}}=\\dfrac{\\angle AOB}{\\angle COD}$. Write the circumference as C. Arc length $=\\dfrac{\\theta}{360^\\circ}\\times C$, so the common factor cancels. Keep the same arc and angle order. This is a ratio of arcs, not straight chord lengths.",
-    "zh": "同一圓內，$\\dfrac{\\widehat{AB}}{\\widehat{CD}}=\\dfrac{\\angle AOB}{\\angle COD}$。設圓周長為 C，弧長公式是 $\\dfrac{\\theta}{360^\\circ}\\times C$，消去共同因數便得到比例。兩邊的次序必須一致；這是弧長比例，不能改成弦長比例。"
+    "en": "In the same circle, $\\dfrac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\dfrac{\\angle AOB}{\\angle COD}$. Write the circumference as C. Arc length $=\\dfrac{\\theta}{360^\\circ}\\times C$, so the common factor cancels. Keep the same arc and angle order. This is a ratio of arcs, not straight chord lengths.",
+    "zh": "同一圓內，$\\dfrac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\dfrac{\\angle AOB}{\\angle COD}$。設圓周長為 C，弧長公式是 $\\dfrac{\\theta}{360^\\circ}\\times C$，消去共同因數便得到比例。兩邊的次序必須一致；這是弧長比例，不能改成弦長比例。"
    },
    "demo": {
     "type": "circle",
@@ -574,12 +574,12 @@
         ]
        },
        {
-        "en": "Use the same ratio for arc lengths $\\frac{\\widehat{AB}}{\\widehat{CD}}=\\frac{60}{120}=\\frac12$.",
-        "zh": "弧長與所對圓心角有相同的比：$\\frac{\\widehat{AB}}{\\widehat{CD}}=\\frac{60}{120}=\\frac12$。"
+        "en": "Use the same ratio for arc lengths $\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac12$.",
+        "zh": "弧長與所對圓心角有相同的比：$\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac12$。"
        },
        {
-        "en": "Double the angle doubles the arc length $\\widehat{AB}=4\\text{ cm}\\ \\Longrightarrow\\ \\widehat{CD}=8\\text{ cm}$.",
-        "zh": "圓心角加倍，對應的弧長也加倍：$\\widehat{AB}=4\\text{ cm}\\ \\Longrightarrow\\ \\widehat{CD}=8\\text{ cm}$。",
+        "en": "Double the angle doubles the arc length $\\overset{\\frown}{AB}=4\\text{ cm}\\ \\Longrightarrow\\ \\overset{\\frown}{CD}=8\\text{ cm}$.",
+        "zh": "圓心角加倍，對應的弧長也加倍：$\\overset{\\frown}{AB}=4\\text{ cm}\\ \\Longrightarrow\\ \\overset{\\frown}{CD}=8\\text{ cm}$。",
         "arcMeasures": [
          {
           "to": "D",
@@ -632,8 +632,8 @@
     "zh": "弧長與圓周角成比例"
    },
    "body": {
-    "en": "A centre angle is twice the circumference angle standing on the same arc. Thus $\\widehat{AB}:\\widehat{CD}=2\\angle APB:2\\angle CPD=\\angle APB:\\angle CPD$. Check which arc each angle stands on: it must not contain the angle vertex.",
-    "zh": "同弧的圓心角是圓周角的兩倍，所以 $\\widehat{AB}:\\widehat{CD}=2\\angle APB:2\\angle CPD=\\angle APB:\\angle CPD$。檢查每隻角所對的弧：那條弧不能包含角的頂點。"
+    "en": "A centre angle is twice the circumference angle standing on the same arc. Thus $\\overset{\\frown}{AB}:\\overset{\\frown}{CD}=2\\angle APB:2\\angle CPD=\\angle APB:\\angle CPD$. Check which arc each angle stands on: it must not contain the angle vertex.",
+    "zh": "同弧的圓心角是圓周角的兩倍，所以 $\\overset{\\frown}{AB}:\\overset{\\frown}{CD}=2\\angle APB:2\\angle CPD=\\angle APB:\\angle CPD$。檢查每隻角所對的弧：那條弧不能包含角的頂點。"
    },
    "demo": {
     "type": "circle",
@@ -747,8 +747,8 @@
         ]
        },
        {
-        "en": "The factor of two cancels $\\frac{\\widehat{AB}}{\\widehat{CD}}=\\frac{60}{120}=\\frac{30}{60}=\\frac12$.",
-        "zh": "比值中的共同因數二可以消去：$\\frac{\\widehat{AB}}{\\widehat{CD}}=\\frac{60}{120}=\\frac{30}{60}=\\frac12$。",
+        "en": "The factor of two cancels $\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac{30}{60}=\\frac12$.",
+        "zh": "比值中的共同因數二可以消去：$\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac{30}{60}=\\frac12$。",
         "final": true,
         "clearGoal": true,
         "answer": "Arc lengths ∝ circumference angles",
@@ -803,8 +803,8 @@
     "zh": "讀清弧的符號與路線"
    },
    "body": {
-    "en": "$\\widehat{ABC}$ means the arc from A to C passing through B. $AC$ means the straight chord. In one circle, arcs can be added when they are adjacent and do not overlap. Use a reflex centre angle for a major arc. The equal-arc rules also apply to circles with equal radii; they do not hold for arbitrary circles of different sizes.",
-    "zh": "$\\widehat{ABC}$ 是由 A 到 C 並經過 B 的弧；$AC$ 則是直線弦。相鄰而且不重疊的弧長可以相加。優弧要用反角。等弧定理也適用於半徑相等的圓，不能任意套用在大小不同的圓。"
+    "en": "$\\overset{\\frown}{ABC}$ means the arc from A to C passing through B. $AC$ means the straight chord. In one circle, arcs can be added when they are adjacent and do not overlap. Use a reflex centre angle for a major arc. The equal-arc rules also apply to circles with equal radii; they do not hold for arbitrary circles of different sizes.",
+    "zh": "$\\overset{\\frown}{ABC}$ 是由 A 到 C 並經過 B 的弧；$AC$ 則是直線弦。相鄰而且不重疊的弧長可以相加。優弧要用反角。等弧定理也適用於半徑相等的圓，不能任意套用在大小不同的圓。"
    }
   }
  ],
@@ -823,8 +823,8 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "en": "$O$ is the centre. The arcs $\\widehat{AB}$ and $\\widehat{BC}$ are equal, and reflex $\\angle AOC=250^\\circ$.",
-      "zh": "$O$ 是圓心。弧 $\\widehat{AB}=\\widehat{BC}$，且反角 $\\angle AOC=250^\\circ$。"
+      "en": "$O$ is the centre. The arcs $\\overset{\\frown}{AB}$ and $\\overset{\\frown}{BC}$ are equal, and reflex $\\angle AOC=250^\\circ$.",
+      "zh": "$O$ 是圓心。弧 $\\overset{\\frown}{AB}=\\overset{\\frown}{BC}$，且反角 $\\angle AOC=250^\\circ$。"
      },
      "parts": [
       {
@@ -1081,8 +1081,8 @@
       ],
       "steps": [
        {
-        "en": "Equal chords cut off equal arcs $BC=CD\\ \\Rightarrow\\ \\widehat{BC}=\\widehat{CD}$.",
-        "zh": "同圓內的等弦所對的弧相等：$BC=CD\\ \\Rightarrow\\ \\widehat{BC}=\\widehat{CD}$。",
+        "en": "Equal chords cut off equal arcs $BC=CD\\ \\Rightarrow\\ \\overset{\\frown}{BC}=\\overset{\\frown}{CD}$.",
+        "zh": "同圓內的等弦所對的弧相等：$BC=CD\\ \\Rightarrow\\ \\overset{\\frown}{BC}=\\overset{\\frown}{CD}$。",
         "ticks": [
          [
           "B",
@@ -1173,9 +1173,9 @@
          "en": "Equal chords cut off equal arcs",
          "zh": "同圓內的等弦所對的弧相等"
         },
-        "en": "Equal chords cut off equal arcs $BC=CD\\ \\Rightarrow\\ \\widehat{BC}=\\widehat{CD}$.",
-        "zh": "同圓內的等弦所對的弧相等：$BC=CD\\ \\Rightarrow\\ \\widehat{BC}=\\widehat{CD}$。",
-        "math": "BC=CD\\ \\Rightarrow\\ \\widehat{BC}=\\widehat{CD}"
+        "en": "Equal chords cut off equal arcs $BC=CD\\ \\Rightarrow\\ \\overset{\\frown}{BC}=\\overset{\\frown}{CD}$.",
+        "zh": "同圓內的等弦所對的弧相等：$BC=CD\\ \\Rightarrow\\ \\overset{\\frown}{BC}=\\overset{\\frown}{CD}$。",
+        "math": "BC=CD\\ \\Rightarrow\\ \\overset{\\frown}{BC}=\\overset{\\frown}{CD}"
        },
        {
         "title": {
@@ -1217,8 +1217,8 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "en": "The arc lengths are $\\widehat{AB}=14$ cm, $\\widehat{AD}=10$ cm and $\\widehat{BC}=6$ cm. $\\angle BDC=30^\\circ$.",
-      "zh": "已知弧長 $\\widehat{AB}=14$ cm、$\\widehat{AD}=10$ cm、$\\widehat{BC}=6$ cm，且 $\\angle BDC=30^\\circ$。"
+      "en": "The arc lengths are $\\overset{\\frown}{AB}=14$ cm, $\\overset{\\frown}{AD}=10$ cm and $\\overset{\\frown}{BC}=6$ cm. $\\angle BDC=30^\\circ$.",
+      "zh": "已知弧長 $\\overset{\\frown}{AB}=14$ cm、$\\overset{\\frown}{AD}=10$ cm、$\\overset{\\frown}{BC}=6$ cm，且 $\\angle BDC=30^\\circ$。"
      },
      "parts": [
       {
@@ -1511,8 +1511,8 @@
       {
        "label": "(b)",
        "marks": 1,
-       "en": "Figure 2: O is the centre. The arcs $\\widehat{AB}=\\widehat{BC}=\\widehat{CD}$. If $\\angle AOB=72^\\circ$, then $\\widehat{AB}:\\widehat{AD}=1:2$.",
-       "zh": "圖 2：O 是圓心，弧 $\\widehat{AB}=\\widehat{BC}=\\widehat{CD}$。若 $\\angle AOB=72^\\circ$，則 $\\widehat{AB}:\\widehat{AD}=1:2$。"
+       "en": "Figure 2: O is the centre. The arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}$. If $\\angle AOB=72^\\circ$, then $\\overset{\\frown}{AB}:\\overset{\\frown}{AD}=1:2$.",
+       "zh": "圖 2：O 是圓心，弧 $\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}$。若 $\\angle AOB=72^\\circ$，則 $\\overset{\\frown}{AB}:\\overset{\\frown}{AD}=1:2$。"
       },
       {
        "label": "(c)",
@@ -1523,8 +1523,8 @@
       {
        "label": "(d)",
        "marks": 1,
-       "en": "Figure 4: If $\\angle BAC=10^\\circ$, $\\angle CAD=20^\\circ$ and $\\angle DAE=30^\\circ$, then $\\widehat{BD}:\\widehat{CE}=2:5$.",
-       "zh": "圖 4：若 $\\angle BAC=10^\\circ$、$\\angle CAD=20^\\circ$、$\\angle DAE=30^\\circ$，則 $\\widehat{BD}:\\widehat{CE}=2:5$。"
+       "en": "Figure 4: If $\\angle BAC=10^\\circ$, $\\angle CAD=20^\\circ$ and $\\angle DAE=30^\\circ$, then $\\overset{\\frown}{BD}:\\overset{\\frown}{CE}=2:5$.",
+       "zh": "圖 4：若 $\\angle BAC=10^\\circ$、$\\angle CAD=20^\\circ$、$\\angle DAE=30^\\circ$，則 $\\overset{\\frown}{BD}:\\overset{\\frown}{CE}=2:5$。"
       }
      ],
      "answers": [
@@ -1567,7 +1567,7 @@
          "en": "Find the remaining arc",
          "zh": "求剩餘弧的圓心角"
         },
-        "math": "\\angle AOD=360^\\circ-3(72^\\circ)=144^\\circ,\\quad\\widehat{AB}:\\widehat{AD}=72:144=1:2",
+        "math": "\\angle AOD=360^\\circ-3(72^\\circ)=144^\\circ,\\quad\\overset{\\frown}{AB}:\\overset{\\frown}{AD}=72:144=1:2",
         "en": "The three equal arcs have centre angles of 72°. The other arc AD has a centre angle of 144°. Its length is twice AB, so the statement is correct.",
         "zh": "三段等弧所對圓心角都是七十二度，另一段 AD 對着一百四十四度，所以長度比為一比二，命題正確。"
        },
@@ -1587,7 +1587,7 @@
          "en": "Add the right angle pieces",
          "zh": "先組合所需的圓周角"
         },
-        "math": "\\widehat{BD}:\\widehat{CE}=\\angle BAD:\\angle CAE=(10+20):(20+30)=3:5",
+        "math": "\\overset{\\frown}{BD}:\\overset{\\frown}{CE}=\\angle BAD:\\angle CAE=(10+20):(20+30)=3:5",
         "en": "Arc BD stands opposite BAD, which is 30°. Arc CE stands opposite CAE, which is 50°. The ratio is 3:5, so the statement is incorrect.",
         "zh": "BD 所對的是 BAD，需把前兩隻角相加；CE 所對的是 CAE，需把後兩隻角相加。正確的比是三比五。"
        }
@@ -2035,8 +2035,8 @@
      "marks": 4,
      "difficulty": 2,
      "stem": {
-      "en": "$AOC$ and $BOD$ are straight lines. Arc $\\widehat{AB}=8$ cm and $\\angle COD=60^\\circ$. Let $\\widehat{CD}=x$ cm and $\\widehat{AD}=y$ cm (the arc not containing $B$).",
-      "zh": "$AOC$、$BOD$ 是直線。弧長 $\\widehat{AB}=8$ cm，$\\angle COD=60^\\circ$。設 $\\widehat{CD}=x$ cm，不含 $B$ 的弧 $\\widehat{AD}=y$ cm。"
+      "en": "$AOC$ and $BOD$ are straight lines. Arc $\\overset{\\frown}{AB}=8$ cm and $\\angle COD=60^\\circ$. Let $\\overset{\\frown}{CD}=x$ cm and $\\overset{\\frown}{AD}=y$ cm (the arc not containing $B$).",
+      "zh": "$AOC$、$BOD$ 是直線。弧長 $\\overset{\\frown}{AB}=8$ cm，$\\angle COD=60^\\circ$。設 $\\overset{\\frown}{CD}=x$ cm，不含 $B$ 的弧 $\\overset{\\frown}{AD}=y$ cm。"
      },
      "parts": [
       {
@@ -2116,8 +2116,8 @@
         ]
        },
        {
-        "en": "Equal angles give equal arcs $\\widehat{CD}=\\widehat{AB}=8\\text{ cm}$.",
-        "zh": "相等圓心角所對的弧長相等：$\\widehat{CD}=\\widehat{AB}=8\\text{ cm}$。",
+        "en": "Equal angles give equal arcs $\\overset{\\frown}{CD}=\\overset{\\frown}{AB}=8\\text{ cm}$.",
+        "zh": "相等圓心角所對的弧長相等：$\\overset{\\frown}{CD}=\\overset{\\frown}{AB}=8\\text{ cm}$。",
         "arcMeasures": [
          {
           "to": "D",
@@ -2211,9 +2211,9 @@
          "en": "Equal angles give equal arcs",
          "zh": "相等圓心角所對的弧長相等"
         },
-        "en": "Equal angles give equal arcs $\\widehat{CD}=\\widehat{AB}=8\\text{ cm}$.",
-        "zh": "相等圓心角所對的弧長相等：$\\widehat{CD}=\\widehat{AB}=8\\text{ cm}$。",
-        "math": "\\widehat{CD}=\\widehat{AB}=8\\text{ cm}"
+        "en": "Equal angles give equal arcs $\\overset{\\frown}{CD}=\\overset{\\frown}{AB}=8\\text{ cm}$.",
+        "zh": "相等圓心角所對的弧長相等：$\\overset{\\frown}{CD}=\\overset{\\frown}{AB}=8\\text{ cm}$。",
+        "math": "\\overset{\\frown}{CD}=\\overset{\\frown}{AB}=8\\text{ cm}"
        },
        {
         "title": {
@@ -2255,8 +2255,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "$AB=BC=CD=DE=EF$. The arc $\\widehat{CDF}=15$ cm. Let $z$ cm be the arc length $\\widehat{ABC}$.",
-      "zh": "弦長 $AB=BC=CD=DE=EF$。經 $D$ 的弧 $\\widehat{CDF}=15$ cm，設經 $B$ 的弧 $\\widehat{ABC}$ 長為 $z$ cm。"
+      "en": "$AB=BC=CD=DE=EF$. The arc $\\overset{\\frown}{CDF}=15$ cm. Let $z$ cm be the arc length $\\overset{\\frown}{ABC}$.",
+      "zh": "弦長 $AB=BC=CD=DE=EF$。經 $D$ 的弧 $\\overset{\\frown}{CDF}=15$ cm，設經 $B$ 的弧 $\\overset{\\frown}{ABC}$ 長為 $z$ cm。"
      },
      "parts": [
       {
@@ -2333,8 +2333,8 @@
       ],
       "steps": [
        {
-        "en": "Five equal chords cut off five equal arcs $\\widehat{AB}=\\widehat{BC}=\\widehat{CD}=\\widehat{DE}=\\widehat{EF}$.",
-        "zh": "五條相等的弦對應五段相等的弧：$\\widehat{AB}=\\widehat{BC}=\\widehat{CD}=\\widehat{DE}=\\widehat{EF}$。",
+        "en": "Five equal chords cut off five equal arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}$.",
+        "zh": "五條相等的弦對應五段相等的弧：$\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}$。",
         "ticks": [
          [
           "A",
@@ -2364,8 +2364,8 @@
         ]
        },
        {
-        "en": "Count equal arc pieces $\\widehat{ABC}:\\widehat{CDF}=2:3$.",
-        "zh": "數清兩條弧各包含多少段相等的弧：$\\widehat{ABC}:\\widehat{CDF}=2:3$。",
+        "en": "Count equal arc pieces $\\overset{\\frown}{ABC}:\\overset{\\frown}{CDF}=2:3$.",
+        "zh": "數清兩條弧各包含多少段相等的弧：$\\overset{\\frown}{ABC}:\\overset{\\frown}{CDF}=2:3$。",
         "circleArcs": [
          [
           "A",
@@ -2432,18 +2432,18 @@
          "en": "Five equal chords cut off five equal arcs",
          "zh": "五條相等的弦對應五段相等的弧"
         },
-        "en": "Five equal chords cut off five equal arcs $\\widehat{AB}=\\widehat{BC}=\\widehat{CD}=\\widehat{DE}=\\widehat{EF}$.",
-        "zh": "五條相等的弦對應五段相等的弧：$\\widehat{AB}=\\widehat{BC}=\\widehat{CD}=\\widehat{DE}=\\widehat{EF}$。",
-        "math": "\\widehat{AB}=\\widehat{BC}=\\widehat{CD}=\\widehat{DE}=\\widehat{EF}"
+        "en": "Five equal chords cut off five equal arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}$.",
+        "zh": "五條相等的弦對應五段相等的弧：$\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}$。",
+        "math": "\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}"
        },
        {
         "title": {
          "en": "Count equal arc pieces",
          "zh": "數清兩條弧各包含多少段相等的弧"
         },
-        "en": "Count equal arc pieces $\\widehat{ABC}:\\widehat{CDF}=2:3$.",
-        "zh": "數清兩條弧各包含多少段相等的弧：$\\widehat{ABC}:\\widehat{CDF}=2:3$。",
-        "math": "\\widehat{ABC}:\\widehat{CDF}=2:3"
+        "en": "Count equal arc pieces $\\overset{\\frown}{ABC}:\\overset{\\frown}{CDF}=2:3$.",
+        "zh": "數清兩條弧各包含多少段相等的弧：$\\overset{\\frown}{ABC}:\\overset{\\frown}{CDF}=2:3$。",
+        "math": "\\overset{\\frown}{ABC}:\\overset{\\frown}{CDF}=2:3"
        },
        {
         "title": {
@@ -2647,8 +2647,8 @@
      "marks": 4,
      "difficulty": 2,
      "stem": {
-      "en": "$AOD$ is a straight line. The arcs $\\widehat{BC}=12$ cm and $\\widehat{CD}=16$ cm. $\\angle COD=80^\\circ$, $x=\\angle BOC$, and $y$ cm is arc $\\widehat{AB}$.",
-      "zh": "$AOD$ 是直線。弧長 $\\widehat{BC}=12$ cm、$\\widehat{CD}=16$ cm。$\\angle COD=80^\\circ$，$x=\\angle BOC$，弧 $\\widehat{AB}$ 長 $y$ cm。"
+      "en": "$AOD$ is a straight line. The arcs $\\overset{\\frown}{BC}=12$ cm and $\\overset{\\frown}{CD}=16$ cm. $\\angle COD=80^\\circ$, $x=\\angle BOC$, and $y$ cm is arc $\\overset{\\frown}{AB}$.",
+      "zh": "$AOD$ 是直線。弧長 $\\overset{\\frown}{BC}=12$ cm、$\\overset{\\frown}{CD}=16$ cm。$\\angle COD=80^\\circ$，$x=\\angle BOC$，弧 $\\overset{\\frown}{AB}$ 長 $y$ cm。"
      },
      "parts": [
       {
@@ -2863,8 +2863,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "The arc $\\widehat{PS}=18$ cm (not through $R$), the arc $\\widehat{QR}=12$ cm, and $\\angle PRS=54^\\circ$. Let $z=\\angle QPR$.",
-      "zh": "不經 $R$ 的弧 $\\widehat{PS}=18$ cm，弧 $\\widehat{QR}=12$ cm，且 $\\angle PRS=54^\\circ$。設 $z=\\angle QPR$。"
+      "en": "The arc $\\overset{\\frown}{PS}=18$ cm (not through $R$), the arc $\\overset{\\frown}{QR}=12$ cm, and $\\angle PRS=54^\\circ$. Let $z=\\angle QPR$.",
+      "zh": "不經 $R$ 的弧 $\\overset{\\frown}{PS}=18$ cm，弧 $\\overset{\\frown}{QR}=12$ cm，且 $\\angle PRS=54^\\circ$。設 $z=\\angle QPR$。"
      },
      "parts": [
       {
@@ -2916,8 +2916,8 @@
       ],
       "steps": [
        {
-        "en": "Match each angle with its opposite arc $\\angle QPR:\\angle PRS=\\widehat{QR}:\\widehat{PS}$.",
-        "zh": "先把每隻圓周角與它所對的弧配對：$\\angle QPR:\\angle PRS=\\widehat{QR}:\\widehat{PS}$。",
+        "en": "Match each angle with its opposite arc $\\angle QPR:\\angle PRS=\\overset{\\frown}{QR}:\\overset{\\frown}{PS}$.",
+        "zh": "先把每隻圓周角與它所對的弧配對：$\\angle QPR:\\angle PRS=\\overset{\\frown}{QR}:\\overset{\\frown}{PS}$。",
         "arcs": [
          [
           "R",
@@ -3008,9 +3008,9 @@
          "en": "Match each angle with its opposite arc",
          "zh": "先把每隻圓周角與它所對的弧配對"
         },
-        "en": "Match each angle with its opposite arc $\\angle QPR:\\angle PRS=\\widehat{QR}:\\widehat{PS}$.",
-        "zh": "先把每隻圓周角與它所對的弧配對：$\\angle QPR:\\angle PRS=\\widehat{QR}:\\widehat{PS}$。",
-        "math": "\\angle QPR:\\angle PRS=\\widehat{QR}:\\widehat{PS}"
+        "en": "Match each angle with its opposite arc $\\angle QPR:\\angle PRS=\\overset{\\frown}{QR}:\\overset{\\frown}{PS}$.",
+        "zh": "先把每隻圓周角與它所對的弧配對：$\\angle QPR:\\angle PRS=\\overset{\\frown}{QR}:\\overset{\\frown}{PS}$。",
+        "math": "\\angle QPR:\\angle PRS=\\overset{\\frown}{QR}:\\overset{\\frown}{PS}"
        },
        {
         "title": {
@@ -3251,8 +3251,8 @@
      "marks": 4,
      "difficulty": 2,
      "stem": {
-      "en": "$PQ=PT=ST$. The arc $\\widehat{QPT}=14$ cm and $\\angle QRT=70^\\circ$. Let $x$ cm be arc $ST$ and $y=\\angle SRT$.",
-      "zh": "弦 $PQ=PT=ST$。弧 $\\widehat{QPT}=14$ cm，$\\angle QRT=70^\\circ$。設弧 $ST$ 長 $x$ cm，$y=\\angle SRT$。"
+      "en": "$PQ=PT=ST$. The arc $\\overset{\\frown}{QPT}=14$ cm and $\\angle QRT=70^\\circ$. Let $x$ cm be arc $ST$ and $y=\\angle SRT$.",
+      "zh": "弦 $PQ=PT=ST$。弧 $\\overset{\\frown}{QPT}=14$ cm，$\\angle QRT=70^\\circ$。設弧 $ST$ 長 $x$ cm，$y=\\angle SRT$。"
      },
      "parts": [
       {
@@ -3330,8 +3330,8 @@
       ],
       "steps": [
        {
-        "en": "Equal chords cut off equal arcs $\\widehat{PQ}=\\widehat{PT}=\\widehat{ST}$.",
-        "zh": "三條相等的弦對應三段相等的弧：$\\widehat{PQ}=\\widehat{PT}=\\widehat{ST}$。",
+        "en": "Equal chords cut off equal arcs $\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}$.",
+        "zh": "三條相等的弦對應三段相等的弧：$\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}$。",
         "ticks": [
          [
           "P",
@@ -3361,8 +3361,8 @@
         ]
        },
        {
-        "en": "Split the 14 cm arc into two equal parts $\\widehat{PT}=\\frac12\\widehat{QPT}=7\\text{ cm}$.",
-        "zh": "把十四厘米的弧分成相等的兩段：$\\widehat{PT}=\\frac12\\widehat{QPT}=7\\text{ cm}$。",
+        "en": "Split the 14 cm arc into two equal parts $\\overset{\\frown}{PT}=\\frac12\\overset{\\frown}{QPT}=7\\text{ cm}$.",
+        "zh": "把十四厘米的弧分成相等的兩段：$\\overset{\\frown}{PT}=\\frac12\\overset{\\frown}{QPT}=7\\text{ cm}$。",
         "arcMeasures": [
          {
           "to": "T",
@@ -3375,8 +3375,8 @@
         ]
        },
        {
-        "en": "Transfer the equal arc length to ST $x=\\widehat{ST}=7\\text{ cm}$.",
-        "zh": "再利用等弧關係求出所需的弧長：$x=\\widehat{ST}=7\\text{ cm}$。",
+        "en": "Transfer the equal arc length to ST $x=\\overset{\\frown}{ST}=7\\text{ cm}$.",
+        "zh": "再利用等弧關係求出所需的弧長：$x=\\overset{\\frown}{ST}=7\\text{ cm}$。",
         "arcMeasures": [
          {
           "to": "T",
@@ -3460,27 +3460,27 @@
          "en": "Equal chords cut off equal arcs",
          "zh": "三條相等的弦對應三段相等的弧"
         },
-        "en": "Equal chords cut off equal arcs $\\widehat{PQ}=\\widehat{PT}=\\widehat{ST}$.",
-        "zh": "三條相等的弦對應三段相等的弧：$\\widehat{PQ}=\\widehat{PT}=\\widehat{ST}$。",
-        "math": "\\widehat{PQ}=\\widehat{PT}=\\widehat{ST}"
+        "en": "Equal chords cut off equal arcs $\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}$.",
+        "zh": "三條相等的弦對應三段相等的弧：$\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}$。",
+        "math": "\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}"
        },
        {
         "title": {
          "en": "Split the 14 cm arc into two equal parts",
          "zh": "把十四厘米的弧分成相等的兩段"
         },
-        "en": "Split the 14 cm arc into two equal parts $\\widehat{PT}=\\frac12\\widehat{QPT}=7\\text{ cm}$.",
-        "zh": "把十四厘米的弧分成相等的兩段：$\\widehat{PT}=\\frac12\\widehat{QPT}=7\\text{ cm}$。",
-        "math": "\\widehat{PT}=\\frac12\\widehat{QPT}=7\\text{ cm}"
+        "en": "Split the 14 cm arc into two equal parts $\\overset{\\frown}{PT}=\\frac12\\overset{\\frown}{QPT}=7\\text{ cm}$.",
+        "zh": "把十四厘米的弧分成相等的兩段：$\\overset{\\frown}{PT}=\\frac12\\overset{\\frown}{QPT}=7\\text{ cm}$。",
+        "math": "\\overset{\\frown}{PT}=\\frac12\\overset{\\frown}{QPT}=7\\text{ cm}"
        },
        {
         "title": {
          "en": "Transfer the equal arc length to ST",
          "zh": "再利用等弧關係求出所需的弧長"
         },
-        "en": "Transfer the equal arc length to ST $x=\\widehat{ST}=7\\text{ cm}$.",
-        "zh": "再利用等弧關係求出所需的弧長：$x=\\widehat{ST}=7\\text{ cm}$。",
-        "math": "x=\\widehat{ST}=7\\text{ cm}"
+        "en": "Transfer the equal arc length to ST $x=\\overset{\\frown}{ST}=7\\text{ cm}$.",
+        "zh": "再利用等弧關係求出所需的弧長：$x=\\overset{\\frown}{ST}=7\\text{ cm}$。",
+        "math": "x=\\overset{\\frown}{ST}=7\\text{ cm}"
        },
        {
         "title": {
@@ -3513,8 +3513,8 @@
      "marks": 4,
      "difficulty": 2,
      "stem": {
-      "en": "$BC$ is the diameter of the semi-circle. The arcs $\\widehat{AB}=\\widehat{CD}$ and $\\angle OBA=57^\\circ$.",
-      "zh": "$BC$ 是半圓的直徑。已知弧 $\\widehat{AB}=\\widehat{CD}$，且 $\\angle OBA=57^\\circ$。"
+      "en": "$BC$ is the diameter of the semi-circle. The arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$ and $\\angle OBA=57^\\circ$.",
+      "zh": "$BC$ 是半圓的直徑。已知弧 $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$，且 $\\angle OBA=57^\\circ$。"
      },
      "parts": [
       {
@@ -3987,8 +3987,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "The arcs $\\widehat{AB}=\\widehat{CD}$ and $\\widehat{AD}:\\widehat{BC}=3:1$. $\\angle BOC=48^\\circ$.",
-      "zh": "已知弧 $\\widehat{AB}=\\widehat{CD}$，$\\widehat{AD}:\\widehat{BC}=3:1$，且 $\\angle BOC=48^\\circ$。"
+      "en": "The arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$ and $\\overset{\\frown}{AD}:\\overset{\\frown}{BC}=3:1$. $\\angle BOC=48^\\circ$.",
+      "zh": "已知弧 $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$，$\\overset{\\frown}{AD}:\\overset{\\frown}{BC}=3:1$，且 $\\angle BOC=48^\\circ$。"
      },
      "parts": [
       {
@@ -4236,21 +4236,21 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "$AC$ is a diameter. The semicircular arc $\\widehat{ABC}=20$ cm and $\\angle BAC=63^\\circ$.",
-      "zh": "$AC$ 是直徑。半圓弧 $\\widehat{ABC}=20$ cm，且 $\\angle BAC=63^\\circ$。"
+      "en": "$AC$ is a diameter. The semicircular arc $\\overset{\\frown}{ABC}=20$ cm and $\\angle BAC=63^\\circ$.",
+      "zh": "$AC$ 是直徑。半圓弧 $\\overset{\\frown}{ABC}=20$ cm，且 $\\angle BAC=63^\\circ$。"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the arc length $\\widehat{AB}$.",
-       "zh": "求弧長 $\\widehat{AB}$。",
+       "en": "Find the arc length $\\overset{\\frown}{AB}$.",
+       "zh": "求弧長 $\\overset{\\frown}{AB}$。",
        "marks": 2
       }
      ],
      "answers": [
       {
        "part": "",
-       "math": "\\widehat{AB}=6\\text{ cm}",
+       "math": "\\overset{\\frown}{AB}=6\\text{ cm}",
        "input": "6"
       }
      ],
@@ -4471,21 +4471,21 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "$AD$ is a diameter. The arc lengths are $\\widehat{BC}=20$ cm and $\\widehat{CD}=12$ cm. $\\angle AOB=60^\\circ$.",
-      "zh": "$AD$ 是直徑，弧長 $\\widehat{BC}=20$ cm、$\\widehat{CD}=12$ cm，且 $\\angle AOB=60^\\circ$。"
+      "en": "$AD$ is a diameter. The arc lengths are $\\overset{\\frown}{BC}=20$ cm and $\\overset{\\frown}{CD}=12$ cm. $\\angle AOB=60^\\circ$.",
+      "zh": "$AD$ 是直徑，弧長 $\\overset{\\frown}{BC}=20$ cm、$\\overset{\\frown}{CD}=12$ cm，且 $\\angle AOB=60^\\circ$。"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the arc length $\\widehat{AB}$.",
-       "zh": "求弧長 $\\widehat{AB}$。",
+       "en": "Find the arc length $\\overset{\\frown}{AB}$.",
+       "zh": "求弧長 $\\overset{\\frown}{AB}$。",
        "marks": 2
       }
      ],
      "answers": [
       {
        "part": "",
-       "math": "\\widehat{AB}=16\\text{ cm}",
+       "math": "\\overset{\\frown}{AB}=16\\text{ cm}",
        "input": "16"
       }
      ],
@@ -4523,8 +4523,8 @@
       ],
       "steps": [
        {
-        "en": "Add the two adjacent arcs $\\widehat{BCD}=20+12=32\\text{ cm}$.",
-        "zh": "先把相鄰的兩段已知弧長相加：$\\widehat{BCD}=20+12=32\\text{ cm}$。",
+        "en": "Add the two adjacent arcs $\\overset{\\frown}{BCD}=20+12=32\\text{ cm}$.",
+        "zh": "先把相鄰的兩段已知弧長相加：$\\overset{\\frown}{BCD}=20+12=32\\text{ cm}$。",
         "circleArcs": [
          [
           "B",
@@ -4557,8 +4557,8 @@
         ]
        },
        {
-        "en": "Compare arc AB with the whole arc BCD $\\frac{\\widehat{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\widehat{AB}=16\\text{ cm}$.",
-        "zh": "把所求弧與整段已知弧的圓心角配對：$\\frac{\\widehat{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\widehat{AB}=16\\text{ cm}$。",
+        "en": "Compare arc AB with the whole arc BCD $\\frac{\\overset{\\frown}{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\overset{\\frown}{AB}=16\\text{ cm}$.",
+        "zh": "把所求弧與整段已知弧的圓心角配對：$\\frac{\\overset{\\frown}{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\overset{\\frown}{AB}=16\\text{ cm}$。",
         "arcMeasures": [
          {
           "to": "B",
@@ -4620,9 +4620,9 @@
          "en": "Add the two adjacent arcs",
          "zh": "先把相鄰的兩段已知弧長相加"
         },
-        "en": "Add the two adjacent arcs $\\widehat{BCD}=20+12=32\\text{ cm}$.",
-        "zh": "先把相鄰的兩段已知弧長相加：$\\widehat{BCD}=20+12=32\\text{ cm}$。",
-        "math": "\\widehat{BCD}=20+12=32\\text{ cm}"
+        "en": "Add the two adjacent arcs $\\overset{\\frown}{BCD}=20+12=32\\text{ cm}$.",
+        "zh": "先把相鄰的兩段已知弧長相加：$\\overset{\\frown}{BCD}=20+12=32\\text{ cm}$。",
+        "math": "\\overset{\\frown}{BCD}=20+12=32\\text{ cm}"
        },
        {
         "title": {
@@ -4638,9 +4638,9 @@
          "en": "Compare arc AB with the whole arc BCD",
          "zh": "把所求弧與整段已知弧的圓心角配對"
         },
-        "en": "Compare arc AB with the whole arc BCD $\\frac{\\widehat{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\widehat{AB}=16\\text{ cm}$.",
-        "zh": "把所求弧與整段已知弧的圓心角配對：$\\frac{\\widehat{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\widehat{AB}=16\\text{ cm}$。",
-        "math": "\\frac{\\widehat{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\widehat{AB}=16\\text{ cm}"
+        "en": "Compare arc AB with the whole arc BCD $\\frac{\\overset{\\frown}{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\overset{\\frown}{AB}=16\\text{ cm}$.",
+        "zh": "把所求弧與整段已知弧的圓心角配對：$\\frac{\\overset{\\frown}{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\overset{\\frown}{AB}=16\\text{ cm}$。",
+        "math": "\\frac{\\overset{\\frown}{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\overset{\\frown}{AB}=16\\text{ cm}"
        }
       ],
       "traps": [
@@ -4986,8 +4986,8 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "en": "$AD$ is a diameter. The arcs $\\widehat{BC}=\\widehat{CD}=\\widehat{DE}$ and $\\angle OBC=65^\\circ$.",
-      "zh": "$AD$ 是直徑。弧 $\\widehat{BC}=\\widehat{CD}=\\widehat{DE}$，且 $\\angle OBC=65^\\circ$。"
+      "en": "$AD$ is a diameter. The arcs $\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}$ and $\\angle OBC=65^\\circ$.",
+      "zh": "$AD$ 是直徑。弧 $\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}$，且 $\\angle OBC=65^\\circ$。"
      },
      "parts": [
       {
@@ -5296,8 +5296,8 @@
      "marks": 2,
      "difficulty": 3,
      "stem": {
-      "en": "$O$ is the centre, $AO\\parallel BC$, and the arc lengths satisfy $\\widehat{AB}:\\widehat{BC}=1:3$.",
-      "zh": "$O$ 是圓心，$AO\\parallel BC$，弧長比 $\\widehat{AB}:\\widehat{BC}=1:3$。"
+      "en": "$O$ is the centre, $AO\\parallel BC$, and the arc lengths satisfy $\\overset{\\frown}{AB}:\\overset{\\frown}{BC}=1:3$.",
+      "zh": "$O$ 是圓心，$AO\\parallel BC$，弧長比 $\\overset{\\frown}{AB}:\\overset{\\frown}{BC}=1:3$。"
      },
      "parts": [
       {
@@ -5562,21 +5562,21 @@
      "marks": 2,
      "difficulty": 3,
      "stem": {
-      "en": "$AD$ is a diameter. The arc $\\widehat{AB}=4.5$ cm, $\\angle BAD=63^\\circ$ and $\\angle BEC=27^\\circ$.",
-      "zh": "$AD$ 是直徑，弧 $\\widehat{AB}=4.5$ cm，$\\angle BAD=63^\\circ$，$\\angle BEC=27^\\circ$。"
+      "en": "$AD$ is a diameter. The arc $\\overset{\\frown}{AB}=4.5$ cm, $\\angle BAD=63^\\circ$ and $\\angle BEC=27^\\circ$.",
+      "zh": "$AD$ 是直徑，弧 $\\overset{\\frown}{AB}=4.5$ cm，$\\angle BAD=63^\\circ$，$\\angle BEC=27^\\circ$。"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the arc length $\\widehat{CD}$.",
-       "zh": "求弧長 $\\widehat{CD}$。",
+       "en": "Find the arc length $\\overset{\\frown}{CD}$.",
+       "zh": "求弧長 $\\overset{\\frown}{CD}$。",
        "marks": 2
       }
      ],
      "answers": [
       {
        "part": "",
-       "math": "\\widehat{CD}=6\\text{ cm}",
+       "math": "\\overset{\\frown}{CD}=6\\text{ cm}",
        "input": "6"
       }
      ],
@@ -5723,8 +5723,8 @@
         ]
        },
        {
-        "en": "Use arc lengths and circumference angles $\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}$.",
-        "zh": "把兩段弧與所對的圓周角依次配對：$\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}$。",
+        "en": "Use arc lengths and circumference angles $\\frac{\\overset{\\frown}{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\overset{\\frown}{CD}=6\\text{ cm}$.",
+        "zh": "把兩段弧與所對的圓周角依次配對：$\\frac{\\overset{\\frown}{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\overset{\\frown}{CD}=6\\text{ cm}$。",
         "arcMeasures": [
          {
           "to": "D",
@@ -5809,9 +5809,9 @@
          "en": "Use arc lengths and circumference angles",
          "zh": "把兩段弧與所對的圓周角依次配對"
         },
-        "en": "Use arc lengths and circumference angles $\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}$.",
-        "zh": "把兩段弧與所對的圓周角依次配對：$\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}$。",
-        "math": "\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}"
+        "en": "Use arc lengths and circumference angles $\\frac{\\overset{\\frown}{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\overset{\\frown}{CD}=6\\text{ cm}$.",
+        "zh": "把兩段弧與所對的圓周角依次配對：$\\frac{\\overset{\\frown}{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\overset{\\frown}{CD}=6\\text{ cm}$。",
+        "math": "\\frac{\\overset{\\frown}{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\overset{\\frown}{CD}=6\\text{ cm}"
        }
       ],
       "traps": [
@@ -5835,8 +5835,8 @@
      "marks": 2,
      "difficulty": 3,
      "stem": {
-      "en": "$BD$ is a diameter, the arcs $\\widehat{AB}=\\widehat{DE}$, and $\\angle ACE=36^\\circ$.",
-      "zh": "$BD$ 是直徑，弧 $\\widehat{AB}=\\widehat{DE}$，且 $\\angle ACE=36^\\circ$。"
+      "en": "$BD$ is a diameter, the arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{DE}$, and $\\angle ACE=36^\\circ$.",
+      "zh": "$BD$ 是直徑，弧 $\\overset{\\frown}{AB}=\\overset{\\frown}{DE}$，且 $\\angle ACE=36^\\circ$。"
      },
      "parts": [
       {
@@ -6089,21 +6089,21 @@
      "marks": 2,
      "difficulty": 3,
      "stem": {
-      "en": "$AD$ is a diameter, $\\widehat{AB}=\\widehat{CD}=12$ cm, and $\\angle BED=50^\\circ$.",
-      "zh": "$AD$ 是直徑，弧長 $\\widehat{AB}=\\widehat{CD}=12$ cm，且 $\\angle BED=50^\\circ$。"
+      "en": "$AD$ is a diameter, $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}=12$ cm, and $\\angle BED=50^\\circ$.",
+      "zh": "$AD$ 是直徑，弧長 $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}=12$ cm，且 $\\angle BED=50^\\circ$。"
      },
      "parts": [
       {
        "label": "",
-       "en": "Find the arc length $\\widehat{CB}$.",
-       "zh": "求弧長 $\\widehat{CB}$。",
+       "en": "Find the arc length $\\overset{\\frown}{CB}$.",
+       "zh": "求弧長 $\\overset{\\frown}{CB}$。",
        "marks": 2
       }
      ],
      "answers": [
       {
        "part": "",
-       "math": "\\widehat{CB}=3\\text{ cm}",
+       "math": "\\overset{\\frown}{CB}=3\\text{ cm}",
        "input": "3"
       }
      ],
@@ -6197,8 +6197,8 @@
         ]
        },
        {
-        "en": "Find the whole arc BCD $\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}$.",
-        "zh": "先配對整段弧及它所對的圓周角：$\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}$。",
+        "en": "Find the whole arc BCD $\\frac{\\overset{\\frown}{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\overset{\\frown}{BCD}=15\\text{ cm}$.",
+        "zh": "先配對整段弧及它所對的圓周角：$\\frac{\\overset{\\frown}{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\overset{\\frown}{BCD}=15\\text{ cm}$。",
         "arcMeasures": [
          {
           "to": "D",
@@ -6211,8 +6211,8 @@
         ]
        },
        {
-        "en": "Subtract CD from the whole arc $\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}$.",
-        "zh": "最後從整段弧中減去已知的一部分：$\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}$。",
+        "en": "Subtract CD from the whole arc $\\overset{\\frown}{CB}=\\overset{\\frown}{BCD}-\\overset{\\frown}{CD}=15-12=3\\text{ cm}$.",
+        "zh": "最後從整段弧中減去已知的一部分：$\\overset{\\frown}{CB}=\\overset{\\frown}{BCD}-\\overset{\\frown}{CD}=15-12=3\\text{ cm}$。",
         "arcMeasures": [
          {
           "to": "B",
@@ -6287,18 +6287,18 @@
          "en": "Find the whole arc BCD",
          "zh": "先配對整段弧及它所對的圓周角"
         },
-        "en": "Find the whole arc BCD $\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}$.",
-        "zh": "先配對整段弧及它所對的圓周角：$\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}$。",
-        "math": "\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}"
+        "en": "Find the whole arc BCD $\\frac{\\overset{\\frown}{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\overset{\\frown}{BCD}=15\\text{ cm}$.",
+        "zh": "先配對整段弧及它所對的圓周角：$\\frac{\\overset{\\frown}{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\overset{\\frown}{BCD}=15\\text{ cm}$。",
+        "math": "\\frac{\\overset{\\frown}{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\overset{\\frown}{BCD}=15\\text{ cm}"
        },
        {
         "title": {
          "en": "Subtract CD from the whole arc",
          "zh": "最後從整段弧中減去已知的一部分"
         },
-        "en": "Subtract CD from the whole arc $\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}$.",
-        "zh": "最後從整段弧中減去已知的一部分：$\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}$。",
-        "math": "\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}"
+        "en": "Subtract CD from the whole arc $\\overset{\\frown}{CB}=\\overset{\\frown}{BCD}-\\overset{\\frown}{CD}=15-12=3\\text{ cm}$.",
+        "zh": "最後從整段弧中減去已知的一部分：$\\overset{\\frown}{CB}=\\overset{\\frown}{BCD}-\\overset{\\frown}{CD}=15-12=3\\text{ cm}$。",
+        "math": "\\overset{\\frown}{CB}=\\overset{\\frown}{BCD}-\\overset{\\frown}{CD}=15-12=3\\text{ cm}"
        }
       ],
       "traps": [
@@ -6334,8 +6334,8 @@
       },
       {
        "label": "(b)",
-       "en": "If $\\widehat{AB}=\\widehat{CD}$ and $\\angle AOB=74^\\circ$, find $y$.",
-       "zh": "若弧 $\\widehat{AB}=\\widehat{CD}$，且 $\\angle AOB=74^\\circ$，求 $y$。",
+       "en": "If $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$ and $\\angle AOB=74^\\circ$, find $y$.",
+       "zh": "若弧 $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$，且 $\\angle AOB=74^\\circ$，求 $y$。",
        "marks": 2
       }
      ],
@@ -6731,8 +6731,8 @@
       ],
       "steps": [
        {
-        "en": "Join AB and CD and compare equal chords $AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}$.",
-        "zh": "連出輔助弦，等弦對應相等的弧：$AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}$。",
+        "en": "Join AB and CD and compare equal chords $AC=BD\\quad\\Rightarrow\\quad\\overset{\\frown}{AC}=\\overset{\\frown}{BD}$.",
+        "zh": "連出輔助弦，等弦對應相等的弧：$AC=BD\\quad\\Rightarrow\\quad\\overset{\\frown}{AC}=\\overset{\\frown}{BD}$。",
         "lines": [
          [
           "A",
@@ -6891,9 +6891,9 @@
          "en": "Join AB and CD and compare equal chords",
          "zh": "連出輔助弦，等弦對應相等的弧"
         },
-        "en": "Join AB and CD and compare equal chords $AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}$.",
-        "zh": "連出輔助弦，等弦對應相等的弧：$AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}$。",
-        "math": "AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}"
+        "en": "Join AB and CD and compare equal chords $AC=BD\\quad\\Rightarrow\\quad\\overset{\\frown}{AC}=\\overset{\\frown}{BD}$.",
+        "zh": "連出輔助弦，等弦對應相等的弧：$AC=BD\\quad\\Rightarrow\\quad\\overset{\\frown}{AC}=\\overset{\\frown}{BD}$。",
+        "math": "AC=BD\\quad\\Rightarrow\\quad\\overset{\\frown}{AC}=\\overset{\\frown}{BD}"
        },
        {
         "title": {
@@ -6953,8 +6953,8 @@
      "marks": 2,
      "difficulty": 3,
      "stem": {
-      "en": "$AC$ and $BD$ meet at $E$. The consecutive arc lengths satisfy $\\widehat{AB}:\\widehat{BC}:\\widehat{CD}:\\widehat{DA}=7:2:6:3$.",
-      "zh": "$AC$ 與 $BD$ 交於 $E$，相鄰弧長比 $\\widehat{AB}:\\widehat{BC}:\\widehat{CD}:\\widehat{DA}=7:2:6:3$。"
+      "en": "$AC$ and $BD$ meet at $E$. The consecutive arc lengths satisfy $\\overset{\\frown}{AB}:\\overset{\\frown}{BC}:\\overset{\\frown}{CD}:\\overset{\\frown}{DA}=7:2:6:3$.",
+      "zh": "$AC$ 與 $BD$ 交於 $E$，相鄰弧長比 $\\overset{\\frown}{AB}:\\overset{\\frown}{BC}:\\overset{\\frown}{CD}:\\overset{\\frown}{DA}=7:2:6:3$。"
      },
      "parts": [
       {
@@ -7200,8 +7200,8 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "en": "$AC$ and $BD$ meet at $E$. The arcs $\\widehat{AB}=\\widehat{CD}$.",
-      "zh": "$AC$ 與 $BD$ 交於 $E$，且弧 $\\widehat{AB}=\\widehat{CD}$。"
+      "en": "$AC$ and $BD$ meet at $E$. The arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$.",
+      "zh": "$AC$ 與 $BD$ 交於 $E$，且弧 $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$。"
      },
      "parts": [
       {
@@ -7288,8 +7288,8 @@
       ],
       "steps": [
        {
-        "en": "Equal arcs give equal chords $\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD$.",
-        "zh": "先由已知等弧得出對應的弦相等：$\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD$。",
+        "en": "Equal arcs give equal chords $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}\\quad\\Rightarrow\\quad AB=CD$.",
+        "zh": "先由已知等弧得出對應的弦相等：$\\overset{\\frown}{AB}=\\overset{\\frown}{CD}\\quad\\Rightarrow\\quad AB=CD$。",
         "circleArcs": [
          [
           "A",
@@ -7490,9 +7490,9 @@
          "en": "Equal arcs give equal chords",
          "zh": "先由已知等弧得出對應的弦相等"
         },
-        "en": "Equal arcs give equal chords $\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD$.",
-        "zh": "先由已知等弧得出對應的弦相等：$\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD$。",
-        "math": "\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD"
+        "en": "Equal arcs give equal chords $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}\\quad\\Rightarrow\\quad AB=CD$.",
+        "zh": "先由已知等弧得出對應的弦相等：$\\overset{\\frown}{AB}=\\overset{\\frown}{CD}\\quad\\Rightarrow\\quad AB=CD$。",
+        "math": "\\overset{\\frown}{AB}=\\overset{\\frown}{CD}\\quad\\Rightarrow\\quad AB=CD"
        },
        {
         "title": {
@@ -7837,8 +7837,8 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "en": "The arcs satisfy $\\widehat{AB}:\\widehat{BC}:\\widehat{CA}=7:6:5$. The shaded region is the minor segment bounded by chord $AC$ and the arc $AC$ not containing $B$.",
-      "zh": "弧長比 $\\widehat{AB}:\\widehat{BC}:\\widehat{CA}=7:6:5$。陰影是由弦 $AC$ 與不含 $B$ 的弧 $AC$ 圍成的劣弓形。"
+      "en": "The arcs satisfy $\\overset{\\frown}{AB}:\\overset{\\frown}{BC}:\\overset{\\frown}{CA}=7:6:5$. The shaded region is the minor segment bounded by chord $AC$ and the arc $\\overset{\\frown}{AC}$ not containing $B$.",
+      "zh": "弧長比 $\\overset{\\frown}{AB}:\\overset{\\frown}{BC}:\\overset{\\frown}{CA}=7:6:5$。陰影是由弦 $AC$ 與不含 $B$ 的弧 $\\overset{\\frown}{AC}$ 圍成的劣弓形。"
      },
      "parts": [
       {
@@ -8226,8 +8226,8 @@
      "marks": 2,
      "difficulty": 3,
      "stem": {
-      "en": "$BC$ is the diameter of the semi-circle. The arcs $\\widehat{AB}:\\widehat{AD}:\\widehat{DC}=1:3:5$ and the chord $AD=12$ cm. The shaded region is the semi-circle with the minor segment AD removed.",
-      "zh": "$BC$ 是半圓的直徑。弧長比 $\\widehat{AB}:\\widehat{AD}:\\widehat{DC}=1:3:5$，弦長 $AD=12$ cm。陰影是半圓扣去劣弓形 AD 的部分。"
+      "en": "$BC$ is the diameter of the semi-circle. The arcs $\\overset{\\frown}{AB}:\\overset{\\frown}{AD}:\\overset{\\frown}{DC}=1:3:5$ and the chord $AD=12$ cm. The shaded region is the semi-circle with the minor segment AD removed.",
+      "zh": "$BC$ 是半圓的直徑。弧長比 $\\overset{\\frown}{AB}:\\overset{\\frown}{AD}:\\overset{\\frown}{DC}=1:3:5$，弦長 $AD=12$ cm。陰影是半圓扣去劣弓形 AD 的部分。"
      },
      "parts": [
       {
@@ -8581,8 +8581,8 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "en": "$BD$ is a diameter. $CE$ meets $AD$ at $F$ and $BD$ at $G$. The arcs $\\widehat{AB}=\\widehat{BC}=\\widehat{DE}$ and $\\angle BDC=30^\\circ$.",
-      "zh": "$BD$ 是直徑。$CE$ 與 $AD$ 交於 $F$，與 $BD$ 交於 $G$。弧 $\\widehat{AB}=\\widehat{BC}=\\widehat{DE}$，且 $\\angle BDC=30^\\circ$。"
+      "en": "$BD$ is a diameter. $CE$ meets $AD$ at $F$ and $BD$ at $G$. The arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{DE}$ and $\\angle BDC=30^\\circ$.",
+      "zh": "$BD$ 是直徑。$CE$ 與 $AD$ 交於 $F$，與 $BD$ 交於 $G$。弧 $\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{DE}$，且 $\\angle BDC=30^\\circ$。"
      },
      "parts": [
       {
