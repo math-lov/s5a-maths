@@ -6,6 +6,7 @@ This supplements figcheck, which does not validate equal-length ticks.
 """
 import json
 import math
+import re
 from pathlib import Path
 
 from figcheck import ang, build_points, check_anim
@@ -65,8 +66,13 @@ assert len(animations) == 33
 animations += [(c['id'], c['demo']['opts']['anim']) for c in data['cards']
                if c.get('demo', {}).get('type') == 'circle']
 assert len(animations) == 37
+catalog = json.loads((ROOT / 'data/src/theorem-abbreviations.json').read_text(encoding='utf-8'))
+reasons = {item['abbreviation']
+           for group in ('theorems', 'basicAngleRules', 'otherGeometryReasons')
+           for item in catalog[group].values()}
 
 for key, animation in animations:
+    assert animation.get('layout') == 'side-by-side', (key, 'reading panel')
     assert not check_anim(animation, key), check_anim(animation, key)
     points, groups = build_points(animation), {}
     for name, expected in angles.get(key, {}).items():
@@ -76,6 +82,12 @@ for key, animation in animations:
         for segment, expected in expected_lengths.items():
             near(math.dist(points[segment[0]], points[segment[1]]) * radius, expected, key + ' ' + segment)
     for step in animation['steps']:
+        lines = step.get('mathLines', [])
+        assert lines and all(line.strip() and '$' not in line for line in lines), (key, 'formula lines')
+        formulas = [re.findall(r'\$([^$]+)\$', step[lang]) for lang in ('en', 'zh')]
+        assert len(formulas[0]) == 1 and formulas[0] == formulas[1], (key, 'bilingual formulas')
+        assert formulas[0][0] == r'\quad '.join(lines), (key, 'formula lines match caption')
+        assert all(ref in reasons for ref in step.get('ref', '').split('; ') if ref), (key, 'saved reasons')
         marks = [(t[2] if len(t) > 2 else 1, t[:2]) for t in step.get('ticks', [])]
         marks += [(1, ['O', name]) for name in step.get('radii', [])]
         for count, (a, b) in marks:
@@ -101,4 +113,4 @@ p = build_points(questions['sm-33']['anim'])
 area = abs(sum(p[a][0]*p[b][1] - p[b][0]*p[a][1]
                for a,b in zip('ABD','BDA'))) * 15**2 / 2
 near(area, 112.5 * math.sqrt(3), 'Q33 area')
-print('PASS: all 37 animations; original numerical givens, answers and equal-length marks')
+print('PASS: all 37 animations; source geometry, equality marks, bilingual formulas and saved reasons')

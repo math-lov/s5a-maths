@@ -350,6 +350,34 @@
         "en": "Corresponding angles of congruent triangles are equal.",
         "zh": "全等三角形的對應角相等。"
       }
+    },
+    "interior_angles": {
+      "abbreviation": "(int. ∠s, ∥ lines)",
+      "meaning": {
+        "en": "Interior angles on the same side of a transversal between parallel lines are supplementary.",
+        "zh": "平行線的同旁內角互補。"
+      }
+    },
+    "converse_interior_angles": {
+      "abbreviation": "(int. ∠s supp., converse)",
+      "meaning": {
+        "en": "Supplementary interior angles on the same side of a transversal imply parallel lines.",
+        "zh": "同旁內角互補，則兩條直線平行。"
+      }
+    },
+    "corresponding_angles": {
+      "abbreviation": "(corr. ∠s, ∥ lines)",
+      "meaning": {
+        "en": "Corresponding angles between parallel lines are equal.",
+        "zh": "平行線的同位角相等。"
+      }
+    },
+    "similar_sides": {
+      "abbreviation": "(corr. sides, similar △s)",
+      "meaning": {
+        "en": "Corresponding sides of similar triangles are proportional.",
+        "zh": "相似三角形的對應邊成比例。"
+      }
     }
   }
 }

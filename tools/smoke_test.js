@@ -3142,6 +3142,66 @@ ok(P11_DATA.sections[1].questions.every((q) =>
   (q.anim.steps || []).every((s) => (s.arcs || []).every((a) => a.length >= 4))),
   "每一拍的角都寫明頂點、兩點、標籤與顏色");
 
+const readers111 = P11_DATA.sections.flatMap((s) => s.questions).filter((q) => q.anim).map((q) => q.anim)
+  .concat(P11_DATA.cards.filter((c) => c.demo && c.demo.type === "circle").map((c) => c.demo.opts.anim));
+ok(readers111.length === 37 && readers111.every((anim) => anim.layout === "side-by-side"),
+  "11.1: all 33 animated questions and four theorem cards use the reading panel");
+let lesson111Valid = true, replay111Valid = true, construction111Valid = true;
+for (const anim of readers111) {
+  p11q.doc.body.replaceChildren();
+  p11q.ctx.window.S5A_CIRCLE.mount(p11q.doc.body, anim);
+  const initial = p11q.$(".cg-svg").textContent, states = [];
+  let segments = new Set();
+  for (const [index, step] of anim.steps.entries()) {
+    p11q.$(".cg-next").click();
+    const now = p11q.$$("[data-segment]").map((n) => n.getAttribute("data-segment"));
+    if ([...segments].some((key) => !now.includes(key)) || new Set(now).size !== now.length) construction111Valid = false;
+    segments = new Set(now);
+    if (p11q.$(".cg-progress .l-en").textContent !== `Step ${index + 1} of ${anim.steps.length}` ||
+        p11q.$(".cg-ref").textContent !== (step.ref || "") || p11q.$$(".katex-error").length ||
+        p11q.$$(".cg-en .cg-equation annotation").map((n) => n.textContent).join("\n") !==
+          step.mathLines.map((line) => "\\displaystyle " + line).join("\n")) lesson111Valid = false;
+    states.push([p11q.$(".cg-svg").textContent, p11q.$(".cg-say").textContent, [...segments]]);
+  }
+  p11q.$(".cg-back").click();
+  if (JSON.stringify([p11q.$(".cg-svg").textContent, p11q.$(".cg-say").textContent,
+    p11q.$$("[data-segment]").map((n) => n.getAttribute("data-segment"))]) !== JSON.stringify(states.at(-2))) replay111Valid = false;
+  p11q.$(".cg-restart").click();
+  if (p11q.$(".cg-svg").textContent !== initial || p11q.$(".cg-equation") ||
+      p11q.$(".cg-ref").textContent || !p11q.$(".cg-back").disabled) replay111Valid = false;
+}
+ok(lesson111Valid, "11.1: all 176 steps render the matching bilingual formulas and saved reasons");
+ok(construction111Valid, "11.1: constructed segments persist without duplicate copies in every player");
+ok(replay111Valid, "11.1: Back and Restart restore the matching diagram and reading panel");
+
+// The reported failures: temporary sides vanishing, adjacent angles deleting
+// one another, old values stacking, and competing highlight colours.
+p11q.doc.body.replaceChildren();
+p11q.ctx.window.S5A_CIRCLE.mount(p11q.doc.body, {
+  points: { O: { centre: true }, A: { at: 0 }, B: { at: 90 }, C: { at: 180 }, D: { between: ["O", "A"] } },
+  steps: [
+    { rays: [["O", "A", "given"]] },
+    { rays: [["O", "C", "claim"]] },
+    { arcs: [["O", "A", "B", "x", "given", 26], ["O", "B", "C", "y", "claim", 26]] },
+    { arcs: [["O", "D", "B", "40°", "claim", 44]] },
+    { lines: [["O", "A", "claim"], ["A", "O", "claim"]],
+      arcs: [["O", "A", "B", "40°", "claim", 44]], radii: ["B"] }
+  ]
+});
+p11q.$(".cg-next").click(); p11q.$(".cg-next").click();
+ok(!!p11q.$('[data-segment="A:O"]') && !!p11q.$('[data-segment="C:O"]'),
+  "Constructed angle sides remain when the highlight moves to a different side");
+p11q.$(".cg-next").click();
+ok(p11q.$$(".cg-val").map((n) => n.textContent).sort().join(",") === "x,y",
+  "Different angles at the same vertex survive even when their drawing radii match");
+p11q.$(".cg-next").click();
+ok(p11q.$$(".cg-val").map((n) => n.textContent).sort().join(",") === "40°,y",
+  "A new value replaces the same angle even with a new radius and collinear ray endpoint");
+p11q.$(".cg-next").click();
+ok(p11q.$$('[data-segment="A:O"]').length === 1 &&
+   p11q.$$('[data-ray="B:O"]').length === 1 && p11q.$('[data-ray="B:O"]').classList.contains("radii"),
+  "Repeated constructions deduplicate; the equal-radius highlight has one consistent green stroke");
+
 console.log("\n== 11.2 CE3: construct the chord distance step by step ==");
 const chordPart = JSON.parse(read("data/src/ch11-2.json"));
 const chordQuestions = chordPart.sections.flatMap((section) => section.questions);

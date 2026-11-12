@@ -17,7 +17,9 @@
    dimensions (perpendicular distance), ticks [a,b,count], parallel [a,b,t].
    Points may set labelOffset: [dx,dy]. anim.intro supplies the starting caption.
    anim.layout = "side-by-side" enables the reading panel; steps may set mathLines.
-   Radii remain as construction lines after their temporary highlight clears.
+   Constructed sides remain as neutral lines after their temporary highlight clears.
+   An angle is keyed by its vertex and ray directions; A[7] may offset its label.
+   anim.hideSolvedGoals replaces a target placeholder once that angle is annotated.
    angle 一律用「度」。座標由角度算出，所以畫出來的角就是題目寫的角。 */
 (function () {
   "use strict";
@@ -132,6 +134,7 @@
       role: "img", "aria-label": (anim.label && anim.label.en) || "circle figure"
     });
     var gBase = el("g"), gStep = el("g");
+    var gLabels = el("g", { class: "cg-labels" }), gPoints = el("g");
     var gFocus = el("g", { class: "cg-focus" });
     /* 每一步「正在講」的兩條線放在 gPulse：下一步會清走，底圖的線保持中性色，
        不會愈疊愈花（舊做法會把弦、半徑逐隻色染上去）。 */
@@ -144,6 +147,8 @@
     svg.appendChild(gGoal);
     svg.appendChild(gStep);
     svg.appendChild(gPulse);
+    svg.appendChild(gLabels);
+    svg.appendChild(gPoints);
 
     /* 圓與點：座標由角度算出 */
     var pts = {};
@@ -245,13 +250,24 @@
 
     function segmentKey(a, b) { return [a, b].sort().join(":"); }
 
-    function keepRadius(name, delay, instant) {
-      var key = segmentKey(centreName, name);
+    function keepSegment(from, to, delay, instant, covered) {
+      var key = segmentKey(from, to);
+      var a = screen(pts[from]), b = screen(pts[to]);
       var exists = Array.prototype.some.call(svg.querySelectorAll("[data-segment]"), function (node) {
-        return node.getAttribute("data-segment") === key;
+        if (node.getAttribute("data-segment") === key) return true;
+        if (!covered) return false;
+        // A ray may be only part of an existing diameter or chord.
+        var x = Number(node.getAttribute("x1")), y = Number(node.getAttribute("y1"));
+        var dx = Number(node.getAttribute("x2")) - x, dy = Number(node.getAttribute("y2")) - y;
+        var length2 = dx * dx + dy * dy;
+        if (!length2) return false;
+        return [a, b].every(function (p) {
+          var t = ((p.x - x) * dx + (p.y - y) * dy) / length2;
+          return t >= -1e-6 && t <= 1 + 1e-6 &&
+            Math.abs((p.x - x) * dy - (p.y - y) * dx) < 1e-5;
+        });
       });
       if (exists) return;
-      var a = screen(pts[centreName]), b = screen(pts[name]);
       var line = el("line", { class: "cg-draw ink", "data-segment": key,
         x1: a.x, y1: a.y, x2: b.x, y2: b.y });
       gStep.appendChild(line);
@@ -274,7 +290,7 @@
         class: "cg-label", x: p.x + off.x, y: p.y + off.y, "text-anchor": "middle"
       }, name));
       if (specs[name].hidden) g.style.opacity = "0";
-      gBase.appendChild(g);
+      gPoints.appendChild(g);
       pointGroups[name] = g;
     });
 
@@ -371,6 +387,7 @@
     function drawOn(node, delay, instant) {
       var len = typeof node.getTotalLength === "function" ? node.getTotalLength() : 0;
       if (instant) {
+        node.style.transition = "none";
         node.style.opacity = "1";
         if (len) node.style.strokeDashoffset = "0";
         return;
@@ -389,7 +406,18 @@
     function ray(a, b, colour, delay, instant) {
       var A = screen(pts[a]), B = screen(pts[b]);
       if (!A || !B) return;
-      var ln = el("line", { class: "cg-ray " + colour, x1: A.x, y1: A.y, x2: B.x, y2: B.y });
+      keepSegment(a, b, delay, instant, true);
+      var key = segmentKey(a, b);
+      var old = Array.prototype.find.call(gPulse.querySelectorAll("[data-ray]"), function (node) {
+        return node.getAttribute("data-ray") === key;
+      });
+      var priority = { ink: 0, accent: 1, given: 2, claim: 3, radii: 4 };
+      if (old) {
+        if (priority[old.getAttribute("data-colour")] >= priority[colour]) return;
+        old.remove();
+      }
+      var ln = el("line", { class: "cg-ray " + colour, "data-ray": key, "data-colour": colour,
+        x1: A.x, y1: A.y, x2: B.x, y2: B.y });
       gPulse.appendChild(ln);
       drawOn(ln, delay, instant);
     }
@@ -401,7 +429,11 @@
       var mx = (A.x + B.x) / 2, my = (A.y + B.y) / 2;
       var dx = B.x - A.x, dy = B.y - A.y, d = Math.hypot(dx, dy) || 1;
       var nx = -dy / d, ny = dx / d;
-      var k = el("g", { "data-tick": a + b });
+      var key = segmentKey(a, b);
+      Array.prototype.slice.call(gStep.querySelectorAll("[data-tick-key]")).forEach(function (old) {
+        if (old.getAttribute("data-tick-key") === key) old.remove();
+      });
+      var k = el("g", { "data-tick": a + b, "data-tick-key": key });
       count = Math.max(1, Math.min(3, Number(count) || 1));
       for (var i = 0; i < count; i++) {
         var shift = (i - (count - 1) / 2) * 6;
@@ -422,17 +454,19 @@
     }
 
     /* 答案牌：圖底中央寫「x = 160°」這種結論，閃完之後才出現 */
-    function answerBadge(txt) {
-      gStep.appendChild(el("text", {
+    function answerBadge(txt, instant) {
+      var badge = el("text", {
         class: "cg-answer", x: SIZE / 2, y: SIZE - 10, "text-anchor": "middle"
-      }, txt));
+      }, txt);
+      if (instant) { badge.style.opacity = "1"; badge.style.animation = "none"; }
+      gLabels.appendChild(badge);
     }
 
     function label(txt, T, delay, instant) {
       var t = el("text", {
         class: "cg-val " + (T.colour || "claim"), x: T.label.x, y: T.label.y, "text-anchor": "middle"
       }, txt);
-      gStep.appendChild(t);
+      gLabels.appendChild(t);
       if (instant) {
         t.style.opacity = "1";
         return t;
@@ -440,6 +474,17 @@
       t.style.opacity = "0";
       later(function () { t.style.opacity = "1"; }, delay || 0);
       return t;
+    }
+
+    // Identify the actual wedge, including collinear points on the same ray.
+    // Radius controls drawing size; it does not identify an angle.
+    function angleKey(A) {
+      var v = pts[A[0]];
+      var directions = [A[1], A[2]].map(function (name) {
+        var u = unit({ x: pts[name].x - v.x, y: pts[name].y - v.y });
+        return Math.round(u.x * 1e6) + ":" + Math.round(u.y * 1e6);
+      }).sort();
+      return A[0] + ":" + directions.join("/") + (A[6] === "reflex" ? ":reflex" : "");
     }
 
     /* Arc lengths belong on curved guides, never on the straight chord.
@@ -485,7 +530,7 @@
       var st = steps[i] || {};
       arcMeasures(st.arcMeasures, instant);
       (st.clearLabels || []).forEach(function (id) {
-        Array.prototype.slice.call(gStep.querySelectorAll("[data-length]")).forEach(function (node) {
+        Array.prototype.slice.call(gLabels.querySelectorAll("[data-length]")).forEach(function (node) {
           if (node.getAttribute("data-length") === id) node.remove();
         });
       });
@@ -503,12 +548,13 @@
       /* 同一隻角之前畫過（例如先寫 ½ × 180°，之後改寫 90°）：
          先把舊的弧與數值拿走，免得兩個標籤疊在一起 */
       (st.clearAngle || []).forEach(function (name) {
-        Array.prototype.slice.call(gStep.querySelectorAll('[data-angle="' + name + '"]'))
+        Array.prototype.slice.call(svg.querySelectorAll('[data-angle="' + name + '"]'))
           .forEach(function (n) { n.parentNode.removeChild(n); });
       });
 
       /* 每一步只顯示「這一步正在講」的線：先清走上一條，底圖保持中性 */
       gPulse.innerHTML = "";
+      Array.prototype.slice.call(gStep.querySelectorAll(".cg-circle-arc")).forEach(function (node) { node.remove(); });
 
       (st.rays || []).forEach(function (R, j) {
         ray(R[0], R[1], R[2] || "claim", j * 220, instant);
@@ -521,18 +567,18 @@
       (st.parallel || []).forEach(function (S, j) {
         var A = screen(pts[S[0]]), B = screen(pts[S[1]]);
         if (!A || !B) return;
-        var p = el("path", { class: "cg-par", d: parallelPath(A, B, S[2]) });
+        var key = segmentKey(S[0], S[1]);
+        Array.prototype.slice.call(gStep.querySelectorAll("[data-parallel]")).forEach(function (node) {
+          if (node.getAttribute("data-parallel") === key) node.remove();
+        });
+        var p = el("path", { class: "cg-par", "data-parallel": key, d: parallelPath(A, B, S[2]) });
         gStep.appendChild(p);
         drawOn(p, 280 + j * 180, instant);
       });
 
       (st.lines || []).forEach(function (L) {
-        var a = screen(pts[L[0]]), b = screen(pts[L[1]]);
-        if (!a || !b) return;
-        var ln = el("line", { class: "cg-draw " + (L[2] || "given"), "data-segment": segmentKey(L[0], L[1]),
-          x1: a.x, y1: a.y, x2: b.x, y2: b.y });
-        gStep.appendChild(ln);
-        drawOn(ln, 0, instant);
+        keepSegment(L[0], L[1], 0, instant);
+        if (L[2] !== "ink") ray(L[0], L[1], L[2] || "claim", 0, instant);
       });
 
       (st.ticks || []).forEach(function (t) {
@@ -553,10 +599,10 @@
         }
         var radius = A[5] || 26;
         var isRight = A[3] === "90°" || A[6] === "sq";
-        /* 同一個頂點、同一個半徑 = 同一個位置：新的角會取代舊的（例如 56° 拆成 26° + 30°） */
-        Array.prototype.slice.call(
-          gStep.querySelectorAll('[data-angle="' + A[0] + '"][data-r="' + radius + '"]')
-        ).forEach(function (n) { n.parentNode.removeChild(n); });
+        var key = angleKey(A);
+        Array.prototype.slice.call(svg.querySelectorAll("[data-angle-key]")).forEach(function (node) {
+          if (node.getAttribute("data-angle-key") === key) node.remove();
+        });
         var path, geo;
         if (isRight) {
           path = el("path", { class: "cg-arc " + colour, d: squarePath(v, p1, p2, 13) });
@@ -565,13 +611,19 @@
           path = el("path", { class: "cg-arc " + colour, d: geo.d });
         }
         path.setAttribute("data-angle", A[0]);
+        path.setAttribute("data-angle-key", key);
         path.setAttribute("data-r", radius);
         gStep.appendChild(path);
         arcsDrawn.push(path);
         drawOn(path, lead + 560, instant);
         if (A[3] && !isRight) {
           var lab = label(A[3], { label: geo.label, colour: colour }, lead + 900, instant);
+          if (A[7]) {
+            lab.setAttribute("x", geo.label.x + A[7][0]);
+            lab.setAttribute("y", geo.label.y + A[7][1]);
+          }
           lab.setAttribute("data-angle", A[0]);
+          lab.setAttribute("data-angle-key", key);
           lab.setAttribute("data-r", radius);
         }
       });
@@ -583,9 +635,10 @@
         }
         if (st.answer) {
           if (instant) {
-            answerBadge(st.answer);
+            answerBadge(st.answer, true);
           } else {
-            later(function () { answerBadge(st.answer); }, 1300);
+            var answerDelay = Math.max(1300, ((st.arcs || []).length - 1) * 520 + 1100);
+            later(function () { answerBadge(st.answer); }, answerDelay);
           }
         }
       }
@@ -594,7 +647,7 @@
         var A = screen(pts[C[0]]), B = screen(pts[C[1]]);
         if (!A || !B) return;
         var avoid = C[2] ? screen(pts[C[2]]) : null;
-        var p = el("path", { class: "cg-arc " + (C[3] || "accent"), d: circuitArc(A, B, avoid) });
+        var p = el("path", { class: "cg-arc cg-circle-arc " + (C[3] || "accent"), d: circuitArc(A, B, avoid) });
         gStep.appendChild(p);
         drawOn(p, 260 + j * 220, instant);
       });
@@ -603,14 +656,14 @@
          畫綠色等長記號，並把這幾條半徑拉出來閃一閃（畫在角之後，壓在最上層）。 */
       (st.radii || []).forEach(function (name, j) {
         if (!centreName || !pts[name]) return;
-        keepRadius(name, 420 + j * 180, instant);
+        keepSegment(centreName, name, 420 + j * 180, instant);
         ray(centreName, name, "radii", 420 + j * 180, instant);
         tick(centreName, name, "radii", 560 + j * 180, instant);
       });
 
       (st.notes || []).forEach(function (N) {
         var t = el("text", { class: "cg-note", x: N[1], y: N[2], "text-anchor": "middle" }, N[0]);
-        gStep.appendChild(t);
+        gLabels.appendChild(t);
         if (instant) {
           t.style.opacity = "1";
           return;
@@ -621,7 +674,7 @@
 
       (st.segmentLabels || []).forEach(function (L) {
         if (L.id) {
-          Array.prototype.slice.call(gStep.querySelectorAll("[data-length]")).forEach(function (old) {
+          Array.prototype.slice.call(gLabels.querySelectorAll("[data-length]")).forEach(function (old) {
             if (old.getAttribute("data-length") === L.id) old.remove();
           });
         }
@@ -631,7 +684,7 @@
           x: (a.x + b.x) / 2 + (L.dx || 0), y: (a.y + b.y) / 2 + (L.dy || 0),
           "text-anchor": "middle", "data-length": L.id || ""
         }, L.text);
-        gStep.appendChild(t); drawOn(t, 0, instant);
+        gLabels.appendChild(t); drawOn(t, 0, instant);
       });
 
       (st.dimensions || []).forEach(function (D) {
@@ -646,7 +699,7 @@
           "M" + (x1 - nx * 6) + " " + (y1 - ny * 6) + "L" + (x1 + nx * 6) + " " + (y1 + ny * 6) +
           "M" + (x2 - nx * 6) + " " + (y2 - ny * 6) + "L" + (x2 + nx * 6) + " " + (y2 + ny * 6) }));
         g.appendChild(el("text", { class: "cg-length", x: (x1 + x2) / 2 + nx * 23 + (D.dx || 0), y: (y1 + y2) / 2 + ny * 23 + (D.dy || 0), "text-anchor": "middle" }, D.text));
-        gStep.appendChild(g); drawOn(g, 0, instant);
+        gLabels.appendChild(g); drawOn(g, 0, instant);
       });
     }
 
@@ -683,6 +736,9 @@
     /* 目標角：anim.goal 由第一步就在；之後任何一拍寫 goal 就由那一拍起加上去 */
     function goalArcs(list) {
       (list || []).forEach(function (A) {
+        if (anim.hideSolvedGoals && Array.prototype.some.call(gLabels.querySelectorAll("[data-angle-key]"), function (node) {
+          return node.getAttribute("data-angle-key") === angleKey(A);
+        })) return;
         var v = screen(pts[A[0]]), p1 = screen(pts[A[1]]), p2 = screen(pts[A[2]]);
         if (!v || !p1 || !p2) return;
         var colour = A[4] || "goal";
@@ -711,14 +767,15 @@
       cancelPending();
       setFrame(frame);
       gStep.innerHTML = "";
+      gLabels.innerHTML = "";
       gPulse.innerHTML = "";
       gFocus.innerHTML = "";
       arcMeasures(anim.arcMeasures, true);
-      syncGoals(n);
       Object.keys(pointGroups).forEach(function (k) {
         pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
       });
       for (var i = 0; i < n; i++) draw(i, true);
+      syncGoals(n);
       if (n > 0) {
         setSay(sayZh, steps[n - 1].zh, steps[n - 1].mathLines);
         setSay(sayEn, steps[n - 1].en, steps[n - 1].mathLines);
@@ -752,7 +809,7 @@
       // Finish earlier steps immediately before starting the next one. This also
       // cancels delayed labels so Back/Restart cannot show an obsolete answer.
       renderUpTo(at);
-      draw(at);
+      draw(at, !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches));
       setSay(sayZh, steps[at].zh, steps[at].mathLines);
       setSay(sayEn, steps[at].en, steps[at].mathLines);
       sayRef.textContent = steps[at].ref || "";

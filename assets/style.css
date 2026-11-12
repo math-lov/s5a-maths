@@ -1581,6 +1581,9 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
 .cg-seg { stroke: var(--text); stroke-opacity: .5; stroke-width: 1.1; }
 .cg-dot { fill: var(--text); }
 .cg-label { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 12px; fill: var(--text); }
+.cg-label, .cg-val, .cg-goal-val {
+  paint-order: stroke; stroke: #fdfcfb; stroke-width: 3px; stroke-linejoin: round;
+}
 .cg-draw { stroke-width: 1.8; stroke-linecap: round; transition: opacity .3s ease, stroke-dashoffset .5s cubic-bezier(.35,.65,.3,1); }
 .cg-draw.given { stroke: #e2660a; }
 .cg-draw.claim { stroke: #4f46e5; }
@@ -1618,11 +1621,10 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
 
 /* 最後一步：角先閃一閃，然後才落答案 */
 @keyframes cgShine {
-  0%   { stroke-width: 1.8; filter: none; }
-  25%  { stroke-width: 4; filter: drop-shadow(0 0 5px rgba(226, 102, 10, .9)); }
-  100% { stroke-width: 1.8; filter: none; }
+  0%, 100% { stroke-width: 1.8; }
+  50% { stroke-width: 3; }
 }
-.cg-shine { animation: cgShine 1.1s ease-in-out 2; }
+.cg-shine { animation: cgShine .7s ease-in-out; }
 
 @keyframes cgPop {
   from { opacity: 0; }
@@ -1632,7 +1634,7 @@ body[data-lang="en"] .parts-say .l-zh { display: none; }
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
   font-size: 17px;
-  fill: #b45309;
+  fill: #4338ca;
   opacity: 0;
   animation: cgPop .45s ease-out both;
 }
@@ -1669,7 +1671,12 @@ body[data-lang="en"] .cg-zh { display: none; }
 body[data-lang="zh"] .cg-en { display: none; }
 .anim-card .section-title { margin-bottom: 2px; }
 
-/* 11.2 / 11.3: synchronised steps on the left, figure on the right. */
+@media (prefers-reduced-motion: reduce) {
+  .cg-svg * { transition: none !important; animation: none !important; }
+  .cg-answer { opacity: 1; }
+}
+
+/* Chapter 11: synchronised steps on the left, figure on the right. */
 .anim-card:has(.cg-split), .card:has(> .cc .cg-split) {
   width: min(1000px, calc(100vw - 32px)); margin-left: 50%; translate: -50% 0;
 }
