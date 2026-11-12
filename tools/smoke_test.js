@@ -3233,5 +3233,44 @@ for (const question of chordQuestions) {
 ok(wholeChordValid, "All 31 animations complete without invalid SVG coordinates or KaTeX errors");
 ok(goalsClear, "Target angles appear initially, clear when solved, and return on Back");
 
+console.log("\n== 11.3: complete exercises, curved arc lengths and shaded segments ==");
+const arcPart3 = JSON.parse(read("data/src/ch11-3.json"));
+const arcQuestions3 = arcPart3.sections.flatMap((section) => section.questions);
+ok(arcQuestions3.length === 32 && arcPart3.cards.length === 6,
+  "11.3 includes all 32 question pages and six teaching cards");
+ok(arcQuestions3.every((question) => question.answers.every((answer) =>
+  !String(answer.input || "").includes(","))),
+  "Independent unknowns use separate answer boxes");
+let arcFiguresValid3 = true;
+for (const question of arcQuestions3.filter((q) => q.anim)) {
+  chordPage.doc.body.replaceChildren();
+  chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, question.anim);
+  for (const step of question.anim.steps) chordPage.$(".cg-next").click();
+  if (chordPage.$$(".cg-svg [d]").some((node) => /NaN|undefined/.test(node.getAttribute("d"))) ||
+      chordPage.$$(".katex-error").length) arcFiguresValid3 = false;
+  chordPage.$(".cg-restart").click();
+}
+ok(arcFiguresValid3, "All 31 exercise animations complete without invalid coordinates or formula errors");
+const arcMeasureExample3 = arcQuestions3.find((q) => q.id === "ch11-3-l1-3");
+chordPage.doc.body.replaceChildren();
+chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, arcMeasureExample3.anim);
+for (const step of arcMeasureExample3.anim.steps) chordPage.$(".cg-next").click();
+ok(chordPage.$('[data-arc-measure="AD"] text').textContent === "y = 16 cm" &&
+   chordPage.$$('[data-arc-measure="AD"]').length === 1,
+  "The solved arc length replaces its unknown on a curved guide");
+chordPage.$(".cg-back").click();
+ok(chordPage.$('[data-arc-measure="AD"] text').textContent === "y",
+  "Back restores the unknown arc length");
+chordPage.$(".cg-restart").click();
+ok(chordPage.$('[data-arc-measure="CD"] text').textContent === "x" &&
+   chordPage.$('[data-arc-measure="AD"] text').textContent === "y",
+  "Restart restores both original arc labels");
+chordPage.doc.body.replaceChildren();
+chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,
+  arcQuestions3.find((q) => q.id === "ch11-3-sm-27").anim);
+ok(chordPage.$(".cg-region").getAttribute("fill-rule") === "evenodd" &&
+   (chordPage.$(".cg-region").getAttribute("d").match(/M/g) || []).length === 2,
+  "Q27 shades a semicircle with a genuine unshaded segment cut out");
+
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

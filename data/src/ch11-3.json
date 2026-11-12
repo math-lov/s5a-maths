@@ -4914,6 +4914,4010 @@
      }
     }
    ]
+  },
+  {
+   "id": "L2",
+   "title": {
+    "en": "Level 2",
+    "zh": "第二級"
+   },
+   "questions": [
+    {
+     "id": "ch11-3-l2-16",
+     "code": "16",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "$AD$ is a diameter. The arcs $\\widehat{BC}=\\widehat{CD}=\\widehat{DE}$ and $\\angle OBC=65^\\circ$.",
+      "zh": "$AD$ 是直徑。弧 $\\widehat{BC}=\\widehat{CD}=\\widehat{DE}$，且 $\\angle OBC=65^\\circ$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find $\\angle BOD$.",
+       "zh": "求 $\\angle BOD$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Find $\\angle DAE$.",
+       "zh": "求 $\\angle DAE$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle BOD=100^\\circ",
+       "input": "100"
+      },
+      {
+       "part": "(b)",
+       "math": "\\angle DAE=25^\\circ",
+       "input": "25"
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 75
+       },
+       "B": {
+        "at": 155
+       },
+       "C": {
+        "at": 205
+       },
+       "D": {
+        "at": 255
+       },
+       "E": {
+        "at": 305
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "D"
+       ],
+       [
+        "A",
+        "E"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "O",
+        "B"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Join OC and use the equal radii $OB=OC\\quad\\Rightarrow\\quad\\angle OCB=65^\\circ$.",
+        "zh": "連出半徑，等腰三角形的底角相等：$OB=OC\\quad\\Rightarrow\\quad\\angle OCB=65^\\circ$。",
+        "lines": [
+         [
+          "O",
+          "C",
+          "accent"
+         ],
+         [
+          "O",
+          "E",
+          "accent"
+         ]
+        ],
+        "radii": [
+         "B",
+         "C"
+        ],
+        "arcs": [
+         [
+          "B",
+          "O",
+          "C",
+          "65°",
+          "given",
+          28
+         ],
+         [
+          "C",
+          "O",
+          "B",
+          "65°",
+          "claim",
+          28
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "B",
+          "C"
+         ]
+        ]
+       },
+       {
+        "en": "Use the angle sum of OBC $\\angle BOC=180^\\circ-65^\\circ-65^\\circ=50^\\circ$.",
+        "zh": "先用三角形內角和求圓心角：$\\angle BOC=180^\\circ-65^\\circ-65^\\circ=50^\\circ$。",
+        "arcs": [
+         [
+          "O",
+          "B",
+          "C",
+          "50°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "en": "Transfer the equal arcs to equal centre angles $\\angle COD=\\angle DOE=\\angle BOC=50^\\circ$.",
+        "zh": "三段相等的弧給出三隻相等圓心角：$\\angle COD=\\angle DOE=\\angle BOC=50^\\circ$。",
+        "arcs": [
+         [
+          "O",
+          "C",
+          "D",
+          "50°",
+          "claim",
+          42
+         ],
+         [
+          "O",
+          "D",
+          "E",
+          "50°",
+          "claim",
+          54
+         ]
+        ],
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ],
+         [
+          "C",
+          "D",
+          "A",
+          "accent"
+         ],
+         [
+          "D",
+          "E",
+          "A",
+          "accent"
+         ]
+        ]
+       },
+       {
+        "en": "Add the two adjacent centre angles $\\angle BOD=50^\\circ+50^\\circ=100^\\circ$.",
+        "zh": "相鄰兩隻圓心角相加就是所求角：$\\angle BOD=50^\\circ+50^\\circ=100^\\circ$。",
+        "clearAngle": [
+         "O"
+        ],
+        "arcs": [
+         [
+          "O",
+          "B",
+          "D",
+          "100°",
+          "claim",
+          42
+         ],
+         [
+          "O",
+          "D",
+          "E",
+          "50°",
+          "claim",
+          54
+         ]
+        ]
+       },
+       {
+        "en": "Use the same arc DE $\\angle DAE=\\frac12\\angle DOE=25^\\circ$.",
+        "zh": "同弧的圓周角是圓心角的一半：$\\angle DAE=\\frac12\\angle DOE=25^\\circ$。",
+        "arcs": [
+         [
+          "A",
+          "D",
+          "E",
+          "25°",
+          "claim",
+          30
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "∠BOD = 100°; ∠DAE = 25°"
+       }
+      ],
+      "readable": true,
+      "r": 135,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "goal": [
+       [
+        "O",
+        "B",
+        "D",
+        "?",
+        "goal",
+        42
+       ],
+       [
+        "A",
+        "D",
+        "E",
+        "?",
+        "goal",
+        30
+       ]
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Join OC and use the equal radii",
+         "zh": "連出半徑，等腰三角形的底角相等"
+        },
+        "en": "Join OC and use the equal radii $OB=OC\\quad\\Rightarrow\\quad\\angle OCB=65^\\circ$.",
+        "zh": "連出半徑，等腰三角形的底角相等：$OB=OC\\quad\\Rightarrow\\quad\\angle OCB=65^\\circ$。",
+        "math": "OB=OC\\quad\\Rightarrow\\quad\\angle OCB=65^\\circ"
+       },
+       {
+        "title": {
+         "en": "Use the angle sum of OBC",
+         "zh": "先用三角形內角和求圓心角"
+        },
+        "en": "Use the angle sum of OBC $\\angle BOC=180^\\circ-65^\\circ-65^\\circ=50^\\circ$.",
+        "zh": "先用三角形內角和求圓心角：$\\angle BOC=180^\\circ-65^\\circ-65^\\circ=50^\\circ$。",
+        "math": "\\angle BOC=180^\\circ-65^\\circ-65^\\circ=50^\\circ"
+       },
+       {
+        "title": {
+         "en": "Transfer the equal arcs to equal centre angles",
+         "zh": "三段相等的弧給出三隻相等圓心角"
+        },
+        "en": "Transfer the equal arcs to equal centre angles $\\angle COD=\\angle DOE=\\angle BOC=50^\\circ$.",
+        "zh": "三段相等的弧給出三隻相等圓心角：$\\angle COD=\\angle DOE=\\angle BOC=50^\\circ$。",
+        "math": "\\angle COD=\\angle DOE=\\angle BOC=50^\\circ"
+       },
+       {
+        "title": {
+         "en": "Add the two adjacent centre angles",
+         "zh": "相鄰兩隻圓心角相加就是所求角"
+        },
+        "en": "Add the two adjacent centre angles $\\angle BOD=50^\\circ+50^\\circ=100^\\circ$.",
+        "zh": "相鄰兩隻圓心角相加就是所求角：$\\angle BOD=50^\\circ+50^\\circ=100^\\circ$。",
+        "math": "\\angle BOD=50^\\circ+50^\\circ=100^\\circ",
+        "part": "(a)"
+       },
+       {
+        "title": {
+         "en": "Use the same arc DE",
+         "zh": "同弧的圓周角是圓心角的一半"
+        },
+        "en": "Use the same arc DE $\\angle DAE=\\frac12\\angle DOE=25^\\circ$.",
+        "zh": "同弧的圓周角是圓心角的一半：$\\angle DAE=\\frac12\\angle DOE=25^\\circ$。",
+        "math": "\\angle DAE=\\frac12\\angle DOE=25^\\circ",
+        "part": "(b)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-17",
+     "code": "17",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "$O$ is the centre, $AO\\parallel BC$, and the arc lengths satisfy $\\widehat{AB}:\\widehat{BC}=1:3$.",
+      "zh": "$O$ 是圓心，$AO\\parallel BC$，弧長比 $\\widehat{AB}:\\widehat{BC}=1:3$。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find $\\angle BCA$.",
+       "zh": "求 $\\angle BCA$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "",
+       "math": "\\angle BCA=18^\\circ",
+       "input": "18"
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 90
+       },
+       "B": {
+        "at": 126
+       },
+       "C": {
+        "at": 234
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "O"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "O",
+        "B"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Use alternate angles on AO and BC $\\angle BCA=x\\quad\\Rightarrow\\quad\\angle CAO=x$.",
+        "zh": "平行線的內錯角相等，先設目標角為未知數：$\\angle BCA=x\\quad\\Rightarrow\\quad\\angle CAO=x$。",
+        "parallel": [
+         [
+          "A",
+          "O"
+         ],
+         [
+          "B",
+          "C"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "C",
+          "O",
+          "x",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "en": "Join OC and use the equal radii $OA=OC\\quad\\Rightarrow\\quad\\angle ACO=x$.",
+        "zh": "連出半徑，等腰三角形的底角相等：$OA=OC\\quad\\Rightarrow\\quad\\angle ACO=x$。",
+        "lines": [
+         [
+          "O",
+          "C",
+          "accent"
+         ]
+        ],
+        "radii": [
+         "A",
+         "C"
+        ],
+        "arcs": [
+         [
+          "C",
+          "A",
+          "O",
+          "x",
+          "claim",
+          50
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "C"
+         ]
+        ]
+       },
+       {
+        "en": "Use the centre angle and the arc ratio $\\angle AOB=2x,\\quad\\angle BOC=3(2x)=6x$.",
+        "zh": "先用同弧圓心角兩倍，再用弧長比例：$\\angle AOB=2x,\\quad\\angle BOC=3(2x)=6x$。",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "2x",
+          "claim",
+          36
+         ],
+         [
+          "O",
+          "B",
+          "C",
+          "6x",
+          "claim",
+          50
+         ]
+        ]
+       },
+       {
+        "en": "Use the angle sum in OAC $x+x+(2x+6x)=180^\\circ\\quad\\Rightarrow\\quad x=18^\\circ$.",
+        "zh": "在三角形中把所有角寫成同一未知數：$x+x+(2x+6x)=180^\\circ\\quad\\Rightarrow\\quad x=18^\\circ$。",
+        "polygons": [
+         [
+          "O",
+          "A",
+          "C"
+         ]
+        ],
+        "clearAngle": [
+         "A",
+         "C",
+         "O"
+        ],
+        "arcs": [
+         [
+          "C",
+          "B",
+          "A",
+          "18°",
+          "claim",
+          28
+         ],
+         [
+          "A",
+          "C",
+          "O",
+          "18°",
+          "claim",
+          32
+         ],
+         [
+          "C",
+          "A",
+          "O",
+          "18°",
+          "claim",
+          54
+         ],
+         [
+          "O",
+          "A",
+          "C",
+          "144°",
+          "claim",
+          42
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "∠BCA = 18°"
+       }
+      ],
+      "readable": true,
+      "r": 135,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "goal": [
+       [
+        "C",
+        "B",
+        "A",
+        "x",
+        "goal",
+        28
+       ]
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Use alternate angles on AO and BC",
+         "zh": "平行線的內錯角相等，先設目標角為未知數"
+        },
+        "en": "Use alternate angles on AO and BC $\\angle BCA=x\\quad\\Rightarrow\\quad\\angle CAO=x$.",
+        "zh": "平行線的內錯角相等，先設目標角為未知數：$\\angle BCA=x\\quad\\Rightarrow\\quad\\angle CAO=x$。",
+        "math": "\\angle BCA=x\\quad\\Rightarrow\\quad\\angle CAO=x"
+       },
+       {
+        "title": {
+         "en": "Join OC and use the equal radii",
+         "zh": "連出半徑，等腰三角形的底角相等"
+        },
+        "en": "Join OC and use the equal radii $OA=OC\\quad\\Rightarrow\\quad\\angle ACO=x$.",
+        "zh": "連出半徑，等腰三角形的底角相等：$OA=OC\\quad\\Rightarrow\\quad\\angle ACO=x$。",
+        "math": "OA=OC\\quad\\Rightarrow\\quad\\angle ACO=x"
+       },
+       {
+        "title": {
+         "en": "Use the centre angle and the arc ratio",
+         "zh": "先用同弧圓心角兩倍，再用弧長比例"
+        },
+        "en": "Use the centre angle and the arc ratio $\\angle AOB=2x,\\quad\\angle BOC=3(2x)=6x$.",
+        "zh": "先用同弧圓心角兩倍，再用弧長比例：$\\angle AOB=2x,\\quad\\angle BOC=3(2x)=6x$。",
+        "math": "\\angle AOB=2x,\\quad\\angle BOC=3(2x)=6x"
+       },
+       {
+        "title": {
+         "en": "Use the angle sum in OAC",
+         "zh": "在三角形中把所有角寫成同一未知數"
+        },
+        "en": "Use the angle sum in OAC $x+x+(2x+6x)=180^\\circ\\quad\\Rightarrow\\quad x=18^\\circ$.",
+        "zh": "在三角形中把所有角寫成同一未知數：$x+x+(2x+6x)=180^\\circ\\quad\\Rightarrow\\quad x=18^\\circ$。",
+        "math": "x+x+(2x+6x)=180^\\circ\\quad\\Rightarrow\\quad x=18^\\circ"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-18",
+     "code": "18",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "$AD$ is a diameter. The arc $\\widehat{AB}=4.5$ cm, $\\angle BAD=63^\\circ$ and $\\angle BEC=27^\\circ$.",
+      "zh": "$AD$ 是直徑，弧 $\\widehat{AB}=4.5$ cm，$\\angle BAD=63^\\circ$，$\\angle BEC=27^\\circ$。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find the arc length $\\widehat{CD}$.",
+       "zh": "求弧長 $\\widehat{CD}$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "",
+       "math": "\\widehat{CD}=6\\text{ cm}",
+       "input": "6"
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 0
+       },
+       "B": {
+        "at": 54
+       },
+       "C": {
+        "at": 108
+       },
+       "D": {
+        "at": 180
+       },
+       "E": {
+        "at": 270
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "D"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "B",
+        "E"
+       ],
+       [
+        "C",
+        "E"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "AD is a diameter $\\angle ABD=90^\\circ$.",
+        "zh": "直徑所對的半圓圓周角是直角：$\\angle ABD=90^\\circ$。",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "D",
+          "90°",
+          "claim",
+          24
+         ],
+         [
+          "A",
+          "B",
+          "D",
+          "63°",
+          "given",
+          28
+         ],
+         [
+          "E",
+          "B",
+          "C",
+          "27°",
+          "given",
+          28
+         ]
+        ],
+        "polygons": [
+         [
+          "A",
+          "B",
+          "D"
+         ]
+        ]
+       },
+       {
+        "en": "Find the angle standing on arc AB $\\angle ADB=180^\\circ-90^\\circ-63^\\circ=27^\\circ$.",
+        "zh": "先用三角形內角和求弧 AB 所對的角：$\\angle ADB=180^\\circ-90^\\circ-63^\\circ=27^\\circ$。",
+        "arcs": [
+         [
+          "D",
+          "A",
+          "B",
+          "27°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "en": "Join DE and use the same segment $\\angle BED=\\angle BAD=63^\\circ$.",
+        "zh": "連輔助弦，同弓形內的圓周角相等：$\\angle BED=\\angle BAD=63^\\circ$。",
+        "lines": [
+         [
+          "D",
+          "E",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "E",
+          "B",
+          "D",
+          "63°",
+          "claim",
+          54
+         ]
+        ]
+       },
+       {
+        "en": "Subtract the given angle BEC $\\angle CED=63^\\circ-27^\\circ=36^\\circ$.",
+        "zh": "從整隻角減去已知的其中一部分：$\\angle CED=63^\\circ-27^\\circ=36^\\circ$。",
+        "clearAngle": [
+         "E"
+        ],
+        "arcs": [
+         [
+          "E",
+          "B",
+          "C",
+          "27°",
+          "given",
+          28
+         ],
+         [
+          "E",
+          "C",
+          "D",
+          "36°",
+          "claim",
+          46
+         ]
+        ]
+       },
+       {
+        "en": "Use arc lengths and circumference angles $\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}$.",
+        "zh": "把兩段弧與所對的圓周角依次配對：$\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}$。",
+        "arcMeasures": [
+         {
+          "to": "D",
+          "avoid": "A",
+          "text": "6 cm",
+          "offset": 22,
+          "id": "CD",
+          "from": "C"
+         }
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "Arc CD = 6 cm"
+       }
+      ],
+      "readable": true,
+      "r": 120,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "arcMeasures": [
+       {
+        "to": "B",
+        "avoid": "D",
+        "text": "4.5 cm",
+        "offset": 22,
+        "id": "AB",
+        "from": "A"
+       },
+       {
+        "to": "D",
+        "avoid": "A",
+        "text": "?",
+        "offset": 22,
+        "id": "CD",
+        "from": "C"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "AD is a diameter",
+         "zh": "直徑所對的半圓圓周角是直角"
+        },
+        "en": "AD is a diameter $\\angle ABD=90^\\circ$.",
+        "zh": "直徑所對的半圓圓周角是直角：$\\angle ABD=90^\\circ$。",
+        "math": "\\angle ABD=90^\\circ"
+       },
+       {
+        "title": {
+         "en": "Find the angle standing on arc AB",
+         "zh": "先用三角形內角和求弧 AB 所對的角"
+        },
+        "en": "Find the angle standing on arc AB $\\angle ADB=180^\\circ-90^\\circ-63^\\circ=27^\\circ$.",
+        "zh": "先用三角形內角和求弧 AB 所對的角：$\\angle ADB=180^\\circ-90^\\circ-63^\\circ=27^\\circ$。",
+        "math": "\\angle ADB=180^\\circ-90^\\circ-63^\\circ=27^\\circ"
+       },
+       {
+        "title": {
+         "en": "Join DE and use the same segment",
+         "zh": "連輔助弦，同弓形內的圓周角相等"
+        },
+        "en": "Join DE and use the same segment $\\angle BED=\\angle BAD=63^\\circ$.",
+        "zh": "連輔助弦，同弓形內的圓周角相等：$\\angle BED=\\angle BAD=63^\\circ$。",
+        "math": "\\angle BED=\\angle BAD=63^\\circ"
+       },
+       {
+        "title": {
+         "en": "Subtract the given angle BEC",
+         "zh": "從整隻角減去已知的其中一部分"
+        },
+        "en": "Subtract the given angle BEC $\\angle CED=63^\\circ-27^\\circ=36^\\circ$.",
+        "zh": "從整隻角減去已知的其中一部分：$\\angle CED=63^\\circ-27^\\circ=36^\\circ$。",
+        "math": "\\angle CED=63^\\circ-27^\\circ=36^\\circ"
+       },
+       {
+        "title": {
+         "en": "Use arc lengths and circumference angles",
+         "zh": "把兩段弧與所對的圓周角依次配對"
+        },
+        "en": "Use arc lengths and circumference angles $\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}$.",
+        "zh": "把兩段弧與所對的圓周角依次配對：$\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}$。",
+        "math": "\\frac{\\widehat{CD}}{4.5}=\\frac{36}{27}\\quad\\Rightarrow\\quad\\widehat{CD}=6\\text{ cm}"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-19",
+     "code": "19",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "$BD$ is a diameter, the arcs $\\widehat{AB}=\\widehat{DE}$, and $\\angle ACE=36^\\circ$.",
+      "zh": "$BD$ 是直徑，弧 $\\widehat{AB}=\\widehat{DE}$，且 $\\angle ACE=36^\\circ$。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find $\\angle EAD$.",
+       "zh": "求 $\\angle EAD$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "",
+       "math": "\\angle EAD=27^\\circ",
+       "input": "27"
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 126
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 270
+       },
+       "D": {
+        "at": 0
+       },
+       "E": {
+        "at": 54
+       }
+      },
+      "segments": [
+       [
+        "B",
+        "D"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "A",
+        "E"
+       ],
+       [
+        "C",
+        "E"
+       ],
+       [
+        "A",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Join BC and CD $\\angle BCD=90^\\circ$.",
+        "zh": "連出輔助弦，直徑所對圓周角是直角：$\\angle BCD=90^\\circ$。",
+        "lines": [
+         [
+          "B",
+          "C",
+          "accent"
+         ],
+         [
+          "C",
+          "D",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "B",
+          "D",
+          "90°",
+          "claim",
+          24
+         ],
+         [
+          "C",
+          "A",
+          "E",
+          "36°",
+          "given",
+          38
+         ]
+        ]
+       },
+       {
+        "en": "Equal arcs give equal circumference angles $\\angle ACB=\\angle DCE=t$.",
+        "zh": "兩段相等的弧所對的圓周角相等：$\\angle ACB=\\angle DCE=t$。",
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "accent"
+         ],
+         [
+          "D",
+          "E",
+          "C",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "A",
+          "B",
+          "t",
+          "claim",
+          26
+         ],
+         [
+          "C",
+          "D",
+          "E",
+          "t",
+          "claim",
+          56
+         ]
+        ]
+       },
+       {
+        "en": "Split the right angle at C $t+36^\\circ+t=90^\\circ\\quad\\Rightarrow\\quad t=27^\\circ$.",
+        "zh": "把直角拆成三部分，列方程求未知數：$t+36^\\circ+t=90^\\circ\\quad\\Rightarrow\\quad t=27^\\circ$。",
+        "clearAngle": [
+         "C"
+        ],
+        "arcs": [
+         [
+          "C",
+          "A",
+          "E",
+          "36°",
+          "given",
+          38
+         ],
+         [
+          "C",
+          "D",
+          "E",
+          "27°",
+          "claim",
+          56
+         ]
+        ]
+       },
+       {
+        "en": "Use the same segment on arc ED $\\angle EAD=\\angle ECD=27^\\circ$.",
+        "zh": "同弓形內的圓周角相等，移到所求角：$\\angle EAD=\\angle ECD=27^\\circ$。",
+        "arcs": [
+         [
+          "A",
+          "E",
+          "D",
+          "27°",
+          "claim",
+          32
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "∠EAD = 27°"
+       }
+      ],
+      "readable": true,
+      "r": 135,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "goal": [
+       [
+        "A",
+        "E",
+        "D",
+        "?",
+        "goal",
+        32
+       ]
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Join BC and CD",
+         "zh": "連出輔助弦，直徑所對圓周角是直角"
+        },
+        "en": "Join BC and CD $\\angle BCD=90^\\circ$.",
+        "zh": "連出輔助弦，直徑所對圓周角是直角：$\\angle BCD=90^\\circ$。",
+        "math": "\\angle BCD=90^\\circ"
+       },
+       {
+        "title": {
+         "en": "Equal arcs give equal circumference angles",
+         "zh": "兩段相等的弧所對的圓周角相等"
+        },
+        "en": "Equal arcs give equal circumference angles $\\angle ACB=\\angle DCE=t$.",
+        "zh": "兩段相等的弧所對的圓周角相等：$\\angle ACB=\\angle DCE=t$。",
+        "math": "\\angle ACB=\\angle DCE=t"
+       },
+       {
+        "title": {
+         "en": "Split the right angle at C",
+         "zh": "把直角拆成三部分，列方程求未知數"
+        },
+        "en": "Split the right angle at C $t+36^\\circ+t=90^\\circ\\quad\\Rightarrow\\quad t=27^\\circ$.",
+        "zh": "把直角拆成三部分，列方程求未知數：$t+36^\\circ+t=90^\\circ\\quad\\Rightarrow\\quad t=27^\\circ$。",
+        "math": "t+36^\\circ+t=90^\\circ\\quad\\Rightarrow\\quad t=27^\\circ"
+       },
+       {
+        "title": {
+         "en": "Use the same segment on arc ED",
+         "zh": "同弓形內的圓周角相等，移到所求角"
+        },
+        "en": "Use the same segment on arc ED $\\angle EAD=\\angle ECD=27^\\circ$.",
+        "zh": "同弓形內的圓周角相等，移到所求角：$\\angle EAD=\\angle ECD=27^\\circ$。",
+        "math": "\\angle EAD=\\angle ECD=27^\\circ"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-20",
+     "code": "20",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "$AD$ is a diameter, $\\widehat{AB}=\\widehat{CD}=12$ cm, and $\\angle BED=50^\\circ$.",
+      "zh": "$AD$ 是直徑，弧長 $\\widehat{AB}=\\widehat{CD}=12$ cm，且 $\\angle BED=50^\\circ$。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find the arc length $\\widehat{CB}$.",
+       "zh": "求弧長 $\\widehat{CB}$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "",
+       "math": "\\widehat{CB}=3\\text{ cm}",
+       "input": "3"
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 0
+       },
+       "B": {
+        "at": 80
+       },
+       "C": {
+        "at": 100
+       },
+       "D": {
+        "at": 180
+       },
+       "E": {
+        "at": 270
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "D"
+       ],
+       [
+        "C",
+        "A"
+       ],
+       [
+        "B",
+        "E"
+       ],
+       [
+        "C",
+        "E"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Join AE and DE $\\angle AED=90^\\circ$.",
+        "zh": "連出輔助弦，直徑所對圓周角是直角：$\\angle AED=90^\\circ$。",
+        "lines": [
+         [
+          "A",
+          "E",
+          "accent"
+         ],
+         [
+          "D",
+          "E",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "E",
+          "A",
+          "D",
+          "90°",
+          "claim",
+          24
+         ],
+         [
+          "E",
+          "B",
+          "D",
+          "50°",
+          "given",
+          52
+         ]
+        ]
+       },
+       {
+        "en": "Subtract BED from the right angle $\\angle AEB=90^\\circ-50^\\circ=40^\\circ$.",
+        "zh": "從直角中減去已知角，找弧 AB 所對的角：$\\angle AEB=90^\\circ-50^\\circ=40^\\circ$。",
+        "arcs": [
+         [
+          "E",
+          "A",
+          "B",
+          "40°",
+          "claim",
+          32
+         ]
+        ]
+       },
+       {
+        "en": "Find the whole arc BCD $\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}$.",
+        "zh": "先配對整段弧及它所對的圓周角：$\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}$。",
+        "arcMeasures": [
+         {
+          "to": "D",
+          "avoid": "A",
+          "text": "15 cm",
+          "offset": 48,
+          "id": "BD",
+          "from": "B"
+         }
+        ]
+       },
+       {
+        "en": "Subtract CD from the whole arc $\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}$.",
+        "zh": "最後從整段弧中減去已知的一部分：$\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}$。",
+        "arcMeasures": [
+         {
+          "to": "B",
+          "avoid": "D",
+          "text": "3 cm",
+          "offset": 22,
+          "id": "CB",
+          "from": "C"
+         }
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "Arc CB = 3 cm"
+       }
+      ],
+      "readable": true,
+      "r": 120,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "arcMeasures": [
+       {
+        "to": "B",
+        "avoid": "D",
+        "text": "12 cm",
+        "offset": 22,
+        "id": "AB",
+        "from": "A"
+       },
+       {
+        "to": "D",
+        "avoid": "A",
+        "text": "12 cm",
+        "offset": 22,
+        "id": "CD",
+        "from": "C"
+       },
+       {
+        "to": "B",
+        "avoid": "D",
+        "text": "?",
+        "offset": 22,
+        "id": "CB",
+        "from": "C"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Join AE and DE",
+         "zh": "連出輔助弦，直徑所對圓周角是直角"
+        },
+        "en": "Join AE and DE $\\angle AED=90^\\circ$.",
+        "zh": "連出輔助弦，直徑所對圓周角是直角：$\\angle AED=90^\\circ$。",
+        "math": "\\angle AED=90^\\circ"
+       },
+       {
+        "title": {
+         "en": "Subtract BED from the right angle",
+         "zh": "從直角中減去已知角，找弧 AB 所對的角"
+        },
+        "en": "Subtract BED from the right angle $\\angle AEB=90^\\circ-50^\\circ=40^\\circ$.",
+        "zh": "從直角中減去已知角，找弧 AB 所對的角：$\\angle AEB=90^\\circ-50^\\circ=40^\\circ$。",
+        "math": "\\angle AEB=90^\\circ-50^\\circ=40^\\circ"
+       },
+       {
+        "title": {
+         "en": "Find the whole arc BCD",
+         "zh": "先配對整段弧及它所對的圓周角"
+        },
+        "en": "Find the whole arc BCD $\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}$.",
+        "zh": "先配對整段弧及它所對的圓周角：$\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}$。",
+        "math": "\\frac{\\widehat{BCD}}{12}=\\frac{50}{40}\\quad\\Rightarrow\\quad\\widehat{BCD}=15\\text{ cm}"
+       },
+       {
+        "title": {
+         "en": "Subtract CD from the whole arc",
+         "zh": "最後從整段弧中減去已知的一部分"
+        },
+        "en": "Subtract CD from the whole arc $\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}$.",
+        "zh": "最後從整段弧中減去已知的一部分：$\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}$。",
+        "math": "\\widehat{CB}=\\widehat{BCD}-\\widehat{CD}=15-12=3\\text{ cm}"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-21",
+     "code": "21",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "$BC$ is a diameter. Let $x=\\angle ACD$ and $y=\\angle ADO$.",
+      "zh": "$BC$ 是直徑，設 $x=\\angle ACD$、$y=\\angle ADO$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Express $y$ in terms of $x$.",
+       "zh": "以 $x$ 表示 $y$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "If $\\widehat{AB}=\\widehat{CD}$ and $\\angle AOB=74^\\circ$, find $y$.",
+       "zh": "若弧 $\\widehat{AB}=\\widehat{CD}$，且 $\\angle AOB=74^\\circ$，求 $y$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "y=90^\\circ-x",
+       "input": null
+      },
+      {
+       "part": "(b)",
+       "math": "y=74^\\circ",
+       "input": "74"
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 106
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 0
+       },
+       "D": {
+        "at": 74
+       }
+      },
+      "segments": [
+       [
+        "B",
+        "C"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "A",
+        "D"
+       ],
+       [
+        "D",
+        "C"
+       ],
+       [
+        "O",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Join OA and use the same arc AD $\\angle AOD=2\\angle ACD=2x$.",
+        "zh": "連出半徑，同弧的圓心角是圓周角兩倍：$\\angle AOD=2\\angle ACD=2x$。",
+        "lines": [
+         [
+          "O",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "A",
+          "D",
+          "x",
+          "given",
+          28
+         ],
+         [
+          "O",
+          "A",
+          "D",
+          "2x",
+          "claim",
+          44
+         ]
+        ]
+       },
+       {
+        "en": "Use equal radii in OAD $OA=OD\\quad\\Rightarrow\\quad\\angle OAD=\\angle ADO=y$.",
+        "zh": "兩條半徑相等，等腰三角形底角相等：$OA=OD\\quad\\Rightarrow\\quad\\angle OAD=\\angle ADO=y$。",
+        "radii": [
+         "A",
+         "D"
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "O",
+          "D",
+          "y",
+          "claim",
+          28
+         ],
+         [
+          "D",
+          "A",
+          "O",
+          "y",
+          "claim",
+          28
+         ]
+        ]
+       },
+       {
+        "en": "Use the angle sum of OAD $y+y+2x=180^\\circ\\quad\\Rightarrow\\quad y=90^\\circ-x$.",
+        "zh": "利用三角形內角和，整理成所求公式：$y+y+2x=180^\\circ\\quad\\Rightarrow\\quad y=90^\\circ-x$。",
+        "polygons": [
+         [
+          "O",
+          "A",
+          "D"
+         ]
+        ]
+       },
+       {
+        "en": "Now use the extra condition in part b $\\angle COD=\\angle AOB=74^\\circ$.",
+        "zh": "現在才加入第二部分的等弧和已知角條件：$\\angle COD=\\angle AOB=74^\\circ$。",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "74°",
+          "given",
+          30
+         ],
+         [
+          "O",
+          "C",
+          "D",
+          "74°",
+          "claim",
+          30
+         ]
+        ],
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "D",
+          "accent"
+         ],
+         [
+          "C",
+          "D",
+          "A",
+          "accent"
+         ]
+        ]
+       },
+       {
+        "en": "Subtract from the straight angle BOC $2x=180^\\circ-74^\\circ-74^\\circ=32^\\circ\\quad\\Rightarrow\\quad x=16^\\circ$.",
+        "zh": "三隻圓心角合成平角，求出未知角：$2x=180^\\circ-74^\\circ-74^\\circ=32^\\circ\\quad\\Rightarrow\\quad x=16^\\circ$。",
+        "clearAngle": [
+         "O"
+        ],
+        "arcs": [
+         [
+          "O",
+          "A",
+          "D",
+          "32°",
+          "claim",
+          44
+         ]
+        ]
+       },
+       {
+        "en": "Substitute into the formula from part a $y=90^\\circ-16^\\circ=74^\\circ$.",
+        "zh": "把求得的角代入第一部分的公式：$y=90^\\circ-16^\\circ=74^\\circ$。",
+        "clearAngle": [
+         "A",
+         "D",
+         "C"
+        ],
+        "arcs": [
+         [
+          "C",
+          "A",
+          "D",
+          "16°",
+          "claim",
+          28
+         ],
+         [
+          "D",
+          "A",
+          "O",
+          "74°",
+          "claim",
+          30
+         ],
+         [
+          "A",
+          "O",
+          "D",
+          "74°",
+          "claim",
+          66
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "(a) y = 90° − x; (b) y = 74°"
+       }
+      ],
+      "readable": true,
+      "r": 145,
+      "cy": 245,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "goal": [
+       [
+        "D",
+        "A",
+        "O",
+        "y",
+        "goal",
+        28
+       ]
+      ],
+      "semi": [
+       "B",
+       "C",
+       "A"
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Join OA and use the same arc AD",
+         "zh": "連出半徑，同弧的圓心角是圓周角兩倍"
+        },
+        "en": "Join OA and use the same arc AD $\\angle AOD=2\\angle ACD=2x$.",
+        "zh": "連出半徑，同弧的圓心角是圓周角兩倍：$\\angle AOD=2\\angle ACD=2x$。",
+        "math": "\\angle AOD=2\\angle ACD=2x"
+       },
+       {
+        "title": {
+         "en": "Use equal radii in OAD",
+         "zh": "兩條半徑相等，等腰三角形底角相等"
+        },
+        "en": "Use equal radii in OAD $OA=OD\\quad\\Rightarrow\\quad\\angle OAD=\\angle ADO=y$.",
+        "zh": "兩條半徑相等，等腰三角形底角相等：$OA=OD\\quad\\Rightarrow\\quad\\angle OAD=\\angle ADO=y$。",
+        "math": "OA=OD\\quad\\Rightarrow\\quad\\angle OAD=\\angle ADO=y"
+       },
+       {
+        "title": {
+         "en": "Use the angle sum of OAD",
+         "zh": "利用三角形內角和，整理成所求公式"
+        },
+        "en": "Use the angle sum of OAD $y+y+2x=180^\\circ\\quad\\Rightarrow\\quad y=90^\\circ-x$.",
+        "zh": "利用三角形內角和，整理成所求公式：$y+y+2x=180^\\circ\\quad\\Rightarrow\\quad y=90^\\circ-x$。",
+        "math": "y+y+2x=180^\\circ\\quad\\Rightarrow\\quad y=90^\\circ-x",
+        "part": "(a)"
+       },
+       {
+        "title": {
+         "en": "Now use the extra condition in part b",
+         "zh": "現在才加入第二部分的等弧和已知角條件"
+        },
+        "en": "Now use the extra condition in part b $\\angle COD=\\angle AOB=74^\\circ$.",
+        "zh": "現在才加入第二部分的等弧和已知角條件：$\\angle COD=\\angle AOB=74^\\circ$。",
+        "math": "\\angle COD=\\angle AOB=74^\\circ"
+       },
+       {
+        "title": {
+         "en": "Subtract from the straight angle BOC",
+         "zh": "三隻圓心角合成平角，求出未知角"
+        },
+        "en": "Subtract from the straight angle BOC $2x=180^\\circ-74^\\circ-74^\\circ=32^\\circ\\quad\\Rightarrow\\quad x=16^\\circ$.",
+        "zh": "三隻圓心角合成平角，求出未知角：$2x=180^\\circ-74^\\circ-74^\\circ=32^\\circ\\quad\\Rightarrow\\quad x=16^\\circ$。",
+        "math": "2x=180^\\circ-74^\\circ-74^\\circ=32^\\circ\\quad\\Rightarrow\\quad x=16^\\circ"
+       },
+       {
+        "title": {
+         "en": "Substitute into the formula from part a",
+         "zh": "把求得的角代入第一部分的公式"
+        },
+        "en": "Substitute into the formula from part a $y=90^\\circ-16^\\circ=74^\\circ$.",
+        "zh": "把求得的角代入第一部分的公式：$y=90^\\circ-16^\\circ=74^\\circ$。",
+        "math": "y=90^\\circ-16^\\circ=74^\\circ",
+        "part": "(b)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-22",
+     "code": "22",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "$A,B,C,D$ lie on a circle, $M$ lies on $BC$, $AC=BD$ and $\\angle AMB=\\angle DMC$.",
+      "zh": "$A$、$B$、$C$、$D$ 在同一圓上，$M$ 在 $BC$ 上，$AC=BD$，且 $\\angle AMB=\\angle DMC$。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Prove that $\\triangle ACM\\cong\\triangle DBM$.",
+       "zh": "證明 $\\triangle ACM\\cong\\triangle DBM$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "",
+       "math": "\\triangle ACM\\cong\\triangle DBM\\ (\\mathrm{AAS})",
+       "input": null
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 130
+       },
+       "B": {
+        "at": 210
+       },
+       "C": {
+        "at": 330
+       },
+       "D": {
+        "at": 50
+       },
+       "M": {
+        "between": [
+         "B",
+         "C"
+        ],
+        "labelOffset": [
+         0,
+         21
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "A",
+        "M"
+       ],
+       [
+        "D",
+        "M"
+       ],
+       [
+        "B",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Join AB and CD and compare equal chords $AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}$.",
+        "zh": "連出輔助弦，等弦對應相等的弧：$AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}$。",
+        "lines": [
+         [
+          "A",
+          "B",
+          "accent"
+         ],
+         [
+          "C",
+          "D",
+          "accent"
+         ]
+        ],
+        "ticks": [
+         [
+          "A",
+          "C",
+          2
+         ],
+         [
+          "B",
+          "D",
+          2
+         ]
+        ]
+       },
+       {
+        "en": "Use equal arcs and the same segment $\\angle ABC=\\angle BCD=u,\\quad\\angle ABD=\\angle ACD=v$.",
+        "zh": "利用等弧及同弓形，配對兩組相等的角：$\\angle ABC=\\angle BCD=u,\\quad\\angle ABD=\\angle ACD=v$。",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "u",
+          "claim",
+          46
+         ],
+         [
+          "C",
+          "B",
+          "D",
+          "u",
+          "claim",
+          46
+         ],
+         [
+          "B",
+          "A",
+          "D",
+          "v",
+          "claim",
+          26
+         ],
+         [
+          "C",
+          "A",
+          "D",
+          "v",
+          "claim",
+          26
+         ]
+        ]
+       },
+       {
+        "en": "Subtract equal angles from equal angles $\\angle DBM=\\angle ACM=u-v$.",
+        "zh": "由相等的整隻角減去相等的一部分：$\\angle DBM=\\angle ACM=u-v$。",
+        "clearAngle": [
+         "B",
+         "C"
+        ],
+        "arcs": [
+         [
+          "B",
+          "D",
+          "M",
+          "u−v",
+          "claim",
+          38
+         ],
+         [
+          "C",
+          "A",
+          "M",
+          "u−v",
+          "claim",
+          38
+         ]
+        ],
+        "polygons": [
+         [
+          "A",
+          "C",
+          "M"
+         ],
+         [
+          "D",
+          "B",
+          "M"
+         ]
+        ]
+       },
+       {
+        "en": "Use the given angles and the straight line BC $\\angle AMC=180^\\circ-\\angle AMB=180^\\circ-\\angle DMC=\\angle DMB$.",
+        "zh": "兩隻已知角相等，所以它們的補角也相等：$\\angle AMC=180^\\circ-\\angle AMB=180^\\circ-\\angle DMC=\\angle DMB$。",
+        "arcs": [
+         [
+          "M",
+          "A",
+          "C",
+          "w",
+          "claim",
+          30
+         ],
+         [
+          "M",
+          "D",
+          "B",
+          "w",
+          "claim",
+          50
+         ]
+        ]
+       },
+       {
+        "en": "Match A with D, C with B, and M with M $\\triangle ACM\\cong\\triangle DBM\\ (\\mathrm{AAS})$.",
+        "zh": "兩組對應角及一組對應邊相等，可證全等：$\\triangle ACM\\cong\\triangle DBM\\ (\\mathrm{AAS})$。",
+        "polygons": [
+         [
+          "A",
+          "C",
+          "M"
+         ],
+         [
+          "D",
+          "B",
+          "M"
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "△ACM ≅ △DBM (AAS)"
+       }
+      ],
+      "readable": true,
+      "r": 140,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      }
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Join AB and CD and compare equal chords",
+         "zh": "連出輔助弦，等弦對應相等的弧"
+        },
+        "en": "Join AB and CD and compare equal chords $AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}$.",
+        "zh": "連出輔助弦，等弦對應相等的弧：$AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}$。",
+        "math": "AC=BD\\quad\\Rightarrow\\quad\\widehat{AC}=\\widehat{BD}"
+       },
+       {
+        "title": {
+         "en": "Use equal arcs and the same segment",
+         "zh": "利用等弧及同弓形，配對兩組相等的角"
+        },
+        "en": "Use equal arcs and the same segment $\\angle ABC=\\angle BCD=u,\\quad\\angle ABD=\\angle ACD=v$.",
+        "zh": "利用等弧及同弓形，配對兩組相等的角：$\\angle ABC=\\angle BCD=u,\\quad\\angle ABD=\\angle ACD=v$。",
+        "math": "\\angle ABC=\\angle BCD=u,\\quad\\angle ABD=\\angle ACD=v"
+       },
+       {
+        "title": {
+         "en": "Subtract equal angles from equal angles",
+         "zh": "由相等的整隻角減去相等的一部分"
+        },
+        "en": "Subtract equal angles from equal angles $\\angle DBM=\\angle ACM=u-v$.",
+        "zh": "由相等的整隻角減去相等的一部分：$\\angle DBM=\\angle ACM=u-v$。",
+        "math": "\\angle DBM=\\angle ACM=u-v"
+       },
+       {
+        "title": {
+         "en": "Use the given angles and the straight line BC",
+         "zh": "兩隻已知角相等，所以它們的補角也相等"
+        },
+        "en": "Use the given angles and the straight line BC $\\angle AMC=180^\\circ-\\angle AMB=180^\\circ-\\angle DMC=\\angle DMB$.",
+        "zh": "兩隻已知角相等，所以它們的補角也相等：$\\angle AMC=180^\\circ-\\angle AMB=180^\\circ-\\angle DMC=\\angle DMB$。",
+        "math": "\\angle AMC=180^\\circ-\\angle AMB=180^\\circ-\\angle DMC=\\angle DMB"
+       },
+       {
+        "title": {
+         "en": "Match A with D, C with B, and M with M",
+         "zh": "兩組對應角及一組對應邊相等，可證全等"
+        },
+        "en": "Match A with D, C with B, and M with M $\\triangle ACM\\cong\\triangle DBM\\ (\\mathrm{AAS})$.",
+        "zh": "兩組對應角及一組對應邊相等，可證全等：$\\triangle ACM\\cong\\triangle DBM\\ (\\mathrm{AAS})$。",
+        "math": "\\triangle ACM\\cong\\triangle DBM\\ (\\mathrm{AAS})"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-23",
+     "code": "23",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "$AC$ and $BD$ meet at $E$. The consecutive arc lengths satisfy $\\widehat{AB}:\\widehat{BC}:\\widehat{CD}:\\widehat{DA}=7:2:6:3$.",
+      "zh": "$AC$ 與 $BD$ 交於 $E$，相鄰弧長比 $\\widehat{AB}:\\widehat{BC}:\\widehat{CD}:\\widehat{DA}=7:2:6:3$。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Find $\\angle AEB$.",
+       "zh": "求 $\\angle AEB$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "",
+       "math": "\\angle AEB=130^\\circ",
+       "input": "130"
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 30
+       },
+       "B": {
+        "at": 170
+       },
+       "C": {
+        "at": 210
+       },
+       "D": {
+        "at": 330
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ],
+        "labelOffset": [
+         -15,
+         15
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "A",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Join CD and match arcs to circumference angles $\\angle ADB:\\angle BDC:\\angle CAD:\\angle ACD=7:2:6:3$.",
+        "zh": "連出輔助弦，把四段弧與圓周角配對：$\\angle ADB:\\angle BDC:\\angle CAD:\\angle ACD=7:2:6:3$。",
+        "lines": [
+         [
+          "C",
+          "D",
+          "accent"
+         ]
+        ]
+       },
+       {
+        "en": "The four angle pieces fill triangle ACD $\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ$.",
+        "zh": "四個比例角剛好合成三角形的內角和：$\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ$。",
+        "polygons": [
+         [
+          "A",
+          "C",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "C",
+          "D",
+          "60°",
+          "claim",
+          32
+         ]
+        ]
+       },
+       {
+        "en": "Use the same total of eighteen parts $\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ$.",
+        "zh": "沿用同一個總比例份數求另一隻角：$\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ$。",
+        "arcs": [
+         [
+          "D",
+          "A",
+          "B",
+          "70°",
+          "claim",
+          32
+         ]
+        ]
+       },
+       {
+        "en": "Use the exterior angle of triangle AED $\\angle AEB=\\angle EAD+\\angle ADE=60^\\circ+70^\\circ=130^\\circ$.",
+        "zh": "所求角是三角形的外角，等於兩內對角和：$\\angle AEB=\\angle EAD+\\angle ADE=60^\\circ+70^\\circ=130^\\circ$。",
+        "polygons": [
+         [
+          "A",
+          "E",
+          "D"
+         ]
+        ],
+        "arcs": [
+         [
+          "E",
+          "A",
+          "B",
+          "130°",
+          "claim",
+          38
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "∠AEB = 130°"
+       }
+      ],
+      "readable": true,
+      "r": 115,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "goal": [
+       [
+        "E",
+        "A",
+        "B",
+        "?",
+        "goal",
+        38
+       ]
+      ],
+      "arcMeasures": [
+       {
+        "to": "B",
+        "avoid": "D",
+        "text": "7k",
+        "offset": 22,
+        "id": "AB",
+        "from": "A"
+       },
+       {
+        "to": "C",
+        "avoid": "A",
+        "text": "2k",
+        "offset": 22,
+        "id": "BC",
+        "from": "B"
+       },
+       {
+        "to": "D",
+        "avoid": "A",
+        "text": "6k",
+        "offset": 22,
+        "id": "CD",
+        "from": "C"
+       },
+       {
+        "to": "A",
+        "avoid": "B",
+        "text": "3k",
+        "offset": 22,
+        "id": "DA",
+        "from": "D"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Join CD and match arcs to circumference angles",
+         "zh": "連出輔助弦，把四段弧與圓周角配對"
+        },
+        "en": "Join CD and match arcs to circumference angles $\\angle ADB:\\angle BDC:\\angle CAD:\\angle ACD=7:2:6:3$.",
+        "zh": "連出輔助弦，把四段弧與圓周角配對：$\\angle ADB:\\angle BDC:\\angle CAD:\\angle ACD=7:2:6:3$。",
+        "math": "\\angle ADB:\\angle BDC:\\angle CAD:\\angle ACD=7:2:6:3"
+       },
+       {
+        "title": {
+         "en": "The four angle pieces fill triangle ACD",
+         "zh": "四個比例角剛好合成三角形的內角和"
+        },
+        "en": "The four angle pieces fill triangle ACD $\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ$.",
+        "zh": "四個比例角剛好合成三角形的內角和：$\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ$。",
+        "math": "\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ"
+       },
+       {
+        "title": {
+         "en": "Use the same total of eighteen parts",
+         "zh": "沿用同一個總比例份數求另一隻角"
+        },
+        "en": "Use the same total of eighteen parts $\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ$.",
+        "zh": "沿用同一個總比例份數求另一隻角：$\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ$。",
+        "math": "\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ"
+       },
+       {
+        "title": {
+         "en": "Use the exterior angle of triangle AED",
+         "zh": "所求角是三角形的外角，等於兩內對角和"
+        },
+        "en": "Use the exterior angle of triangle AED $\\angle AEB=\\angle EAD+\\angle ADE=60^\\circ+70^\\circ=130^\\circ$.",
+        "zh": "所求角是三角形的外角，等於兩內對角和：$\\angle AEB=\\angle EAD+\\angle ADE=60^\\circ+70^\\circ=130^\\circ$。",
+        "math": "\\angle AEB=\\angle EAD+\\angle ADE=60^\\circ+70^\\circ=130^\\circ"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-24",
+     "code": "24",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "$AC$ and $BD$ meet at $E$. The arcs $\\widehat{AB}=\\widehat{CD}$.",
+      "zh": "$AC$ 與 $BD$ 交於 $E$，且弧 $\\widehat{AB}=\\widehat{CD}$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove that $\\triangle ABE\\cong\\triangle DCE$.",
+       "zh": "證明 $\\triangle ABE\\cong\\triangle DCE$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Is there only one pair of similar triangles in the figure? Explain.",
+       "zh": "圖中是否只有一對相似三角形？解釋理由。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\triangle ABE\\cong\\triangle DCE\\ (\\mathrm{ASA})",
+       "input": null
+      },
+      {
+       "part": "(b)",
+       "math": "\\text{No: }\\triangle ADE\\sim\\triangle BCE\\text{ also}",
+       "input": null
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 130
+       },
+       "B": {
+        "at": 230
+       },
+       "C": {
+        "at": 310
+       },
+       "D": {
+        "at": 50
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ],
+        "labelOffset": [
+         15,
+         5
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Equal arcs give equal chords $\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD$.",
+        "zh": "先由已知等弧得出對應的弦相等：$\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD$。",
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "D",
+          "accent"
+         ],
+         [
+          "C",
+          "D",
+          "A",
+          "accent"
+         ]
+        ],
+        "ticks": [
+         [
+          "A",
+          "B",
+          2
+         ],
+         [
+          "C",
+          "D",
+          2
+         ]
+        ]
+       },
+       {
+        "en": "Use angles in the same segment $\\angle BAE=\\angle CDE=p,\\quad\\angle ABE=\\angle DCE=q$.",
+        "zh": "同弓形內的圓周角相等，配對兩組角：$\\angle BAE=\\angle CDE=p,\\quad\\angle ABE=\\angle DCE=q$。",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "E",
+          "p",
+          "claim",
+          30
+         ],
+         [
+          "D",
+          "C",
+          "E",
+          "p",
+          "claim",
+          30
+         ],
+         [
+          "B",
+          "A",
+          "E",
+          "q",
+          "claim",
+          30
+         ],
+         [
+          "C",
+          "D",
+          "E",
+          "q",
+          "claim",
+          30
+         ]
+        ],
+        "polygons": [
+         [
+          "A",
+          "B",
+          "E"
+         ],
+         [
+          "D",
+          "C",
+          "E"
+         ]
+        ]
+       },
+       {
+        "en": "Two angle pairs and their included side are equal $\\triangle ABE\\cong\\triangle DCE\\ (\\mathrm{ASA})$.",
+        "zh": "兩角及夾着它們的對應邊相等，可證全等：$\\triangle ABE\\cong\\triangle DCE\\ (\\mathrm{ASA})$。",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "E"
+         ],
+         [
+          "D",
+          "C",
+          "E"
+         ]
+        ]
+       },
+       {
+        "en": "Every congruent pair is also similar $\\triangle ABE\\sim\\triangle DCE$.",
+        "zh": "全等三角形的形狀相同，所以也是相似三角形：$\\triangle ABE\\sim\\triangle DCE$。",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "E"
+         ],
+         [
+          "D",
+          "C",
+          "E"
+         ]
+        ]
+       },
+       {
+        "en": "Now compare ADE with BCE $\\angle ADE=\\angle BCE=r,\\quad\\angle DAE=\\angle CBE=s$.",
+        "zh": "改看另一對三角形，再用同弓形配對角：$\\angle ADE=\\angle BCE=r,\\quad\\angle DAE=\\angle CBE=s$。",
+        "clearAngle": [
+         "A",
+         "B",
+         "C",
+         "D"
+        ],
+        "arcs": [
+         [
+          "D",
+          "A",
+          "E",
+          "r",
+          "claim",
+          30
+         ],
+         [
+          "C",
+          "B",
+          "E",
+          "r",
+          "claim",
+          30
+         ],
+         [
+          "A",
+          "D",
+          "E",
+          "s",
+          "claim",
+          30
+         ],
+         [
+          "B",
+          "C",
+          "E",
+          "s",
+          "claim",
+          30
+         ]
+        ],
+        "polygons": [
+         [
+          "A",
+          "D",
+          "E"
+         ],
+         [
+          "B",
+          "C",
+          "E"
+         ]
+        ]
+       },
+       {
+        "en": "A second pair disproves the claim $\\triangle ADE\\sim\\triangle BCE\\ (\\mathrm{AA})$.",
+        "zh": "找出第二對相似三角形，已足以否定聲稱：$\\triangle ADE\\sim\\triangle BCE\\ (\\mathrm{AA})$。",
+        "polygons": [
+         [
+          "A",
+          "D",
+          "E"
+         ],
+         [
+          "B",
+          "C",
+          "E"
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "(a) ASA; (b) Two similar pairs"
+       }
+      ],
+      "readable": true,
+      "r": 135,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      }
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Equal arcs give equal chords",
+         "zh": "先由已知等弧得出對應的弦相等"
+        },
+        "en": "Equal arcs give equal chords $\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD$.",
+        "zh": "先由已知等弧得出對應的弦相等：$\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD$。",
+        "math": "\\widehat{AB}=\\widehat{CD}\\quad\\Rightarrow\\quad AB=CD"
+       },
+       {
+        "title": {
+         "en": "Use angles in the same segment",
+         "zh": "同弓形內的圓周角相等，配對兩組角"
+        },
+        "en": "Use angles in the same segment $\\angle BAE=\\angle CDE=p,\\quad\\angle ABE=\\angle DCE=q$.",
+        "zh": "同弓形內的圓周角相等，配對兩組角：$\\angle BAE=\\angle CDE=p,\\quad\\angle ABE=\\angle DCE=q$。",
+        "math": "\\angle BAE=\\angle CDE=p,\\quad\\angle ABE=\\angle DCE=q"
+       },
+       {
+        "title": {
+         "en": "Two angle pairs and their included side are equal",
+         "zh": "兩角及夾着它們的對應邊相等，可證全等"
+        },
+        "en": "Two angle pairs and their included side are equal $\\triangle ABE\\cong\\triangle DCE\\ (\\mathrm{ASA})$.",
+        "zh": "兩角及夾着它們的對應邊相等，可證全等：$\\triangle ABE\\cong\\triangle DCE\\ (\\mathrm{ASA})$。",
+        "math": "\\triangle ABE\\cong\\triangle DCE\\ (\\mathrm{ASA})",
+        "part": "(a)"
+       },
+       {
+        "title": {
+         "en": "Every congruent pair is also similar",
+         "zh": "全等三角形的形狀相同，所以也是相似三角形"
+        },
+        "en": "Every congruent pair is also similar $\\triangle ABE\\sim\\triangle DCE$.",
+        "zh": "全等三角形的形狀相同，所以也是相似三角形：$\\triangle ABE\\sim\\triangle DCE$。",
+        "math": "\\triangle ABE\\sim\\triangle DCE"
+       },
+       {
+        "title": {
+         "en": "Now compare ADE with BCE",
+         "zh": "改看另一對三角形，再用同弓形配對角"
+        },
+        "en": "Now compare ADE with BCE $\\angle ADE=\\angle BCE=r,\\quad\\angle DAE=\\angle CBE=s$.",
+        "zh": "改看另一對三角形，再用同弓形配對角：$\\angle ADE=\\angle BCE=r,\\quad\\angle DAE=\\angle CBE=s$。",
+        "math": "\\angle ADE=\\angle BCE=r,\\quad\\angle DAE=\\angle CBE=s"
+       },
+       {
+        "title": {
+         "en": "A second pair disproves the claim",
+         "zh": "找出第二對相似三角形，已足以否定聲稱"
+        },
+        "en": "A second pair disproves the claim $\\triangle ADE\\sim\\triangle BCE\\ (\\mathrm{AA})$.",
+        "zh": "找出第二對相似三角形，已足以否定聲稱：$\\triangle ADE\\sim\\triangle BCE\\ (\\mathrm{AA})$。",
+        "math": "\\triangle ADE\\sim\\triangle BCE\\ (\\mathrm{AA})",
+        "part": "(b)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-25",
+     "code": "25",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "$AD$ is the diameter of the semi-circle. $AB=BC$ and $\\angle CBD=30^\\circ$.",
+      "zh": "$AD$ 是半圓的直徑，弦 $AB=BC$，且 $\\angle CBD=30^\\circ$。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Prove that $AD\\parallel BC$.",
+       "zh": "證明 $AD\\parallel BC$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "",
+       "math": "AD\\parallel BC",
+       "input": null
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 180
+       },
+       "B": {
+        "at": 240
+       },
+       "C": {
+        "at": 300
+       },
+       "D": {
+        "at": 0
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "D"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "B",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Join AC and use the diameter AD $\\angle ABD=90^\\circ$.",
+        "zh": "連出輔助弦，直徑所對圓周角是直角：$\\angle ABD=90^\\circ$。",
+        "lines": [
+         [
+          "A",
+          "C",
+          "accent"
+         ]
+        ],
+        "ticks": [
+         [
+          "A",
+          "B",
+          2
+         ],
+         [
+          "B",
+          "C",
+          2
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "D",
+          "90°",
+          "claim",
+          24
+         ],
+         [
+          "B",
+          "C",
+          "D",
+          "30°",
+          "given",
+          44
+         ]
+        ]
+       },
+       {
+        "en": "Add the angles at B $\\angle ABC=90^\\circ+30^\\circ=120^\\circ$.",
+        "zh": "把頂點相同的相鄰兩隻角相加：$\\angle ABC=90^\\circ+30^\\circ=120^\\circ$。",
+        "clearAngle": [
+         "B"
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "120°",
+          "claim",
+          34
+         ]
+        ]
+       },
+       {
+        "en": "ABC is isosceles $\\angle BCA=\\angle BAC=\\frac{180^\\circ-120^\\circ}{2}=30^\\circ$.",
+        "zh": "等腰三角形的兩隻底角平分剩餘角度：$\\angle BCA=\\angle BAC=\\frac{180^\\circ-120^\\circ}{2}=30^\\circ$。",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "C"
+         ]
+        ],
+        "arcs": [
+         [
+          "C",
+          "B",
+          "A",
+          "30°",
+          "claim",
+          30
+         ],
+         [
+          "A",
+          "B",
+          "C",
+          "30°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "en": "Use the same segment on arc BA $\\angle BDA=\\angle BCA=30^\\circ$.",
+        "zh": "同弓形內的圓周角相等，移角到 D：$\\angle BDA=\\angle BCA=30^\\circ$。",
+        "arcs": [
+         [
+          "D",
+          "B",
+          "A",
+          "30°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "en": "Equal alternate angles prove the lines parallel $\\angle BDA=\\angle CBD\\quad\\Rightarrow\\quad AD\\parallel BC$.",
+        "zh": "兩隻內錯角相等，所以兩條直線平行：$\\angle BDA=\\angle CBD\\quad\\Rightarrow\\quad AD\\parallel BC$。",
+        "clearAngle": [
+         "B"
+        ],
+        "arcs": [
+         [
+          "B",
+          "C",
+          "D",
+          "30°",
+          "given",
+          34
+         ]
+        ],
+        "parallel": [
+         [
+          "A",
+          "D"
+         ],
+         [
+          "B",
+          "C"
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "AD ∥ BC"
+       }
+      ],
+      "readable": true,
+      "r": 140,
+      "cy": 145,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "semi": [
+       "A",
+       "D",
+       "B"
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Join AC and use the diameter AD",
+         "zh": "連出輔助弦，直徑所對圓周角是直角"
+        },
+        "en": "Join AC and use the diameter AD $\\angle ABD=90^\\circ$.",
+        "zh": "連出輔助弦，直徑所對圓周角是直角：$\\angle ABD=90^\\circ$。",
+        "math": "\\angle ABD=90^\\circ"
+       },
+       {
+        "title": {
+         "en": "Add the angles at B",
+         "zh": "把頂點相同的相鄰兩隻角相加"
+        },
+        "en": "Add the angles at B $\\angle ABC=90^\\circ+30^\\circ=120^\\circ$.",
+        "zh": "把頂點相同的相鄰兩隻角相加：$\\angle ABC=90^\\circ+30^\\circ=120^\\circ$。",
+        "math": "\\angle ABC=90^\\circ+30^\\circ=120^\\circ"
+       },
+       {
+        "title": {
+         "en": "ABC is isosceles",
+         "zh": "等腰三角形的兩隻底角平分剩餘角度"
+        },
+        "en": "ABC is isosceles $\\angle BCA=\\angle BAC=\\frac{180^\\circ-120^\\circ}{2}=30^\\circ$.",
+        "zh": "等腰三角形的兩隻底角平分剩餘角度：$\\angle BCA=\\angle BAC=\\frac{180^\\circ-120^\\circ}{2}=30^\\circ$。",
+        "math": "\\angle BCA=\\angle BAC=\\frac{180^\\circ-120^\\circ}{2}=30^\\circ"
+       },
+       {
+        "title": {
+         "en": "Use the same segment on arc BA",
+         "zh": "同弓形內的圓周角相等，移角到 D"
+        },
+        "en": "Use the same segment on arc BA $\\angle BDA=\\angle BCA=30^\\circ$.",
+        "zh": "同弓形內的圓周角相等，移角到 D：$\\angle BDA=\\angle BCA=30^\\circ$。",
+        "math": "\\angle BDA=\\angle BCA=30^\\circ"
+       },
+       {
+        "title": {
+         "en": "Equal alternate angles prove the lines parallel",
+         "zh": "兩隻內錯角相等，所以兩條直線平行"
+        },
+        "en": "Equal alternate angles prove the lines parallel $\\angle BDA=\\angle CBD\\quad\\Rightarrow\\quad AD\\parallel BC$.",
+        "zh": "兩隻內錯角相等，所以兩條直線平行：$\\angle BDA=\\angle CBD\\quad\\Rightarrow\\quad AD\\parallel BC$。",
+        "math": "\\angle BDA=\\angle CBD\\quad\\Rightarrow\\quad AD\\parallel BC"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    },
+    {
+     "id": "ch11-3-l2-26",
+     "code": "26",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "The arcs satisfy $\\widehat{AB}:\\widehat{BC}:\\widehat{CA}=7:6:5$. The shaded region is the minor segment bounded by chord $AC$ and the arc $AC$ not containing $B$.",
+      "zh": "弧長比 $\\widehat{AB}:\\widehat{BC}:\\widehat{CA}=7:6:5$。陰影是由弦 $AC$ 與不含 $B$ 的弧 $AC$ 圍成的劣弓形。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Find $\\angle AOC$.",
+       "zh": "求 $\\angle AOC$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "The radius is $10$ cm. Find the shaded area to 3 significant figures.",
+       "zh": "若半徑是 $10$ cm，求陰影面積，答案準確至三位有效數字。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "\\angle AOC=100^\\circ",
+       "input": "100"
+      },
+      {
+       "part": "(b)",
+       "math": "38.0\\text{ cm}^2",
+       "input": "38.0"
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 40
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 300
+       },
+       "M": {
+        "between": [
+         "A",
+         "C"
+        ],
+        "hidden": true,
+        "labelOffset": [
+         17,
+         16
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "C"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Use the arc ratio at the centre $\\angle AOB:\\angle BOC:\\angle COA=7:6:5$.",
+        "zh": "把一周的弧長比轉成圓心角的比：$\\angle AOB:\\angle BOC:\\angle COA=7:6:5$。",
+        "lines": [
+         [
+          "O",
+          "B",
+          "accent"
+         ]
+        ]
+       },
+       {
+        "en": "Take five of the eighteen equal parts $\\angle AOC=360^\\circ\\times\\frac5{18}=100^\\circ$.",
+        "zh": "所求圓心角佔一周比例的十八分之五：$\\angle AOC=360^\\circ\\times\\frac5{18}=100^\\circ$。",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "C",
+          "100°",
+          "claim",
+          36
+         ]
+        ]
+       },
+       {
+        "en": "Use the equal radii in OAC $OA=OC=10,\\quad\\angle OAC=\\angle OCA=40^\\circ$.",
+        "zh": "等腰三角形的底角平分剩餘角度：$OA=OC=10,\\quad\\angle OAC=\\angle OCA=40^\\circ$。",
+        "radii": [
+         "A",
+         "C"
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "C"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "O",
+          "C",
+          "40°",
+          "claim",
+          30
+         ],
+         [
+          "C",
+          "O",
+          "A",
+          "40°",
+          "claim",
+          30
+         ]
+        ],
+        "segmentLabels": [
+         {
+          "id": "OA",
+          "between": [
+           "O",
+           "A"
+          ],
+          "text": "10 cm",
+          "dx": -15,
+          "dy": -13
+         },
+         {
+          "id": "OC",
+          "between": [
+           "O",
+           "C"
+          ],
+          "text": "10 cm",
+          "dx": -15,
+          "dy": 18
+         }
+        ]
+       },
+       {
+        "en": "Mark the midpoint M and join OM $AM=MC,\\quad OM\\perp AC$.",
+        "zh": "標出弦的中點，連圓心到中點便垂直於弦：$AM=MC,\\quad OM\\perp AC$。",
+        "show": [
+         "M"
+        ],
+        "lines": [
+         [
+          "O",
+          "M",
+          "accent"
+         ]
+        ],
+        "ticks": [
+         [
+          "A",
+          "M",
+          2
+         ],
+         [
+          "M",
+          "C",
+          2
+         ]
+        ],
+        "arcs": [
+         [
+          "M",
+          "O",
+          "A",
+          "90°",
+          "claim",
+          24
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "M"
+         ]
+        ]
+       },
+       {
+        "en": "Use the right triangle OAM $AM=10\\cos40^\\circ,\\quad OM=10\\sin40^\\circ$.",
+        "zh": "在直角三角形中用三角比求底和高：$AM=10\\cos40^\\circ,\\quad OM=10\\sin40^\\circ$。",
+        "segmentLabels": [
+         {
+          "id": "AM",
+          "between": [
+           "A",
+           "M"
+          ],
+          "text": "7.66",
+          "dx": 26,
+          "dy": 0
+         },
+         {
+          "id": "OM",
+          "between": [
+           "O",
+           "M"
+          ],
+          "text": "6.43",
+          "dx": 0,
+          "dy": -15
+         }
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "M"
+         ]
+        ]
+       },
+       {
+        "en": "Find the triangle area $[\\triangle OAC]=\\tfrac12(2AM)(OM)\\approx49.2404\\text{ cm}^2$.",
+        "zh": "先計算需要扣去的三角形面積：$[\\triangle OAC]=\\tfrac12(2AM)(OM)\\approx49.2404\\text{ cm}^2$。",
+        "polygons": [
+         [
+          "O",
+          "A",
+          "C"
+         ]
+        ]
+       },
+       {
+        "en": "Find the area of the sector $[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2\\approx87.2665\\text{ cm}^2$.",
+        "zh": "再按圓心角佔一周的比例求扇形面積：$[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2\\approx87.2665\\text{ cm}^2$。"
+       },
+       {
+        "en": "Subtract the triangle from the sector; round only at the end $[\\text{shaded}]=87.2665-49.2404\\approx38.0\\text{ cm}^2$.",
+        "zh": "扇形減三角形才是弓形，最後才取三位有效數字：$[\\text{shaded}]=87.2665-49.2404\\approx38.0\\text{ cm}^2$。",
+        "final": true,
+        "clearGoal": true,
+        "answer": "(a) 100°; (b) 38.0 cm²"
+       }
+      ],
+      "readable": true,
+      "r": 135,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "goal": [
+       [
+        "O",
+        "A",
+        "C",
+        "?",
+        "goal",
+        36
+       ]
+      ],
+      "regions": [
+       {
+        "to": "C",
+        "avoid": "B",
+        "from": "A"
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Use the arc ratio at the centre",
+         "zh": "把一周的弧長比轉成圓心角的比"
+        },
+        "en": "Use the arc ratio at the centre $\\angle AOB:\\angle BOC:\\angle COA=7:6:5$.",
+        "zh": "把一周的弧長比轉成圓心角的比：$\\angle AOB:\\angle BOC:\\angle COA=7:6:5$。",
+        "math": "\\angle AOB:\\angle BOC:\\angle COA=7:6:5"
+       },
+       {
+        "title": {
+         "en": "Take five of the eighteen equal parts",
+         "zh": "所求圓心角佔一周比例的十八分之五"
+        },
+        "en": "Take five of the eighteen equal parts $\\angle AOC=360^\\circ\\times\\frac5{18}=100^\\circ$.",
+        "zh": "所求圓心角佔一周比例的十八分之五：$\\angle AOC=360^\\circ\\times\\frac5{18}=100^\\circ$。",
+        "math": "\\angle AOC=360^\\circ\\times\\frac5{18}=100^\\circ",
+        "part": "(a)"
+       },
+       {
+        "title": {
+         "en": "Use the equal radii in OAC",
+         "zh": "等腰三角形的底角平分剩餘角度"
+        },
+        "en": "Use the equal radii in OAC $OA=OC=10,\\quad\\angle OAC=\\angle OCA=40^\\circ$.",
+        "zh": "等腰三角形的底角平分剩餘角度：$OA=OC=10,\\quad\\angle OAC=\\angle OCA=40^\\circ$。",
+        "math": "OA=OC=10,\\quad\\angle OAC=\\angle OCA=40^\\circ"
+       },
+       {
+        "title": {
+         "en": "Mark the midpoint M and join OM",
+         "zh": "標出弦的中點，連圓心到中點便垂直於弦"
+        },
+        "en": "Mark the midpoint M and join OM $AM=MC,\\quad OM\\perp AC$.",
+        "zh": "標出弦的中點，連圓心到中點便垂直於弦：$AM=MC,\\quad OM\\perp AC$。",
+        "math": "AM=MC,\\quad OM\\perp AC"
+       },
+       {
+        "title": {
+         "en": "Use the right triangle OAM",
+         "zh": "在直角三角形中用三角比求底和高"
+        },
+        "en": "Use the right triangle OAM $AM=10\\cos40^\\circ,\\quad OM=10\\sin40^\\circ$.",
+        "zh": "在直角三角形中用三角比求底和高：$AM=10\\cos40^\\circ,\\quad OM=10\\sin40^\\circ$。",
+        "math": "AM=10\\cos40^\\circ,\\quad OM=10\\sin40^\\circ"
+       },
+       {
+        "title": {
+         "en": "Find the triangle area",
+         "zh": "先計算需要扣去的三角形面積"
+        },
+        "en": "Find the triangle area $[\\triangle OAC]=\\tfrac12(2AM)(OM)\\approx49.2404\\text{ cm}^2$.",
+        "zh": "先計算需要扣去的三角形面積：$[\\triangle OAC]=\\tfrac12(2AM)(OM)\\approx49.2404\\text{ cm}^2$。",
+        "math": "[\\triangle OAC]=\\tfrac12(2AM)(OM)\\approx49.2404\\text{ cm}^2"
+       },
+       {
+        "title": {
+         "en": "Find the area of the sector",
+         "zh": "再按圓心角佔一周的比例求扇形面積"
+        },
+        "en": "Find the area of the sector $[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2\\approx87.2665\\text{ cm}^2$.",
+        "zh": "再按圓心角佔一周的比例求扇形面積：$[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2\\approx87.2665\\text{ cm}^2$。",
+        "math": "[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2\\approx87.2665\\text{ cm}^2"
+       },
+       {
+        "title": {
+         "en": "Subtract the triangle from the sector; round only at the end",
+         "zh": "扇形減三角形才是弓形，最後才取三位有效數字"
+        },
+        "en": "Subtract the triangle from the sector; round only at the end $[\\text{shaded}]=87.2665-49.2404\\approx38.0\\text{ cm}^2$.",
+        "zh": "扇形減三角形才是弓形，最後才取三位有效數字：$[\\text{shaded}]=87.2665-49.2404\\approx38.0\\text{ cm}^2$。",
+        "math": "[\\text{shaded}]=87.2665-49.2404\\approx38.0\\text{ cm}^2",
+        "part": "(b)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "SMART",
+   "title": {
+    "en": "Smart Corner",
+    "zh": "思考題"
+   },
+   "questions": [
+    {
+     "id": "ch11-3-sm-27",
+     "code": "27",
+     "type": "long",
+     "marks": 2,
+     "difficulty": 3,
+     "stem": {
+      "en": "$BC$ is the diameter of the semi-circle. The arcs $\\widehat{AB}:\\widehat{AD}:\\widehat{DC}=1:3:5$ and the chord $AD=12$ cm. The shaded region is the semi-circle with the minor segment AD removed.",
+      "zh": "$BC$ 是半圓的直徑。弧長比 $\\widehat{AB}:\\widehat{AD}:\\widehat{DC}=1:3:5$，弦長 $AD=12$ cm。陰影是半圓扣去劣弓形 AD 的部分。"
+     },
+     "parts": [
+      {
+       "label": "",
+       "en": "Show that the shaded area is $(48\\pi+36\\sqrt3)$ cm$^2$.",
+       "zh": "證明陰影面積是 $(48\\pi+36\\sqrt3)$ cm$^2$。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "",
+       "math": "(48\\pi+36\\sqrt3)\\text{ cm}^2",
+       "input": null
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 160
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 0
+       },
+       "D": {
+        "at": 100
+       },
+       "X": {
+        "at": 270,
+        "hidden": true
+       },
+       "M": {
+        "between": [
+         "A",
+         "D"
+        ],
+        "hidden": true,
+        "labelOffset": [
+         -19,
+         -8
+        ]
+       }
+      },
+      "segments": [
+       [
+        "B",
+        "C"
+       ],
+       [
+        "A",
+        "D"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Mark the centre O and join OA and OD $\\angle AOD=180^\\circ\\times\\frac3{1+3+5}=60^\\circ$.",
+        "zh": "標出圓心並連出半徑，把弧長比轉成圓心角比：$\\angle AOD=180^\\circ\\times\\frac3{1+3+5}=60^\\circ$。",
+        "show": [
+         "O"
+        ],
+        "lines": [
+         [
+          "O",
+          "A",
+          "accent"
+         ],
+         [
+          "O",
+          "D",
+          "accent"
+         ]
+        ],
+        "arcs": [
+         [
+          "O",
+          "A",
+          "D",
+          "60°",
+          "claim",
+          32
+         ]
+        ],
+        "segmentLabels": [
+         {
+          "id": "AD",
+          "between": [
+           "A",
+           "D"
+          ],
+          "text": "12 cm",
+          "dx": -30,
+          "dy": -38
+         }
+        ]
+       },
+       {
+        "en": "OAD is equilateral $OA=OD,\\quad\\angle OAD=\\angle ODA=60^\\circ$.",
+        "zh": "等腰三角形三隻角都是六十度，所以是等邊三角形：$OA=OD,\\quad\\angle OAD=\\angle ODA=60^\\circ$。",
+        "radii": [
+         "A",
+         "D"
+        ],
+        "arcs": [
+         [
+          "A",
+          "O",
+          "D",
+          "60°",
+          "claim",
+          30
+         ],
+         [
+          "D",
+          "O",
+          "A",
+          "60°",
+          "claim",
+          30
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "D"
+         ]
+        ]
+       },
+       {
+        "en": "Find the radius from the given chord $r=OA=OD=AD=12\\text{ cm}$.",
+        "zh": "由等邊三角形的三邊相等，求出半徑：$r=OA=OD=AD=12\\text{ cm}$。",
+        "segmentLabels": [
+         {
+          "id": "OD",
+          "between": [
+           "O",
+           "D"
+          ],
+          "text": "12",
+          "dx": 22,
+          "dy": 0
+         }
+        ]
+       },
+       {
+        "en": "Bisect AD to find the triangle height $AM=DM=6,\\quad OM=6\\tan60^\\circ=6\\sqrt3\\text{ cm}$.",
+        "zh": "取弦的中點，利用直角三角形求高：$AM=DM=6,\\quad OM=6\\tan60^\\circ=6\\sqrt3\\text{ cm}$。",
+        "show": [
+         "M"
+        ],
+        "lines": [
+         [
+          "O",
+          "M",
+          "accent"
+         ]
+        ],
+        "ticks": [
+         [
+          "A",
+          "M",
+          2
+         ],
+         [
+          "D",
+          "M",
+          2
+         ]
+        ],
+        "arcs": [
+         [
+          "M",
+          "O",
+          "D",
+          "90°",
+          "claim",
+          24
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "D"
+         ]
+        ]
+       },
+       {
+        "en": "Find the triangle area $[\\triangle OAD]=\\tfrac12\\times12\\times6\\sqrt3=36\\sqrt3$.",
+        "zh": "用底乘高除二，求出三角形面積：$[\\triangle OAD]=\\tfrac12\\times12\\times6\\sqrt3=36\\sqrt3$。",
+        "polygons": [
+         [
+          "O",
+          "A",
+          "D"
+         ]
+        ]
+       },
+       {
+        "en": "Find the small sector area $[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2=24\\pi$.",
+        "zh": "按圓心角的比例求出小扇形面積：$[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2=24\\pi$。"
+       },
+       {
+        "en": "The unshaded segment is sector minus triangle $[\\text{segment }AD]=24\\pi-36\\sqrt3$.",
+        "zh": "沒有陰影的弓形等於扇形減三角形：$[\\text{segment }AD]=24\\pi-36\\sqrt3$。"
+       },
+       {
+        "en": "Subtract that segment from the whole semi-circle $[\\text{shaded}]=\\tfrac12\\pi(12)^2-(24\\pi-36\\sqrt3)=48\\pi+36\\sqrt3$.",
+        "zh": "由整個半圓扣去沒有陰影的弓形：$[\\text{shaded}]=\\tfrac12\\pi(12)^2-(24\\pi-36\\sqrt3)=48\\pi+36\\sqrt3$。",
+        "final": true,
+        "clearGoal": true,
+        "answer": "Shaded area = 48π + 36√3 cm²"
+       }
+      ],
+      "readable": true,
+      "r": 145,
+      "cy": 255,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      },
+      "semi": [
+       "B",
+       "C",
+       "A"
+      ],
+      "regions": [
+       {
+        "from": "B",
+        "to": "C",
+        "avoid": "X",
+        "holes": [
+         {
+          "from": "A",
+          "to": "D",
+          "avoid": "C"
+         }
+        ]
+       }
+      ]
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Mark the centre O and join OA and OD",
+         "zh": "標出圓心並連出半徑，把弧長比轉成圓心角比"
+        },
+        "en": "Mark the centre O and join OA and OD $\\angle AOD=180^\\circ\\times\\frac3{1+3+5}=60^\\circ$.",
+        "zh": "標出圓心並連出半徑，把弧長比轉成圓心角比：$\\angle AOD=180^\\circ\\times\\frac3{1+3+5}=60^\\circ$。",
+        "math": "\\angle AOD=180^\\circ\\times\\frac3{1+3+5}=60^\\circ"
+       },
+       {
+        "title": {
+         "en": "OAD is equilateral",
+         "zh": "等腰三角形三隻角都是六十度，所以是等邊三角形"
+        },
+        "en": "OAD is equilateral $OA=OD,\\quad\\angle OAD=\\angle ODA=60^\\circ$.",
+        "zh": "等腰三角形三隻角都是六十度，所以是等邊三角形：$OA=OD,\\quad\\angle OAD=\\angle ODA=60^\\circ$。",
+        "math": "OA=OD,\\quad\\angle OAD=\\angle ODA=60^\\circ"
+       },
+       {
+        "title": {
+         "en": "Find the radius from the given chord",
+         "zh": "由等邊三角形的三邊相等，求出半徑"
+        },
+        "en": "Find the radius from the given chord $r=OA=OD=AD=12\\text{ cm}$.",
+        "zh": "由等邊三角形的三邊相等，求出半徑：$r=OA=OD=AD=12\\text{ cm}$。",
+        "math": "r=OA=OD=AD=12\\text{ cm}"
+       },
+       {
+        "title": {
+         "en": "Bisect AD to find the triangle height",
+         "zh": "取弦的中點，利用直角三角形求高"
+        },
+        "en": "Bisect AD to find the triangle height $AM=DM=6,\\quad OM=6\\tan60^\\circ=6\\sqrt3\\text{ cm}$.",
+        "zh": "取弦的中點，利用直角三角形求高：$AM=DM=6,\\quad OM=6\\tan60^\\circ=6\\sqrt3\\text{ cm}$。",
+        "math": "AM=DM=6,\\quad OM=6\\tan60^\\circ=6\\sqrt3\\text{ cm}"
+       },
+       {
+        "title": {
+         "en": "Find the triangle area",
+         "zh": "用底乘高除二，求出三角形面積"
+        },
+        "en": "Find the triangle area $[\\triangle OAD]=\\tfrac12\\times12\\times6\\sqrt3=36\\sqrt3$.",
+        "zh": "用底乘高除二，求出三角形面積：$[\\triangle OAD]=\\tfrac12\\times12\\times6\\sqrt3=36\\sqrt3$。",
+        "math": "[\\triangle OAD]=\\tfrac12\\times12\\times6\\sqrt3=36\\sqrt3"
+       },
+       {
+        "title": {
+         "en": "Find the small sector area",
+         "zh": "按圓心角的比例求出小扇形面積"
+        },
+        "en": "Find the small sector area $[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2=24\\pi$.",
+        "zh": "按圓心角的比例求出小扇形面積：$[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2=24\\pi$。",
+        "math": "[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2=24\\pi"
+       },
+       {
+        "title": {
+         "en": "The unshaded segment is sector minus triangle",
+         "zh": "沒有陰影的弓形等於扇形減三角形"
+        },
+        "en": "The unshaded segment is sector minus triangle $[\\text{segment }AD]=24\\pi-36\\sqrt3$.",
+        "zh": "沒有陰影的弓形等於扇形減三角形：$[\\text{segment }AD]=24\\pi-36\\sqrt3$。",
+        "math": "[\\text{segment }AD]=24\\pi-36\\sqrt3"
+       },
+       {
+        "title": {
+         "en": "Subtract that segment from the whole semi-circle",
+         "zh": "由整個半圓扣去沒有陰影的弓形"
+        },
+        "en": "Subtract that segment from the whole semi-circle $[\\text{shaded}]=\\tfrac12\\pi(12)^2-(24\\pi-36\\sqrt3)=48\\pi+36\\sqrt3$.",
+        "zh": "由整個半圓扣去沒有陰影的弓形：$[\\text{shaded}]=\\tfrac12\\pi(12)^2-(24\\pi-36\\sqrt3)=48\\pi+36\\sqrt3$。",
+        "math": "[\\text{shaded}]=\\tfrac12\\pi(12)^2-(24\\pi-36\\sqrt3)=48\\pi+36\\sqrt3"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    }
+   ]
+  },
+  {
+   "id": "CROSS",
+   "title": {
+    "en": "Cross Topics",
+    "zh": "跨課題"
+   },
+   "questions": [
+    {
+     "id": "ch11-3-cross-28",
+     "code": "28",
+     "type": "long",
+     "marks": 4,
+     "difficulty": 3,
+     "stem": {
+      "en": "$BD$ is a diameter. $CE$ meets $AD$ at $F$ and $BD$ at $G$. The arcs $\\widehat{AB}=\\widehat{BC}=\\widehat{DE}$ and $\\angle BDC=30^\\circ$.",
+      "zh": "$BD$ 是直徑。$CE$ 與 $AD$ 交於 $F$，與 $BD$ 交於 $G$。弧 $\\widehat{AB}=\\widehat{BC}=\\widehat{DE}$，且 $\\angle BDC=30^\\circ$。"
+     },
+     "parts": [
+      {
+       "label": "(a)",
+       "en": "Prove that $AD\\perp CE$.",
+       "zh": "證明 $AD\\perp CE$。",
+       "marks": 2
+      },
+      {
+       "label": "(b)",
+       "en": "Prove that $G$ is the circumcentre of $\\triangle CDE$.",
+       "zh": "證明 $G$ 是 $\\triangle CDE$ 的外心。",
+       "marks": 2
+      }
+     ],
+     "answers": [
+      {
+       "part": "(a)",
+       "math": "AD\\perp CE",
+       "input": null
+      },
+      {
+       "part": "(b)",
+       "math": "GC=GD=GE\\ \\Rightarrow\\ G\\text{ is the circumcentre}",
+       "input": null
+      }
+     ],
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 120
+       },
+       "B": {
+        "at": 180
+       },
+       "C": {
+        "at": 240
+       },
+       "D": {
+        "at": 0
+       },
+       "E": {
+        "at": 60
+       },
+       "F": {
+        "cross": [
+         "A",
+         "D",
+         "C",
+         "E"
+        ],
+        "labelOffset": [
+         12,
+         -10
+        ]
+       },
+       "G": {
+        "cross": [
+         "B",
+         "D",
+         "C",
+         "E"
+        ],
+        "labelOffset": [
+         -14,
+         20
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "E"
+       ],
+       [
+        "E",
+        "A"
+       ],
+       [
+        "A",
+        "D"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "C",
+        "E"
+       ]
+      ],
+      "steps": [
+       {
+        "en": "Use three equal arcs $\\angle ADB=\\angle DCE=\\angle BDC=30^\\circ$.",
+        "zh": "三段相等的弧對應相等的圓周角：$\\angle ADB=\\angle DCE=\\angle BDC=30^\\circ$。",
+        "arcs": [
+         [
+          "D",
+          "B",
+          "C",
+          "30°",
+          "given",
+          28
+         ],
+         [
+          "D",
+          "A",
+          "B",
+          "30°",
+          "claim",
+          46
+         ],
+         [
+          "C",
+          "D",
+          "E",
+          "30°",
+          "claim",
+          30
+         ]
+        ]
+       },
+       {
+        "en": "Add the two angles at D $\\angle CDF=30^\\circ+30^\\circ=60^\\circ$.",
+        "zh": "把相鄰兩隻角相加，找三角形內的角：$\\angle CDF=30^\\circ+30^\\circ=60^\\circ$。",
+        "clearAngle": [
+         "D"
+        ],
+        "arcs": [
+         [
+          "D",
+          "C",
+          "F",
+          "60°",
+          "claim",
+          36
+         ]
+        ],
+        "polygons": [
+         [
+          "C",
+          "D",
+          "F"
+         ]
+        ]
+       },
+       {
+        "en": "Use the angle sum of CDF $\\angle CFD=180^\\circ-30^\\circ-60^\\circ=90^\\circ\\ \\Rightarrow\\ AD\\perp CE$.",
+        "zh": "三角形內角和給出交點處的直角：$\\angle CFD=180^\\circ-30^\\circ-60^\\circ=90^\\circ\\ \\Rightarrow\\ AD\\perp CE$。",
+        "arcs": [
+         [
+          "F",
+          "C",
+          "D",
+          "90°",
+          "claim",
+          24
+         ]
+        ],
+        "polygons": [
+         [
+          "C",
+          "D",
+          "F"
+         ]
+        ]
+       },
+       {
+        "en": "Use the diameter BD $\\angle BCD=90^\\circ\\quad\\Rightarrow\\quad\\angle BCE=60^\\circ$.",
+        "zh": "直徑所對的直角，減去已知的三十度：$\\angle BCD=90^\\circ\\quad\\Rightarrow\\quad\\angle BCE=60^\\circ$。",
+        "clearAngle": [
+         "C"
+        ],
+        "arcs": [
+         [
+          "C",
+          "B",
+          "D",
+          "90°",
+          "claim",
+          24
+         ],
+         [
+          "C",
+          "B",
+          "E",
+          "60°",
+          "claim",
+          44
+         ]
+        ]
+       },
+       {
+        "en": "Use the same segment on arc BE $\\angle BDE=\\angle BCE=60^\\circ$.",
+        "zh": "同弓形內的圓周角相等，移角到 D：$\\angle BDE=\\angle BCE=60^\\circ$。",
+        "arcs": [
+         [
+          "D",
+          "B",
+          "E",
+          "60°",
+          "claim",
+          58
+         ]
+        ]
+       },
+       {
+        "en": "Prove CE is another diameter $\\angle CDE=30^\\circ+60^\\circ=90^\\circ\\ \\Rightarrow\\ CE\\text{ is a diameter}$.",
+        "zh": "兩隻角合成直角，利用半圓定理的逆定理：$\\angle CDE=30^\\circ+60^\\circ=90^\\circ\\ \\Rightarrow\\ CE\\text{ is a diameter}$。",
+        "clearAngle": [
+         "D"
+        ],
+        "arcs": [
+         [
+          "D",
+          "C",
+          "E",
+          "90°",
+          "claim",
+          24
+         ]
+        ]
+       },
+       {
+        "en": "The two diameters meet at the centre $G=BD\\cap CE\\quad\\Rightarrow\\quad G\\text{ is the circle centre}$.",
+        "zh": "兩條直徑的交點就是圓心：$G=BD\\cap CE\\quad\\Rightarrow\\quad G\\text{ is the circle centre}$。"
+       },
+       {
+        "en": "G is equally distant from C, D and E $GC=GD=GE\\quad\\Rightarrow\\quad G\\text{ is the circumcentre of }\\triangle CDE$.",
+        "zh": "三條半徑相等，所以交點到三頂點等距，正是外心：$GC=GD=GE\\quad\\Rightarrow\\quad G\\text{ is the circumcentre of }\\triangle CDE$。",
+        "rays": [
+         [
+          "G",
+          "C",
+          "radii"
+         ],
+         [
+          "G",
+          "D",
+          "radii"
+         ],
+         [
+          "G",
+          "E",
+          "radii"
+         ]
+        ],
+        "ticks": [
+         [
+          "G",
+          "C",
+          1
+         ],
+         [
+          "G",
+          "D",
+          1
+         ],
+         [
+          "G",
+          "E",
+          1
+         ]
+        ],
+        "polygons": [
+         [
+          "C",
+          "D",
+          "E"
+         ]
+        ],
+        "final": true,
+        "clearGoal": true,
+        "answer": "(a) AD ⟂ CE; (b) G is circumcentre"
+       }
+      ],
+      "readable": true,
+      "r": 140,
+      "cy": 210,
+      "intro": {
+       "en": "Read the given information. Follow one reason at a time.",
+       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
+      }
+     },
+     "solution": {
+      "steps": [
+       {
+        "title": {
+         "en": "Use three equal arcs",
+         "zh": "三段相等的弧對應相等的圓周角"
+        },
+        "en": "Use three equal arcs $\\angle ADB=\\angle DCE=\\angle BDC=30^\\circ$.",
+        "zh": "三段相等的弧對應相等的圓周角：$\\angle ADB=\\angle DCE=\\angle BDC=30^\\circ$。",
+        "math": "\\angle ADB=\\angle DCE=\\angle BDC=30^\\circ"
+       },
+       {
+        "title": {
+         "en": "Add the two angles at D",
+         "zh": "把相鄰兩隻角相加，找三角形內的角"
+        },
+        "en": "Add the two angles at D $\\angle CDF=30^\\circ+30^\\circ=60^\\circ$.",
+        "zh": "把相鄰兩隻角相加，找三角形內的角：$\\angle CDF=30^\\circ+30^\\circ=60^\\circ$。",
+        "math": "\\angle CDF=30^\\circ+30^\\circ=60^\\circ"
+       },
+       {
+        "title": {
+         "en": "Use the angle sum of CDF",
+         "zh": "三角形內角和給出交點處的直角"
+        },
+        "en": "Use the angle sum of CDF $\\angle CFD=180^\\circ-30^\\circ-60^\\circ=90^\\circ\\ \\Rightarrow\\ AD\\perp CE$.",
+        "zh": "三角形內角和給出交點處的直角：$\\angle CFD=180^\\circ-30^\\circ-60^\\circ=90^\\circ\\ \\Rightarrow\\ AD\\perp CE$。",
+        "math": "\\angle CFD=180^\\circ-30^\\circ-60^\\circ=90^\\circ\\ \\Rightarrow\\ AD\\perp CE",
+        "part": "(a)"
+       },
+       {
+        "title": {
+         "en": "Use the diameter BD",
+         "zh": "直徑所對的直角，減去已知的三十度"
+        },
+        "en": "Use the diameter BD $\\angle BCD=90^\\circ\\quad\\Rightarrow\\quad\\angle BCE=60^\\circ$.",
+        "zh": "直徑所對的直角，減去已知的三十度：$\\angle BCD=90^\\circ\\quad\\Rightarrow\\quad\\angle BCE=60^\\circ$。",
+        "math": "\\angle BCD=90^\\circ\\quad\\Rightarrow\\quad\\angle BCE=60^\\circ"
+       },
+       {
+        "title": {
+         "en": "Use the same segment on arc BE",
+         "zh": "同弓形內的圓周角相等，移角到 D"
+        },
+        "en": "Use the same segment on arc BE $\\angle BDE=\\angle BCE=60^\\circ$.",
+        "zh": "同弓形內的圓周角相等，移角到 D：$\\angle BDE=\\angle BCE=60^\\circ$。",
+        "math": "\\angle BDE=\\angle BCE=60^\\circ"
+       },
+       {
+        "title": {
+         "en": "Prove CE is another diameter",
+         "zh": "兩隻角合成直角，利用半圓定理的逆定理"
+        },
+        "en": "Prove CE is another diameter $\\angle CDE=30^\\circ+60^\\circ=90^\\circ\\ \\Rightarrow\\ CE\\text{ is a diameter}$.",
+        "zh": "兩隻角合成直角，利用半圓定理的逆定理：$\\angle CDE=30^\\circ+60^\\circ=90^\\circ\\ \\Rightarrow\\ CE\\text{ is a diameter}$。",
+        "math": "\\angle CDE=30^\\circ+60^\\circ=90^\\circ\\ \\Rightarrow\\ CE\\text{ is a diameter}"
+       },
+       {
+        "title": {
+         "en": "The two diameters meet at the centre",
+         "zh": "兩條直徑的交點就是圓心"
+        },
+        "en": "The two diameters meet at the centre $G=BD\\cap CE\\quad\\Rightarrow\\quad G\\text{ is the circle centre}$.",
+        "zh": "兩條直徑的交點就是圓心：$G=BD\\cap CE\\quad\\Rightarrow\\quad G\\text{ is the circle centre}$。",
+        "math": "G=BD\\cap CE\\quad\\Rightarrow\\quad G\\text{ is the circle centre}"
+       },
+       {
+        "title": {
+         "en": "G is equally distant from C, D and E",
+         "zh": "三條半徑相等，所以交點到三頂點等距，正是外心"
+        },
+        "en": "G is equally distant from C, D and E $GC=GD=GE\\quad\\Rightarrow\\quad G\\text{ is the circumcentre of }\\triangle CDE$.",
+        "zh": "三條半徑相等，所以交點到三頂點等距，正是外心：$GC=GD=GE\\quad\\Rightarrow\\quad G\\text{ is the circumcentre of }\\triangle CDE$。",
+        "math": "GC=GD=GE\\quad\\Rightarrow\\quad G\\text{ is the circumcentre of }\\triangle CDE",
+        "part": "(b)"
+       }
+      ],
+      "traps": [
+       {
+        "label": "弧或弦",
+        "labelEn": "Arc or chord",
+        "en": "A curved mark means an arc. A straight segment means a chord. Only arc lengths are proportional to their angles.",
+        "zh": "先分清弧與弦：弧長與所對的角成比例，弦長一般不與角度成比例。"
+       }
+      ],
+      "tip": {
+       "en": "Match each arc with the angle that stands on it. Keep the same order in both ratios.",
+       "zh": "先配對弧與所對的角，列比例時兩邊的次序必須一致。"
+      }
+     }
+    }
+   ]
   }
  ]
 }
