@@ -3252,8 +3252,9 @@ for (const question of arcQuestions3.filter((q) => q.anim)) {
 }
 ok(arcFiguresValid3, "All 31 exercise animations complete without invalid coordinates or formula errors");
 const readingQuestions3 = arcQuestions3.filter((q) => q.anim && q.anim.layout === "side-by-side");
-ok(readingQuestions3.map((q) => q.code).join(",") === "1,2,3,4,5",
-  "The reading-panel pilot is limited to 11.3 Level 1 Q1–Q5");
+ok(readingQuestions3.length === 31 && arcPart3.cards.filter((c) => c.demo).every((c) =>
+  c.demo.opts.anim.layout === "side-by-side"),
+  "All 31 animated questions and five teaching cards use the synchronised reading panel");
 let readingReplayValid3 = true;
 for (const question of readingQuestions3) {
   chordPage.doc.body.replaceChildren();
@@ -3271,7 +3272,7 @@ for (const question of readingQuestions3) {
   if (chordPage.$(".cg-equation") || !chordPage.$(".cg-back").disabled ||
       !/^Study the figure/.test(chordPage.$(".cg-progress .l-en").textContent)) readingReplayValid3 = false;
 }
-ok(readingReplayValid3, "Pilot captions, formulas and diagrams stay synchronised through Next, Back and Restart");
+ok(readingReplayValid3, "All question captions, formulas and diagrams stay synchronised through Next, Back and Restart");
 let cardConstructionsStay3 = true, cardAnglesBothVisible3 = true, cardReplayClean3 = true;
 for (const card of arcPart3.cards.filter((c) => c.demo)) {
   const anim = card.demo.opts.anim;

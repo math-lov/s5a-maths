@@ -76,7 +76,12 @@ expected_arcs = {
 }
 animations = [(key,q['anim']) for key,q in questions.items() if 'anim' in q]
 animations += [(c['id'],c['demo']['opts']['anim']) for c in data['cards'] if c.get('demo')]
+reference = json.loads((ROOT/'data/src/theorem-abbreviations.json').read_text(encoding='utf-8'))
+approved_reasons = {item['abbreviation'] for group in
+                    ['theorems', 'basicAngleRules', 'otherGeometryReasons']
+                    for item in reference[group].values()}
 for key,animation in animations:
+    assert animation.get('layout') == 'side-by-side', key
     assert not check_anim(animation,key), check_anim(animation,key)
     points,groups = build_points(animation),{}
     for name,expected in angles.get(key,{}).items():
@@ -84,6 +89,10 @@ for key,animation in animations:
     for a,b,avoid,expected in expected_arcs.get(key,[]):
         near(math.radians(arc_degrees(points,a,b,avoid))*radii[key],expected,key+' arc '+a+b)
     for step in animation['steps']:
+        assert step.get('mathLines') and all(line.strip() and '$' not in line
+                                            for line in step['mathLines']), key
+        for reason in step.get('ref', '').split('; '):
+            assert not reason or reason in approved_reasons, (key, reason)
         marks=[(t[2] if len(t)>2 else 1,t[:2]) for t in step.get('ticks',[])]
         marks += [(1,['O',name]) for name in step.get('radii',[])]
         for count,(a,b) in marks:

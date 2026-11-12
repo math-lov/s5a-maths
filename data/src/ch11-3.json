@@ -99,6 +99,9 @@
           "A",
           "accent"
          ]
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{AB}=\\overset{\\frown}{CD}=6\\text{ cm}"
         ]
        },
        {
@@ -135,7 +138,11 @@
           "claim",
           46
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=\\angle COD=x"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "The converse also holds: $\\angle AOB=\\angle COD\\Longrightarrow\\overset{\\frown}{AB}=\\overset{\\frown}{CD}$.",
@@ -160,7 +167,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "Equal centre angles ↔ equal arcs"
+        "answer": "Equal centre angles ↔ equal arcs",
+        "mathLines": [
+         "\\angle AOB=\\angle COD",
+         "\\Longrightarrow\\ \\overset{\\frown}{AB}=\\overset{\\frown}{CD}"
+        ],
+        "ref": "(equal ∠s, equal arcs)"
        }
       ],
       "readable": true,
@@ -187,7 +199,8 @@
         "text": "6 cm",
         "offset": 22
        }
-      ]
+      ],
+      "layout": "side-by-side"
      }
     }
    }
@@ -259,7 +272,12 @@
           "C",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OA=OC",
+         "OB=OD"
+        ],
+        "ref": "(radii of the same circle)"
        },
        {
         "en": "Compare two sides and the included angle $\\angle AOB=\\angle COD\\ \\Longrightarrow\\ \\triangle OAB\\cong\\triangle OCD\\ (\\mathrm{SAS})$.",
@@ -293,7 +311,12 @@
           "C",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=\\angle COD",
+         "\\Longrightarrow\\ \\triangle OAB\\cong\\triangle OCD"
+        ],
+        "ref": "(SAS)"
        },
        {
         "en": "Corresponding chords are equal $AB=CD$.",
@@ -309,7 +332,11 @@
           "D",
           2
          ]
-        ]
+        ],
+        "mathLines": [
+         "AB=CD"
+        ],
+        "ref": "(equal ∠s, equal chords)"
        },
        {
         "en": "Reverse the argument using SSS $AB=CD\\ \\Longrightarrow\\ \\triangle OAB\\cong\\triangle OCD\\ (\\mathrm{SSS})$.",
@@ -328,7 +355,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "Equal centre angles ↔ equal chords"
+        "answer": "Equal centre angles ↔ equal chords",
+        "mathLines": [
+         "AB=CD",
+         "\\Longrightarrow\\ \\triangle OAB\\cong\\triangle OCD"
+        ],
+        "ref": "(SSS)"
        }
       ],
       "readable": true,
@@ -337,7 +369,8 @@
       "intro": {
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
-      }
+      },
+      "layout": "side-by-side"
      }
     }
    }
@@ -405,6 +438,9 @@
           "A",
           "accent"
          ]
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{AB}=\\overset{\\frown}{CD}"
         ]
        },
        {
@@ -433,7 +469,11 @@
           "claim",
           46
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=\\angle COD"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "Equal angles give equal chords $AB=CD$.",
@@ -464,7 +504,11 @@
           "C",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "AB=CD"
+        ],
+        "ref": "(equal ∠s, equal chords)"
        }
       ],
       "readable": true,
@@ -473,7 +517,8 @@
       "intro": {
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
-      }
+      },
+      "layout": "side-by-side"
      }
     }
    }
@@ -571,11 +616,19 @@
           "A",
           "accent"
          ]
+        ],
+        "mathLines": [
+         "\\angle AOB=60^\\circ",
+         "\\angle COD=120^\\circ"
         ]
        },
        {
         "en": "Use the same ratio for arc lengths $\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac12$.",
-        "zh": "弧長與所對圓心角有相同的比：$\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac12$。"
+        "zh": "弧長與所對圓心角有相同的比：$\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac12$。",
+        "mathLines": [
+         "\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac12"
+        ],
+        "ref": "(arcs prop. to ∠s at centre)"
        },
        {
         "en": "Double the angle doubles the arc length $\\overset{\\frown}{AB}=4\\text{ cm}\\ \\Longrightarrow\\ \\overset{\\frown}{CD}=8\\text{ cm}$.",
@@ -592,7 +645,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "Arc lengths ∝ centre angles"
+        "answer": "Arc lengths ∝ centre angles",
+        "mathLines": [
+         "\\overset{\\frown}{AB}=4\\text{ cm}",
+         "\\Longrightarrow\\ \\overset{\\frown}{CD}=8\\text{ cm}"
+        ],
+        "ref": "(arcs prop. to ∠s at centre)"
        }
       ],
       "readable": true,
@@ -619,7 +677,8 @@
         "id": "CD",
         "from": "C"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      }
     }
    }
@@ -716,6 +775,10 @@
           "P",
           "accent"
          ]
+        ],
+        "mathLines": [
+         "\\angle APB=30^\\circ",
+         "\\angle CPD=60^\\circ"
         ]
        },
        {
@@ -744,7 +807,12 @@
           "claim",
           40
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=60^\\circ",
+         "\\angle COD=120^\\circ"
+        ],
+        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ)"
        },
        {
         "en": "The factor of two cancels $\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac{30}{60}=\\frac12$.",
@@ -763,7 +831,11 @@
           "C",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\frac{\\overset{\\frown}{AB}}{\\overset{\\frown}{CD}}=\\frac{60}{120}=\\frac{30}{60}=\\frac12"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        }
       ],
       "readable": true,
@@ -790,7 +862,8 @@
         "id": "CD",
         "from": "C"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      }
     }
    }
@@ -905,7 +978,11 @@
           "A",
           "accent"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=\\angle BOC=x"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "Use the angles around O $250^\\circ+x+x=360^\\circ$.",
@@ -920,7 +997,11 @@
           60,
           "reflex"
          ]
-        ]
+        ],
+        "mathLines": [
+         "250^\\circ+x+x=360^\\circ"
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
         "en": "Solve for the equal angles $2x=110^\\circ\\quad\\Rightarrow\\quad x=55^\\circ$.",
@@ -948,7 +1029,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠BOC = 55°"
+        "answer": "∠BOC = 55°",
+        "mathLines": [
+         "2x=110^\\circ",
+         "\\Rightarrow\\quad x=55^\\circ"
+        ]
        }
       ],
       "readable": true,
@@ -967,7 +1052,8 @@
         "goal",
         48
        ]
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -1108,7 +1194,12 @@
           "A",
           "accent"
          ]
-        ]
+        ],
+        "mathLines": [
+         "BC=CD",
+         "\\Rightarrow\\ \\overset{\\frown}{BC}=\\overset{\\frown}{CD}"
+        ],
+        "ref": "(equal chords, equal arcs)"
        },
        {
         "en": "Equal arcs give equal circumference angles $\\angle BAC=\\angle CAD$.",
@@ -1130,7 +1221,11 @@
           "claim",
           48
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BAC=\\angle CAD"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "The two parts of BAD are equal $CA\\text{ bisects }\\angle BAD$.",
@@ -1155,7 +1250,10 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠BAC = ∠CAD"
+        "answer": "∠BAC = ∠CAD",
+        "mathLines": [
+         "CA\\text{ bisects }\\angle BAD"
+        ]
        }
       ],
       "readable": true,
@@ -1164,7 +1262,8 @@
       "intro": {
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
-      }
+      },
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -1301,6 +1400,9 @@
           "A",
           "accent"
          ]
+        ],
+        "mathLines": [
+         "\\angle BDC=30^\\circ"
         ]
        },
        {
@@ -1315,7 +1417,11 @@
           "claim",
           48
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ADB=\\frac{14}{6}\\times30^\\circ=70^\\circ"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        },
        {
         "en": "Compare arc AD with arc BC $\\angle ABD=\\frac{10}{6}\\times30^\\circ=50^\\circ$.",
@@ -1329,7 +1435,11 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ABD=\\frac{10}{6}\\times30^\\circ=50^\\circ"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        },
        {
         "en": "Move the angle using the same segment $\\angle ACD=\\angle ABD=50^\\circ$.",
@@ -1343,7 +1453,11 @@
           "claim",
           32
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ACD=\\angle ABD=50^\\circ"
+        ],
+        "ref": "(∠s in the same segment)"
        },
        {
         "en": "Use the angle sum of ACD $\\angle CAD=180^\\circ-50^\\circ-(70^\\circ+30^\\circ)=30^\\circ$.",
@@ -1367,7 +1481,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠CAD = 30°"
+        "answer": "∠CAD = 30°",
+        "mathLines": [
+         "\\angle CAD=180^\\circ-50^\\circ-(70^\\circ+30^\\circ)=30^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        }
       ],
       "readable": true,
@@ -1412,7 +1530,8 @@
         "id": "BC",
         "from": "B"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -2802,7 +2921,12 @@
           "claim",
           45
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\frac{x}{80}=\\frac{12}{16}",
+         "\\Rightarrow\\quad x=60^\\circ"
+        ],
+        "ref": "(arcs prop. to ∠s at centre)"
        },
        {
         "en": "Subtract from the straight angle AOD $\\angle AOB=180^\\circ-60^\\circ-80^\\circ=40^\\circ$.",
@@ -2816,7 +2940,11 @@
           "claim",
           34
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=180^\\circ-60^\\circ-80^\\circ=40^\\circ"
+        ],
+        "ref": "(adj. ∠s on a st. line)"
        },
        {
         "en": "Find the remaining arc length $\\frac y{16}=\\frac{40}{80}\\quad\\Rightarrow\\quad y=8\\text{ cm}$.",
@@ -2833,7 +2961,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "x = 60°; y = 8 cm"
+        "answer": "x = 60°; y = 8 cm",
+        "mathLines": [
+         "\\frac y{16}=\\frac{40}{80}",
+         "\\Rightarrow\\quad y=8\\text{ cm}"
+        ],
+        "ref": "(arcs prop. to ∠s at centre)"
        }
       ],
       "readable": true,
@@ -2883,7 +3016,8 @@
         "id": "CD",
         "from": "C"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3014,11 +3148,19 @@
           "R",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle QPR:\\angle PRS=\\overset{\\frown}{QR}:\\overset{\\frown}{PS}"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        },
        {
         "en": "Keep the arc and angle ratios in the same order $\\frac z{54}=\\frac{12}{18}$.",
-        "zh": "兩邊的角度和弧長要保持相同次序：$\\frac z{54}=\\frac{12}{18}$。"
+        "zh": "兩邊的角度和弧長要保持相同次序：$\\frac z{54}=\\frac{12}{18}$。",
+        "mathLines": [
+         "\\frac z{54}=\\frac{12}{18}"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        },
        {
         "en": "Calculate the required angle $z=54\\times\\frac{12}{18}=36^\\circ$.",
@@ -3035,7 +3177,10 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "z = 36°"
+        "answer": "z = 36°",
+        "mathLines": [
+         "z=54\\times\\frac{12}{18}=36^\\circ"
+        ]
        }
       ],
       "readable": true,
@@ -3072,7 +3217,8 @@
         "id": "QR",
         "from": "Q"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3205,7 +3351,11 @@
           "E",
           "F"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle DEF=\\angle DFE"
+        ],
+        "ref": "(base ∠s, isos. △)"
        },
        {
         "en": "Use the angle sum of DEF $\\angle DEF=\\frac{180^\\circ-100^\\circ}{2}=40^\\circ$.",
@@ -3227,7 +3377,11 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle DEF=\\frac{180^\\circ-100^\\circ}{2}=40^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Use arc DF and the opposite angle DEF $\\frac y{30}=\\frac{40}{100}\\quad\\Rightarrow\\quad y=12\\text{ cm}$.",
@@ -3244,7 +3398,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "y = 12 cm"
+        "answer": "y = 12 cm",
+        "mathLines": [
+         "\\frac y{30}=\\frac{40}{100}",
+         "\\Rightarrow\\quad y=12\\text{ cm}"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        }
       ],
       "readable": true,
@@ -3271,7 +3430,8 @@
         "id": "DF",
         "from": "D"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3431,7 +3591,11 @@
           "given",
           54
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}"
+        ],
+        "ref": "(equal chords, equal arcs)"
        },
        {
         "en": "Split the 14 cm arc into two equal parts $\\overset{\\frown}{PT}=\\frac12\\overset{\\frown}{QPT}=7\\text{ cm}$.",
@@ -3445,6 +3609,9 @@
           "id": "PT",
           "from": "P"
          }
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{PT}=\\frac12\\overset{\\frown}{QPT}=7\\text{ cm}"
         ]
        },
        {
@@ -3459,7 +3626,11 @@
           "id": "ST",
           "from": "S"
          }
-        ]
+        ],
+        "mathLines": [
+         "x=\\overset{\\frown}{ST}=7\\text{ cm}"
+        ],
+        "ref": "(equal chords, equal arcs)"
        },
        {
         "en": "Use arcs ST and QPT $\\frac y{70}=\\frac7{14}\\quad\\Rightarrow\\quad y=35^\\circ$.",
@@ -3487,7 +3658,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "x = 7 cm; y = 35°"
+        "answer": "x = 7 cm; y = 35°",
+        "mathLines": [
+         "\\frac y{70}=\\frac7{14}",
+         "\\Rightarrow\\quad y=35^\\circ"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        }
       ],
       "readable": true,
@@ -3524,7 +3700,8 @@
         "id": "ST",
         "from": "S"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3687,7 +3864,12 @@
           "A",
           "B"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OA=OB",
+         "\\Rightarrow\\quad \\angle OAB=57^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △)"
        },
        {
         "en": "Use the angle sum of OAB $\\angle AOB=180^\\circ-57^\\circ-57^\\circ=66^\\circ$.",
@@ -3701,7 +3883,11 @@
           "claim",
           32
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=180^\\circ-57^\\circ-57^\\circ=66^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Equal arcs give equal centre angles $\\angle COD=\\angle AOB=66^\\circ$.",
@@ -3729,7 +3915,11 @@
           "A",
           "accent"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle COD=\\angle AOB=66^\\circ"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "Subtract from the straight angle BOC $\\angle AOD=180^\\circ-66^\\circ-66^\\circ=48^\\circ$.",
@@ -3746,7 +3936,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "(a) 66°; (b) 48°"
+        "answer": "(a) 66°; (b) 48°",
+        "mathLines": [
+         "\\angle AOD=180^\\circ-66^\\circ-66^\\circ=48^\\circ"
+        ],
+        "ref": "(adj. ∠s on a st. line)"
        }
       ],
       "readable": true,
@@ -3778,7 +3972,8 @@
        "B",
        "C",
        "A"
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3934,7 +4129,12 @@
           "R",
           2
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle POQ=\\angle POR",
+         "\\Rightarrow\\quad PQ=PR"
+        ],
+        "ref": "(equal ∠s, equal chords)"
        },
        {
         "en": "PQR is an isosceles triangle $\\angle PQR=\\angle PRQ=x$.",
@@ -3963,7 +4163,11 @@
           "Q",
           "R"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle PQR=\\angle PRQ=x"
+        ],
+        "ref": "(base ∠s, isos. △)"
        },
        {
         "en": "Use the triangle angle sum $68^\\circ+2x=180^\\circ\\quad\\Rightarrow\\quad x=56^\\circ$.",
@@ -3988,7 +4192,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠PQR = 56°"
+        "answer": "∠PQR = 56°",
+        "mathLines": [
+         "68^\\circ+2x=180^\\circ",
+         "\\Rightarrow\\quad x=56^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        }
       ],
       "readable": true,
@@ -4007,7 +4216,8 @@
         "goal",
         30
        ]
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -4139,7 +4349,11 @@
           "claim",
           44
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOD=3\\times48^\\circ=144^\\circ"
+        ],
+        "ref": "(arcs prop. to ∠s at centre)"
        },
        {
         "en": "Use the equal arcs AB and CD $\\angle AOB=\\angle COD=t$.",
@@ -4175,7 +4389,11 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=\\angle COD=t"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "Find the remaining equal angles $144^\\circ+48^\\circ+2t=360^\\circ\\quad\\Rightarrow\\quad t=84^\\circ$.",
@@ -4192,7 +4410,12 @@
           "claim",
           34
          ]
-        ]
+        ],
+        "mathLines": [
+         "144^\\circ+48^\\circ+2t=360^\\circ",
+         "\\Rightarrow\\quad t=84^\\circ"
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
         "en": "Use the equal radii in OCD $OC=OD\\quad\\Rightarrow\\quad\\angle OCD=\\frac{180^\\circ-84^\\circ}{2}=48^\\circ$.",
@@ -4228,7 +4451,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠OCD = 48°"
+        "answer": "∠OCD = 48°",
+        "mathLines": [
+         "OC=OD",
+         "\\Rightarrow\\quad \\angle OCD=\\frac{180^\\circ-84^\\circ}{2}=48^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △); (∠ sum of △)"
        }
       ],
       "readable": true,
@@ -4247,7 +4475,8 @@
         "goal",
         30
        ]
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -4382,7 +4611,11 @@
           "given",
           28
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ABC=90^\\circ"
+        ],
+        "ref": "(∠ in semi-circle)"
        },
        {
         "en": "Find the other angle in ABC $\\angle BCA=180^\\circ-90^\\circ-63^\\circ=27^\\circ$.",
@@ -4403,7 +4636,11 @@
           "B",
           "C"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BCA=180^\\circ-90^\\circ-63^\\circ=27^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Let arc AB be x cm and arc BC be 20 minus x $\\frac{x}{20-x}=\\frac{27}{63}$.",
@@ -4425,7 +4662,11 @@
           "id": "BC",
           "from": "B"
          }
-        ]
+        ],
+        "mathLines": [
+         "\\frac{x}{20-x}=\\frac{27}{63}"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        },
        {
         "en": "Solve the arc length equation $7x=3(20-x)\\quad\\Rightarrow\\quad10x=60\\quad\\Rightarrow\\quad x=6$.",
@@ -4450,7 +4691,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "Arc AB = 6 cm"
+        "answer": "Arc AB = 6 cm",
+        "mathLines": [
+         "7x=3(20-x)",
+         "\\Rightarrow\\quad10x=60",
+         "\\Rightarrow\\quad x=6"
+        ]
        }
       ],
       "readable": true,
@@ -4482,7 +4728,8 @@
         "id": "AB",
         "from": "A"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -4605,6 +4852,9 @@
           "A",
           "accent"
          ]
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{BCD}=20+12=32\\text{ cm}"
         ]
        },
        {
@@ -4627,7 +4877,11 @@
           "claim",
           50
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BOD=180^\\circ-60^\\circ=120^\\circ"
+        ],
+        "ref": "(adj. ∠s on a st. line)"
        },
        {
         "en": "Compare arc AB with the whole arc BCD $\\frac{\\overset{\\frown}{AB}}{32}=\\frac{60}{120}\\quad\\Rightarrow\\quad\\overset{\\frown}{AB}=16\\text{ cm}$.",
@@ -4644,7 +4898,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "Arc AB = 16 cm"
+        "answer": "Arc AB = 16 cm",
+        "mathLines": [
+         "\\frac{\\overset{\\frown}{AB}}{32}=\\frac{60}{120}",
+         "\\Rightarrow\\quad \\overset{\\frown}{AB}=16\\text{ cm}"
+        ],
+        "ref": "(arcs prop. to ∠s at centre)"
        }
       ],
       "readable": true,
@@ -4684,7 +4943,8 @@
         "id": "CD",
         "from": "C"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -4885,7 +5145,12 @@
           "given",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=\\angle AOF=\\angle BOC",
+         "=\\angle DOE=\\angle EOF=t"
+        ],
+        "ref": "(equal chords, equal ∠s)"
        },
        {
         "en": "Use angles around O $5t+40^\\circ=360^\\circ\\quad\\Rightarrow\\quad t=64^\\circ$.",
@@ -4899,7 +5164,12 @@
           "claim",
           46
          ]
-        ]
+        ],
+        "mathLines": [
+         "5t+40^\\circ=360^\\circ",
+         "\\Rightarrow\\quad t=64^\\circ"
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
         "en": "Use the equal radii in OEF $OE=OF\\quad\\Rightarrow\\quad\\angle OFE=\\frac{180^\\circ-64^\\circ}{2}=58^\\circ$.",
@@ -4932,7 +5202,12 @@
           "claim",
           32
          ]
-        ]
+        ],
+        "mathLines": [
+         "OE=OF",
+         "\\Rightarrow\\quad \\angle OFE=\\frac{180^\\circ-64^\\circ}{2}=58^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △); (∠ sum of △)"
        },
        {
         "en": "Different angles face different sides in OEF $\\angle EOF=64^\\circ\\ne58^\\circ=\\angle OEF\\quad\\Rightarrow\\quad EF\\ne OF$.",
@@ -4943,11 +5218,16 @@
           "E",
           "F"
          ]
+        ],
+        "mathLines": [
+         "\\angle EOF=64^\\circ",
+         "\\angle OEF=58^\\circ",
+         "\\Rightarrow\\quad EF\\ne OF"
         ]
        },
        {
-        "en": "A rhombus needs four equal sides $ODEF\\text{ is not a rhombus}$.",
-        "zh": "相鄰兩邊不相等，所以四邊形不是菱形：$ODEF\\text{ is not a rhombus}$。",
+        "en": "A rhombus needs four equal sides; ODEF is not a rhombus $EF\\ne OF$.",
+        "zh": "菱形四邊必須相等，但 EF 與 OF 不等，因此 ODEF 不是菱形：$EF\\ne OF$。",
         "polygons": [
          [
           "O",
@@ -4958,7 +5238,10 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "(a) 58°; (b) Not a rhombus"
+        "answer": "(a) 58°; (b) Not a rhombus",
+        "mathLines": [
+         "EF\\ne OF"
+        ]
        }
       ],
       "readable": true,
@@ -4977,7 +5260,8 @@
         "goal",
         32
        ]
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -5171,7 +5455,12 @@
           "B",
           "C"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OB=OC",
+         "\\Rightarrow\\quad \\angle OCB=65^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △)"
        },
        {
         "en": "Use the angle sum of OBC $\\angle BOC=180^\\circ-65^\\circ-65^\\circ=50^\\circ$.",
@@ -5185,7 +5474,11 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BOC=180^\\circ-65^\\circ-65^\\circ=50^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Transfer the equal arcs to equal centre angles $\\angle COD=\\angle DOE=\\angle BOC=50^\\circ$.",
@@ -5227,7 +5520,11 @@
           "A",
           "accent"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle COD=\\angle DOE=\\angle BOC=50^\\circ"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "Add the two adjacent centre angles $\\angle BOD=50^\\circ+50^\\circ=100^\\circ$.",
@@ -5252,6 +5549,9 @@
           "claim",
           54
          ]
+        ],
+        "mathLines": [
+         "\\angle BOD=50^\\circ+50^\\circ=100^\\circ"
         ]
        },
        {
@@ -5269,7 +5569,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠BOD = 100°; ∠DAE = 25°"
+        "answer": "∠BOD = 100°; ∠DAE = 25°",
+        "mathLines": [
+         "\\angle DAE=\\frac12\\angle DOE=25^\\circ"
+        ],
+        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ)"
        }
       ],
       "readable": true,
@@ -5296,7 +5600,8 @@
         "goal",
         30
        ]
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -5447,7 +5752,12 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BCA=x",
+         "\\Rightarrow\\quad \\angle CAO=x"
+        ],
+        "ref": "(alt. ∠s, ∥ lines)"
        },
        {
         "en": "Join OC and use the equal radii $OA=OC\\quad\\Rightarrow\\quad\\angle ACO=x$.",
@@ -5479,7 +5789,12 @@
           "A",
           "C"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OA=OC",
+         "\\Rightarrow\\quad \\angle ACO=x"
+        ],
+        "ref": "(base ∠s, isos. △)"
        },
        {
         "en": "Use the centre angle and the arc ratio $\\angle AOB=2x,\\quad\\angle BOC=3(2x)=6x$.",
@@ -5501,7 +5816,12 @@
           "claim",
           50
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB=2x",
+         "\\angle BOC=3(2x)=6x"
+        ],
+        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ); (arcs prop. to ∠s at centre)"
        },
        {
         "en": "Use the angle sum in OAC $x+x+(2x+6x)=180^\\circ\\quad\\Rightarrow\\quad x=18^\\circ$.",
@@ -5554,7 +5874,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠BCA = 18°"
+        "answer": "∠BCA = 18°",
+        "mathLines": [
+         "x+x+(2x+6x)=180^\\circ",
+         "\\Rightarrow\\quad x=18^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        }
       ],
       "readable": true,
@@ -5573,7 +5898,8 @@
         "goal",
         28
        ]
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -5733,7 +6059,11 @@
           "B",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ABD=90^\\circ"
+        ],
+        "ref": "(∠ in semi-circle)"
        },
        {
         "en": "Find the angle standing on arc AB $\\angle ADB=180^\\circ-90^\\circ-63^\\circ=27^\\circ$.",
@@ -5747,7 +6077,11 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ADB=180^\\circ-90^\\circ-63^\\circ=27^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Join DE and use the same segment $\\angle BED=\\angle BAD=63^\\circ$.",
@@ -5768,7 +6102,11 @@
           "claim",
           54
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BED=\\angle BAD=63^\\circ"
+        ],
+        "ref": "(∠s in the same segment)"
        },
        {
         "en": "Subtract the given angle BEC $\\angle CED=63^\\circ-27^\\circ=36^\\circ$.",
@@ -5793,6 +6131,9 @@
           "claim",
           46
          ]
+        ],
+        "mathLines": [
+         "\\angle CED=63^\\circ-27^\\circ=36^\\circ"
         ]
        },
        {
@@ -5810,7 +6151,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "Arc CD = 6 cm"
+        "answer": "Arc CD = 6 cm",
+        "mathLines": [
+         "\\frac{\\overset{\\frown}{CD}}{4.5}=\\frac{36}{27}",
+         "\\Rightarrow\\quad \\overset{\\frown}{CD}=6\\text{ cm}"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        }
       ],
       "readable": true,
@@ -5837,7 +6183,8 @@
         "id": "CD",
         "from": "C"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -6003,7 +6350,11 @@
           "given",
           38
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BCD=90^\\circ"
+        ],
+        "ref": "(∠ in semi-circle)"
        },
        {
         "en": "Equal arcs give equal circumference angles $\\angle ACB=\\angle DCE=t$.",
@@ -6039,7 +6390,11 @@
           "claim",
           56
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ACB=\\angle DCE=t"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "Split the right angle at C $t+36^\\circ+t=90^\\circ\\quad\\Rightarrow\\quad t=27^\\circ$.",
@@ -6064,6 +6419,10 @@
           "claim",
           56
          ]
+        ],
+        "mathLines": [
+         "t+36^\\circ+t=90^\\circ",
+         "\\Rightarrow\\quad t=27^\\circ"
         ]
        },
        {
@@ -6081,7 +6440,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠EAD = 27°"
+        "answer": "∠EAD = 27°",
+        "mathLines": [
+         "\\angle EAD=\\angle ECD=27^\\circ"
+        ],
+        "ref": "(∠s in the same segment)"
        }
       ],
       "readable": true,
@@ -6100,7 +6463,8 @@
         "goal",
         32
        ]
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -6253,7 +6617,11 @@
           "given",
           52
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AED=90^\\circ"
+        ],
+        "ref": "(∠ in semi-circle)"
        },
        {
         "en": "Subtract BED from the right angle $\\angle AEB=90^\\circ-50^\\circ=40^\\circ$.",
@@ -6267,6 +6635,9 @@
           "claim",
           32
          ]
+        ],
+        "mathLines": [
+         "\\angle AEB=90^\\circ-50^\\circ=40^\\circ"
         ]
        },
        {
@@ -6281,7 +6652,12 @@
           "id": "BD",
           "from": "B"
          }
-        ]
+        ],
+        "mathLines": [
+         "\\frac{\\overset{\\frown}{BCD}}{12}=\\frac{50}{40}",
+         "\\Rightarrow\\quad \\overset{\\frown}{BCD}=15\\text{ cm}"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        },
        {
         "en": "Subtract CD from the whole arc $\\overset{\\frown}{CB}=\\overset{\\frown}{BCD}-\\overset{\\frown}{CD}=15-12=3\\text{ cm}$.",
@@ -6298,7 +6674,10 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "Arc CB = 3 cm"
+        "answer": "Arc CB = 3 cm",
+        "mathLines": [
+         "\\overset{\\frown}{CB}=\\overset{\\frown}{BCD}-\\overset{\\frown}{CD}=15-12=3\\text{ cm}"
+        ]
        }
       ],
       "readable": true,
@@ -6333,7 +6712,8 @@
         "id": "CB",
         "from": "C"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -6492,7 +6872,11 @@
           "claim",
           44
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOD=2\\angle ACD=2x"
+        ],
+        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ)"
        },
        {
         "en": "Use equal radii in OAD $OA=OD\\quad\\Rightarrow\\quad\\angle OAD=\\angle ADO=y$.",
@@ -6525,7 +6909,12 @@
           "claim",
           28
          ]
-        ]
+        ],
+        "mathLines": [
+         "OA=OD",
+         "\\Rightarrow\\quad \\angle OAD=\\angle ADO=y"
+        ],
+        "ref": "(base ∠s, isos. △)"
        },
        {
         "en": "Use the angle sum of OAD $y+y+2x=180^\\circ\\quad\\Rightarrow\\quad y=90^\\circ-x$.",
@@ -6536,7 +6925,12 @@
           "A",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "y+y+2x=180^\\circ",
+         "\\Rightarrow\\quad y=90^\\circ-x"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Now use the extra condition in part b $\\angle COD=\\angle AOB=74^\\circ$.",
@@ -6572,7 +6966,11 @@
           "A",
           "accent"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle COD=\\angle AOB=74^\\circ"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "Subtract from the straight angle BOC $2x=180^\\circ-74^\\circ-74^\\circ=32^\\circ\\quad\\Rightarrow\\quad x=16^\\circ$.",
@@ -6589,7 +6987,12 @@
           "claim",
           44
          ]
-        ]
+        ],
+        "mathLines": [
+         "2x=180^\\circ-74^\\circ-74^\\circ=32^\\circ",
+         "\\Rightarrow\\quad x=16^\\circ"
+        ],
+        "ref": "(adj. ∠s on a st. line)"
        },
        {
         "en": "Substitute into the formula from part a $y=90^\\circ-16^\\circ=74^\\circ$.",
@@ -6627,7 +7030,10 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "(a) y = 90° − x; (b) y = 74°"
+        "answer": "(a) y = 90° − x; (b) y = 74°",
+        "mathLines": [
+         "y=90^\\circ-16^\\circ=74^\\circ"
+        ]
        }
       ],
       "readable": true,
@@ -6651,7 +7057,8 @@
        "B",
        "C",
        "A"
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -6829,7 +7236,12 @@
           "D",
           2
          ]
-        ]
+        ],
+        "mathLines": [
+         "AC=BD",
+         "\\Rightarrow\\quad \\overset{\\frown}{AC}=\\overset{\\frown}{BD}"
+        ],
+        "ref": "(equal chords, equal arcs)"
        },
        {
         "en": "Use equal arcs and the same segment $\\angle ABC=\\angle BCD=u,\\quad\\angle ABD=\\angle ACD=v$.",
@@ -6867,7 +7279,12 @@
           "claim",
           26
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ABC=\\angle BCD=u",
+         "\\angle ABD=\\angle ACD=v"
+        ],
+        "ref": "(equal arcs, equal ∠s); (∠s in the same segment)"
        },
        {
         "en": "Subtract equal angles from equal angles $\\angle DBM=\\angle ACM=u-v$.",
@@ -6905,6 +7322,9 @@
           "B",
           "M"
          ]
+        ],
+        "mathLines": [
+         "\\angle DBM=\\angle ACM=u-v"
         ]
        },
        {
@@ -6927,7 +7347,12 @@
           "claim",
           50
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AMC=180^\\circ-\\angle AMB",
+         "=180^\\circ-\\angle DMC=\\angle DMB"
+        ],
+        "ref": "(adj. ∠s on a st. line)"
        },
        {
         "en": "Match A with D, C with B, and M with M $\\triangle ACM\\cong\\triangle DBM\\ (\\mathrm{AAS})$.",
@@ -6946,7 +7371,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "△ACM ≅ △DBM (AAS)"
+        "answer": "△ACM ≅ △DBM (AAS)",
+        "mathLines": [
+         "\\triangle ACM\\cong\\triangle DBM\\ (\\mathrm{AAS})"
+        ],
+        "ref": "(AAS)"
        }
       ],
       "readable": true,
@@ -6955,7 +7384,8 @@
       "intro": {
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
-      }
+      },
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -7099,7 +7529,12 @@
           "D",
           "accent"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ADB:\\angle BDC:\\angle CAD:\\angle ACD",
+         "=7:2:6:3"
+        ],
+        "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        },
        {
         "en": "The four angle pieces fill triangle ACD $\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ$.",
@@ -7120,7 +7555,11 @@
           "claim",
           32
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Use the same total of eighteen parts $\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ$.",
@@ -7134,7 +7573,11 @@
           "claim",
           32
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Use the exterior angle of triangle AED $\\angle AEB=\\angle EAD+\\angle ADE=60^\\circ+70^\\circ=130^\\circ$.",
@@ -7158,7 +7601,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "∠AEB = 130°"
+        "answer": "∠AEB = 130°",
+        "mathLines": [
+         "\\angle AEB=\\angle EAD+\\angle ADE=60^\\circ+70^\\circ=130^\\circ"
+        ],
+        "ref": "(ext. ∠ of △)"
        }
       ],
       "readable": true,
@@ -7211,7 +7658,8 @@
         "id": "DA",
         "from": "D"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -7388,7 +7836,12 @@
           "D",
           2
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{AB}=\\overset{\\frown}{CD}",
+         "\\Rightarrow\\quad AB=CD"
+        ],
+        "ref": "(equal arcs, equal chords)"
        },
        {
         "en": "Use angles in the same segment $\\angle BAE=\\angle CDE=p,\\quad\\angle ABE=\\angle DCE=q$.",
@@ -7438,7 +7891,12 @@
           "C",
           "E"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BAE=\\angle CDE=p",
+         "\\angle ABE=\\angle DCE=q"
+        ],
+        "ref": "(∠s in the same segment)"
        },
        {
         "en": "Two angle pairs and their included side are equal $\\triangle ABE\\cong\\triangle DCE\\ (\\mathrm{ASA})$.",
@@ -7454,7 +7912,11 @@
           "C",
           "E"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\triangle ABE\\cong\\triangle DCE\\ (\\mathrm{ASA})"
+        ],
+        "ref": "(ASA)"
        },
        {
         "en": "Every congruent pair is also similar $\\triangle ABE\\sim\\triangle DCE$.",
@@ -7470,6 +7932,9 @@
           "C",
           "E"
          ]
+        ],
+        "mathLines": [
+         "\\triangle ABE\\sim\\triangle DCE"
         ]
        },
        {
@@ -7526,7 +7991,12 @@
           "C",
           "E"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ADE=\\angle BCE=r",
+         "\\angle DAE=\\angle CBE=s"
+        ],
+        "ref": "(∠s in the same segment)"
        },
        {
         "en": "A second pair disproves the claim $\\triangle ADE\\sim\\triangle BCE\\ (\\mathrm{AA})$.",
@@ -7545,7 +8015,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "(a) ASA; (b) Two similar pairs"
+        "answer": "(a) ASA; (b) Two similar pairs",
+        "mathLines": [
+         "\\triangle ADE\\sim\\triangle BCE\\ (\\mathrm{AA})"
+        ],
+        "ref": "(AA)"
        }
       ],
       "readable": true,
@@ -7554,7 +8028,8 @@
       "intro": {
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
-      }
+      },
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -7735,7 +8210,11 @@
           "given",
           44
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ABD=90^\\circ"
+        ],
+        "ref": "(∠ in semi-circle)"
        },
        {
         "en": "Add the angles at B $\\angle ABC=90^\\circ+30^\\circ=120^\\circ$.",
@@ -7752,6 +8231,9 @@
           "claim",
           34
          ]
+        ],
+        "mathLines": [
+         "\\angle ABC=90^\\circ+30^\\circ=120^\\circ"
         ]
        },
        {
@@ -7781,7 +8263,11 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BCA=\\angle BAC=\\frac{180^\\circ-120^\\circ}{2}=30^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △); (∠ sum of △)"
        },
        {
         "en": "Use the same segment on arc BA $\\angle BDA=\\angle BCA=30^\\circ$.",
@@ -7795,7 +8281,11 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BDA=\\angle BCA=30^\\circ"
+        ],
+        "ref": "(∠s in the same segment)"
        },
        {
         "en": "Equal alternate angles prove the lines parallel $\\angle BDA=\\angle CBD\\quad\\Rightarrow\\quad AD\\parallel BC$.",
@@ -7825,7 +8315,12 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "AD ∥ BC"
+        "answer": "AD ∥ BC",
+        "mathLines": [
+         "\\angle BDA=\\angle CBD",
+         "\\Rightarrow\\quad AD\\parallel BC"
+        ],
+        "ref": "(converse of alt. ∠s)"
        }
       ],
       "readable": true,
@@ -7839,7 +8334,8 @@
        "A",
        "D",
        "B"
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -7997,7 +8493,11 @@
           "B",
           "accent"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOB:\\angle BOC:\\angle COA=7:6:5"
+        ],
+        "ref": "(arcs prop. to ∠s at centre)"
        },
        {
         "en": "Take five of the eighteen equal parts $\\angle AOC=360^\\circ\\times\\frac5{18}=100^\\circ$.",
@@ -8011,7 +8511,11 @@
           "claim",
           36
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOC=360^\\circ\\times\\frac5{18}=100^\\circ"
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
         "en": "Use the equal radii in OAC $OA=OC=10,\\quad\\angle OAC=\\angle OCA=40^\\circ$.",
@@ -8066,7 +8570,12 @@
           "dx": -15,
           "dy": 18
          }
-        ]
+        ],
+        "mathLines": [
+         "OA=OC=10",
+         "\\angle OAC=\\angle OCA=40^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △); (∠ sum of △)"
        },
        {
         "en": "Mark the midpoint M and join OM $AM=MC,\\quad OM\\perp AC$.",
@@ -8109,7 +8618,12 @@
           "A",
           "M"
          ]
-        ]
+        ],
+        "mathLines": [
+         "AM=MC",
+         "OM\\perp AC"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
         "en": "Use the right triangle OAM $AM=10\\cos40^\\circ,\\quad OM=10\\sin40^\\circ$.",
@@ -8142,6 +8656,10 @@
           "A",
           "M"
          ]
+        ],
+        "mathLines": [
+         "AM=10\\cos40^\\circ",
+         "OM=10\\sin40^\\circ"
         ]
        },
        {
@@ -8153,18 +8671,30 @@
           "A",
           "C"
          ]
+        ],
+        "mathLines": [
+         "[\\triangle OAC]=\\frac12(2AM)(OM)",
+         "\\approx49.2404\\text{ cm}^2"
         ]
        },
        {
         "en": "Find the area of the sector $[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2\\approx87.2665\\text{ cm}^2$.",
-        "zh": "再按圓心角佔一周的比例求扇形面積：$[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2\\approx87.2665\\text{ cm}^2$。"
+        "zh": "再按圓心角佔一周的比例求扇形面積：$[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2\\approx87.2665\\text{ cm}^2$。",
+        "mathLines": [
+         "[\\text{sector }OAC]=\\frac{100}{360}\\times\\pi\\times10^2",
+         "\\approx87.2665\\text{ cm}^2"
+        ]
        },
        {
         "en": "Subtract the triangle from the sector; round only at the end $[\\text{shaded}]=87.2665-49.2404\\approx38.0\\text{ cm}^2$.",
         "zh": "扇形減三角形才是弓形，最後才取三位有效數字：$[\\text{shaded}]=87.2665-49.2404\\approx38.0\\text{ cm}^2$。",
         "final": true,
         "clearGoal": true,
-        "answer": "(a) 100°; (b) 38.0 cm²"
+        "answer": "(a) 100°; (b) 38.0 cm²",
+        "mathLines": [
+         "[\\text{shaded}]=87.2665-49.2404",
+         "\\approx38.0\\text{ cm}^2"
+        ]
        }
       ],
       "readable": true,
@@ -8190,7 +8720,8 @@
         "avoid": "B",
         "from": "A"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -8401,7 +8932,11 @@
           "dx": -30,
           "dy": -38
          }
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOD=180^\\circ\\times\\frac3{1+3+5}=60^\\circ"
+        ],
+        "ref": "(arcs prop. to ∠s at centre)"
        },
        {
         "en": "OAD is equilateral $OA=OD,\\quad\\angle OAD=\\angle ODA=60^\\circ$.",
@@ -8434,7 +8969,12 @@
           "A",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OA=OD",
+         "\\angle OAD=\\angle ODA=60^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △); (∠ sum of △)"
        },
        {
         "en": "Find the radius from the given chord $r=OA=OD=AD=12\\text{ cm}$.",
@@ -8450,6 +8990,9 @@
           "dx": 22,
           "dy": 0
          }
+        ],
+        "mathLines": [
+         "r=OA=OD=AD=12\\text{ cm}"
         ]
        },
        {
@@ -8493,7 +9036,12 @@
           "A",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "AM=DM=6",
+         "OM=6\\tan60^\\circ=6\\sqrt3\\text{ cm}"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
         "en": "Find the triangle area $[\\triangle OAD]=\\tfrac12\\times12\\times6\\sqrt3=36\\sqrt3$.",
@@ -8504,22 +9052,38 @@
           "A",
           "D"
          ]
+        ],
+        "mathLines": [
+         "[\\triangle OAD]=\\frac12\\times12\\times6\\sqrt3",
+         "=36\\sqrt3"
         ]
        },
        {
         "en": "Find the small sector area $[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2=24\\pi$.",
-        "zh": "按圓心角的比例求出小扇形面積：$[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2=24\\pi$。"
+        "zh": "按圓心角的比例求出小扇形面積：$[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2=24\\pi$。",
+        "mathLines": [
+         "[\\text{sector }OAD]=\\frac{60}{360}\\times\\pi\\times12^2",
+         "=24\\pi"
+        ]
        },
        {
         "en": "The unshaded segment is sector minus triangle $[\\text{segment }AD]=24\\pi-36\\sqrt3$.",
-        "zh": "沒有陰影的弓形等於扇形減三角形：$[\\text{segment }AD]=24\\pi-36\\sqrt3$。"
+        "zh": "沒有陰影的弓形等於扇形減三角形：$[\\text{segment }AD]=24\\pi-36\\sqrt3$。",
+        "mathLines": [
+         "[\\text{segment }AD]=24\\pi-36\\sqrt3"
+        ]
        },
        {
         "en": "Subtract that segment from the whole semi-circle $[\\text{shaded}]=\\tfrac12\\pi(12)^2-(24\\pi-36\\sqrt3)=48\\pi+36\\sqrt3$.",
         "zh": "由整個半圓扣去沒有陰影的弓形：$[\\text{shaded}]=\\tfrac12\\pi(12)^2-(24\\pi-36\\sqrt3)=48\\pi+36\\sqrt3$。",
         "final": true,
         "clearGoal": true,
-        "answer": "Shaded area = 48π + 36√3 cm²"
+        "answer": "Shaded area = 48π + 36√3 cm²",
+        "mathLines": [
+         "[\\text{shaded}]=\\frac12\\pi(12)^2",
+         "\\quad-(24\\pi-36\\sqrt3)",
+         "=48\\pi+36\\sqrt3"
+        ]
        }
       ],
       "readable": true,
@@ -8547,7 +9111,8 @@
          }
         ]
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -8792,7 +9357,11 @@
           "claim",
           30
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ADB=\\angle DCE=\\angle BDC=30^\\circ"
+        ],
+        "ref": "(equal arcs, equal ∠s)"
        },
        {
         "en": "Add the two angles at D $\\angle CDF=30^\\circ+30^\\circ=60^\\circ$.",
@@ -8816,6 +9385,9 @@
           "D",
           "F"
          ]
+        ],
+        "mathLines": [
+         "\\angle CDF=30^\\circ+30^\\circ=60^\\circ"
         ]
        },
        {
@@ -8837,7 +9409,13 @@
           "D",
           "F"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle CFD=180^\\circ-30^\\circ-60^\\circ",
+         "=90^\\circ",
+         "\\Rightarrow\\quad AD\\perp CE"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
         "en": "Use the diameter BD $\\angle BCD=90^\\circ\\quad\\Rightarrow\\quad\\angle BCE=60^\\circ$.",
@@ -8862,7 +9440,12 @@
           "claim",
           44
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BCD=90^\\circ",
+         "\\Rightarrow\\quad \\angle BCE=60^\\circ"
+        ],
+        "ref": "(∠ in semi-circle)"
        },
        {
         "en": "Use the same segment on arc BE $\\angle BDE=\\angle BCE=60^\\circ$.",
@@ -8876,7 +9459,11 @@
           "claim",
           58
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle BDE=\\angle BCE=60^\\circ"
+        ],
+        "ref": "(∠s in the same segment)"
        },
        {
         "en": "Prove CE is another diameter $\\angle CDE=30^\\circ+60^\\circ=90^\\circ\\ \\Rightarrow\\ CE\\text{ is a diameter}$.",
@@ -8893,15 +9480,24 @@
           "claim",
           24
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle CDE=30^\\circ+60^\\circ=90^\\circ",
+         "\\Rightarrow\\ CE\\text{ is a diameter}"
+        ],
+        "ref": "(converse of ∠ in semi-circle)"
        },
        {
         "en": "The two diameters meet at the centre $G=BD\\cap CE\\quad\\Rightarrow\\quad G\\text{ is the circle centre}$.",
-        "zh": "兩條直徑的交點就是圓心：$G=BD\\cap CE\\quad\\Rightarrow\\quad G\\text{ is the circle centre}$。"
+        "zh": "兩條直徑的交點就是圓心：$G=BD\\cap CE\\quad\\Rightarrow\\quad G\\text{ is the circle centre}$。",
+        "mathLines": [
+         "G=BD\\cap CE",
+         "\\Rightarrow\\quad G\\text{ is the circle centre}"
+        ]
        },
        {
-        "en": "G is equally distant from C, D and E $GC=GD=GE\\quad\\Rightarrow\\quad G\\text{ is the circumcentre of }\\triangle CDE$.",
-        "zh": "三條半徑相等，所以交點到三頂點等距，正是外心：$GC=GD=GE\\quad\\Rightarrow\\quad G\\text{ is the circumcentre of }\\triangle CDE$。",
+        "en": "G is equally distant from C, D and E, so G is the circumcentre of triangle CDE $GC=GD=GE$.",
+        "zh": "三條半徑相等，所以交點到三頂點等距，G 是三角形 CDE 的外心：$GC=GD=GE$。",
         "rays": [
          [
           "G",
@@ -8945,7 +9541,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "(a) AD ⟂ CE; (b) G is circumcentre"
+        "answer": "(a) AD ⟂ CE; (b) G is circumcentre",
+        "mathLines": [
+         "GC=GD=GE"
+        ],
+        "ref": "(radii of the same circle)"
        }
       ],
       "readable": true,
@@ -8954,7 +9554,8 @@
       "intro": {
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
-      }
+      },
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
