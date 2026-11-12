@@ -1694,6 +1694,9 @@ body[data-lang="both"] .cg-split .cg-en {
 .cg-split .cg-row .l-zh, .cg-split .cg-row .l-en { white-space: nowrap; }
 .cg-split .cg-next { grid-column: 1 / -1; grid-row: 1; }
 .cg-split .cg-count { display: none; }
+.cg-split > .cg-navigation { grid-row: 1; }
+.cg-split > .cg-svg { grid-row: 2; }
+.cg-split > .cg-detail { grid-row: 3; }
 @media (min-width: 800px) {
   .cg-split { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: var(--sp-6); }
   .cg-split > .cg-svg { grid-column: 1; grid-row: 1 / 3; }
