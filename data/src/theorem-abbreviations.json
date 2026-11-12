@@ -1,0 +1,227 @@
+{
+  "source": {
+    "file": "source/5A11_E.pdf",
+    "title": "Chapter 11 — Basic Properties of Circles (I), Chapter Summary",
+    "printedPages": [
+      "11.76",
+      "11.77",
+      "11.78"
+    ],
+    "pdfPages": [
+      76,
+      77,
+      78
+    ],
+    "verifiedOn": "2026-11-12"
+  },
+  "usage": [
+    "Use the abbreviation verbatim in anim.steps[].ref, including parentheses.",
+    "Use ∠ or ∠s for angles and ⊥ for perpendicular; do not use private-use characters extracted from the PDF.",
+    "○ᶜᵉ represents the textbook circle symbol with superscript ce, meaning circumference.",
+    "Choose the theorem in the direction actually used; a converse has its own abbreviation.",
+    "The arc, chord and angle comparisons require the same circle or equal circles; match corresponding arcs and angles.",
+    "For a concyclicity test, check the point positions and same-side/opposite-side angle configuration.",
+    "Basic angle rules below are supplementary existing conventions, not quotations from these three summary pages."
+  ],
+  "theorems": {
+    "centre_twice_circumference": {
+      "abbreviation": "(∠ at centre twice ∠ at ○ᶜᵉ)",
+      "page": "11.76",
+      "meaning": {
+        "en": "The central angle is twice the angle at the circumference standing on the same arc.",
+        "zh": "同弧的圓心角是圓周角的兩倍。"
+      }
+    },
+    "same_segment": {
+      "abbreviation": "(∠s in the same segment)",
+      "page": "11.76",
+      "meaning": {
+        "en": "Angles in the same segment are equal.",
+        "zh": "同弓形內的圓周角相等。"
+      }
+    },
+    "semicircle": {
+      "abbreviation": "(∠ in semi-circle)",
+      "page": "11.76",
+      "meaning": {
+        "en": "The angle in a semicircle is a right angle.",
+        "zh": "半圓內的圓周角是直角。"
+      }
+    },
+    "converse_semicircle": {
+      "abbreviation": "(converse of ∠ in semi-circle)",
+      "page": "11.76",
+      "meaning": {
+        "en": "A right angle at the circumference subtends a diameter.",
+        "zh": "圓周上的直角所對的弦是直徑。"
+      }
+    },
+    "centre_perpendicular_bisects_chord": {
+      "abbreviation": "(line from centre ⊥ chord bisects chord)",
+      "page": "11.76",
+      "meaning": {
+        "en": "A perpendicular from the centre to a chord bisects the chord.",
+        "zh": "圓心到弦的垂線平分弦。"
+      }
+    },
+    "centre_to_chord_midpoint": {
+      "abbreviation": "(line joining centre to mid-pt. of chord ⊥ chord)",
+      "page": "11.76",
+      "meaning": {
+        "en": "The line joining the centre to the midpoint of a chord is perpendicular to the chord.",
+        "zh": "圓心連弦中點的直線垂直於弦。"
+      }
+    },
+    "chord_perpendicular_bisector": {
+      "abbreviation": "(⊥ bisector of chord passes through centre)",
+      "page": "11.76",
+      "meaning": {
+        "en": "The perpendicular bisector of a chord passes through the centre.",
+        "zh": "弦的垂直平分線經圓心。"
+      }
+    },
+    "equal_chords_equal_distance": {
+      "abbreviation": "(equal chords, equidistant from centre)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Equal chords are equidistant from the centre.",
+        "zh": "等弦與圓心等距。"
+      }
+    },
+    "equal_distance_equal_chords": {
+      "abbreviation": "(chords equidistant from centre are equal)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Chords equidistant from the centre are equal.",
+        "zh": "與圓心等距的弦長度相等。"
+      }
+    },
+    "equal_angles_equal_arcs": {
+      "abbreviation": "(equal ∠s, equal arcs)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Equal corresponding angles stand on equal arcs.",
+        "zh": "相等的對應角所對的弧相等。"
+      }
+    },
+    "equal_arcs_equal_angles": {
+      "abbreviation": "(equal arcs, equal ∠s)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Equal arcs subtend equal corresponding angles.",
+        "zh": "等弧所對的對應角相等。"
+      }
+    },
+    "equal_angles_equal_chords": {
+      "abbreviation": "(equal ∠s, equal chords)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Equal corresponding angles stand on equal chords.",
+        "zh": "相等的對應角所對的弦相等。"
+      }
+    },
+    "equal_chords_equal_angles": {
+      "abbreviation": "(equal chords, equal ∠s)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Equal chords subtend equal corresponding angles.",
+        "zh": "等弦所對的對應角相等。"
+      }
+    },
+    "equal_chords_equal_arcs": {
+      "abbreviation": "(equal chords, equal arcs)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Equal chords cut off equal corresponding arcs.",
+        "zh": "等弦所對的對應弧相等。"
+      }
+    },
+    "equal_arcs_equal_chords": {
+      "abbreviation": "(equal arcs, equal chords)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Equal arcs have equal corresponding chords.",
+        "zh": "等弧所對的對應弦相等。"
+      }
+    },
+    "arcs_proportional_central_angles": {
+      "abbreviation": "(arcs prop. to ∠s at centre)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Arc lengths are proportional to their corresponding central angles.",
+        "zh": "弧長與所對的圓心角成比例。"
+      }
+    },
+    "arcs_proportional_circumference_angles": {
+      "abbreviation": "(arcs prop. to ∠s at ○ᶜᵉ)",
+      "page": "11.77",
+      "meaning": {
+        "en": "Arc lengths are proportional to corresponding angles at the circumference.",
+        "zh": "弧長與所對的圓周角成比例。"
+      }
+    },
+    "opposite_angles_cyclic": {
+      "abbreviation": "(opp. ∠s, cyclic quad.)",
+      "page": "11.78",
+      "meaning": {
+        "en": "Opposite angles of a cyclic quadrilateral are supplementary.",
+        "zh": "圓內接四邊形的對角互補。"
+      }
+    },
+    "exterior_angle_cyclic": {
+      "abbreviation": "(ext. ∠, cyclic quad.)",
+      "page": "11.78",
+      "meaning": {
+        "en": "An exterior angle of a cyclic quadrilateral equals its interior opposite angle.",
+        "zh": "圓內接四邊形的外角等於內對角。"
+      }
+    },
+    "converse_same_segment": {
+      "abbreviation": "(converse of ∠s in the same segment)",
+      "page": "11.78",
+      "meaning": {
+        "en": "Equal angles standing on the same segment can establish concyclicity.",
+        "zh": "利用同弓形內角相等的逆定理證明四點共圓。"
+      }
+    },
+    "concyclic_opposite_supplementary": {
+      "abbreviation": "(opp. ∠s supp.)",
+      "page": "11.78",
+      "meaning": {
+        "en": "A quadrilateral with supplementary opposite angles is cyclic.",
+        "zh": "四邊形一對對角互補，則四點共圓。"
+      }
+    },
+    "concyclic_exterior_equals_opposite": {
+      "abbreviation": "(ext. ∠ = int. opp. ∠)",
+      "page": "11.78",
+      "meaning": {
+        "en": "A quadrilateral is cyclic if an exterior angle equals the interior opposite angle.",
+        "zh": "四邊形的外角等於內對角，則四點共圓。"
+      }
+    }
+  },
+  "basicAngleRules": {
+    "angles_at_point": {
+      "abbreviation": "(∠s at a pt.)",
+      "meaning": {
+        "en": "Angles around a point sum to 360°.",
+        "zh": "一點四周的角度總和為三百六十度。"
+      }
+    },
+    "vertically_opposite_angles": {
+      "abbreviation": "(vert. opp. ∠s)",
+      "meaning": {
+        "en": "Vertically opposite angles are equal.",
+        "zh": "對頂角相等。"
+      }
+    },
+    "adjacent_angles_straight_line": {
+      "abbreviation": "(adj. ∠s on a st. line)",
+      "meaning": {
+        "en": "Adjacent angles on a straight line sum to 180°.",
+        "zh": "直線上的鄰角總和為一百八十度。"
+      }
+    }
+  }
+}

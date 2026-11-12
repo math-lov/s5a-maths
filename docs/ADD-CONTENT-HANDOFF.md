@@ -173,6 +173,16 @@
 * 必跑 `python -X utf8 tools/verify_ch11_2.py`：直接用幾何座標驗算原題數值、點序及等長記號，另以 `tools/figcheck.py` 檢查所有題目和定理卡的角度／平行線。這些檢查不依賴 SVG 渲染結果。
 * 完整 smoke suite 會保留大量 jsdom 視窗，`npm test` 已設定 8 GB 的 Node heap 上限；這只是測試程序的設定，不影響網站。首頁／章節測試只載入 metadata，不再無故載入所有題庫。
 
+### 4f. 圓幾何定理簡寫（2026-11-12）
+
+共用參考表：[data/src/theorem-abbreviations.json](../data/src/theorem-abbreviations.json)。已逐頁核對 `source/5A11_E.pdf` 課本 11.76–11.78 頁（PDF 第 76–78 頁），保存全部 22 個簡寫、中英意思及來源頁碼；另列既有基本角度規則，清楚區分來源。
+
+* 新增或修改圓幾何步驟時，先查共用表，把適用的 `abbreviation` 原樣放入 `anim.steps[].ref`，保留括號。前端會在公式下顯示，並隨下一步、上一步及重播同步更新；純代數運算不必加定理。
+* 角用 `∠`／`∠s`，垂直用 `⊥`。圓周簡寫用 `○ᶜᵉ`（圓形符號加上標 ce），不用裸 `ce` 或 PDF 抽出的私用區亂碼。
+* 弧長比例依課本寫 `(arcs prop. to ∠s at centre)` 或 `(arcs prop. to ∠s at ○ᶜᵉ)`，不要自行改寫成 `arc lengths ∝ …`。
+* 必須按推論方向選用定理或逆定理。例如等角推出等弦用 `(equal ∠s, equal chords)`；等弦推出等角用 `(equal chords, equal ∠s)`。
+* 等弧／等弦／角的比較要核對同圓或等圓及對應關係；四點共圓的逆定理須核對頂點位置與角所在的一側。
+
 ## 5. 檢查（加完內容必跑）
 
 ```powershell

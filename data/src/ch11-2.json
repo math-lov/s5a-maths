@@ -982,7 +982,7 @@
          ]
         ],
         "noRays": true,
-        "ref": "Line from centre to midpoint / 圓心連弦中點"
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
         "en": "Similarly, ON is perpendicular to BC. Angle BNO is also 90°.",
@@ -1246,7 +1246,7 @@
           "claim"
          ]
         ],
-        "ref": "Perpendicular bisector passes through centre / 弦的垂直平分線經圓心"
+        "ref": "(⊥ bisector of chord passes through centre)"
        },
        {
         "en": "Let the radius be r cm. Join OB. Since OC = r and CE = 10, OE = r - 10.",
@@ -1665,7 +1665,7 @@
           "colour": "claim"
          }
         ],
-        "ref": "Perpendicular from centre bisects chord / 圓心到弦的垂線平分弦"
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
         "en": "Join OA, a radius of 10 cm. Focus on the shaded right-angled triangle OMA: the hypotenuse is OA, not OM. Thus $OM^2 + 8^2 = 10^2$.",
@@ -1776,7 +1776,7 @@
           "colour": "claim"
          }
         ],
-        "ref": "Equal chords, equidistant from centre / 等弦與圓心等距"
+        "ref": "(equal chords, equidistant from centre)"
        },
        {
         "en": "The two chords are on opposite sides of O. Add the two distances: $MN = OM + ON = 6 + 6 = 12$ cm. The bracket measures the full distance between the chords.",
@@ -4683,7 +4683,7 @@
           "claim"
          ]
         ],
-        "ref": "Perpendicular bisector passes through centre / 弦的垂直平分線經圓心"
+        "ref": "(⊥ bisector of chord passes through centre)"
        },
        {
         "en": "The radius is half the diameter: $r=14\\div2=7$ cm.",
@@ -6126,7 +6126,7 @@
           "accent"
          ]
         ],
-        "ref": "Angle at centre is twice angle at circumference / 圓心角是圓周角的兩倍"
+        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ)"
        },
        {
         "en": "In right triangle ABD, $\\angle ABO=180^\\circ-90^\\circ-31^\\circ=59^\\circ$.",

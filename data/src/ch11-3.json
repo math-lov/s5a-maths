@@ -2204,7 +2204,7 @@
         "mathLines": [
          "y=\\frac{120}{60}\\times8=16\\text{ cm}"
         ],
-        "ref": "(arc lengths ∝ ∠s at centre)"
+        "ref": "(arcs prop. to ∠s at centre)"
        }
       ],
       "readable": true,
@@ -2619,7 +2619,7 @@
         "mathLines": [
          "\\frac{x}{76}=\\frac{75}{285}"
         ],
-        "ref": "(arc lengths ∝ ∠s at centre)"
+        "ref": "(arcs prop. to ∠s at centre)"
        },
        {
         "en": "Calculate the minor arc length $x=76\\times\\frac{75}{285}=20\\text{ cm}$.",
