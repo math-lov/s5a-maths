@@ -1743,7 +1743,8 @@
         "mathLines": [
          "\\angle AOB=360^\\circ-220^\\circ-70^\\circ",
          "\\phantom{\\angle AOB}=70^\\circ"
-        ]
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
         "en": "Equal centre angles give equal chords $AB=BC\\quad\\Rightarrow\\quad x=9$.",
@@ -1778,7 +1779,8 @@
         "mathLines": [
          "AB=BC",
          "\\Rightarrow\\quad x=9"
-        ]
+        ],
+        "ref": "(equal ∠s, equal chords)"
        }
       ],
       "readable": true,
@@ -1948,14 +1950,16 @@
         "mathLines": [
          "AB=CD",
          "\\Rightarrow\\quad\\angle COD=x"
-        ]
+        ],
+        "ref": "(equal chords, equal ∠s)"
        },
        {
         "en": "Add all four angles around O $x+50^\\circ+x+80^\\circ=360^\\circ$.",
         "zh": "把圓心四周四隻角的角度相加：$x+50^\\circ+x+80^\\circ=360^\\circ$。",
         "mathLines": [
          "x+50^\\circ+x+80^\\circ=360^\\circ"
-        ]
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
         "en": "Solve for x $2x=230^\\circ\\quad\\Rightarrow\\quad x=115^\\circ$.",
@@ -2141,7 +2145,8 @@
         ],
         "mathLines": [
          "\\angle AOB=\\angle COD=60^\\circ"
-        ]
+        ],
+        "ref": "(vert. opp. ∠s)"
        },
        {
         "en": "Equal angles give equal arcs $\\overset{\\frown}{CD}=\\overset{\\frown}{AB}=8\\text{ cm}$.",
@@ -2158,7 +2163,8 @@
         ],
         "mathLines": [
          "\\overset{\\frown}{CD}=\\overset{\\frown}{AB}=8\\text{ cm}"
-        ]
+        ],
+        "ref": "(equal ∠s, equal arcs)"
        },
        {
         "en": "Use angles on a straight line $\\angle AOD=180^\\circ-60^\\circ=120^\\circ$.",
@@ -2176,7 +2182,8 @@
         "mathLines": [
          "\\angle AOD=180^\\circ-60^\\circ",
          "\\phantom{\\angle AOD}=120^\\circ"
-        ]
+        ],
+        "ref": "(adj. ∠s on a st. line)"
        },
        {
         "en": "Use the arc length ratio $y=\\frac{120}{60}\\times8=16\\text{ cm}$.",
@@ -2196,7 +2203,8 @@
         "answer": "x = 8 cm; y = 16 cm",
         "mathLines": [
          "y=\\frac{120}{60}\\times8=16\\text{ cm}"
-        ]
+        ],
+        "ref": "(arc lengths ∝ ∠s at centre)"
        }
       ],
       "readable": true,
@@ -2404,7 +2412,8 @@
         "mathLines": [
          "\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}",
          "\\phantom{\\overset{\\frown}{AB}}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}"
-        ]
+        ],
+        "ref": "(equal chords, equal arcs)"
        },
        {
         "en": "Count equal arc pieces $\\overset{\\frown}{ABC}:\\overset{\\frown}{CDF}=2:3$.",
@@ -2601,14 +2610,16 @@
         "mathLines": [
          "\\text{reflex }\\angle AOB",
          "=360^\\circ-75^\\circ=285^\\circ"
-        ]
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
         "en": "Keep minor and major arcs in the same order $\\frac{x}{76}=\\frac{75}{285}$.",
         "zh": "列比例時保持劣弧與優弧的次序：$\\frac{x}{76}=\\frac{75}{285}$。",
         "mathLines": [
          "\\frac{x}{76}=\\frac{75}{285}"
-        ]
+        ],
+        "ref": "(arc lengths ∝ ∠s at centre)"
        },
        {
         "en": "Calculate the minor arc length $x=76\\times\\frac{75}{285}=20\\text{ cm}$.",
