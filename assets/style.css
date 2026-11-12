@@ -1669,7 +1669,7 @@ body[data-lang="en"] .cg-zh { display: none; }
 body[data-lang="zh"] .cg-en { display: none; }
 .anim-card .section-title { margin-bottom: 2px; }
 
-/* 11.3: synchronised steps on the left, figure on the right. */
+/* 11.2 / 11.3: synchronised steps on the left, figure on the right. */
 .anim-card:has(.cg-split), .card:has(> .cc .cg-split) {
   width: min(1000px, calc(100vw - 32px)); margin-left: 50%; translate: -50% 0;
 }

@@ -3233,6 +3233,37 @@ for (const question of chordQuestions) {
 ok(wholeChordValid, "All 31 animations complete without invalid SVG coordinates or KaTeX errors");
 ok(goalsClear, "Target angles appear initially, clear when solved, and return on Back");
 
+const chordReaders = chordQuestions.map((q) => q.anim).concat(
+  chordPart.cards.map((card) => card.demo.opts.anim));
+ok(chordReaders.length === 36 && chordReaders.every((anim) => anim.layout === "side-by-side"),
+  "11.2: all 31 questions and five teaching cards use the synchronised reading panel");
+let chordReadingValid = true, chordReplayValid = true;
+for (const anim of chordReaders) {
+  chordPage.doc.body.replaceChildren();
+  chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, anim);
+  const initialFigure = chordPage.$(".cg-svg").textContent;
+  const states = [];
+  for (const [index, step] of anim.steps.entries()) {
+    chordPage.$(".cg-next").click();
+    if (chordPage.$(".cg-progress .l-en").textContent !== `Step ${index + 1} of ${anim.steps.length}` ||
+        chordPage.$(".cg-ref").textContent !== (step.ref || "") ||
+        chordPage.$$(".cg-en .cg-equation annotation").map((n) => n.textContent).join("\n") !==
+          step.mathLines.map((line) => "\\displaystyle " + line).join("\n") ||
+        chordPage.$$(".katex-error").length) chordReadingValid = false;
+    states.push([chordPage.$(".cg-svg").textContent, chordPage.$(".cg-say").textContent,
+      chordPage.$(".cg-ref").textContent]);
+  }
+  chordPage.$(".cg-back").click();
+  if (JSON.stringify([chordPage.$(".cg-svg").textContent, chordPage.$(".cg-say").textContent,
+      chordPage.$(".cg-ref").textContent]) !== JSON.stringify(states.at(-2))) chordReplayValid = false;
+  chordPage.$(".cg-restart").click();
+  if (chordPage.$(".cg-svg").textContent !== initialFigure || chordPage.$(".cg-equation") ||
+      chordPage.$(".cg-ref").textContent || !chordPage.$(".cg-back").disabled ||
+      !/^Study the figure/.test(chordPage.$(".cg-progress .l-en").textContent)) chordReplayValid = false;
+}
+ok(chordReadingValid, "11.2: all 167 steps display the matching formula lines and theorem abbreviations");
+ok(chordReplayValid, "11.2: Back and Restart restore the matching diagrams, captions and reasons in all 36 players");
+
 console.log("\n== 11.3: complete exercises, curved arc lengths and shaded segments ==");
 const arcPart3 = JSON.parse(read("data/src/ch11-3.json"));
 const arcQuestions3 = arcPart3.sections.flatMap((section) => section.questions);

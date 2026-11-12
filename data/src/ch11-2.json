@@ -86,8 +86,8 @@
       ],
       "steps": [
        {
-        "en": "OM is perpendicular to chord AB at M.",
-        "zh": "OM 在 M 垂直於弦 AB。",
+        "en": "OM is perpendicular to chord AB at M. $OM\\perp AB$.",
+        "zh": "OM 在 M 垂直於弦 AB。 $OM\\perp AB$。",
         "arcs": [
          [
           "M",
@@ -98,11 +98,14 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "OM\\perp AB"
+        ]
        },
        {
-        "en": "Join radii OA and OB. They are equal.",
-        "zh": "連半徑 OA、OB，兩者長度相等。",
+        "en": "Join radii OA and OB. They are equal. $OA=OB$.",
+        "zh": "連半徑 OA、OB，兩者長度相等。 $OA=OB$。",
         "lines": [
          [
           "O",
@@ -118,11 +121,15 @@
         "radii": [
          "A",
          "B"
-        ]
+        ],
+        "mathLines": [
+         "OA=OB"
+        ],
+        "ref": "(radii of the same circle)"
        },
        {
-        "en": "The shaded right triangles share OM and have equal hypotenuses OA = OB. They are congruent by RHS.",
-        "zh": "兩個陰影直角三角形有公共邊 OM，斜邊 OA = OB，以 RHS 證全等。",
+        "en": "The shaded right triangles share OM and have equal hypotenuses OA = OB. They are congruent by RHS. $\\triangle OAM\\cong\\triangle OBM$.",
+        "zh": "兩個陰影直角三角形有公共邊 OM，斜邊 OA = OB，以 RHS 證全等。 $\\triangle OAM\\cong\\triangle OBM$。",
         "polygons": [
          [
           "O",
@@ -135,11 +142,14 @@
           "M"
          ]
         ],
-        "ref": "RHS / 斜邊直角邊"
+        "mathLines": [
+         "\\triangle OAM\\cong\\triangle OBM"
+        ],
+        "ref": "(RHS)"
        },
        {
-        "en": "Corresponding sides give AM = MB: the perpendicular bisects the chord.",
-        "zh": "對應邊相等，得 AM = MB，即垂線平分弦。",
+        "en": "Corresponding sides give AM = MB: the perpendicular bisects the chord. $AM=MB$.",
+        "zh": "對應邊相等，得 AM = MB，即垂線平分弦。 $AM=MB$。",
         "ticks": [
          [
           "A",
@@ -163,10 +173,15 @@
           "B",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "AM=MB"
+        ],
+        "ref": "(corr. sides, ≅ △s)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      }
     }
    }
@@ -230,8 +245,8 @@
       ],
       "steps": [
        {
-        "en": "M is the midpoint, so AM = MB.",
-        "zh": "M 是弦中點，所以 AM = MB。",
+        "en": "M is the midpoint, so AM = MB. $AM=MB$.",
+        "zh": "M 是弦中點，所以 AM = MB。 $AM=MB$。",
         "ticks": [
          [
           "A",
@@ -243,11 +258,14 @@
           "B",
           2
          ]
+        ],
+        "mathLines": [
+         "AM=MB"
         ]
        },
        {
-        "en": "Join radii OA and OB. They are equal.",
-        "zh": "連半徑 OA、OB，兩者長度相等。",
+        "en": "Join radii OA and OB. They are equal. $OA=OB$.",
+        "zh": "連半徑 OA、OB，兩者長度相等。 $OA=OB$。",
         "lines": [
          [
           "O",
@@ -263,11 +281,15 @@
         "radii": [
          "A",
          "B"
-        ]
+        ],
+        "mathLines": [
+         "OA=OB"
+        ],
+        "ref": "(radii of the same circle)"
        },
        {
-        "en": "OA = OB, AM = MB and OM is common. Therefore triangles OAM and OBM are congruent by SSS.",
-        "zh": "OA = OB、AM = MB，OM 為公共邊，以 SSS 證三角形 OAM、OBM 全等。",
+        "en": "OA = OB, AM = MB and OM is common. Therefore triangles OAM and OBM are congruent by SSS. $OA=OB,\\quad AM=MB\\quad OM=OM\\quad \\triangle OAM\\cong\\triangle OBM$.",
+        "zh": "OA = OB、AM = MB，OM 為公共邊，以 SSS 證三角形 OAM、OBM 全等。 $OA=OB,\\quad AM=MB\\quad OM=OM\\quad \\triangle OAM\\cong\\triangle OBM$。",
         "polygons": [
          [
           "O",
@@ -280,11 +302,17 @@
           "M"
          ]
         ],
-        "ref": "SSS / 邊邊邊"
+        "mathLines": [
+         "OA=OB,",
+         "AM=MB",
+         "OM=OM",
+         "\\triangle OAM\\cong\\triangle OBM"
+        ],
+        "ref": "(SSS)"
        },
        {
-        "en": "The corresponding angles OMA and OMB are equal. Together they form a straight angle of 180°.",
-        "zh": "對應角 OMA、OMB 相等，兩角合共是一個 180° 平角。",
+        "en": "The corresponding angles OMA and OMB are equal. Together they form a straight angle of 180°. $\\angle OMA=\\angle OMB\\quad \\angle OMA+\\angle OMB=180^\\circ$.",
+        "zh": "對應角 OMA、OMB 相等，兩角合共是一個 180° 平角。 $\\angle OMA=\\angle OMB\\quad \\angle OMA+\\angle OMB=180^\\circ$。",
         "arcs": [
          [
           "M",
@@ -303,11 +331,16 @@
           23
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "\\angle OMA=\\angle OMB",
+         "\\angle OMA+\\angle OMB=180^\\circ"
+        ],
+        "ref": "(corr. ∠s, ≅ △s); (adj. ∠s on a st. line)"
        },
        {
-        "en": "Each angle is 90°, so OM is perpendicular to AB.",
-        "zh": "每個角都是 90°，所以 OM 垂直於 AB。",
+        "en": "Each angle is 90°, so OM is perpendicular to AB. $\\angle OMA=\\angle OMB=90^\\circ\\quad OM\\perp AB$.",
+        "zh": "每個角都是 90°，所以 OM 垂直於 AB。 $\\angle OMA=\\angle OMB=90^\\circ\\quad OM\\perp AB$。",
         "clearAngle": [
          "M"
         ],
@@ -329,10 +362,16 @@
           16
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "\\angle OMA=\\angle OMB=90^\\circ",
+         "OM\\perp AB"
+        ],
+        "ref": "(adj. ∠s on a st. line)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      }
     }
    }
@@ -401,8 +440,8 @@
       ],
       "steps": [
        {
-        "en": "The line PM is perpendicular to AB and passes through its midpoint M. It is the perpendicular bisector.",
-        "zh": "直線 PM 垂直 AB 並經其中點 M，所以是垂直平分線。",
+        "en": "The line PM is perpendicular to AB and passes through its midpoint M. It is the perpendicular bisector. $AM=MB,\\quad PM\\perp AB$.",
+        "zh": "直線 PM 垂直 AB 並經其中點 M，所以是垂直平分線。 $AM=MB,\\quad PM\\perp AB$。",
         "ticks": [
          [
           "A",
@@ -425,11 +464,15 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "AM=MB,",
+         "PM\\perp AB"
+        ]
        },
        {
-        "en": "Mark the centre O and join OA and OB. The two radii are equal, so O is equally far from A and B.",
-        "zh": "標出圓心 O，連 OA、OB。兩條半徑相等，所以 O 與 A、B 等距。",
+        "en": "Mark the centre O and join OA and OB. The two radii are equal, so O is equally far from A and B. $OA=OB$.",
+        "zh": "標出圓心 O，連 OA、OB。兩條半徑相等，所以 O 與 A、B 等距。 $OA=OB$。",
         "show": [
          "O"
         ],
@@ -448,11 +491,15 @@
         "radii": [
          "A",
          "B"
-        ]
+        ],
+        "mathLines": [
+         "OA=OB"
+        ],
+        "ref": "(radii of the same circle)"
        },
        {
-        "en": "Every point equally far from A and B lies on their perpendicular bisector. Therefore the centre O lies on PM.",
-        "zh": "與 A、B 等距的點都在 AB 的垂直平分線上，因此圓心 O 在 PM 上。",
+        "en": "Every point equally far from A and B lies on their perpendicular bisector. Therefore the centre O lies on PM. $O\\in PM$.",
+        "zh": "與 A、B 等距的點都在 AB 的垂直平分線上，因此圓心 O 在 PM 上。 $O\\in PM$。",
         "rays": [
          [
           "P",
@@ -460,10 +507,14 @@
           "claim"
          ]
         ],
-        "ref": "Perpendicular-bisector locus / 垂直平分線軌跡"
+        "mathLines": [
+         "O\\in PM"
+        ],
+        "ref": "(⊥ bisector locus)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      }
     }
    }
@@ -547,8 +598,8 @@
       ],
       "steps": [
        {
-        "en": "AB and CD are equal chords. OM and ON are perpendicular to them.",
-        "zh": "AB、CD 是等弦，OM、ON 分別垂直兩弦。",
+        "en": "AB and CD are equal chords. OM and ON are perpendicular to them. $AB=CD\\quad OM\\perp AB,\\quad ON\\perp CD$.",
+        "zh": "AB、CD 是等弦，OM、ON 分別垂直兩弦。 $AB=CD\\quad OM\\perp AB,\\quad ON\\perp CD$。",
         "arcs": [
          [
           "M",
@@ -567,11 +618,16 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "AB=CD",
+         "OM\\perp AB,",
+         "ON\\perp CD"
+        ]
        },
        {
-        "en": "Join OA and OC. Both are radii, so OA = OC.",
-        "zh": "連 OA、OC，兩者都是半徑，所以 OA = OC。",
+        "en": "Join OA and OC. Both are radii, so OA = OC. $OA=OC$.",
+        "zh": "連 OA、OC，兩者都是半徑，所以 OA = OC。 $OA=OC$。",
         "lines": [
          [
           "O",
@@ -587,11 +643,15 @@
         "radii": [
          "A",
          "C"
-        ]
+        ],
+        "mathLines": [
+         "OA=OC"
+        ],
+        "ref": "(radii of the same circle)"
        },
        {
-        "en": "The perpendiculars bisect the equal chords. Therefore AM = CN, each half of an equal chord.",
-        "zh": "垂線平分兩條等弦，因此半弦 AM = CN。",
+        "en": "The perpendiculars bisect the equal chords. Therefore AM = CN, each half of an equal chord. $AM=\\frac12 AB\\quad CN=\\frac12 CD\\quad AM=CN$.",
+        "zh": "垂線平分兩條等弦，因此半弦 AM = CN。 $AM=\\frac12 AB\\quad CN=\\frac12 CD\\quad AM=CN$。",
         "ticks": [
          [
           "A",
@@ -615,11 +675,17 @@
           "C",
           "N"
          ]
-        ]
+        ],
+        "mathLines": [
+         "AM=\\frac12 AB",
+         "CN=\\frac12 CD",
+         "AM=CN"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "RHS gives congruent triangles OAM and OCN. Corresponding sides give OM = ON.",
-        "zh": "以 RHS 證三角形 OAM、OCN 全等，對應邊得 OM = ON。",
+        "en": "RHS gives congruent triangles OAM and OCN. Corresponding sides give OM = ON. $\\triangle OAM\\cong\\triangle OCN\\quad OM=ON$.",
+        "zh": "以 RHS 證三角形 OAM、OCN 全等，對應邊得 OM = ON。 $\\triangle OAM\\cong\\triangle OCN\\quad OM=ON$。",
         "ticks": [
          [
           "O",
@@ -644,10 +710,15 @@
           "claim"
          ]
         ],
-        "ref": "RHS / 斜邊直角邊"
+        "mathLines": [
+         "\\triangle OAM\\cong\\triangle OCN",
+         "OM=ON"
+        ],
+        "ref": "(RHS); (corr. sides, ≅ △s)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      }
     }
    }
@@ -731,8 +802,8 @@
       ],
       "steps": [
        {
-        "en": "The two perpendicular distances are equal: OM = ON.",
-        "zh": "兩條垂直距離相等，OM = ON。",
+        "en": "The two perpendicular distances are equal: OM = ON. $OM=ON$.",
+        "zh": "兩條垂直距離相等，OM = ON。 $OM=ON$。",
         "ticks": [
          [
           "O",
@@ -763,11 +834,14 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "OM=ON"
+        ]
        },
        {
-        "en": "Join OA and OC. Both are radii, so OA = OC.",
-        "zh": "連 OA、OC，兩者都是半徑，所以 OA = OC。",
+        "en": "Join OA and OC. Both are radii, so OA = OC. $OA=OC$.",
+        "zh": "連 OA、OC，兩者都是半徑，所以 OA = OC。 $OA=OC$。",
         "lines": [
          [
           "O",
@@ -783,11 +857,15 @@
         "radii": [
          "A",
          "C"
-        ]
+        ],
+        "mathLines": [
+         "OA=OC"
+        ],
+        "ref": "(radii of the same circle)"
        },
        {
-        "en": "The right triangles OAM and OCN are congruent by RHS. Therefore AM = CN.",
-        "zh": "兩個直角三角形 OAM、OCN 以 RHS 證全等，因此 AM = CN。",
+        "en": "The right triangles OAM and OCN are congruent by RHS. Therefore AM = CN. $\\triangle OAM\\cong\\triangle OCN\\quad AM=CN$.",
+        "zh": "兩個直角三角形 OAM、OCN 以 RHS 證全等，因此 AM = CN。 $\\triangle OAM\\cong\\triangle OCN\\quad AM=CN$。",
         "polygons": [
          [
           "O",
@@ -812,11 +890,15 @@
           2
          ]
         ],
-        "ref": "RHS / 斜邊直角邊"
+        "mathLines": [
+         "\\triangle OAM\\cong\\triangle OCN",
+         "AM=CN"
+        ],
+        "ref": "(RHS); (corr. sides, ≅ △s)"
        },
        {
-        "en": "Each whole chord is twice its half: AB = 2AM = 2CN = CD.",
-        "zh": "整條弦均是半弦的兩倍，所以 AB = 2AM = 2CN = CD。",
+        "en": "Each whole chord is twice its half: AB = 2AM = 2CN = CD. $AB=2AM=2CN=CD$.",
+        "zh": "整條弦均是半弦的兩倍，所以 AB = 2AM = 2CN = CD。 $AB=2AM=2CN=CD$。",
         "rays": [
          [
           "A",
@@ -828,10 +910,15 @@
           "D",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "AB=2AM=2CN=CD"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      }
     }
    }
@@ -932,8 +1019,8 @@
       ],
       "steps": [
        {
-        "en": "M and N are midpoints. The given 253° angle is the reflex angle at O.",
-        "zh": "M、N 是中點，253° 是以 O 為頂點的反角。",
+        "en": "M and N are midpoints. The given 253° angle is the reflex angle at O. $AM=MB,\\quad BN=NC\\quad \\text{reflex }\\angle MON=253^\\circ$.",
+        "zh": "M、N 是中點，253° 是以 O 為頂點的反角。 $AM=MB,\\quad BN=NC\\quad \\text{reflex }\\angle MON=253^\\circ$。",
         "ticks": [
          [
           "A",
@@ -966,11 +1053,16 @@
           42,
           "reflex"
          ]
+        ],
+        "mathLines": [
+         "AM=MB,",
+         "BN=NC",
+         "\\text{reflex }\\angle MON=253^\\circ"
         ]
        },
        {
-        "en": "The line from the centre to midpoint M is perpendicular to AB. Thus angle BMO is 90°.",
-        "zh": "圓心連弦中點 M 的直線垂直於 AB，所以角 BMO = 90°。",
+        "en": "The line from the centre to midpoint M is perpendicular to AB. Thus angle BMO is 90°. $OM\\perp AB\\quad \\angle BMO=90^\\circ$.",
+        "zh": "圓心連弦中點 M 的直線垂直於 AB，所以角 BMO = 90°。 $OM\\perp AB\\quad \\angle BMO=90^\\circ$。",
         "arcs": [
          [
           "M",
@@ -982,11 +1074,15 @@
          ]
         ],
         "noRays": true,
+        "mathLines": [
+         "OM\\perp AB",
+         "\\angle BMO=90^\\circ"
+        ],
         "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "Similarly, ON is perpendicular to BC. Angle BNO is also 90°.",
-        "zh": "同理，ON 垂直 BC，角 BNO 也是 90°。",
+        "en": "Similarly, ON is perpendicular to BC. Angle BNO is also 90°. $ON\\perp BC\\quad \\angle BNO=90^\\circ$.",
+        "zh": "同理，ON 垂直 BC，角 BNO 也是 90°。 $ON\\perp BC\\quad \\angle BNO=90^\\circ$。",
         "arcs": [
          [
           "N",
@@ -997,11 +1093,16 @@
           16
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "ON\\perp BC",
+         "\\angle BNO=90^\\circ"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "Angles around O add to 360°: $\\angle MON = 360^\\circ - 253^\\circ = 107^\\circ$.",
-        "zh": "O 點的周角為 360°：$\\angle MON = 360^\\circ - 253^\\circ = 107^\\circ$。",
+        "en": "Angles around O add to 360° $\\angle MON=360^\\circ-253^\\circ\\quad =107^\\circ$.",
+        "zh": "O 點的周角為 360° $\\angle MON=360^\\circ-253^\\circ\\quad =107^\\circ$。",
         "arcs": [
          [
           "O",
@@ -1013,11 +1114,15 @@
          ]
         ],
         "noRays": true,
-        "ref": "Angles at O / O 點的周角"
+        "mathLines": [
+         "\\angle MON=360^\\circ-253^\\circ",
+         "=107^\\circ"
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
-        "en": "The shaded quadrilateral BMON has angle sum 360°. Hence $\\angle ABC = 360^\\circ - 90^\\circ - 107^\\circ - 90^\\circ = 73^\\circ$.",
-        "zh": "陰影四邊形 BMON 的內角和為 360°，所以角 ABC = 73°。",
+        "en": "Use the angle sum of quadrilateral BMON to find angle ABC. $\\angle ABC=360^\\circ-90^\\circ\\quad \\quad-107^\\circ-90^\\circ\\quad =73^\\circ$.",
+        "zh": "利用四邊形 BMON 的內角和求角 ABC。 $\\angle ABC=360^\\circ-90^\\circ\\quad \\quad-107^\\circ-90^\\circ\\quad =73^\\circ$。",
         "polygons": [
          [
           "B",
@@ -1038,7 +1143,13 @@
         ],
         "final": true,
         "answer": "∠ABC = 73°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "\\angle ABC=360^\\circ-90^\\circ",
+         "\\quad-107^\\circ-90^\\circ",
+         "=73^\\circ"
+        ],
+        "ref": "(∠ sum of quad.)"
        }
       ],
       "goal": [
@@ -1051,7 +1162,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -1175,8 +1287,8 @@
       ],
       "steps": [
        {
-        "en": "BE = DE = 20 cm and CE = 10 cm. AC is perpendicular to BD at E.",
-        "zh": "BE = DE = 20 cm，CE = 10 cm，AC 在 E 垂直 BD。",
+        "en": "BE = DE = 20 cm and CE = 10 cm. AC is perpendicular to BD at E. $BE=DE=20\\text{ cm}\\quad CE=10\\text{ cm},\\quad AC\\perp BD$.",
+        "zh": "BE = DE = 20 cm，CE = 10 cm，AC 在 E 垂直 BD。 $BE=DE=20\\text{ cm}\\quad CE=10\\text{ cm},\\quad AC\\perp BD$。",
         "ticks": [
          [
           "B",
@@ -1231,11 +1343,16 @@
           "dx": 12,
           "dy": 20
          }
+        ],
+        "mathLines": [
+         "BE=DE=20\\text{ cm}",
+         "CE=10\\text{ cm},",
+         "AC\\perp BD"
         ]
        },
        {
-        "en": "E is the midpoint of BD. Therefore AC is its perpendicular bisector and passes through the centre O. AC is a diameter.",
-        "zh": "E 是 BD 的中點，所以 AC 是 BD 的垂直平分線，必經圓心 O，即 AC 是直徑。",
+        "en": "E is the midpoint of BD. Therefore AC is its perpendicular bisector and passes through the centre O. AC is a diameter. $BE=DE,\\quad AC\\perp BD\\quad O\\in AC$.",
+        "zh": "E 是 BD 的中點，所以 AC 是 BD 的垂直平分線，必經圓心 O，即 AC 是直徑。 $BE=DE,\\quad AC\\perp BD\\quad O\\in AC$。",
         "show": [
          "O"
         ],
@@ -1246,11 +1363,16 @@
           "claim"
          ]
         ],
+        "mathLines": [
+         "BE=DE,",
+         "AC\\perp BD",
+         "O\\in AC"
+        ],
         "ref": "(⊥ bisector of chord passes through centre)"
        },
        {
-        "en": "Let the radius be r cm. Join OB. Since OC = r and CE = 10, OE = r - 10.",
-        "zh": "設半徑為 r cm，連 OB。OC = r，CE = 10，所以 OE = r − 10。",
+        "en": "Let the radius be r cm. Join OB. Since OC = r and CE = 10, OE = r - 10. $OB=OC=r\\quad OE=r-10$.",
+        "zh": "設半徑為 r cm，連 OB。OC = r，CE = 10，所以 OE = r − 10。 $OB=OC=r\\quad OE=r-10$。",
         "lines": [
          [
           "O",
@@ -1286,11 +1408,16 @@
           "dx": 0,
           "dy": -14
          }
-        ]
+        ],
+        "mathLines": [
+         "OB=OC=r",
+         "OE=r-10"
+        ],
+        "ref": "(radii of the same circle)"
        },
        {
-        "en": "In right-angled triangle OEB, the hypotenuse is OB: $r^2 = (r-10)^2 + 20^2$.",
-        "zh": "在直角三角形 OEB 中，斜邊為 OB：$r^2 = (r-10)^2 + 20^2$。",
+        "en": "In right-angled triangle OEB, the hypotenuse is OB $r^2=(r-10)^2+20^2$.",
+        "zh": "在直角三角形 OEB 中，斜邊為 OB $r^2=(r-10)^2+20^2$。",
         "polygons": [
          [
           "O",
@@ -1315,11 +1442,14 @@
           "claim"
          ]
         ],
-        "ref": "Pythagoras / 勾股定理"
+        "mathLines": [
+         "r^2=(r-10)^2+20^2"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "Expand and cancel $r^2$: $20r = 500$, so $r = 25$ cm.",
-        "zh": "展開並消去 $r^2$，得 $20r = 500$，所以 $r = 25$ cm。",
+        "en": "Expand, cancel the quadratic terms and solve for the radius. $20r=500\\quad r=25\\text{ cm}$.",
+        "zh": "展開後消去二次項，解方程求半徑。 $20r=500\\quad r=25\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "OB",
@@ -1341,11 +1471,15 @@
           "dx": 0,
           "dy": -14
          }
+        ],
+        "mathLines": [
+         "20r=500",
+         "r=25\\text{ cm}"
         ]
        },
        {
-        "en": "AC = 2r = 50 cm. Subtract CE: $AE = 50 - 10 = 40$ cm.",
-        "zh": "AC = 2r = 50 cm，再減去 CE：$AE = 50 - 10 = 40$ cm。",
+        "en": "Use the diameter AC and subtract CE to find AE. $AC=2r=50\\text{ cm}\\quad AE=50-10=40\\text{ cm}$.",
+        "zh": "先求直徑 AC，再減去 CE，求出 AE。 $AC=2r=50\\text{ cm}\\quad AE=50-10=40\\text{ cm}$。",
         "rays": [
          [
           "A",
@@ -1366,10 +1500,15 @@
          }
         ],
         "final": true,
-        "answer": "AE = 40 cm"
+        "answer": "AE = 40 cm",
+        "mathLines": [
+         "AC=2r=50\\text{ cm}",
+         "AE=50-10=40\\text{ cm}"
+        ]
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -1541,8 +1680,8 @@
       ],
       "steps": [
        {
-        "en": "AB and CD are parallel. Each chord is 16 cm long. Keep their positions as in the question.",
-        "zh": "AB 與 CD 平行，每條弦長 16 cm，方向與原題相同。",
+        "en": "AB and CD are parallel. Each chord is 16 cm long. Keep their positions as in the question. $AB\\parallel CD\\quad AB=CD=16\\text{ cm}$.",
+        "zh": "AB 與 CD 平行，每條弦長 16 cm，方向與原題相同。 $AB\\parallel CD\\quad AB=CD=16\\text{ cm}$。",
         "parallel": [
          [
           "A",
@@ -1578,11 +1717,15 @@
           "dy": 5,
           "colour": "given"
          }
+        ],
+        "mathLines": [
+         "AB\\parallel CD",
+         "AB=CD=16\\text{ cm}"
         ]
        },
        {
-        "en": "Mark the centre O. Draw OM perpendicular to AB and ON perpendicular to CD. Since the chords are parallel, M, O and N lie on one straight line. MN is the distance we need.",
-        "zh": "標出圓心 O，作 OM 垂直 AB、ON 垂直 CD。兩弦平行，所以 M、O、N 在同一直線上。所求距離就是 MN。",
+        "en": "Draw perpendiculars from O to the parallel chords. Their feet M and N lie on one straight line through O; MN is the required distance. $OM\\perp AB,\\quad ON\\perp CD\\quad M,O,N\\text{ are collinear}$.",
+        "zh": "從 O 向兩條平行弦作垂線，垂足 M、N 與 O 共線；MN 就是所求的兩弦距離。 $OM\\perp AB,\\quad ON\\perp CD\\quad M,O,N\\text{ are collinear}$。",
         "show": [
          "O",
          "M",
@@ -1614,11 +1757,15 @@
          ]
         ],
         "noRays": true,
-        "ref": "Perpendicular distance / 垂直距離"
+        "mathLines": [
+         "OM\\perp AB,",
+         "ON\\perp CD",
+         "M,O,N\\text{ are collinear}"
+        ]
        },
        {
-        "en": "A perpendicular from the centre bisects a chord. Therefore $AM = MB = DN = NC = 16 \\div 2 = 8$ cm.",
-        "zh": "圓心到弦的垂線平分弦，所以 $AM = MB = DN = NC = 16 \\div 2 = 8$ cm。",
+        "en": "A perpendicular from the centre bisects a chord. Therefore $AM=MB=DN=NC\\quad =16\\div2=8\\text{ cm}$.",
+        "zh": "圓心到弦的垂線平分弦，所以 $AM=MB=DN=NC\\quad =16\\div2=8\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -1665,11 +1812,15 @@
           "colour": "claim"
          }
         ],
+        "mathLines": [
+         "AM=MB=DN=NC",
+         "=16\\div2=8\\text{ cm}"
+        ],
         "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "Join OA, a radius of 10 cm. Focus on the shaded right-angled triangle OMA: the hypotenuse is OA, not OM. Thus $OM^2 + 8^2 = 10^2$.",
-        "zh": "連接半徑 OA，長 10 cm。看陰影直角三角形 OMA：斜邊是 OA，不是 OM。因此 $OM^2 + 8^2 = 10^2$。",
+        "en": "Join OA, a radius of 10 cm. Focus on the shaded right-angled triangle OMA: the hypotenuse is OA, not OM. $OM^2+8^2=10^2$.",
+        "zh": "連接半徑 OA，長 10 cm。看陰影直角三角形 OMA：斜邊是 OA，不是 OM。因此 $OM^2+8^2=10^2$。",
         "lines": [
          [
           "O",
@@ -1714,11 +1865,14 @@
           "colour": "given"
          }
         ],
-        "ref": "Pythagoras: hypotenuse² = other side² + other side² / 勾股定理"
+        "mathLines": [
+         "OM^2+8^2=10^2"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "Now find one perpendicular distance: $OM = \\sqrt{10^2 - 8^2} = \\sqrt{36} = 6$ cm. This is only the distance from the centre to AB.",
-        "zh": "先求一邊的垂直距離：$OM = \\sqrt{10^2 - 8^2} = \\sqrt{36} = 6$ cm。這只是圓心到 AB 的距離。",
+        "en": "Find OM using Pythagoras. This is the distance from the centre to AB. $OM=\\sqrt{10^2-8^2}\\quad =\\sqrt{36}=6\\text{ cm}$.",
+        "zh": "用勾股定理求 OM，這只是圓心到弦 AB 的距離。 $OM=\\sqrt{10^2-8^2}\\quad =\\sqrt{36}=6\\text{ cm}$。",
         "rays": [
          [
           "O",
@@ -1746,11 +1900,15 @@
           "colour": "claim"
          }
         ],
-        "ref": "Pythagoras / 勾股定理"
+        "mathLines": [
+         "OM=\\sqrt{10^2-8^2}",
+         "=\\sqrt{36}=6\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "Equal chords have equal perpendicular distances from the centre. Since AB = CD, $ON = OM = 6$ cm.",
-        "zh": "等弦與圓心等距。因為 AB = CD，所以 $ON = OM = 6$ cm。",
+        "en": "Equal chords have equal perpendicular distances from the centre. Since AB = CD $ON=OM=6\\text{ cm}$.",
+        "zh": "等弦與圓心等距。因為 AB = CD，所以 $ON=OM=6\\text{ cm}$。",
         "rays": [
          [
           "O",
@@ -1776,11 +1934,14 @@
           "colour": "claim"
          }
         ],
+        "mathLines": [
+         "ON=OM=6\\text{ cm}"
+        ],
         "ref": "(equal chords, equidistant from centre)"
        },
        {
-        "en": "The two chords are on opposite sides of O. Add the two distances: $MN = OM + ON = 6 + 6 = 12$ cm. The bracket measures the full distance between the chords.",
-        "zh": "兩弦分居圓心 O 的兩側，把兩段距離相加：$MN = OM + ON = 6 + 6 = 12$ cm。括線標示兩弦之間的完整距離。",
+        "en": "The two chords are on opposite sides of O. Add the two distances $MN=OM+ON\\quad =6+6=12\\text{ cm}$.",
+        "zh": "兩弦分居圓心 O 的兩側，把兩段距離相加 $MN=OM+ON\\quad =6+6=12\\text{ cm}$。",
         "rays": [
          [
           "M",
@@ -1799,10 +1960,15 @@
          }
         ],
         "final": true,
-        "answer": "MN = 12 cm"
+        "answer": "MN = 12 cm",
+        "mathLines": [
+         "MN=OM+ON",
+         "=6+6=12\\text{ cm}"
+        ]
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -1939,8 +2105,8 @@
       ],
       "steps": [
        {
-        "en": "OM = 21 cm, OB = 29 cm and angle OMB is 90°. Find the whole chord AB.",
-        "zh": "OM = 21 cm、OB = 29 cm，角 OMB = 90°，所求為整條弦 AB。",
+        "en": "OM = 21 cm, OB = 29 cm and angle OMB is 90°. Find the whole chord AB. $OM=21\\text{ cm},\\quad OB=29\\text{ cm}\\quad \\angle OMB=90^\\circ$.",
+        "zh": "OM = 21 cm、OB = 29 cm，角 OMB = 90°，所求為整條弦 AB。 $OM=21\\text{ cm},\\quad OB=29\\text{ cm}\\quad \\angle OMB=90^\\circ$。",
         "arcs": [
          [
           "M",
@@ -1973,11 +2139,16 @@
           "dx": 24,
           "dy": -8
          }
+        ],
+        "mathLines": [
+         "OM=21\\text{ cm},",
+         "OB=29\\text{ cm}",
+         "\\angle OMB=90^\\circ"
         ]
        },
        {
-        "en": "Focus on right-angled triangle OMB. $MB = \\sqrt{29^2-21^2}=20$ cm.",
-        "zh": "看陰影直角三角形 OMB，$MB = \\sqrt{29^2-21^2}=20$ cm。",
+        "en": "Focus on right-angled triangle OMB. $MB=\\sqrt{29^2-21^2}\\quad =20\\text{ cm}$.",
+        "zh": "看陰影直角三角形 OMB， $MB=\\sqrt{29^2-21^2}\\quad =20\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -1997,11 +2168,15 @@
           "dy": 22
          }
         ],
-        "ref": "Pythagoras / 勾股定理"
+        "mathLines": [
+         "MB=\\sqrt{29^2-21^2}",
+         "=20\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "The perpendicular from O bisects AB. Thus AM = MB = 20 cm and $x = 20+20=40$ cm.",
-        "zh": "圓心到弦的垂線平分 AB，所以 AM = MB = 20 cm，$x = 20+20=40$ cm。",
+        "en": "The perpendicular from O bisects AB. Thus AM = MB = 20 cm $AM=MB=20\\text{ cm}\\quad x=20+20=40\\text{ cm}$.",
+        "zh": "圓心到弦的垂線平分 AB，所以 AM = MB = 20 cm， $AM=MB=20\\text{ cm}\\quad x=20+20=40\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -2025,10 +2200,16 @@
          }
         ],
         "final": true,
-        "answer": "x = 40 cm"
+        "answer": "x = 40 cm",
+        "mathLines": [
+         "AM=MB=20\\text{ cm}",
+         "x=20+20=40\\text{ cm}"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -2148,8 +2329,8 @@
       ],
       "steps": [
        {
-        "en": "DN = 6 cm and DF = 12 cm. The unknown y is the angle between NG and NF.",
-        "zh": "DN = 6 cm，DF = 12 cm，所求 y 為 NG 與 NF 之間的角。",
+        "en": "DN = 6 cm and DF = 12 cm. The unknown y is the angle between NG and NF. $DN=6\\text{ cm},\\quad DF=12\\text{ cm}\\quad y=\\angle GNF$.",
+        "zh": "DN = 6 cm，DF = 12 cm，所求 y 為 NG 與 NF 之間的角。 $DN=6\\text{ cm},\\quad DF=12\\text{ cm}\\quad y=\\angle GNF$。",
         "arcs": [],
         "segmentLabels": [
          {
@@ -2172,11 +2353,16 @@
           "dx": 30,
           "dy": 22
          }
+        ],
+        "mathLines": [
+         "DN=6\\text{ cm},",
+         "DF=12\\text{ cm}",
+         "y=\\angle GNF"
         ]
        },
        {
-        "en": "NF = DF - DN = 6 cm. Therefore DN = NF and N is the midpoint of chord DF.",
-        "zh": "NF = DF − DN = 6 cm，所以 DN = NF，N 是弦 DF 的中點。",
+        "en": "NF = DF - DN = 6 cm. Therefore DN = NF and N is the midpoint of chord DF. $NF=DF-DN=6\\text{ cm}\\quad DN=NF$.",
+        "zh": "NF = DF − DN = 6 cm，所以 DN = NF，N 是弦 DF 的中點。 $NF=DF-DN=6\\text{ cm}\\quad DN=NF$。",
         "ticks": [
          [
           "D",
@@ -2200,11 +2386,15 @@
           "dx": 20,
           "dy": -10
          }
+        ],
+        "mathLines": [
+         "NF=DF-DN=6\\text{ cm}",
+         "DN=NF"
         ]
        },
        {
-        "en": "ON joins the centre to the midpoint of DF, so ON is perpendicular to DF. G, O, N are collinear. Hence y = angle GNF = 90°.",
-        "zh": "ON 由圓心連到弦 DF 的中點，所以 ON 垂直 DF。G、O、N 共線，因此 y = 角 GNF = 90°。",
+        "en": "ON joins the centre to the midpoint of DF, so ON is perpendicular to DF. G, O, N are collinear. Hence y = angle GNF = 90°. $ON\\perp DF\\quad y=\\angle GNF=90^\\circ$.",
+        "zh": "ON 由圓心連到弦 DF 的中點，所以 ON 垂直 DF。G、O、N 共線，因此 y = 角 GNF = 90°。 $ON\\perp DF\\quad y=\\angle GNF=90^\\circ$。",
         "clearAngle": [
          "N"
         ],
@@ -2221,7 +2411,12 @@
         "noRays": true,
         "final": true,
         "answer": "y = 90°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "ON\\perp DF",
+         "y=\\angle GNF=90^\\circ"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        }
       ],
       "goal": [
@@ -2234,7 +2429,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -2344,8 +2540,8 @@
       ],
       "steps": [
        {
-        "en": "M is the midpoint of PQ. The given angle POM is 49°; z is at P.",
-        "zh": "M 是 PQ 的中點，已知角 POM = 49°，所求 z 在 P 點。",
+        "en": "M is the midpoint of PQ. The given angle POM is 49°; z is at P. $PM=MQ\\quad \\angle POM=49^\\circ$.",
+        "zh": "M 是 PQ 的中點，已知角 POM = 49°，所求 z 在 P 點。 $PM=MQ\\quad \\angle POM=49^\\circ$。",
         "ticks": [
          [
           "P",
@@ -2367,11 +2563,15 @@
           "given",
           26
          ]
+        ],
+        "mathLines": [
+         "PM=MQ",
+         "\\angle POM=49^\\circ"
         ]
        },
        {
-        "en": "The line from the centre to midpoint M is perpendicular to PQ. Angle OMP = 90°.",
-        "zh": "圓心連弦中點 M 的直線垂直 PQ，所以角 OMP = 90°。",
+        "en": "The line from the centre to midpoint M is perpendicular to PQ. Angle OMP = 90°. $OM\\perp PQ\\quad \\angle OMP=90^\\circ$.",
+        "zh": "圓心連弦中點 M 的直線垂直 PQ，所以角 OMP = 90°。 $OM\\perp PQ\\quad \\angle OMP=90^\\circ$。",
         "arcs": [
          [
           "M",
@@ -2382,11 +2582,16 @@
           16
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "OM\\perp PQ",
+         "\\angle OMP=90^\\circ"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "In the shaded triangle OPM, $z=180^\\circ-90^\\circ-49^\\circ=41^\\circ$.",
-        "zh": "在陰影三角形 OPM 中，$z=180^\\circ-90^\\circ-49^\\circ=41^\\circ$。",
+        "en": "In the shaded triangle OPM $z=180^\\circ-90^\\circ-49^\\circ\\quad =41^\\circ$.",
+        "zh": "在陰影三角形 OPM 中， $z=180^\\circ-90^\\circ-49^\\circ\\quad =41^\\circ$。",
         "polygons": [
          [
           "O",
@@ -2406,7 +2611,12 @@
         ],
         "final": true,
         "answer": "z = 41°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "z=180^\\circ-90^\\circ-49^\\circ",
+         "=41^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        }
       ],
       "goal": [
@@ -2419,7 +2629,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -2551,8 +2762,8 @@
       ],
       "steps": [
        {
-        "en": "Both centre-to-chord lines are perpendicular. AM = 7 cm, OM = 5 cm and CD = 14 cm.",
-        "zh": "兩條圓心到弦的線均垂直於弦，AM = 7 cm、OM = 5 cm、CD = 14 cm。",
+        "en": "Both centre-to-chord lines are perpendicular. AM = 7 cm, OM = 5 cm and CD = 14 cm. $AM=7\\text{ cm},\\quad OM=5\\text{ cm}\\quad CD=14\\text{ cm}$.",
+        "zh": "兩條圓心到弦的線均垂直於弦，AM = 7 cm、OM = 5 cm、CD = 14 cm。 $AM=7\\text{ cm},\\quad OM=5\\text{ cm}\\quad CD=14\\text{ cm}$。",
         "arcs": [
          [
           "M",
@@ -2603,11 +2814,16 @@
           "dx": 35,
           "dy": 5
          }
+        ],
+        "mathLines": [
+         "AM=7\\text{ cm},",
+         "OM=5\\text{ cm}",
+         "CD=14\\text{ cm}"
         ]
        },
        {
-        "en": "OM bisects AB. Therefore MB = AM = 7 cm and AB = 14 cm = CD.",
-        "zh": "OM 平分 AB，所以 MB = AM = 7 cm，AB = 14 cm = CD。",
+        "en": "OM bisects AB. Therefore MB = AM = 7 cm and AB = 14 cm = CD. $AB=2AM=14\\text{ cm}\\quad AB=CD$.",
+        "zh": "OM 平分 AB，所以 MB = AM = 7 cm，AB = 14 cm = CD。 $AB=2AM=14\\text{ cm}\\quad AB=CD$。",
         "ticks": [
          [
           "A",
@@ -2631,11 +2847,16 @@
           "D",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "AB=2AM=14\\text{ cm}",
+         "AB=CD"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "Equal chords are equidistant from O. Hence ON = OM = 5 cm, so x = 5 cm.",
-        "zh": "等弦與圓心等距，所以 ON = OM = 5 cm，即 x = 5 cm。",
+        "en": "Equal chords are equidistant from O. Hence ON = OM = 5 cm, so x = 5 cm. $ON=OM=5\\text{ cm}\\quad x=5\\text{ cm}$.",
+        "zh": "等弦與圓心等距，所以 ON = OM = 5 cm，即 x = 5 cm。 $ON=OM=5\\text{ cm}\\quad x=5\\text{ cm}$。",
         "ticks": [
          [
           "O",
@@ -2661,10 +2882,16 @@
          }
         ],
         "final": true,
-        "answer": "x = 5 cm"
+        "answer": "x = 5 cm",
+        "mathLines": [
+         "ON=OM=5\\text{ cm}",
+         "x=5\\text{ cm}"
+        ],
+        "ref": "(equal chords, equidistant from centre)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -2788,8 +3015,8 @@
       ],
       "steps": [
        {
-        "en": "PQ is parallel to RS, PM = SN, MN = 16 cm and OM is perpendicular to PQ.",
-        "zh": "PQ 平行 RS，PM = SN，MN = 16 cm，OM 垂直 PQ。",
+        "en": "PQ is parallel to RS, PM = SN, MN = 16 cm and OM is perpendicular to PQ. $PQ\\parallel RS,\\quad PM=SN\\quad MN=16\\text{ cm},\\quad OM\\perp PQ$.",
+        "zh": "PQ 平行 RS，PM = SN，MN = 16 cm，OM 垂直 PQ。 $PQ\\parallel RS,\\quad PM=SN\\quad MN=16\\text{ cm},\\quad OM\\perp PQ$。",
         "parallel": [
          [
           "P",
@@ -2824,11 +3051,17 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "PQ\\parallel RS,",
+         "PM=SN",
+         "MN=16\\text{ cm},",
+         "OM\\perp PQ"
+        ]
        },
        {
-        "en": "A line perpendicular to one of two parallel lines is perpendicular to the other. Thus ON is perpendicular to RS.",
-        "zh": "一條直線若垂直於兩條平行線的其中一條，也垂直於另一條，所以 ON 垂直 RS。",
+        "en": "A line perpendicular to one of two parallel lines is perpendicular to the other. Thus ON is perpendicular to RS. $ON\\perp RS$.",
+        "zh": "一條直線若垂直於兩條平行線的其中一條，也垂直於另一條，所以 ON 垂直 RS。 $ON\\perp RS$。",
         "arcs": [
          [
           "N",
@@ -2839,11 +3072,14 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "ON\\perp RS"
+        ]
        },
        {
-        "en": "The perpendiculars from O bisect both chords. PM = MQ and SN = NR. Since PM = SN, the whole chords PQ and RS are equal.",
-        "zh": "圓心到弦的垂線平分兩弦，所以 PM = MQ、SN = NR。又 PM = SN，因此整條弦 PQ = RS。",
+        "en": "The perpendiculars from O bisect both chords. PM = MQ and SN = NR. Since PM = SN, the whole chords PQ and RS are equal. $PM=MQ,\\quad SN=NR\\quad PQ=RS$.",
+        "zh": "圓心到弦的垂線平分兩弦，所以 PM = MQ、SN = NR。又 PM = SN，因此整條弦 PQ = RS。 $PM=MQ,\\quad SN=NR\\quad PQ=RS$。",
         "ticks": [
          [
           "M",
@@ -2867,11 +3103,17 @@
           "S",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "PM=MQ,",
+         "SN=NR",
+         "PQ=RS"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "Equal chords give OM = ON. O lies between M and N, so $y=ON=16\\div2=8$ cm.",
-        "zh": "等弦與圓心等距，OM = ON。O 在 M、N 之間，所以 $y=ON=16\\div2=8$ cm。",
+        "en": "Equal chords give OM = ON. O lies between M and N $OM=ON\\quad y=ON=16\\div2=8\\text{ cm}$.",
+        "zh": "等弦與圓心等距，OM = ON。O 在 M、N 之間，所以 $OM=ON\\quad y=ON=16\\div2=8\\text{ cm}$。",
         "ticks": [
          [
           "O",
@@ -2917,10 +3159,16 @@
          }
         ],
         "final": true,
-        "answer": "y = 8 cm"
+        "answer": "y = 8 cm",
+        "mathLines": [
+         "OM=ON",
+         "y=ON=16\\div2=8\\text{ cm}"
+        ],
+        "ref": "(equal chords, equidistant from centre)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3052,8 +3300,8 @@
       ],
       "steps": [
        {
-        "en": "OM = ON = 15 cm, AB = 16 cm, and both centre-to-chord lines are perpendicular. z is the radius OD.",
-        "zh": "OM = ON = 15 cm，AB = 16 cm，兩條圓心到弦的線均垂直於弦。z 是半徑 OD。",
+        "en": "OM = ON = 15 cm, AB = 16 cm, and both centre-to-chord lines are perpendicular. z is the radius OD. $OM=ON=15\\text{ cm}\\quad AB=16\\text{ cm},\\quad z=OD$.",
+        "zh": "OM = ON = 15 cm，AB = 16 cm，兩條圓心到弦的線均垂直於弦。z 是半徑 OD。 $OM=ON=15\\text{ cm}\\quad AB=16\\text{ cm},\\quad z=OD$。",
         "arcs": [
          [
           "M",
@@ -3114,11 +3362,16 @@
           "dx": 20,
           "dy": 0
          }
+        ],
+        "mathLines": [
+         "OM=ON=15\\text{ cm}",
+         "AB=16\\text{ cm},",
+         "z=OD"
         ]
        },
        {
-        "en": "The chords are equally far from O, so CD = AB = 16 cm.",
-        "zh": "兩弦與 O 等距，所以 CD = AB = 16 cm。",
+        "en": "The chords are equally far from O, so CD = AB = 16 cm. $CD=AB=16\\text{ cm}$.",
+        "zh": "兩弦與 O 等距，所以 CD = AB = 16 cm。 $CD=AB=16\\text{ cm}$。",
         "ticks": [
          [
           "O",
@@ -3142,11 +3395,15 @@
           "D",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "CD=AB=16\\text{ cm}"
+        ],
+        "ref": "(chords equidistant from centre are equal)"
        },
        {
-        "en": "ON bisects CD, so DN = 8 cm. Use the shaded right-angled triangle ODN.",
-        "zh": "ON 平分 CD，所以 DN = 8 cm。看陰影直角三角形 ODN。",
+        "en": "ON bisects CD, so DN = 8 cm. Use the shaded right-angled triangle ODN. $DN=\\frac12 CD=8\\text{ cm}$.",
+        "zh": "ON 平分 CD，所以 DN = 8 cm。看陰影直角三角形 ODN。 $DN=\\frac12 CD=8\\text{ cm}$。",
         "ticks": [
          [
           "D",
@@ -3177,11 +3434,15 @@
           "dx": 0,
           "dy": 31
          }
-        ]
+        ],
+        "mathLines": [
+         "DN=\\frac12 CD=8\\text{ cm}"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "OD is the hypotenuse: $z=\\sqrt{15^2+8^2}=17$ cm.",
-        "zh": "OD 是斜邊，所以 $z=\\sqrt{15^2+8^2}=17$ cm。",
+        "en": "OD is the hypotenuse $z=OD=\\sqrt{15^2+8^2}\\quad =17\\text{ cm}$.",
+        "zh": "OD 是斜邊，所以 $z=OD=\\sqrt{15^2+8^2}\\quad =17\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -3209,10 +3470,16 @@
          }
         ],
         "final": true,
-        "answer": "z = 17 cm"
+        "answer": "z = 17 cm",
+        "mathLines": [
+         "z=OD=\\sqrt{15^2+8^2}",
+         "=17\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3325,8 +3592,8 @@
       ],
       "steps": [
        {
-        "en": "The radius is 20 cm, BD = 8 cm and AC is perpendicular to OB at D.",
-        "zh": "半徑為 20 cm，BD = 8 cm，AC 在 D 垂直 OB。",
+        "en": "The radius is 20 cm, BD = 8 cm and AC is perpendicular to OB at D. $OB=OA=20\\text{ cm}\\quad BD=8\\text{ cm},\\quad AC\\perp OB$.",
+        "zh": "半徑為 20 cm，BD = 8 cm，AC 在 D 垂直 OB。 $OB=OA=20\\text{ cm}\\quad BD=8\\text{ cm},\\quad AC\\perp OB$。",
         "arcs": [
          [
           "D",
@@ -3359,11 +3626,16 @@
           "dx": 0,
           "dy": 24
          }
+        ],
+        "mathLines": [
+         "OB=OA=20\\text{ cm}",
+         "BD=8\\text{ cm},",
+         "AC\\perp OB"
         ]
        },
        {
-        "en": "D lies between B and O: $OD=OB-BD=20-8=12$ cm.",
-        "zh": "D 在 B 與 O 之間，所以 $OD=OB-BD=20-8=12$ cm。",
+        "en": "D lies between B and O $OD=OB-BD\\quad =20-8=12\\text{ cm}$.",
+        "zh": "D 在 B 與 O 之間，所以 $OD=OB-BD\\quad =20-8=12\\text{ cm}$。",
         "rays": [
          [
           "O",
@@ -3382,11 +3654,15 @@
           "dx": 0,
           "dy": 24
          }
+        ],
+        "mathLines": [
+         "OD=OB-BD",
+         "=20-8=12\\text{ cm}"
         ]
        },
        {
-        "en": "In the shaded right triangle OAD, $AD=\\sqrt{20^2-12^2}=16$ cm.",
-        "zh": "在陰影直角三角形 OAD 中，$AD=\\sqrt{20^2-12^2}=16$ cm。",
+        "en": "In the shaded right triangle OAD $AD=\\sqrt{20^2-12^2}\\quad =16\\text{ cm}$.",
+        "zh": "在陰影直角三角形 OAD 中， $AD=\\sqrt{20^2-12^2}\\quad =16\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -3405,11 +3681,16 @@
           "dx": -36,
           "dy": 0
          }
-        ]
+        ],
+        "mathLines": [
+         "AD=\\sqrt{20^2-12^2}",
+         "=16\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "The perpendicular from O bisects AC. Thus AD = DC = 16 cm and AC = 32 cm.",
-        "zh": "圓心到弦的垂線平分 AC，所以 AD = DC = 16 cm，AC = 32 cm。",
+        "en": "The perpendicular from O bisects AC. Thus AD = DC = 16 cm and AC = 32 cm. $AD=DC=16\\text{ cm}\\quad AC=32\\text{ cm}$.",
+        "zh": "圓心到弦的垂線平分 AC，所以 AD = DC = 16 cm，AC = 32 cm。 $AD=DC=16\\text{ cm}\\quad AC=32\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -3434,10 +3715,16 @@
          }
         ],
         "final": true,
-        "answer": "AC = 32 cm"
+        "answer": "AC = 32 cm",
+        "mathLines": [
+         "AD=DC=16\\text{ cm}",
+         "AC=32\\text{ cm}"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3576,8 +3863,8 @@
       ],
       "steps": [
        {
-        "en": "BD = 20 cm, CE = 2 cm and OC is perpendicular to BD at E. The requested area is a semicircle.",
-        "zh": "BD = 20 cm，CE = 2 cm，OC 在 E 垂直 BD。所求面積是半圓。",
+        "en": "BD = 20 cm, CE = 2 cm and OC is perpendicular to BD at E. The requested area is a semicircle. $BD=20\\text{ cm},\\quad CE=2\\text{ cm}\\quad OC\\perp BD$.",
+        "zh": "BD = 20 cm，CE = 2 cm，OC 在 E 垂直 BD。所求面積是半圓。 $BD=20\\text{ cm},\\quad CE=2\\text{ cm}\\quad OC\\perp BD$。",
         "arcs": [
          [
           "E",
@@ -3610,11 +3897,16 @@
           "dx": 28,
           "dy": -27
          }
+        ],
+        "mathLines": [
+         "BD=20\\text{ cm},",
+         "CE=2\\text{ cm}",
+         "OC\\perp BD"
         ]
        },
        {
-        "en": "OE passes through the centre and is perpendicular to BD, so BE = DE = 10 cm.",
-        "zh": "OE 經圓心並垂直 BD，所以 BE = DE = 10 cm。",
+        "en": "OE passes through the centre and is perpendicular to BD, so BE = DE = 10 cm. $BE=DE=10\\text{ cm}$.",
+        "zh": "OE 經圓心並垂直 BD，所以 BE = DE = 10 cm。 $BE=DE=10\\text{ cm}$。",
         "ticks": [
          [
           "B",
@@ -3641,11 +3933,15 @@
         ],
         "clearLabels": [
          "BD"
-        ]
+        ],
+        "mathLines": [
+         "BE=DE=10\\text{ cm}"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "Let the radius be r cm. OB = r and OE = OC - CE = r - 2. In triangle OBE, $r^2=(r-2)^2+10^2$.",
-        "zh": "設半徑為 r cm。OB = r，OE = OC − CE = r − 2。在三角形 OBE 中，$r^2=(r-2)^2+10^2$。",
+        "en": "Let the radius be r cm. OB = r and OE = OC - CE = r - 2. In triangle OBE $OB=r,\\quad OE=r-2\\quad r^2=(r-2)^2+10^2$.",
+        "zh": "設半徑為 r cm。OB = r，OE = OC − CE = r − 2。在三角形 OBE 中， $OB=r,\\quad OE=r-2\\quad r^2=(r-2)^2+10^2$。",
         "polygons": [
          [
           "O",
@@ -3675,11 +3971,16 @@
           "dy": -17
          }
         ],
-        "ref": "Pythagoras / 勾股定理"
+        "mathLines": [
+         "OB=r,",
+         "OE=r-2",
+         "r^2=(r-2)^2+10^2"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "Expanding gives $4r=104$, so r = 26 cm.",
-        "zh": "展開並整理得 $4r=104$，所以 r = 26 cm。",
+        "en": "Expanding gives $4r=104\\quad r=26\\text{ cm}$.",
+        "zh": "展開並整理得 $4r=104\\quad r=26\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "OB",
@@ -3701,13 +4002,20 @@
           "dx": -6,
           "dy": -17
          }
+        ],
+        "mathLines": [
+         "4r=104",
+         "r=26\\text{ cm}"
         ]
        },
        {
-        "en": "Use half the circle area: $\\frac12\\pi(26)^2=338\\pi$ square centimetres.",
-        "zh": "用圓面積的一半：$\\frac12\\pi(26)^2=338\\pi$ 平方厘米。",
+        "en": "Use half the circle area $\\frac12\\pi(26)^2=338\\pi\\text{ cm}^2$.",
+        "zh": "用圓面積的一半 $\\frac12\\pi(26)^2=338\\pi\\text{ cm}^2$。",
         "final": true,
-        "answer": "Area = 338π cm²"
+        "answer": "Area = 338π cm²",
+        "mathLines": [
+         "\\frac12\\pi(26)^2=338\\pi\\text{ cm}^2"
+        ]
        }
       ],
       "semi": [
@@ -3717,7 +4025,8 @@
       ],
       "readable": true,
       "r": 180,
-      "cy": 300
+      "cy": 300,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -3862,8 +4171,8 @@
       ],
       "steps": [
        {
-        "en": "M and N are midpoints. The reflex angle MON is 264°.",
-        "zh": "M、N 是中點，反角 MON = 264°。",
+        "en": "M and N are midpoints. The reflex angle MON is 264°. $AM=MB,\\quad BN=NC\\quad \\text{reflex }\\angle MON=264^\\circ$.",
+        "zh": "M、N 是中點，反角 MON = 264°。 $AM=MB,\\quad BN=NC\\quad \\text{reflex }\\angle MON=264^\\circ$。",
         "ticks": [
          [
           "A",
@@ -3896,11 +4205,16 @@
           42,
           "reflex"
          ]
+        ],
+        "mathLines": [
+         "AM=MB,",
+         "BN=NC",
+         "\\text{reflex }\\angle MON=264^\\circ"
         ]
        },
        {
-        "en": "A line from the centre to a chord midpoint is perpendicular to the chord. Both angles at M and N are 90°.",
-        "zh": "圓心連弦中點的直線垂直於弦，所以 M、N 處的兩個角均為 90°。",
+        "en": "A line from the centre to a chord midpoint is perpendicular to the chord. Both angles at M and N are 90°. $\\angle BMO=\\angle BNO=90^\\circ$.",
+        "zh": "圓心連弦中點的直線垂直於弦，所以 M、N 處的兩個角均為 90°。 $\\angle BMO=\\angle BNO=90^\\circ$。",
         "arcs": [
          [
           "M",
@@ -3919,11 +4233,15 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "\\angle BMO=\\angle BNO=90^\\circ"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "At O, $\\angle MON=360^\\circ-264^\\circ=96^\\circ$.",
-        "zh": "在 O 點，$\\angle MON=360^\\circ-264^\\circ=96^\\circ$。",
+        "en": "At O $\\angle MON=360^\\circ-264^\\circ\\quad =96^\\circ$.",
+        "zh": "在 O 點， $\\angle MON=360^\\circ-264^\\circ\\quad =96^\\circ$。",
         "arcs": [
          [
           "O",
@@ -3934,11 +4252,16 @@
           24
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "\\angle MON=360^\\circ-264^\\circ",
+         "=96^\\circ"
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
-        "en": "In quadrilateral BMON, $\\angle ABC=360^\\circ-90^\\circ-96^\\circ-90^\\circ=84^\\circ$.",
-        "zh": "在四邊形 BMON 中，$\\angle ABC=360^\\circ-90^\\circ-96^\\circ-90^\\circ=84^\\circ$。",
+        "en": "In quadrilateral BMON $\\angle ABC=360^\\circ-90^\\circ\\quad \\quad-96^\\circ-90^\\circ\\quad =84^\\circ$.",
+        "zh": "在四邊形 BMON 中， $\\angle ABC=360^\\circ-90^\\circ\\quad \\quad-96^\\circ-90^\\circ\\quad =84^\\circ$。",
         "polygons": [
          [
           "B",
@@ -3959,7 +4282,13 @@
         ],
         "final": true,
         "answer": "∠ABC = 84°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "\\angle ABC=360^\\circ-90^\\circ",
+         "\\quad-96^\\circ-90^\\circ",
+         "=84^\\circ"
+        ],
+        "ref": "(∠ sum of quad.)"
        }
       ],
       "goal": [
@@ -3972,7 +4301,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -4111,8 +4441,8 @@
       ],
       "steps": [
        {
-        "en": "M is the midpoint of AD, and angle AOM is 30°. We must prove all three angles of AOD are 60°.",
-        "zh": "M 是 AD 的中點，角 AOM = 30°。要證明三角形 AOD 的三角均為 60°。",
+        "en": "M is the midpoint of AD, and angle AOM is 30°. We must prove all three angles of AOD are 60°. $AM=MD\\quad \\angle AOM=30^\\circ$.",
+        "zh": "M 是 AD 的中點，角 AOM = 30°。要證明三角形 AOD 的三角均為 60°。 $AM=MD\\quad \\angle AOM=30^\\circ$。",
         "ticks": [
          [
           "A",
@@ -4134,11 +4464,15 @@
           "given",
           25
          ]
+        ],
+        "mathLines": [
+         "AM=MD",
+         "\\angle AOM=30^\\circ"
         ]
        },
        {
-        "en": "OM joins the centre to midpoint M, so OM is perpendicular to AD.",
-        "zh": "OM 連接圓心與弦中點 M，因此 OM 垂直 AD。",
+        "en": "OM joins the centre to midpoint M, so OM is perpendicular to AD. $OM\\perp AD$.",
+        "zh": "OM 連接圓心與弦中點 M，因此 OM 垂直 AD。 $OM\\perp AD$。",
         "arcs": [
          [
           "M",
@@ -4149,11 +4483,15 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "OM\\perp AD"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "In right triangle OAM, $\\angle OAM=180^\\circ-90^\\circ-30^\\circ=60^\\circ$.",
-        "zh": "在直角三角形 OAM 中，$\\angle OAM=180^\\circ-90^\\circ-30^\\circ=60^\\circ$。",
+        "en": "In right triangle OAM $\\angle OAM=180^\\circ-90^\\circ-30^\\circ\\quad =60^\\circ$.",
+        "zh": "在直角三角形 OAM 中， $\\angle OAM=180^\\circ-90^\\circ-30^\\circ\\quad =60^\\circ$。",
         "polygons": [
          [
           "O",
@@ -4170,11 +4508,16 @@
           "claim",
           25
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle OAM=180^\\circ-90^\\circ-30^\\circ",
+         "=60^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
-        "en": "OA = OD because both are radii. Therefore the base angle ODA also equals 60°.",
-        "zh": "OA、OD 都是半徑，所以 OA = OD，底角 ODA 也等於 60°。",
+        "en": "OA = OD because both are radii. Therefore the base angle ODA also equals 60°. $OA=OD\\quad \\angle ODA=\\angle OAD=60^\\circ$.",
+        "zh": "OA、OD 都是半徑，所以 OA = OD，底角 ODA 也等於 60°。 $OA=OD\\quad \\angle ODA=\\angle OAD=60^\\circ$。",
         "radii": [
          "A",
          "D"
@@ -4188,11 +4531,16 @@
           "claim",
           25
          ]
-        ]
+        ],
+        "mathLines": [
+         "OA=OD",
+         "\\angle ODA=\\angle OAD=60^\\circ"
+        ],
+        "ref": "(radii of the same circle); (base ∠s, isos. △)"
        },
        {
-        "en": "The remaining angle AOD is 60°. All three angles are equal, so AOD is an equilateral triangle.",
-        "zh": "餘下的角 AOD = 60°。三角相等，所以 AOD 是等邊三角形。",
+        "en": "The remaining angle AOD is 60°. All three angles are equal, so AOD is an equilateral triangle. $\\angle AOD=180^\\circ-60^\\circ-60^\\circ\\quad =60^\\circ$.",
+        "zh": "餘下的角 AOD = 60°。三角相等，所以 AOD 是等邊三角形。 $\\angle AOD=180^\\circ-60^\\circ-60^\\circ\\quad =60^\\circ$。",
         "polygons": [
          [
           "A",
@@ -4214,7 +4562,12 @@
         "answer": "△AOD is equilateral",
         "clearAngle": [
          "O"
-        ]
+        ],
+        "mathLines": [
+         "\\angle AOD=180^\\circ-60^\\circ-60^\\circ",
+         "=60^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        }
       ],
       "semi": [
@@ -4224,7 +4577,8 @@
       ],
       "readable": true,
       "r": 180,
-      "cy": 300
+      "cy": 300,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -4364,8 +4718,8 @@
       ],
       "steps": [
        {
-        "en": "BD is a diameter, AM = MC and angle BDC = 29°. The target angle is ABD at B.",
-        "zh": "BD 是直徑，AM = MC，角 BDC = 29°；所求角 ABD 在 B 點。",
+        "en": "BD is a diameter, AM = MC and angle BDC = 29°. The target angle is ABD at B. $AM=MC\\quad \\angle BDC=29^\\circ$.",
+        "zh": "BD 是直徑，AM = MC，角 BDC = 29°；所求角 ABD 在 B 點。 $AM=MC\\quad \\angle BDC=29^\\circ$。",
         "ticks": [
          [
           "A",
@@ -4387,11 +4741,15 @@
           "given",
           28
          ]
+        ],
+        "mathLines": [
+         "AM=MC",
+         "\\angle BDC=29^\\circ"
         ]
        },
        {
-        "en": "A diameter through midpoint M is perpendicular to chord AC. Therefore angle CMD is 90°.",
-        "zh": "經過弦中點 M 的直徑垂直於 AC，所以角 CMD = 90°。",
+        "en": "A diameter through midpoint M is perpendicular to chord AC. Therefore angle CMD is 90°. $OM\\perp AC\\quad \\angle CMD=90^\\circ$.",
+        "zh": "經過弦中點 M 的直徑垂直於 AC，所以角 CMD = 90°。 $OM\\perp AC\\quad \\angle CMD=90^\\circ$。",
         "arcs": [
          [
           "M",
@@ -4402,11 +4760,16 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "OM\\perp AC",
+         "\\angle CMD=90^\\circ"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "In triangle CMD, $\\angle ACD=\\angle MCD=180^\\circ-90^\\circ-29^\\circ=61^\\circ$.",
-        "zh": "在三角形 CMD 中，$\\angle ACD=\\angle MCD=180^\\circ-90^\\circ-29^\\circ=61^\\circ$。",
+        "en": "In triangle CMD $\\angle ACD=180^\\circ-90^\\circ-29^\\circ\\quad =61^\\circ$.",
+        "zh": "在三角形 CMD 中， $\\angle ACD=180^\\circ-90^\\circ-29^\\circ\\quad =61^\\circ$。",
         "polygons": [
          [
           "C",
@@ -4423,11 +4786,16 @@
           "claim",
           26
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle ACD=180^\\circ-90^\\circ-29^\\circ",
+         "=61^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        },
        {
-        "en": "Angles ACD and ABD stand on the same chord AD. Thus angle ABD = 61°.",
-        "zh": "角 ACD 與角 ABD 同在弦 AD 所對的圓周角，因此角 ABD = 61°。",
+        "en": "Angles ACD and ABD stand on the same chord AD. Thus angle ABD = 61°. $\\angle ABD=\\angle ACD=61^\\circ$.",
+        "zh": "角 ACD 與角 ABD 同在弦 AD 所對的圓周角，因此角 ABD = 61°。 $\\angle ABD=\\angle ACD=61^\\circ$。",
         "circleArcs": [
          [
           "A",
@@ -4448,7 +4816,11 @@
         ],
         "final": true,
         "answer": "∠ABD = 61°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "\\angle ABD=\\angle ACD=61^\\circ"
+        ],
+        "ref": "(∠s in the same segment)"
        }
       ],
       "goal": [
@@ -4461,7 +4833,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -4596,8 +4969,8 @@
       ],
       "steps": [
        {
-        "en": "AC = 10 cm, CE = 5 cm, BD = 14 cm and AC is perpendicular to BD at E.",
-        "zh": "AC = 10 cm，CE = 5 cm，BD = 14 cm，AC 在 E 垂直 BD。",
+        "en": "AC = 10 cm, CE = 5 cm, BD = 14 cm and AC is perpendicular to BD at E. $AC=10\\text{ cm},\\quad CE=5\\text{ cm}\\quad BD=14\\text{ cm},\\quad AC\\perp BD$.",
+        "zh": "AC = 10 cm，CE = 5 cm，BD = 14 cm，AC 在 E 垂直 BD。 $AC=10\\text{ cm},\\quad CE=5\\text{ cm}\\quad BD=14\\text{ cm},\\quad AC\\perp BD$。",
         "arcs": [
          [
           "E",
@@ -4640,11 +5013,17 @@
           "dx": 15,
           "dy": 28
          }
+        ],
+        "mathLines": [
+         "AC=10\\text{ cm},",
+         "CE=5\\text{ cm}",
+         "BD=14\\text{ cm},",
+         "AC\\perp BD"
         ]
        },
        {
-        "en": "AE = AC - CE = 5 cm = CE. Therefore E is the midpoint of AC.",
-        "zh": "AE = AC − CE = 5 cm = CE，因此 E 是 AC 的中點。",
+        "en": "AE = AC - CE = 5 cm = CE. Therefore E is the midpoint of AC. $AE=AC-CE=5\\text{ cm}\\quad AE=CE$.",
+        "zh": "AE = AC − CE = 5 cm = CE，因此 E 是 AC 的中點。 $AE=AC-CE=5\\text{ cm}\\quad AE=CE$。",
         "ticks": [
          [
           "A",
@@ -4668,11 +5047,15 @@
           "dx": -19,
           "dy": -6
          }
+        ],
+        "mathLines": [
+         "AE=AC-CE=5\\text{ cm}",
+         "AE=CE"
         ]
        },
        {
-        "en": "BD is the perpendicular bisector of AC, so it passes through the centre O. Yes, BD is a diameter.",
-        "zh": "BD 是 AC 的垂直平分線，必經圓心 O，所以 BD 是直徑。",
+        "en": "BD is the perpendicular bisector of AC, so it passes through the centre O. Yes, BD is a diameter. $O\\in BD$.",
+        "zh": "BD 是 AC 的垂直平分線，必經圓心 O，所以 BD 是直徑。 $O\\in BD$。",
         "show": [
          "O"
         ],
@@ -4683,11 +5066,14 @@
           "claim"
          ]
         ],
+        "mathLines": [
+         "O\\in BD"
+        ],
         "ref": "(⊥ bisector of chord passes through centre)"
        },
        {
-        "en": "The radius is half the diameter: $r=14\\div2=7$ cm.",
-        "zh": "半徑為直徑的一半：$r=14\\div2=7$ cm。",
+        "en": "The radius is half the diameter $r=14\\div2=7\\text{ cm}$.",
+        "zh": "半徑為直徑的一半 $r=14\\div2=7\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "OD",
@@ -4701,10 +5087,14 @@
          }
         ],
         "final": true,
-        "answer": "BD is a diameter; r = 7 cm"
+        "answer": "BD is a diameter; r = 7 cm",
+        "mathLines": [
+         "r=14\\div2=7\\text{ cm}"
+        ]
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -4846,8 +5236,8 @@
       ],
       "steps": [
        {
-        "en": "The two perpendiculars lie on line MON. BM = 18 cm, BN = 30 cm and CD = 36 cm.",
-        "zh": "兩條垂線在直線 MON 上。BM = 18 cm，BN = 30 cm，CD = 36 cm。",
+        "en": "The two perpendiculars lie on line MON. BM = 18 cm, BN = 30 cm and CD = 36 cm. $BM=18\\text{ cm},\\quad BN=30\\text{ cm}\\quad CD=36\\text{ cm}$.",
+        "zh": "兩條垂線在直線 MON 上。BM = 18 cm，BN = 30 cm，CD = 36 cm。 $BM=18\\text{ cm},\\quad BN=30\\text{ cm}\\quad CD=36\\text{ cm}$。",
         "arcs": [
          [
           "M",
@@ -4898,11 +5288,16 @@
           "dx": 28,
           "dy": 3
          }
+        ],
+        "mathLines": [
+         "BM=18\\text{ cm},",
+         "BN=30\\text{ cm}",
+         "CD=36\\text{ cm}"
         ]
        },
        {
-        "en": "OM bisects AB. Hence AB = 2 × BM = 36 cm = CD.",
-        "zh": "OM 平分 AB，所以 AB = 2 × BM = 36 cm = CD。",
+        "en": "OM bisects AB. Hence AB = 2 × BM = 36 cm = CD. $AB=2BM=36\\text{ cm}\\quad AB=CD$.",
+        "zh": "OM 平分 AB，所以 AB = 2 × BM = 36 cm = CD。 $AB=2BM=36\\text{ cm}\\quad AB=CD$。",
         "ticks": [
          [
           "A",
@@ -4926,11 +5321,16 @@
           "D",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "AB=2BM=36\\text{ cm}",
+         "AB=CD"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "Equal chords are equidistant: OM = ON. Therefore MN = 2ON.",
-        "zh": "等弦與圓心等距，OM = ON，因此 MN = 2ON。",
+        "en": "Equal chords are equidistant: OM = ON. Therefore MN = 2ON. $OM=ON\\quad MN=2ON$.",
+        "zh": "等弦與圓心等距，OM = ON，因此 MN = 2ON。 $OM=ON\\quad MN=2ON$。",
         "ticks": [
          [
           "O",
@@ -4949,11 +5349,16 @@
           "N",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OM=ON",
+         "MN=2ON"
+        ],
+        "ref": "(equal chords, equidistant from centre)"
        },
        {
-        "en": "In right triangle BMN, $MN=\\sqrt{30^2-18^2}=24$ cm. BN is the hypotenuse.",
-        "zh": "在直角三角形 BMN 中，BN 為斜邊，所以 $MN=\\sqrt{30^2-18^2}=24$ cm。",
+        "en": "In right triangle BMN $MN=\\sqrt{30^2-18^2}\\quad =24\\text{ cm}$.",
+        "zh": "在直角三角形 BMN 中，BN 為斜邊，所以 $MN=\\sqrt{30^2-18^2}\\quad =24\\text{ cm}$。",
         "polygons": [
          [
           "B",
@@ -4972,11 +5377,16 @@
           "dx": 0,
           "dy": 34
          }
-        ]
+        ],
+        "mathLines": [
+         "MN=\\sqrt{30^2-18^2}",
+         "=24\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "Split MN into two equal distances: $ON=24\\div2=12$ cm.",
-        "zh": "MN 分成兩段相等的距離，所以 $ON=24\\div2=12$ cm。",
+        "en": "Split MN into two equal distances $ON=24\\div2=12\\text{ cm}$.",
+        "zh": "MN 分成兩段相等的距離，所以 $ON=24\\div2=12\\text{ cm}$。",
         "clearLabels": [
          "MN"
         ],
@@ -5003,10 +5413,14 @@
          }
         ],
         "final": true,
-        "answer": "ON = 12 cm"
+        "answer": "ON = 12 cm",
+        "mathLines": [
+         "ON=24\\div2=12\\text{ cm}"
+        ]
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -5152,8 +5566,8 @@
       ],
       "steps": [
        {
-        "en": "OD = 15 cm, OM = 9 cm and CD = 24 cm. M is the midpoint of AB; ON is perpendicular to CD.",
-        "zh": "OD = 15 cm，OM = 9 cm，CD = 24 cm。M 是 AB 的中點，ON 垂直 CD。",
+        "en": "OD = 15 cm, OM = 9 cm and CD = 24 cm. M is the midpoint of AB; ON is perpendicular to CD. $OD=15\\text{ cm},\\quad OM=9\\text{ cm}\\quad CD=24\\text{ cm}$.",
+        "zh": "OD = 15 cm，OM = 9 cm，CD = 24 cm。M 是 AB 的中點，ON 垂直 CD。 $OD=15\\text{ cm},\\quad OM=9\\text{ cm}\\quad CD=24\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -5208,11 +5622,16 @@
           "dx": 25,
           "dy": 16
          }
+        ],
+        "mathLines": [
+         "OD=15\\text{ cm},",
+         "OM=9\\text{ cm}",
+         "CD=24\\text{ cm}"
         ]
        },
        {
-        "en": "ON bisects CD, so DN = 12 cm. In the shaded triangle ODN, OD is the hypotenuse.",
-        "zh": "ON 平分 CD，所以 DN = 12 cm。陰影三角形 ODN 的斜邊為 OD。",
+        "en": "ON bisects CD, so DN = 12 cm. In the shaded triangle ODN, OD is the hypotenuse. $DN=\\frac12 CD=12\\text{ cm}$.",
+        "zh": "ON 平分 CD，所以 DN = 12 cm。陰影三角形 ODN 的斜邊為 OD。 $DN=\\frac12 CD=12\\text{ cm}$。",
         "ticks": [
          [
           "D",
@@ -5243,11 +5662,15 @@
           "dx": 20,
           "dy": 6
          }
-        ]
+        ],
+        "mathLines": [
+         "DN=\\frac12 CD=12\\text{ cm}"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "$ON=\\sqrt{15^2-12^2}=9$ cm.",
-        "zh": "用勾股定理，$ON=\\sqrt{15^2-12^2}=9$ cm。",
+        "en": "Use Pythagoras in triangle ODN to find ON. $ON=\\sqrt{15^2-12^2}\\quad =9\\text{ cm}$.",
+        "zh": "在直角三角形 ODN 中用勾股定理求 ON。 $ON=\\sqrt{15^2-12^2}\\quad =9\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -5266,11 +5689,16 @@
           "dx": -25,
           "dy": 0
          }
-        ]
+        ],
+        "mathLines": [
+         "ON=\\sqrt{15^2-12^2}",
+         "=9\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "Since M is a midpoint, OM is perpendicular to AB. Now OM = ON = 9 cm, so the chords are equal: AB = CD = 24 cm.",
-        "zh": "M 是中點，所以 OM 垂直 AB。現在 OM = ON = 9 cm，與圓心等距的弦相等，所以 AB = CD = 24 cm。",
+        "en": "Since M is a midpoint, OM is perpendicular to AB. Now OM = ON = 9 cm, so the chords are equal: AB = CD = 24 cm. $OM\\perp AB,\\quad OM=ON\\quad AB=CD=24\\text{ cm}$.",
+        "zh": "M 是中點，所以 OM 垂直 AB。現在 OM = ON = 9 cm，與圓心等距的弦相等，所以 AB = CD = 24 cm。 $OM\\perp AB,\\quad OM=ON\\quad AB=CD=24\\text{ cm}$。",
         "arcs": [
          [
           "M",
@@ -5295,10 +5723,17 @@
          ]
         ],
         "final": true,
-        "answer": "ON = 9 cm; AB = 24 cm"
+        "answer": "ON = 9 cm; AB = 24 cm",
+        "mathLines": [
+         "OM\\perp AB,",
+         "OM=ON",
+         "AB=CD=24\\text{ cm}"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord); (chords equidistant from centre are equal)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -5438,8 +5873,8 @@
       ],
       "steps": [
        {
-        "en": "M and N are midpoints, AB = CD, B, O, N are collinear and angle OBM = 40°.",
-        "zh": "M、N 是中點，AB = CD，B、O、N 共線，角 OBM = 40°。",
+        "en": "M and N are midpoints, AB = CD, B, O, N are collinear and angle OBM = 40°. $AB=CD\\quad \\angle OBM=40^\\circ$.",
+        "zh": "M、N 是中點，AB = CD，B、O、N 共線，角 OBM = 40°。 $AB=CD\\quad \\angle OBM=40^\\circ$。",
         "ticks": [
          [
           "A",
@@ -5471,11 +5906,15 @@
           "given",
           27
          ]
+        ],
+        "mathLines": [
+         "AB=CD",
+         "\\angle OBM=40^\\circ"
         ]
        },
        {
-        "en": "OM is perpendicular to AB. In triangle OBM, angle BOM = 90° - 40° = 50°.",
-        "zh": "OM 垂直 AB。在三角形 OBM 中，角 BOM = 90° − 40° = 50°。",
+        "en": "OM is perpendicular to AB. In triangle OBM, angle BOM = 90° - 40° = 50°. $OM\\perp AB\\quad \\angle BOM=90^\\circ-40^\\circ=50^\\circ$.",
+        "zh": "OM 垂直 AB。在三角形 OBM 中，角 BOM = 90° − 40° = 50°。 $OM\\perp AB\\quad \\angle BOM=90^\\circ-40^\\circ=50^\\circ$。",
         "arcs": [
          [
           "M",
@@ -5501,11 +5940,16 @@
           "B",
           "M"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OM\\perp AB",
+         "\\angle BOM=90^\\circ-40^\\circ=50^\\circ"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord); (∠ sum of △)"
        },
        {
-        "en": "OB and ON are opposite rays, so angle MON = 180° - 50° = 130°.",
-        "zh": "OB、ON 是反向射線，所以角 MON = 180° − 50° = 130°。",
+        "en": "OB and ON are opposite rays, so angle MON = 180° - 50° = 130°. $\\angle MON=180^\\circ-50^\\circ\\quad =130^\\circ$.",
+        "zh": "OB、ON 是反向射線，所以角 MON = 180° − 50° = 130°。 $\\angle MON=180^\\circ-50^\\circ\\quad =130^\\circ$。",
         "arcs": [
          [
           "O",
@@ -5515,11 +5959,16 @@
           "claim",
           38
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle MON=180^\\circ-50^\\circ",
+         "=130^\\circ"
+        ],
+        "ref": "(adj. ∠s on a st. line)"
        },
        {
-        "en": "Equal chords give OM = ON. In isosceles triangle OMN, the two base angles are equal.",
-        "zh": "等弦與圓心等距，OM = ON。等腰三角形 OMN 的兩個底角相等。",
+        "en": "Equal chords give OM = ON. In isosceles triangle OMN, the two base angles are equal. $OM=ON\\quad \\angle OMN=\\angle ONM$.",
+        "zh": "等弦與圓心等距，OM = ON。等腰三角形 OMN 的兩個底角相等。 $OM=ON\\quad \\angle OMN=\\angle ONM$。",
         "ticks": [
          [
           "O",
@@ -5538,11 +5987,16 @@
           "M",
           "N"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OM=ON",
+         "\\angle OMN=\\angle ONM"
+        ],
+        "ref": "(equal chords, equidistant from centre); (base ∠s, isos. △)"
        },
        {
-        "en": "$\\angle ONM=(180^\\circ-130^\\circ)\\div2=25^\\circ$.",
-        "zh": "所以 $\\angle ONM=(180^\\circ-130^\\circ)\\div2=25^\\circ$。",
+        "en": "Use the equal base angles of triangle OMN. $\\angle ONM=(180^\\circ-130^\\circ)\\div2\\quad =25^\\circ$.",
+        "zh": "利用等腰三角形 OMN 的兩隻相等底角。 $\\angle ONM=(180^\\circ-130^\\circ)\\div2\\quad =25^\\circ$。",
         "polygons": [
          [
           "O",
@@ -5562,7 +6016,12 @@
         ],
         "final": true,
         "answer": "∠ONM = 25°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "\\angle ONM=(180^\\circ-130^\\circ)\\div2",
+         "=25^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        }
       ],
       "goal": [
@@ -5575,7 +6034,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -5736,8 +6196,8 @@
       ],
       "steps": [
        {
-        "en": "OM and ON are perpendicular to the chords, and OM = ON. For part (b), angle PQR is 76°.",
-        "zh": "OM、ON 分別垂直兩弦，且 OM = ON。乙部另有角 PQR = 76°。",
+        "en": "OM and ON are perpendicular to the chords, and OM = ON. For part (b), angle PQR is 76°. $OM=ON\\quad \\angle PQR=76^\\circ$.",
+        "zh": "OM、ON 分別垂直兩弦，且 OM = ON。乙部另有角 PQR = 76°。 $OM=ON\\quad \\angle PQR=76^\\circ$。",
         "ticks": [
          [
           "O",
@@ -5768,11 +6228,15 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "OM=ON",
+         "\\angle PQR=76^\\circ"
+        ]
        },
        {
-        "en": "Chords at equal perpendicular distances from O are equal. Therefore PQ = QR.",
-        "zh": "與圓心的垂直距離相等，兩弦也相等，所以 PQ = QR。",
+        "en": "Chords at equal perpendicular distances from O are equal. Therefore PQ = QR. $PQ=QR$.",
+        "zh": "與圓心的垂直距離相等，兩弦也相等，所以 PQ = QR。 $PQ=QR$。",
         "ticks": [
          [
           "P",
@@ -5796,11 +6260,15 @@
           "R",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "PQ=QR"
+        ],
+        "ref": "(chords equidistant from centre are equal)"
        },
        {
-        "en": "OP = OQ and OQ = OR are radii, and PQ = QR. Therefore triangles OPQ and OQR are congruent by SSS. These are not right-angled triangles.",
-        "zh": "OP = OQ、OQ = OR 都是半徑，且 PQ = QR，所以三角形 OPQ 與 OQR 以 SSS 證全等。這兩個三角形並非直角三角形。",
+        "en": "OP = OQ and OQ = OR are radii, and PQ = QR. Therefore triangles OPQ and OQR are congruent by SSS. These are not right-angled triangles. $OP=OQ=OR,\\quad PQ=QR\\quad \\triangle OPQ\\cong\\triangle OQR$.",
+        "zh": "OP = OQ、OQ = OR 都是半徑，且 PQ = QR，所以三角形 OPQ 與 OQR 以 SSS 證全等。這兩個三角形並非直角三角形。 $OP=OQ=OR,\\quad PQ=QR\\quad \\triangle OPQ\\cong\\triangle OQR$。",
         "ticks": [
          [
           "O",
@@ -5830,11 +6298,16 @@
           "R"
          ]
         ],
-        "ref": "SSS / 邊邊邊"
+        "mathLines": [
+         "OP=OQ=OR,",
+         "PQ=QR",
+         "\\triangle OPQ\\cong\\triangle OQR"
+        ],
+        "ref": "(SSS)"
        },
        {
-        "en": "Congruence gives angle OPQ = angle OQR. In isosceles triangle OPQ, angle OPQ = angle OQP. Thus OQ bisects angle PQR.",
-        "zh": "全等得角 OPQ = 角 OQR；等腰三角形 OPQ 得角 OPQ = 角 OQP，所以 OQ 平分角 PQR。",
+        "en": "Congruence gives angle OPQ = angle OQR. In isosceles triangle OPQ, angle OPQ = angle OQP. Thus OQ bisects angle PQR. $\\angle OPQ=\\angle OQR\\quad \\angle OPQ=\\angle OQP\\quad \\angle OQP=\\angle OQR$.",
+        "zh": "全等得角 OPQ = 角 OQR；等腰三角形 OPQ 得角 OPQ = 角 OQP，所以 OQ 平分角 PQR。 $\\angle OPQ=\\angle OQR\\quad \\angle OPQ=\\angle OQP\\quad \\angle OQP=\\angle OQR$。",
         "arcs": [
          [
           "Q",
@@ -5851,11 +6324,17 @@
           "O",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle OPQ=\\angle OQR",
+         "\\angle OPQ=\\angle OQP",
+         "\\angle OQP=\\angle OQR"
+        ],
+        "ref": "(corr. ∠s, ≅ △s); (base ∠s, isos. △)"
        },
        {
-        "en": "Each half of the 76° angle is 38°. Hence angle OPQ = 38°.",
-        "zh": "76° 的一半為 38°，所以角 OPQ = 38°。",
+        "en": "Each half of the 76° angle is 38°. Hence angle OPQ = 38°. $\\angle OPQ=76^\\circ\\div2=38^\\circ$.",
+        "zh": "76° 的一半為 38°，所以角 OPQ = 38°。 $\\angle OPQ=76^\\circ\\div2=38^\\circ$。",
         "clearAngle": [
          "Q"
         ],
@@ -5886,10 +6365,14 @@
          ]
         ],
         "final": true,
-        "answer": "∠OPQ = 38°"
+        "answer": "∠OPQ = 38°",
+        "mathLines": [
+         "\\angle OPQ=76^\\circ\\div2=38^\\circ"
+        ]
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -6050,8 +6533,8 @@
       ],
       "steps": [
        {
-        "en": "AD = CD and angle OCA = 28°. We need angle ABO at B.",
-        "zh": "AD = CD，角 OCA = 28°；所求是 B 點的角 ABO。",
+        "en": "AD = CD and angle OCA = 28°. We need angle ABO at B. $AD=CD\\quad \\angle OCA=28^\\circ$.",
+        "zh": "AD = CD，角 OCA = 28°；所求是 B 點的角 ABO。 $AD=CD\\quad \\angle OCA=28^\\circ$。",
         "ticks": [
          [
           "A",
@@ -6073,11 +6556,15 @@
           "given",
           26
          ]
+        ],
+        "mathLines": [
+         "AD=CD",
+         "\\angle OCA=28^\\circ"
         ]
        },
        {
-        "en": "D is the midpoint of chord AC, so OD is perpendicular to AC. In triangle OCD, angle COD = 90° - 28° = 62°.",
-        "zh": "D 是弦 AC 的中點，所以 OD 垂直 AC。在三角形 OCD 中，角 COD = 90° − 28° = 62°。",
+        "en": "D is the midpoint of chord AC, so OD is perpendicular to AC. In triangle OCD, angle COD = 90° - 28° = 62°. $OD\\perp AC\\quad \\angle COD=90^\\circ-28^\\circ=62^\\circ$.",
+        "zh": "D 是弦 AC 的中點，所以 OD 垂直 AC。在三角形 OCD 中，角 COD = 90° − 28° = 62°。 $OD\\perp AC\\quad \\angle COD=90^\\circ-28^\\circ=62^\\circ$。",
         "arcs": [
          [
           "D",
@@ -6103,11 +6590,16 @@
           "C",
           "D"
          ]
-        ]
+        ],
+        "mathLines": [
+         "OD\\perp AC",
+         "\\angle COD=90^\\circ-28^\\circ=62^\\circ"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord); (∠ sum of △)"
        },
        {
-        "en": "OD lies on OB, so the central angle BOC is 62°. Angle BAC stands on the same arc BC and equals 62° ÷ 2 = 31°.",
-        "zh": "OD 在 OB 上，所以圓心角 BOC = 62°。同弧 BC 所對的圓周角 BAC = 62° ÷ 2 = 31°。",
+        "en": "OD lies on OB, so the central angle BOC is 62°. Angle BAC stands on the same arc BC and equals 62° ÷ 2 = 31°. $\\angle BOC=62^\\circ\\quad \\angle BAC=62^\\circ\\div2=31^\\circ$.",
+        "zh": "OD 在 OB 上，所以圓心角 BOC = 62°。同弧 BC 所對的圓周角 BAC = 62° ÷ 2 = 31°。 $\\angle BOC=62^\\circ\\quad \\angle BAC=62^\\circ\\div2=31^\\circ$。",
         "arcs": [
          [
           "A",
@@ -6126,11 +6618,15 @@
           "accent"
          ]
         ],
+        "mathLines": [
+         "\\angle BOC=62^\\circ",
+         "\\angle BAC=62^\\circ\\div2=31^\\circ"
+        ],
         "ref": "(∠ at centre twice ∠ at ○ᶜᵉ)"
        },
        {
-        "en": "In right triangle ABD, $\\angle ABO=180^\\circ-90^\\circ-31^\\circ=59^\\circ$.",
-        "zh": "在直角三角形 ABD 中，$\\angle ABO=180^\\circ-90^\\circ-31^\\circ=59^\\circ$。",
+        "en": "In right triangle ABD $\\angle ABO=180^\\circ-90^\\circ-31^\\circ\\quad =59^\\circ$.",
+        "zh": "在直角三角形 ABD 中， $\\angle ABO=180^\\circ-90^\\circ-31^\\circ\\quad =59^\\circ$。",
         "polygons": [
          [
           "A",
@@ -6150,7 +6646,12 @@
         ],
         "final": true,
         "answer": "∠ABO = 59°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "\\angle ABO=180^\\circ-90^\\circ-31^\\circ",
+         "=59^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        }
       ],
       "goal": [
@@ -6163,7 +6664,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -6302,8 +6804,8 @@
       ],
       "steps": [
        {
-        "en": "The radius is GIVEN as 2.5 cm. CD = 3 cm, N is its midpoint and MN = 2.7 cm. Find AB.",
-        "zh": "半徑 2.5 cm 是已知條件。CD = 3 cm，N 為中點，MN = 2.7 cm。所求是 AB。",
+        "en": "The radius is GIVEN as 2.5 cm. CD = 3 cm, N is its midpoint and MN = 2.7 cm. Find AB. $r=2.5\\text{ cm},\\quad CD=3\\text{ cm}\\quad MN=2.7\\text{ cm}$.",
+        "zh": "半徑 2.5 cm 是已知條件。CD = 3 cm，N 為中點，MN = 2.7 cm。所求是 AB。 $r=2.5\\text{ cm},\\quad CD=3\\text{ cm}\\quad MN=2.7\\text{ cm}$。",
         "ticks": [
          [
           "C",
@@ -6348,11 +6850,16 @@
           "offset": 48,
           "text": "2.7 cm"
          }
+        ],
+        "mathLines": [
+         "r=2.5\\text{ cm},",
+         "CD=3\\text{ cm}",
+         "MN=2.7\\text{ cm}"
         ]
        },
        {
-        "en": "DN = 1.5 cm. ON joins the centre to a chord midpoint, so ON is perpendicular to CD. Join the radius OD = 2.5 cm.",
-        "zh": "DN = 1.5 cm，ON 連接圓心與弦中點，所以 ON 垂直 CD。連半徑 OD = 2.5 cm。",
+        "en": "DN = 1.5 cm. ON joins the centre to a chord midpoint, so ON is perpendicular to CD. Join the radius OD = 2.5 cm. $DN=1.5\\text{ cm},\\quad ON\\perp CD\\quad OD=2.5\\text{ cm}$.",
+        "zh": "DN = 1.5 cm，ON 連接圓心與弦中點，所以 ON 垂直 CD。連半徑 OD = 2.5 cm。 $DN=1.5\\text{ cm},\\quad ON\\perp CD\\quad OD=2.5\\text{ cm}$。",
         "lines": [
          [
           "O",
@@ -6392,11 +6899,17 @@
           "dx": 12,
           "dy": -15
          }
-        ]
+        ],
+        "mathLines": [
+         "DN=1.5\\text{ cm},",
+         "ON\\perp CD",
+         "OD=2.5\\text{ cm}"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "In right triangle ODN, $ON=\\sqrt{2.5^2-1.5^2}=2$ cm.",
-        "zh": "在直角三角形 ODN 中，$ON=\\sqrt{2.5^2-1.5^2}=2$ cm。",
+        "en": "In right triangle ODN $ON=\\sqrt{2.5^2-1.5^2}\\quad =2\\text{ cm}$.",
+        "zh": "在直角三角形 ODN 中， $ON=\\sqrt{2.5^2-1.5^2}\\quad =2\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -6415,11 +6928,16 @@
           "dx": -22,
           "dy": -5
          }
-        ]
+        ],
+        "mathLines": [
+         "ON=\\sqrt{2.5^2-1.5^2}",
+         "=2\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "O lies between M and N. Therefore OM = MN - ON = 2.7 - 2 = 0.7 cm.",
-        "zh": "O 在 M、N 之間，所以 OM = MN − ON = 2.7 − 2 = 0.7 cm。",
+        "en": "O lies between M and N. Therefore OM = MN - ON = 2.7 - 2 = 0.7 cm. $OM=MN-ON\\quad =2.7-2=0.7\\text{ cm}$.",
+        "zh": "O 在 M、N 之間，所以 OM = MN − ON = 2.7 − 2 = 0.7 cm。 $OM=MN-ON\\quad =2.7-2=0.7\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "OM",
@@ -6438,11 +6956,15 @@
           "O",
           "claim"
          ]
+        ],
+        "mathLines": [
+         "OM=MN-ON",
+         "=2.7-2=0.7\\text{ cm}"
         ]
        },
        {
-        "en": "Join OA = 2.5 cm. In right triangle OAM, $AM=\\sqrt{2.5^2-0.7^2}=2.4$ cm.",
-        "zh": "連 OA = 2.5 cm，在直角三角形 OAM 中，$AM=\\sqrt{2.5^2-0.7^2}=2.4$ cm。",
+        "en": "Join OA = 2.5 cm. In right triangle OAM $AM=\\sqrt{2.5^2-0.7^2}\\quad =2.4\\text{ cm}$.",
+        "zh": "連 OA = 2.5 cm，在直角三角形 OAM 中， $AM=\\sqrt{2.5^2-0.7^2}\\quad =2.4\\text{ cm}$。",
         "lines": [
          [
           "O",
@@ -6478,11 +7000,16 @@
           "dx": -21,
           "dy": -9
          }
-        ]
+        ],
+        "mathLines": [
+         "AM=\\sqrt{2.5^2-0.7^2}",
+         "=2.4\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "OM is perpendicular to AB, so AM = MB. The full chord is AB = 2 × 2.4 = 4.8 cm.",
-        "zh": "OM 垂直 AB，所以 AM = MB。整條弦 AB = 2 × 2.4 = 4.8 cm。",
+        "en": "OM is perpendicular to AB, so AM = MB. The full chord is AB = 2 × 2.4 = 4.8 cm. $AM=MB=2.4\\text{ cm}\\quad AB=2(2.4)=4.8\\text{ cm}$.",
+        "zh": "OM 垂直 AB，所以 AM = MB。整條弦 AB = 2 × 2.4 = 4.8 cm。 $AM=MB=2.4\\text{ cm}\\quad AB=2(2.4)=4.8\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -6503,10 +7030,16 @@
          ]
         ],
         "final": true,
-        "answer": "AB = 4.8 cm"
+        "answer": "AB = 4.8 cm",
+        "mathLines": [
+         "AM=MB=2.4\\text{ cm}",
+         "AB=2(2.4)=4.8\\text{ cm}"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -6653,8 +7186,8 @@
       ],
       "steps": [
        {
-        "en": "AD = 24 cm, BC = 70 cm, and the perpendicular distance between the parallel chords is 47 cm.",
-        "zh": "AD = 24 cm，BC = 70 cm，兩平行弦的垂直距離為 47 cm。",
+        "en": "AD = 24 cm, BC = 70 cm, and the perpendicular distance between the parallel chords is 47 cm. $AD=24\\text{ cm},\\quad BC=70\\text{ cm}\\quad MN=47\\text{ cm}$.",
+        "zh": "AD = 24 cm，BC = 70 cm，兩平行弦的垂直距離為 47 cm。 $AD=24\\text{ cm},\\quad BC=70\\text{ cm}\\quad MN=47\\text{ cm}$。",
         "parallel": [
          [
           "A",
@@ -6688,11 +7221,16 @@
           "dx": -16,
           "dy": 24
          }
+        ],
+        "mathLines": [
+         "AD=24\\text{ cm},",
+         "BC=70\\text{ cm}",
+         "MN=47\\text{ cm}"
         ]
        },
        {
-        "en": "Mark the centre O and chord midpoints M, N. Their perpendicular bisectors form one line, and MN = 47 cm.",
-        "zh": "標出圓心 O、弦中點 M、N。兩弦的垂直平分線在同一直線上，MN = 47 cm。",
+        "en": "Mark the centre O and chord midpoints M, N. Their perpendicular bisectors form one line, and MN = 47 cm. $OM\\perp AD,\\quad ON\\perp BC\\quad MN=47\\text{ cm}$.",
+        "zh": "標出圓心 O、弦中點 M、N。兩弦的垂直平分線在同一直線上，MN = 47 cm。 $OM\\perp AD,\\quad ON\\perp BC\\quad MN=47\\text{ cm}$。",
         "show": [
          "O",
          "M",
@@ -6723,11 +7261,17 @@
           14
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "OM\\perp AD,",
+         "ON\\perp BC",
+         "MN=47\\text{ cm}"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "The half-chords are AM = 12 cm and BN = 35 cm. Set OM = x, so ON = 47 - x.",
-        "zh": "半弦 AM = 12 cm，BN = 35 cm。設 OM = x，則 ON = 47 − x。",
+        "en": "The half-chords are AM = 12 cm and BN = 35 cm. Set OM = x, so ON = 47 - x. $AM=12\\text{ cm},\\quad BN=35\\text{ cm}\\quad OM=x,\\quad ON=47-x$.",
+        "zh": "半弦 AM = 12 cm，BN = 35 cm。設 OM = x，則 ON = 47 − x。 $AM=12\\text{ cm},\\quad BN=35\\text{ cm}\\quad OM=x,\\quad ON=47-x$。",
         "ticks": [
          [
           "A",
@@ -6791,11 +7335,17 @@
           "dx": 14,
           "dy": 17
          }
+        ],
+        "mathLines": [
+         "AM=12\\text{ cm},",
+         "BN=35\\text{ cm}",
+         "OM=x,",
+         "ON=47-x"
         ]
        },
        {
-        "en": "Join OA and OB, both radii r. Pythagoras gives $r^2=x^2+12^2=(47-x)^2+35^2$.",
-        "zh": "連半徑 OA、OB，長度均為 r。勾股定理得 $r^2=x^2+12^2=(47-x)^2+35^2$。",
+        "en": "Join OA and OB, both radii r. Pythagoras gives $r^2=x^2+12^2\\quad r^2=(47-x)^2+35^2$.",
+        "zh": "連半徑 OA、OB，長度均為 r。勾股定理得 $r^2=x^2+12^2\\quad r^2=(47-x)^2+35^2$。",
         "lines": [
          [
           "O",
@@ -6841,11 +7391,16 @@
           "dx": -12,
           "dy": 8
          }
-        ]
+        ],
+        "mathLines": [
+         "r^2=x^2+12^2",
+         "r^2=(47-x)^2+35^2"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "Equate the two expressions for r². Cancelling x² gives 94x = 3290, so x = 35 and ON = 12 cm.",
-        "zh": "把兩個 r² 的式子相等，消去 x²，得 94x = 3290，所以 x = 35，ON = 12 cm。",
+        "en": "Equate the two expressions for r². Cancelling x² gives 94x = 3290, so x = 35 and ON = 12 cm. $94x=3290\\quad OM=x=35\\text{ cm}\\quad ON=47-35=12\\text{ cm}$.",
+        "zh": "把兩個 r² 的式子相等，消去 x²，得 94x = 3290，所以 x = 35，ON = 12 cm。 $94x=3290\\quad OM=x=35\\text{ cm}\\quad ON=47-35=12\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "OM",
@@ -6867,11 +7422,16 @@
           "dx": 16,
           "dy": 17
          }
+        ],
+        "mathLines": [
+         "94x=3290",
+         "OM=x=35\\text{ cm}",
+         "ON=47-35=12\\text{ cm}"
         ]
        },
        {
-        "en": "$r=\\sqrt{35^2+12^2}=37$ cm.",
-        "zh": "代回勾股定理，$r=\\sqrt{35^2+12^2}=37$ cm。",
+        "en": "Use Pythagoras to find the radius. $r=\\sqrt{35^2+12^2}\\quad =37\\text{ cm}$.",
+        "zh": "最後用勾股定理求出圓的半徑。 $r=\\sqrt{35^2+12^2}\\quad =37\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "OA",
@@ -6888,10 +7448,16 @@
         "answer": "Radius = 37 cm",
         "clearLabels": [
          "OB"
-        ]
+        ],
+        "mathLines": [
+         "r=\\sqrt{35^2+12^2}",
+         "=37\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -7035,8 +7601,8 @@
       ],
       "steps": [
        {
-        "en": "BD is a diameter. AM = CM = 24 cm and CD = 40 cm.",
-        "zh": "BD 是直徑，AM = CM = 24 cm，CD = 40 cm。",
+        "en": "BD is a diameter. AM = CM = 24 cm and CD = 40 cm. $AM=CM=24\\text{ cm}\\quad CD=40\\text{ cm}$.",
+        "zh": "BD 是直徑，AM = CM = 24 cm，CD = 40 cm。 $AM=CM=24\\text{ cm}\\quad CD=40\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -7080,11 +7646,15 @@
           "dx": 24,
           "dy": 7
          }
+        ],
+        "mathLines": [
+         "AM=CM=24\\text{ cm}",
+         "CD=40\\text{ cm}"
         ]
        },
        {
-        "en": "The diameter through chord midpoint M is perpendicular to AC. In right triangle CDM, $DM=\\sqrt{40^2-24^2}=32$ cm.",
-        "zh": "經過弦中點 M 的直徑垂直於 AC。在直角三角形 CDM 中，$DM=\\sqrt{40^2-24^2}=32$ cm。",
+        "en": "The diameter through chord midpoint M is perpendicular to AC. In right triangle CDM $OM\\perp AC\\quad DM=\\sqrt{40^2-24^2}=32\\text{ cm}$.",
+        "zh": "經過弦中點 M 的直徑垂直於 AC。在直角三角形 CDM 中， $OM\\perp AC\\quad DM=\\sqrt{40^2-24^2}=32\\text{ cm}$。",
         "arcs": [
          [
           "M",
@@ -7114,11 +7684,16 @@
           "dx": 0,
           "dy": -17
          }
-        ]
+        ],
+        "mathLines": [
+         "OM\\perp AC",
+         "DM=\\sqrt{40^2-24^2}=32\\text{ cm}"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord); (Pyth. theorem)"
        },
        {
-        "en": "For part (b), join OC. Let the radius be r. OD = OC = r, so OM = DM - OD = 32 - r.",
-        "zh": "乙部連 OC。設半徑為 r，OD = OC = r，所以 OM = DM − OD = 32 − r。",
+        "en": "For part (b), join OC. Let the radius be r. OD = OC = r, so OM = DM - OD = 32 - r. $OC=OD=r\\quad OM=DM-OD=32-r$.",
+        "zh": "乙部連 OC。設半徑為 r，OD = OC = r，所以 OM = DM − OD = 32 − r。 $OC=OD=r\\quad OM=DM-OD=32-r$。",
         "lines": [
          [
           "O",
@@ -7167,11 +7742,16 @@
           "dx": -24,
           "dy": -9
          }
-        ]
+        ],
+        "mathLines": [
+         "OC=OD=r",
+         "OM=DM-OD=32-r"
+        ],
+        "ref": "(radii of the same circle)"
        },
        {
-        "en": "In right triangle OCM, $r^2=(32-r)^2+24^2$. Expanding gives $64r=1600$.",
-        "zh": "在直角三角形 OCM 中，$r^2=(32-r)^2+24^2$，展開整理得 $64r=1600$。",
+        "en": "Apply Pythagoras in triangle OCM, then expand the equation. $r^2=(32-r)^2+24^2\\quad 64r=1600$.",
+        "zh": "在直角三角形 OCM 中用勾股定理，再展開方程。 $r^2=(32-r)^2+24^2\\quad 64r=1600$。",
         "polygons": [
          [
           "O",
@@ -7179,11 +7759,15 @@
           "M"
          ]
         ],
-        "ref": "Pythagoras / 勾股定理"
+        "mathLines": [
+         "r^2=(32-r)^2+24^2",
+         "64r=1600"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "The radius is r = 25 cm. Part (a) gave DM = 32 cm.",
-        "zh": "得半徑 r = 25 cm，甲部已求得 DM = 32 cm。",
+        "en": "The radius is r = 25 cm. Part (a) gave DM = 32 cm. $r=25\\text{ cm},\\quad DM=32\\text{ cm}$.",
+        "zh": "得半徑 r = 25 cm，甲部已求得 DM = 32 cm。 $r=25\\text{ cm},\\quad DM=32\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "OC",
@@ -7217,10 +7801,15 @@
          }
         ],
         "final": true,
-        "answer": "DM = 32 cm; radius = 25 cm"
+        "answer": "DM = 32 cm; radius = 25 cm",
+        "mathLines": [
+         "r=25\\text{ cm},",
+         "DM=32\\text{ cm}"
+        ]
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -7383,8 +7972,8 @@
       ],
       "steps": [
        {
-        "en": "Only the lengths are given: AB = 24 cm, OB = 10 cm and OA = 26 cm. First prove the right angle at B.",
-        "zh": "已知 AB = 24 cm、OB = 10 cm、OA = 26 cm，先證明 B 處的直角。",
+        "en": "Only the lengths are given: AB = 24 cm, OB = 10 cm and OA = 26 cm. First prove the right angle at B. $AB=24\\text{ cm},\\quad OB=10\\text{ cm}\\quad OA=26\\text{ cm}$.",
+        "zh": "已知 AB = 24 cm、OB = 10 cm、OA = 26 cm，先證明 B 處的直角。 $AB=24\\text{ cm},\\quad OB=10\\text{ cm}\\quad OA=26\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "AB",
@@ -7416,11 +8005,16 @@
           "dx": 15,
           "dy": 3
          }
+        ],
+        "mathLines": [
+         "AB=24\\text{ cm},",
+         "OB=10\\text{ cm}",
+         "OA=26\\text{ cm}"
         ]
        },
        {
-        "en": "$24^2+10^2=26^2$. By the converse of Pythagoras, angle ABO = 90°.",
-        "zh": "因為 $24^2+10^2=26^2$，由勾股定理逆定理得角 ABO = 90°。",
+        "en": "Check the side lengths using the converse of Pythagoras to prove the right angle at B. $24^2+10^2=26^2\\quad \\angle ABO=90^\\circ$.",
+        "zh": "利用勾股定理的逆定理核對三邊，證明 B 點是直角。 $24^2+10^2=26^2\\quad \\angle ABO=90^\\circ$。",
         "arcs": [
          [
           "B",
@@ -7438,11 +8032,16 @@
           "B",
           "O"
          ]
-        ]
+        ],
+        "mathLines": [
+         "24^2+10^2=26^2",
+         "\\angle ABO=90^\\circ"
+        ],
+        "ref": "(converse of Pyth. theorem)"
        },
        {
-        "en": "Angle APQ = 90° because AQ is a diameter. Angle BAO equals angle PAQ. Hence triangles ABO and APQ are similar by AA.",
-        "zh": "AQ 是直徑，所以角 APQ = 90°，又角 BAO = 角 PAQ，因此三角形 ABO 與 APQ 以 AA 證相似。",
+        "en": "Angle APQ = 90° because AQ is a diameter. Angle BAO equals angle PAQ. Hence triangles ABO and APQ are similar by AA. $\\angle APQ=\\angle ABO=90^\\circ\\quad \\angle BAO=\\angle PAQ\\quad \\triangle ABO\\sim\\triangle APQ$.",
+        "zh": "AQ 是直徑，所以角 APQ = 90°，又角 BAO = 角 PAQ，因此三角形 ABO 與 APQ 以 AA 證相似。 $\\angle APQ=\\angle ABO=90^\\circ\\quad \\angle BAO=\\angle PAQ\\quad \\triangle ABO\\sim\\triangle APQ$。",
         "arcs": [
          [
           "P",
@@ -7466,11 +8065,16 @@
           "Q"
          ]
         ],
-        "ref": "AA similarity / AA 相似"
+        "mathLines": [
+         "\\angle APQ=\\angle ABO=90^\\circ",
+         "\\angle BAO=\\angle PAQ",
+         "\\triangle ABO\\sim\\triangle APQ"
+        ],
+        "ref": "(∠ in semi-circle); (AA)"
        },
        {
-        "en": "OB is perpendicular to chord AP, so B is its midpoint. AP = 48 cm and the length ratio AB : AP is 1 : 2.",
-        "zh": "OB 垂直弦 AP，所以 B 是其中點。AP = 48 cm，長度比 AB : AP = 1 : 2。",
+        "en": "OB is perpendicular to chord AP, so B is its midpoint. AP = 48 cm and the length ratio AB : AP is 1 : 2. $AB=BP=24\\text{ cm}\\quad AP=48\\text{ cm}\\quad AB:AP=1:2$.",
+        "zh": "OB 垂直弦 AP，所以 B 是其中點。AP = 48 cm，長度比 AB : AP = 1 : 2。 $AB=BP=24\\text{ cm}\\quad AP=48\\text{ cm}\\quad AB:AP=1:2$。",
         "ticks": [
          [
           "A",
@@ -7494,11 +8098,17 @@
           "dx": -23,
           "dy": 0
          }
-        ]
+        ],
+        "mathLines": [
+         "AB=BP=24\\text{ cm}",
+         "AP=48\\text{ cm}",
+         "AB:AP=1:2"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "Area of ABO = ½ × 24 × 10 = 120 cm². The area ratio is 1 : 4, so area of APQ = 480 cm².",
-        "zh": "ABO 面積 = ½ × 24 × 10 = 120 cm²，面積比為 1 : 4，所以 APQ 面積 = 480 cm²。",
+        "en": "Area of ABO = ½ × 24 × 10 = 120 cm². The area ratio is 1 : 4, so area of APQ = 480 cm². $[\\triangle ABO]=\\frac12(24)(10)=120\\text{ cm}^2\\quad [\\triangle ABO]:[\\triangle APQ]=1:4\\quad [\\triangle APQ]=480\\text{ cm}^2$.",
+        "zh": "ABO 面積 = ½ × 24 × 10 = 120 cm²，面積比為 1 : 4，所以 APQ 面積 = 480 cm²。 $[\\triangle ABO]=\\frac12(24)(10)=120\\text{ cm}^2\\quad [\\triangle ABO]:[\\triangle APQ]=1:4\\quad [\\triangle APQ]=480\\text{ cm}^2$。",
         "polygons": [
          [
           "A",
@@ -7510,11 +8120,16 @@
           "B",
           "O"
          ]
+        ],
+        "mathLines": [
+         "[\\triangle ABO]=\\frac12(24)(10)=120\\text{ cm}^2",
+         "[\\triangle ABO]:[\\triangle APQ]=1:4",
+         "[\\triangle APQ]=480\\text{ cm}^2"
         ]
        },
        {
-        "en": "The requested quadrilateral is the large triangle minus the small triangle: 480 - 120 = 360 cm².",
-        "zh": "所求四邊形為大三角形減小三角形：480 − 120 = 360 cm²。",
+        "en": "The requested quadrilateral is the large triangle minus the small triangle: 480 - 120 = 360 cm². $[OBPQ]=480-120=360\\text{ cm}^2$.",
+        "zh": "所求四邊形為大三角形減小三角形：480 − 120 = 360 cm²。 $[OBPQ]=480-120=360\\text{ cm}^2$。",
         "polygons": [
          [
           "O",
@@ -7524,10 +8139,14 @@
          ]
         ],
         "final": true,
-        "answer": "Area OBPQ = 360 cm²"
+        "answer": "Area OBPQ = 360 cm²",
+        "mathLines": [
+         "[OBPQ]=480-120=360\\text{ cm}^2"
+        ]
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -7705,8 +8324,8 @@
       ],
       "steps": [
        {
-        "en": "The radius is 50 cm. AC = 80 cm and BD = 96 cm meet at a right angle at E.",
-        "zh": "半徑為 50 cm，AC = 80 cm、BD = 96 cm，在 E 垂直相交。",
+        "en": "The radius is 50 cm. AC = 80 cm and BD = 96 cm meet at a right angle at E. $r=50\\text{ cm},\\quad AC=80\\text{ cm}\\quad BD=96\\text{ cm},\\quad AC\\perp BD$.",
+        "zh": "半徑為 50 cm，AC = 80 cm、BD = 96 cm，在 E 垂直相交。 $r=50\\text{ cm},\\quad AC=80\\text{ cm}\\quad BD=96\\text{ cm},\\quad AC\\perp BD$。",
         "arcs": [
          [
           "E",
@@ -7739,11 +8358,17 @@
           "dx": 0,
           "dy": 28
          }
+        ],
+        "mathLines": [
+         "r=50\\text{ cm},",
+         "AC=80\\text{ cm}",
+         "BD=96\\text{ cm},",
+         "AC\\perp BD"
         ]
        },
        {
-        "en": "Mark O and the chord midpoints M, N. Join OA, OB, OM and ON. AM = 40 cm and BN = 48 cm.",
-        "zh": "標出 O 及兩弦中點 M、N，連 OA、OB、OM、ON，得 AM = 40 cm、BN = 48 cm。",
+        "en": "Mark O and the chord midpoints M, N. Join OA, OB, OM and ON. AM = 40 cm and BN = 48 cm. $AM=40\\text{ cm},\\quad BN=48\\text{ cm}$.",
+        "zh": "標出 O 及兩弦中點 M、N，連 OA、OB、OM、ON，得 AM = 40 cm、BN = 48 cm。 $AM=40\\text{ cm},\\quad BN=48\\text{ cm}$。",
         "show": [
          "O",
          "M",
@@ -7811,11 +8436,16 @@
           "dx": 0,
           "dy": 20
          }
-        ]
+        ],
+        "mathLines": [
+         "AM=40\\text{ cm},",
+         "BN=48\\text{ cm}"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord)"
        },
        {
-        "en": "Pythagoras gives $OM=\\sqrt{50^2-40^2}=30$ cm and $ON=\\sqrt{50^2-48^2}=14$ cm.",
-        "zh": "勾股定理得 $OM=\\sqrt{50^2-40^2}=30$ cm，$ON=\\sqrt{50^2-48^2}=14$ cm。",
+        "en": "Use Pythagoras in both right triangles to find the two perpendicular distances. $OM=\\sqrt{50^2-40^2}=30\\text{ cm}\\quad ON=\\sqrt{50^2-48^2}=14\\text{ cm}$.",
+        "zh": "在兩個直角三角形中用勾股定理，求兩段圓心到弦的距離。 $OM=\\sqrt{50^2-40^2}=30\\text{ cm}\\quad ON=\\sqrt{50^2-48^2}=14\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -7849,11 +8479,16 @@
           "dx": -30,
           "dy": 0
          }
-        ]
+        ],
+        "mathLines": [
+         "OM=\\sqrt{50^2-40^2}=30\\text{ cm}",
+         "ON=\\sqrt{50^2-48^2}=14\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "OMEN is a rectangle. Thus ME = ON = 14 and NE = OM = 30. Therefore AE = 40 + 14 = 54 and BE = 48 + 30 = 78.",
-        "zh": "OMEN 是長方形，所以 ME = ON = 14、NE = OM = 30，故 AE = 40 + 14 = 54，BE = 48 + 30 = 78。",
+        "en": "OMEN is a rectangle. Thus ME = ON = 14 and NE = OM = 30. Therefore AE = 40 + 14 = 54 and BE = 48 + 30 = 78. $ME=ON=14,\\quad NE=OM=30\\quad AE=40+14=54\\text{ cm}\\quad BE=48+30=78\\text{ cm}$.",
+        "zh": "OMEN 是長方形，所以 ME = ON = 14、NE = OM = 30，故 AE = 40 + 14 = 54，BE = 48 + 30 = 78。 $ME=ON=14,\\quad NE=OM=30\\quad AE=40+14=54\\text{ cm}\\quad BE=48+30=78\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -7889,11 +8524,17 @@
           "dx": 0,
           "dy": 26
          }
+        ],
+        "mathLines": [
+         "ME=ON=14,",
+         "NE=OM=30",
+         "AE=40+14=54\\text{ cm}",
+         "BE=48+30=78\\text{ cm}"
         ]
        },
        {
-        "en": "In right triangle ABE, $AB=\\sqrt{54^2+78^2}=\\sqrt{9000}=30\\sqrt{10}$ cm.",
-        "zh": "在直角三角形 ABE 中，$AB=\\sqrt{54^2+78^2}=\\sqrt{9000}=30\\sqrt{10}$ cm。",
+        "en": "In right triangle ABE $AB=\\sqrt{54^2+78^2}\\quad =\\sqrt{9000}=30\\sqrt{10}\\text{ cm}$.",
+        "zh": "在直角三角形 ABE 中， $AB=\\sqrt{54^2+78^2}\\quad =\\sqrt{9000}=30\\sqrt{10}\\text{ cm}$。",
         "polygons": [
          [
           "A",
@@ -7909,10 +8550,16 @@
          ]
         ],
         "final": true,
-        "answer": "AB = 30√10 cm"
+        "answer": "AB = 30√10 cm",
+        "mathLines": [
+         "AB=\\sqrt{54^2+78^2}",
+         "=\\sqrt{9000}=30\\sqrt{10}\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -8043,8 +8690,8 @@
       ],
       "steps": [
        {
-        "en": "OE = 25 cm, AE = 14 cm and AB = 16 cm. M is the midpoint of the outer chord AD.",
-        "zh": "OE = 25 cm，AE = 14 cm，AB = 16 cm，M 是大圓弦 AD 的中點。",
+        "en": "OE = 25 cm, AE = 14 cm and AB = 16 cm. M is the midpoint of the outer chord AD. $OE=25\\text{ cm},\\quad AE=14\\text{ cm}\\quad AB=16\\text{ cm}$.",
+        "zh": "OE = 25 cm，AE = 14 cm，AB = 16 cm，M 是大圓弦 AD 的中點。 $OE=25\\text{ cm},\\quad AE=14\\text{ cm}\\quad AB=16\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -8088,11 +8735,16 @@
           "dx": 0,
           "dy": 28
          }
+        ],
+        "mathLines": [
+         "OE=25\\text{ cm},",
+         "AE=14\\text{ cm}",
+         "AB=16\\text{ cm}"
         ]
        },
        {
-        "en": "The outer radius OA = AE + EO = 39 cm. Join the inner radius OB = 25 cm. OM is perpendicular to AD and also bisects the inner chord BC.",
-        "zh": "大圓半徑 OA = AE + EO = 39 cm，連小圓半徑 OB = 25 cm。OM 垂直 AD，也平分小圓的弦 BC。",
+        "en": "The outer radius OA = AE + EO = 39 cm. Join the inner radius OB = 25 cm. OM is perpendicular to AD and also bisects the inner chord BC. $OA=AE+EO=39\\text{ cm}\\quad OB=25\\text{ cm},\\quad OM\\perp AD\\quad BM=MC$.",
+        "zh": "大圓半徑 OA = AE + EO = 39 cm，連小圓半徑 OB = 25 cm。OM 垂直 AD，也平分小圓的弦 BC。 $OA=AE+EO=39\\text{ cm}\\quad OB=25\\text{ cm},\\quad OM\\perp AD\\quad BM=MC$。",
         "lines": [
          [
           "O",
@@ -8136,11 +8788,18 @@
         "clearLabels": [
          "OE",
          "AE"
-        ]
+        ],
+        "mathLines": [
+         "OA=AE+EO=39\\text{ cm}",
+         "OB=25\\text{ cm},",
+         "OM\\perp AD",
+         "BM=MC"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord); (line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "Let OM = x and BM = y. Then AM = 16 + y. Pythagoras gives $x^2+y^2=25^2$ and $x^2+(16+y)^2=39^2$.",
-        "zh": "設 OM = x、BM = y，則 AM = 16 + y。勾股定理得 $x^2+y^2=25^2$ 及 $x^2+(16+y)^2=39^2$。",
+        "en": "Let OM = x and BM = y. Write a Pythagoras equation for each right triangle. $OM=x,\\quad BM=y,\\quad AM=16+y\\quad x^2+y^2=25^2\\quad x^2+(16+y)^2=39^2$.",
+        "zh": "設 OM = x、BM = y，分別在兩個直角三角形中列出勾股方程。 $OM=x,\\quad BM=y,\\quad AM=16+y\\quad x^2+y^2=25^2\\quad x^2+(16+y)^2=39^2$。",
         "polygons": [
          [
           "O",
@@ -8174,11 +8833,19 @@
           "dx": 0,
           "dy": 24
          }
-        ]
+        ],
+        "mathLines": [
+         "OM=x,",
+         "BM=y,",
+         "AM=16+y",
+         "x^2+y^2=25^2",
+         "x^2+(16+y)^2=39^2"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "Subtract the equations: $(16+y)^2-y^2=39^2-25^2$. Hence 32y = 640 and y = 20 cm.",
-        "zh": "兩式相減：$(16+y)^2-y^2=39^2-25^2$，得 32y = 640，所以 y = 20 cm。",
+        "en": "Subtract the equations $(16+y)^2-y^2=39^2-25^2\\quad 32y=640\\quad y=20\\text{ cm}$.",
+        "zh": "兩式相減 $(16+y)^2-y^2=39^2-25^2\\quad 32y=640\\quad y=20\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "BM",
@@ -8190,11 +8857,16 @@
           "dx": 0,
           "dy": 24
          }
+        ],
+        "mathLines": [
+         "(16+y)^2-y^2=39^2-25^2",
+         "32y=640",
+         "y=20\\text{ cm}"
         ]
        },
        {
-        "en": "Use the inner right triangle: $OM=\\sqrt{25^2-20^2}=15$ cm.",
-        "zh": "代回小圓的直角三角形，$OM=\\sqrt{25^2-20^2}=15$ cm。",
+        "en": "Use the inner right triangle $OM=\\sqrt{25^2-20^2}\\quad =15\\text{ cm}$.",
+        "zh": "代回小圓的直角三角形， $OM=\\sqrt{25^2-20^2}\\quad =15\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -8215,7 +8887,12 @@
          }
         ],
         "final": true,
-        "answer": "OM = 15 cm"
+        "answer": "OM = 15 cm",
+        "mathLines": [
+         "OM=\\sqrt{25^2-20^2}",
+         "=15\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        }
       ],
       "circle": false,
@@ -8229,7 +8906,8 @@
         "r": 0.6410256410256411
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -8405,8 +9083,8 @@
       ],
       "steps": [
        {
-        "en": "AD = BC, and M, N are the chord midpoints. Do not assume symmetry; prove the required equal lengths.",
-        "zh": "AD = BC，M、N 是兩弦的中點，要用定理證明所需長度相等。",
+        "en": "AD = BC, and M, N are the chord midpoints. Do not assume symmetry; prove the required equal lengths. $AD=BC,\\quad AM=MD,\\quad BN=NC$.",
+        "zh": "AD = BC，M、N 是兩弦的中點，要用定理證明所需長度相等。 $AD=BC,\\quad AM=MD,\\quad BN=NC$。",
         "ticks": [
          [
           "A",
@@ -8428,11 +9106,16 @@
           "C",
           1
          ]
+        ],
+        "mathLines": [
+         "AD=BC,",
+         "AM=MD,",
+         "BN=NC"
         ]
        },
        {
-        "en": "OM and ON are perpendicular to their chords. Equal chords give OM = ON.",
-        "zh": "OM、ON 分別垂直兩弦，又等弦與圓心等距，所以 OM = ON。",
+        "en": "OM and ON are perpendicular to their chords. Equal chords give OM = ON. $OM\\perp AD,\\quad ON\\perp BC\\quad OM=ON$.",
+        "zh": "OM、ON 分別垂直兩弦，又等弦與圓心等距，所以 OM = ON。 $OM\\perp AD,\\quad ON\\perp BC\\quad OM=ON$。",
         "arcs": [
          [
           "M",
@@ -8463,11 +9146,17 @@
           "N",
           2
          ]
-        ]
+        ],
+        "mathLines": [
+         "OM\\perp AD,",
+         "ON\\perp BC",
+         "OM=ON"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord); (equal chords, equidistant from centre)"
        },
        {
-        "en": "In right triangles OME and ONE, OE is the common hypotenuse and OM = ON. By RHS, the triangles are congruent. Thus EM = EN and angle MEO = angle NEO.",
-        "zh": "直角三角形 OME、ONE 有公共斜邊 OE，且 OM = ON，以 RHS 證全等。因此 EM = EN，角 MEO = 角 NEO。",
+        "en": "In right triangles OME and ONE, OE is the common hypotenuse and OM = ON. By RHS, the triangles are congruent. Thus EM = EN and angle MEO = angle NEO. $\\triangle OME\\cong\\triangle ONE\\quad EM=EN\\quad \\angle MEO=\\angle NEO$.",
+        "zh": "直角三角形 OME、ONE 有公共斜邊 OE，且 OM = ON，以 RHS 證全等。因此 EM = EN，角 MEO = 角 NEO。 $\\triangle OME\\cong\\triangle ONE\\quad EM=EN\\quad \\angle MEO=\\angle NEO$。",
         "polygons": [
          [
           "O",
@@ -8492,11 +9181,16 @@
           3
          ]
         ],
-        "ref": "RHS / 斜邊直角邊"
+        "mathLines": [
+         "\\triangle OME\\cong\\triangle ONE",
+         "EM=EN",
+         "\\angle MEO=\\angle NEO"
+        ],
+        "ref": "(RHS)"
        },
        {
-        "en": "AM = BN because they are halves of equal chords. Add EM = EN: AE = AM + ME = BN + NE = BE. Hence triangle ABE is isosceles.",
-        "zh": "AM、BN 是等弦的一半，所以相等。再加 ME = NE，得 AE = AM + ME = BN + NE = BE，故 ABE 是等腰三角形。",
+        "en": "AM = BN because they are halves of equal chords. Add EM = EN: AE = AM + ME = BN + NE = BE. Hence triangle ABE is isosceles. $AM=BN,\\quad ME=NE\\quad AE=AM+ME\\quad =BN+NE=BE$.",
+        "zh": "AM、BN 是等弦的一半，所以相等。再加 ME = NE，得 AE = AM + ME = BN + NE = BE，故 ABE 是等腰三角形。 $AM=BN,\\quad ME=NE\\quad AE=AM+ME\\quad =BN+NE=BE$。",
         "polygons": [
          [
           "A",
@@ -8515,11 +9209,17 @@
           "E",
           "claim"
          ]
+        ],
+        "mathLines": [
+         "AM=BN,",
+         "ME=NE",
+         "AE=AM+ME",
+         "=BN+NE=BE"
         ]
        },
        {
-        "en": "For part (b), both base angles are 76°. Therefore angle AEB = 180° - 76° - 76° = 28°, and angle MEO = 14°.",
-        "zh": "乙部兩個底角均為 76°，所以角 AEB = 180° − 76° − 76° = 28°，角 MEO = 14°。",
+        "en": "For part (b), both base angles are 76°. Therefore angle AEB = 180° - 76° - 76° = 28°, and angle MEO = 14°. $\\angle AEB=180^\\circ-76^\\circ-76^\\circ\\quad =28^\\circ\\quad \\angle MEO=14^\\circ$.",
+        "zh": "乙部兩個底角均為 76°，所以角 AEB = 180° − 76° − 76° = 28°，角 MEO = 14°。 $\\angle AEB=180^\\circ-76^\\circ-76^\\circ\\quad =28^\\circ\\quad \\angle MEO=14^\\circ$。",
         "arcs": [
          [
           "B",
@@ -8545,11 +9245,17 @@
           "claim",
           58
          ]
-        ]
+        ],
+        "mathLines": [
+         "\\angle AEB=180^\\circ-76^\\circ-76^\\circ",
+         "=28^\\circ",
+         "\\angle MEO=14^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △); (∠ sum of △)"
        },
        {
-        "en": "In right triangle OME, angle MOE = 180° - 90° - 14° = 76°.",
-        "zh": "在直角三角形 OME 中，角 MOE = 180° − 90° − 14° = 76°。",
+        "en": "In right triangle OME, angle MOE = 180° - 90° - 14° = 76°. $\\angle MOE=180^\\circ-90^\\circ-14^\\circ\\quad =76^\\circ$.",
+        "zh": "在直角三角形 OME 中，角 MOE = 180° − 90° − 14° = 76°。 $\\angle MOE=180^\\circ-90^\\circ-14^\\circ\\quad =76^\\circ$。",
         "polygons": [
          [
           "O",
@@ -8569,7 +9275,12 @@
         ],
         "final": true,
         "answer": "EA = EB; ∠MOE = 76°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "\\angle MOE=180^\\circ-90^\\circ-14^\\circ",
+         "=76^\\circ"
+        ],
+        "ref": "(∠ sum of △)"
        }
       ],
       "cx": 135,
@@ -8584,7 +9295,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -8795,8 +9507,8 @@
       ],
       "steps": [
        {
-        "en": "AB, CD and EF are equal chords. OL, OM, ON are perpendicular distances, so OL = OM = ON.",
-        "zh": "AB、CD、EF 是等弦，OL、OM、ON 是垂直距離，因此 OL = OM = ON。",
+        "en": "AB, CD and EF are equal chords. OL, OM, ON are perpendicular distances, so OL = OM = ON. $AB=CD=EF\\quad OL=OM=ON$.",
+        "zh": "AB、CD、EF 是等弦，OL、OM、ON 是垂直距離，因此 OL = OM = ON。 $AB=CD=EF\\quad OL=OM=ON$。",
         "arcs": [
          [
           "L",
@@ -8848,11 +9560,16 @@
           "N",
           2
          ]
-        ]
+        ],
+        "mathLines": [
+         "AB=CD=EF",
+         "OL=OM=ON"
+        ],
+        "ref": "(equal chords, equidistant from centre)"
        },
        {
-        "en": "Quadrilateral OLPN has two right angles and angle LPN = 79°. Hence angle LON = 360° - 90° - 90° - 79° = 101°.",
-        "zh": "四邊形 OLPN 有兩個直角，角 LPN = 79°，所以角 LON = 360° − 90° − 90° − 79° = 101°。",
+        "en": "Quadrilateral OLPN has two right angles and angle LPN = 79°. Hence angle LON = 360° - 90° - 90° - 79° = 101°. $\\angle LON=360^\\circ-90^\\circ\\quad \\quad-90^\\circ-79^\\circ\\quad =101^\\circ$.",
+        "zh": "四邊形 OLPN 有兩個直角，角 LPN = 79°，所以角 LON = 360° − 90° − 90° − 79° = 101°。 $\\angle LON=360^\\circ-90^\\circ\\quad \\quad-90^\\circ-79^\\circ\\quad =101^\\circ$。",
         "polygons": [
          [
           "O",
@@ -8871,11 +9588,17 @@
           25
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "\\angle LON=360^\\circ-90^\\circ",
+         "\\quad-90^\\circ-79^\\circ",
+         "=101^\\circ"
+        ],
+        "ref": "(∠ sum of quad.)"
        },
        {
-        "en": "Join OQ. Right triangles OLQ and OMQ have equal legs OL = OM and common hypotenuse OQ. RHS gives angle LOQ = angle QOM = α.",
-        "zh": "連 OQ。直角三角形 OLQ、OMQ 有 OL = OM 及公共斜邊 OQ，以 RHS 證全等，得角 LOQ = 角 QOM = α。",
+        "en": "Join OQ. Right triangles OLQ and OMQ have equal legs OL = OM and common hypotenuse OQ. RHS gives angle LOQ = angle QOM = α. $\\triangle OLQ\\cong\\triangle OMQ\\quad \\angle LOQ=\\angle QOM=\\alpha$.",
+        "zh": "連 OQ。直角三角形 OLQ、OMQ 有 OL = OM 及公共斜邊 OQ，以 RHS 證全等，得角 LOQ = 角 QOM = α。 $\\triangle OLQ\\cong\\triangle OMQ\\quad \\angle LOQ=\\angle QOM=\\alpha$。",
         "lines": [
          [
           "O",
@@ -8914,11 +9637,15 @@
          ]
         ],
         "noRays": true,
-        "ref": "RHS / 斜邊直角邊"
+        "mathLines": [
+         "\\triangle OLQ\\cong\\triangle OMQ",
+         "\\angle LOQ=\\angle QOM=\\alpha"
+        ],
+        "ref": "(RHS)"
        },
        {
-        "en": "Similarly, right triangles OMR and ONR are congruent by RHS. Thus angle MOR = angle RON = β.",
-        "zh": "同理，直角三角形 OMR、ONR 以 RHS 證全等，得角 MOR = 角 RON = β。",
+        "en": "Similarly, right triangles OMR and ONR are congruent by RHS. Thus angle MOR = angle RON = β. $\\triangle OMR\\cong\\triangle ONR\\quad \\angle MOR=\\angle RON=\\beta$.",
+        "zh": "同理，直角三角形 OMR、ONR 以 RHS 證全等，得角 MOR = 角 RON = β。 $\\triangle OMR\\cong\\triangle ONR\\quad \\angle MOR=\\angle RON=\\beta$。",
         "lines": [
          [
           "O",
@@ -8956,11 +9683,16 @@
           36
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "\\triangle OMR\\cong\\triangle ONR",
+         "\\angle MOR=\\angle RON=\\beta"
+        ],
+        "ref": "(RHS)"
        },
        {
-        "en": "Angles around O give $2\\alpha+2\\beta+101^\\circ=360^\\circ$. Therefore $\\alpha+\\beta=129.5^\\circ$.",
-        "zh": "O 點周角得 $2\\alpha+2\\beta+101^\\circ=360^\\circ$，所以 $\\alpha+\\beta=129.5^\\circ$。",
+        "en": "Angles around O sum to 360°. Solve for the sum of α and β. $2\\alpha+2\\beta+101^\\circ=360^\\circ\\quad \\alpha+\\beta=129.5^\\circ$.",
+        "zh": "O 點四周的角度和為三百六十度，求出 α 與 β 的和。 $2\\alpha+2\\beta+101^\\circ=360^\\circ\\quad \\alpha+\\beta=129.5^\\circ$。",
         "rays": [
          [
           "O",
@@ -8972,11 +9704,16 @@
           "R",
           "claim"
          ]
-        ]
+        ],
+        "mathLines": [
+         "2\\alpha+2\\beta+101^\\circ=360^\\circ",
+         "\\alpha+\\beta=129.5^\\circ"
+        ],
+        "ref": "(∠s at a pt.)"
        },
        {
-        "en": "The requested angle QOR is α + β, so angle QOR = 129.5°.",
-        "zh": "所求角 QOR 正是 α + β，所以角 QOR = 129.5°。",
+        "en": "The requested angle QOR is α + β, so angle QOR = 129.5°. $\\angle QOR=\\alpha+\\beta\\quad =129.5^\\circ$.",
+        "zh": "所求角 QOR 正是 α + β，所以角 QOR = 129.5°。 $\\angle QOR=\\alpha+\\beta\\quad =129.5^\\circ$。",
         "clearAngle": [
          "O"
         ],
@@ -8992,7 +9729,11 @@
         ],
         "final": true,
         "answer": "∠QOR = 129.5°",
-        "clearGoal": true
+        "clearGoal": true,
+        "mathLines": [
+         "\\angle QOR=\\alpha+\\beta",
+         "=129.5^\\circ"
+        ]
        }
       ],
       "r": 100,
@@ -9007,7 +9748,8 @@
         34
        ]
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -9172,8 +9914,8 @@
       ],
       "steps": [
        {
-        "en": "OP = OQ and both are perpendicular to the chords. The area of the circle is 16π cm².",
-        "zh": "OP = OQ，兩線均垂直於弦，圓面積為 16π cm²。",
+        "en": "OP = OQ and both are perpendicular to the chords. The area of the circle is 16π cm². $OP=OQ\\quad \\pi r^2=16\\pi\\text{ cm}^2$.",
+        "zh": "OP = OQ，兩線均垂直於弦，圓面積為 16π cm²。 $OP=OQ\\quad \\pi r^2=16\\pi\\text{ cm}^2$。",
         "ticks": [
          [
           "O",
@@ -9212,11 +9954,15 @@
           20
          ]
         ],
-        "noRays": true
+        "noRays": true,
+        "mathLines": [
+         "OP=OQ",
+         "\\pi r^2=16\\pi\\text{ cm}^2"
+        ]
        },
        {
-        "en": "From πr² = 16π, r = 4 cm. Therefore diameter AC = 8 cm.",
-        "zh": "由 πr² = 16π 得 r = 4 cm，所以直徑 AC = 8 cm。",
+        "en": "From πr² = 16π, r = 4 cm. Therefore diameter AC = 8 cm. $r=4\\text{ cm}\\quad AC=8\\text{ cm}$.",
+        "zh": "由 πr² = 16π 得 r = 4 cm，所以直徑 AC = 8 cm。 $r=4\\text{ cm}\\quad AC=8\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "AC",
@@ -9228,11 +9974,15 @@
           "dx": 15,
           "dy": -15
          }
+        ],
+        "mathLines": [
+         "r=4\\text{ cm}",
+         "AC=8\\text{ cm}"
         ]
        },
        {
-        "en": "Equal perpendicular distances give AB = BC. In right triangle ABC, $2AB^2=8^2$, so $AB=4\\sqrt2$ cm.",
-        "zh": "與圓心等距的弦相等，AB = BC。在直角三角形 ABC 中，$2AB^2=8^2$，所以 $AB=4\\sqrt2$ cm。",
+        "en": "Equal distances give equal chords. The angle in the semicircle is 90°, so use Pythagoras in triangle ABC. $AB=BC,\\quad\\angle ABC=90^\\circ\\quad 2AB^2=8^2\\quad AB=4\\sqrt2\\text{ cm}$.",
+        "zh": "等距的弦相等；半圓內的圓周角是直角，所以在三角形 ABC 中用勾股定理。 $AB=BC,\\quad\\angle ABC=90^\\circ\\quad 2AB^2=8^2\\quad AB=4\\sqrt2\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -9263,11 +10013,17 @@
           "dx": -35,
           "dy": 0
          }
-        ]
+        ],
+        "mathLines": [
+         "AB=BC,\\quad\\angle ABC=90^\\circ",
+         "2AB^2=8^2",
+         "AB=4\\sqrt2\\text{ cm}"
+        ],
+        "ref": "(chords equidistant from centre are equal); (∠ in semi-circle); (Pyth. theorem)"
        },
        {
-        "en": "The perpendiculars bisect both chords, so BP = BQ = 2√2 cm. The three right angles make OPBQ a rectangle; equal adjacent sides make it a square.",
-        "zh": "垂線平分兩弦，所以 BP = BQ = 2√2 cm。三個直角令 OPBQ 成為長方形，再由相鄰邊相等得它是正方形。",
+        "en": "The perpendiculars bisect both chords, so BP = BQ = 2√2 cm. The three right angles make OPBQ a rectangle; equal adjacent sides make it a square. $BP=BQ=2\\sqrt2\\text{ cm}$.",
+        "zh": "垂線平分兩弦，所以 BP = BQ = 2√2 cm。三個直角令 OPBQ 成為長方形，再由相鄰邊相等得它是正方形。 $BP=BQ=2\\sqrt2\\text{ cm}$。",
         "polygons": [
          [
           "O",
@@ -9297,11 +10053,15 @@
           "dx": 0,
           "dy": 24
          }
-        ]
+        ],
+        "mathLines": [
+         "BP=BQ=2\\sqrt2\\text{ cm}"
+        ],
+        "ref": "(line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "Area OPBQ = BP × BQ = (2√2)² = 8 cm². Therefore the claim of 16 cm² is incorrect.",
-        "zh": "OPBQ 面積 = BP × BQ = (2√2)² = 8 cm²，所以不同意 16 cm² 的聲稱。",
+        "en": "Area OPBQ = BP × BQ = (2√2)² = 8 cm². Therefore the claim of 16 cm² is incorrect. $[OPBQ]=(2\\sqrt2)^2=8\\text{ cm}^2$.",
+        "zh": "OPBQ 面積 = BP × BQ = (2√2)² = 8 cm²，所以不同意 16 cm² 的聲稱。 $[OPBQ]=(2\\sqrt2)^2=8\\text{ cm}^2$。",
         "polygons": [
          [
           "O",
@@ -9311,10 +10071,14 @@
          ]
         ],
         "final": true,
-        "answer": "AB = 4√2 cm; area OPBQ = 8 cm²"
+        "answer": "AB = 4√2 cm; area OPBQ = 8 cm²",
+        "mathLines": [
+         "[OPBQ]=(2\\sqrt2)^2=8\\text{ cm}^2"
+        ]
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -9503,8 +10267,8 @@
       ],
       "steps": [
        {
-        "en": "Use the corrected condition AB = DE. M and N are the chord midpoints, and C lies on OF.",
-        "zh": "使用補充條件 AB = DE；M、N 是弦中點，C 在 OF 上。",
+        "en": "Use the corrected condition AB = DE. M and N are the chord midpoints, and C lies on OF. $AB=DE,\\quad AM=MB,\\quad DN=NE\\quad O,C,F\\text{ are collinear}$.",
+        "zh": "使用補充條件 AB = DE；M、N 是弦中點，C 在 OF 上。 $AB=DE,\\quad AM=MB,\\quad DN=NE\\quad O,C,F\\text{ are collinear}$。",
         "ticks": [
          [
           "A",
@@ -9526,11 +10290,17 @@
           "E",
           2
          ]
+        ],
+        "mathLines": [
+         "AB=DE,",
+         "AM=MB,",
+         "DN=NE",
+         "O,C,F\\text{ are collinear}"
         ]
        },
        {
-        "en": "Midpoint lines give OM perpendicular to AB and ON perpendicular to DE. Equal chords give OM = ON.",
-        "zh": "弦中點連線得 OM 垂直 AB、ON 垂直 DE；等弦得 OM = ON。",
+        "en": "Midpoint lines give OM perpendicular to AB and ON perpendicular to DE. Equal chords give OM = ON. $OM\\perp AB,\\quad ON\\perp DE\\quad OM=ON$.",
+        "zh": "弦中點連線得 OM 垂直 AB、ON 垂直 DE；等弦得 OM = ON。 $OM\\perp AB,\\quad ON\\perp DE\\quad OM=ON$。",
         "arcs": [
          [
           "M",
@@ -9561,11 +10331,17 @@
           "N",
           1
          ]
-        ]
+        ],
+        "mathLines": [
+         "OM\\perp AB,",
+         "ON\\perp DE",
+         "OM=ON"
+        ],
+        "ref": "(line joining centre to mid-pt. of chord ⊥ chord); (equal chords, equidistant from centre)"
        },
        {
-        "en": "Right triangles OMF and ONF share hypotenuse OF and have OM = ON. By RHS they are congruent, so angle MOF = angle NOF. Thus OF bisects angle MON.",
-        "zh": "直角三角形 OMF、ONF 有公共斜邊 OF，且 OM = ON，以 RHS 證全等，得角 MOF = 角 NOF，所以 OF 平分角 MON。",
+        "en": "Right triangles OMF and ONF share hypotenuse OF and have OM = ON. By RHS they are congruent, so angle MOF = angle NOF. Thus OF bisects angle MON. $\\triangle OMF\\cong\\triangle ONF\\quad \\angle MOF=\\angle NOF$.",
+        "zh": "直角三角形 OMF、ONF 有公共斜邊 OF，且 OM = ON，以 RHS 證全等，得角 MOF = 角 NOF，所以 OF 平分角 MON。 $\\triangle OMF\\cong\\triangle ONF\\quad \\angle MOF=\\angle NOF$。",
         "polygons": [
          [
           "O",
@@ -9597,11 +10373,15 @@
          ]
         ],
         "noRays": true,
-        "ref": "RHS / 斜邊直角邊"
+        "mathLines": [
+         "\\triangle OMF\\cong\\triangle ONF",
+         "\\angle MOF=\\angle NOF"
+        ],
+        "ref": "(RHS)"
        },
        {
-        "en": "C lies on OF, so angle MOC = angle NOC. In triangles OMC and ONC, OM = ON and OC is common. By SAS they are congruent.",
-        "zh": "C 在 OF 上，所以角 MOC = 角 NOC。在三角形 OMC、ONC 中，OM = ON、OC 為公共邊，以 SAS 證全等。",
+        "en": "C lies on OF, so angle MOC = angle NOC. In triangles OMC and ONC, OM = ON and OC is common. By SAS they are congruent. $\\angle MOC=\\angle NOC\\quad OM=ON,\\quad OC=OC\\quad \\triangle OMC\\cong\\triangle ONC$.",
+        "zh": "C 在 OF 上，所以角 MOC = 角 NOC。在三角形 OMC、ONC 中，OM = ON、OC 為公共邊，以 SAS 證全等。 $\\angle MOC=\\angle NOC\\quad OM=ON,\\quad OC=OC\\quad \\triangle OMC\\cong\\triangle ONC$。",
         "polygons": [
          [
           "O",
@@ -9621,11 +10401,17 @@
           "claim"
          ]
         ],
-        "ref": "SAS / 邊角邊"
+        "mathLines": [
+         "\\angle MOC=\\angle NOC",
+         "OM=ON,",
+         "OC=OC",
+         "\\triangle OMC\\cong\\triangle ONC"
+        ],
+        "ref": "(SAS)"
        },
        {
-        "en": "Corresponding sides of the congruent triangles are equal: CM = CN.",
-        "zh": "全等三角形的對應邊相等，所以 CM = CN。",
+        "en": "Corresponding sides of the congruent triangles are equal: CM = CN. $CM=CN$.",
+        "zh": "全等三角形的對應邊相等，所以 CM = CN。 $CM=CN$。",
         "ticks": [
          [
           "C",
@@ -9639,12 +10425,17 @@
          ]
         ],
         "final": true,
-        "answer": "OF bisects ∠MON; CM = CN"
+        "answer": "OF bisects ∠MON; CM = CN",
+        "mathLines": [
+         "CM=CN"
+        ],
+        "ref": "(corr. sides, ≅ △s)"
        }
       ],
       "cx": 230,
       "r": 140,
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -9818,8 +10609,8 @@
       ],
       "steps": [
        {
-        "en": "The large radius is 39 cm, the small radius is 17 cm and OP = 44 cm. E is the foot on the common chord AB.",
-        "zh": "大圓半徑為 39 cm，小圓半徑為 17 cm，OP = 44 cm，E 是公共弦 AB 上的垂足。",
+        "en": "The large radius is 39 cm, the small radius is 17 cm and OP = 44 cm. E is the foot on the common chord AB. $OA=39\\text{ cm},\\quad PA=17\\text{ cm}\\quad OP=44\\text{ cm}$.",
+        "zh": "大圓半徑為 39 cm，小圓半徑為 17 cm，OP = 44 cm，E 是公共弦 AB 上的垂足。 $OA=39\\text{ cm},\\quad PA=17\\text{ cm}\\quad OP=44\\text{ cm}$。",
         "arcs": [
          [
           "E",
@@ -9842,11 +10633,16 @@
           "dx": 0,
           "dy": 50
          }
+        ],
+        "mathLines": [
+         "OA=39\\text{ cm},",
+         "PA=17\\text{ cm}",
+         "OP=44\\text{ cm}"
         ]
        },
        {
-        "en": "Join OA and PA. Let OE = x and AE = y, so EP = 44 - x. Both shaded triangles are right-angled at E.",
-        "zh": "連 OA、PA，設 OE = x、AE = y，則 EP = 44 − x。兩個陰影三角形在 E 都是直角。",
+        "en": "Join OA and PA. Let OE = x and AE = y, so EP = 44 - x. Both shaded triangles are right-angled at E. $OE=x,\\quad AE=y\\quad EP=44-x\\quad \\angle OEA=\\angle PEA=90^\\circ$.",
+        "zh": "連 OA、PA，設 OE = x、AE = y，則 EP = 44 − x。兩個陰影三角形在 E 都是直角。 $OE=x,\\quad AE=y\\quad EP=44-x\\quad \\angle OEA=\\angle PEA=90^\\circ$。",
         "lines": [
          [
           "O",
@@ -9912,11 +10708,17 @@
           "dx": 15,
           "dy": 38
          }
+        ],
+        "mathLines": [
+         "OE=x,",
+         "AE=y",
+         "EP=44-x",
+         "\\angle OEA=\\angle PEA=90^\\circ"
         ]
        },
        {
-        "en": "The same y satisfies $y^2=39^2-x^2=17^2-(44-x)^2$. Solve to get OE = x = 36 cm and EP = 8 cm.",
-        "zh": "同一個 y 滿足 $y^2=39^2-x^2=17^2-(44-x)^2$，解得 OE = x = 36 cm、EP = 8 cm。",
+        "en": "Write two expressions for the same AE squared, then solve for OE and EP. $y^2=39^2-x^2\\quad y^2=17^2-(44-x)^2\\quad OE=x=36\\text{ cm}\\quad EP=8\\text{ cm}$.",
+        "zh": "用兩個直角三角形列出相同的 AE 平方，再求 OE 和 EP。 $y^2=39^2-x^2\\quad y^2=17^2-(44-x)^2\\quad OE=x=36\\text{ cm}\\quad EP=8\\text{ cm}$。",
         "segmentLabels": [
          {
           "id": "OE",
@@ -9938,11 +10740,18 @@
           "dx": 0,
           "dy": 45
          }
-        ]
+        ],
+        "mathLines": [
+         "y^2=39^2-x^2",
+         "y^2=17^2-(44-x)^2",
+         "OE=x=36\\text{ cm}",
+         "EP=8\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem)"
        },
        {
-        "en": "$AE=\\sqrt{39^2-36^2}=15$ cm. A perpendicular from O bisects AB, so EB = 15 cm and AB = 30 cm.",
-        "zh": "由 $AE=\\sqrt{39^2-36^2}=15$ cm，圓心到弦的垂線平分 AB，所以 EB = 15 cm、AB = 30 cm。",
+        "en": "Find AE using Pythagoras. The perpendicular from O bisects AB, so double AE to find the whole chord. $AE=\\sqrt{39^2-36^2}=15\\text{ cm}\\quad AE=EB,\\quad AB=30\\text{ cm}$.",
+        "zh": "用勾股定理求 AE；圓心到弦的垂線平分 AB，再把 AE 加倍求整條弦。 $AE=\\sqrt{39^2-36^2}=15\\text{ cm}\\quad AE=EB,\\quad AB=30\\text{ cm}$。",
         "ticks": [
          [
           "A",
@@ -9964,11 +10773,17 @@
           "offset": 45,
           "text": "30 cm"
          }
-        ]
+        ],
+        "mathLines": [
+         "AE=\\sqrt{39^2-36^2}=15\\text{ cm}",
+         "AE=EB,",
+         "AB=30\\text{ cm}"
+        ],
+        "ref": "(Pyth. theorem); (line from centre ⊥ chord bisects chord)"
        },
        {
-        "en": "C is the left end of the small circle on OP, so PC = 17 cm. Since PE = 8 cm, CE = PC - PE = 9 cm.",
-        "zh": "C 是小圓在 OP 上的左端點，所以 PC = 17 cm。PE = 8 cm，因此 CE = PC − PE = 9 cm。",
+        "en": "C is the left end of the small circle on OP, so PC = 17 cm. Since PE = 8 cm, CE = PC - PE = 9 cm. $CE=PC-PE\\quad =17-8=9\\text{ cm}$.",
+        "zh": "C 是小圓在 OP 上的左端點，所以 PC = 17 cm。PE = 8 cm，因此 CE = PC − PE = 9 cm。 $CE=PC-PE\\quad =17-8=9\\text{ cm}$。",
         "clearLabels": [
          "OP",
          "OE"
@@ -9993,7 +10808,11 @@
          }
         ],
         "final": true,
-        "answer": "AB = 30 cm; CE = 9 cm"
+        "answer": "AB = 30 cm; CE = 9 cm",
+        "mathLines": [
+         "CE=PC-PE",
+         "=17-8=9\\text{ cm}"
+        ]
        }
       ],
       "cx": 160,
@@ -10009,7 +10828,8 @@
         "r": 0.4358974358974359
        }
       ],
-      "readable": true
+      "readable": true,
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [

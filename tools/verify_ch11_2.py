@@ -6,6 +6,7 @@ corrected printed question 27 and the original question/answer for question 18.
 """
 import json
 import math
+import re
 from pathlib import Path
 
 from figcheck import ang, build_points, check_anim
@@ -83,10 +84,21 @@ for key, question in questions.items():
 # Equal tick groups must never imply equality of unequal lengths.
 animations = [(key, q["anim"]) for key, q in questions.items()]
 animations += [(c["id"], c["demo"]["opts"]["anim"]) for c in data["cards"]]
+catalog = json.loads((ROOT / "data/src/theorem-abbreviations.json").read_text(encoding="utf-8"))
+approved_reasons = {item["abbreviation"]
+                    for group in ("theorems", "basicAngleRules", "otherGeometryReasons")
+                    for item in catalog[group].values()}
 for key, animation in animations:
+    assert animation.get("layout") == "side-by-side", (key, "synchronised reading panel")
     assert not check_anim(animation, key), check_anim(animation, key)
     points, groups = build_points(animation), {}
     for step in animation["steps"]:
+        lines = step.get("mathLines", [])
+        assert lines and all(line.strip() and "$" not in line for line in lines), (key, "formula lines")
+        expressions = [re.findall(r"\$([^$]+)\$", step[lang]) for lang in ("en", "zh")]
+        assert len(expressions[0]) == 1 and expressions[0] == expressions[1], (key, "bilingual formulas")
+        assert expressions[0][0] == r"\quad ".join(lines), (key, "formula lines match caption")
+        assert all(reason in approved_reasons for reason in step.get("ref", "").split("; ") if reason), (key, "theorem abbreviation")
         marks = [(t[2] if len(t) > 2 else 1, t[:2]) for t in step.get("ticks", [])]
         marks += [(1, ["O", name]) for name in step.get("radii", [])]
         for count, segment in marks:
@@ -119,4 +131,4 @@ assert "omitted" in questions["l2-27"]["stem"]["en"]
 assert "4.8" in questions["l2-18"]["answers"][0]["math"]
 assert "30\\sqrt{10}" in questions["l2-22"]["answers"][0]["math"]
 assert "SSS" in questions["l1-16"]["solution"]["steps"][1]["en"]
-print("PASS: 31 questions, 5 concept cards, source lengths/angles, equality marks and corrected proofs.")
+print("PASS: 31 questions, 5 concept cards, source geometry, synchronised formulas and saved theorem abbreviations.")

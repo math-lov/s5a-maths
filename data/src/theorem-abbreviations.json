@@ -301,6 +301,55 @@
         "en": "Two corresponding equal angle pairs establish similarity.",
         "zh": "兩對對應角相等，可證三角形相似。"
       }
+    },
+    "pythagoras": {
+      "abbreviation": "(Pyth. theorem)",
+      "meaning": {
+        "en": "In a right triangle, the square of the hypotenuse equals the sum of the squares of the other sides.",
+        "zh": "直角三角形的斜邊平方等於其餘兩邊的平方和。"
+      }
+    },
+    "converse_pythagoras": {
+      "abbreviation": "(converse of Pyth. theorem)",
+      "meaning": {
+        "en": "A triangle is right-angled if the square of its longest side equals the sum of the squares of the other sides.",
+        "zh": "若最長邊的平方等於其餘兩邊的平方和，則三角形是直角三角形。"
+      }
+    },
+    "rhs_congruence": {
+      "abbreviation": "(RHS)",
+      "meaning": {
+        "en": "Right triangles with equal hypotenuses and one equal corresponding leg are congruent.",
+        "zh": "兩個直角三角形的斜邊及一條對應直角邊分別相等，則兩三角形全等。"
+      }
+    },
+    "quadrilateral_angle_sum": {
+      "abbreviation": "(∠ sum of quad.)",
+      "meaning": {
+        "en": "Interior angles of a quadrilateral sum to 360°.",
+        "zh": "四邊形的內角和為三百六十度。"
+      }
+    },
+    "perpendicular_bisector_locus": {
+      "abbreviation": "(⊥ bisector locus)",
+      "meaning": {
+        "en": "Points equidistant from two fixed points lie on their perpendicular bisector.",
+        "zh": "與兩個定點等距的點，位於該線段的垂直平分線上。"
+      }
+    },
+    "corresponding_sides_congruent": {
+      "abbreviation": "(corr. sides, ≅ △s)",
+      "meaning": {
+        "en": "Corresponding sides of congruent triangles are equal.",
+        "zh": "全等三角形的對應邊相等。"
+      }
+    },
+    "corresponding_angles_congruent": {
+      "abbreviation": "(corr. ∠s, ≅ △s)",
+      "meaning": {
+        "en": "Corresponding angles of congruent triangles are equal.",
+        "zh": "全等三角形的對應角相等。"
+      }
     }
   }
 }
