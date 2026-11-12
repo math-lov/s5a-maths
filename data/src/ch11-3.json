@@ -1721,6 +1721,10 @@
           "dx": 20,
           "dy": 0
          }
+        ],
+        "mathLines": [
+         "\\angle BOC=70^\\circ",
+         "\\text{reflex }\\angle AOC=220^\\circ"
         ]
        },
        {
@@ -1735,6 +1739,10 @@
           "claim",
           40
          ]
+        ],
+        "mathLines": [
+         "\\angle AOB=360^\\circ-220^\\circ-70^\\circ",
+         "\\phantom{\\angle AOB}=70^\\circ"
         ]
        },
        {
@@ -1766,7 +1774,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "x = 9 cm"
+        "answer": "x = 9 cm",
+        "mathLines": [
+         "AB=BC",
+         "\\Rightarrow\\quad x=9"
+        ]
        }
       ],
       "readable": true,
@@ -1775,7 +1787,8 @@
       "intro": {
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
-      }
+      },
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -1931,11 +1944,18 @@
           "given",
           30
          ]
+        ],
+        "mathLines": [
+         "AB=CD",
+         "\\Rightarrow\\quad\\angle COD=x"
         ]
        },
        {
         "en": "Add all four angles around O $x+50^\\circ+x+80^\\circ=360^\\circ$.",
-        "zh": "把圓心四周四隻角的角度相加：$x+50^\\circ+x+80^\\circ=360^\\circ$。"
+        "zh": "把圓心四周四隻角的角度相加：$x+50^\\circ+x+80^\\circ=360^\\circ$。",
+        "mathLines": [
+         "x+50^\\circ+x+80^\\circ=360^\\circ"
+        ]
        },
        {
         "en": "Solve for x $2x=230^\\circ\\quad\\Rightarrow\\quad x=115^\\circ$.",
@@ -1963,7 +1983,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "x = 115°"
+        "answer": "x = 115°",
+        "mathLines": [
+         "2x=230^\\circ",
+         "\\Rightarrow\\quad x=115^\\circ"
+        ]
        }
       ],
       "readable": true,
@@ -1982,7 +2006,8 @@
         "goal",
         32
        ]
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -2113,6 +2138,9 @@
           "claim",
           30
          ]
+        ],
+        "mathLines": [
+         "\\angle AOB=\\angle COD=60^\\circ"
         ]
        },
        {
@@ -2127,6 +2155,9 @@
           "id": "CD",
           "from": "C"
          }
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{CD}=\\overset{\\frown}{AB}=8\\text{ cm}"
         ]
        },
        {
@@ -2141,6 +2172,10 @@
           "claim",
           45
          ]
+        ],
+        "mathLines": [
+         "\\angle AOD=180^\\circ-60^\\circ",
+         "\\phantom{\\angle AOD}=120^\\circ"
         ]
        },
        {
@@ -2158,7 +2193,10 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "x = 8 cm; y = 16 cm"
+        "answer": "x = 8 cm; y = 16 cm",
+        "mathLines": [
+         "y=\\frac{120}{60}\\times8=16\\text{ cm}"
+        ]
        }
       ],
       "readable": true,
@@ -2193,7 +2231,8 @@
         "id": "AD",
         "from": "A"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -2361,6 +2400,10 @@
           "F",
           2
          ]
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}",
+         "\\phantom{\\overset{\\frown}{AB}}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}"
         ]
        },
        {
@@ -2379,6 +2422,9 @@
           "A",
           "claim"
          ]
+        ],
+        "mathLines": [
+         "\\overset{\\frown}{ABC}:\\overset{\\frown}{CDF}=2:3"
         ]
        },
        {
@@ -2396,7 +2442,11 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "z = 10 cm"
+        "answer": "z = 10 cm",
+        "mathLines": [
+         "\\frac z{15}=\\frac23",
+         "\\Rightarrow\\quad z=10\\text{ cm}"
+        ]
        }
       ],
       "readable": true,
@@ -2423,7 +2473,8 @@
         "id": "CF",
         "from": "C"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [
@@ -2546,11 +2597,18 @@
           52,
           "reflex"
          ]
+        ],
+        "mathLines": [
+         "\\text{reflex }\\angle AOB",
+         "=360^\\circ-75^\\circ=285^\\circ"
         ]
        },
        {
         "en": "Keep minor and major arcs in the same order $\\frac{x}{76}=\\frac{75}{285}$.",
-        "zh": "列比例時保持劣弧與優弧的次序：$\\frac{x}{76}=\\frac{75}{285}$。"
+        "zh": "列比例時保持劣弧與優弧的次序：$\\frac{x}{76}=\\frac{75}{285}$。",
+        "mathLines": [
+         "\\frac{x}{76}=\\frac{75}{285}"
+        ]
        },
        {
         "en": "Calculate the minor arc length $x=76\\times\\frac{75}{285}=20\\text{ cm}$.",
@@ -2567,7 +2625,10 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "x = 20 cm"
+        "answer": "x = 20 cm",
+        "mathLines": [
+         "x=76\\times\\frac{75}{285}=20\\text{ cm}"
+        ]
        }
       ],
       "readable": true,
@@ -2594,7 +2655,8 @@
         "id": "AB",
         "from": "A"
        }
-      ]
+      ],
+      "layout": "side-by-side"
      },
      "solution": {
       "steps": [

@@ -16,6 +16,7 @@
    arcMeasures (lengths on circular arcs, also allowed initially on anim),
    dimensions (perpendicular distance), ticks [a,b,count], parallel [a,b,t].
    Points may set labelOffset: [dx,dy]. anim.intro supplies the starting caption.
+   anim.layout = "side-by-side" enables the reading panel; steps may set mathLines.
    Radii remain as construction lines after their temporary highlight clears.
    angle 一律用「度」。座標由角度算出，所以畫出來的角就是題目寫的角。 */
 (function () {
@@ -123,7 +124,8 @@
     var frame = { cx: anim.cx || 210, cy: anim.cy || 210, r: anim.r || 150 };
     setFrame(frame);
     var wrap = document.createElement("div");
-    wrap.className = "cg";
+    var split = anim.layout === "side-by-side";
+    wrap.className = "cg" + (split ? " cg-split" : "");
 
     var svg = el("svg", {
       class: "cg-svg" + (anim.readable ? " cg-readable" : ""), viewBox: "0 0 " + SIZE + " " + SIZE,
@@ -312,8 +314,47 @@
     row.appendChild(count);
 
     wrap.appendChild(svg);
-    wrap.appendChild(say);
-    wrap.appendChild(row);
+    var stepZh, stepEn;
+    if (split) {
+      var detail = document.createElement("div");
+      detail.className = "cg-detail";
+      detail.setAttribute("aria-live", "polite");
+      detail.setAttribute("aria-atomic", "true");
+      var progress = document.createElement("div");
+      progress.className = "cg-progress";
+      stepZh = document.createElement("span");
+      stepZh.className = "l-zh";
+      stepEn = document.createElement("span");
+      stepEn.className = "l-en";
+      progress.appendChild(stepZh);
+      progress.appendChild(stepEn);
+      detail.appendChild(progress);
+      detail.appendChild(say);
+      wrap.appendChild(detail);
+      // Keep navigation outside the live region so only the lesson is announced.
+      var navigation = document.createElement("div");
+      navigation.className = "cg-navigation";
+      navigation.appendChild(row);
+      wrap.appendChild(navigation);
+      var buttonLabel = function (button, zh, en, arrow) {
+        button.textContent = "";
+        if (arrow) {
+          var mark = document.createElement("span");
+          mark.setAttribute("aria-hidden", "true");
+          mark.textContent = arrow;
+          button.appendChild(mark);
+        }
+        var z = document.createElement("span"), e = document.createElement("span");
+        z.className = "l-zh"; z.textContent = zh;
+        e.className = "l-en"; e.textContent = en;
+        button.appendChild(z); button.appendChild(e);
+      };
+      buttonLabel(back, "上一步", "Back", "←");
+      buttonLabel(restart, "重播", "Restart");
+    } else {
+      wrap.appendChild(say);
+      wrap.appendChild(row);
+    }
     host.appendChild(wrap);
 
     var steps = anim.steps || [];
@@ -610,8 +651,25 @@
     }
 
     /* 字幕內可以有 $...$：交給全站的 KaTeX 渲染（與題解同一個機制） */
-    function setSay(node, txt) {
+    function setSay(node, txt, mathLines) {
       node.textContent = txt || "";
+      if (split && txt) {
+        node.textContent = "";
+        var offset = 0, match, math = /\$([^$]+)\$/g;
+        while ((match = math.exec(txt))) {
+          var words = txt.slice(offset, match.index).trim().replace(/[:：]$/, "");
+          if (words) node.appendChild(document.createTextNode(words));
+          (mathLines || [match[1]]).forEach(function (line) {
+            var equation = document.createElement("span");
+            equation.className = "cg-equation";
+            equation.textContent = "$\\displaystyle " + line + "$";
+            node.appendChild(equation);
+          });
+          offset = math.lastIndex;
+        }
+        var tail = txt.slice(offset);
+        if (!/^[\s.。]*$/.test(tail)) node.appendChild(document.createTextNode(tail));
+      }
       if (!txt || !window.renderMathInElement) return;
       try {
         window.renderMathInElement(node, {
@@ -662,8 +720,8 @@
       });
       for (var i = 0; i < n; i++) draw(i, true);
       if (n > 0) {
-        setSay(sayZh, steps[n - 1].zh);
-        setSay(sayEn, steps[n - 1].en);
+        setSay(sayZh, steps[n - 1].zh, steps[n - 1].mathLines);
+        setSay(sayEn, steps[n - 1].en, steps[n - 1].mathLines);
         sayRef.textContent = steps[n - 1].ref || "";
       } else {
         setSay(sayZh, (anim.intro || {}).zh || "");
@@ -675,7 +733,14 @@
     }
 
     function update() {
-      next.textContent = at >= steps.length ? "完成 Done" : "下一步 Next step →";
+      if (split) {
+        buttonLabel(next, at >= steps.length ? "完成" : "下一步",
+          at >= steps.length ? "Done" : "Next step", at >= steps.length ? "" : "→");
+        stepZh.textContent = at === 0 ? "先看圖形 · 共 " + steps.length + " 步" : "第 " + at + " / " + steps.length + " 步";
+        stepEn.textContent = at === 0 ? "Study the figure · " + steps.length + " steps" : "Step " + at + " of " + steps.length;
+      } else {
+        next.textContent = at >= steps.length ? "完成 Done" : "下一步 Next step →";
+      }
       next.disabled = at >= steps.length;
       back.disabled = at === 0;
       restart.disabled = at === 0;
@@ -688,8 +753,8 @@
       // cancels delayed labels so Back/Restart cannot show an obsolete answer.
       renderUpTo(at);
       draw(at);
-      setSay(sayZh, steps[at].zh);
-      setSay(sayEn, steps[at].en);
+      setSay(sayZh, steps[at].zh, steps[at].mathLines);
+      setSay(sayEn, steps[at].en, steps[at].mathLines);
       sayRef.textContent = steps[at].ref || "";
       at += 1;
       syncGoals(at);
