@@ -98,6 +98,30 @@ for key,animation in animations:
     print('PASS',key)
 
 assert [a['tf'] for a in questions['sc']['answers']]==[True,True,False,False]
+# Teaching examples must establish their claims without accidental diameters
+# or vertically opposite angles. Check the geometry rather than its labels.
+for index,card in enumerate(data['cards'][:5]):
+    animation=card['demo']['opts']['anim']
+    points=build_points(animation)
+    names=[name for name in points if name!='O']
+    for i,a in enumerate(names):
+        for b in names[i+1:]:
+            assert ang(points[a],points['O'],points[b])<170,(card['id'],'near-diameter',a,b)
+    centre_ab=ang(points['A'],points['O'],points['B'])
+    centre_cd=ang(points['C'],points['O'],points['D'])
+    near(centre_ab,60,card['id']+' centre angle AB')
+    near(centre_cd,60 if index<3 else 120,card['id']+' centre angle CD')
+    if index<3:
+        near(math.dist(points['A'],points['B']),math.dist(points['C'],points['D']),card['id']+' equal chords')
+    else:
+        near(arc_degrees(points,'A','B','C')/arc_degrees(points,'C','D','A'),.5,card['id']+' arc ratio')
+    if index==0:
+        for measure in animation['arcMeasures']:
+            degrees=arc_degrees(points,measure['from'],measure['to'],measure['avoid'])
+            near(math.radians(degrees)*18/math.pi,6,card['id']+' marked arc length')
+    if index==4:
+        near(ang(points['A'],points['P'],points['B']),30,card['id']+' circumference angle AB')
+        near(ang(points['C'],points['P'],points['D']),60,card['id']+' circumference angle CD')
 assert len(questions)==32 and [len(s['questions']) for s in data['sections']]==[3,1,15,11,1,1]
 # Check ratios and proof givens independently of labels and captions.
 for key,arcs,expected in [

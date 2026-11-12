@@ -57,10 +57,10 @@
         "at": 90
        },
        "C": {
-        "at": 330
+        "at": 0
        },
        "D": {
-        "at": 270
+        "at": 300
        }
       },
       "segments": [
@@ -83,30 +83,9 @@
       ],
       "steps": [
        {
-        "en": "Start with two equal centre angles $\\angle AOB=\\angle COD$.",
-        "zh": "先看兩隻相等的圓心角：$\\angle AOB=\\angle COD$。",
-        "arcs": [
-         [
-          "O",
-          "A",
-          "B",
-          "x",
-          "given",
-          32
-         ],
-         [
-          "O",
-          "C",
-          "D",
-          "x",
-          "given",
-          32
-         ]
-        ]
-       },
-       {
-        "en": "Rotate one sector to match the other $\\widehat{AB}=\\widehat{CD}$.",
-        "zh": "繞圓心旋轉後，兩個扇形及弧可以重合：$\\widehat{AB}=\\widehat{CD}$。",
+        "en": "Start with two equal arcs: $\\widehat{AB}=\\widehat{CD}=6\\text{ cm}$.",
+        "zh": "先看兩段已知相等的弧：$\\widehat{AB}=\\widehat{CD}=6\\text{ cm}$。",
+        "arcs": [],
         "circleArcs": [
          [
           "A",
@@ -123,8 +102,22 @@
         ]
        },
        {
-        "en": "The converse also holds $\\widehat{AB}=\\widehat{CD}\\ \\Longrightarrow\\ \\angle AOB=\\angle COD$.",
-        "zh": "反過來，相等的對應弧也給出相等圓心角：$\\widehat{AB}=\\widehat{CD}\\ \\Longrightarrow\\ \\angle AOB=\\angle COD$。",
+        "en": "Equal arcs give equal centre angles: $\\angle AOB=\\angle COD=x$.",
+        "zh": "等弧所對的圓心角相等：$\\angle AOB=\\angle COD=x$。",
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "accent"
+         ],
+         [
+          "C",
+          "D",
+          "A",
+          "accent"
+         ]
+        ],
         "arcs": [
          [
           "O",
@@ -140,7 +133,29 @@
           "D",
           "x",
           "claim",
+          46
+         ]
+        ]
+       },
+       {
+        "en": "The converse also holds: $\\angle AOB=\\angle COD\\Longrightarrow\\widehat{AB}=\\widehat{CD}$.",
+        "zh": "反過來，相等的圓心角也對着等弧：$\\angle AOB=\\angle COD\\Longrightarrow\\widehat{AB}=\\widehat{CD}$。",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "x",
+          "claim",
           32
+         ],
+         [
+          "O",
+          "C",
+          "D",
+          "x",
+          "claim",
+          46
          ]
         ],
         "final": true,
@@ -152,9 +167,27 @@
       "r": 135,
       "cy": 210,
       "intro": {
-       "en": "Read the given information. Follow one reason at a time.",
-       "zh": "先看已知條件，再逐步跟隨每一步的理由。"
-      }
+       "zh": "已知兩段弧長同為 6 cm；圖中沒有直徑，不能用對頂角作理由。",
+       "en": "Both marked arcs are 6 cm long. There are no diameters here, so use the equal-arc rule."
+      },
+      "arcMeasures": [
+       {
+        "id": "AB",
+        "from": "A",
+        "to": "B",
+        "avoid": "C",
+        "text": "6 cm",
+        "offset": 22
+       },
+       {
+        "id": "CD",
+        "from": "C",
+        "to": "D",
+        "avoid": "A",
+        "text": "6 cm",
+        "offset": 22
+       }
+      ]
      }
     }
    }
@@ -189,10 +222,10 @@
         "at": 90
        },
        "C": {
-        "at": 330
+        "at": 0
        },
        "D": {
-        "at": 270
+        "at": 300
        }
       },
       "segments": [
@@ -246,7 +279,7 @@
           "D",
           "x",
           "claim",
-          32
+          46
          ]
         ],
         "polygons": [
@@ -339,10 +372,10 @@
         "at": 90
        },
        "C": {
-        "at": 330
+        "at": 0
        },
        "D": {
-        "at": 270
+        "at": 300
        }
       },
       "segments": [
@@ -398,7 +431,7 @@
           "D",
           "x",
           "claim",
-          30
+          46
          ]
         ]
        },
@@ -419,7 +452,19 @@
         ],
         "final": true,
         "clearGoal": true,
-        "answer": "Equal arcs ↔ equal chords"
+        "answer": "Equal arcs ↔ equal chords",
+        "polygons": [
+         [
+          "O",
+          "A",
+          "B"
+         ],
+         [
+          "O",
+          "C",
+          "D"
+         ]
+        ]
        }
       ],
       "readable": true,
@@ -463,13 +508,13 @@
         "at": 90
        },
        "C": {
-        "at": 330
+        "at": 355
        },
        "D": {
-        "at": 210
+        "at": 235
        },
        "P": {
-        "at": 30,
+        "at": 25,
         "hidden": true
        }
       },
@@ -609,13 +654,13 @@
         "at": 90
        },
        "C": {
-        "at": 330
+        "at": 355
        },
        "D": {
-        "at": 210
+        "at": 235
        },
        "P": {
-        "at": 30
+        "at": 25
        }
       },
       "segments": [
@@ -706,7 +751,19 @@
         "zh": "比值中的共同因數二可以消去：$\\frac{\\widehat{AB}}{\\widehat{CD}}=\\frac{60}{120}=\\frac{30}{60}=\\frac12$。",
         "final": true,
         "clearGoal": true,
-        "answer": "Arc lengths ∝ circumference angles"
+        "answer": "Arc lengths ∝ circumference angles",
+        "polygons": [
+         [
+          "O",
+          "A",
+          "B"
+         ],
+         [
+          "O",
+          "C",
+          "D"
+         ]
+        ]
        }
       ],
       "readable": true,

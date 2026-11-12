@@ -16,6 +16,7 @@
    arcMeasures (lengths on circular arcs, also allowed initially on anim),
    dimensions (perpendicular distance), ticks [a,b,count], parallel [a,b,t].
    Points may set labelOffset: [dx,dy]. anim.intro supplies the starting caption.
+   Radii remain as construction lines after their temporary highlight clears.
    angle 一律用「度」。座標由角度算出，所以畫出來的角就是題目寫的角。 */
 (function () {
   "use strict";
@@ -236,8 +237,24 @@
     (anim.segments || []).forEach(function (s) {
       var a = screen(pts[s[0]]), b = screen(pts[s[1]]);
       if (!a || !b) return;
-      gBase.appendChild(el("line", { class: "cg-seg", x1: a.x, y1: a.y, x2: b.x, y2: b.y }));
+      gBase.appendChild(el("line", { class: "cg-seg", "data-segment": segmentKey(s[0], s[1]),
+        x1: a.x, y1: a.y, x2: b.x, y2: b.y }));
     });
+
+    function segmentKey(a, b) { return [a, b].sort().join(":"); }
+
+    function keepRadius(name, delay, instant) {
+      var key = segmentKey(centreName, name);
+      var exists = Array.prototype.some.call(svg.querySelectorAll("[data-segment]"), function (node) {
+        return node.getAttribute("data-segment") === key;
+      });
+      if (exists) return;
+      var a = screen(pts[centreName]), b = screen(pts[name]);
+      var line = el("line", { class: "cg-draw ink", "data-segment": key,
+        x1: a.x, y1: a.y, x2: b.x, y2: b.y });
+      gStep.appendChild(line);
+      drawOn(line, delay, instant);
+    }
 
     var pointGroups = {};
     Object.keys(pts).forEach(function (name) {
@@ -471,7 +488,8 @@
       (st.lines || []).forEach(function (L) {
         var a = screen(pts[L[0]]), b = screen(pts[L[1]]);
         if (!a || !b) return;
-        var ln = el("line", { class: "cg-draw " + (L[2] || "given"), x1: a.x, y1: a.y, x2: b.x, y2: b.y });
+        var ln = el("line", { class: "cg-draw " + (L[2] || "given"), "data-segment": segmentKey(L[0], L[1]),
+          x1: a.x, y1: a.y, x2: b.x, y2: b.y });
         gStep.appendChild(ln);
         drawOn(ln, 0, instant);
       });
@@ -544,6 +562,7 @@
          畫綠色等長記號，並把這幾條半徑拉出來閃一閃（畫在角之後，壓在最上層）。 */
       (st.radii || []).forEach(function (name, j) {
         if (!centreName || !pts[name]) return;
+        keepRadius(name, 420 + j * 180, instant);
         ray(centreName, name, "radii", 420 + j * 180, instant);
         tick(centreName, name, "radii", 560 + j * 180, instant);
       });
@@ -632,6 +651,7 @@
 
     function renderUpTo(n) {
       cancelPending();
+      setFrame(frame);
       gStep.innerHTML = "";
       gPulse.innerHTML = "";
       gFocus.innerHTML = "";

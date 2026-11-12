@@ -3251,6 +3251,45 @@ for (const question of arcQuestions3.filter((q) => q.anim)) {
   chordPage.$(".cg-restart").click();
 }
 ok(arcFiguresValid3, "All 31 exercise animations complete without invalid coordinates or formula errors");
+let cardConstructionsStay3 = true, cardAnglesBothVisible3 = true, cardReplayClean3 = true;
+for (const card of arcPart3.cards.filter((c) => c.demo)) {
+  const anim = card.demo.opts.anim;
+  chordPage.doc.body.replaceChildren();
+  chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, anim);
+  const key = (a, b) => [a, b].sort().join(":");
+  const initial = new Set(anim.segments.map((s) => key(s[0], s[1])));
+  const expected = new Set(initial);
+  for (const step of anim.steps) {
+    (step.radii || []).forEach((name) => expected.add(key("O", name)));
+    (step.lines || []).forEach((line) => expected.add(key(line[0], line[1])));
+    chordPage.$(".cg-next").click();
+    const actual = new Set(chordPage.$$("[data-segment]").map((n) => n.getAttribute("data-segment")));
+    if ([...expected].some((segment) => !actual.has(segment))) cardConstructionsStay3 = false;
+  }
+  if (["ch11-3-c01", "ch11-3-c02", "ch11-3-c03"].includes(card.id) &&
+      chordPage.$$('.cg-val[data-angle="O"]').filter((n) => n.textContent === "x").length !== 2) {
+    cardAnglesBothVisible3 = false;
+  }
+  chordPage.$(".cg-back").click();
+  if (chordPage.$$("[data-segment]").length !== expected.size) cardConstructionsStay3 = false;
+  chordPage.$(".cg-restart").click();
+  const reset = chordPage.$$("[data-segment]").map((n) => n.getAttribute("data-segment"));
+  if (reset.length !== initial.size || reset.some((s) => !initial.has(s))) cardReplayClean3 = false;
+}
+ok(cardConstructionsStay3, "All five teaching cards retain constructed radii through later steps and Back");
+ok(cardAnglesBothVisible3, "Both equal centre-angle labels remain visible in the three equality cards");
+ok(cardReplayClean3, "Restart removes construction radii and restores each original teaching figure");
+chordPage.doc.body.replaceChildren();
+const independentCardHosts3 = [0, 4].map((i) => {
+  const host = chordPage.doc.createElement("div");
+  chordPage.doc.body.appendChild(host);
+  chordPage.ctx.window.S5A_CIRCLE.mount(host, arcPart3.cards[i].demo.opts.anim);
+  return host;
+});
+const independentArc3 = independentCardHosts3[0].querySelector(".cg-arc-guide").getAttribute("d");
+independentCardHosts3[0].querySelector(".cg-next").click();
+ok(independentCardHosts3[0].querySelector(".cg-arc-guide").getAttribute("d") === independentArc3,
+  "A teaching card retains its own circle size when another card has a different radius");
 const arcMeasureExample3 = arcQuestions3.find((q) => q.id === "ch11-3-l1-3");
 chordPage.doc.body.replaceChildren();
 chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, arcMeasureExample3.anim);
