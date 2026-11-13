@@ -378,6 +378,27 @@
         "en": "Corresponding sides of similar triangles are proportional.",
         "zh": "相似三角形的對應邊成比例。"
       }
+    },
+    "equal_angles_sides": {
+      "abbreviation": "(sides opp. equal ∠s)",
+      "meaning": {
+        "zh": "三角形內相等的角所對的邊相等。",
+        "en": "Sides opposite equal angles in a triangle are equal."
+      }
+    },
+    "parallelogram_sides": {
+      "abbreviation": "(opp. sides of ∥gram)",
+      "meaning": {
+        "zh": "平行四邊形的對邊相等。",
+        "en": "Opposite sides of a parallelogram are equal."
+      }
+    },
+    "incentre_bisector": {
+      "abbreviation": "(in-centre)",
+      "meaning": {
+        "zh": "三角形的內心在各內角的角平分線上。",
+        "en": "The in-centre lies on each internal angle bisector."
+      }
     }
   }
 }

@@ -452,7 +452,7 @@ ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")
   "每頁都有語言設定");
 
 const figs = JSON.parse(figuresJs.slice(figuresJs.indexOf("{"), figuresJs.lastIndexOf("}") + 1));
-ok(Object.keys(figs).length === 40, "圖共 40 幅（原有 33 幅 ＋ 3 幅第 11.1 節及 4 幅第 11.3 節判斷題圖；實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).length === 44, "圖共 44 幅（原有 33 幅 ＋ 第 11.1、11.3、11.4 節的 11 幅判斷題圖；實際 " + Object.keys(figs).length + "）");
 ok(Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length === 13,
   "其中 13 幅屬於第 18.1 節（文氏圖；實際 " +
   Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length + "）");
@@ -3423,6 +3423,67 @@ chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,
 ok(chordPage.$(".cg-region").getAttribute("fill-rule") === "evenodd" &&
    (chordPage.$(".cg-region").getAttribute("d").match(/M/g) || []).length === 2,
   "Q27 shades a semicircle with a genuine unshaded segment cut out");
+
+console.log("\n== 11.4: complete cyclic quadrilaterals and converse tests ==");
+const cyclicPart4 = JSON.parse(read("data/src/ch11-4.json"));
+const cyclicQuestions4 = cyclicPart4.sections.flatMap((s) => s.questions);
+const cyclicReaders4 = cyclicQuestions4.filter((q) => q.anim).map((q) => q.anim)
+  .concat(cyclicPart4.cards.filter((c) => c.demo).map((c) => c.demo.opts.anim));
+ok(cyclicQuestions4.length === 42 && cyclicReaders4.length === 46 && cyclicPart4.cards.length === 6,
+  "11.4: all 4 class exercises, 5 Section Check statements, Q1–Q37 and 6 teaching cards");
+ok(cyclicQuestions4.find((q) => q.code === "SC").answers.map((a) => a.tf).join() === "true,false,false,false,true",
+  "11.4: Section Check matches all five official answers");
+const cyclicOverview4 = boot("quiz.html", "?c=ch11-4&p=0");
+ok(cyclicOverview4.$$("#pagenav .pg").length === 43 && cyclicOverview4.$$(".cg-split").length === 5,
+  "11.4: overview contains 43 pages and five interactive theorem cards");
+const cyclicMeta4 = INDEX.parts.find((p) => p.id === "ch11-4");
+ok(cyclicMeta4.stats.questions === 42 && cyclicMeta4.stats.marks === 107 &&
+  CW_CHAPTERS.find((c) => c.id === "ch11").sections.some((s) => s.part === "ch11-4"),
+  "11.4: chapter registration and 107 teacher-set practice marks agree");
+let cyclicReplay4 = true, cyclicFormula4 = true, cyclicSegments4 = true, cyclicPages4 = true;
+for (const [index, q] of cyclicQuestions4.entries()) {
+  const rendered = boot("quiz.html", `?c=ch11-4&p=${index + 1}`, null, "show");
+  if (rendered.$$(".katex-error").length || !rendered.$(".sol-card") ||
+      (q.anim && !rendered.$(".cg-split"))) cyclicPages4 = false;
+  rendered.dom.window.close();
+}
+for (const anim of cyclicReaders4) {
+  chordPage.doc.body.replaceChildren();
+  chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, anim);
+  const state = () => JSON.stringify([
+    chordPage.$(".cg-svg").textContent, chordPage.$(".cg-say").textContent,
+    chordPage.$$("[data-segment]").map((n) => n.getAttribute("data-segment"))]);
+  const initial = state(), states = [];
+  let segments = new Set();
+  for (const [index, step] of anim.steps.entries()) {
+    chordPage.$(".cg-next").click();
+    const now = chordPage.$$("[data-segment]").map((n) => n.getAttribute("data-segment"));
+    if ([...segments].some((key) => !now.includes(key)) || new Set(now).size !== now.length) cyclicSegments4 = false;
+    segments = new Set(now);
+    if (chordPage.$(".cg-progress .l-en").textContent !== `Step ${index + 1} of ${anim.steps.length}` ||
+        chordPage.$(".cg-ref").textContent !== (step.ref || "") || chordPage.$$(".katex-error").length ||
+        chordPage.$$(".cg-en .cg-equation annotation").map((n) => n.textContent).join("\n") !==
+          step.mathLines.map((line) => "\\displaystyle " + line).join("\n") ||
+        chordPage.$$(".cg-svg [d]").some((n) => /NaN|undefined/.test(n.getAttribute("d")))) cyclicFormula4 = false;
+    states.push(state());
+  }
+  for (let index = states.length - 2; index >= 0; index--) {
+    chordPage.$(".cg-back").click();
+    if (state() !== states[index]) cyclicReplay4 = false;
+  }
+  chordPage.$(".cg-restart").click();
+  if (state() !== initial || chordPage.$(".cg-equation") || chordPage.$(".cg-ref").textContent ||
+      !chordPage.$(".cg-back").disabled) cyclicReplay4 = false;
+}
+ok(cyclicPages4, "11.4: every question page renders bilingual worked solutions with zero KaTeX errors");
+ok(cyclicFormula4, "11.4: all 46 players render the matching step, bilingual formulas and saved reasons");
+ok(cyclicSegments4, "11.4: auxiliary lines, angle sides and radii persist without duplicate segments");
+ok(cyclicReplay4, "11.4: every Back step and Restart restores the matching figure, formulas and reasons");
+const cyclicQ22 = cyclicQuestions4.find((q) => q.code === "22");
+ok(cyclicQ22.anim.steps.at(-1).mathLines[0] === "\\angle OED=\\angle BOE+\\angle OBE",
+  "11.4: Q22 corrects the duplicated angle name in the official solution");
+ok(cyclicQuestions4.find((q) => q.code === "37").answers[0].input === "120",
+  "11.4: Q37 is included, with the official answer 120°");
 
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

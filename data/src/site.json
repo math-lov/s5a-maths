@@ -651,6 +651,38 @@
      "en": "Exercise 11.3 with the supplied original questions and official solutions.",
      "zh": "參考課本 Exercise 11.3 原題及官方題解。"
     }
+   },
+   {
+    "id": "ch11-4",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch11",
+    "code": "11.4",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 11 章 · 圓形的基本性質",
+     "en": "Chapter 11 · Basic Properties of Circles"
+    },
+    "title": {
+     "zh": "11.4 圓內接四邊形與四點共圓 · 課本練習",
+     "en": "11.4 Cyclic Quadrilaterals and Concyclic Points · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5A · Exercise 11.4"
+    },
+    "stats": {
+     "questions": 42,
+     "marks": 107,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "完整課堂練習、概念判斷及練習 Q1–Q37；依課本與官方題解核對。",
+     "en": "Complete Class Exercise, Section Check and Q1–Q37, checked against the supplied book and official solutions."
+    }
    }
   ],
   "classwork": {
@@ -674,8 +706,8 @@
       "en": "Chapter 11 · Basic Properties of Circles"
      },
      "intro": {
-      "en": "Chapter 11 has four sections. Sections 11.1–11.3 are online with bilingual teaching cards, step-by-step figures and worked exercises.",
-      "zh": "第 11 章共四節。11.1–11.3 已上線，附中英教學卡、逐步圖解及課本練習題解。"
+      "zh": "第 11 章四節 11.1–11.4 已全部上線，附中英教學卡、逐步圖解及完整課本練習題解。",
+      "en": "All four sections 11.1–11.4 are online with bilingual teaching cards, step-by-step figures and complete worked exercises."
      },
      "sections": [
       {
@@ -700,6 +732,14 @@
        "title": {
         "en": "11.3 Angles, arcs and chords",
         "zh": "11.3 角、弧與弦"
+       }
+      },
+      {
+       "code": "11.4",
+       "part": "ch11-4",
+       "title": {
+        "zh": "11.4 圓內接四邊形與四點共圓",
+        "en": "11.4 Cyclic quadrilaterals and concyclic points"
        }
       }
      ]

@@ -609,3 +609,17 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 - 合併方式：抽 JSON → 逐欄位 diff → 只覆蓋 refined 有的欄位，`marks`／`difficulty`／`classPerf`／`figures` 一律保留；`build.py --check` 0 錯 0 警（parts 與 marking 加總仍對得上）。
 - smoke 的 14 題答案字串改寬鬆比對 `/all real (numbers|values)/`（配合新字）。
 - **排列／組合寫法（同日第三輪）**：老師指 `P(6, 2)` 學生睇唔明 → 英文全部改成 `6P2`／`4C3` 這種 nPr／nCr 寫法（45 處），中文標籤同步（例：「只寫 3P3 × 6P1 = 36」），中文行內 `$P(8,2)$` 改回全站慣例 `$P^8_2$`；第 18 題參考解法的 `C(12, 1)C(4, 4)` 加上 `×` 免得黏成 `12C14C4`。總覽引言另加一步「英文用 6P4、16C5 這種寫法」解釋 nPr／nCr 點讀（`introSteps` 由 4 步變 5 步）。`math` 欄位維持 `P^6_4`（KaTeX 上下標）不變。
+
+### 9.15 第 11.4 節完整內容與驗證（2026-11-13）
+
+* `data/src/ch11-4.json`：42 個題目頁（CE1–CE4、SC 五項、Q1–Q37），107 分為練習自擬分數。Q36、Q37 屬 Smart Corner；PDF、Word 原題與官方題解均有 Q37，不可漏掉。六張雙語教學卡，其中五張互動；合共 46 個播放器、162 步。
+* 沿用 `anim.layout: "side-by-side"`：800px 起左圖、右步驟及按鈕；手機依次為按鈕、圖、步驟。沒有另外建立版面或修改共用繪圖器。
+* 每步中英文各一組相同 `$…$`，其內容等於 `mathLines.join("\\quad ")`。分行由 `mathLines` 控制，公式不含中文；圖內答案牌 `answer` 是 SVG 純文字，不能放 `\\text{…}` 等 LaTeX。分項數值用獨立答案格；Q1、Q3、Q22、Q23、Q28 的最後答案牌列出兩個答案。
+* 每步明寫 `clearAngle` 及當前角標，避免舊值疊字；角邊、半徑及輔助線則由共用引擎永久保留。整角與部分角共用頂點時用不同半徑，必要時用角標第八項位移；點名用 `labelOffset`。Q28 的 A、B 很接近是原題數值導致，不可任意移動點來遷就標籤。
+* 共線線段優先用一條最大跨度，例如 Q13 用 EB、EC（中間保留 A、D），Q20 用 BE、BF、AF、CE；不能同時在底圖重畫整段及其子段。高亮仍依當前所用的實際子段。
+* 證共圓的題目不預先畫出待證的圓；先用已知、平行線及三角形性質，再選正確方向的逆定理。兩個圓的 Q21、Q33 使用實際計算的第二圓圓心／半徑；不能只畫外觀近似的圓。多部分圖可滿足 (b) 的額外條件，但 (a) 的證明不可提前用該條件。
+* `theorem-abbreviations.json` 的 `otherGeometryReasons` 新增 `(sides opp. equal ∠s)`、`(opp. sides of ∥gram)`、`(in-centre)`；屬共用補充理由，並非冒充課本摘要原文。定理卡證正向性質時，不得引用正在證明的性質。
+* 教材核對記錄：`data/raw/ch11-4-source.md`。Q22(b) 官方 Word 題解的 `OBE + OBE` 應為 `BOE + OBE`；Q30 的三角形角和重複寫 CBD，應為 CBD、BDC、BCD。網站在各題技巧框清楚註明，答案不變。Q25–Q29、Q36、Q37 的弧符號須直接核對 PDF；純文字抽取會丟失弧帽，不可誤當弦長比例。
+* 必跑 `python3 tools/build.py`（0 錯 0 警）、`python3 tools/verify_ch11_4.py`、`python3 tools/figcheck.py data/src/ch11-1.json data/src/ch11-2.json data/src/ch11-3.json data/src/ch11-4.json`，以及 README 的完整 smoke suite。新增 smoke 檢查全部 42 頁、46 播放器每步公式／理由、永久線段、逐步返回及重播；圖數由 40 增至 44，保留原有斷言。
+* 瀏覽器驗證：1280／390／320px 共 129 個頁面尺寸組合，逐頁操作中文／英文／雙語，486 個前進步驟及全部返回／重播；量度頁面溢出、公式寬度、SVG 文字碰撞及越界。另檢查 46 播放器正常動畫快速連按、返回後前進、重播後過期延遲、鍵盤 Enter，以及 800／768／320px 放大文字。截圖只作本機驗證，不連同教材原件發佈。
+* 有其他未提交修改時，只提交本次來源 JSON、四幅 SC 向量圖、定理表、驗證器、smoke、核對／交接文件及必要生成檔／HTML 版本戳；不可用 `git add -A` 混入既有修改。

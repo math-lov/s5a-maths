@@ -547,5 +547,37 @@
     "en": "Figure 4 — part (d).",
     "zh": "圖 4：第 (d) 題。"
   }
-}
+},
+  "ch11-4-sc-1": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 340\" role=\"img\"><circle cx=\"210\" cy=\"170\" r=\"115\" fill=\"none\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"121.905\" y1=\"96.079\" x2=\"101.935\" y2=\"209.332\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"101.935\" y1=\"209.332\" x2=\"229.970\" y2=\"283.253\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"229.970\" y1=\"283.253\" x2=\"229.970\" y2=\"56.747\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"229.970\" y1=\"56.747\" x2=\"121.905\" y2=\"96.079\" stroke=\"#727781\" stroke-width=\"2\"/><text x=\"108.882\" y=\"90.152\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">A</text><text x=\"85.961\" y=\"220.147\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">B</text><text x=\"232.922\" y=\"304.995\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">C</text><text x=\"232.922\" y=\"45.005\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">D</text><text x=\"235\" y=\"253\" font-size=\"19\" fill=\"#e2660a\">θ</text></svg>",
+    "caption": {
+      "zh": "圖 (a)",
+      "en": "Figure (a)"
+    }
+  },
+  "ch11-4-sc-2": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 340\" role=\"img\"><circle cx=\"210\" cy=\"170\" r=\"115\" fill=\"none\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"121.905\" y1=\"243.921\" x2=\"170.668\" y2=\"61.935\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"170.668\" y1=\"61.935\" x2=\"314.225\" y2=\"121.399\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"314.225\" y1=\"121.399\" x2=\"298.095\" y2=\"243.921\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"298.095\" y1=\"243.921\" x2=\"121.905\" y2=\"243.921\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"298.095\" y1=\"243.921\" x2=\"292.841\" y2=\"283.826\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"298.095\" y1=\"243.921\" x2=\"338.345\" y2=\"243.921\" stroke=\"#727781\" stroke-width=\"2\"/><text x=\"108.882\" y=\"259.848\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">A</text><text x=\"164.853\" y=\"50.961\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">B</text><text x=\"329.633\" y=\"119.214\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">C</text><text x=\"311.118\" y=\"259.848\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">D</text><text x=\"302.845\" y=\"302.571\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">E</text><text x=\"353.076\" y=\"257.405\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">F</text></svg>",
+    "caption": {
+      "zh": "圖 (b)",
+      "en": "Figure (b)"
+    }
+  },
+  "ch11-4-sc-3": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 340\" role=\"img\"><line x1=\"158.256\" y1=\"108.333\" x2=\"128.683\" y2=\"251.317\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"128.683\" y1=\"251.317\" x2=\"274.427\" y2=\"242.519\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"274.427\" y1=\"242.519\" x2=\"275.942\" y2=\"123.827\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"275.942\" y1=\"123.827\" x2=\"158.256\" y2=\"108.333\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"128.683\" y1=\"251.317\" x2=\"275.942\" y2=\"123.827\" stroke=\"#727781\" stroke-width=\"2\"/><text x=\"147.328\" y=\"100.311\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">A</text><text x=\"116.662\" y=\"268.338\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">B</text><text x=\"289.867\" y=\"119.076\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">D</text><text x=\"285.718\" y=\"260.228\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">C</text></svg>",
+    "caption": {
+      "zh": "圖 (c)",
+      "en": "Figure (c)"
+    }
+  },
+  "ch11-4-sc-4": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 340\" role=\"img\"><line x1=\"198.500\" y1=\"101.000\" x2=\"106.500\" y2=\"158.500\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"198.500\" y1=\"250.500\" x2=\"290.500\" y2=\"193.000\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"198.500\" y1=\"101.000\" x2=\"198.500\" y2=\"250.500\" stroke=\"#727781\" stroke-width=\"2\"/><line x1=\"106.500\" y1=\"158.500\" x2=\"290.500\" y2=\"193.000\" stroke=\"#727781\" stroke-width=\"2\"/><text x=\"195.705\" y=\"89.231\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">A</text><text x=\"89.604\" y=\"161.623\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">B</text><text x=\"196.096\" y=\"272.329\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">C</text><text x=\"306.846\" y=\"202.670\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">D</text><text x=\"183.295\" y=\"188.353\" text-anchor=\"middle\" fill=\"#292524\" font-family=\"Georgia,serif\" font-size=\"19\">E</text></svg>",
+    "caption": {
+      "zh": "圖 (d)",
+      "en": "Figure (d)"
+    }
+  }
 }
