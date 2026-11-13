@@ -1676,7 +1676,7 @@ body[data-lang="zh"] .cg-en { display: none; }
   .cg-answer { opacity: 1; }
 }
 
-/* Chapter 11: synchronised steps on the left, figure on the right. */
+/* Chapter 11: figure on the left, synchronised steps on the right. */
 .anim-card:has(.cg-split), .card:has(> .cc .cg-split) {
   width: min(1000px, calc(100vw - 32px)); margin-left: 50%; translate: -50% 0;
 }
@@ -1705,8 +1705,8 @@ body[data-lang="both"] .cg-split .cg-en {
 .cg-split > .cg-svg { grid-row: 2; }
 .cg-split > .cg-detail { grid-row: 3; }
 @media (min-width: 800px) {
-  .cg-split { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); column-gap: var(--sp-6); }
-  .cg-split > .cg-svg { grid-column: 2; grid-row: 1 / 3; }
-  .cg-split > .cg-detail { grid-column: 1; grid-row: 1; min-height: 236px; }
-  .cg-split > .cg-navigation { grid-column: 1; grid-row: 2; align-self: end; }
+  .cg-split { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); column-gap: var(--sp-6); }
+  .cg-split > .cg-svg { grid-column: 1; grid-row: 1 / 3; }
+  .cg-split > .cg-detail { grid-column: 2; grid-row: 1; min-height: 236px; }
+  .cg-split > .cg-navigation { grid-column: 2; grid-row: 2; align-self: end; }
 }
