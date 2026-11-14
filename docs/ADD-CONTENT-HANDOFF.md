@@ -618,7 +618,7 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * 每步明寫 `clearAngle` 及當前角標，避免舊值疊字；角邊、半徑及輔助線則由共用引擎永久保留。整角與部分角共用頂點時用不同半徑，必要時用角標第八項位移；點名用 `labelOffset`。Q28 的 A、B 很接近是原題數值導致，不可任意移動點來遷就標籤。
 * 共線線段優先用一條最大跨度，例如 Q13 用 EB、EC（中間保留 A、D），Q20 用 BE、BF、AF、CE；不能同時在底圖重畫整段及其子段。高亮仍依當前所用的實際子段。
 * 證共圓的題目不預先畫出待證的圓；先用已知、平行線及三角形性質，再選正確方向的逆定理。兩個圓的 Q21、Q33 使用實際計算的第二圓圓心／半徑；不能只畫外觀近似的圓。多部分圖可滿足 (b) 的額外條件，但 (a) 的證明不可提前用該條件。
-* `theorem-abbreviations.json` 的 `otherGeometryReasons` 新增 `(sides opp. equal ∠s)`、`(opp. sides of ∥gram)`、`(in-centre)`；屬共用補充理由，並非冒充課本摘要原文。定理卡證正向性質時，不得引用正在證明的性質。
+* `theorem-abbreviations.json` 的 `otherGeometryReasons` 新增 `(sides opp. equal ∠s)`、`(opp. sides of //gram)`、`(in-centre)`；屬共用補充理由，並非冒充課本摘要原文。定理卡證正向性質時，不得引用正在證明的性質。
 * 教材核對記錄：`data/raw/ch11-4-source.md`。Q22(b) 官方 Word 題解的 `OBE + OBE` 應為 `BOE + OBE`；Q30 的三角形角和重複寫 CBD，應為 CBD、BDC、BCD。網站在各題技巧框清楚註明，答案不變。Q25–Q29、Q36、Q37 的弧符號須直接核對 PDF；純文字抽取會丟失弧帽，不可誤當弦長比例。
 * 必跑 `python3 tools/build.py`（0 錯 0 警）、`python3 tools/verify_ch11_4.py`、`python3 tools/figcheck.py data/src/ch11-1.json data/src/ch11-2.json data/src/ch11-3.json data/src/ch11-4.json`，以及 README 的完整 smoke suite。新增 smoke 檢查全部 42 頁、46 播放器每步公式／理由、永久線段、逐步返回及重播；圖數由 40 增至 44，保留原有斷言。
 * 瀏覽器驗證：1280／390／320px 共 129 個頁面尺寸組合，逐頁操作中文／英文／雙語，486 個前進步驟及全部返回／重播；量度頁面溢出、公式寬度、SVG 文字碰撞及越界。另檢查 46 播放器正常動畫快速連按、返回後前進、重播後過期延遲、鍵盤 Enter，以及 800／768／320px 放大文字。截圖只作本機驗證，不連同教材原件發佈。
@@ -633,3 +633,12 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * `tools/build.py` 的 S7 改為在同一 `$…$` 數式內判斷 π 是否與角度混用。Q27 合法地在同一題幹給弧長 13π cm 及兩個以度為單位的角；不能因此誤報。真正以 π 表角度及 rad 單位的閘門保留，幾何驗證器有正反回歸案例。
 * 必跑 build／check、`tools/verify_ch11_revision.py`、11.1–11.4 的既有幾何驗證、全章 `figcheck.py` 及完整 smoke suite。新增 smoke 檢查 44 頁、49 播放器每步公式／理由及返回／重播、全部 MC 的提交與重試。瀏覽器另量度 1280／390／320px 的每頁三語及每一步標籤、公式、次序；正常動畫驗證快速連按、鍵盤、重播延遲及答案提交。本次 135 個頁面尺寸組合、537 個前進步驟及全部返回／重播，最終均無碰撞、越界、公式溢出或同步錯誤；另在真瀏覽器逐題測試 8 題 MC 的先錯後對提交。
 * 圓心距、弦長標籤用 `segmentLabels` 的 `between`、`id`、`dx`、`dy`；更新數值須沿用同一 id。目標角可調整第六項半徑；共用引擎的目標角不支援第八項標籤位移，勿把普通角標的寫法誤套到 goal。
+
+### 9.17 平行符號全站改用 `//`（2026-11-14）
+
+* 老師指示：香港慣用 `//`，全站不要再用課本的 `∥`。`data/src` 內原有 226 處（147 個 `\parallel`、79 個 Unicode `∥`，分佈 218 條字串）已全部換成 `//`。
+* 數學式寫 `\,//\,`，兩邊留薄空格（例：`$AF\,//\,BE$`、`mathLines` 寫 `AF\,//\,BE`），KaTeX 會排成 `AF // BE`；本機實測 `\,//\,` 的間距最接近香港課本的 `//`，只用 `//` 會黏住字母，用 `\mathbin{/\!/}` 兩撇會疊成方格。
+* 純文字直接寫 `//`（例：`(alt. ∠s, // lines)`、`(opp. sides of //gram)`、`AB // DC`、`Prove AB // ED.`）。`∥gram` 保留簡寫，只換符號、不加空格。
+* `anim.steps.answer` 是純文字答案牌（`verify_*.py` 要求無反斜線），所以只寫 `//`，不加 `\,`。
+* 題幹、題解、圖解字幕、定理簡稱與列印工作紙（`tools/make_worksheet_docx.py` 的 `plain()` 會把 `\,` 印成空格）全部一致顯示 `AB // CD`。以後新增內容照此寫法，不要再用 `\parallel` 或 `∥`；`tools/build.py` 的現有檢查（S6／S7／S19）不受影響。
+* 驗證：`python -X utf8 tools/build.py` 0 錯 0 警；`node --max-old-space-size=8192 tools/smoke_test.js` 全部通過；另用真 KaTeX 逐條渲染 75 條含 `//` 的數式，零錯誤，並在真瀏覽器截圖核對數學模式與純文字兩種寫法。

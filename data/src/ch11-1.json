@@ -1685,8 +1685,8 @@
      "marks": 3,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $QP \\parallel RO$ and $O$ is the centre of the circle. $PR$ and $QO$ intersect at $S$. It is given that $\\angle PRO = 33^\\circ$. Find $y$.",
-      "zh": "圖中 $QP \\parallel RO$，$O$ 是圓心，$PR$ 與 $QO$ 交於 $S$。已知 $\\angle PRO = 33^\\circ$，求 $y$。"
+      "en": "In the figure, $QP\\,//\\,RO$ and $O$ is the centre of the circle. $PR$ and $QO$ intersect at $S$. It is given that $\\angle PRO = 33^\\circ$. Find $y$.",
+      "zh": "圖中 $QP\\,//\\,RO$，$O$ 是圓心，$PR$ 與 $QO$ 交於 $S$。已知 $\\angle PRO = 33^\\circ$，求 $y$。"
      },
      "parts": [
       {
@@ -1753,8 +1753,8 @@
       ],
       "steps": [
        {
-        "zh": "留意平行線及 R 點的已知角。 $QP\\parallel RO\\quad \\angle PRO=33^\\circ$。",
-        "en": "Read the parallel lines and the given angle at R. $QP\\parallel RO\\quad \\angle PRO=33^\\circ$.",
+        "zh": "留意平行線及 R 點的已知角。 $QP\\,//\\,RO\\quad \\angle PRO=33^\\circ$。",
+        "en": "Read the parallel lines and the given angle at R. $QP\\,//\\,RO\\quad \\angle PRO=33^\\circ$.",
         "parallel": [
          [
           "Q",
@@ -1775,7 +1775,7 @@
          ]
         ],
         "mathLines": [
-         "QP\\parallel RO",
+         "QP\\,//\\,RO",
          "\\angle PRO=33^\\circ"
         ],
         "clearAngle": [
@@ -1802,7 +1802,7 @@
         "mathLines": [
          "\\angle QPR=\\angle PRO=33^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "clearAngle": [
          "O",
          "P",
@@ -1905,8 +1905,8 @@
          "en": "Alternate angles"
         },
         "math": "\\angle QPR = \\angle PRO = 33^\\circ",
-        "zh": "$QP \\parallel RO$，$PR$ 是截線，內錯角相等：$\\angle QPR = \\angle PRO = 33^\\circ$。",
-        "en": "$QP \\parallel RO$ with transversal $PR$, so the alternate angles are equal: $\\angle QPR = 33^\\circ$.",
+        "zh": "$QP\\,//\\,RO$，$PR$ 是截線，內錯角相等：$\\angle QPR = \\angle PRO = 33^\\circ$。",
+        "en": "$QP\\,//\\,RO$ with transversal $PR$, so the alternate angles are equal: $\\angle QPR = 33^\\circ$.",
         "marking": "(1M)"
        },
        {
@@ -1936,8 +1936,8 @@
        {
         "label": "(a)",
         "labelEn": "(a)",
-        "zh": "把 $\\angle QPR$ 與 $\\angle PRO$ 當成同弓形（它們是內錯角，靠 $QP \\parallel RO$）。",
-        "en": "Calling ∠QPR and ∠PRO \"same segment\" — they are alternate angles from QP ∥ RO."
+        "zh": "把 $\\angle QPR$ 與 $\\angle PRO$ 當成同弓形（它們是內錯角，靠 $QP\\,//\\,RO$）。",
+        "en": "Calling ∠QPR and ∠PRO \"same segment\" — they are alternate angles from QP // RO."
        }
       ],
       "tip": {
@@ -2192,8 +2192,8 @@
      "marks": 3,
      "difficulty": 2,
      "stem": {
-      "en": "In the figure, $SQ$ is a diameter, $SR \\parallel PQ$ and $O$ is the centre. It is given that $\\angle PQS = 62^\\circ$. Find $y$.",
-      "zh": "圖中 $SQ$ 是直徑，$SR \\parallel PQ$，$O$ 是圓心。已知 $\\angle PQS = 62^\\circ$，求 $y$。"
+      "en": "In the figure, $SQ$ is a diameter, $SR\\,//\\,PQ$ and $O$ is the centre. It is given that $\\angle PQS = 62^\\circ$. Find $y$.",
+      "zh": "圖中 $SQ$ 是直徑，$SR\\,//\\,PQ$，$O$ 是圓心。已知 $\\angle PQS = 62^\\circ$，求 $y$。"
      },
      "parts": [
       {
@@ -2251,8 +2251,8 @@
       ],
       "steps": [
        {
-        "zh": "留意已知角、平行線及直徑 SQ。 $\\angle PQS=62^\\circ\\quad SR\\parallel PQ$。",
-        "en": "Read the angle, the parallel lines and diameter SQ. $\\angle PQS=62^\\circ\\quad SR\\parallel PQ$.",
+        "zh": "留意已知角、平行線及直徑 SQ。 $\\angle PQS=62^\\circ\\quad SR\\,//\\,PQ$。",
+        "en": "Read the angle, the parallel lines and diameter SQ. $\\angle PQS=62^\\circ\\quad SR\\,//\\,PQ$.",
         "parallel": [
          [
           "S",
@@ -2274,7 +2274,7 @@
         ],
         "mathLines": [
          "\\angle PQS=62^\\circ",
-         "SR\\parallel PQ"
+         "SR\\,//\\,PQ"
         ],
         "clearAngle": [
          "O",
@@ -2332,7 +2332,7 @@
         "mathLines": [
          "\\angle QSR=\\angle PQS=62^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "clearAngle": [
          "O",
          "S",
@@ -2414,8 +2414,8 @@
          "en": "Alternate angles"
         },
         "math": "\\angle QSR = \\angle PQS = 62^\\circ",
-        "zh": "$SR \\parallel PQ$，$SQ$ 是截線，內錯角相等：$\\angle QSR = 62^\\circ$。",
-        "en": "$SR \\parallel PQ$ with transversal $SQ$, so $\\angle QSR = \\angle PQS = 62^\\circ$.",
+        "zh": "$SR\\,//\\,PQ$，$SQ$ 是截線，內錯角相等：$\\angle QSR = 62^\\circ$。",
+        "en": "$SR\\,//\\,PQ$ with transversal $SQ$, so $\\angle QSR = \\angle PQS = 62^\\circ$.",
         "marking": "(1M)"
        },
        {
@@ -3264,8 +3264,8 @@
      "marks": 3,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $AC$ and $BD$ intersect at $E$ and $AB \\parallel DC$. It is given that $\\angle CED = 80^\\circ$. Find $x$.",
-      "zh": "圖中 $AC$ 與 $BD$ 交於 $E$，$AB \\parallel DC$。已知 $\\angle CED = 80^\\circ$，求 $x$。"
+      "en": "In the figure, $AC$ and $BD$ intersect at $E$ and $AB\\,//\\,DC$. It is given that $\\angle CED = 80^\\circ$. Find $x$.",
+      "zh": "圖中 $AC$ 與 $BD$ 交於 $E$，$AB\\,//\\,DC$。已知 $\\angle CED = 80^\\circ$，求 $x$。"
      },
      "parts": [
       {
@@ -3340,8 +3340,8 @@
       ],
       "steps": [
        {
-        "zh": "留意平行線及 E 點的角。 $AB\\parallel DC\\quad \\angle CED=80^\\circ$。",
-        "en": "Read the parallel lines and the angle at E. $AB\\parallel DC\\quad \\angle CED=80^\\circ$.",
+        "zh": "留意平行線及 E 點的角。 $AB\\,//\\,DC\\quad \\angle CED=80^\\circ$。",
+        "en": "Read the parallel lines and the angle at E. $AB\\,//\\,DC\\quad \\angle CED=80^\\circ$.",
         "parallel": [
          [
           "A",
@@ -3362,7 +3362,7 @@
          ]
         ],
         "mathLines": [
-         "AB\\parallel DC",
+         "AB\\,//\\,DC",
          "\\angle CED=80^\\circ"
         ],
         "clearAngle": [
@@ -3398,7 +3398,7 @@
         "mathLines": [
          "\\angle BAC=\\angle ACD=x"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "clearAngle": [
          "O",
          "A",
@@ -3505,8 +3505,8 @@
          "en": "Alternate angles"
         },
         "math": "\\angle BAC = \\angle ACD = x",
-        "zh": "$AB \\parallel DC$，$AC$ 是截線，內錯角相等：$\\angle BAC = \\angle ACD = x$。",
-        "en": "$AB \\parallel DC$ with transversal $AC$, so $\\angle BAC = \\angle ACD = x$.",
+        "zh": "$AB\\,//\\,DC$，$AC$ 是截線，內錯角相等：$\\angle BAC = \\angle ACD = x$。",
+        "en": "$AB\\,//\\,DC$ with transversal $AC$, so $\\angle BAC = \\angle ACD = x$.",
         "marking": "(1M)"
        },
        {
@@ -3536,8 +3536,8 @@
        {
         "label": "(a)",
         "labelEn": "(a)",
-        "zh": "忘記 $AB \\parallel DC$，於是找不到 $\\angle ACD = x$，方程只剩一個未知數。",
-        "en": "Missing AB ∥ DC, so ∠ACD = x is never established and the equation has only one x."
+        "zh": "忘記 $AB\\,//\\,DC$，於是找不到 $\\angle ACD = x$，方程只剩一個未知數。",
+        "en": "Missing AB // DC, so ∠ACD = x is never established and the equation has only one x."
        }
       ],
       "tip": {
@@ -4617,8 +4617,8 @@
      "marks": 3,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $ABCDE$ is a circle with centre $O$. It is given that $AB \\parallel DC$, $\\angle ABC = 93^\\circ$ and $\\angle DOE = 78^\\circ$. Find $\\angle BCE$.",
-      "zh": "圖中 $ABCDE$ 是圓，圓心為 $O$。已知 $AB \\parallel DC$、$\\angle ABC = 93^\\circ$ 及 $\\angle DOE = 78^\\circ$，求 $\\angle BCE$。"
+      "en": "In the figure, $ABCDE$ is a circle with centre $O$. It is given that $AB\\,//\\,DC$, $\\angle ABC = 93^\\circ$ and $\\angle DOE = 78^\\circ$. Find $\\angle BCE$.",
+      "zh": "圖中 $ABCDE$ 是圓，圓心為 $O$。已知 $AB\\,//\\,DC$、$\\angle ABC = 93^\\circ$ 及 $\\angle DOE = 78^\\circ$，求 $\\angle BCE$。"
      },
      "parts": [
       {
@@ -4702,8 +4702,8 @@
       ],
       "steps": [
        {
-        "zh": "留意兩隻已知角及平行線。 $\\angle ABC=93^\\circ\\quad \\angle DOE=78^\\circ\\quad AB\\parallel DC$。",
-        "en": "Read the two angles and the parallel lines. $\\angle ABC=93^\\circ\\quad \\angle DOE=78^\\circ\\quad AB\\parallel DC$.",
+        "zh": "留意兩隻已知角及平行線。 $\\angle ABC=93^\\circ\\quad \\angle DOE=78^\\circ\\quad AB\\,//\\,DC$。",
+        "en": "Read the two angles and the parallel lines. $\\angle ABC=93^\\circ\\quad \\angle DOE=78^\\circ\\quad AB\\,//\\,DC$.",
         "parallel": [
          [
           "A",
@@ -4734,7 +4734,7 @@
         "mathLines": [
          "\\angle ABC=93^\\circ",
          "\\angle DOE=78^\\circ",
-         "AB\\parallel DC"
+         "AB\\,//\\,DC"
         ],
         "clearAngle": [
          "O",
@@ -4761,7 +4761,7 @@
          "\\angle BCD=180^\\circ-93^\\circ",
          "=87^\\circ"
         ],
-        "ref": "(int. ∠s, ∥ lines)",
+        "ref": "(int. ∠s, // lines)",
         "clearAngle": [
          "O",
          "A",
@@ -4868,8 +4868,8 @@
          "en": "Interior angles"
         },
         "math": "\\angle BCD = 180^\\circ - 93^\\circ = 87^\\circ",
-        "zh": "$AB \\parallel DC$，$BC$ 是截線，同旁內角互補：$\\angle BCD = 180^\\circ - 93^\\circ = 87^\\circ$。",
-        "en": "$AB \\parallel DC$ with transversal $BC$, so the interior angles add to $180^\\circ$: $\\angle BCD = 87^\\circ$.",
+        "zh": "$AB\\,//\\,DC$，$BC$ 是截線，同旁內角互補：$\\angle BCD = 180^\\circ - 93^\\circ = 87^\\circ$。",
+        "en": "$AB\\,//\\,DC$ with transversal $BC$, so the interior angles add to $180^\\circ$: $\\angle BCD = 87^\\circ$.",
         "marking": "(1M)"
        },
        {
@@ -5217,8 +5217,8 @@
      "marks": 3,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $AD$ is the diameter of the semi-circle $ABCD$ with centre $O$. It is given that $BO \\parallel CD$ and $\\angle ACB = 33^\\circ$. Find $\\angle CAD$.",
-      "zh": "圖中 $AD$ 是半圓 $ABCD$ 的直徑，圓心為 $O$。已知 $BO \\parallel CD$ 及 $\\angle ACB = 33^\\circ$，求 $\\angle CAD$。"
+      "en": "In the figure, $AD$ is the diameter of the semi-circle $ABCD$ with centre $O$. It is given that $BO\\,//\\,CD$ and $\\angle ACB = 33^\\circ$. Find $\\angle CAD$.",
+      "zh": "圖中 $AD$ 是半圓 $ABCD$ 的直徑，圓心為 $O$。已知 $BO\\,//\\,CD$ 及 $\\angle ACB = 33^\\circ$，求 $\\angle CAD$。"
      },
      "parts": [
       {
@@ -5342,8 +5342,8 @@
         ]
        },
        {
-        "zh": "利用平行線的同位角。 $BO\\parallel CD\\quad \\angle ADC=\\angle AOB=66^\\circ$。",
-        "en": "Use the corresponding angles of the parallel lines. $BO\\parallel CD\\quad \\angle ADC=\\angle AOB=66^\\circ$.",
+        "zh": "利用平行線的同位角。 $BO\\,//\\,CD\\quad \\angle ADC=\\angle AOB=66^\\circ$。",
+        "en": "Use the corresponding angles of the parallel lines. $BO\\,//\\,CD\\quad \\angle ADC=\\angle AOB=66^\\circ$.",
         "arcs": [
          [
           "D",
@@ -5364,10 +5364,10 @@
          ]
         ],
         "mathLines": [
-         "BO\\parallel CD",
+         "BO\\,//\\,CD",
          "\\angle ADC=\\angle AOB=66^\\circ"
         ],
-        "ref": "(corr. ∠s, ∥ lines)",
+        "ref": "(corr. ∠s, // lines)",
         "clearAngle": [
          "O",
          "A",
@@ -5485,8 +5485,8 @@
          "en": "Move the angle with the parallel lines"
         },
         "math": "\\angle ADC = \\angle AOB = 66^\\circ",
-        "zh": "$BO \\parallel CD$，$AD$ 是截線，所以同位角相等：$\\angle ADC = \\angle AOB = 66^\\circ$。",
-        "en": "BO ∥ CD with transversal AD, so the corresponding angles are equal: ∠ADC = ∠AOB = 66°.",
+        "zh": "$BO\\,//\\,CD$，$AD$ 是截線，所以同位角相等：$\\angle ADC = \\angle AOB = 66^\\circ$。",
+        "en": "BO // CD with transversal AD, so the corresponding angles are equal: ∠ADC = ∠AOB = 66°.",
         "marking": "(1M)"
        },
        {
@@ -5528,8 +5528,8 @@
      "marks": 3,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $BD$ is a diameter of the circle $ABCD$. It is given that $AD \\parallel BC$. Prove that $AD = BC$.",
-      "zh": "圖中 $BD$ 是圓 $ABCD$ 的直徑。已知 $AD \\parallel BC$，證明 $AD = BC$。"
+      "en": "In the figure, $BD$ is a diameter of the circle $ABCD$. It is given that $AD\\,//\\,BC$. Prove that $AD = BC$.",
+      "zh": "圖中 $BD$ 是圓 $ABCD$ 的直徑。已知 $AD\\,//\\,BC$，證明 $AD = BC$。"
      },
      "parts": [
       {
@@ -5641,8 +5641,8 @@
         ]
        },
        {
-        "zh": "利用兩條平行邊的內錯角。 $AD\\parallel BC\\quad \\angle ADB=\\angle CBD$。",
-        "en": "Use the alternate angles of the parallel sides. $AD\\parallel BC\\quad \\angle ADB=\\angle CBD$.",
+        "zh": "利用兩條平行邊的內錯角。 $AD\\,//\\,BC\\quad \\angle ADB=\\angle CBD$。",
+        "en": "Use the alternate angles of the parallel sides. $AD\\,//\\,BC\\quad \\angle ADB=\\angle CBD$.",
         "parallel": [
          [
           "A",
@@ -5672,10 +5672,10 @@
          ]
         ],
         "mathLines": [
-         "AD\\parallel BC",
+         "AD\\,//\\,BC",
          "\\angle ADB=\\angle CBD"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "clearAngle": [
          "O",
          "D",
@@ -5813,8 +5813,8 @@
          "en": "Use the parallel lines for one more pair"
         },
         "math": "\\angle ADB = \\angle CBD",
-        "zh": "因為 $AD \\parallel BC$，內錯角相等，所以 $\\angle ADB = \\angle CBD$。",
-        "en": "AD ∥ BC, so the alternate angles are equal: ∠ADB = ∠CBD.",
+        "zh": "因為 $AD\\,//\\,BC$，內錯角相等，所以 $\\angle ADB = \\angle CBD$。",
+        "en": "AD // BC, so the alternate angles are equal: ∠ADB = ∠CBD.",
         "marking": "(1M)"
        },
        {
@@ -5839,8 +5839,8 @@
        {
         "label": "(a)",
         "labelEn": "(a)",
-        "zh": "用 $\\angle ABD = \\angle CDB$ 時沒有寫理由（$AD \\parallel BC$ 的內錯角）。",
-        "en": "Quoting ∠ABD = ∠CDB without the reason (alternate angles, AD ∥ BC)."
+        "zh": "用 $\\angle ABD = \\angle CDB$ 時沒有寫理由（$AD\\,//\\,BC$ 的內錯角）。",
+        "en": "Quoting ∠ABD = ∠CDB without the reason (alternate angles, AD // BC)."
        }
       ],
       "tip": {
@@ -7783,8 +7783,8 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $BC$ is a diameter of the circle $ABCD$. $AC$ and $BD$ intersect at $E$. It is given that $AD \\parallel BC$ and $\\angle ACB = 32^\\circ$. Find $\\angle ACD$.",
-      "zh": "圖中 $BC$ 是圓 $ABCD$ 的直徑，$AC$ 與 $BD$ 交於 $E$。已知 $AD \\parallel BC$ 及 $\\angle ACB = 32^\\circ$，求 $\\angle ACD$。"
+      "en": "In the figure, $BC$ is a diameter of the circle $ABCD$. $AC$ and $BD$ intersect at $E$. It is given that $AD\\,//\\,BC$ and $\\angle ACB = 32^\\circ$. Find $\\angle ACD$.",
+      "zh": "圖中 $BC$ 是圓 $ABCD$ 的直徑，$AC$ 與 $BD$ 交於 $E$。已知 $AD\\,//\\,BC$ 及 $\\angle ACB = 32^\\circ$，求 $\\angle ACD$。"
      },
      "parts": [
       {
@@ -7867,8 +7867,8 @@
       ],
       "steps": [
        {
-        "zh": "利用已知平行線的內錯角。 $AD\\parallel BC\\quad \\angle CAD=\\angle ACB=32^\\circ$。",
-        "en": "Use alternate angles in the given parallel lines. $AD\\parallel BC\\quad \\angle CAD=\\angle ACB=32^\\circ$.",
+        "zh": "利用已知平行線的內錯角。 $AD\\,//\\,BC\\quad \\angle CAD=\\angle ACB=32^\\circ$。",
+        "en": "Use alternate angles in the given parallel lines. $AD\\,//\\,BC\\quad \\angle CAD=\\angle ACB=32^\\circ$.",
         "parallel": [
          [
           "A",
@@ -7898,10 +7898,10 @@
          ]
         ],
         "mathLines": [
-         "AD\\parallel BC",
+         "AD\\,//\\,BC",
          "\\angle CAD=\\angle ACB=32^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "clearAngle": [
          "O",
          "B",
@@ -8027,8 +8027,8 @@
          "en": "Alternate angles"
         },
         "math": "\\angle CAD = 32^\\circ",
-        "zh": "因為 $AD \\parallel BC$，內錯角相等，所以 $\\angle CAD = \\angle ACB = 32^\\circ$。",
-        "en": "$AD \\parallel BC$, so $\\angle CAD = \\angle ACB = 32^\\circ$.",
+        "zh": "因為 $AD\\,//\\,BC$，內錯角相等，所以 $\\angle CAD = \\angle ACB = 32^\\circ$。",
+        "en": "$AD\\,//\\,BC$, so $\\angle CAD = \\angle ACB = 32^\\circ$.",
         "marking": "(1M)"
        },
        {
@@ -8074,7 +8074,7 @@
        }
       ],
       "tip": {
-       "zh": "梯形（$AD \\parallel BC$）加直徑：先搬內錯角，再用半圓 90°，最後一次內角和。",
+       "zh": "梯形（$AD\\,//\\,BC$）加直徑：先搬內錯角，再用半圓 90°，最後一次內角和。",
        "en": "A trapezium with a diameter: alternate angles, the semi-circle right angle, then one angle sum."
       }
      }
@@ -8773,8 +8773,8 @@
      "marks": 6,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $BE$ is a diameter of the circle $ABCDE$. $BE$ intersects $AC$ and $AD$ at $F$ and $G$ respectively. It is given that $AC \\parallel ED$ and $\\angle DAE = 34^\\circ$. (a) Find $\\angle BED$. (b) If $EB$ is the angle bisector of $\\angle AED$, find $\\angle BAC$.",
-      "zh": "圖中 $BE$ 是圓 $ABCDE$ 的直徑，$BE$ 分別與 $AC$、$AD$ 交於 $F$、$G$。已知 $AC \\parallel ED$、$\\angle DAE = 34^\\circ$。(a) 求 $\\angle BED$。(b) 若 $EB$ 平分 $\\angle AED$，求 $\\angle BAC$。"
+      "en": "In the figure, $BE$ is a diameter of the circle $ABCDE$. $BE$ intersects $AC$ and $AD$ at $F$ and $G$ respectively. It is given that $AC\\,//\\,ED$ and $\\angle DAE = 34^\\circ$. (a) Find $\\angle BED$. (b) If $EB$ is the angle bisector of $\\angle AED$, find $\\angle BAC$.",
+      "zh": "圖中 $BE$ 是圓 $ABCDE$ 的直徑，$BE$ 分別與 $AC$、$AD$ 交於 $F$、$G$。已知 $AC\\,//\\,ED$、$\\angle DAE = 34^\\circ$。(a) 求 $\\angle BED$。(b) 若 $EB$ 平分 $\\angle AED$，求 $\\angle BAC$。"
      },
      "parts": [
       {
@@ -8890,8 +8890,8 @@
       ],
       "steps": [
        {
-        "zh": "留意直徑 BE、平行線及 A 點的角。 $AC\\parallel ED\\quad \\angle DAE=34^\\circ$。",
-        "en": "Read diameter BE, the parallel lines and the angle at A. $AC\\parallel ED\\quad \\angle DAE=34^\\circ$.",
+        "zh": "留意直徑 BE、平行線及 A 點的角。 $AC\\,//\\,ED\\quad \\angle DAE=34^\\circ$。",
+        "en": "Read diameter BE, the parallel lines and the angle at A. $AC\\,//\\,ED\\quad \\angle DAE=34^\\circ$.",
         "parallel": [
          [
           "A",
@@ -8913,7 +8913,7 @@
          ]
         ],
         "mathLines": [
-         "AC\\parallel ED",
+         "AC\\,//\\,ED",
          "\\angle DAE=34^\\circ"
         ],
         "clearAngle": [
@@ -9111,7 +9111,7 @@
          "=34^\\circ",
          "\\angle CAD=\\angle ADE=34^\\circ"
         ],
-        "ref": "(∠ sum of △); (alt. ∠s, ∥ lines)",
+        "ref": "(∠ sum of △); (alt. ∠s, // lines)",
         "clearAngle": [
          "O",
          "B",
@@ -9232,7 +9232,7 @@
          "en": "Alternate angles and angle sum"
         },
         "math": "\\angle CAD = 34^\\circ",
-        "zh": "在三角形 $ADE$ 中用內角和，得 $\\angle ADE = 34^\\circ$；再由 $AC \\parallel ED$ 的內錯角得 $\\angle CAD = 34^\\circ$。",
+        "zh": "在三角形 $ADE$ 中用內角和，得 $\\angle ADE = 34^\\circ$；再由 $AC\\,//\\,ED$ 的內錯角得 $\\angle CAD = 34^\\circ$。",
         "en": "$\\angle ADE = 34^\\circ$ and $\\angle CAD = 34^\\circ$.",
         "marking": "(1M)"
        },
@@ -10590,8 +10590,8 @@
      "marks": 5,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $ABCDE$ is a circle with centre $O$. $AD$ and $OE$ intersect at $F$. It is given that $AE \\parallel BO$, $\\angle BOE = 116^\\circ$ and $\\angle DFE = 110^\\circ$. Find $\\angle BCD$.",
-      "zh": "圖中 $ABCDE$ 是圓，圓心為 $O$。$AD$ 與 $OE$ 交於 $F$。已知 $AE \\parallel BO$、$\\angle BOE = 116^\\circ$、$\\angle DFE = 110^\\circ$，求 $\\angle BCD$。"
+      "en": "In the figure, $ABCDE$ is a circle with centre $O$. $AD$ and $OE$ intersect at $F$. It is given that $AE\\,//\\,BO$, $\\angle BOE = 116^\\circ$ and $\\angle DFE = 110^\\circ$. Find $\\angle BCD$.",
+      "zh": "圖中 $ABCDE$ 是圓，圓心為 $O$。$AD$ 與 $OE$ 交於 $F$。已知 $AE\\,//\\,BO$、$\\angle BOE = 116^\\circ$、$\\angle DFE = 110^\\circ$，求 $\\angle BCD$。"
      },
      "parts": [
       {
@@ -10684,8 +10684,8 @@
       ],
       "steps": [
        {
-        "zh": "留意平行線及 O、F 兩點的角。 $AE\\parallel BO\\quad \\angle BOE=116^\\circ\\quad \\angle DFE=110^\\circ$。",
-        "en": "Read the parallel lines and the angles at O and F. $AE\\parallel BO\\quad \\angle BOE=116^\\circ\\quad \\angle DFE=110^\\circ$.",
+        "zh": "留意平行線及 O、F 兩點的角。 $AE\\,//\\,BO\\quad \\angle BOE=116^\\circ\\quad \\angle DFE=110^\\circ$。",
+        "en": "Read the parallel lines and the angles at O and F. $AE\\,//\\,BO\\quad \\angle BOE=116^\\circ\\quad \\angle DFE=110^\\circ$.",
         "parallel": [
          [
           "A",
@@ -10715,7 +10715,7 @@
          ]
         ],
         "mathLines": [
-         "AE\\parallel BO",
+         "AE\\,//\\,BO",
          "\\angle BOE=116^\\circ",
          "\\angle DFE=110^\\circ"
         ],
@@ -10788,7 +10788,7 @@
          "\\angle AEO=180^\\circ-116^\\circ",
          "=64^\\circ"
         ],
-        "ref": "(int. ∠s, ∥ lines)",
+        "ref": "(int. ∠s, // lines)",
         "clearAngle": [
          "O",
          "A",
@@ -10928,8 +10928,8 @@
          "en": "Interior angles"
         },
         "math": "\\angle AEO = 64^\\circ",
-        "zh": "因為 $AE \\parallel BO$，同旁內角互補，所以 $\\angle AEO = 180^\\circ - 116^\\circ = 64^\\circ$。",
-        "en": "$AE \\parallel BO$, so $\\angle AEO = 64^\\circ$.",
+        "zh": "因為 $AE\\,//\\,BO$，同旁內角互補，所以 $\\angle AEO = 180^\\circ - 116^\\circ = 64^\\circ$。",
+        "en": "$AE\\,//\\,BO$, so $\\angle AEO = 64^\\circ$.",
         "marking": "(1M)"
        },
        {
@@ -10939,7 +10939,7 @@
          "en": "Exterior angle"
         },
         "math": "\\angle DAE = 46^\\circ",
-        "zh": "因為 $AE \\parallel BO$，同旁內角互補，所以 $\\angle AEO = 180^\\circ - 116^\\circ = 64^\\circ$。",
+        "zh": "因為 $AE\\,//\\,BO$，同旁內角互補，所以 $\\angle AEO = 180^\\circ - 116^\\circ = 64^\\circ$。",
         "en": "$\\angle DAE = 110^\\circ - 64^\\circ = 46^\\circ$.",
         "marking": "(1M)"
        },
@@ -11379,21 +11379,21 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $AC$ is a diameter of the circle $ABCD$. $AC$ and $BD$ intersect at $E$. It is given that $BE = CE$ and $\\angle BEC = 104^\\circ$. Prove that $AB \\parallel DC$.",
-      "zh": "圖中 $AC$ 是圓 $ABCD$ 的直徑，$AC$ 與 $BD$ 交於 $E$。已知 $BE = CE$、$\\angle BEC = 104^\\circ$，證明 $AB \\parallel DC$。"
+      "en": "In the figure, $AC$ is a diameter of the circle $ABCD$. $AC$ and $BD$ intersect at $E$. It is given that $BE = CE$ and $\\angle BEC = 104^\\circ$. Prove that $AB\\,//\\,DC$.",
+      "zh": "圖中 $AC$ 是圓 $ABCD$ 的直徑，$AC$ 與 $BD$ 交於 $E$。已知 $BE = CE$、$\\angle BEC = 104^\\circ$，證明 $AB\\,//\\,DC$。"
      },
      "parts": [
       {
        "label": "(a)",
-       "en": "Prove that $AB \\parallel DC$.",
-       "zh": "證明 $AB \\parallel DC$。",
+       "en": "Prove that $AB\\,//\\,DC$.",
+       "zh": "證明 $AB\\,//\\,DC$。",
        "marks": 4
       }
      ],
      "answers": [
       {
        "part": "(a)",
-       "math": "AB \\parallel DC",
+       "math": "AB\\,//\\,DC",
        "input": null,
        "note": {
         "zh": "同旁內角互補",
@@ -11603,8 +11603,8 @@
         ]
        },
        {
-        "zh": "在 C 點把角相加，再用同旁內角定理的逆定理證平行。 $\\angle BCD=38^\\circ+52^\\circ=90^\\circ\\quad \\angle ABC+\\angle BCD=180^\\circ\\quad AB\\parallel DC$。",
-        "en": "Add the angles at C, then use the converse interior-angle rule. $\\angle BCD=38^\\circ+52^\\circ=90^\\circ\\quad \\angle ABC+\\angle BCD=180^\\circ\\quad AB\\parallel DC$.",
+        "zh": "在 C 點把角相加，再用同旁內角定理的逆定理證平行。 $\\angle BCD=38^\\circ+52^\\circ=90^\\circ\\quad \\angle ABC+\\angle BCD=180^\\circ\\quad AB\\,//\\,DC$。",
+        "en": "Add the angles at C, then use the converse interior-angle rule. $\\angle BCD=38^\\circ+52^\\circ=90^\\circ\\quad \\angle ABC+\\angle BCD=180^\\circ\\quad AB\\,//\\,DC$.",
         "arcs": [
          [
           "C",
@@ -11626,12 +11626,12 @@
          ]
         ],
         "final": true,
-        "answer": "AB ∥ DC",
+        "answer": "AB // DC",
         "clearGoal": true,
         "mathLines": [
          "\\angle BCD=38^\\circ+52^\\circ=90^\\circ",
          "\\angle ABC+\\angle BCD=180^\\circ",
-         "AB\\parallel DC"
+         "AB\\,//\\,DC"
         ],
         "ref": "(int. ∠s supp., converse)",
         "clearAngle": [
@@ -11694,8 +11694,8 @@
          "en": "Interior angles"
         },
         "math": "\\angle BCD = 90^\\circ",
-        "zh": "$\\angle BCD = 38^\\circ + 52^\\circ = 90^\\circ$，而 $\\angle ABC = 90^\\circ$，同旁內角相加為 $180^\\circ$，所以 $AB \\parallel DC$。",
-        "en": "$\\angle BCD = 90^\\circ$ and $\\angle ABC = 90^\\circ$, so $AB \\parallel DC$.",
+        "zh": "$\\angle BCD = 38^\\circ + 52^\\circ = 90^\\circ$，而 $\\angle ABC = 90^\\circ$，同旁內角相加為 $180^\\circ$，所以 $AB\\,//\\,DC$。",
+        "en": "$\\angle BCD = 90^\\circ$ and $\\angle ABC = 90^\\circ$, so $AB\\,//\\,DC$.",
         "marking": "(1A)"
        }
       ],
@@ -11730,8 +11730,8 @@
      "marks": 6,
      "difficulty": 3,
      "stem": {
-      "en": "In the figure, $ABCD$ is a circle. It is given that $AD \\parallel BC$, $BC = CD = 15$ cm, $\\angle BAD = 60^\\circ$ and $\\angle BDC = 30^\\circ$. (a) Is $AD$ a diameter of the circle? Explain. (b) Someone claims that the area of $\\triangle ABD$ is less than $200$ cm$^2$. Do you agree? Explain.",
-      "zh": "圖中 $ABCD$ 是圓。已知 $AD \\parallel BC$、$BC = CD = 15$ cm、$\\angle BAD = 60^\\circ$、$\\angle BDC = 30^\\circ$。(a) $AD$ 是否圓的直徑？試解釋。(b) 有人聲稱 $\\triangle ABD$ 的面積小於 $200$ cm$^2$，你是否同意？試解釋。"
+      "en": "In the figure, $ABCD$ is a circle. It is given that $AD\\,//\\,BC$, $BC = CD = 15$ cm, $\\angle BAD = 60^\\circ$ and $\\angle BDC = 30^\\circ$. (a) Is $AD$ a diameter of the circle? Explain. (b) Someone claims that the area of $\\triangle ABD$ is less than $200$ cm$^2$. Do you agree? Explain.",
+      "zh": "圖中 $ABCD$ 是圓。已知 $AD\\,//\\,BC$、$BC = CD = 15$ cm、$\\angle BAD = 60^\\circ$、$\\angle BDC = 30^\\circ$。(a) $AD$ 是否圓的直徑？試解釋。(b) 有人聲稱 $\\triangle ABD$ 的面積小於 $200$ cm$^2$，你是否同意？試解釋。"
      },
      "parts": [
       {
@@ -11820,8 +11820,8 @@
       ],
       "steps": [
        {
-        "zh": "留意平行邊、相等長度及已知角。 $AD\\parallel BC\\quad BC=CD=15\\text{ cm}\\quad \\angle BAD=60^\\circ,\\quad\\angle BDC=30^\\circ$。",
-        "en": "Read the parallel sides, equal lengths and marked angles. $AD\\parallel BC\\quad BC=CD=15\\text{ cm}\\quad \\angle BAD=60^\\circ,\\quad\\angle BDC=30^\\circ$.",
+        "zh": "留意平行邊、相等長度及已知角。 $AD\\,//\\,BC\\quad BC=CD=15\\text{ cm}\\quad \\angle BAD=60^\\circ,\\quad\\angle BDC=30^\\circ$。",
+        "en": "Read the parallel sides, equal lengths and marked angles. $AD\\,//\\,BC\\quad BC=CD=15\\text{ cm}\\quad \\angle BAD=60^\\circ,\\quad\\angle BDC=30^\\circ$.",
         "parallel": [
          [
           "A",
@@ -11887,7 +11887,7 @@
          }
         ],
         "mathLines": [
-         "AD\\parallel BC",
+         "AD\\,//\\,BC",
          "BC=CD=15\\text{ cm}",
          "\\angle BAD=60^\\circ,\\quad\\angle BDC=30^\\circ"
         ],
@@ -11947,7 +11947,7 @@
         "mathLines": [
          "\\angle ADB=\\angle CBD=30^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "clearAngle": [
          "O",
          "A",
@@ -12266,8 +12266,8 @@
          "en": "Alternate angles"
         },
         "math": "\\angle ADB = \\angle CBD = 30^\\circ",
-        "zh": "由已知的平行線 $AD \\parallel BC$，可得內錯角相等，所以 $\\angle ADB = \\angle CBD = 30^\\circ$。",
-        "en": "$AD \\parallel BC$, so $\\angle ADB = \\angle CBD = 30^\\circ$ (alternate angles).",
+        "zh": "由已知的平行線 $AD\\,//\\,BC$，可得內錯角相等，所以 $\\angle ADB = \\angle CBD = 30^\\circ$。",
+        "en": "$AD\\,//\\,BC$, so $\\angle ADB = \\angle CBD = 30^\\circ$ (alternate angles).",
         "marking": "(1M)"
        },
        {

@@ -1680,8 +1680,8 @@
       ],
       "steps": [
        {
-        "en": "AB and CD are parallel. Each chord is 16 cm long. Keep their positions as in the question. $AB\\parallel CD\\quad AB=CD=16\\text{ cm}$.",
-        "zh": "AB 與 CD 平行，每條弦長 16 cm，方向與原題相同。 $AB\\parallel CD\\quad AB=CD=16\\text{ cm}$。",
+        "en": "AB and CD are parallel. Each chord is 16 cm long. Keep their positions as in the question. $AB\\,//\\,CD\\quad AB=CD=16\\text{ cm}$.",
+        "zh": "AB 與 CD 平行，每條弦長 16 cm，方向與原題相同。 $AB\\,//\\,CD\\quad AB=CD=16\\text{ cm}$。",
         "parallel": [
          [
           "A",
@@ -1719,7 +1719,7 @@
          }
         ],
         "mathLines": [
-         "AB\\parallel CD",
+         "AB\\,//\\,CD",
          "AB=CD=16\\text{ cm}"
         ]
        },
@@ -3015,8 +3015,8 @@
       ],
       "steps": [
        {
-        "en": "PQ is parallel to RS, PM = SN, MN = 16 cm and OM is perpendicular to PQ. $PQ\\parallel RS,\\quad PM=SN\\quad MN=16\\text{ cm},\\quad OM\\perp PQ$.",
-        "zh": "PQ 平行 RS，PM = SN，MN = 16 cm，OM 垂直 PQ。 $PQ\\parallel RS,\\quad PM=SN\\quad MN=16\\text{ cm},\\quad OM\\perp PQ$。",
+        "en": "PQ is parallel to RS, PM = SN, MN = 16 cm and OM is perpendicular to PQ. $PQ\\,//\\,RS,\\quad PM=SN\\quad MN=16\\text{ cm},\\quad OM\\perp PQ$.",
+        "zh": "PQ 平行 RS，PM = SN，MN = 16 cm，OM 垂直 PQ。 $PQ\\,//\\,RS,\\quad PM=SN\\quad MN=16\\text{ cm},\\quad OM\\perp PQ$。",
         "parallel": [
          [
           "P",
@@ -3053,7 +3053,7 @@
         ],
         "noRays": true,
         "mathLines": [
-         "PQ\\parallel RS,",
+         "PQ\\,//\\,RS,",
          "PM=SN",
          "MN=16\\text{ cm},",
          "OM\\perp PQ"

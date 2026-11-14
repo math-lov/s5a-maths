@@ -247,7 +247,7 @@
       }
     },
     "alternate_angles_parallel_lines": {
-      "abbreviation": "(alt. ∠s, ∥ lines)",
+      "abbreviation": "(alt. ∠s, // lines)",
       "meaning": {
         "en": "Alternate angles between parallel lines are equal.",
         "zh": "平行線的內錯角相等。"
@@ -352,7 +352,7 @@
       }
     },
     "interior_angles": {
-      "abbreviation": "(int. ∠s, ∥ lines)",
+      "abbreviation": "(int. ∠s, // lines)",
       "meaning": {
         "en": "Interior angles on the same side of a transversal between parallel lines are supplementary.",
         "zh": "平行線的同旁內角互補。"
@@ -366,7 +366,7 @@
       }
     },
     "corresponding_angles": {
-      "abbreviation": "(corr. ∠s, ∥ lines)",
+      "abbreviation": "(corr. ∠s, // lines)",
       "meaning": {
         "en": "Corresponding angles between parallel lines are equal.",
         "zh": "平行線的同位角相等。"
@@ -387,7 +387,7 @@
       }
     },
     "parallelogram_sides": {
-      "abbreviation": "(opp. sides of ∥gram)",
+      "abbreviation": "(opp. sides of //gram)",
       "meaning": {
         "zh": "平行四邊形的對邊相等。",
         "en": "Opposite sides of a parallelogram are equal."

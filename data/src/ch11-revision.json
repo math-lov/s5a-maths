@@ -1055,8 +1055,8 @@
      "marks": 4,
      "difficulty": 1,
      "stem": {
-      "zh": "ABCD 共圓，AD ∥ BC，$\\angle ADB=38^\\circ$、$\\angle ACD=47^\\circ$，$x=\\angle CBD$、$y=\\angle BDC$。",
-      "en": "ABCD is cyclic, AD ∥ BC, $\\angle ADB=38^\\circ$, $\\angle ACD=47^\\circ$, $x=\\angle CBD$ and $y=\\angle BDC$."
+      "zh": "ABCD 共圓，AD // BC，$\\angle ADB=38^\\circ$、$\\angle ACD=47^\\circ$，$x=\\angle CBD$、$y=\\angle BDC$。",
+      "en": "ABCD is cyclic, AD // BC, $\\angle ADB=38^\\circ$, $\\angle ACD=47^\\circ$, $x=\\angle CBD$ and $y=\\angle BDC$."
      },
      "anim": {
       "points": {
@@ -1110,7 +1110,7 @@
         "mathLines": [
          "x=\\angle CBD=\\angle ADB=38^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "arcs": [
          [
           "D",
@@ -2949,8 +2949,8 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "zh": "C、D、E 共線，AB ∥ DC，AB = BC，$\\angle ACD=32^\\circ$、$\\angle ADE=116^\\circ$。",
-      "en": "CDE is a straight line, AB ∥ DC, AB = BC, $\\angle ACD=32^\\circ$ and $\\angle ADE=116^\\circ$."
+      "zh": "C、D、E 共線，AB // DC，AB = BC，$\\angle ACD=32^\\circ$、$\\angle ADE=116^\\circ$。",
+      "en": "CDE is a straight line, AB // DC, AB = BC, $\\angle ACD=32^\\circ$ and $\\angle ADE=116^\\circ$."
      },
      "anim": {
       "points": {
@@ -3007,7 +3007,7 @@
         "mathLines": [
          "\\angle BAC=\\angle ACD=32^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "arcs": [
          [
           "C",
@@ -5067,8 +5067,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "zh": "三角形 ADE 中 AD = AE。B、C 分別在 AD、AE 上，且 BC ∥ DE。",
-      "en": "Triangle ADE is isosceles with AD = AE. B and C lie on AD and AE respectively, and BC ∥ DE."
+      "zh": "三角形 ADE 中 AD = AE。B、C 分別在 AD、AE 上，且 BC // DE。",
+      "en": "Triangle ADE is isosceles with AD = AE. B and C lie on AD and AE respectively, and BC // DE."
      },
      "anim": {
       "points": {
@@ -5161,7 +5161,7 @@
         "mathLines": [
          "\\angle ABC=\\angle ADE=\\angle AED"
         ],
-        "ref": "(corr. ∠s, ∥ lines)",
+        "ref": "(corr. ∠s, // lines)",
         "arcs": [
          [
           "B",
@@ -5847,8 +5847,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "zh": "O 是圓 ABCDE 的圓心，BC ∥ OE，$\\angle OAB=68^\\circ$、$\\angle CDE=152^\\circ$。",
-      "en": "O is the centre of circle ABCDE, BC ∥ OE, $\\angle OAB=68^\\circ$ and $\\angle CDE=152^\\circ$."
+      "zh": "O 是圓 ABCDE 的圓心，BC // OE，$\\angle OAB=68^\\circ$、$\\angle CDE=152^\\circ$。",
+      "en": "O is the centre of circle ABCDE, BC // OE, $\\angle OAB=68^\\circ$ and $\\angle CDE=152^\\circ$."
      },
      "anim": {
       "points": {
@@ -5957,7 +5957,7 @@
          "\\angle OEB=\\angle CBE=28^\\circ",
          "\\angle OBE=28^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines); (radii of the same circle); (base ∠s, isos. △)",
+        "ref": "(alt. ∠s, // lines); (radii of the same circle); (base ∠s, isos. △)",
         "arcs": [
          [
           "B",
@@ -7330,8 +7330,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "zh": "ABCD 共圓，AD ∥ BC，AD = 30 cm、BC = 72 cm，兩弦的垂直距離為 51 cm（如圖兩弦分處圓心兩側）。",
-      "en": "ABCD is cyclic, AD ∥ BC, AD = 30 cm and BC = 72 cm. The perpendicular distance between the chords is 51 cm, with the chords on opposite sides of the centre as shown."
+      "zh": "ABCD 共圓，AD // BC，AD = 30 cm、BC = 72 cm，兩弦的垂直距離為 51 cm（如圖兩弦分處圓心兩側）。",
+      "en": "ABCD is cyclic, AD // BC, AD = 30 cm and BC = 72 cm. The perpendicular distance between the chords is 51 cm, with the chords on opposite sides of the centre as shown."
      },
      "anim": {
       "points": {
@@ -9737,8 +9737,8 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "zh": "ABCD 共圓。AFD、BAG、BEC、BFH、CDH、CFG 都是直線，CH ∥ EF。",
-      "en": "ABCD is cyclic. AFD, BAG, BEC, BFH, CDH and CFG are straight lines, and CH ∥ EF."
+      "zh": "ABCD 共圓。AFD、BAG、BEC、BFH、CDH、CFG 都是直線，CH // EF。",
+      "en": "ABCD is cyclic. AFD, BAG, BEC, BFH, CDH and CFG are straight lines, and CH // EF."
      },
      "anim": {
       "points": {
@@ -9812,7 +9812,7 @@
         "mathLines": [
          "\\angle AFE=\\angle ADC"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "arcs": [
          [
           "F",
@@ -9895,7 +9895,7 @@
          "\\angle CFE=\\angle AEF",
          "\\angle HCF=\\angle CFE"
         ],
-        "ref": "(∠s in the same segment); (alt. ∠s, ∥ lines)",
+        "ref": "(∠s in the same segment); (alt. ∠s, // lines)",
         "parallel": [
          [
           "A",
@@ -10036,8 +10036,8 @@
       {
        "label": "(b)",
        "marks": 2,
-       "zh": "若 AE ∥ FC，證明 B、C、H、G 四點共圓。",
-       "en": "If AE ∥ FC, prove B, C, H and G are concyclic."
+       "zh": "若 AE // FC，證明 B、C、H、G 四點共圓。",
+       "en": "If AE // FC, prove B, C, H and G are concyclic."
       }
      ],
      "answers": [
@@ -11566,8 +11566,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "zh": "O 是圓 ABC 的圓心，AC 與 OB 相交於 D。OD = CD，AO ∥ BC。 求 $\\angle ODC$。",
-      "en": "O is the centre of circle ABC. AC and OB meet at D, OD = CD and AO ∥ BC. Find $\\angle ODC$."
+      "zh": "O 是圓 ABC 的圓心，AC 與 OB 相交於 D。OD = CD，AO // BC。 求 $\\angle ODC$。",
+      "en": "O is the centre of circle ABC. AC and OB meet at D, OD = CD and AO // BC. Find $\\angle ODC$."
      },
      "anim": {
       "points": {
@@ -11623,7 +11623,7 @@
          "\\angle ACB=x",
          "\\angle AOB=2x,\\quad\\angle OAC=x"
         ],
-        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ); (alt. ∠s, ∥ lines)",
+        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ); (alt. ∠s, // lines)",
         "arcs": [
          [
           "C",
@@ -13131,8 +13131,8 @@
      "marks": 2,
      "difficulty": 3,
      "stem": {
-      "zh": "六邊形 ABCDEF 滿足 AF ∥ BE ∥ CD、AB = EF、AF = CD。I：ABEF 共圓；II：BCDE 共圓；III：ACDF 共圓。 哪些四邊形必然共圓？",
-      "en": "Hexagon ABCDEF has AF ∥ BE ∥ CD, AB = EF and AF = CD. I: ABEF is cyclic; II: BCDE is cyclic; III: ACDF is cyclic. Which quadrilaterals must be cyclic?"
+      "zh": "六邊形 ABCDEF 滿足 AF // BE // CD、AB = EF、AF = CD。I：ABEF 共圓；II：BCDE 共圓；III：ACDF 共圓。 哪些四邊形必然共圓？",
+      "en": "Hexagon ABCDEF has AF // BE // CD, AB = EF and AF = CD. I: ABEF is cyclic; II: BCDE is cyclic; III: ACDF is cyclic. Which quadrilaterals must be cyclic?"
      },
      "anim": {
       "points": {
@@ -13205,10 +13205,10 @@
       ],
       "steps": [
        {
-        "zh": "平行底邊與相等腰構成等腰梯形：$AF\\parallel BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB$。",
-        "en": "Parallel bases and equal legs form an isosceles trapezium: $AF\\parallel BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB$.",
+        "zh": "平行底邊與相等腰構成等腰梯形：$AF\\,//\\,BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB$。",
+        "en": "Parallel bases and equal legs form an isosceles trapezium: $AF\\,//\\,BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB$.",
         "mathLines": [
-         "AF\\parallel BE,\\quad AB=EF",
+         "AF\\,//\\,BE,\\quad AB=EF",
          "\\angle ABE=\\angle FEB"
         ],
         "ref": "(base ∠s, isos. trapezium)",
@@ -13259,7 +13259,7 @@
          "\\angle FAB+\\angle ABE=180^\\circ",
          "\\angle FAB+\\angle FEB=180^\\circ"
         ],
-        "ref": "(int. ∠s, ∥ lines); (opp. ∠s supp.)",
+        "ref": "(int. ∠s, // lines); (opp. ∠s supp.)",
         "polygons": [
          [
           "A",
@@ -13304,10 +13304,10 @@
         ]
        },
        {
-        "zh": "ACDF 是平行四邊形，但題目未保證它是長方形：$AF\\parallel CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}$。",
-        "en": "ACDF is a parallelogram, but the givens do not guarantee a rectangle: $AF\\parallel CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}$.",
+        "zh": "ACDF 是平行四邊形，但題目未保證它是長方形：$AF\\,//\\,CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}$。",
+        "en": "ACDF is a parallelogram, but the givens do not guarantee a rectangle: $AF\\,//\\,CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}$.",
         "mathLines": [
-         "AF\\parallel CD,\\quad AF=CD",
+         "AF\\,//\\,CD,\\quad AF=CD",
          "\\mathrm{III}:\\ \\text{not guaranteed}"
         ],
         "parallel": [
@@ -13365,9 +13365,9 @@
          "zh": "平行底邊與相等腰構成等腰梯形",
          "en": "Parallel bases and equal legs form an isosceles trapezium"
         },
-        "zh": "平行底邊與相等腰構成等腰梯形：$AF\\parallel BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB$。",
-        "en": "Parallel bases and equal legs form an isosceles trapezium: $AF\\parallel BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB$.",
-        "math": "AF\\parallel BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB"
+        "zh": "平行底邊與相等腰構成等腰梯形：$AF\\,//\\,BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB$。",
+        "en": "Parallel bases and equal legs form an isosceles trapezium: $AF\\,//\\,BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB$.",
+        "math": "AF\\,//\\,BE,\\quad AB=EF\\quad \\angle ABE=\\angle FEB"
        },
        {
         "title": {
@@ -13392,9 +13392,9 @@
          "zh": "平行四邊形不必是長方形，第三個命題不保證",
          "en": "A parallelogram need not be a rectangle, so the third statement is not guaranteed"
         },
-        "zh": "ACDF 是平行四邊形，但題目未保證它是長方形：$AF\\parallel CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}$。",
-        "en": "ACDF is a parallelogram, but the givens do not guarantee a rectangle: $AF\\parallel CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}$.",
-        "math": "AF\\parallel CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}"
+        "zh": "ACDF 是平行四邊形，但題目未保證它是長方形：$AF\\,//\\,CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}$。",
+        "en": "ACDF is a parallelogram, but the givens do not guarantee a rectangle: $AF\\,//\\,CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}$.",
+        "math": "AF\\,//\\,CD,\\quad AF=CD\\quad \\mathrm{III}:\\ \\text{not guaranteed}"
        }
       ],
       "traps": [

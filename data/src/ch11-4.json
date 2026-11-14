@@ -1738,8 +1738,8 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "zh": "D、E 分別在 AB、AC 上，DE ∥ BC，且 AB = AC。",
-      "en": "D and E lie on AB and AC respectively, DE ∥ BC and AB = AC."
+      "zh": "D、E 分別在 AB、AC 上，DE // BC，且 AB = AC。",
+      "en": "D and E lie on AB and AC respectively, DE // BC and AB = AC."
      },
      "parts": [
       {
@@ -1847,7 +1847,7 @@
         "mathLines": [
          "\\angle AED=\\angle ACB=\\angle DBC"
         ],
-        "ref": "(corr. ∠s, ∥ lines)",
+        "ref": "(corr. ∠s, // lines)",
         "arcs": [
          [
           "E",
@@ -2026,8 +2026,8 @@
       {
        "label": "(d)",
        "marks": 1,
-       "zh": "圖 (d)：AC 與 BD 相交於 E。若 AB ∥ DC，則 A、B、C、D 共圓。",
-       "en": "Figure (d): AC and BD meet at E. If AB ∥ DC, then A, B, C and D are concyclic."
+       "zh": "圖 (d)：AC 與 BD 相交於 E。若 AB // DC，則 A、B、C、D 共圓。",
+       "en": "Figure (d): AC and BD meet at E. If AB // DC, then A, B, C and D are concyclic."
       },
       {
        "label": "(e)",
@@ -2100,9 +2100,9 @@
          "zh": "只有一對平行邊不足以證共圓",
          "en": "One pair of parallel sides is insufficient for concyclicity"
         },
-        "zh": "只有一對平行邊不足以證共圓：$AB\\parallel DC\\not\\Rightarrow A,B,C,D\\text{ concyclic}$。",
-        "en": "One pair of parallel sides is insufficient for concyclicity: $AB\\parallel DC\\not\\Rightarrow A,B,C,D\\text{ concyclic}$.",
-        "math": "AB\\parallel DC\\not\\Rightarrow A,B,C,D\\text{ concyclic}",
+        "zh": "只有一對平行邊不足以證共圓：$AB\\,//\\,DC\\not\\Rightarrow A,B,C,D\\text{ concyclic}$。",
+        "en": "One pair of parallel sides is insufficient for concyclicity: $AB\\,//\\,DC\\not\\Rightarrow A,B,C,D\\text{ concyclic}$.",
+        "math": "AB\\,//\\,DC\\not\\Rightarrow A,B,C,D\\text{ concyclic}",
         "part": "(d)"
        },
        {
@@ -2876,8 +2876,8 @@
      "marks": 2,
      "difficulty": 1,
      "stem": {
-      "zh": "ABCD 是圓內接四邊形，AB ∥ CD，C、D、E 共線，$\\angle BCD=76^\\circ$，$x=\\angle ADE$。",
-      "en": "ABCD is cyclic, AB ∥ CD, CDE is a straight line, $\\angle BCD=76^\\circ$ and $x=\\angle ADE$."
+      "zh": "ABCD 是圓內接四邊形，AB // CD，C、D、E 共線，$\\angle BCD=76^\\circ$，$x=\\angle ADE$。",
+      "en": "ABCD is cyclic, AB // CD, CDE is a straight line, $\\angle BCD=76^\\circ$ and $x=\\angle ADE$."
      },
      "parts": [
       {
@@ -2949,7 +2949,7 @@
         "mathLines": [
          "\\angle ABC=180^\\circ-76^\\circ=104^\\circ"
         ],
-        "ref": "(int. ∠s, ∥ lines)",
+        "ref": "(int. ∠s, // lines)",
         "arcs": [
          [
           "C",
@@ -5252,15 +5252,15 @@
      "marks": 4,
      "difficulty": 2,
      "stem": {
-      "zh": "ABCD 是圓內接四邊形。E 在 AB 上，CE ∥ DA，BC = CE。",
-      "en": "ABCD is cyclic. E lies on AB, CE ∥ DA and BC = CE."
+      "zh": "ABCD 是圓內接四邊形。E 在 AB 上，CE // DA，BC = CE。",
+      "en": "ABCD is cyclic. E lies on AB, CE // DA and BC = CE."
      },
      "parts": [
       {
        "label": "(a)",
        "marks": 2,
-       "zh": "證明 BA ∥ CD。",
-       "en": "Prove BA ∥ CD."
+       "zh": "證明 BA // CD。",
+       "en": "Prove BA // CD."
       },
       {
        "label": "(b)",
@@ -5272,7 +5272,7 @@
      "answers": [
       {
        "part": "(a)",
-       "math": "BA\\parallel CD",
+       "math": "BA\\,//\\,CD",
        "input": null
       },
       {
@@ -5366,7 +5366,7 @@
         "mathLines": [
          "\\angle DAB=\\angle CEB=\\angle CBE"
         ],
-        "ref": "(corr. ∠s, ∥ lines)",
+        "ref": "(corr. ∠s, // lines)",
         "arcs": [
          [
           "A",
@@ -5440,10 +5440,10 @@
         ]
        },
        {
-        "zh": "使用平行線逆定理：$BA\\parallel CD$。",
-        "en": "Use the converse interior-angle rule: $BA\\parallel CD$.",
+        "zh": "使用平行線逆定理：$BA\\,//\\,CD$。",
+        "en": "Use the converse interior-angle rule: $BA\\,//\\,CD$.",
         "mathLines": [
-         "BA\\parallel CD"
+         "BA\\,//\\,CD"
         ],
         "ref": "(int. ∠s supp., converse)",
         "parallel": [
@@ -5466,13 +5466,13 @@
         ]
        },
        {
-        "zh": "兩對對邊平行，組成平行四邊形：$AD\\parallel CE,\\quad AE\\parallel CD\\quad AD=CE=BC$。",
-        "en": "Both pairs of opposite sides are parallel: $AD\\parallel CE,\\quad AE\\parallel CD\\quad AD=CE=BC$.",
+        "zh": "兩對對邊平行，組成平行四邊形：$AD\\,//\\,CE,\\quad AE\\,//\\,CD\\quad AD=CE=BC$。",
+        "en": "Both pairs of opposite sides are parallel: $AD\\,//\\,CE,\\quad AE\\,//\\,CD\\quad AD=CE=BC$.",
         "mathLines": [
-         "AD\\parallel CE,\\quad AE\\parallel CD",
+         "AD\\,//\\,CE,\\quad AE\\,//\\,CD",
          "AD=CE=BC"
         ],
-        "ref": "(opp. sides of ∥gram)",
+        "ref": "(opp. sides of //gram)",
         "ticks": [
          [
           "A",
@@ -5546,18 +5546,18 @@
          "zh": "使用平行線逆定理",
          "en": "Use the converse interior-angle rule"
         },
-        "zh": "使用平行線逆定理：$BA\\parallel CD$。",
-        "en": "Use the converse interior-angle rule: $BA\\parallel CD$.",
-        "math": "BA\\parallel CD"
+        "zh": "使用平行線逆定理：$BA\\,//\\,CD$。",
+        "en": "Use the converse interior-angle rule: $BA\\,//\\,CD$.",
+        "math": "BA\\,//\\,CD"
        },
        {
         "title": {
          "zh": "兩對對邊平行，組成平行四邊形",
          "en": "Both pairs of opposite sides are parallel"
         },
-        "zh": "兩對對邊平行，組成平行四邊形：$AD\\parallel CE,\\quad AE\\parallel CD\\quad AD=CE=BC$。",
-        "en": "Both pairs of opposite sides are parallel: $AD\\parallel CE,\\quad AE\\parallel CD\\quad AD=CE=BC$.",
-        "math": "AD\\parallel CE,\\quad AE\\parallel CD\\quad AD=CE=BC"
+        "zh": "兩對對邊平行，組成平行四邊形：$AD\\,//\\,CE,\\quad AE\\,//\\,CD\\quad AD=CE=BC$。",
+        "en": "Both pairs of opposite sides are parallel: $AD\\,//\\,CE,\\quad AE\\,//\\,CD\\quad AD=CE=BC$.",
+        "math": "AD\\,//\\,CE,\\quad AE\\,//\\,CD\\quad AD=CE=BC"
        }
       ],
       "traps": [
@@ -5850,8 +5850,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "zh": "已知 BA ∥ CD，AD = CD，$\\angle ACB=84^\\circ$、$\\angle BAC=32^\\circ$。",
-      "en": "BA ∥ CD, AD = CD, $\\angle ACB=84^\\circ$ and $\\angle BAC=32^\\circ$."
+      "zh": "已知 BA // CD，AD = CD，$\\angle ACB=84^\\circ$、$\\angle BAC=32^\\circ$。",
+      "en": "BA // CD, AD = CD, $\\angle ACB=84^\\circ$ and $\\angle BAC=32^\\circ$."
      },
      "parts": [
       {
@@ -5916,7 +5916,7 @@
         "mathLines": [
          "\\angle DCA=\\angle BAC=32^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines)",
+        "ref": "(alt. ∠s, // lines)",
         "arcs": [
          [
           "A",
@@ -6098,8 +6098,8 @@
      "marks": 4,
      "difficulty": 2,
      "stem": {
-      "zh": "AC 與 BD 相交於 E。AB ∥ DC，$\\angle BAC=36^\\circ$、$\\angle BEC=72^\\circ$。",
-      "en": "AC and BD meet at E, AB ∥ DC, $\\angle BAC=36^\\circ$ and $\\angle BEC=72^\\circ$."
+      "zh": "AC 與 BD 相交於 E。AB // DC，$\\angle BAC=36^\\circ$、$\\angle BEC=72^\\circ$。",
+      "en": "AC and BD meet at E, AB // DC, $\\angle BAC=36^\\circ$ and $\\angle BEC=72^\\circ$."
      },
      "parts": [
       {
@@ -6237,7 +6237,7 @@
          "\\angle BDC=\\angle ABE=\\angle BAC",
          "=36^\\circ"
         ],
-        "ref": "(alt. ∠s, ∥ lines); (converse of ∠s in the same segment)",
+        "ref": "(alt. ∠s, // lines); (converse of ∠s in the same segment)",
         "arcs": [
          [
           "D",
@@ -7293,14 +7293,14 @@
       {
        "label": "",
        "marks": 2,
-       "zh": "證明 AB ∥ ED。",
-       "en": "Prove AB ∥ ED."
+       "zh": "證明 AB // ED。",
+       "en": "Prove AB // ED."
       }
      ],
      "answers": [
       {
        "part": "",
-       "math": "AB\\parallel ED",
+       "math": "AB\\,//\\,ED",
        "input": null
       }
      ],
@@ -7435,11 +7435,11 @@
         ]
        },
        {
-        "zh": "同旁內角互補，故兩直線平行：$\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\parallel ED$。",
-        "en": "Supplementary interior angles establish parallel lines: $\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\parallel ED$.",
+        "zh": "同旁內角互補，故兩直線平行：$\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\,//\\,ED$。",
+        "en": "Supplementary interior angles establish parallel lines: $\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\,//\\,ED$.",
         "mathLines": [
          "\\angle BAF+\\angle DEF=180^\\circ",
-         "AB\\parallel ED"
+         "AB\\,//\\,ED"
         ],
         "ref": "(int. ∠s supp., converse)",
         "parallel": [
@@ -7464,7 +7464,7 @@
          "D",
          "P"
         ],
-        "answer": "AB∥ ED"
+        "answer": "AB // ED"
        }
       ],
       "layout": "side-by-side",
@@ -7509,9 +7509,9 @@
          "zh": "同旁內角互補，故兩直線平行",
          "en": "Supplementary interior angles establish parallel lines"
         },
-        "zh": "同旁內角互補，故兩直線平行：$\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\parallel ED$。",
-        "en": "Supplementary interior angles establish parallel lines: $\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\parallel ED$.",
-        "math": "\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\parallel ED"
+        "zh": "同旁內角互補，故兩直線平行：$\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\,//\\,ED$。",
+        "en": "Supplementary interior angles establish parallel lines: $\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\,//\\,ED$.",
+        "math": "\\angle BAF+\\angle DEF=180^\\circ\\quad AB\\,//\\,ED"
        }
       ],
       "traps": [
@@ -10275,14 +10275,14 @@
       {
        "label": "",
        "marks": 2,
-       "zh": "證明 AB ∥ ED。",
-       "en": "Prove AB ∥ ED."
+       "zh": "證明 AB // ED。",
+       "en": "Prove AB // ED."
       }
      ],
      "answers": [
       {
        "part": "",
-       "math": "AB\\parallel ED",
+       "math": "AB\\,//\\,ED",
        "input": null
       }
      ],
@@ -10495,12 +10495,12 @@
         ]
        },
        {
-        "zh": "組合同旁內角互補，證兩直線平行：$\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\parallel ED$。",
-        "en": "Combine the supplementary interior angles to prove parallel lines: $\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\parallel ED$.",
+        "zh": "組合同旁內角互補，證兩直線平行：$\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\,//\\,ED$。",
+        "en": "Combine the supplementary interior angles to prove parallel lines: $\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\,//\\,ED$.",
         "mathLines": [
          "\\angle BAE+\\angle AED",
          "=(18^\\circ+18^\\circ+54^\\circ)+90^\\circ",
-         "=180^\\circ\\Rightarrow AB\\parallel ED"
+         "=180^\\circ\\Rightarrow AB\\,//\\,ED"
         ],
         "ref": "(int. ∠s supp., converse)",
         "parallel": [
@@ -10525,7 +10525,7 @@
          "F",
          "I"
         ],
-        "answer": "AB∥ ED"
+        "answer": "AB // ED"
        }
       ],
       "layout": "side-by-side",
@@ -10582,9 +10582,9 @@
          "zh": "組合同旁內角互補，證兩直線平行",
          "en": "Combine the supplementary interior angles to prove parallel lines"
         },
-        "zh": "組合同旁內角互補，證兩直線平行：$\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\parallel ED$。",
-        "en": "Combine the supplementary interior angles to prove parallel lines: $\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\parallel ED$.",
-        "math": "\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\parallel ED"
+        "zh": "組合同旁內角互補，證兩直線平行：$\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\,//\\,ED$。",
+        "en": "Combine the supplementary interior angles to prove parallel lines: $\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\,//\\,ED$.",
+        "math": "\\angle BAE+\\angle AED\\quad =(18^\\circ+18^\\circ+54^\\circ)+90^\\circ\\quad =180^\\circ\\Rightarrow AB\\,//\\,ED"
        }
       ],
       "traps": [
@@ -11145,8 +11145,8 @@
      "marks": 4,
      "difficulty": 3,
      "stem": {
-      "zh": "A、B、C、D、E 共圓，BD 與 CE 相交於 F，BC ∥ ED，$\\angle BAE=\\theta$。",
-      "en": "A, B, C, D and E are concyclic. BD and CE meet at F, BC ∥ ED and $\\angle BAE=\\theta$."
+      "zh": "A、B、C、D、E 共圓，BD 與 CE 相交於 F，BC // ED，$\\angle BAE=\\theta$。",
+      "en": "A, B, C, D and E are concyclic. BD and CE meet at F, BC // ED and $\\angle BAE=\\theta$."
      },
      "parts": [
       {
@@ -11277,7 +11277,7 @@
          "\\angle BCE=\\angle BDE=180^\\circ-\\theta",
          "\\angle CED=180^\\circ-\\theta"
         ],
-        "ref": "(∠s in the same segment); (alt. ∠s, ∥ lines)",
+        "ref": "(∠s in the same segment); (alt. ∠s, // lines)",
         "arcs": [
          [
           "E",
