@@ -91,9 +91,10 @@ def check_text(label: str, s: str, min_len: int = 0, need_zh: bool = False) -> N
         err("S6 %s：`$` 不成對，KaTeX 會渲染出錯：%s" % (label, s[:60]))
     if re.search(r"\brad\b|\\frac\{\\pi\}", s):
         err("S7 %s：角度一律用度（°），不可用弧度：%s" % (label, s[:60]))
-    # π 只在「同一個欄位又講角度」時才可疑（例如把 π/2 當成 90°）；
-    # 面積、弧長用到 \pi 是正常的，不應每次建置都出警告。
-    if "\\pi" in s and ("\\angle" in s or "^\\circ" in s):
+    # π 與角度須在同一數式才可疑；弧長及角度可合法出現在同一題幹。
+    expressions = re.findall(r"\$([^$]*)\$", s) or [s]
+    if any("\\pi" in expr and ("\\angle" in expr or "^\\circ" in expr)
+           for expr in expressions):
         warn("S7 %s：出現 \\pi，請確認不是角度（角度要用度）" % label)
     if need_zh:
         zh = [c for c in s if "\u4e00" <= c <= "\u9fff"]

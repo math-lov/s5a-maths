@@ -623,3 +623,13 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * 必跑 `python3 tools/build.py`（0 錯 0 警）、`python3 tools/verify_ch11_4.py`、`python3 tools/figcheck.py data/src/ch11-1.json data/src/ch11-2.json data/src/ch11-3.json data/src/ch11-4.json`，以及 README 的完整 smoke suite。新增 smoke 檢查全部 42 頁、46 播放器每步公式／理由、永久線段、逐步返回及重播；圖數由 40 增至 44，保留原有斷言。
 * 瀏覽器驗證：1280／390／320px 共 129 個頁面尺寸組合，逐頁操作中文／英文／雙語，486 個前進步驟及全部返回／重播；量度頁面溢出、公式寬度、SVG 文字碰撞及越界。另檢查 46 播放器正常動畫快速連按、返回後前進、重播後過期延遲、鍵盤 Enter，以及 800／768／320px 放大文字。截圖只作本機驗證，不連同教材原件發佈。
 * 有其他未提交修改時，只提交本次來源 JSON、四幅 SC 向量圖、定理表、驗證器、smoke、核對／交接文件及必要生成檔／HTML 版本戳；不可用 `git add -A` 混入既有修改。
+
+### 9.16 第 11 章 Revision Exercise（2026-11-14）
+
+* `ch11-revision`／章節代號 `11R`：Level 1 Q1–Q16、Level 2 Q17–Q34、Smart Corner Q35–Q36、MC1–MC8，共 44 頁及 110 分（老師自擬）。全部 44 題有同步圖解，另有五張互動複習卡，合共 49 個播放器、179 步，沿用 11.1–11.4 共用樣式、永久輔助線及雙語公式規則。
+* 原題及官方答案逐題核對見 `data/raw/ch11-revision-source.md`；Q3、Q19、Q21、Q24、Q33 的官方記號／排印錯誤，已在各題雙語技巧框明確指出。Q13、Q27 給弧長；Q28–Q30、MC5、MC8 的弧帽不可在轉錄時丟失。
+* Q32(b) 採較短的有效證明：新圓內 BEF=BDF，原圓內 BDF=BDC=BAC=CAF；須保留原有延長線點序，不需額外作垂心。Q35 兩圓必須真正同心，圖的代表尺寸不參與以 R、r、x 作未知數的證明。
+* 新共用理由為 `(SAS, similar △s)`、`(corr. ∠s, similar △s)`、`(base ∠s, isos. trapezium)`，保存於 `theorem-abbreviations.json` 的補充理由組。MC7 用符合已知的非共圓反例，不以「圖形看似對稱」作證。
+* `tools/build.py` 的 S7 改為在同一 `$…$` 數式內判斷 π 是否與角度混用。Q27 合法地在同一題幹給弧長 13π cm 及兩個以度為單位的角；不能因此誤報。真正以 π 表角度及 rad 單位的閘門保留，幾何驗證器有正反回歸案例。
+* 必跑 build／check、`tools/verify_ch11_revision.py`、11.1–11.4 的既有幾何驗證、全章 `figcheck.py` 及完整 smoke suite。新增 smoke 檢查 44 頁、49 播放器每步公式／理由及返回／重播、全部 MC 的提交與重試。瀏覽器另量度 1280／390／320px 的每頁三語及每一步標籤、公式、次序；正常動畫驗證快速連按、鍵盤、重播延遲及答案提交。本次 135 個頁面尺寸組合、537 個前進步驟及全部返回／重播，最終均無碰撞、越界、公式溢出或同步錯誤；另在真瀏覽器逐題測試 8 題 MC 的先錯後對提交。
+* 圓心距、弦長標籤用 `segmentLabels` 的 `between`、`id`、`dx`、`dy`；更新數值須沿用同一 id。目標角可調整第六項半徑；共用引擎的目標角不支援第八項標籤位移，勿把普通角標的寫法誤套到 goal。

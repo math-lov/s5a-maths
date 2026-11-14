@@ -399,6 +399,27 @@
         "zh": "三角形的內心在各內角的角平分線上。",
         "en": "The in-centre lies on each internal angle bisector."
       }
+    },
+    "sas_similarity": {
+      "abbreviation": "(SAS, similar △s)",
+      "meaning": {
+        "zh": "兩邊成比例且夾角相等，則三角形相似。",
+        "en": "Two proportional sides and their equal included angle establish similarity."
+      }
+    },
+    "similar_angles": {
+      "abbreviation": "(corr. ∠s, similar △s)",
+      "meaning": {
+        "zh": "相似三角形的對應角相等。",
+        "en": "Corresponding angles of similar triangles are equal."
+      }
+    },
+    "isosceles_trapezium": {
+      "abbreviation": "(base ∠s, isos. trapezium)",
+      "meaning": {
+        "zh": "等腰梯形的同底角相等。",
+        "en": "The angles at the same base of an isosceles trapezium are equal."
+      }
     }
   }
 }

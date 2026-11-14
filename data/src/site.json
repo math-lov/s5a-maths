@@ -683,6 +683,38 @@
      "zh": "完整課堂練習、概念判斷及練習 Q1–Q37；依課本與官方題解核對。",
      "en": "Complete Class Exercise, Section Check and Q1–Q37, checked against the supplied book and official solutions."
     }
+   },
+   {
+    "id": "ch11-revision",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch11",
+    "code": "11R",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 11 章 · 圓形的基本性質",
+     "en": "Chapter 11 · Basic Properties of Circles"
+    },
+    "title": {
+     "zh": "第 11 章總複習 · Revision Exercise",
+     "en": "Revision Exercise 11 · Basic Properties of Circles"
+    },
+    "meta": {
+     "paper": "Book 5A · Revision Exercise 11"
+    },
+    "stats": {
+     "questions": 44,
+     "marks": 110,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課本 Revision Exercise 11 第 1–36 題及全部 8 題選擇題；依原題及官方題解核對。",
+     "en": "Revision Exercise 11 Questions 1–36 and all 8 multiple-choice questions, verified against the supplied book and official solutions."
+    }
    }
   ],
   "classwork": {
@@ -706,8 +738,8 @@
       "en": "Chapter 11 · Basic Properties of Circles"
      },
      "intro": {
-      "zh": "第 11 章四節 11.1–11.4 已全部上線，附中英教學卡、逐步圖解及完整課本練習題解。",
-      "en": "All four sections 11.1–11.4 are online with bilingual teaching cards, step-by-step figures and complete worked exercises."
+      "zh": "11.1–11.4 及全章總複習已上線，附完整中英題解與同步互動圖解。",
+      "en": "Sections 11.1–11.4 and the complete Revision Exercise are online with bilingual worked solutions and synchronised interactive figures."
      },
      "sections": [
       {
@@ -740,6 +772,14 @@
        "title": {
         "zh": "11.4 圓內接四邊形與四點共圓",
         "en": "11.4 Cyclic quadrilaterals and concyclic points"
+       }
+      },
+      {
+       "code": "11R",
+       "part": "ch11-revision",
+       "title": {
+        "zh": "第 11 章總複習",
+        "en": "Revision Exercise 11"
        }
       }
      ]

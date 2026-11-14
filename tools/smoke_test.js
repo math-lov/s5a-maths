@@ -3485,5 +3485,67 @@ ok(cyclicQ22.anim.steps.at(-1).mathLines[0] === "\\angle OED=\\angle BOE+\\angle
 ok(cyclicQuestions4.find((q) => q.code === "37").answers[0].input === "120",
   "11.4: Q37 is included, with the official answer 120°");
 
+console.log("\n== Revision Exercise 11: all 36 long questions and 8 MCs ==");
+const revision11 = JSON.parse(read("data/src/ch11-revision.json"));
+const revisionQs11 = revision11.sections.flatMap((s) => s.questions);
+const revisionReaders11 = revisionQs11.map((q) => q.anim).concat(revision11.cards.map((c) => c.demo.opts.anim));
+ok(revisionQs11.length === 44 && revision11.sections.map((s) => s.questions.length).join() === "16,18,2,8",
+  "11R: all original questions and groups are present");
+ok(revisionQs11.filter((q) => q.type === "mc").map((q) => q.answer).join() === "C,B,A,D,C,C,A,D",
+  "11R: all eight official MC answers agree");
+const revisionMeta11 = INDEX.parts.find((p) => p.id === "ch11-revision");
+ok(revisionMeta11.stats.questions === 44 && revisionMeta11.stats.marks === 110 &&
+  CW_CHAPTERS.find((c) => c.id === "ch11").sections.some((s) => s.part === "ch11-revision"),
+  "11R: chapter registration and teacher-set marks agree");
+const revisionOverview11 = boot("quiz.html", "?c=ch11-revision&p=0");
+ok(revisionOverview11.$$("#pagenav .pg").length === 45 && revisionOverview11.$$(".cg-split").length === 5,
+  "11R: overview has 45 pages and five interactive revision cards");
+let revisionPages11 = true, revisionMC11 = true;
+for (const [index, q] of revisionQs11.entries()) {
+  const rendered = boot("quiz.html", `?c=ch11-revision&p=${index + 1}`, null, "show");
+  if (rendered.$$(".katex-error").length || !rendered.$(".sol-card") || !rendered.$(".cg-split")) revisionPages11 = false;
+  if (q.type === "mc") {
+    const wrong = Object.keys(q.options).find((key) => key !== q.answer);
+    rendered.$(`[data-opt="${wrong}"]`).click();
+    if ((rendered.store().done || {})[q.id]) revisionMC11 = false;
+    rendered.$("[data-check]").click();
+    if ((rendered.store().done || {})[q.id]) revisionMC11 = false;
+    rendered.$(`[data-opt="${q.answer}"]`).click();
+    if ((rendered.store().done || {})[q.id]) revisionMC11 = false;
+    rendered.$("[data-check]").click();
+    if (!(rendered.store().done || {})[q.id]) revisionMC11 = false;
+  }
+  rendered.dom.window.close();
+}
+ok(revisionPages11, "11R: all 44 pages render bilingual solutions and valid KaTeX");
+ok(revisionMC11, "11R: every MC requires submission, accepts retry, and grades the correct option");
+let revisionFormula11 = true, revisionReplay11 = true, revisionSegments11 = true;
+for (const anim of revisionReaders11) {
+  chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, anim);
+  const state = () => JSON.stringify([chordPage.$(".cg-svg").textContent,chordPage.$(".cg-say").textContent,
+    chordPage.$$("[data-segment]").map((n) => n.getAttribute("data-segment"))]);
+  const initial=state(), states=[];let segments=new Set();
+  for (const [index, step] of anim.steps.entries()) {
+    chordPage.$(".cg-next").click();
+    const now=chordPage.$$("[data-segment]").map((n) => n.getAttribute("data-segment"));
+    if ([...segments].some((key) => !now.includes(key)) || new Set(now).size!==now.length) revisionSegments11=false;
+    segments=new Set(now);
+    if (chordPage.$(".cg-progress .l-en").textContent!==`Step ${index+1} of ${anim.steps.length}` ||
+        chordPage.$(".cg-ref").textContent!==(step.ref||"") || chordPage.$$(".katex-error").length ||
+        chordPage.$$(".cg-en .cg-equation annotation").map((n)=>n.textContent).join("\n")!==
+          step.mathLines.map((line)=>"\\displaystyle "+line).join("\n") ||
+        chordPage.$$(".cg-svg [d]").some((n)=>/NaN|undefined/.test(n.getAttribute("d")))) revisionFormula11=false;
+    states.push(state());
+  }
+  for(let index=states.length-2;index>=0;index--){chordPage.$(".cg-back").click();if(state()!==states[index])revisionReplay11=false;}
+  chordPage.$(".cg-restart").click();
+  if(state()!==initial||chordPage.$(".cg-equation")||chordPage.$(".cg-ref").textContent||!chordPage.$(".cg-back").disabled)revisionReplay11=false;
+}
+ok(revisionReaders11.length===49 && revisionFormula11,"11R: all 49 players synchronise the figure, bilingual formulas and saved reasons");
+ok(revisionSegments11,"11R: all constructed sides and radii persist without duplicate segments");
+ok(revisionReplay11,"11R: every backward step and restart restores the matching state");
+ok(["3","19","21","24","33"].every((code)=>revisionQs11.find((q)=>q.code===code).solution.tip.en.includes("official")),
+  "11R: verified official notation errors are identified in the affected questions");
+
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);
