@@ -145,6 +145,62 @@ near((math.degrees(math.atan2(20,15))/360)*math.pi*25**2,289.7797556255,'41 sect
 for c in D['cards']:assert not check_anim(c['demo']['opts']['anim'],c['id'])
 assert len(D['cards'])==5
 assert [Q['SC('+c+')']['answers'][0]['tf'] for c in 'abcd']==[True,False,True,True]
+# The original premises must be annotated before any solution step; conclusions
+# such as TA=TB in Q22 and the claimed radius in SC(a) are not initial givens.
+GIVEN_ANGLES={
+ 'A1(a)':{'BCP':'116°'},'A1(b)':{'BAP':'27°'},
+ 'A2(b)':{'BOC':'21°','BAP':'58°'},'B1':{'BOC':'122°'},'B2':{'ADC':'52°'},
+ 'SC(a)':{'BAP':'90°'},'SC(b)':{'BOC':'38°','BAP':'54°'},'SC(c)':{'AOB':'120°'},
+ '1':{'ABQ':'111°'},'3':{'COB':'58°'},'6':{'AOB':'60°'},'7':{'ABC':'31°'},
+ '8':{'AED':'90°'},'9':{'OAC':'27°'},'10':{'PAB':'77°','OCB':'40°'},
+ '11':{'ABT':'67°'},'13':{'ACD':'43°','BEC':'105°','BAP':'29°'},
+ '14':{'CAP':'26°','OBC':'38°'},'15':{'OAB':'42°'},'16':{'AOB':'250°'},
+ '17':{'OTB':'31°'},'18':{'BAC':'64°'},'21':{'PQC':'36°'},
+ '22':{'ATB':'56°','ADC':'118°'},'23':{'APB':'x'},
+ '24':{'BAP':'29°','BDC':'36°'},'25':{'ACD':'78°','APD':'41°'},
+ '26':{'ABC':'112°','APO':'44°'},'27':{'OCB':'2x','BAP':'x'},
+ '29':{'OCA':'27°','ODA':'67°','BAP':'43°'},'30':{'AOB':'58°','CBD':'66°','EAP':'37°'},
+ '32':{'BOP':'51°','CAQ':'73°'},'33':{'OTA':'38°','BCD':'128°'},
+ '34':{'BAQ':'44°','BCD':'98°','DPQ':'72°'},'38':{'OQP':'a','ORP':'b'},
+}
+GIVEN_LENGTHS={
+ 'A1(c)':{'AB':'16 cm','BC':'12 cm','CP':'29 cm','AP':'x'},
+ 'A2(a)':{'OA':'16 cm','BP':'18 cm','AP':'30 cm'},'B1':{'AT':'7 cm','BT':'x cm'},
+ 'B3':{'AB':'19 cm','AR':'5 cm','CR':'9 cm'},'SC(a)':{'AP':'9 cm','BP':'15 cm'},
+ '4':{'OA':'16 cm','AP':'30 cm','BP':'x'},'5':{'OP':'20 cm','AP':'16 cm','OQ':'15 cm','AQ':'x'},
+ '6':{'OA':'22 cm','BP':'x'},'12':{'OA':'28 cm','BP':'25 cm','AP':'45 cm'},
+ '19':{'AB':'45 cm','BC':'41 cm','CR':'x cm'},
+ '39':{'AB':'a','BC':'b','AC':'c','CD':'d','AD':'e'},'41':{'AC':'40 cm','BM':'10 cm'},
+}
+GIVEN_PARALLELS={k:PARALLELS[k] for k in PARALLELS if k!='8'}
+GIVEN_PARALLELS['38']=['AC','PQ','AE','PR']
+GIVEN_TICKS={'A2(c)':{'AC','BC','AP','AB'},'2':{'AP','AO'},'8':{'AE','CE'}}
+for code,q in Q.items():
+    assert 'givens' in q['anim'],code
+    g=q['anim']['givens']
+    assert {a[1]+a[0]+a[2]:a[3] for a in g.get('arcs',[])}==GIVEN_ANGLES.get(code,{}),(code,'given angles')
+    assert {''.join(v['between']):v['text'] for v in g.get('segmentLabels',[])+g.get('dimensions',[])}==GIVEN_LENGTHS.get(code,{}),(code,'given lengths')
+    assert {''.join(sorted(v[:2])) for v in g.get('parallel',[])}=={''.join(sorted(v)) for v in GIVEN_PARALLELS.get(code,[])},(code,'given parallels')
+    assert {''.join(sorted(v[:2])) for v in g.get('ticks',[])}=={''.join(sorted(v)) for v in GIVEN_TICKS.get(code,set())},(code,'given equal sides')
+    for pair in range(0,len(g.get('parallel',[])),2):
+        p=build_points(q['anim']);parallel(p,g['parallel'][pair],g['parallel'][pair+1],code+' given parallel')
+assert Q['16']['anim']['givens']['arcs'][0][6]=='reflex'
+assert any('(6, 6)' in n[0] for n in Q['37']['anim']['givens']['notes'])
+assert any('kx + 4y' in n[0] for n in Q['37']['anim']['givens']['notes'])
+DEFERRED={'19':(5,{'AR':'26 cm'}),'28':(6,{'AT':'20 cm','CT':'16 cm'}),'31':(4,{'AD':'18 cm','DE':'30 cm'})}
+for code,(index,expected) in DEFERRED.items():
+    staged=[(i,s['givens']) for i,s in enumerate(Q[code]['anim']['steps']) if s.get('givens')]
+    assert len(staged)==1 and staged[0][0]==index,code
+    assert {''.join(v['between']):v['text'] for v in staged[0][1]['segmentLabels']}==expected,code
+assert {''.join(sorted(t[:2])) for t in Q['23']['anim']['steps'][6]['givens']['ticks']}=={'AB','BP'}
+assert Q['38']['anim']['steps'][9]['givens']['notes'][0][0]=='(b): a = b'
+# Malformed initial/later givens must fail the shared geometry checker as well.
+import copy
+bad=copy.deepcopy(Q['22']['anim']);bad['givens']['arcs'][0][3]='999°'
+assert check_anim(bad,'invalid initial given')
+bad=copy.deepcopy(Q['22']['anim']);bad['steps'][0]['givens']={'arcs':[['X','A','B','56°']]}
+assert check_anim(bad,'invalid later given')
+
 # The common reference table remains the authority for abbreviation spelling.
 refs=json.loads((ROOT/'data/src/theorem-abbreviations.json').read_text())
 known={v['abbreviation'] for group in ['theorems','basicAngleRules','otherGeometryReasons'] for v in refs[group].values()}

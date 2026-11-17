@@ -138,3 +138,28 @@ formal/animated step counts match. The smoke suite checks the Q22 intermediate
 formula, theorem reason and visible length ticks, in addition to replaying all 59
 players. The browser audit covers 165 page-width combinations and 1,032 forward
 states, all backward states and restarts, three languages, labels and formulas.
+
+## Given-information audit (2026-11-17)
+
+Audited all 54 question diagrams against their source premises. Known angles and
+lengths, source equal-side/perpendicular marks, parallel-line pairs, symbolic
+parameters, the coordinate equation and I(6,6) are now initial annotations via
+`anim.givens`. Q22 initially shows ATB = 56° and ADC = 118°; neither 62° nor
+TA = TB is supplied as an initial given. SC(a)'s claimed radius is likewise not
+shown as a premise. Given values remain orange through every proof step; derived
+angle annotations remain purple. Q41 uses a full AC dimension guide for 40 cm,
+separating the chord's whole length from its midpoint M.
+
+Extra conditions in Q19, Q23, Q28, Q31 and Q38 are attached to the first applicable
+part-(b) step as `steps[].givens`. Back and Restart restore the correct set of
+conditions. The two independent parallel-line families in Q38 have different
+arrow counts. Equal-length marks supplied in the question remain distinct from
+side equalities that the proof still needs to establish.
+
+Shared engine support is optional and leaves existing Chapter 11 data unchanged.
+`figcheck.py` now checks initial and later givens, including all parallel pairs and
+length/dimension endpoints. The Chapter 12 verifier independently checks the full
+source-givens ledger. Smoke tests cover persistence, initial-answer concealment,
+no duplicate labels, staged conditions, and replay. Browser checks include all
+initial figures as well as 1,032 forward states and all Back/Restart states at
+1280/390/320 px, with no label collision, bounds, formula or synchronisation error.

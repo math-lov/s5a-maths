@@ -92,7 +92,7 @@
   }
 
   /* 平行記號：在線段中點畫一個「>>」 */
-  function parallelPath(a, b, t) {
+  function parallelPath(a, b, t, count) {
     t = typeof t === "number" ? t : 0.5;
     var mx = a.x + (b.x - a.x) * t, my = a.y + (b.y - a.y) * t;
     var dx = b.x - a.x, dy = b.y - a.y, d = Math.hypot(dx, dy) || 1;
@@ -100,7 +100,15 @@
     var s = 6;
     var p1 = { x: mx - ux * s + nx * s, y: my - uy * s + ny * s };
     var p3 = { x: mx - ux * s - nx * s, y: my - uy * s - ny * s };
-    return "M" + p1.x + " " + p1.y + "L" + mx + " " + my + "L" + p3.x + " " + p3.y;
+    var paths = [];
+    count = Math.max(1, Math.min(3, Number(count) || 1));
+    for (var i = 0; i < count; i++) {
+      var shift = (i - (count - 1) / 2) * 10;
+      var sx = ux * shift, sy = uy * shift;
+      paths.push("M" + (p1.x + sx) + " " + (p1.y + sy) + "L" + (mx + sx) + " " + (my + sy) +
+        "L" + (p3.x + sx) + " " + (p3.y + sy));
+    }
+    return paths.join(" ");
   }
 
   /* 圓周上由 A 到 B 的一段弧（screen 座標）；有 avoid 就選不穿越它的那一邊 */
@@ -135,6 +143,13 @@
     });
     var gBase = el("g"), gStep = el("g");
     var gLabels = el("g", { class: "cg-labels" }), gPoints = el("g");
+    // Given information belongs to the question, not to a solution step.
+    var gGivens = el("g", { class: "cg-givens" });
+    var gGivenMarks = el("g"), gGivenLabels = el("g");
+    gGivens.appendChild(gGivenMarks);
+    gGivens.appendChild(gGivenLabels);
+    var givenAngles = {}, givenTicks = {}, givenParallels = {};
+    var paintingGivens = false;
     var gFocus = el("g", { class: "cg-focus" });
     /* 每一步「正在講」的兩條線放在 gPulse：下一步會清走，底圖的線保持中性色，
        不會愈疊愈花（舊做法會把弦、半徑逐隻色染上去）。 */
@@ -148,6 +163,7 @@
     svg.appendChild(gStep);
     svg.appendChild(gPulse);
     svg.appendChild(gLabels);
+    svg.appendChild(gGivens);
     svg.appendChild(gPoints);
 
     /* 圓與點：座標由角度算出 */
@@ -430,6 +446,7 @@
       var dx = B.x - A.x, dy = B.y - A.y, d = Math.hypot(dx, dy) || 1;
       var nx = -dy / d, ny = dx / d;
       var key = segmentKey(a, b);
+      if (!paintingGivens && givenTicks[key]) return;
       Array.prototype.slice.call(gStep.querySelectorAll("[data-tick-key]")).forEach(function (old) {
         if (old.getAttribute("data-tick-key") === key) old.remove();
       });
@@ -525,9 +542,10 @@
       });
     }
 
-    function draw(i, instant) {
+    function draw(i, instant) { drawStep(steps[i] || {}, instant); }
+
+    function drawStep(st, instant) {
       setFrame(frame);   // 同一頁可能有多幅圖，各自用自己的圓心與半徑
-      var st = steps[i] || {};
       arcMeasures(st.arcMeasures, instant);
       (st.clearLabels || []).forEach(function (id) {
         Array.prototype.slice.call(gLabels.querySelectorAll("[data-length]")).forEach(function (node) {
@@ -548,8 +566,10 @@
       /* 同一隻角之前畫過（例如先寫 ½ × 180°，之後改寫 90°）：
          先把舊的弧與數值拿走，免得兩個標籤疊在一起 */
       (st.clearAngle || []).forEach(function (name) {
-        Array.prototype.slice.call(svg.querySelectorAll('[data-angle="' + name + '"]'))
-          .forEach(function (n) { n.parentNode.removeChild(n); });
+        [gStep, gLabels].forEach(function (layer) {
+          Array.prototype.slice.call(layer.querySelectorAll('[data-angle="' + name + '"]'))
+            .forEach(function (n) { n.parentNode.removeChild(n); });
+        });
       });
 
       /* 每一步只顯示「這一步正在講」的線：先清走上一條，底圖保持中性 */
@@ -568,16 +588,17 @@
         var A = screen(pts[S[0]]), B = screen(pts[S[1]]);
         if (!A || !B) return;
         var key = segmentKey(S[0], S[1]);
+        if (!paintingGivens && givenParallels[key]) return;
         Array.prototype.slice.call(gStep.querySelectorAll("[data-parallel]")).forEach(function (node) {
           if (node.getAttribute("data-parallel") === key) node.remove();
         });
-        var p = el("path", { class: "cg-par", "data-parallel": key, d: parallelPath(A, B, S[2]) });
+        var p = el("path", { class: "cg-par", "data-parallel": key, d: parallelPath(A, B, S[2], S[3]) });
         gStep.appendChild(p);
         drawOn(p, 280 + j * 180, instant);
       });
 
       (st.lines || []).forEach(function (L) {
-        keepSegment(L[0], L[1], 0, instant);
+        keepSegment(L[0], L[1], 0, instant, paintingGivens);
         if (L[2] !== "ink") ray(L[0], L[1], L[2] || "claim", 0, instant);
       });
 
@@ -600,8 +621,11 @@
         var radius = A[5] || 26;
         var isRight = A[3] === "90°" || A[6] === "sq";
         var key = angleKey(A);
-        Array.prototype.slice.call(svg.querySelectorAll("[data-angle-key]")).forEach(function (node) {
-          if (node.getAttribute("data-angle-key") === key) node.remove();
+        if (!paintingGivens && givenAngles[key]) return;
+        [gStep, gLabels].forEach(function (layer) {
+          Array.prototype.slice.call(layer.querySelectorAll("[data-angle-key]")).forEach(function (node) {
+            if (node.getAttribute("data-angle-key") === key) node.remove();
+          });
         });
         var path, geo;
         if (isRight) {
@@ -703,6 +727,40 @@
       });
     }
 
+    // Use the same geometry primitives for initial givens and for later-part
+    // conditions. Rebuild from data on Back/Restart; never retain a future given.
+    function syncGivens(n) {
+      var fixed = { arcs: [], ticks: [], parallel: [], segmentLabels: [], dimensions: [], notes: [], lines: [], noRays: true };
+      function add(source) {
+        Object.keys(fixed).forEach(function (key) {
+          if (Array.isArray(fixed[key])) fixed[key] = fixed[key].concat((source || {})[key] || []);
+        });
+      }
+      add(anim.givens);
+      for (var i = 0; i < n; i++) add(steps[i].givens);
+      givenAngles = {}; givenTicks = {}; givenParallels = {};
+      fixed.arcs = fixed.arcs.map(function (arc) {
+        var a = arc.slice(); a[4] = "given"; givenAngles[angleKey(a)] = true;
+        fixed.lines.push([a[0], a[1], "ink"], [a[0], a[2], "ink"]);
+        return a;
+      });
+      fixed.ticks.forEach(function (t) { givenTicks[segmentKey(t[0], t[1])] = true; });
+      fixed.parallel.forEach(function (s) { givenParallels[segmentKey(s[0], s[1])] = true; });
+      fixed.segmentLabels = fixed.segmentLabels.map(function (source) {
+        var label = Object.assign({}, source); label.colour = source.colour || "given"; return label;
+      });
+      gGivenMarks.innerHTML = ""; gGivenLabels.innerHTML = "";
+      var saved = [gStep, gLabels, gPulse, gFocus];
+      gStep = gGivenMarks; gLabels = gGivenLabels;
+      gPulse = el("g"); gFocus = el("g");
+      paintingGivens = true;
+      try { drawStep(fixed, true); }
+      finally {
+        paintingGivens = false;
+        gStep = saved[0]; gLabels = saved[1]; gPulse = saved[2]; gFocus = saved[3];
+      }
+    }
+
     /* 字幕內可以有 $...$：交給全站的 KaTeX 渲染（與題解同一個機制） */
     function setSay(node, txt, mathLines) {
       node.textContent = txt || "";
@@ -736,6 +794,7 @@
     /* 目標角：anim.goal 由第一步就在；之後任何一拍寫 goal 就由那一拍起加上去 */
     function goalArcs(list) {
       (list || []).forEach(function (A) {
+        if (givenAngles[angleKey(A)]) return;
         if (anim.hideSolvedGoals && Array.prototype.some.call(gLabels.querySelectorAll("[data-angle-key]"), function (node) {
           return node.getAttribute("data-angle-key") === angleKey(A);
         })) return;
@@ -771,6 +830,7 @@
       gPulse.innerHTML = "";
       gFocus.innerHTML = "";
       arcMeasures(anim.arcMeasures, true);
+      syncGivens(n);
       Object.keys(pointGroups).forEach(function (k) {
         pointGroups[k].style.opacity = specs[k].hidden ? "0" : "1";
       });
@@ -809,6 +869,7 @@
       // Finish earlier steps immediately before starting the next one. This also
       // cancels delayed labels so Back/Restart cannot show an obsolete answer.
       renderUpTo(at);
+      syncGivens(at + 1);
       draw(at, !!(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches));
       setSay(sayZh, steps[at].zh, steps[at].mathLines);
       setSay(sayEn, steps[at].en, steps[at].mathLines);
@@ -826,6 +887,7 @@
     restart.onclick = function () { renderUpTo(0); };
 
     arcMeasures(anim.arcMeasures, true);
+    syncGivens(0);
     syncGoals(0);   // 一開頁就把「想求的那隻角」標出來
     setSay(sayZh, (anim.intro || {}).zh || "");
     setSay(sayEn, (anim.intro || {}).en || "");

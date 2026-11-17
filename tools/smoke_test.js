@@ -3584,17 +3584,20 @@ for(const [index,q] of tangentQs12.entries()){
 ok(tangentPages12,"12.1: every question renders bilingual solutions, an interactive figure and valid KaTeX");
 ok(tangentInputs12,"12.1: all numerical answers require submission, reject a wrong value and accept a corrected answer");
 ok(tangentTF12,"12.1: all four Section Check items support wrong-first retries and the official answer");
-let tangentSync12=true,tangentReplay12=true;
+let tangentSync12=true,tangentReplay12=true,tangentGivens12=true;
 const tangentPlayers12=tangentQs12.map(q=>q.anim).concat(tangent12.cards.map(c=>c.demo.opts.anim));
 for(const anim of tangentPlayers12){
  chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,anim);
  const state=()=>JSON.stringify([chordPage.$(".cg-svg").textContent,chordPage.$(".cg-say").textContent,chordPage.$(".cg-ref").textContent]);
  const initial=state(),states=[];
+ const initialGivens=chordPage.$$(".cg-givens text").map(n=>n.textContent);
  for(const step of anim.steps){
   chordPage.$(".cg-next").click();
   if(chordPage.$(".cg-ref").textContent!==(step.ref||"") || chordPage.$$(".katex-error").length ||
     chordPage.$$(".cg-en .cg-equation annotation").map(n=>n.textContent).join("\n")!==step.mathLines.map(l=>"\\displaystyle "+l).join("\n") ||
     chordPage.$$(".cg-svg [d]").some(n=>/NaN|undefined/.test(n.getAttribute("d"))))tangentSync12=false;
+  const displayedGivens=chordPage.$$(".cg-givens text").map(n=>n.textContent);
+  if(initialGivens.some(value=>!displayedGivens.includes(value)))tangentGivens12=false;
   states.push(state());
  }
  for(let i=states.length-2;i>=0;i--){chordPage.$(".cg-back").click();if(state()!==states[i])tangentReplay12=false;}
@@ -3603,6 +3606,8 @@ for(const anim of tangentPlayers12){
 ok(tangentPlayers12.length===59 && tangentSync12,"12.1: all 59 players synchronise formulas, figures and theorem reasons");
 ok(tangentReplay12,"12.1: every Back step and Restart restores the matching figure and explanation");
 ok(["26","38"].every(k=>tangentQs12.find(q=>q.code===k).solution.tip.en.includes("official")),"12.1: verified official notation errors are explained");
+
+ok(tangentGivens12,"12.1: original given labels remain visible throughout every step player");
 
 // The equal-tangent premise must be visible before Q22 uses equal base angles.
 const pacedQ22=tangentQs12.find(q=>q.code==="22");
@@ -3618,6 +3623,29 @@ ok(pacedQ22Page.$(".cg-en annotation").textContent.includes("\\angle BAT=\\angle
   pacedQ22Page.$(".cg-ref").textContent==="(base ∠s, isos. △)",
   "12.1 Q22: the next step establishes equal base angles before calculating 62 degrees");
 pacedQ22Page.dom.window.close();
+
+// Givens are visible at study time and survive all clearAngle, Back and Restart operations.
+const fixedQ22=boot("quiz.html","?c=ch12-1&p=35");
+const q22GivenValues=()=>fixedQ22.$$(".cg-givens .cg-val.given").map(n=>n.textContent).sort().join();
+ok(q22GivenValues()==="118°,56°" && !fixedQ22.$(".cg-svg").textContent.includes("62°"),
+  "12.1 Q22: 56 and 118 degrees are shown as givens before revealing any deduction");
+for(let i=0;i<6;i++)fixedQ22.$(".cg-next").click();
+ok(q22GivenValues()==="118°,56°" && fixedQ22.$$(".cg-givens .cg-val").length===2,
+  "12.1 Q22: both givens persist without duplicate angle labels at the end of the proof");
+fixedQ22.$(".cg-restart").click();
+ok(q22GivenValues()==="118°,56°" && !fixedQ22.$(".cg-svg").textContent.includes("62°"),
+  "12.1 Q22: Restart restores the annotated question without derived answers");
+fixedQ22.dom.window.close();
+const stagedQ19=boot("quiz.html","?c=ch12-1&p=32");
+const extraLength19=()=>stagedQ19.$$(".cg-givens text").some(n=>n.textContent==="26 cm");
+ok(!extraLength19(),"12.1 Q19: part (b)'s extra length is not used in the part (a) figure");
+for(let i=0;i<6;i++)stagedQ19.$(".cg-next").click();
+ok(extraLength19(),"12.1 Q19: part (b)'s 26 cm is annotated when that condition is introduced");
+stagedQ19.$(".cg-back").click();
+ok(!extraLength19(),"12.1 Q19: Back removes the future part's given condition");
+stagedQ19.$(".cg-restart").click();
+ok(!extraLength19(),"12.1 Q19: Restart preserves the initial givens and clears later conditions");
+stagedQ19.dom.window.close();
 
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

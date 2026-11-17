@@ -97,15 +97,20 @@ def check_anim(anim, tag):
     for name in (anim.get("points") or {}):
         if name not in pts:
             bad.append("%s：點 %s 冇辦法定位（缺 points 或缺必要點）" % (tag, name))
-    for i, st in enumerate(anim.get("steps") or [], 1):
+    states = list(enumerate(anim.get("steps") or [], 1))
+    if anim.get("givens"):
+        states.insert(0, ("givens", anim["givens"]))
+    states += [("%s givens" % i, st["givens"])
+               for i, st in enumerate(anim.get("steps") or [], 1) if st.get("givens")]
+    for i, st in states:
         for a in st.get("arcs") or []:
             if len(a) < 4:
-                bad.append("%s step %d：角要寫 [頂點, 點1, 點2, 標籤]" % (tag, i))
+                bad.append("%s step %s：角要寫 [頂點, 點1, 點2, 標籤]" % (tag, i))
                 continue
             v, p1, p2, lab = a[0], a[1], a[2], a[3]
             missing = [k for k in (v, p1, p2) if k not in pts]
             if missing:
-                bad.append("%s step %d：點 %s 不存在" % (tag, i, "、".join(missing)))
+                bad.append("%s step %s：點 %s 不存在" % (tag, i, "、".join(missing)))
                 continue
             real = ang(pts[p1], pts[v], pts[p2])
             if len(a) > 6 and a[6] == "reflex" and real is not None:
@@ -114,25 +119,31 @@ def check_anim(anim, tag):
             if m:
                 want = float(m.group(1))
                 if real is None or abs(real - want) > TOL_ANG:
-                    bad.append("%s step %d：標籤 %s 但圖上係 %.1f°"
+                    bad.append("%s step %s：標籤 %s 但圖上係 %.1f°"
                                % (tag, i, lab, real if real is not None else -1))
         par = st.get("parallel") or []
         for seg in par:
             if len(seg) < 2 or seg[0] not in pts or seg[1] not in pts:
-                bad.append("%s step %d：平行記號的點不存在 %s" % (tag, i, seg))
-        if len(par) >= 2 and all(all(k in pts for k in s[:2]) for s in par[:2]):
-            u = sub(pts[par[0][1]], pts[par[0][0]])
-            w = sub(pts[par[1][1]], pts[par[1][0]])
+                bad.append("%s step %s：平行記號的點不存在 %s" % (tag, i, seg))
+        for pair in range(0, len(par) - 1, 2):
+            if not all(all(k in pts for k in s[:2]) for s in par[pair:pair+2]):
+                continue
+            u = sub(pts[par[pair][1]], pts[par[pair][0]])
+            w = sub(pts[par[pair+1][1]], pts[par[pair+1][0]])
             nu, nw = math.hypot(*u), math.hypot(*w)
             if nu > 1e-9 and nw > 1e-9:
                 cr = (u[0] * w[1] - u[1] * w[0]) / (nu * nw)
                 if abs(cr) > TOL_PAR:
-                    bad.append("%s step %d：標了平行但實際唔平行（sin=%.3f）"
+                    bad.append("%s step %s：標了平行但實際唔平行（sin=%.3f）"
                                % (tag, i, cr))
+        for label in (st.get("segmentLabels") or []) + (st.get("dimensions") or []):
+            names = label.get("between") or []
+            if len(names) != 2 or not all(k in pts for k in names) or not label.get("text"):
+                bad.append("%s step %s：長度標籤要有存在的兩點及文字" % (tag, i))
         for t in (st.get("ticks") or []) + (st.get("lines") or []):
             for k in t[:2]:
                 if k not in pts:
-                    bad.append("%s step %d：線段／記號的點 %s 不存在" % (tag, i, k))
+                    bad.append("%s step %s：線段／記號的點 %s 不存在" % (tag, i, k))
     return bad
 
 

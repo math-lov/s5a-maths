@@ -892,6 +892,19 @@
       "label": {
        "zh": "AC 是 A 點的切線，AOB、ACP 各自共線，$\\angle BCP=116^\\circ$。$x=\\angle ABC$。",
        "en": "PA is tangent at A. AOB and ACP are straight lines, $\\angle BCP=116^\\circ$ and $x=\\angle ABC$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "B",
+         "P",
+         "116°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -1141,6 +1154,19 @@
       "label": {
        "zh": "PA 是 A 點的切線，OBP 共線，$\\angle BAP=27^\\circ$，$x=\\angle APB$。",
        "en": "PA is tangent at A, OBP is a straight line, $\\angle BAP=27^\\circ$ and $x=\\angle APB$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "P",
+         "27°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -1389,7 +1415,52 @@
        "zh": "AC 是直徑，PA 是 A 點的切線。AB = 16 cm、BC = 12 cm、CP = 29 cm，$x=AP$。",
        "en": "AC is a diameter and PA is tangent at A. AB = 16 cm, BC = 12 cm, CP = 29 cm and $x=AP$."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "A",
+          "B"
+         ],
+         "text": "16 cm",
+         "id": "given-AB",
+         "dx": -12.799999999303658,
+         "dy": -9.600000000928455
+        },
+        {
+         "between": [
+          "B",
+          "C"
+         ],
+         "text": "12 cm",
+         "id": "given-BC",
+         "dx": -9.600000000928455,
+         "dy": 12.799999999303658
+        },
+        {
+         "between": [
+          "C",
+          "P"
+         ],
+         "text": "29 cm",
+         "id": "given-CP",
+         "dx": 11.03448275862069,
+         "dy": 11.586206896551724
+        },
+        {
+         "between": [
+          "A",
+          "P"
+         ],
+         "text": "x",
+         "id": "given-AP",
+         "dx": -0.0,
+         "dy": -16.0,
+         "colour": "claim"
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -1601,7 +1672,41 @@
        "zh": "O 是圓心，OBP 共線，OA = 16 cm、BP = 18 cm、AP = 30 cm。",
        "en": "O is the centre, OBP is a straight line, OA = 16 cm, BP = 18 cm and AP = 30 cm."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "O",
+          "A"
+         ],
+         "text": "16 cm",
+         "id": "given-OA",
+         "dx": -14.117647058817347,
+         "dy": -7.529411764717475
+        },
+        {
+         "between": [
+          "B",
+          "P"
+         ],
+         "text": "18 cm",
+         "id": "given-BP",
+         "dx": -0.0,
+         "dy": -16.0
+        },
+        {
+         "between": [
+          "A",
+          "P"
+         ],
+         "text": "30 cm",
+         "id": "given-AP",
+         "dx": 7.529411764705882,
+         "dy": -14.11764705882353
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -1851,7 +1956,39 @@
        "zh": "AB // OC，$\\angle BOC=21^\\circ$、$\\angle BAP=58^\\circ$。",
        "en": "AB // OC, $\\angle BOC=21^\\circ$ and $\\angle BAP=58^\\circ$."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "B",
+         "C",
+         "21°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "A",
+         "B",
+         "P",
+         "58°",
+         "given",
+         60,
+         ""
+        ]
+       ],
+       "parallel": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "O",
+         "C"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -2205,7 +2342,31 @@
        "zh": "AB 是直徑，BCP 共線，AC = BC、AP = AB。",
        "en": "AB is a diameter, BCP is a straight line, AC = BC and AP = AB."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "C",
+         1
+        ],
+        [
+         "B",
+         "C",
+         1
+        ],
+        [
+         "A",
+         "P",
+         2
+        ],
+        [
+         "A",
+         "B",
+         2
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -2521,6 +2682,42 @@
       "label": {
        "zh": "TA、TB 是切線，COT 共線，AT = 7 cm、$\\angle BOC=122^\\circ$。$x=BT$、$y=\\angle ATO$。",
        "en": "TA and TB are tangents, COT is a straight line, AT = 7 cm and $\\angle BOC=122^\\circ$. Here $x=BT$ and $y=\\angle ATO$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "B",
+         "C",
+         "122°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "segmentLabels": [
+        {
+         "between": [
+          "A",
+          "T"
+         ],
+         "text": "7 cm",
+         "id": "given-AT",
+         "dx": 10.706089701741732,
+         "dy": -11.890317207638308
+        },
+        {
+         "between": [
+          "B",
+          "T"
+         ],
+         "text": "x cm",
+         "id": "given-BT",
+         "dx": 5.993705494654593,
+         "dy": 14.834941673068599,
+         "colour": "claim"
+        }
+       ]
       }
      },
      "solution": {
@@ -2926,6 +3123,19 @@
       "label": {
        "zh": "TA、TC 是切線，OBT 共線，$\\angle ADC=52^\\circ$。$x=\\angle AOB$、$y=\\angle BAT$。",
        "en": "TA and TC are tangents, OBT is a straight line and $\\angle ADC=52^\\circ$. Here $x=\\angle AOB$ and $y=\\angle BAT$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "C",
+         "52°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -3284,7 +3494,41 @@
        "zh": "AB、BC、CA 分別在 P、Q、R 與圓相切。AB = 19 cm、AR = 5 cm、CR = 9 cm。",
        "en": "AB, BC and CA touch the circle at P, Q and R respectively. AB = 19 cm, AR = 5 cm and CR = 9 cm."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "A",
+          "B"
+         ],
+         "text": "19 cm",
+         "id": "given-AB",
+         "dx": -9.725631980014422,
+         "dy": -12.704805491990848
+        },
+        {
+         "between": [
+          "A",
+          "R"
+         ],
+         "text": "5 cm",
+         "id": "given-AR",
+         "dx": 13.199071972876718,
+         "dy": -9.04347826086956
+        },
+        {
+         "between": [
+          "C",
+          "R"
+         ],
+         "text": "9 cm",
+         "id": "given-CR",
+         "dx": 13.199071972876713,
+         "dy": -9.043478260869568
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -3498,7 +3742,42 @@
        "zh": "PA 是 A 點的切線，AB 在 A 點垂直於 AP。若 AP = 9 cm、BP = 15 cm，則圓的半徑為 6 cm。",
        "en": "PA is tangent at A and AB is perpendicular to AP at A. If AP = 9 cm and BP = 15 cm, then the radius is 6 cm."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "P",
+         "90°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "segmentLabels": [
+        {
+         "between": [
+          "A",
+          "P"
+         ],
+         "text": "9 cm",
+         "id": "given-AP",
+         "dx": 2.368475785867e-15,
+         "dy": 16.0
+        },
+        {
+         "between": [
+          "B",
+          "P"
+         ],
+         "text": "15 cm",
+         "id": "given-BP",
+         "dx": 12.799999999999999,
+         "dy": -9.6
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -3739,7 +4018,39 @@
        "zh": "AB // OC，$\\angle BOC=38^\\circ$、$\\angle BAP=54^\\circ$，則 PA 是 A 點的切線。",
        "en": "AB // OC, $\\angle BOC=38^\\circ$ and $\\angle BAP=54^\\circ$. Then PA is tangent at A."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "B",
+         "C",
+         "38°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "A",
+         "B",
+         "P",
+         "54°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "parallel": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "O",
+         "C"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -4084,7 +4395,20 @@
        "zh": "TA、TB 是切線。若 $\\angle AOB=120^\\circ$，則三角形 ABT 是等邊三角形。",
        "en": "TA and TB are tangents. If $\\angle AOB=120^\\circ$, then triangle ABT is equilateral."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "B",
+         "120°",
+         "given",
+         43,
+         ""
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -4375,7 +4699,8 @@
        "zh": "TA、TB 是圓 ABC 的切線，TC 通過圓心，則 AC = BC。",
        "en": "TA and TB are tangents to circle ABC and TC passes through its centre. Then AC = BC."
       },
-      "proof": true
+      "proof": true,
+      "givens": {}
      },
      "solution": {
       "steps": [
@@ -4615,6 +4940,29 @@
       "label": {
        "zh": "PA 是 A 點的切線，BQ // AP，$\\angle ABQ=111^\\circ$，$x=\\angle OAB$。",
        "en": "PA is tangent at A, BQ // AP, $\\angle ABQ=111^\\circ$ and $x=\\angle OAB$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "Q",
+         "111°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "parallel": [
+        [
+         "B",
+         "Q"
+        ],
+        [
+         "A",
+         "P"
+        ]
+       ]
       }
      },
      "solution": {
@@ -4853,6 +5201,20 @@
       "label": {
        "zh": "PA 是 A 點的切線，PA = OA，$x=\\angle AOP$。",
        "en": "PA is tangent at A, PA = OA and $x=\\angle AOP$."
+      },
+      "givens": {
+       "ticks": [
+        [
+         "P",
+         "A",
+         1
+        ],
+        [
+         "O",
+         "A",
+         1
+        ]
+       ]
       }
      },
      "solution": {
@@ -5079,6 +5441,19 @@
       "label": {
        "zh": "PA 是 A 點的切線，AOC 共線，$\\angle COB=58^\\circ$，$x=\\angle BAP$。",
        "en": "PA is tangent at A, AOC is a straight line, $\\angle COB=58^\\circ$ and $x=\\angle BAP$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "C",
+         "B",
+         "58°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -5271,7 +5646,42 @@
        "zh": "PA 是 A 點的切線，OBP 共線，OA = 16 cm、AP = 30 cm、$x=BP$。",
        "en": "PA is tangent at A, OBP is a straight line, OA = 16 cm, AP = 30 cm and $x=BP$."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "O",
+          "A"
+         ],
+         "text": "16 cm",
+         "id": "given-OA",
+         "dx": 14.117647058817347,
+         "dy": 7.529411764717473
+        },
+        {
+         "between": [
+          "A",
+          "P"
+         ],
+         "text": "30 cm",
+         "id": "given-AP",
+         "dx": -7.529411764705883,
+         "dy": 14.117647058823529
+        },
+        {
+         "between": [
+          "B",
+          "P"
+         ],
+         "text": "x",
+         "id": "given-BP",
+         "dx": 1.9594348786357647e-15,
+         "dy": -16.0,
+         "colour": "claim"
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -5484,7 +5894,52 @@
        "zh": "PAQ 是 A 點的切線，OP = 20 cm、AP = 16 cm、OQ = 15 cm，$x=AQ$。",
        "en": "PAQ is tangent at A, OP = 20 cm, AP = 16 cm, OQ = 15 cm and $x=AQ$."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "O",
+          "P"
+         ],
+         "text": "20 cm",
+         "id": "given-OP",
+         "dx": 9.6,
+         "dy": -12.8
+        },
+        {
+         "between": [
+          "A",
+          "P"
+         ],
+         "text": "16 cm",
+         "id": "given-AP",
+         "dx": 1.3322676295501877e-15,
+         "dy": 16.0
+        },
+        {
+         "between": [
+          "O",
+          "Q"
+         ],
+         "text": "15 cm",
+         "id": "given-OQ",
+         "dx": 12.800000000000002,
+         "dy": 9.599999999999998
+        },
+        {
+         "between": [
+          "A",
+          "Q"
+         ],
+         "text": "x",
+         "id": "given-AQ",
+         "dx": 4.736951571734004e-15,
+         "dy": 16.0,
+         "colour": "claim"
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -5814,7 +6269,43 @@
        "zh": "PA 是 A 點的切線，OBP 共線，OA = 22 cm、$\\angle AOB=60^\\circ$，$x=BP$。",
        "en": "PA is tangent at A, OBP is a straight line, OA = 22 cm, $\\angle AOB=60^\\circ$ and $x=BP$."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "B",
+         "60°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "segmentLabels": [
+        {
+         "between": [
+          "O",
+          "A"
+         ],
+         "text": "22 cm",
+         "id": "given-OA",
+         "dx": -16.0,
+         "dy": -9.797174393178826e-16
+        },
+        {
+         "between": [
+          "B",
+          "P"
+         ],
+         "text": "x",
+         "id": "given-BP",
+         "dx": 8.000000000000002,
+         "dy": 13.856406460551018,
+         "colour": "claim"
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -6124,6 +6615,19 @@
       "label": {
        "zh": "BC 是直徑，BC 延長至 P，PA 是 A 點的切線，$\\angle ABC=31^\\circ$。",
        "en": "BC is a diameter, P lies on BC produced, PA is tangent at A and $\\angle ABC=31^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "C",
+         "31°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -6342,7 +6846,32 @@
        "zh": "PQ 是 B 點的切線，BD 是弦 AC 的垂直平分線。證明 AC // PQ。",
        "en": "PQ is tangent at B and BD is the perpendicular bisector of chord AC. Prove AC // PQ."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "E",
+         "A",
+         "D",
+         "90°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "E",
+         1
+        ],
+        [
+         "E",
+         "C",
+         1
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -6594,6 +7123,29 @@
       "label": {
        "zh": "PA 是 A 點的切線，P 在 OB 的延長線上，AO // BC，$\\angle OAC=27^\\circ$。",
        "en": "PA is tangent at A, P lies on OB produced, AO // BC and $\\angle OAC=27^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "O",
+         "C",
+         "27°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "parallel": [
+        [
+         "A",
+         "O"
+        ],
+        [
+         "B",
+         "C"
+        ]
+       ]
       }
      },
      "solution": {
@@ -7044,6 +7596,28 @@
       "label": {
        "zh": "PA 是 A 點的切線，$\\angle PAB=77^\\circ$、$\\angle OCB=40^\\circ$。",
        "en": "PA is tangent at A, $\\angle PAB=77^\\circ$ and $\\angle OCB=40^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "P",
+         "B",
+         "77°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "C",
+         "O",
+         "B",
+         "40°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -7348,6 +7922,19 @@
       "label": {
        "zh": "BC 是半圓的直徑，TB 是 B 點的切線，BCD 共線，$\\angle ABT=67^\\circ$。",
        "en": "BC is the diameter of semicircle ABC, TB is tangent at B, BCD is a straight line and $\\angle ABT=67^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "T",
+         "67°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -7550,7 +8137,41 @@
        "zh": "OBP 共線，OA = 28 cm、BP = 25 cm、AP = 45 cm。",
        "en": "OBP is a straight line, OA = 28 cm, BP = 25 cm and AP = 45 cm."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "O",
+          "A"
+         ],
+         "text": "28 cm",
+         "id": "given-OA",
+         "dx": 15.840016003494975,
+         "dy": -2.256965442585031
+        },
+        {
+         "between": [
+          "B",
+          "P"
+         ],
+         "text": "25 cm",
+         "id": "given-BP",
+         "dx": 10.284601754984623,
+         "dy": 12.256711089903654
+        },
+        {
+         "between": [
+          "A",
+          "P"
+         ],
+         "text": "45 cm",
+         "id": "given-AP",
+         "dx": 2.256965442585017,
+         "dy": 15.840016003494977
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -7790,7 +8411,38 @@
        "zh": "AC 是直徑，AC 與 BD 相交於 E。$\\angle ACD=43^\\circ$、$\\angle BEC=105^\\circ$、$\\angle BAP=29^\\circ$。",
        "en": "AC is a diameter and AC and BD meet at E. $\\angle ACD=43^\\circ$, $\\angle BEC=105^\\circ$ and $\\angle BAP=29^\\circ$."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "D",
+         "43°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "E",
+         "B",
+         "C",
+         "105°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "A",
+         "B",
+         "P",
+         "29°",
+         "given",
+         43,
+         ""
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -8108,7 +8760,39 @@
        "zh": "OA 與 BC 相交於 D，AP // BC，$\\angle CAP=26^\\circ$、$\\angle OBC=38^\\circ$。",
        "en": "OA and BC meet at D, AP // BC, $\\angle CAP=26^\\circ$ and $\\angle OBC=38^\\circ$."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "C",
+         "P",
+         "26°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "B",
+         "O",
+         "C",
+         "38°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "parallel": [
+        [
+         "A",
+         "P"
+        ],
+        [
+         "B",
+         "C"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -8409,6 +9093,19 @@
       "label": {
        "zh": "TA、TB 是切線，$\\angle OAB=42^\\circ$，$x=\\angle ATB$。",
        "en": "TA and TB are tangents, $\\angle OAB=42^\\circ$ and $x=\\angle ATB$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "O",
+         "B",
+         "42°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -8672,6 +9369,19 @@
       "label": {
        "zh": "TA、TB 是切線，反角 $\\angle AOB=250^\\circ$，$x=\\angle ATO$。",
        "en": "TA and TB are tangents, reflex $\\angle AOB=250^\\circ$ and $x=\\angle ATO$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "B",
+         "250°",
+         "given",
+         46,
+         "reflex"
+        ]
+       ]
       }
      },
      "solution": {
@@ -8914,6 +9624,19 @@
       "label": {
        "zh": "TA、TB 是切線，COT 共線，$\\angle OTB=31^\\circ$，$x=\\angle AOC$。",
        "en": "TA and TB are tangents, COT is a straight line, $\\angle OTB=31^\\circ$ and $x=\\angle AOC$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "T",
+         "O",
+         "B",
+         "31°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -9147,6 +9870,19 @@
       "label": {
        "zh": "AB、BC、CA 分別在 P、Q、R 與圓相切，$\\angle BAC=64^\\circ$。",
        "en": "AB, BC and CA touch the circle at P, Q and R respectively and $\\angle BAC=64^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "64°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -9431,7 +10167,21 @@
          "Q",
          "R"
         ],
-        "arcs": []
+        "arcs": [],
+        "givens": {
+         "segmentLabels": [
+          {
+           "between": [
+            "A",
+            "R"
+           ],
+           "text": "26 cm",
+           "id": "given-AR",
+           "dx": 13.875131265386312,
+           "dy": -7.9674796747967465
+          }
+         ]
+        }
        },
        {
         "zh": "先求餘下邊長再把三條邊相加：$AC=26+22=48\\quad 45+41+48=134\\text{ cm}$。",
@@ -9465,7 +10215,42 @@
        "zh": "AB、BC、CA 分別在 P、Q、R 與圓相切，AB = 45 cm、BC = 41 cm、CR = x cm。",
        "en": "AB, BC and CA touch the circle at P, Q and R respectively. AB = 45 cm, BC = 41 cm and CR = x cm."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "A",
+          "B"
+         ],
+         "text": "45 cm",
+         "id": "given-AB",
+         "dx": -14.800140016412064,
+         "dy": -6.079132791327915
+        },
+        {
+         "between": [
+          "B",
+          "C"
+         ],
+         "text": "41 cm",
+         "id": "given-BC",
+         "dx": -1.1036052680975472e-15,
+         "dy": 36
+        },
+        {
+         "between": [
+          "C",
+          "R"
+         ],
+         "text": "x cm",
+         "id": "given-CR",
+         "dx": 13.875131265386308,
+         "dy": -7.967479674796749,
+         "colour": "claim"
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -9786,7 +10571,8 @@
        "zh": "AC 是直徑，TC、TD 分別為 C、D 點的切線。證明角 CTD = 2 角 ABD。",
        "en": "AC is a diameter and TC and TD are tangents at C and D. Prove that angle CTD = 2 angle ABD."
       },
-      "proof": true
+      "proof": true,
+      "givens": {}
      },
      "solution": {
       "steps": [
@@ -10062,6 +10848,19 @@
       "label": {
        "zh": "PA、PC 分別為半圓 ABC 的 A、C 點切線。CB 延長線與 PA 延長線相交於 Q，$\\angle PQC=36^\\circ$。",
        "en": "PA and PC are tangents to semicircle ABC at A and C. CB produced and PA produced meet at Q and $\\angle PQC=36^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "Q",
+         "P",
+         "C",
+         "36°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -10376,7 +11175,29 @@
        "zh": "TA、TB 是切線，$\\angle ATB=56^\\circ$、$\\angle ADC=118^\\circ$。證明 AB 平分角 CBT。",
        "en": "TA and TB are tangents, $\\angle ATB=56^\\circ$ and $\\angle ADC=118^\\circ$. Prove that AB bisects angle CBT."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "T",
+         "A",
+         "B",
+         "56°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "D",
+         "A",
+         "C",
+         "118°",
+         "given",
+         43,
+         ""
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -10682,7 +11503,21 @@
          "B",
          "P"
         ],
-        "arcs": []
+        "arcs": [],
+        "givens": {
+         "ticks": [
+          [
+           "A",
+           "B",
+           2
+          ],
+          [
+           "B",
+           "P",
+           2
+          ]
+         ]
+        }
        },
        {
         "zh": "等腰三角形的兩個底角相等：$\\angle BAP=\\angle APB=x$。",
@@ -10786,6 +11621,19 @@
       "label": {
        "zh": "P 在 OB 的延長線上，PA 是 A 點的切線，設 $\\angle APB=x$。",
        "en": "P lies on OB produced, PA is tangent at A and $\\angle APB=x$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "P",
+         "A",
+         "B",
+         "x",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -11185,6 +12033,28 @@
       "label": {
        "zh": "PA 是 A 點的切線，$\\angle BAP=29^\\circ$、$\\angle BDC=36^\\circ$。",
        "en": "PA is tangent at A, $\\angle BAP=29^\\circ$ and $\\angle BDC=36^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "P",
+         "29°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "D",
+         "B",
+         "C",
+         "36°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -11568,6 +12438,28 @@
       "label": {
        "zh": "P 在 DB 的延長線上，PA 是 A 點的切線，$\\angle ACD=78^\\circ$、$\\angle APD=41^\\circ$。",
        "en": "P lies on DB produced, PA is tangent at A, $\\angle ACD=78^\\circ$ and $\\angle APD=41^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "D",
+         "78°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "P",
+         "A",
+         "D",
+         "41°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -11904,6 +12796,28 @@
       "label": {
        "zh": "PA 是 A 點的切線，$\\angle ABC=112^\\circ$、$\\angle APO=44^\\circ$。",
        "en": "PA is tangent at A, $\\angle ABC=112^\\circ$ and $\\angle APO=44^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "C",
+         "112°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "P",
+         "A",
+         "O",
+         "44°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -12261,7 +13175,39 @@
        "zh": "OA // CB，$\\angle OCB=2\\angle BAP$。證明 PA 是 A 點的切線。",
        "en": "OA // CB and $\\angle OCB=2\\angle BAP$. Prove that PA is tangent at A."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "O",
+         "B",
+         "2x",
+         "given",
+         27,
+         ""
+        ],
+        [
+         "A",
+         "B",
+         "P",
+         "x",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "parallel": [
+        [
+         "O",
+         "A"
+        ],
+        [
+         "C",
+         "B"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -12584,7 +13530,31 @@
          "C",
          "T"
         ],
-        "arcs": []
+        "arcs": [],
+        "givens": {
+         "segmentLabels": [
+          {
+           "between": [
+            "A",
+            "T"
+           ],
+           "text": "20 cm",
+           "id": "given-AT",
+           "dx": 6.661338147750939e-16,
+           "dy": 16.0
+          },
+          {
+           "between": [
+            "C",
+            "T"
+           ],
+           "text": "16 cm",
+           "id": "given-CT",
+           "dx": 9.599999999999998,
+           "dy": -12.799999999999999
+          }
+         ]
+        }
        },
        {
         "zh": "按相似次序配對對應邊長：$AB/TA=AC/TC\\quad AB/20=12/16\\quad AB=15\\text{ cm}$。",
@@ -12633,7 +13603,8 @@
        "zh": "TA 是 A 點的切線，AB 是直徑，BCT 共線。",
        "en": "TA is tangent at A, AB is a diameter and BCT is a straight line."
       },
-      "proof": true
+      "proof": true,
+      "givens": {}
      },
      "solution": {
       "steps": [
@@ -12988,7 +13959,38 @@
        "zh": "AC 與 OB 相交於 D，$\\angle OCA=27^\\circ$、$\\angle ODA=67^\\circ$、$\\angle BAP=43^\\circ$。證明 PA 是 A 點的切線。",
        "en": "AC and OB meet at D, $\\angle OCA=27^\\circ$, $\\angle ODA=67^\\circ$ and $\\angle BAP=43^\\circ$. Prove that PA is tangent at A."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "O",
+         "A",
+         "27°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "D",
+         "O",
+         "A",
+         "67°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "A",
+         "B",
+         "P",
+         "43°",
+         "given",
+         43,
+         ""
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -13462,7 +14464,48 @@
        "zh": "BD 是直徑，BE // CD，$\\angle AOB=58^\\circ$、$\\angle CBD=66^\\circ$、$\\angle EAP=37^\\circ$。證明 PA 是 A 點的切線。",
        "en": "BD is a diameter, BE // CD, $\\angle AOB=58^\\circ$, $\\angle CBD=66^\\circ$ and $\\angle EAP=37^\\circ$. Prove that PA is tangent at A."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "B",
+         "58°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "B",
+         "C",
+         "D",
+         "66°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "A",
+         "E",
+         "P",
+         "37°",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "parallel": [
+        [
+         "B",
+         "E"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -13771,7 +14814,31 @@
          "E",
          "D",
          "B"
-        ]
+        ],
+        "givens": {
+         "segmentLabels": [
+          {
+           "between": [
+            "A",
+            "D"
+           ],
+           "text": "18 cm",
+           "id": "given-AD",
+           "dx": -16.0,
+           "dy": 0.0
+          },
+          {
+           "between": [
+            "D",
+            "E"
+           ],
+           "text": "30 cm",
+           "id": "given-DE",
+           "dx": 9.6,
+           "dy": 12.8
+          }
+         ]
+        }
        },
        {
         "zh": "設半徑並寫出相等的兩條半徑：$OA=OB=r$。",
@@ -13883,7 +14950,8 @@
        "zh": "AC 是半圓 ABC 的直徑，DA、DE 分別在 A、B 點與半圓相切，AOCE 共線。",
        "en": "AC is the diameter of semicircle ABC. DA and DE touch it at A and B respectively, and AOCE is a straight line."
       },
-      "proof": true
+      "proof": true,
+      "givens": {}
      },
      "solution": {
       "steps": [
@@ -14321,6 +15389,28 @@
       "label": {
        "zh": "PQ、PB 分別在 A、B 點與圓相切，$\\angle BOP=51^\\circ$、$\\angle CAQ=73^\\circ$。",
        "en": "PQ and PB touch the circle at A and B respectively, $\\angle BOP=51^\\circ$ and $\\angle CAQ=73^\\circ$."
+      },
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "B",
+         "P",
+         "51°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "A",
+         "C",
+         "Q",
+         "73°",
+         "given",
+         43,
+         ""
+        ]
+       ]
       }
      },
      "solution": {
@@ -14699,7 +15789,29 @@
        "zh": "BE 是直徑，TA、TB 是切線，$\\angle OTA=38^\\circ$、$\\angle BCD=128^\\circ$。證明 EO 平分角 AOD。",
        "en": "BE is a diameter, TA and TB are tangents, $\\angle OTA=38^\\circ$ and $\\angle BCD=128^\\circ$. Prove that EO bisects angle AOD."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "T",
+         "O",
+         "A",
+         "38°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "C",
+         "B",
+         "D",
+         "128°",
+         "given",
+         43,
+         ""
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -15128,7 +16240,38 @@
        "zh": "PQ 是 A 點的切線，$\\angle BAQ=44^\\circ$、$\\angle BCD=98^\\circ$、$\\angle DPQ=72^\\circ$。證明 PD 是 D 點的切線。",
        "en": "PQ is tangent at A, $\\angle BAQ=44^\\circ$, $\\angle BCD=98^\\circ$ and $\\angle DPQ=72^\\circ$. Prove that PD is tangent at D."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "Q",
+         "44°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "C",
+         "B",
+         "D",
+         "98°",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "P",
+         "D",
+         "Q",
+         "72°",
+         "given",
+         43,
+         ""
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -15566,7 +16709,19 @@
        "zh": "BC 是直徑，TA、TC 是切線，OA 與 BT 相交於 M，OA // CT。證明 M 是 OA 的中點。",
        "en": "BC is a diameter, TA and TC are tangents, OA and BT meet at M and OA // CT. Prove that M is the midpoint of OA."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "parallel": [
+        [
+         "O",
+         "A"
+        ],
+        [
+         "C",
+         "T"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -15984,7 +17139,19 @@
        "zh": "AB 是直徑，PA 是 A 點的切線，BC // OP。證明 A、O、C、P 共圓。",
        "en": "AB is a diameter, PA is tangent at A and BC // OP. Prove that A, O, C and P are concyclic."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "parallel": [
+        [
+         "B",
+         "C"
+        ],
+        [
+         "O",
+         "P"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -16396,7 +17563,21 @@
        "zh": "O 是原點，直線 $L:kx+4y-72=0$ 與正 x 軸、正 y 軸交於 A、B，三角形 OAB 的內心為 I(6,6)。",
        "en": "O is the origin. $L:kx+4y-72=0$ cuts the positive x- and y-axes at A and B. The in-centre of triangle OAB is I(6,6)."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "notes": [
+        [
+         "L: kx + 4y − 72 = 0",
+         210,
+         28
+        ],
+        [
+         "(6, 6)",
+         164.5,
+         221.25
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -16864,7 +18045,16 @@
          "C",
          "E"
         ],
-        "arcs": []
+        "arcs": [],
+        "givens": {
+         "notes": [
+          [
+           "(b): a = b",
+           210,
+           28
+          ]
+         ]
+        }
        },
        {
         "zh": "由兩個半角求大三角形的兩個底角：$\\angle PQR=2a=60^\\circ\\quad \\angle PRQ=2b=60^\\circ$。",
@@ -16932,7 +18122,51 @@
        "zh": "PQ、QR、RP 分別在 B、D、F 與圓相切，AC // PQ、AE // PR，設 $\\angle OQP=a$、$\\angle ORP=b$。",
        "en": "PQ, QR and RP touch the circle at B, D and F respectively. AC // PQ, AE // PR, $\\angle OQP=a$ and $\\angle ORP=b$."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "arcs": [
+        [
+         "Q",
+         "O",
+         "P",
+         "a",
+         "given",
+         43,
+         ""
+        ],
+        [
+         "R",
+         "O",
+         "P",
+         "b",
+         "given",
+         43,
+         ""
+        ]
+       ],
+       "parallel": [
+        [
+         "A",
+         "C"
+        ],
+        [
+         "P",
+         "Q"
+        ],
+        [
+         "A",
+         "E",
+         0.5,
+         2
+        ],
+        [
+         "P",
+         "R",
+         0.5,
+         2
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -17268,7 +18502,61 @@
        "zh": "AB = a、BC = b、AC = c、CD = d、AD = e。五個長度都是正整數。給出兩組數值，使 DC 是 C 點的切線。",
        "en": "Let AB = a, BC = b, AC = c, CD = d and AD = e. Give two sets of positive integers a, b, c, d and e such that DC is tangent at C."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "A",
+          "B"
+         ],
+         "text": "a",
+         "id": "given-AB",
+         "dx": -15.581708058193529,
+         "dy": 3.6346078178019154
+        },
+        {
+         "between": [
+          "B",
+          "C"
+         ],
+         "text": "b",
+         "id": "given-BC",
+         "dx": 3.6346078178019146,
+         "dy": 15.581708058193529
+        },
+        {
+         "between": [
+          "A",
+          "C"
+         ],
+         "text": "c",
+         "id": "given-AC",
+         "dx": -10.284601754984632,
+         "dy": 12.256711089903646
+        },
+        {
+         "between": [
+          "C",
+          "D"
+         ],
+         "text": "d",
+         "id": "given-CD",
+         "dx": 12.256711089903646,
+         "dy": 10.28460175498463
+        },
+        {
+         "between": [
+          "A",
+          "D"
+         ],
+         "text": "e",
+         "id": "given-AD",
+         "dx": -3.6346078189321367,
+         "dy": -15.581708057929895
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -17733,7 +19021,8 @@
       "label": {
        "zh": "三個等大的圓分別以 A、B、C 為圓心，兩兩外切。PT 是左邊兩圓在 P、Q 的公切線，TR 是右邊兩圓在 R、S 的公切線。證明角 PTR = 60°。",
        "en": "Three equal circles with centres A, B and C touch one another externally. PT is the common tangent at P and Q, and TR is the common tangent at R and S. Prove that angle PTR = 60 degrees."
-      }
+      },
+      "givens": {}
      },
      "solution": {
       "steps": [
@@ -18089,7 +19378,32 @@
        "zh": "兩個同心圓以 O 為圓心。大圓的弦 AC 在 M 點與小圓相切，OMB 共線。AC = 40 cm、BM = 10 cm。",
        "en": "Two concentric circles have centre O. Chord AC of the larger circle touches the smaller circle at M, and OMB is a straight line. AC = 40 cm and BM = 10 cm."
       },
-      "proof": true
+      "proof": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "B",
+          "M"
+         ],
+         "text": "10 cm",
+         "id": "given-BM",
+         "dx": 1.959434878635765e-15,
+         "dy": -16.0
+        }
+       ],
+       "dimensions": [
+        {
+         "between": [
+          "A",
+          "C"
+         ],
+         "text": "40 cm",
+         "offset": 32,
+         "dy": -35
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
