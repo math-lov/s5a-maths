@@ -3547,5 +3547,62 @@ ok(revisionReplay11,"11R: every backward step and restart restores the matching 
 ok(["3","19","21","24","33"].every((code)=>revisionQs11.find((q)=>q.code===code).solution.tip.en.includes("official")),
   "11R: verified official notation errors are identified in the affected questions");
 
+console.log("\n== Chapter 12.1: tangents, all questions and step players ==");
+const tangent12 = JSON.parse(read("data/src/ch12-1.json"));
+const tangentQs12 = tangent12.sections.flatMap(s => s.questions);
+const tangentMeta12 = INDEX.parts.find(p => p.id === "ch12-1");
+ok(tangentQs12.length === 54 && tangent12.sections.map(s=>s.questions.length).join() === "6,3,4,22,17,1,1",
+  "12.1: class exercises, four Section Check items and all Questions 1–41 are present");
+ok(tangentMeta12.answerInput && tangentMeta12.stats.questions === 54 && tangentMeta12.stats.marks === tangentQs12.reduce((s,q)=>s+q.marks,0) && CW_CHAPTERS.find(c=>c.id==="ch12").sections[0].part==="ch12-1",
+  "12.1: chapter navigation, counts and numerical-answer flag agree");
+const tangentOverview12=boot("quiz.html","?c=ch12-1&p=0");
+ok(tangentOverview12.$$("#pagenav .pg").length===55 && tangentOverview12.$$(".cg-split").length===5,
+  "12.1: overview includes all 55 pages and five interactive teaching cards");
+let tangentPages12=true,tangentInputs12=true,tangentTF12=true;
+for(const [index,q] of tangentQs12.entries()){
+ const rendered=boot("quiz.html",`?c=ch12-1&p=${index+1}`,null,"show");
+ if(rendered.$$(".katex-error").length || !rendered.$(".sol-card") || !rendered.$(".cg-split"))tangentPages12=false;
+ const answers=q.answers.filter(a=>a.input!=null);
+ if(q.type==="long" && answers.length){
+  if(rendered.$$(".ans-input").length!==answers.length)tangentInputs12=false;
+  ansType(rendered,0,"99999");ansSub(rendered).click();
+  if((rendered.store().done||{})[q.id])tangentInputs12=false;
+  answers.forEach((a,i)=>ansType(rendered,i,a.input));
+  if((rendered.store().done||{})[q.id])tangentInputs12=false;
+  ansSub(rendered).click();
+  if(rendered.$$(".ans-input").some(n=>!n.disabled))tangentInputs12=false;
+ }
+ if(q.type==="tf"){
+  const item=rendered.$(".tf-item"),want=q.answers[0].tf?"T":"F";
+  item.querySelector(`[data-tf="${want==="T"?"F":"T"}"]`).click();
+  if(item.querySelector(".tf-opt.correct"))tangentTF12=false;
+  item.querySelector(`[data-tf="${want}"]`).click();
+  if(!item.querySelector(".tf-opt.correct"))tangentTF12=false;
+ }
+ rendered.dom.window.close();
+}
+ok(tangentPages12,"12.1: every question renders bilingual solutions, an interactive figure and valid KaTeX");
+ok(tangentInputs12,"12.1: all numerical answers require submission, reject a wrong value and accept a corrected answer");
+ok(tangentTF12,"12.1: all four Section Check items support wrong-first retries and the official answer");
+let tangentSync12=true,tangentReplay12=true;
+const tangentPlayers12=tangentQs12.map(q=>q.anim).concat(tangent12.cards.map(c=>c.demo.opts.anim));
+for(const anim of tangentPlayers12){
+ chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,anim);
+ const state=()=>JSON.stringify([chordPage.$(".cg-svg").textContent,chordPage.$(".cg-say").textContent,chordPage.$(".cg-ref").textContent]);
+ const initial=state(),states=[];
+ for(const step of anim.steps){
+  chordPage.$(".cg-next").click();
+  if(chordPage.$(".cg-ref").textContent!==(step.ref||"") || chordPage.$$(".katex-error").length ||
+    chordPage.$$(".cg-en .cg-equation annotation").map(n=>n.textContent).join("\n")!==step.mathLines.map(l=>"\\displaystyle "+l).join("\n") ||
+    chordPage.$$(".cg-svg [d]").some(n=>/NaN|undefined/.test(n.getAttribute("d"))))tangentSync12=false;
+  states.push(state());
+ }
+ for(let i=states.length-2;i>=0;i--){chordPage.$(".cg-back").click();if(state()!==states[i])tangentReplay12=false;}
+ chordPage.$(".cg-restart").click();if(state()!==initial)tangentReplay12=false;
+}
+ok(tangentPlayers12.length===59 && tangentSync12,"12.1: all 59 players synchronise formulas, figures and theorem reasons");
+ok(tangentReplay12,"12.1: every Back step and Restart restores the matching figure and explanation");
+ok(["26","38"].every(k=>tangentQs12.find(q=>q.code===k).solution.tip.en.includes("official")),"12.1: verified official notation errors are explained");
+
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

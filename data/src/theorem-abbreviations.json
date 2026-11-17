@@ -420,6 +420,27 @@
         "zh": "等腰梯形的同底角相等。",
         "en": "The angles at the same base of an isosceles trapezium are equal."
       }
+    },
+    "tangent_radius": {
+      "abbreviation": "(tangent ⊥ radius)",
+      "meaning": {
+        "zh": "切線垂直於接觸點的半徑。",
+        "en": "A tangent is perpendicular to the radius at the point of contact."
+      }
+    },
+    "converse_tangent_radius": {
+      "abbreviation": "(converse of tangent ⊥ radius)",
+      "meaning": {
+        "zh": "通過圓上一點並垂直於該點半徑的直線，是該圓在該點的切線。",
+        "en": "A line through a point on the circle, perpendicular to the radius there, is tangent at that point."
+      }
+    },
+    "tangents_external_point": {
+      "abbreviation": "(tangents from ext. pt.)",
+      "meaning": {
+        "zh": "同一外點引出的切線段等長；外點與圓心的連線平分兩切線夾角及小圓心角。",
+        "en": "Tangents from an external point have equal lengths; the line to the centre bisects their angle and the minor central angle."
+      }
     }
   }
 }

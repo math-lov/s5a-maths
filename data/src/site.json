@@ -715,6 +715,38 @@
      "zh": "課本 Revision Exercise 11 第 1–36 題及全部 8 題選擇題；依原題及官方題解核對。",
      "en": "Revision Exercise 11 Questions 1–36 and all 8 multiple-choice questions, verified against the supplied book and official solutions."
     }
+   },
+   {
+    "id": "ch12-1",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch12",
+    "code": "12.1",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 12 章 · 圓形的基本性質（二）",
+     "en": "Chapter 12 · Basic Properties of Circles (II)"
+    },
+    "title": {
+     "zh": "12.1 圓的切線 · 課本練習",
+     "en": "12.1 Tangents to a Circle · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5A · Exercise 12.1"
+    },
+    "stats": {
+     "questions": 54,
+     "marks": 126,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課堂練習 12.1A、12.1B、Section Check 及 Exercise 12.1 第 1–41 題；原題及官方題解。",
+     "en": "Class Exercises 12.1A and 12.1B, Section Check and Exercise 12.1 Questions 1–41; original questions and official solutions."
+    }
    }
   ],
   "classwork": {
@@ -780,6 +812,31 @@
        "title": {
         "zh": "第 11 章總複習",
         "en": "Revision Exercise 11"
+       }
+      }
+     ]
+    },
+    {
+     "id": "ch12",
+     "short": {
+      "zh": "第 12 章",
+      "en": "Chapter 12"
+     },
+     "title": {
+      "zh": "第 12 章 · 圓形的基本性質（二）",
+      "en": "Chapter 12 · Basic Properties of Circles (II)"
+     },
+     "intro": {
+      "zh": "12.1 圓的切線已提供完整雙語題解及互動圖解。",
+      "en": "12.1 Tangents to a Circle includes complete bilingual solutions and interactive figures."
+     },
+     "sections": [
+      {
+       "code": "12.1",
+       "part": "ch12-1",
+       "title": {
+        "zh": "12.1 圓的切線",
+        "en": "12.1 Tangents to a Circle"
        }
       }
      ]
