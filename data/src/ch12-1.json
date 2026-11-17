@@ -1610,7 +1610,7 @@
         "mathLines": [
          "\\angle OAP=21^\\circ+58^\\circ=79^\\circ\\ne90^\\circ"
         ],
-        "ref": "(converse of tangent ⊥ radius)",
+        "ref": "(tangent ⊥ radius)",
         "arcs": [
          [
           "A",
@@ -2847,7 +2847,7 @@
         "mathLines": [
          "\\angle OAP=38^\\circ+54^\\circ=92^\\circ\\ne90^\\circ"
         ],
-        "ref": "(converse of tangent ⊥ radius)",
+        "ref": "(tangent ⊥ radius)",
         "arcs": [
          [
           "A",
@@ -5565,7 +5565,7 @@
          "\\angle CAP=62^\\circ+29^\\circ=91^\\circ",
          "CA\\not\\perp AP"
         ],
-        "ref": "(converse of tangent ⊥ radius)",
+        "ref": "(tangent ⊥ radius)",
         "arcs": [
          [
           "A",
