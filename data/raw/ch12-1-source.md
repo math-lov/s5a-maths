@@ -115,3 +115,26 @@ Chapter 11 geometry verifiers; combined figcheck; browser checks at 1280/390/320
 (165 page-width combinations, 465 forward states and all Back/Restart states),
 three languages, no label collisions, bounds or formula overflow; all 59 players
 with normal motion, rapid clicks, stale timers, keyboard and enlarged text.
+
+## Pacing revision (2026-11-17)
+
+Reviewed every question following teacher feedback about omitted prerequisites in
+Q22. Expanded 53 of the 54 question players from 140 to 329 question steps; the
+five teaching cards retain their 15 steps. Each equal-base-angle deduction now
+follows an explicit equal-side statement. Perpendicularity, common sides,
+congruence/similarity criteria, angle equations and final conclusions are separated
+where they previously shared a single beat. The formal bilingual solutions follow
+the same sequence as the animations. Source questions, answers, marks and point
+coordinates are unchanged.
+
+Q22 now has six beats: cyclic opposite angles give ABC = 62°; TA = TB by tangents
+from the same external point; BAT = ABT by equal base angles; write the triangle
+angle sum; solve ABT = 62°; compare the adjacent angles to conclude bisection.
+The TA = TB beat draws matching length ticks before any equal-base-angle claim.
+
+The geometry verifier now checks that equal-side premises appear before equal
+base-angle deductions, that tick groups denote equal actual lengths, and that
+formal/animated step counts match. The smoke suite checks the Q22 intermediate
+formula, theorem reason and visible length ticks, in addition to replaying all 59
+players. The browser audit covers 165 page-width combinations and 1,032 forward
+states, all backward states and restarts, three languages, labels and formulas.

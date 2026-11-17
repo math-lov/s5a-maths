@@ -91,6 +91,43 @@ for k,q in Q.items():
         assert re.findall(r'\$([^$]+)\$',step['en'])==[mathtext],k
         assert sol['math']==mathtext and sol['zh']==step['zh'] and sol['en']==step['en'],k
         assert '\\' not in step.get('answer',''),k
+# Equal-base-angle deductions must have their equal-side premise on an earlier beat.
+# This guards the teaching dependency, rather than merely the final answer.
+for code,q in Q.items():
+    assert len(q['anim']['steps'])==len(q['solution']['steps']),code
+    known_equal=[]
+    for step in q['anim']['steps']:
+        if '(base ∠s, isos. △)' in step['ref']:
+            names=re.findall(r'\\angle ([A-Z]{3})', '\n'.join(step['mathLines']))
+            distinct=[]
+            for name in names:
+                if not any(n[1]==name[1] for n in distinct):distinct.append(name)
+            if len(distinct)>=2:
+                a,b=distinct[:2]
+                apex=set(a)-{a[1],b[1]}
+                if set(a)==set(b) and len(apex)==1:
+                    v=next(iter(apex));sides={''.join(sorted(v+a[1])),''.join(sorted(v+b[1]))}
+                    assert any(sides<=group for group in known_equal),(code,'base angles used before equal sides',sides)
+        for line in step['mathLines']:
+            match=re.match(r'^([A-Z]{2}(?:=[A-Z]{2})+)',line)
+            if match:known_equal.append({''.join(sorted(side)) for side in match[1].split('=')})
+    # Every equal-length tick group must mean one actual length throughout playback.
+    lengths={}
+    points=build_points(q['anim'])
+    for step in q['anim']['steps']:
+        for a,b,*count in step.get('ticks',[]):
+            group=count[0] if count else 1
+            size=math.dist(points[a],points[b])
+            if group in lengths:near(size,lengths[group],code+' tick group')
+            else:lengths[group]=size
+q22=Q['22']['anim']['steps']
+side_beat=next(i for i,s in enumerate(q22) if s['mathLines']==['TA=TB'])
+base_beat=next(i for i,s in enumerate(q22) if r'\angle BAT=\angle ABT' in s['mathLines'])
+angle_sum_beat=next(i for i,s in enumerate(q22) if any(r'2\angle ABT+56^\circ=180^\circ'==line for line in s['mathLines']))
+assert side_beat<base_beat<angle_sum_beat
+assert q22[side_beat]['ref']=='(tangents from ext. pt.)'
+assert {frozenset(t[:2]) for t in q22[side_beat]['ticks']}=={frozenset('TA'),frozenset('TB')}
+
 # Symbolic claims need independent checks on the representative geometry.
 for k in ['20','27','35','36','38']:
     p=build_points(Q[k]['anim'])

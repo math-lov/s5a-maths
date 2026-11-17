@@ -3604,5 +3604,20 @@ ok(tangentPlayers12.length===59 && tangentSync12,"12.1: all 59 players synchroni
 ok(tangentReplay12,"12.1: every Back step and Restart restores the matching figure and explanation");
 ok(["26","38"].every(k=>tangentQs12.find(q=>q.code===k).solution.tip.en.includes("official")),"12.1: verified official notation errors are explained");
 
+// The equal-tangent premise must be visible before Q22 uses equal base angles.
+const pacedQ22=tangentQs12.find(q=>q.code==="22");
+const pacedQ22Page=boot("quiz.html",`?c=ch12-1&p=${tangentQs12.indexOf(pacedQ22)+1}`,null,"show");
+pacedQ22Page.$(".cg-next").click();pacedQ22Page.$(".cg-next").click();
+ok(pacedQ22Page.$(".cg-en annotation").textContent.includes("TA=TB") &&
+  pacedQ22Page.$(".cg-ref").textContent==="(tangents from ext. pt.)" &&
+  pacedQ22Page.$$(".cg-svg [data-tick]").length>=2 &&
+  pacedQ22.solution.steps[1].math==="TA=TB",
+  "12.1 Q22: a separate equal-tangent step shows TA = TB and matching ticks before base angles");
+pacedQ22Page.$(".cg-next").click();
+ok(pacedQ22Page.$(".cg-en annotation").textContent.includes("\\angle BAT=\\angle ABT") &&
+  pacedQ22Page.$(".cg-ref").textContent==="(base ∠s, isos. △)",
+  "12.1 Q22: the next step establishes equal base angles before calculating 62 degrees");
+pacedQ22Page.dom.window.close();
+
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);
