@@ -3658,6 +3658,15 @@ ok(pointFigs[0].querySelectorAll(".cls-arc-hi.on").length === 1,
 p1picks[0].click();
 ok(pointFigs[0].querySelectorAll(".cls-arc-hi.on").length === 0,
   "點 ∠OCA（一臂止於圓心）冇弧可亮");
+/* 圓心角（頂點在 O）所對的是劣弧：large-arc-flag 要係 0，而且同圓周角同一條弧 */
+const arcHiD = (id) => {
+  const n = pointFigs[0].querySelector('[data-arc-hi="' + id + '"]');
+  return n ? n.getAttribute("d") || "" : "";
+};
+const aodArc = arcHiD("aod"), acdArc = arcHiD("acd");
+ok(aodArc && /^M[^A]+A[\d.]+ [\d.]+ 0 0 [01] /.test(aodArc),
+  "∠AOD 亮的是劣弧（large-arc-flag = 0），不是整個優弧");
+ok(aodArc === acdArc, "∠AOD 與 ∠ACD 亮同一條弧 AD（正好示範同一條弧、不同定理）");
 ok(/冇弧/.test((pointFigs[0].querySelector(".cls-arcsay") || {}).textContent || ""),
   "冇弧時會講明原因");
 const playerFigs = [1, 2, 3].map((i) => pointFigs[i]).filter(Boolean);

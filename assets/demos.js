@@ -2746,7 +2746,12 @@
         var av = heading(avoid);
         if (norm(av - a1) <= d1) { sweep = 0; delta = 2 * Math.PI - d1; }
         else { sweep = 1; delta = d1; }
-      } else { sweep = 1; delta = d1; }
+      } else if (d1 <= Math.PI) {
+        /* 冇要避開的頂點（例如圓心角）：取較短的一邊，即所對的劣弧 */
+        sweep = 1; delta = d1;
+      } else {
+        sweep = 0; delta = 2 * Math.PI - d1;
+      }
       return "M" + p1.x + " " + p1.y + "A" + R + " " + R + " 0 " + (delta > Math.PI ? 1 : 0) +
         " " + sweep + " " + p2.x + " " + p2.y;
     }
@@ -2816,8 +2821,11 @@
         if (!s || !a.arc) return;
         var p1 = P[a.arc[0]], p2 = P[a.arc[1]];
         if (!p1 || !p2) return;
+        /* 只有頂點在圓周上時才需要「避開頂點」；圓心角（頂點在 O）所對的是劣弧，
+           把 O 當成要避開的點會算出一條亂畫的弧。 */
+        var onCircle = s.v === "A" || s.v === "C" || s.v === "D";
         var path = S("path", {
-          d: circleArc(p1, p2, P[s.v]), class: "cls-arc-hi", "data-arc-hi": a.id
+          d: circleArc(p1, p2, onCircle ? P[s.v] : null), class: "cls-arc-hi", "data-arc-hi": a.id
         });
         hiG.appendChild(path);
         arcHis[a.id] = path;

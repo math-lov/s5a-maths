@@ -650,6 +650,17 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * 題幹、題解、圖解字幕、定理簡稱與列印工作紙（`tools/make_worksheet_docx.py` 的 `plain()` 會把 `\,` 印成空格）全部一致顯示 `AB // CD`。以後新增內容照此寫法，不要再用 `\parallel` 或 `∥`；`tools/build.py` 的現有檢查（S6／S7／S19）不受影響。
 * 驗證：`python -X utf8 tools/build.py` 0 錯 0 警；`node --max-old-space-size=8192 tools/smoke_test.js` 全部通過；另用真 KaTeX 逐條渲染 75 條含 `//` 的數式，零錯誤，並在真瀏覽器截圖核對數學模式與純文字兩種寫法。
 
+### 9.26 修正：圓心角亮錯弧（優弧 → 劣弧）（2026-11-18）
+
+* 老師發現：分類器點 ∠AOD（圓心角）時，圓周上亮起的是**整整一圈的優弧**，應該是**劣弧 AD**。
+* 成因：`circleArc(p1, p2, avoid)` 一律把「頂點」當成要避開的點；圓心角的頂點是 O（圓心），根本不在圓周上，`heading(O)` 只是 atan2(0,0) 附近的雜訊，結果隨機揀了一邊（多數是優弧）。
+* 修法（`assets/demos.js`）：
+  1. 只有頂點在圓周（A／C／D）才傳 `avoid`；頂點在 O／E 就傳 `null`。
+  2. `circleArc` 的無 avoid 分支改為**取較短的一邊**（`d1 ≤ π` 用 sweep 1，否則 sweep 0 走另一邊），所以圓心角永遠亮劣弧。
+* 現時 ∠AOD 與 ∠ACD 亮的是**同一條弧 AD**（`M258.2 86.9 A104 104 0 0 1 274 142`，32° 的劣弧），正好示範「同一條弧、不同定理」；∠OCA／∠AEO 仍然冇弧可亮。
+* smoke 新增兩條回歸斷言：`[data-arc-hi="aod"]` 的 `large-arc-flag` 必須是 0；`aod` 與 `acd` 的 `d` 必須完全相等。
+* 驗證：`build.py` 0 錯 0 警；完整 smoke 全綠。
+
 ### 9.25 心得標題只印英文，做成「題詞 epigraph」（2026-11-18）
 
 * 老師指示：七個論點的標題是英文名句的變體（`To Arc, or Not to Arc?` ← `To be, or not to be`；`All That Glitters Is Not Gold`；`Give Me a Line to Draw, and I Shall Find the Angle` ← 阿基米德），所以**唔要中文譯名**，連中文版都只印英文。
