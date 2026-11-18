@@ -3566,16 +3566,18 @@ const gridTiles = thinkPage.$$("#chapter-body .part-grid > *");
 const ch11Sections = (CW_CHAPTERS.find((c) => c.id === "ch11").sections || []).length;
 ok(gridTiles.length === ch11Sections + 1 && gridTiles[gridTiles.length - 1] === notesTile,
   "心得卡與其他節卡同格，排在 11.4／11R 之後（" + (ch11Sections + 1) + " 張）");
-ok(/5 個思考方向/.test(notesTile.textContent) && /5 個常見圖形/.test(notesTile.textContent),
-  "節卡列出「5 個思考方向 · 5 個常見圖形」統計");
+ok(new RegExp(TH11.points.length + " 個思考方向").test(notesTile.textContent) &&
+  new RegExp(TH11.shapes.length + " 個常見圖形").test(notesTile.textContent),
+  "節卡列出「" + TH11.points.length + " 個思考方向 · " + TH11.shapes.length + " 個常見圖形」統計");
 
 const notesPage = boot("notes.html", "?ch=ch11");
 ok(!!notesPage.$("#notes-body .think") && notesPage.$$(".think-point").length === TH11.points.length,
   "心得頁列出五個論點");
-ok(notesPage.$$(".think-point .think-no").map((n) => n.textContent).join() === "01,02,03,04,05",
-  "五個論點按 01–05 編號列出");
-ok(notesPage.$$(".think-point .think-h .l-zh").length === 5 &&
-  notesPage.$$(".think-point .think-h .l-en").length === 5,
+ok(notesPage.$$(".think-point .think-no").map((n) => n.textContent).join() ===
+  TH11.points.map((p) => p.no).join(),
+  "論點按 01–0" + TH11.points.length + " 編號列出");
+ok(notesPage.$$(".think-point .think-h .l-zh").length === TH11.points.length &&
+  notesPage.$$(".think-point .think-h .l-en").length === TH11.points.length,
   "每個論點都有中英標題");
 ok(TH11.points.every(p => p.title.zh && p.title.en && p.body.zh && p.body.en) &&
   notesPage.$$(".think-point .think-h .l-en").map((n) => n.textContent.trim()).join("|") ===
@@ -3588,25 +3590,28 @@ const thinkLinks = notesPage.$$(".think-ex a");
 ok(thinkLinks.length >= 5 && thinkLinks.every((a) => /^quiz\.html\?c=ch11/.test(a.getAttribute("href"))),
   "例題連結全部指向第 11 章（" + thinkLinks.length + " 條）");
 
-ok(notesPage.$$(".think-shape").length === 5 &&
-  notesPage.$$(".think-shape .cg-static").length === 5,
-  "五個型態圖用 circle.js 的靜態模式（cg-static）");
+ok(notesPage.$$(".think-shape").length === TH11.shapes.length &&
+  notesPage.$$(".think-shape .cg-static").length === TH11.shapes.length,
+  TH11.shapes.length + " 個型態圖用 circle.js 的靜態模式（cg-static）");
 const thinkStyle = notesPage.doc.createElement("style");
 thinkStyle.textContent = cssText;
 notesPage.doc.head.appendChild(thinkStyle);
 ok(cssDisp(notesPage, ".think-shape .cg-row") === "none" &&
   cssDisp(notesPage, ".think-shape .cg-say") === "none",
   "型態圖的按鈕與字幕在 CSS 隱藏（只做圖）");
-ok(notesPage.$$(".think-shape .cg-arc").length >= 12 &&
-  notesPage.$$(".think-shape .cg-circle-arc").length === 6,
-  "每幅型態都畫出角度弧，並把「同一條弧」用 accent 標出來");
+const wantCircleArcs = TH11.shapes.reduce(
+  (n, s) => n + ((s.anim.steps[0] || {}).circleArcs || []).length, 0);
+ok(notesPage.$$(".think-shape .cg-arc").length >= TH11.shapes.length * 2 &&
+  notesPage.$$(".think-shape .cg-circle-arc").length === wantCircleArcs,
+  "每幅型態都畫出角度弧，並把「同一條弧」用 accent 標出來（共 " + wantCircleArcs + " 條）");
 ok(notesPage.$$(".think-shape .cg-arc").every((n) => {
   const d = n.getAttribute("d") || "";
   return d && !/NaN|undefined/.test(d);
 }), "型態圖的弧線都是合法路徑");
-ok(TH11.shapes.slice(0,3).map(s => s.name.en).join("|") === "the butterfly|the fake butterfly|fortune fan" &&
-  /cyclic quadrilateral/.test(TH11.shapes[4].name.en),
-  "保留五個常見型態及記憶名稱");
+const shapeNames = TH11.shapes.map((s) => s.name.en);
+ok(["the butterfly", "the fake butterfly", "fortune fan", "dart"].every((n) => shapeNames.includes(n)) &&
+  /cyclic quadrilateral/.test(shapeNames.join("|")),
+  "保留型態的記憶名稱（真蝴蝶／假蝴蝶／招財進寶／飛鏢／圓內接四邊形）");
 
 const mainCls = notesPage.$$(".cls").pop();
 const clsPicks = mainCls ? Array.prototype.slice.call(mainCls.querySelectorAll(".cls-pick")) : [];
@@ -3697,8 +3702,9 @@ ok(/同一?弓形/.test((mat.querySelector(".mat-say") || {}).textContent || "")
 
 /* Notes: repaired formulas and all 15 inference states, including reverse navigation. */
 let noteSync = true, noteSegments = true;
+const notePlayers = TH11.points.filter((p) => (p.demo || {}).type === "circle");
 playerFigs.forEach((host, i) => {
-  const anim = TH11.points[i + 1].demo.anim;
+  const anim = notePlayers[i].demo.anim;
   host.querySelector(".cg-next").click();
   host.querySelector(".cg-restart").click();
   const snapshots = [];
@@ -3724,8 +3730,8 @@ playerFigs.forEach((host, i) => {
   noteSync &&= state() === snapshots[0];
 });
 ok(noteSync && noteSegments, "三個筆記播放器：15 步公式、理由、線段、返回及重播完全同步");
-ok(notesPage.$$(".think-shape-replay").length===5,
-  "五幅圖均有鍵盤可操作的顯示弧按鈕");
+ok(notesPage.$$(".think-shape-replay").length===TH11.shapes.length,
+  TH11.shapes.length + " 幅圖均有鍵盤可操作的顯示弧按鈕");
 p1picks[2].click();
 ok(/兩倍/.test(pointFigs[0].querySelector(".cls-verdict").textContent) &&
   pointFigs[0].querySelectorAll(".cls-rays line").length===2,

@@ -636,6 +636,7 @@
       var h3 = el("h3", "think-h");
       h3.appendChild(pairSpan(p.title || {}));
       main.appendChild(h3);
+      if (p.subtitle) main.appendChild(pair(p.subtitle, "div", "bi think-sub"));
       if (p.body) main.appendChild(pair(p.body, "div", "bi think-body"));
       /* 每一點都可以配一幅圖／小示範（demo.type 要在白名單；classify 會沿用大分類器的設定） */
       if (p.demo && window.S5A_DEMO && S5A_DEMO.types && S5A_DEMO.types[p.demo.type]) {

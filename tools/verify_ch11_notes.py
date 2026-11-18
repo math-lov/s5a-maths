@@ -40,8 +40,13 @@ for n,a in enumerate(players,2):
     assert a['steps'][-1]['final'] and a['steps'][-1]['clearGoal']
     print('PASS notes player',n,len(a['steps']),'steps')
 
+# The players are ordered by the notes, not by topic, so pick them by content:
+# the x-chain is the longest one, the crossing-chord one is the only one with E.
+chain=max(players,key=lambda a:len(a['steps']))
+cross=next(a for a in players if 'E' in build_points(a))
+
 # Example 11.3 Q17: all expressions in x must match the actual diagram.
-p=build_points(players[0]);x=18
+p=build_points(chain);x=18
 for name,factor in [('BCA',1),('CAO',1),('ACO',1),('AOB',2),('BOC',6),('AOC',8)]:
     near(angle(p,name),factor*x,name)
 near(sweep(p,'A','B','C')/sweep(p,'B','C','A'),1/3,'given arc ratio')
@@ -49,7 +54,7 @@ near(angle(p,'OAC')+angle(p,'ACO')+angle(p,'AOC'),180,'triangle sum')
 
 # Crossing-chord example: E really lies inside both chords, then check the
 # asserted AA correspondence and every side ratio (not merely the labels).
-p=build_points(players[2])
+p=build_points(cross)
 for a,b in [('A','C'),('B','D')]:
     near(math.dist(p[a],p['E'])+math.dist(p['E'],p[b]),math.dist(p[a],p[b]),'E on chord '+a+b)
 for first,second in [('ABE','DCE'),('BAE','CDE'),('AEB','DEC')]:
@@ -62,10 +67,15 @@ for shape in notes['shapes']:
     assert any(v.get('centre') for v in a['points'].values()), 'main circle needs centre'
     p=build_points(a)
     if shape['id']=='butterfly':near(angle(p,'ACB'),angle(p,'ADB'),'butterfly')
-    if shape['id']=='fake-butterfly':near(angle(p,'AOB'),2*angle(p,'APB'),'centre twice')
+    if shape['id']=='fake-butterfly':near(angle(p,'AOB'),2*angle(p,'ACB'),'centre twice')
     if shape['id']=='fortune-fan':
-        near(360-angle(p,'AOB'),2*angle(p,'APB'),'reflex centre twice')
-        near(sweep(p,'A','B','P'),220,'major arc excluding P')
+        # 圓周角係鈍角，所對的是優弧：反角 = 2×圓周角，弧長亦等於反角
+        near(360-angle(p,'AOB'),2*angle(p,'ADB'),'reflex centre twice')
+        near(sweep(p,'A','B','D'),2*angle(p,'ADB'),'major arc excluding D')
+    if shape['id']=='dart':
+        # 同一個「圓心 × 2」定理的細角 case：圓周角所對的是劣弧
+        near(angle(p,'AOB'),2*angle(p,'ADB'),'centre twice')
+        near(sweep(p,'A','B','D'),angle(p,'AOB'),'minor arc excluding D')
     if shape['id']=='semi-circle':near(angle(p,'APB'),90,'diameter')
     if shape['id']=='cyclic-quad':near(angle(p,'DAB')+angle(p,'BCD'),180,'opposite supplementary')
     for arc in a['steps'][0]['circleArcs']:
@@ -81,4 +91,5 @@ for rd in notes['match']['rounds']:
         a,v,b=item['label'].replace('∠','');arc=arcs[item['arc']]
         assert {a,b}=={arc['from'],arc['to']}
         near(2*angle(p,a+v+b),sweep(p,a,b,v),'matched arc '+item['label'])
-print('All Chapter 11 notes geometry checks passed (3 players, 5 shapes, 6 matches).')
+print('All Chapter 11 notes geometry checks passed (%d players, %d shapes, %d matches).'
+      % (len(players), len(notes['shapes']), sum(len(rd['angles']) for rd in notes['match']['rounds'])))

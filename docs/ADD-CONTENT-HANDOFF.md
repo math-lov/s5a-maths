@@ -650,6 +650,15 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * 題幹、題解、圖解字幕、定理簡稱與列印工作紙（`tools/make_worksheet_docx.py` 的 `plain()` 會把 `\,` 印成空格）全部一致顯示 `AB // CD`。以後新增內容照此寫法，不要再用 `\parallel` 或 `∥`；`tools/build.py` 的現有檢查（S6／S7／S19）不受影響。
 * 驗證：`python -X utf8 tools/build.py` 0 錯 0 警；`node --max-old-space-size=8192 tools/smoke_test.js` 全部通過；另用真 KaTeX 逐條渲染 75 條含 `//` 的數式，零錯誤，並在真瀏覽器截圖核對數學模式與純文字兩種寫法。
 
+### 9.24 第 11 章心得改用 source/ch11-v5.json（2026-11-18）
+
+* 老師提供 `source/ch11-v5.json`（另一個 AI 重寫的完整心得）：**7 個論點、6 個型態圖**（新增「飛鏢 dart」）、同一個兩問分類器與兩回合配對。已整份取代 `data/src/notes/ch11.json`。
+* 來源檔的 `title` 是**英文字串**（`To Arc, or Not to Arc?` 等），而站內規格要中英兩版：轉檔時把英文字串放 `title.en`，中文標題另行補上（有弧，定冇弧？／常見圖形，其實唔簡單／圓即是半徑… ／長度，最後都落在三角形／閃亮嘅唔一定係金／來回走：順推與逆推／畫一條線，就見到隻角）。
+* 新增欄位 `points[].subtitle`（中英各一句）：`app.js` 的 `thinkingCard()` 在標題下面用 `.think-sub` 以灰字顯示，填補「標題太短、正文太長」之間的一層。
+* `tools/verify_ch11_notes.py` 由「按位置揀播放器」改為**按內容揀**（最長的一個 = 設 x 鏈；有 E 點的一個 = 兩弦相交），並更新型態檢查：假蝴蝶改用 ∠ACB（新圖沒有 P）、招財進寶驗「反角 = 2×圓周角」、新增飛鏢驗「圓心角 = 2×圓周角（劣弧）」，總結字串改為動態計數。現時驗 3 個播放器、6 個型態、6 個配對。
+* `smoke_test.js` 的六條硬編「5 點 5 圖」斷言全部改為由 `TH11` 動態計數（編號、標題數、型態數、accent 弧總數、重播按鈕數、記憶名稱清單），另外「按索引取動畫」改為 `TH11.points.filter(p => p.demo.type === "circle")`。
+* 驗證：`build.py` 0 錯 0 警；`verify_ch11_notes.py` 全 PASS（3 players, 6 shapes, 6 matches）；完整 smoke 全綠（7 點、6 圖、4 個示範、1000+ 斷言）；1080px 真瀏覽器截圖核對副題與型態圖。
+
 ### 9.23 英文文風：冇 STE100 規則，改為自然英文（2026-11-18）
 
 * 老師問「係唔係有規則英文要用 ASD-STE100」，並指英文太生硬。查過 `README.md`、`docs/`、`data/src/*.json`（含 `prompt-templates.json`）、`assets/*.js`、`tools/*.py`，**冇任何 STE100／受控語言規則**——沒有規則可刪。生硬是因為寫作習慣（一句一義、句句祈使、每句同一個主語）。

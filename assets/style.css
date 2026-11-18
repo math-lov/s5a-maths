@@ -1747,6 +1747,7 @@ body[data-lang="both"] .think-shape-name .l-zh, body[data-lang="both"] .think-sh
 }
 .think-main { min-width: 0; }
 .think-h { margin: 2px 0 0; font-size: 16px; }
+.think-sub { margin: 2px 0 0; font-size: 14.5px; color: var(--muted); }
 .think-body { margin: 4px 0 0; }
 .think-ex { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-2); }
 .think-ex a {
