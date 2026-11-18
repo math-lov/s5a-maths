@@ -3607,33 +3607,74 @@ ok(TH11.shapes.map((s) => s.name.en).join("|") ===
   "the butterfly|the fake butterfly|fortune fan|semi-circle $90^\\circ$|cyclic quadrilateral",
   "型態名稱沿用老師定的英文（the butterfly／the fake butterfly／fortune fan）");
 
-const clsPicks = notesPage.$$(".cls-pick");
-ok(clsPicks.length === 4 && notesPage.$$(".cls-mark").length === 4,
+const mainCls = notesPage.$$(".cls").pop();
+const clsPicks = mainCls ? Array.prototype.slice.call(mainCls.querySelectorAll(".cls-pick")) : [];
+ok(clsPicks.length === 4 && mainCls.querySelectorAll(".cls-mark").length === 4,
   "分類器有四隻可點角，圖上亦有四個編號標記");
-ok(notesPage.$$(".cls-pick[aria-pressed='true']").length === 0 &&
-  notesPage.$$(".cls-verdict").length === 0,
+ok(mainCls.querySelectorAll(".cls-pick[aria-pressed='true']").length === 0 &&
+  mainCls.querySelectorAll(".cls-verdict").length === 0,
   "未揀角之前不預設答案");
 notesPage.ctx.window.matchMedia = () => ({ matches: true });
 clsPicks[1].click();
-ok(notesPage.$$(".cls-arc.on").length === 1 &&
-  notesPage.$(".cls-arc.on").getAttribute("data-angle") === "acd",
+ok(mainCls.querySelectorAll(".cls-arc.on").length === 1 &&
+  mainCls.querySelector(".cls-arc.on").getAttribute("data-angle") === "acd",
   "揀 ∠ACD 只亮那一條弧");
-ok(notesPage.$$(".cls-row").length === 2, "兩問（頂點／兩臂另一端）都問了");
-ok(/圓周角/.test((notesPage.$(".cls-verdict-h") || {}).textContent || "") &&
-  /circumference/i.test((notesPage.$(".cls-verdict-h") || {}).textContent || ""),
+ok(mainCls.querySelectorAll(".cls-row").length === 2, "兩問（頂點／兩臂另一端）都問了");
+ok(/圓周角/.test((mainCls.querySelector(".cls-verdict-h") || {}).textContent || "") &&
+  /circumference/i.test((mainCls.querySelector(".cls-verdict-h") || {}).textContent || ""),
   "∠ACD 判為「特殊角：圓周角」");
 clsPicks[0].click();
-ok(/普通角/.test((notesPage.$(".cls-verdict-h") || {}).textContent || ""),
+ok(/普通角/.test((mainCls.querySelector(".cls-verdict-h") || {}).textContent || ""),
   "∠OCA（一臂止於圓心）判為「普通角」");
 clsPicks[2].click();
-ok(/圓心角/.test((notesPage.$(".cls-verdict-h") || {}).textContent || ""),
+ok(/圓心角/.test((mainCls.querySelector(".cls-verdict-h") || {}).textContent || ""),
   "∠AOD 判為「特殊角：圓心角」");
 clsPicks[3].click();
-ok(/普通角/.test((notesPage.$(".cls-verdict-h") || {}).textContent || "") &&
-  /AEO/.test((notesPage.$(".cls-sel") || {}).textContent || ""),
+ok(/普通角/.test((mainCls.querySelector(".cls-verdict-h") || {}).textContent || "") &&
+  /AEO/.test((mainCls.querySelector(".cls-sel") || {}).textContent || ""),
   "∠AEO（頂點在交點）判為「普通角」");
-ok(notesPage.$$(".cls-row-v.l-zh").length === 2 && notesPage.$$(".cls-row-v.l-en").length === 2,
+ok(mainCls.querySelectorAll(".cls-row-v.l-zh").length === 2 &&
+  mainCls.querySelectorAll(".cls-row-v.l-en").length === 2,
   "兩問的答案有中英兩版");
+
+/* 每一點都配一幅圖／示範 */
+notesPage.ctx.window.matchMedia = () => ({ matches: true });
+const pointFigs = notesPage.$$(".think-point .think-fig");
+ok(pointFigs.length === 4, "前四個論點各有一幅圖／示範（第 5 點是下面五幅型態）");
+const p1picks = pointFigs.length ? pointFigs[0].querySelectorAll(".cls-pick") : [];
+ok(p1picks.length === 4, "第一點是「點角亮弧」：四隻角可以點");
+p1picks[1].click();
+ok(pointFigs[0].querySelectorAll(".cls-arc-hi.on").length === 1,
+  "點 ∠ACD 會在圓周亮起弧 AD");
+p1picks[0].click();
+ok(pointFigs[0].querySelectorAll(".cls-arc-hi.on").length === 0,
+  "點 ∠OCA（一臂止於圓心）冇弧可亮");
+ok(/冇弧/.test((pointFigs[0].querySelector(".cls-arcsay") || {}).textContent || ""),
+  "冇弧時會講明原因");
+const playerFigs = [1, 2, 3].map((i) => pointFigs[i]).filter(Boolean);
+ok(playerFigs.length === 3 && playerFigs.every((f) => f.querySelector(".cg-svg")),
+  "第 2–4 點各有逐步動畫（circle.js 播放器）");
+ok(playerFigs.every((f) => f.querySelectorAll(".cg-next").length === 1),
+  "播放器有「下一步」可以逐格看");
+
+/* 角 ↔ 弧 配對小遊戲 */
+const mat = notesPage.$(".mat");
+const mPicks = mat ? Array.prototype.slice.call(mat.querySelectorAll(".mat-pick")) : [];
+const mHits = mat ? Array.prototype.slice.call(mat.querySelectorAll(".mat-hit")) : [];
+ok(!!mat && mPicks.length === 4 && mHits.length === 4,
+  "配對遊戲：四隻角、四條可點的弧");
+const tapHit = (n) => n.dispatchEvent(new notesPage.ctx.window.MouseEvent("click", { bubbles: true }));
+mPicks[0].click();
+tapHit(mHits[2]);
+ok(mat.querySelectorAll(".mat-arc.bad").length === 1 &&
+  /唔對/.test((mat.querySelector(".mat-say") || {}).textContent || ""),
+  "配錯弧會閃紅並提示");
+tapHit(mHits[0]);
+ok(mat.querySelectorAll(".mat-arc.done").length === 1 &&
+  mat.querySelectorAll(".mat-pick.done").length === 1 &&
+  /1 \/ 4/.test((mat.querySelector(".mat-progress") || {}).textContent || ""),
+  "配對正確會鎖住並計分");
+
 const backLink = notesPage.$("#notes-back");
 ok(!!backLink && backLink.getAttribute("href") === "chapter.html?ch=ch11",
   "心得頁的返回鍵指回這一章的目錄頁");

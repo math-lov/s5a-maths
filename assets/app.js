@@ -641,6 +641,19 @@
       h3.appendChild(pairSpan(p.title || {}));
       main.appendChild(h3);
       if (p.body) main.appendChild(pair(p.body, "div", "bi think-body"));
+      /* 每一點都可以配一幅圖／小示範（demo.type 要在白名單；classify 會沿用大分類器的設定） */
+      if (p.demo && window.S5A_DEMO && S5A_DEMO.types && S5A_DEMO.types[p.demo.type]) {
+        var fh = el("div", "think-fig");
+        var opts = p.demo.opts || p.demo;
+        if (p.demo.type === "classify") {
+          opts = {};
+          var base = t.classify || {};
+          Object.keys(base).forEach(function (k) { opts[k] = base[k]; });
+          Object.keys(p.demo).forEach(function (k) { opts[k] = p.demo[k]; });
+        }
+        try { S5A_DEMO.types[p.demo.type](fh, opts); } catch (e) {}
+        main.appendChild(fh);
+      }
       if ((p.examples || []).length) {
         var ex = el("div", "think-ex");
         p.examples.forEach(function (x) {
@@ -671,6 +684,14 @@
         grid.appendChild(box);
       });
       card.appendChild(grid);
+    }
+
+    if (t.match) {
+      var mhost = el("div");
+      card.appendChild(mhost);
+      if (window.S5A_DEMO && S5A_DEMO.types && S5A_DEMO.types["arc-match"]) {
+        try { S5A_DEMO.types["arc-match"](mhost, t.match); } catch (e) {}
+      }
     }
 
     if (t.classify) {

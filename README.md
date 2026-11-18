@@ -239,11 +239,18 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 
 * `title` / `lead`：卡片標題與一句引言（中英各一）。
 * `points[]`：`no`（01、02…）、`title`、`body`（可用 `$…$`）、`examples[]`
-  （`{ "part": "ch11-1", "p": 13, "label": "11.1 Q12" }`，`p` 是題目在該頁的頁碼，1 起）。
+  （`{ "part": "ch11-1", "p": 13, "label": "11.1 Q12" }`，`p` 是題目在該頁的頁碼，1 起）、
+  以及可選的 `demo`：
+  * `{ "type": "classify", "mode": "arc" }`：點角亮弧的分類器（`mode` 省略就是完整兩問版；
+    角要寫 `arc: ["A","D"]` 與 `arcName`，冇弧寫 `arc: null`）。
+  * `{ "type": "circle", "anim": {…} }`：逐步動畫（`circle.js`），規格跟題目圖解一樣。
 * `shapes[]`：`name`、`note`、`anim`。`anim` 跟 `assets/circle.js` 的規格，用
   `S5A_CIRCLE.mount(host, anim, { static: true })` 畫成一幅圖（最後一步一次過畫好，
   字幕與按鈕由 `.cg-static` 收起）。所以型態圖要寫成**一步**：`steps[0].arcs` 標角、
   `circleArcs` 標「同一條弧」。角度標籤是純文字（`90°`、`2p`），不要寫 `$…$`。
+* `match`：【角 ↔ 弧 配對】小遊戲（`assets/demos.js` 的 `arc-match`）。`angles[]` 寫
+  `label` 與 `arc`（對應 `arcs[].id`），`arcs[]` 寫 `from`／`to`（圖上四點 A B C D 之間），
+  `title`／`lead`／`done` 中英各一。學生先揀角、再點圖上的弧；正確鎖住，錯會閃紅。
 * `classify`：兩問分類器（`assets/demos.js` 的 `classify`）。`angles[]` 每隻角有
   `id`（`oca`／`acd`／`aod`／`aeo`，對應圖上的固定位置）、`label`、`verdict`；
   `answers` 寫兩問的答案；`verdicts` 寫三種判決（`circumference`／`centre`／`normal`）的標題與說明。

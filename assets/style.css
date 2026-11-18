@@ -1799,6 +1799,47 @@ body[data-lang="both"] .cg-split .cg-en {
 .cls-verdict.cls-normal { background: #fdfaf4; border-color: var(--line); }
 .cls-verdict-h { font-weight: 700; margin-bottom: 4px; }
 .cls-hint { margin: var(--sp-3) 0 0; font-size: 13.5px; color: var(--muted); }
+.cls-arc-hi {
+  fill: none; stroke: var(--accent); stroke-width: 7; stroke-linecap: round;
+  opacity: 0; transition: opacity .25s; pointer-events: none;
+}
+.cls-arc-hi.on { opacity: .9; }
+.cls-arcsay { margin: 0 0 var(--sp-1); }
+.think-fig { margin: var(--sp-3) 0 var(--sp-2); }
+.think-fig .cg { margin: 0; }
+
+/* 角 ↔ 弧 配對小遊戲 */
+.mat { margin-top: var(--sp-5); border-top: 1px solid var(--line); padding-top: var(--sp-4); }
+.mat-stage { display: grid; gap: var(--sp-4); }
+.mat-fig { position: relative; max-width: 330px; margin: 0 auto; width: 100%; }
+.mat-svg {
+  display: block; width: 100%; height: auto;
+  background: #fdfcfb; border: 1px solid var(--line); border-radius: 14px;
+}
+.mat-arc {
+  fill: none; stroke: var(--primary-line); stroke-width: 5; stroke-linecap: round;
+  pointer-events: none; transition: stroke .2s, stroke-width .2s;
+}
+.mat-arc.hov { stroke: var(--primary); stroke-width: 7; }
+.mat-arc.done { stroke: var(--accent); stroke-width: 8; }
+.mat-arc.bad { stroke: var(--err); stroke-width: 8; }
+.mat-hit { fill: none; stroke: transparent; stroke-width: 18; stroke-linecap: round; cursor: pointer; }
+.mat-hit:focus-visible { stroke: var(--primary-soft); }
+.mat-side { min-width: 0; }
+.mat-picks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--sp-3); }
+.mat-pick {
+  padding: 6px 12px; border-radius: 999px; border: 1px solid var(--primary-line);
+  background: #fff; color: var(--primary-ink); font-size: 14px; cursor: pointer;
+}
+.mat-pick[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: #fff; }
+.mat-pick.done { border-color: var(--accent); color: var(--accent); cursor: default; }
+.mat-pick.done::after { content: " ✓"; }
+.mat-say { margin: 0 0 var(--sp-2); }
+.mat-say.bad { color: var(--err); }
+.mat-progress { margin: 0; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+@media (min-width: 760px) {
+  .mat-stage { grid-template-columns: minmax(0, 330px) minmax(0, 1fr); align-items: start; }
+}
 @media (min-width: 760px) {
   .cls-stage { grid-template-columns: minmax(0, 330px) minmax(0, 1fr); align-items: start; }
 }

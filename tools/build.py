@@ -578,7 +578,8 @@ CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 # 互動示範：卡片可寫 "demo": { "type": "tie-up" }，由 assets/demos.js 建立
 # （新增示範：先在 demos.js 的 S5A_DEMO.types 註冊，再把 type 加落這裡）
 DEMO_TYPES = ("tie-up", "slot-in", "grouping", "combination", "path", "complement",
-              "menu", "venn", "code", "venncalc", "floor", "circle", "parts", "classify")
+              "menu", "venn", "code", "venncalc", "floor", "circle", "parts", "classify",
+              "arc-match")
 
 
 def check_intro(data: dict, where: str) -> None:
@@ -812,6 +813,18 @@ def check_thinking(site) -> None:
                 err("%s：points %d 標題要中英兩版" % (tag, i))
             if not (isinstance(p.get("body"), dict) and p["body"].get("zh") and p["body"].get("en")):
                 err("%s：points %d 正文要中英兩版" % (tag, i))
+            dm = p.get("demo")
+            if dm is not None:
+                if not isinstance(dm, dict) or dm.get("type") not in DEMO_TYPES:
+                    err("%s：points %d 的 demo.type 不在白名單（%s）"
+                        % (tag, i, "、".join(DEMO_TYPES)))
+                elif dm.get("type") == "circle":
+                    anim = dm.get("anim") or {}
+                    if not (anim.get("points") and anim.get("segments") and anim.get("steps")):
+                        err("%s：points %d 的 circle demo 要有 points／segments／steps" % (tag, i))
+                    for j, st in enumerate(anim.get("steps") or [], 1):
+                        if not (st.get("zh") or st.get("en")):
+                            err("%s：points %d demo step %d 要有 zh 或 en" % (tag, i, j))
             for ex in p.get("examples") or []:
                 pid = ex.get("part")
                 if pid not in parts:
@@ -837,6 +850,22 @@ def check_thinking(site) -> None:
             for j, st in enumerate(anim.get("steps") or [], 1):
                 if not (st.get("zh") or st.get("en")):
                     err("%s：shapes %d step %d 要有 zh 或 en" % (tag, i, j))
+        mt = t.get("match")
+        if mt:
+            ids = {a.get("id") for a in mt.get("arcs") or []}
+            if len(ids) < 2:
+                err(tag + "：match.arcs 至少要有兩條弧")
+            for a in mt.get("angles") or []:
+                if a.get("arc") not in ids:
+                    err("%s：match 角 %r 的 arc %r 不在 match.arcs"
+                        % (tag, a.get("id"), a.get("arc")))
+                if not a.get("label"):
+                    err("%s：match 角 %r 缺少 label" % (tag, a.get("id")))
+            for key in ("title", "lead", "done"):
+                v = mt.get(key)
+                if not (isinstance(v, dict) and v.get("zh") and v.get("en")):
+                    err("%s：match.%s 要中英兩版" % (tag, key))
+
         cl = t.get("classify")
         if cl:
             vs = cl.get("verdicts") or {}

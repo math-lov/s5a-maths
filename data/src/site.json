@@ -841,7 +841,19 @@
           "p": 13,
           "label": "11.1 Q12"
          }
-        ]
+        ],
+        "demo": {
+         "type": "classify",
+         "mode": "arc",
+         "title": {
+          "zh": "點一隻角，睇下有冇弧",
+          "en": "Tap an angle: has it got an arc?"
+         },
+         "lead": {
+          "zh": "有弧才可以用本章的弧定理；冇弧就只是一隻普通角。",
+          "en": "Only angles with an arc can use this chapter's theorems; without one it is an ordinary angle."
+         }
+        }
        },
        {
         "no": "02",
@@ -864,7 +876,134 @@
           "p": 21,
           "label": "11.3 Q17"
          }
-        ]
+        ],
+        "demo": {
+         "type": "circle",
+         "anim": {
+          "points": {
+           "O": {
+            "centre": true
+           },
+           "A": {
+            "at": 180
+           },
+           "B": {
+            "at": 216
+           },
+           "C": {
+            "at": 324
+           }
+          },
+          "segments": [
+           [
+            "A",
+            "B"
+           ],
+           [
+            "A",
+            "C"
+           ],
+           [
+            "B",
+            "C"
+           ]
+          ],
+          "steps": [
+           {
+            "zh": "由所求開始：設目標角 ∠BCA = x，兩臂的兩點就是弧 AB。",
+            "en": "Start from the target: let ∠BCA = x. Its two arms give arc AB.",
+            "arcs": [
+             [
+              "C",
+              "B",
+              "A",
+              "x"
+             ]
+            ],
+            "circleArcs": [
+             [
+              "A",
+              "B",
+              null,
+              "accent"
+             ]
+            ],
+            "mathLines": [
+             "\\angle BCA = x"
+            ]
+           },
+           {
+            "zh": "AO // BC，內錯角相等 → ∠CAO = x。",
+            "en": "AO // BC, so the alternate angles are equal: ∠CAO = x.",
+            "arcs": [
+             [
+              "A",
+              "O",
+              "C",
+              "x"
+             ]
+            ],
+            "parallel": [
+             [
+              "A",
+              "O"
+             ],
+             [
+              "B",
+              "C"
+             ]
+            ],
+            "mathLines": [
+             "\\angle CAO = x"
+            ]
+           },
+           {
+            "zh": "連 OC；OA = OC（半徑）→ 等腰，∠ACO = x。",
+            "en": "Join OC; OA = OC (radii) makes it isosceles, so ∠ACO = x.",
+            "lines": [
+             [
+              "O",
+              "C",
+              "ink"
+             ]
+            ],
+            "arcs": [
+             [
+              "C",
+              "A",
+              "O",
+              "x"
+             ]
+            ],
+            "mathLines": [
+             "\\angle ACO = x"
+            ]
+           },
+           {
+            "zh": "圓心角 2x；弧 AB:BC = 1:3 → ∠BOC = 6x；△OAC 內角和 180°。",
+            "en": "Centre angle 2x; arc AB:BC = 1:3 gives ∠BOC = 6x; angle sum in △OAC is 180°.",
+            "arcs": [
+             [
+              "O",
+              "A",
+              "B",
+              "2x"
+             ],
+             [
+              "O",
+              "B",
+              "C",
+              "6x"
+             ]
+            ],
+            "mathLines": [
+             "2x+6x+x+x=180@B@^@B@circ",
+             "x=18@B@^@B@circ"
+            ]
+           }
+          ]
+         }
+        }
        },
        {
         "no": "03",
@@ -887,7 +1026,95 @@
           "p": 12,
           "label": "11R Q12"
          }
-        ]
+        ],
+        "demo": {
+         "type": "circle",
+         "anim": {
+          "points": {
+           "O": {
+            "centre": true
+           },
+           "A": {
+            "at": 210
+           },
+           "B": {
+            "at": 330
+           },
+           "C": {
+            "at": 60
+           }
+          },
+          "segments": [
+           [
+            "A",
+            "B"
+           ]
+          ],
+          "steps": [
+           {
+            "zh": "卡住就把半徑全部拉出來：由 O 連去每一個在圓上的點。",
+            "en": "When stuck, draw every radius: join O to each labelled point on the circle.",
+            "lines": [
+             [
+              "O",
+              "A",
+              "claim"
+             ],
+             [
+              "O",
+              "B",
+              "claim"
+             ],
+             [
+              "O",
+              "C",
+              "claim"
+             ]
+            ]
+           },
+           {
+            "zh": "同一個圓 → OA = OB = OC（半徑相等）。",
+            "en": "Same circle, so OA = OB = OC.",
+            "ticks": [
+             [
+              "O",
+              "A"
+             ],
+             [
+              "O",
+              "B"
+             ],
+             [
+              "O",
+              "C"
+             ]
+            ]
+           },
+           {
+            "zh": "兩條半徑 + 一條弦 = 等腰三角形 → 底角相等。",
+            "en": "Two radii plus a chord make an isosceles triangle, so the base angles are equal.",
+            "arcs": [
+             [
+              "A",
+              "O",
+              "B",
+              "p"
+             ],
+             [
+              "B",
+              "O",
+              "A",
+              "p"
+             ]
+            ],
+            "mathLines": [
+             "OA=OB",
+             "\\angle OAB=\\angle OBA"
+            ]
+           }
+          ]
+         }
+        }
        },
        {
         "no": "04",
@@ -905,7 +1132,111 @@
           "p": 22,
           "label": "11.1 Q21"
          }
-        ]
+        ],
+        "demo": {
+         "type": "circle",
+         "anim": {
+          "points": {
+           "O": {
+            "centre": true
+           },
+           "A": {
+            "at": 200
+           },
+           "B": {
+            "at": 340
+           },
+           "C": {
+            "at": 20
+           },
+           "D": {
+            "at": 160
+           }
+          },
+          "segments": [
+           [
+            "A",
+            "B"
+           ],
+           [
+            "A",
+            "C"
+           ],
+           [
+            "B",
+            "D"
+           ],
+           [
+            "C",
+            "D"
+           ]
+          ],
+          "steps": [
+           {
+            "zh": "四點共圓、兩弦相交：先找同一弓形的角（都對弧 AD）。",
+            "en": "Four concyclic points with two crossing chords: find the same-segment pair — both stand on arc AD.",
+            "arcs": [
+             [
+              "B",
+              "A",
+              "D",
+              "p"
+             ],
+             [
+              "C",
+              "A",
+              "D",
+              "p"
+             ]
+            ],
+            "circleArcs": [
+             [
+              "A",
+              "D",
+              "B",
+              "accent"
+             ]
+            ]
+           },
+           {
+            "zh": "另一對同弓形（弧 BC）加對頂角 → 兩三角形 AA 相似。",
+            "en": "A second same-segment pair (arc BC) plus vertically opposite angles gives AA similarity.",
+            "arcs": [
+             [
+              "A",
+              "B",
+              "C",
+              "p"
+             ],
+             [
+              "D",
+              "B",
+              "C",
+              "p"
+             ]
+            ],
+            "circleArcs": [
+             [
+              "B",
+              "C",
+              "A",
+              "accent"
+             ]
+            ],
+            "mathLines": [
+             "\\triangle ABE \\sim \\triangle DCE"
+            ]
+           },
+           {
+            "zh": "相似三角形的對應邊成比例——長度題就是這樣做出來。",
+            "en": "Corresponding sides are proportional — that is how length questions are done.",
+            "mathLines": [
+             "\\dfrac{AE}{DE}=\\dfrac{BE}{CE}"
+            ]
+           }
+          ]
+         }
+        }
        },
        {
         "no": "05",
@@ -1321,22 +1652,40 @@
         {
          "id": "oca",
          "label": "∠OCA",
-         "verdict": "normal"
+         "verdict": "normal",
+         "arc": null
         },
         {
          "id": "acd",
          "label": "∠ACD",
-         "verdict": "circumference"
+         "verdict": "circumference",
+         "arc": [
+          "A",
+          "D"
+         ],
+         "arcName": {
+          "zh": "弧 AD",
+          "en": "arc AD"
+         }
         },
         {
          "id": "aod",
          "label": "∠AOD",
-         "verdict": "centre"
+         "verdict": "centre",
+         "arc": [
+          "A",
+          "D"
+         ],
+         "arcName": {
+          "zh": "弧 AD",
+          "en": "arc AD"
+         }
         },
         {
          "id": "aeo",
          "label": "∠AEO",
-         "verdict": "normal"
+         "verdict": "normal",
+         "arc": null
         }
        ],
        "verdicts": {
@@ -1416,6 +1765,80 @@
           "en": "Only one (EO stops at the centre)"
          }
         }
+       }
+      },
+      "match": {
+       "title": {
+        "zh": "配對：邊隻角對邊條弧？",
+        "en": "Match each angle to its arc"
+       },
+       "lead": {
+        "zh": "先揀一隻角，再點圖上的一條弧；四隻角各自對住不同的弧。",
+        "en": "Pick an angle, then tap the arc it stands on. The four angles use four different arcs."
+       },
+       "angles": [
+        {
+         "id": "acb",
+         "label": "∠ACB",
+         "arc": "ab"
+        },
+        {
+         "id": "bdc",
+         "label": "∠BDC",
+         "arc": "bc"
+        },
+        {
+         "id": "cad",
+         "label": "∠CAD",
+         "arc": "cd"
+        },
+        {
+         "id": "abd",
+         "label": "∠ABD",
+         "arc": "da"
+        }
+       ],
+       "arcs": [
+        {
+         "id": "ab",
+         "from": "A",
+         "to": "B",
+         "label": {
+          "zh": "弧 AB",
+          "en": "arc AB"
+         }
+        },
+        {
+         "id": "bc",
+         "from": "B",
+         "to": "C",
+         "label": {
+          "zh": "弧 BC",
+          "en": "arc BC"
+         }
+        },
+        {
+         "id": "cd",
+         "from": "C",
+         "to": "D",
+         "label": {
+          "zh": "弧 CD",
+          "en": "arc CD"
+         }
+        },
+        {
+         "id": "da",
+         "from": "D",
+         "to": "A",
+         "label": {
+          "zh": "弧 DA",
+          "en": "arc DA"
+         }
+        }
+       ],
+       "done": {
+        "zh": "4 / 4 完成！同弓形嘅角都對同一條弧，所以同弓形嘅角相等。",
+        "en": "4 / 4 done. Angles in the same segment stand on the same arc — that is why they are equal."
        }
       }
      }

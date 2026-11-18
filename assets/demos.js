@@ -2737,6 +2737,20 @@
       };
     }
 
+    /* 沿圓周由 p1 到 p2 的弧；有 avoid 就揀唔穿越它的那一邊 */
+    function heading(p) { return Math.atan2(p.y - CY, p.x - CX); }
+    function norm(t) { while (t < 0) t += 2 * Math.PI; while (t >= 2 * Math.PI) t -= 2 * Math.PI; return t; }
+    function circleArc(p1, p2, avoid) {
+      var a1 = heading(p1), a2 = heading(p2), d1 = norm(a2 - a1), sweep, delta;
+      if (avoid) {
+        var av = heading(avoid);
+        if (norm(av - a1) <= d1) { sweep = 0; delta = 2 * Math.PI - d1; }
+        else { sweep = 1; delta = d1; }
+      } else { sweep = 1; delta = d1; }
+      return "M" + p1.x + " " + p1.y + "A" + R + " " + R + " 0 " + (delta > Math.PI ? 1 : 0) +
+        " " + sweep + " " + p2.x + " " + p2.y;
+    }
+
     var SPEC = {
       oca: { v: "C", p1: "O", p2: "A", r: 30 * V },
       acd: { v: "C", p1: "A", p2: "D", r: 46 * V },
@@ -2790,6 +2804,24 @@
       dotG.appendChild(t);
     });
     svg.appendChild(dotG);
+
+    /* 「點角亮弧」模式：點一隻角就在圓周亮起它所對的弧；普通角冇弧，所以冇嘢亮 */
+    var arcHis = {};
+    if (o.mode === "arc") {
+      var hiG = S("g");
+      (o.angles || []).forEach(function (a) {
+        var s = SPEC[a.id];
+        if (!s || !a.arc) return;
+        var p1 = P[a.arc[0]], p2 = P[a.arc[1]];
+        if (!p1 || !p2) return;
+        var path = S("path", {
+          d: circleArc(p1, p2, P[s.v]), class: "cls-arc-hi", "data-arc-hi": a.id
+        });
+        hiG.appendChild(path);
+        arcHis[a.id] = path;
+      });
+      svg.appendChild(hiG);
+    }
     figWrap.appendChild(svg);
 
     /* 圖上只放「第幾隻角」的細圓點（唔可點，避免同細角搶位）；
@@ -2865,8 +2897,41 @@
       Object.keys(marks).forEach(function (k) {
         marks[k].classList.toggle("on", k === a.id);
       });
+      Object.keys(arcHis).forEach(function (k) {
+        arcHis[k].classList.toggle("on", k === a.id);
+      });
       panel.innerHTML = "";
       panel.appendChild(idle.cloneNode(true));
+      if (o.mode === "arc") {
+        later(function () {
+          panel.innerHTML = "";
+          panel.appendChild(el("p", "cls-sel", a.label || a.id));
+          var line = el("p", "cls-arcsay");
+          var name = a.arcName || {};
+          if (a.arc) {
+            line.appendChild(bi(
+              "兩臂都再碰圓 → 有弧。對住" + (name.zh || "弧") + "，圓周上已經亮起。",
+              "Both arms meet the circle again, so it stands on " + (name.en || "an arc") + " — lit on the rim."
+            ));
+          } else {
+            line.appendChild(bi(
+              "冇弧：其中一臂只到圓心，唔係弦，所以冇嘢可以亮。",
+              "No arc: one arm stops at the centre, so there is nothing to light up."
+            ));
+          }
+          panel.appendChild(line);
+          var card = el("div", "cls-verdict" + (a.arc ? "" : " cls-normal"));
+          card.appendChild(bi(
+            a.arc ? "可以用弧定理：½ 圓心角、同弓形相等、弧長比例。"
+                  : "唔可以用弧定理；改用等腰三角形底角、內角和或外角。",
+            a.arc ? "Arc theorems apply: half the centre angle, same segment, arc ratios."
+                  : "No arc theorem — use isosceles base angles, angle sum or the exterior angle."
+          ));
+          panel.appendChild(card);
+          panel.appendChild(hint);
+        }, 320);
+        return;
+      }
       var ans = answers[a.id] || {};
       later(function () {
         panel.innerHTML = "";
@@ -2892,12 +2957,182 @@
     return root;
   }
 
+  /* 角 ↔ 弧 配對小遊戲（第 11 章章節心得用）
+     --------------------------------------------------------------------------
+     一隻圓、四點 A B C D、六條弦；四隻圓周角各自對住四條不同的弧。
+     玩法：先揀一隻角，再點圖上一條弧。配對正確就鎖住，錯就閃紅。
+     文字來自 site.json 的 thinking.match（純文字，唔用 KaTeX）。
+     -------------------------------------------------------------------------- */
+  function arcMatchDemo(host, o) {
+    o = o || {};
+    var CX = 170, CY = 152, R = 112;
+    function pt(deg) {
+      var a = deg * Math.PI / 180;
+      return { x: CX + R * Math.cos(a), y: CY - R * Math.sin(a) };
+    }
+    var P = { A: pt(200), B: pt(300), C: pt(20), D: pt(120) };
+    /* 同 pt() 用同一套座標（y 向下），否則反算出來的點會上下鏡像、弧會跑到圓外 */
+    function heading(p) { return Math.atan2(CY - p.y, p.x - CX); }
+    function norm(t) { while (t < 0) t += 2 * Math.PI; while (t >= 2 * Math.PI) t -= 2 * Math.PI; return t; }
+    /* 四條弧首尾相接；每條兩端縮入少少，中間留空隙，一眼睇得出係四段 */
+    function arcD(p1, p2) {
+      var a1 = heading(p1), a2 = a1 + norm(heading(p2) - a1), gap = 0.13;
+      var s = { x: CX + R * Math.cos(a1 + gap), y: CY - R * Math.sin(a1 + gap) };
+      var e = { x: CX + R * Math.cos(a2 - gap), y: CY - R * Math.sin(a2 - gap) };
+      var d = a2 - a1 - gap * 2;
+      /* sweep=0：pt() 用 y 向下，角度增加在畫面上是逆時針，所以正向要揀 0 才會貼住圓周 */
+      return "M" + s.x + " " + s.y + "A" + R + " " + R + " 0 " + (d > Math.PI ? 1 : 0) + " 0 " +
+        e.x + " " + e.y;
+    }
+
+    var root = el("div", "mat");
+    var head = el("div", "cls-head");
+    if (o.title) head.appendChild(bi(o.title.zh || "", o.title.en || ""));
+    if (o.lead) head.appendChild(bi(o.lead.zh || "", o.lead.en || ""));
+    root.appendChild(head);
+
+    var stage = el("div", "mat-stage");
+    var fig = el("div", "mat-fig");
+    var NS = "http://www.w3.org/2000/svg";
+    function S(tag, attrs) {
+      var n = document.createElementNS(NS, tag);
+      Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+      return n;
+    }
+    var svg = S("svg", { viewBox: "0 0 340 310", class: "mat-svg", role: "img" });
+    svg.appendChild(S("circle", { cx: CX, cy: CY, r: R, class: "cls-circle" }));
+    [["A", "B"], ["B", "C"], ["C", "D"], ["D", "A"], ["A", "C"], ["B", "D"]].forEach(function (sg) {
+      svg.appendChild(S("line", {
+        x1: P[sg[0]].x, y1: P[sg[0]].y, x2: P[sg[1]].x, y2: P[sg[1]].y, class: "cls-seg"
+      }));
+    });
+
+    /* 四條弧：粗透明線做點擊區，上面一條細線做顯示 */
+    var arcPaths = {}, hitPaths = {};
+    (o.arcs || []).forEach(function (a) {
+      var p1 = P[a.from], p2 = P[a.to];
+      if (!p1 || !p2) return;
+      var d = arcD(p1, p2);
+      var hit = S("path", {
+        d: d, class: "mat-hit", "data-arc": a.id, tabindex: "0", role: "button",
+        "aria-label": (a.label && (a.label.zh || a.label.en)) || a.id
+      });
+      hit.addEventListener("click", function () { hitArc(a); });
+      hit.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); hitArc(a); }
+      });
+      svg.appendChild(hit);
+      var vis = S("path", { d: d, class: "mat-arc", "data-arc-vis": a.id });
+      hit.addEventListener("mouseenter", function () { vis.classList.add("hov"); });
+      hit.addEventListener("mouseleave", function () { vis.classList.remove("hov"); });
+      hit.addEventListener("focus", function () { vis.classList.add("hov"); });
+      hit.addEventListener("blur", function () { vis.classList.remove("hov"); });
+      svg.appendChild(vis);
+      arcPaths[a.id] = vis;
+      hitPaths[a.id] = hit;
+    });
+
+    ["A", "B", "C", "D"].forEach(function (k) {
+      svg.appendChild(S("circle", { cx: P[k].x, cy: P[k].y, r: 3.4, class: "cls-dot" }));
+      var off = { A: { x: -14, y: 6 }, B: { x: 8, y: 6 }, C: { x: 9, y: -6 }, D: { x: -8, y: -8 } }[k];
+      var t = S("text", { x: P[k].x + off.x, y: P[k].y + off.y, class: "cls-lab" });
+      t.textContent = k;
+      svg.appendChild(t);
+    });
+    fig.appendChild(svg);
+    stage.appendChild(fig);
+
+    var side = el("div", "mat-side");
+    var picks = el("div", "mat-picks");
+    var status = el("p", "mat-say");
+    var progress = el("p", "mat-progress");
+    var chips = {};
+    (o.angles || []).forEach(function (a) {
+      var b = el("button", "mat-pick", a.label || a.id);
+      b.type = "button";
+      b.onclick = function () { choose(a); };
+      chips[a.id] = b;
+      picks.appendChild(b);
+    });
+    side.appendChild(picks);
+    side.appendChild(status);
+    side.appendChild(progress);
+    stage.appendChild(side);
+    root.appendChild(stage);
+    host.appendChild(root);
+
+    var sel = null, done = {}, solved = 0, timer = null;
+    var total = (o.angles || []).length;
+    function say(zh, en) {
+      status.innerHTML = "";
+      status.appendChild(bi(zh, en));
+    }
+    function setProgress() {
+      progress.textContent = solved + " / " + total;
+    }
+    say("先揀一隻角，再點圖上一條弧。", "Pick an angle, then tap the arc it stands on.");
+    setProgress();
+
+    function choose(a) {
+      if (done[a.id]) return;
+      sel = a;
+      Object.keys(chips).forEach(function (k) {
+        chips[k].setAttribute("aria-pressed", k === a.id ? "true" : "false");
+      });
+      say("而家配 " + (a.label || a.id) + "：佢嘅兩臂嘅另一端係邊兩點？點那條弧。",
+        "Pairing " + (a.label || a.id) + ": which two points do its arms meet? Tap that arc.");
+      status.classList.remove("bad");
+    }
+
+    function flashWrong(arcId) {
+      var p = arcPaths[arcId];
+      if (p) p.classList.add("bad");
+      status.classList.add("bad");
+      say("唔對：看清楚兩臂再碰圓的兩點。", "Not that one: read the two points where the arms meet the circle again.");
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(function () {
+        if (p) p.classList.remove("bad");
+        status.classList.remove("bad");
+      }, 900);
+    }
+
+    function hitArc(a) {
+      if (!sel) {
+        say("先在上面揀一隻角。", "Choose an angle above first.");
+        return;
+      }
+      if (done[sel.id]) { sel = null; return; }
+      if (sel.arc === a.id) {
+        done[sel.id] = true;
+        solved++;
+        if (arcPaths[a.id]) arcPaths[a.id].classList.add("done");
+        if (chips[sel.id]) {
+          chips[sel.id].classList.add("done");
+          chips[sel.id].setAttribute("aria-pressed", "false");
+        }
+        var lbl = chips[sel.id] ? chips[sel.id].textContent : "";
+        sel = null;
+        setProgress();
+        if (solved >= total) {
+          say((o.done && o.done.zh) || "全部配對！", (o.done && o.done.en) || "All matched!");
+        } else {
+          say(lbl + " 配對了。再揀另一隻角。", lbl + " matched. Pick another angle.");
+        }
+      } else {
+        flashWrong(a.id);
+      }
+    }
+
+    return root;
+  }
+
   global.S5A_DEMO = {
     types: {
       "tie-up": tieUp, "slot-in": slotIn, grouping: grouping,
       combination: combination, path: pathDemo, complement: complement,
       menu: menuDemo, venn: vennDemo, code: codeDemo, venncalc: vennCalc,
-      floor: floorDemo, circle: circleDemo, parts: partsDemo, classify: classifyDemo
+      floor: floorDemo, circle: circleDemo, parts: partsDemo, classify: classifyDemo,
+      "arc-match": arcMatchDemo
     },
     tieUp: tieUp,
     slotIn: slotIn,
@@ -2913,6 +3148,7 @@
     circle: circleDemo,
     parts: partsDemo,
     classify: classifyDemo,
+    arcMatch: arcMatchDemo,
     langBar: langBar,
     setLang: setLang
   };

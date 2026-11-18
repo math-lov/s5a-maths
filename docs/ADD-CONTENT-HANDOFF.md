@@ -643,6 +643,18 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * 題幹、題解、圖解字幕、定理簡稱與列印工作紙（`tools/make_worksheet_docx.py` 的 `plain()` 會把 `\,` 印成空格）全部一致顯示 `AB // CD`。以後新增內容照此寫法，不要再用 `\parallel` 或 `∥`；`tools/build.py` 的現有檢查（S6／S7／S19）不受影響。
 * 驗證：`python -X utf8 tools/build.py` 0 錯 0 警；`node --max-old-space-size=8192 tools/smoke_test.js` 全部通過；另用真 KaTeX 逐條渲染 75 條含 `//` 的數式，零錯誤，並在真瀏覽器截圖核對數學模式與純文字兩種寫法。
 
+### 9.19 章節心得：每一點配圖、點角亮弧、配對遊戲（2026-11-18）
+
+* 老師要求「每一點要配圖解釋，最好有動畫；點角亮弧；點普通角就冇弧可亮；另加角↔弧配對小遊戲」。做法：
+  * 第一點用 `classify` 新增的 `mode: "arc"`：點一隻角 → 圓周上亮起它所對的弧（`cls-arc-hi`，accent 色，7px）；點 ∠OCA／∠AEO 這類「一臂止於圓心／在交點」的角 → **冇嘢亮**，並即時寫明原因。弧由 `circleArc()` 沿圓周畫，`avoid` 指定頂點，確保揀的是「唔穿過頂點」那一邊。
+  * 第 2／3／4 點各一個 `circle` 播放器（`assets/circle.js`）：② 由所求設 x 走到內角和（4 步，用 11.3 Q17 的圖），③ 拉半徑 → 等長 → 等腰底角（3 步），④ 兩對同弓形 → AA 相似 → 對應邊成比例（3 步）。動畫資料放 `points[].demo.anim`，規格與題目圖解相同。
+  * 第 5 點就是下面五幅型態圖（`shapes`）。
+* 新增 `arc-match` 小遊戲（`assets/demos.js`，已加入 `DEMO_TYPES`）：一隻圓四點 A B C D、六條弦，四隻圓周角各自對住四段不同的弧。玩法：先揀角（按鈕），再點圖上的弧（SVG 粗透明線做點擊區，hover／focus 會亮）；正確 → 弧轉 accent 並鎖住、按鈕打勾、計分 `1 / 4`；錯 → 弧閃紅並提示「看清楚兩臂再碰圓的兩點」。四條弧首尾相接，所以每條兩端縮入 0.13rad，留空隙睇得出係四段。
+  * 座標陷阱：`pt()` 用 y 向下（`CY - R sin θ`），所以 `heading()` 一定要用 `CY - p.y`，弧的 `sweep` 要寫 **0**；否則弧會上下鏡像、甚至畫到圓外（已用真瀏覽器截圖核對）。
+* `build.py` S21 加驗：`points[].demo.type` 在白名單、`circle` demo 有 `points/segments/steps`、`match` 的每個 `arc` 都存在於 `match.arcs`、`title/lead/done` 中英齊。
+* `smoke_test.js` 加驗：四個 `.think-fig`、第一點點 ∠ACD 亮弧／點 ∠OCA 冇弧（連原因）、第 2–4 點有播放器、配對遊戲 4 角 4 弧、配錯閃紅、配對鎖住並計 `1 / 4`。大分類器的斷言改為 `mainCls`（最後一個 `.cls`），因為頁面現在有兩個分類器實例。
+* 驗證：`tools/build.py` 0 錯 0 警；完整 smoke 全綠；真瀏覽器（1180px）核對四幅圖、五幅型態、配對遊戲與大分類器。
+
 ### 9.18 第 11 章「章節心得」卡（2026-11-18）
 
 * 老師在章節頁（`chapter.html?ch=ch11`）要一張獨立卡片，讓學生「學完整章之後重溫解題思路」。位置：引言卡與五節按鈕之間。**目錄頁只放入口卡**（標題、引言、`5 個論點 · 5 個型態`統計、「打開心得」按鈕），全文放獨立頁 `notes.html?ch=ch11`（頂欄返回鍵指回該章目錄頁），避免把長篇內容塞進目錄。內容放 `site.json` 的 `classwork.chapters[].thinking`（新欄位）：`renderChapter()` 用 `thinkingEntry()` 畫入口卡，`renderNotes()` 用 `thinkingCard()` 畫全文；其他章節冇這個欄位就照舊（`notes.html` 顯示一句提示）。
