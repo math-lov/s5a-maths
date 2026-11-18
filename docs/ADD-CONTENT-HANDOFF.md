@@ -247,6 +247,13 @@ node tools/preview_prompt.js ch10-A1 zh  # 想睇某題生成的 AI 提問內容
    MC 按選項 `A→B→C→D`；冇標籤的整題性提示（例如「只答『不同意』而沒有解釋」）排最後。
    `tools/build.py` 的 **S18** 已自動把關，次序錯了唔可以上線。
 
+9. **英文要寫得自然，不要「受控語言」**（2026-11-18 老師指示）：站內**冇**採用 ASD-STE100／
+   Simplified Technical English，亦不應模仿那種一句一義、句句祈使、每句都用同一主語開頭的機械寫法
+   （老師原話：「英文太生硬了」）。用正常書面英文：可以用 `if`／`when`／`because`／`so` 等從屬句、
+   代詞同連接詞，把相關的兩三句連起來；同一段不要每句都用同一個名詞開頭。數學術語
+   （vertex、intercepted arc、same segment、cyclic quadrilateral）照用，但不要為了「安全」而犧牲可讀性。
+   `tools/verify_ch11_notes.py` 只驗幾何與數式，不約束文風，所以這條靠寫作時遵守。
+
 > ⚠️ 規則 1–4 目前**靠人手遵守** —— `tools/build.py` 的 S1–S9 未覆蓋這四條。
 > 如要加自動防線，可參考 `DSEPass/tools/learn_check.py` 的 **I9（`**`）／I10（數式內中文）／I11（單行過長）**做法。
 
@@ -642,6 +649,14 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * `anim.steps.answer` 是純文字答案牌（`verify_*.py` 要求無反斜線），所以只寫 `//`，不加 `\,`。
 * 題幹、題解、圖解字幕、定理簡稱與列印工作紙（`tools/make_worksheet_docx.py` 的 `plain()` 會把 `\,` 印成空格）全部一致顯示 `AB // CD`。以後新增內容照此寫法，不要再用 `\parallel` 或 `∥`；`tools/build.py` 的現有檢查（S6／S7／S19）不受影響。
 * 驗證：`python -X utf8 tools/build.py` 0 錯 0 警；`node --max-old-space-size=8192 tools/smoke_test.js` 全部通過；另用真 KaTeX 逐條渲染 75 條含 `//` 的數式，零錯誤，並在真瀏覽器截圖核對數學模式與純文字兩種寫法。
+
+### 9.23 英文文風：冇 STE100 規則，改為自然英文（2026-11-18）
+
+* 老師問「係唔係有規則英文要用 ASD-STE100」，並指英文太生硬。查過 `README.md`、`docs/`、`data/src/*.json`（含 `prompt-templates.json`）、`assets/*.js`、`tools/*.py`，**冇任何 STE100／受控語言規則**——沒有規則可刪。生硬是因為寫作習慣（一句一義、句句祈使、每句同一個主語）。
+* 因此改為**明文禁止**：`docs/ADD-CONTENT-HANDOFF.md` §6 新增規則 9，`README.md`「內容原則」加一條——英文用自然書面語，可用 `if`／`when`／`because`／`so` 從屬句、代詞與連接詞，把相關句子連起來。
+* 同時改寫第 11 章心得的英文（`data/src/notes/ch11.json`）：標題、引言、五點正文、五個型態說明、分類器標題／引言／三個判決／提示、配對遊戲文案。所有 `$…$` 與數式原封不動（`verify_ch11_notes.py` 仍全過）。
+* smoke 的兩個脆斷言改為結構性檢查：英文標題改為「與 JSON 的 `title.en` 逐個對應」，唔再硬編某一句；分類器的圓周角判決保留 “circumference” 字樣，方便測試與閱讀。
+* 驗證：`build.py` 0 錯 0 警；`verify_ch11_notes.py` 全 PASS；完整 smoke 全綠。
 
 ### 9.22 心得頁排版歸隊：720 置中、目錄頁用同款節卡（2026-11-18）
 

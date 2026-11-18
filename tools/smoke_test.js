@@ -3578,7 +3578,8 @@ ok(notesPage.$$(".think-point .think-h .l-zh").length === 5 &&
   notesPage.$$(".think-point .think-h .l-en").length === 5,
   "每個論點都有中英標題");
 ok(TH11.points.every(p => p.title.zh && p.title.en && p.body.zh && p.body.en) &&
-  /Identify the angle/.test(notesPage.$(".think").textContent),
+  notesPage.$$(".think-point .think-h .l-en").map((n) => n.textContent.trim()).join("|") ===
+    TH11.points.map((p) => p.title.en).join("|"),
   "五個思考方向顯示完整雙語解說");
 ok(notesPage.$$(".think .katex-error").length === 0 &&
   !notesPage.$$(".think-body").some((n) => /\$/.test(n.textContent)),
