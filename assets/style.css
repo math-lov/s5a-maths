@@ -748,9 +748,9 @@ body[data-sol="show"] .hint-row { display: none; }
 
 /* 頁首標題：中英並列時上下兩行（唔會黏成「第 17 章…Chapter 17…」），
    英文降一級做次標題 */
-#quiz-name .l-zh, #quiz-name .l-en,
-#chapter-name .l-zh, #chapter-name .l-en,
-#notes-name .l-zh, #notes-name .l-en { display: block; }
+body[data-lang="both"] #quiz-name .l-zh, body[data-lang="both"] #quiz-name .l-en,
+body[data-lang="both"] #chapter-name .l-zh, body[data-lang="both"] #chapter-name .l-en,
+body[data-lang="both"] #notes-name .l-zh, body[data-lang="both"] #notes-name .l-en { display: block; }
 #quiz-name .l-en, #chapter-name .l-en, #notes-name .l-en {
   font-size: .78em; font-weight: 500; color: var(--muted); margin-top: 1px;
 }
@@ -1734,11 +1734,12 @@ body[data-lang="both"] .cg-split .cg-en {
 .think-entry-go { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
 
 .think-head h2 { margin: 0 0 var(--sp-2); font-size: 19px; }
-/* 卡片右上角的小籤：中英並列時加一個分隔，免得「章節心得Chapter notes」黏成一串 */
-.think .q-code .l-en::before { content: " · "; }
-.think-head h2 .l-zh, .think-head h2 .l-en,
-.think-h .l-zh, .think-h .l-en,
-.think-shape-name .l-zh, .think-shape-name .l-en { display: block; }
+/* 卡片右上角的小籤：只有中英並列才加分隔，免得「章節心得Chapter notes」黏成一串 */
+body[data-lang="both"] .think .q-code .l-en::before { content: " · "; }
+/* 只有中英並列才需要強制上下兩行；單一語言時要讓 body[data-lang] 的 display:none 生效 */
+body[data-lang="both"] .think-head h2 .l-zh, body[data-lang="both"] .think-head h2 .l-en,
+body[data-lang="both"] .think-h .l-zh, body[data-lang="both"] .think-h .l-en,
+body[data-lang="both"] .think-shape-name .l-zh, body[data-lang="both"] .think-shape-name .l-en { display: block; }
 .think-lead { margin: 0 0 var(--sp-4); color: var(--muted); }
 .think-points { display: grid; gap: var(--sp-4); margin: 0 0 var(--sp-5); padding: 0; list-style: none; }
 .think-point { display: grid; grid-template-columns: 40px minmax(0, 1fr); column-gap: var(--sp-3); }
