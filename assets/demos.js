@@ -3047,13 +3047,10 @@
     var status = el("p", "mat-say");
     var progress = el("p", "mat-progress");
     var chips = {};
-    (o.angles || []).forEach(function (a) {
-      var b = el("button", "mat-pick", a.label || a.id);
-      b.type = "button";
-      b.onclick = function () { choose(a); };
-      chips[a.id] = b;
-      picks.appendChild(b);
-    });
+    /* 回合：第一回合四隻角對四條不同的弧；第二回合兩隻角對同一條弧（同弓形） */
+    var rounds = (o.rounds && o.rounds.length) ? o.rounds : [{ angles: o.angles || [], done: o.done }];
+    var roundIdx = 0;
+    var total = 0;
     side.appendChild(picks);
     side.appendChild(status);
     side.appendChild(progress);
@@ -3062,16 +3059,48 @@
     host.appendChild(root);
 
     var sel = null, done = {}, solved = 0, timer = null;
-    var total = (o.angles || []).length;
+    /* 減少動態（或測試環境）時，回合之間唔等，立即接落去 */
+    function after(ms, fn) {
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { fn(); return; }
+      setTimeout(fn, ms);
+    }
     function say(zh, en) {
       status.innerHTML = "";
       status.appendChild(bi(zh, en));
     }
     function setProgress() {
-      progress.textContent = solved + " / " + total;
+      var pre = rounds.length > 1 ? (roundIdx + 1) + "/" + rounds.length + " · " : "";
+      progress.textContent = pre + solved + " / " + total;
     }
-    say("先揀一隻角，再點圖上一條弧。", "Pick an angle, then tap the arc it stands on.");
-    setProgress();
+
+    function buildPicks(list) {
+      picks.innerHTML = "";
+      chips = {};
+      list.forEach(function (a) {
+        var b = el("button", "mat-pick", a.label || a.id);
+        b.type = "button";
+        b.onclick = function () { choose(a); };
+        chips[a.id] = b;
+        picks.appendChild(b);
+      });
+    }
+
+    function startRound(i) {
+      roundIdx = i;
+      var rd = rounds[i] || { angles: [] };
+      sel = null; done = {}; solved = 0;
+      total = (rd.angles || []).length;
+      Object.keys(arcPaths).forEach(function (k) {
+        arcPaths[k].classList.remove("done");
+        arcPaths[k].classList.remove("bad");
+      });
+      buildPicks(rd.angles || []);
+      setProgress();
+      status.classList.remove("bad");
+      var lab = rd.label || {};
+      say((lab.zh ? lab.zh + "：" : "") + "先揀一隻角，再點圖上的一條弧。",
+        (lab.en ? lab.en + ": " : "") + "Pick an angle, then tap the arc it stands on.");
+    }
 
     function choose(a) {
       if (done[a.id]) return;
@@ -3114,7 +3143,13 @@
         sel = null;
         setProgress();
         if (solved >= total) {
-          say((o.done && o.done.zh) || "全部配對！", (o.done && o.done.en) || "All matched!");
+          var rd = rounds[roundIdx] || {};
+          say((rd.done && rd.done.zh) || (o.done && o.done.zh) || "全部配對！",
+            (rd.done && rd.done.en) || (o.done && o.done.en) || "All matched!");
+          if (rounds[roundIdx + 1]) {
+            var nextIdx = roundIdx + 1;
+            after(2000, function () { startRound(nextIdx); });
+          }
         } else {
           say(lbl + " 配對了。再揀另一隻角。", lbl + " matched. Pick another angle.");
         }
@@ -3123,6 +3158,7 @@
       }
     }
 
+    startRound(0);
     return root;
   }
 

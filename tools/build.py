@@ -855,13 +855,25 @@ def check_thinking(site) -> None:
             ids = {a.get("id") for a in mt.get("arcs") or []}
             if len(ids) < 2:
                 err(tag + "：match.arcs 至少要有兩條弧")
-            for a in mt.get("angles") or []:
-                if a.get("arc") not in ids:
-                    err("%s：match 角 %r 的 arc %r 不在 match.arcs"
-                        % (tag, a.get("id"), a.get("arc")))
-                if not a.get("label"):
-                    err("%s：match 角 %r 缺少 label" % (tag, a.get("id")))
-            for key in ("title", "lead", "done"):
+            rounds = mt.get("rounds") or []
+            if not rounds:
+                err(tag + "：match.rounds 要至少一回合")
+            for ri, rd in enumerate(rounds, 1):
+                lab = rd.get("label")
+                if not (isinstance(lab, dict) and lab.get("zh") and lab.get("en")):
+                    err("%s：match 第 %d 回合要有中英 label" % (tag, ri))
+                done = rd.get("done")
+                if not (isinstance(done, dict) and done.get("zh") and done.get("en")):
+                    err("%s：match 第 %d 回合要有中英 done" % (tag, ri))
+                if not (rd.get("angles") or []):
+                    err("%s：match 第 %d 回合冇角" % (tag, ri))
+                for a in rd.get("angles") or []:
+                    if a.get("arc") not in ids:
+                        err("%s：match 第 %d 回合角 %r 的 arc %r 不在 match.arcs"
+                            % (tag, ri, a.get("id"), a.get("arc")))
+                    if not a.get("label"):
+                        err("%s：match 第 %d 回合角 %r 缺少 label" % (tag, ri, a.get("id")))
+            for key in ("title", "lead"):
                 v = mt.get(key)
                 if not (isinstance(v, dict) and v.get("zh") and v.get("en")):
                     err("%s：match.%s 要中英兩版" % (tag, key))

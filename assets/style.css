@@ -1719,7 +1719,12 @@ body[data-lang="both"] .cg-split .cg-en {
 /* ── 第 11 章心得（章節頁）：五點 ＋ 五型態 ＋ 兩問分類器 ───────────── */
 /* 型態圖用 circle.js 的 static 模式：只畫圖，不要字幕與按鈕 */
 .cg-static .cg-say, .cg-static .cg-row,
-.cg-static .cg-detail, .cg-static .cg-navigation { display: none; }
+.cg-static .cg-detail, .cg-static .cg-navigation,
+.cg-static .cg-autorow { display: none; }
+.cg-autorow { display: flex; justify-content: flex-end; margin-bottom: 6px; }
+.cg-auto { font-size: 13px; }
+.cg-auto[aria-pressed="true"] { border-color: var(--primary); color: var(--primary-ink); }
+.cg-count { white-space: nowrap; }
 
 /* 目錄頁的入口卡：只有標題、引言、統計與一個按鈕 */
 .think-entry-h { margin: 0 0 var(--sp-2); font-size: 18px; }
@@ -1757,6 +1762,13 @@ body[data-lang="both"] .cg-split .cg-en {
 .think-shape .cg { margin: 0; }
 .think-shape .cg-svg { border: none; background: transparent; max-width: 100%; }
 .think-shape-name { margin: var(--sp-2) 0 2px; font-weight: 700; }
+.think-shape-tap .cg-svg { cursor: pointer; }
+.think-shape.pulse .cg-circle-arc { animation: arcPulse 1.4s ease; }
+@keyframes arcPulse {
+  0% { stroke-width: 2.2; opacity: .25; }
+  35% { stroke-width: 9; opacity: 1; }
+  100% { stroke-width: 4; opacity: 1; }
+}
 .think-shape-note { margin: 0; font-size: 13.5px; color: var(--muted); }
 
 .cls { margin-top: var(--sp-5); border-top: 1px solid var(--line); padding-top: var(--sp-4); }

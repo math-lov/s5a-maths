@@ -1001,7 +1001,8 @@
              "x=18@B@^@B@circ"
             ]
            }
-          ]
+          ],
+          "auto": true
          }
         }
        },
@@ -1112,7 +1113,8 @@
              "\\angle OAB=\\angle OBA"
             ]
            }
-          ]
+          ],
+          "auto": true
          }
         }
        },
@@ -1234,7 +1236,8 @@
              "\\dfrac{AE}{DE}=\\dfrac{BE}{CE}"
             ]
            }
-          ]
+          ],
+          "auto": true
          }
         }
        },
@@ -1776,28 +1779,6 @@
         "zh": "先揀一隻角，再點圖上的一條弧；四隻角各自對住不同的弧。",
         "en": "Pick an angle, then tap the arc it stands on. The four angles use four different arcs."
        },
-       "angles": [
-        {
-         "id": "acb",
-         "label": "∠ACB",
-         "arc": "ab"
-        },
-        {
-         "id": "bdc",
-         "label": "∠BDC",
-         "arc": "bc"
-        },
-        {
-         "id": "cad",
-         "label": "∠CAD",
-         "arc": "cd"
-        },
-        {
-         "id": "abd",
-         "label": "∠ABD",
-         "arc": "da"
-        }
-       ],
        "arcs": [
         {
          "id": "ab",
@@ -1836,10 +1817,62 @@
          }
         }
        ],
-       "done": {
-        "zh": "4 / 4 完成！同弓形嘅角都對同一條弧，所以同弓形嘅角相等。",
-        "en": "4 / 4 done. Angles in the same segment stand on the same arc — that is why they are equal."
-       }
+       "rounds": [
+        {
+         "label": {
+          "zh": "第 1 回合",
+          "en": "Round 1"
+         },
+         "angles": [
+          {
+           "id": "acb",
+           "label": "∠ACB",
+           "arc": "ab"
+          },
+          {
+           "id": "bdc",
+           "label": "∠BDC",
+           "arc": "bc"
+          },
+          {
+           "id": "cad",
+           "label": "∠CAD",
+           "arc": "cd"
+          },
+          {
+           "id": "abd",
+           "label": "∠ABD",
+           "arc": "da"
+          }
+         ],
+         "done": {
+          "zh": "4 / 4 完成！同弓形嘅角都對同一條弧，所以同弓形嘅角相等。",
+          "en": "4 / 4 done. Angles in the same segment stand on the same arc — that is why they are equal."
+         }
+        },
+        {
+         "label": {
+          "zh": "第 2 回合",
+          "en": "Round 2"
+         },
+         "angles": [
+          {
+           "id": "acb",
+           "label": "∠ACB",
+           "arc": "ab"
+          },
+          {
+           "id": "adb",
+           "label": "∠ADB",
+           "arc": "ab"
+          }
+         ],
+         "done": {
+          "zh": "兩隻角都對弧 AB —— 同弓形，所以相等。",
+          "en": "Both angles stand on arc AB — same segment, so they are equal."
+         }
+        }
+       ]
       }
      }
     },

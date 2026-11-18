@@ -872,6 +872,42 @@
       count.textContent = at + " / " + steps.length;
     }
 
+    /* 自動播放（只有 anim.auto 才加）：每 4.5 秒一步；用家一按任何控制就停 */
+    var autoTimer = null;
+    var autoBtn = null;
+    function stopAuto() {
+      if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      if (autoBtn) {
+        autoBtn.textContent = "自動播放 Auto play ▶";
+        autoBtn.setAttribute("aria-pressed", "false");
+      }
+    }
+    if (anim.auto) {
+      autoBtn = document.createElement("button");
+      autoBtn.type = "button";
+      autoBtn.className = "btn btn-sm cg-auto";
+      autoBtn.textContent = "自動播放 Auto play ▶";
+      autoBtn.setAttribute("aria-pressed", "false");
+      autoBtn.onclick = function () {
+        if (autoTimer) { stopAuto(); return; }
+        autoBtn.textContent = "暫停 Pause ⏸";
+        autoBtn.setAttribute("aria-pressed", "true");
+        autoTimer = setInterval(function () {
+          if (at >= steps.length) { stopAuto(); return; }
+          next.onclick();
+        }, 4500);
+      };
+      /* 自己一行，唔好同「上一步／下一步」爭位 */
+      var autoRow = document.createElement("div");
+      autoRow.className = "cg-autorow";
+      autoRow.appendChild(autoBtn);
+      if (split) navigation.insertBefore(autoRow, row);
+      else wrap.insertBefore(autoRow, row);
+      row.addEventListener("pointerdown", function (e) {
+        if (e.target !== autoBtn) stopAuto();
+      }, true);
+    }
+
     next.onclick = function () {
       if (at >= steps.length) return;
       // Finish earlier steps immediately before starting the next one. This also
@@ -885,6 +921,7 @@
       at += 1;
       syncGoals(at);
       update();
+      if (at >= steps.length) stopAuto();
     };
 
     back.onclick = function () {

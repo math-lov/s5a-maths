@@ -3656,6 +3656,12 @@ ok(playerFigs.length === 3 && playerFigs.every((f) => f.querySelector(".cg-svg")
   "第 2–4 點各有逐步動畫（circle.js 播放器）");
 ok(playerFigs.every((f) => f.querySelectorAll(".cg-next").length === 1),
   "播放器有「下一步」可以逐格看");
+const autoBtns = playerFigs.map((f) => f.querySelector(".cg-auto"));
+ok(autoBtns.every((b) => !!b), "三個播放器都有「自動播放」");
+autoBtns[0].click();
+ok(autoBtns[0].getAttribute("aria-pressed") === "true", "按一下會開始自動播放");
+autoBtns[0].click();
+ok(autoBtns[0].getAttribute("aria-pressed") === "false", "再按一下會暫停（不會留在背景跑）");
 
 /* 角 ↔ 弧 配對小遊戲 */
 const mat = notesPage.$(".mat");
@@ -3674,6 +3680,16 @@ ok(mat.querySelectorAll(".mat-arc.done").length === 1 &&
   mat.querySelectorAll(".mat-pick.done").length === 1 &&
   /1 \/ 4/.test((mat.querySelector(".mat-progress") || {}).textContent || ""),
   "配對正確會鎖住並計分");
+mPicks[1].click(); tapHit(mHits[1]);
+mPicks[2].click(); tapHit(mHits[2]);
+mPicks[3].click(); tapHit(mHits[3]);
+const r2picks = Array.prototype.slice.call(mat.querySelectorAll(".mat-pick"));
+ok(r2picks.length === 2 && /0 \/ 2/.test((mat.querySelector(".mat-progress") || {}).textContent || ""),
+  "第一回合完成後自動開第二回合（兩隻角）");
+r2picks[0].click(); tapHit(mHits[0]);
+r2picks[1].click(); tapHit(mHits[0]);
+ok(/同弓形/.test((mat.querySelector(".mat-say") || {}).textContent || ""),
+  "第二回合：兩隻角對同一條弧，示範同弓形相等");
 
 const backLink = notesPage.$("#notes-back");
 ok(!!backLink && backLink.getAttribute("href") === "chapter.html?ch=ch11",

@@ -677,6 +677,16 @@
         if (window.S5A_CIRCLE) {
           try { window.S5A_CIRCLE.mount(host, s.anim || {}, { static: true }); } catch (e) {}
         }
+        /* 點圖會再閃一次「同一條弧」，提醒學生睇邊條弧 */
+        if (host.querySelector(".cg-circle-arc")) {
+          box.classList.add("think-shape-tap");
+          host.addEventListener("click", function () {
+            box.classList.remove("pulse");
+            void box.offsetWidth;
+            box.classList.add("pulse");
+            setTimeout(function () { box.classList.remove("pulse"); }, 1500);
+          });
+        }
         var nm = el("div", "think-shape-name");
         nm.appendChild(pairSpan(s.name || {}));
         box.appendChild(nm);
