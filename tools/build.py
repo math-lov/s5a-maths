@@ -578,7 +578,7 @@ CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 # 互動示範：卡片可寫 "demo": { "type": "tie-up" }，由 assets/demos.js 建立
 # （新增示範：先在 demos.js 的 S5A_DEMO.types 註冊，再把 type 加落這裡）
 DEMO_TYPES = ("tie-up", "slot-in", "grouping", "combination", "path", "complement",
-              "menu", "venn", "code", "venncalc", "floor", "circle", "parts")
+              "menu", "venn", "code", "venncalc", "floor", "circle", "parts", "classify")
 
 
 def check_intro(data: dict, where: str) -> None:
@@ -784,6 +784,71 @@ def write_stamp(stamp: str) -> list[str]:
     return changed
 
 
+def check_thinking(site) -> None:
+    """S21 章節心得（chapter.thinking）：中英對稱、例題連結存在、型態圖有動畫步驟。
+
+    章節頁的心得卡由 site.json 直接驅動（assets/app.js 的 thinkingCard），
+    所以欄位寫錯唔會爆，只會靜靜地少一段——這裡把它當成資料檢查。
+    """
+    parts = {p["id"]: p for p in site["site"].get("parts", [])}
+    for ch in (site["site"].get("classwork") or {}).get("chapters", []):
+        t = ch.get("thinking")
+        if t is None:
+            continue
+        tag = "S21 %s.thinking" % ch.get("id")
+        if not isinstance(t, dict):
+            err(tag + "：必須是物件")
+            continue
+        for key in ("title", "lead"):
+            v = t.get(key)
+            if not (isinstance(v, dict) and v.get("zh") and v.get("en")):
+                err("%s：%s 要中英兩版" % (tag, key))
+        pts = t.get("points") or []
+        if not isinstance(pts, list) or not pts:
+            err(tag + "：points 要非空陣列")
+            pts = []
+        for i, p in enumerate(pts, 1):
+            if not (isinstance(p.get("title"), dict) and p["title"].get("zh") and p["title"].get("en")):
+                err("%s：points %d 標題要中英兩版" % (tag, i))
+            if not (isinstance(p.get("body"), dict) and p["body"].get("zh") and p["body"].get("en")):
+                err("%s：points %d 正文要中英兩版" % (tag, i))
+            for ex in p.get("examples") or []:
+                pid = ex.get("part")
+                if pid not in parts:
+                    err("%s：points %d 的例題課題 %r 不存在" % (tag, i, pid))
+                    continue
+                n = (parts[pid].get("stats") or {}).get("questions") or 0
+                k = ex.get("p")
+                if not isinstance(k, int) or not (1 <= k <= n):
+                    err("%s：points %d 的例題 p=%r 超出 %s 的 1–%d" % (tag, i, k, pid, n))
+        shapes = t.get("shapes") or []
+        if not isinstance(shapes, list):
+            err(tag + "：shapes 要係陣列")
+            shapes = []
+        for i, s in enumerate(shapes, 1):
+            if not (isinstance(s.get("name"), dict) and s["name"].get("zh") and s["name"].get("en")):
+                err("%s：shapes %d 名稱要中英兩版" % (tag, i))
+            if not (isinstance(s.get("note"), dict) and s["note"].get("zh") and s["note"].get("en")):
+                err("%s：shapes %d 說明要中英兩版" % (tag, i))
+            anim = s.get("anim") or {}
+            if not (anim.get("points") and anim.get("segments") and anim.get("steps")):
+                err("%s：shapes %d 的 anim 要有 points／segments／steps" % (tag, i))
+                continue
+            for j, st in enumerate(anim.get("steps") or [], 1):
+                if not (st.get("zh") or st.get("en")):
+                    err("%s：shapes %d step %d 要有 zh 或 en" % (tag, i, j))
+        cl = t.get("classify")
+        if cl:
+            vs = cl.get("verdicts") or {}
+            ans = cl.get("answers") or {}
+            for a in cl.get("angles") or []:
+                if a.get("verdict") not in vs:
+                    err("%s：classify 角 %r 的 verdict %r 不在 verdicts 白名單"
+                        % (tag, a.get("id"), a.get("verdict")))
+                if a.get("id") not in ans:
+                    err("%s：classify 角 %r 缺少 answers（兩問的答案）" % (tag, a.get("id")))
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="只檢查，不生成檔案")
@@ -794,6 +859,7 @@ def main() -> int:
     fig_ids = set(figures.keys())
     templates = load("prompt-templates.json")
     check_prompt_templates(templates)
+    check_thinking(site)
 
     rendered_figs = {}
     for fid, spec in figures.items():

@@ -129,8 +129,11 @@
       " " + sweep + " " + b.x + " " + b.y;
   }
 
-  function mount(host, anim) {
+  /* opts.static：只做圖，不做播放器（章節頁的型態圖用）。
+     最後一步一次過畫好，字幕與按鈕由 CSS（.cg-static）隱藏。 */
+  function mount(host, anim, opts) {
     anim = anim || {};
+    opts = opts || {};
     var frame = { cx: anim.cx || 210, cy: anim.cy || 210, r: anim.r || 150 };
     setFrame(frame);
     var wrap = document.createElement("div");
@@ -399,9 +402,14 @@
     }
 
     /* 描線：先設 dash，再放行；jsdom 沒有 getTotalLength 就只淡入。
-       instant：回看時一次過畫好，不再逐格動。 */
+       instant：回看時一次過畫好，不再逐格動。
+       未插入文件的 SVG 呼叫 getTotalLength 會拋錯（Chrome：non-rendered element），
+       所以靜態圖或離線掛載都只當作「量不到長度」，照樣畫出來。 */
     function drawOn(node, delay, instant) {
-      var len = typeof node.getTotalLength === "function" ? node.getTotalLength() : 0;
+      var len = 0;
+      try {
+        if (typeof node.getTotalLength === "function") len = node.getTotalLength() || 0;
+      } catch (e) { len = 0; }
       if (instant) {
         node.style.transition = "none";
         node.style.opacity = "1";
@@ -892,6 +900,10 @@
     setSay(sayZh, (anim.intro || {}).zh || "");
     setSay(sayEn, (anim.intro || {}).en || "");
     update();
+    if (opts.static) {
+      wrap.classList.add("cg-static");
+      renderUpTo(steps.length);
+    }
     return wrap;
   }
 

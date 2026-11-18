@@ -186,6 +186,7 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 | S8 | 引用的圖一定存在 |
 | S9 | 每題都有答案欄、每題都有「帶得走的技巧」 |
 | S20 | 全班表現（`classPerf`）：總覽統計齊全、每題都有平均分與排名；答對率要等於「平均 ÷ 滿分」 |
+| S21 | 章節心得（`chapter.thinking`）：標題、引言、五點正文都中英對稱；例題連結的 `part`／`p` 真實存在；每個型態圖有 `points`／`segments`／`steps`；分類器的 `verdict` 與 `answers` 對得上 |
 
 ## 加一份新測驗（網站擴充方法）
 
@@ -229,6 +230,24 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
   問 x／y／z 的就把標籤寫 `x`，問 ∠OAC 的就寫 `?`；有多個小題時，`goal` 放 (a) 的，
   在 (b) 的第一步加 `"goal"` 到該拍，之後同樣會保留。
   `build.py` 會檢查（S19）：有圖解但沒有 goal 就出警告（證明題除外）。
+
+## 章節心得（`site.json` 的 `chapter.thinking`）
+
+第 11 章的章節頁（`chapter.html?ch=ch11`）在引言卡之後多一張「章節心得」卡，內容全部來自
+`site.json` 的 `classwork.chapters[].thinking`——前端只負責排位，改字只需改 JSON。
+
+* `title` / `lead`：卡片標題與一句引言（中英各一）。
+* `points[]`：`no`（01、02…）、`title`、`body`（可用 `$…$`）、`examples[]`
+  （`{ "part": "ch11-1", "p": 13, "label": "11.1 Q12" }`，`p` 是題目在該頁的頁碼，1 起）。
+* `shapes[]`：`name`、`note`、`anim`。`anim` 跟 `assets/circle.js` 的規格，用
+  `S5A_CIRCLE.mount(host, anim, { static: true })` 畫成一幅圖（最後一步一次過畫好，
+  字幕與按鈕由 `.cg-static` 收起）。所以型態圖要寫成**一步**：`steps[0].arcs` 標角、
+  `circleArcs` 標「同一條弧」。角度標籤是純文字（`90°`、`2p`），不要寫 `$…$`。
+* `classify`：兩問分類器（`assets/demos.js` 的 `classify`）。`angles[]` 每隻角有
+  `id`（`oca`／`acd`／`aod`／`aeo`，對應圖上的固定位置）、`label`、`verdict`；
+  `answers` 寫兩問的答案；`verdicts` 寫三種判決（`circumference`／`centre`／`normal`）的標題與說明。
+* `build.py` 的 S21 會檢查以上欄位，`tools/smoke_test.js` 的「章節心得」段落會實際點四隻角，
+  確認每次都只亮一條弧、判決正確。其他章節冇寫 `thinking` 就照舊不顯示。
 
 ## 對圖流程（figpack → 外部 → figimport）
 

@@ -2692,7 +2692,204 @@
   /* 圓形幾何：逐步圖解（assets/circle.js 提供畫圖與逐步播放） */
   function circleDemo(host, o) {
     if (!window.S5A_CIRCLE) return null;
-    return window.S5A_CIRCLE.mount(host, (o && o.anim) || o || {});
+    return window.S5A_CIRCLE.mount(host, (o && o.anim) || o || {}, { static: !!(o && o.static) });
+  }
+
+  /* --------------------------------------------------------------------------
+     兩問分類器（第 11 章心得）：點一隻角 → 逐格問「頂點喺邊」「兩臂另一端」 →
+     判定圓周角／圓心角／普通角。圖固定（同一幅圖示範三類角），唔經 circle.js。
+     文字來自 site.json 的 thinking.classify（純文字，唔用 KaTeX）。
+     -------------------------------------------------------------------------- */
+  function classifyDemo(host, o) {
+    o = o || {};
+    var CX = 170, CY = 142, R = 104;
+    var V = 0.75;   /* 角度弧半徑的縮放（手機細圖時仍然清楚） */
+
+    function pt(deg) {
+      var a = deg * Math.PI / 180;
+      return { x: CX + R * Math.cos(a), y: CY - R * Math.sin(a) };
+    }
+    function inter(a, b, c, d) {
+      var r = { x: b.x - a.x, y: b.y - a.y }, s = { x: d.x - c.x, y: d.y - c.y };
+      var den = r.x * s.y - r.y * s.x;
+      if (Math.abs(den) < 1e-9) return { x: (a.x + c.x) / 2, y: (a.y + c.y) / 2 };
+      var t = ((c.x - a.x) * s.y - (c.y - a.y) * s.x) / den;
+      return { x: a.x + t * r.x, y: a.y + t * r.y };
+    }
+
+    var P = { O: { x: CX, y: CY }, A: pt(32), C: pt(-84), D: pt(0) };
+    P.E = inter(P.A, P.C, P.O, P.D);
+
+    function arcPath(v, p1, p2, radius) {
+      var u = { x: p1.x - v.x, y: p1.y - v.y }, w = { x: p2.x - v.x, y: p2.y - v.y };
+      var lu = Math.hypot(u.x, u.y) || 1, lw = Math.hypot(w.x, w.y) || 1;
+      u = { x: u.x / lu, y: u.y / lu }; w = { x: w.x / lw, y: w.y / lw };
+      var a = { x: v.x + u.x * radius, y: v.y + u.y * radius };
+      var b = { x: v.x + w.x * radius, y: v.y + w.y * radius };
+      var flag = (u.x * w.y - u.y * w.x) > 0 ? 1 : 0;
+      var sum = { x: u.x + w.x, y: u.y + w.y };
+      var bis = Math.hypot(sum.x, sum.y) < 0.02 ? { x: -u.y, y: u.x } : sum;
+      var lb = Math.hypot(bis.x, bis.y) || 1;
+      bis = { x: bis.x / lb, y: bis.y / lb };
+      return {
+        d: "M" + a.x + " " + a.y + "A" + radius + " " + radius + " 0 0 " + flag + " " + b.x + " " + b.y,
+        at: { x: v.x + bis.x * (radius + 26), y: v.y + bis.y * (radius + 26) }
+      };
+    }
+
+    var SPEC = {
+      oca: { v: "C", p1: "O", p2: "A", r: 30 * V },
+      acd: { v: "C", p1: "A", p2: "D", r: 46 * V },
+      aod: { v: "O", p1: "A", p2: "D", r: 34 * V },
+      aeo: { v: "E", p1: "A", p2: "O", r: 26 * V }
+    };
+
+    var root = el("div", "cls");
+    var head = el("div", "cls-head");
+    if (o.title) head.appendChild(bi(o.title.zh || "", o.title.en || ""));
+    if (o.lead) head.appendChild(bi(o.lead.zh || "", o.lead.en || ""));
+    root.appendChild(head);
+
+    var stage = el("div", "cls-stage");
+    var figWrap = el("div", "cls-fig");
+
+    var NS = "http://www.w3.org/2000/svg";
+    function S(tag, attrs) {
+      var n = document.createElementNS(NS, tag);
+      Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
+      return n;
+    }
+    var svg = S("svg", { viewBox: "0 0 340 300", class: "cls-svg", role: "img" });
+    svg.appendChild(S("circle", { cx: CX, cy: CY, r: R, class: "cls-circle" }));
+    [["A", "C"], ["C", "D"], ["C", "O"], ["O", "A"], ["O", "D"]].forEach(function (sg) {
+      svg.appendChild(S("line", {
+        x1: P[sg[0]].x, y1: P[sg[0]].y, x2: P[sg[1]].x, y2: P[sg[1]].y, class: "cls-seg"
+      }));
+    });
+    var arcG = S("g");
+    var arcs = {};
+    (o.angles || []).forEach(function (a) {
+      var s = SPEC[a.id];
+      if (!s) return;
+      var geo = arcPath(P[s.v], P[s.p1], P[s.p2], s.r);
+      var path = S("path", { d: geo.d, class: "cls-arc", "data-angle": a.id });
+      arcG.appendChild(path);
+      arcs[a.id] = path;
+    });
+    svg.appendChild(arcG);
+    var dotG = S("g");
+    ["O", "A", "C", "D", "E"].forEach(function (k) {
+      dotG.appendChild(S("circle", { cx: P[k].x, cy: P[k].y, r: 3.2, class: "cls-dot" }));
+      var off = { x: -12, y: 5 };
+      if (k === "A") off = { x: 8, y: -6 };
+      if (k === "C") off = { x: -14, y: 10 };
+      if (k === "D") off = { x: 8, y: 6 };
+      if (k === "E") off = { x: 4, y: -8 };
+      var t = S("text", { x: P[k].x + off.x, y: P[k].y + off.y, class: "cls-lab" });
+      t.textContent = k;
+      dotG.appendChild(t);
+    });
+    svg.appendChild(dotG);
+    figWrap.appendChild(svg);
+
+    /* 圖上只放「第幾隻角」的細圓點（唔可點，避免同細角搶位）；
+       真正可按的是右邊四粒寫明角名的按鈕。 */
+    var chips = {};
+    var marks = {};
+    var picks = el("div", "cls-picks");
+    (o.angles || []).forEach(function (a, i) {
+      var s = SPEC[a.id];
+      if (!s) return;
+      var geo = arcPath(P[s.v], P[s.p1], P[s.p2], s.r);
+      var m = el("span", "cls-mark", "①②③④".charAt(i));
+      m.style.left = (geo.at.x / 340 * 100) + "%";
+      m.style.top = (geo.at.y / 300 * 100) + "%";
+      m.setAttribute("aria-hidden", "true");
+      marks[a.id] = m;
+      figWrap.appendChild(m);
+
+      var b = el("button", "cls-pick", "①②③④".charAt(i) + " " + (a.label || a.id));
+      b.type = "button";
+      b.setAttribute("aria-pressed", "false");
+      b.onclick = function () { pick(a); };
+      chips[a.id] = b;
+      picks.appendChild(b);
+    });
+    stage.appendChild(figWrap);
+
+    var side = el("div", "cls-side");
+    side.appendChild(picks);
+
+    var panel = el("div", "cls-panel");
+    var idle = el("p", "cls-idle");
+    idle.appendChild(bi("揀一隻角開始。", "Pick one of the four angles above."));
+    panel.appendChild(idle);
+    side.appendChild(panel);
+
+    function row(tagText, valueText) {
+      var r = el("div", "cls-row");
+      var t = el("span", "cls-row-h");
+      t.appendChild(bi(tagText.zh, tagText.en));
+      r.appendChild(t);
+      r.appendChild(el("span", "cls-row-v l-zh", valueText.zh));
+      r.appendChild(el("span", "cls-row-v l-en", valueText.en));
+      return r;
+    }
+
+    var verdicts = o.verdicts || {};
+    var answers = o.answers || {};
+    var hint = el("p", "cls-hint");
+    if (o.hint) hint.appendChild(bi(o.hint.zh || "", o.hint.en || ""));
+    stage.appendChild(side);
+    root.appendChild(stage);
+    host.appendChild(root);
+
+    var timers = [];
+    function clearTimers() {
+      timers.forEach(function (id) { clearTimeout(id); });
+      timers = [];
+    }
+    function later(fn, ms) {
+      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { fn(); return; }
+      timers.push(setTimeout(fn, ms));
+    }
+
+    function pick(a) {
+      clearTimers();
+      Object.keys(chips).forEach(function (k) {
+        chips[k].setAttribute("aria-pressed", k === a.id ? "true" : "false");
+      });
+      Object.keys(arcs).forEach(function (k) {
+        arcs[k].classList.toggle("on", k === a.id);
+      });
+      Object.keys(marks).forEach(function (k) {
+        marks[k].classList.toggle("on", k === a.id);
+      });
+      panel.innerHTML = "";
+      panel.appendChild(idle.cloneNode(true));
+      var ans = answers[a.id] || {};
+      later(function () {
+        panel.innerHTML = "";
+        panel.appendChild(el("p", "cls-sel", a.label || a.id));
+        panel.appendChild(row(o.q1 || { zh: "頂點喺邊？", en: "Where is the vertex?" }, ans.vertex));
+      }, 260);
+      later(function () {
+        panel.appendChild(row(o.q2 || { zh: "兩臂的另一端？", en: "The other ends?" }, ans.arms));
+      }, 760);
+      later(function () {
+        var v = verdicts[a.verdict];
+        if (!v) return;
+        var card = el("div", "cls-verdict cls-" + a.verdict);
+        var h = el("div", "cls-verdict-h");
+        h.appendChild(bi((v.title || {}).zh || "", (v.title || {}).en || ""));
+        card.appendChild(h);
+        card.appendChild(bi((v.body || {}).zh || "", (v.body || {}).en || ""));
+        panel.appendChild(card);
+        panel.appendChild(hint);
+      }, 1180);
+    }
+
+    return root;
   }
 
   global.S5A_DEMO = {
@@ -2700,7 +2897,7 @@
       "tie-up": tieUp, "slot-in": slotIn, grouping: grouping,
       combination: combination, path: pathDemo, complement: complement,
       menu: menuDemo, venn: vennDemo, code: codeDemo, venncalc: vennCalc,
-      floor: floorDemo, circle: circleDemo, parts: partsDemo
+      floor: floorDemo, circle: circleDemo, parts: partsDemo, classify: classifyDemo
     },
     tieUp: tieUp,
     slotIn: slotIn,
@@ -2715,6 +2912,7 @@
     floor: floorDemo,
     circle: circleDemo,
     parts: partsDemo,
+    classify: classifyDemo,
     langBar: langBar,
     setLang: setLang
   };

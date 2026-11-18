@@ -579,6 +579,76 @@
     var p = new URLSearchParams(location.search);
     return (p.get("ch") || ((chapters()[0] || {}).id) || "").toLowerCase();
   }
+  /* 章節心得（site.json 的 chapter.thinking）：五點 ＋ 型態圖 ＋ 分類器。
+     內容全部來自 JSON；前端只負責排位，改字唔需要碰這裡。 */
+  function thinkingCard(t, parent) {
+    var card = el("div", "card think");
+    /* 先插入文件再畫圖：circle.js 量線長要用已渲染的 SVG */
+    if (parent) parent.appendChild(card);
+    var head0 = el("div", "q-head");
+    var code = el("span", "q-code");
+    code.appendChild(pairSpan({ zh: "章節心得", en: "Chapter notes" }));
+    head0.appendChild(code);
+    card.appendChild(head0);
+
+    var head = el("div", "think-head");
+    var h = el("h2");
+    h.appendChild(pairSpan(t.title || {}));
+    head.appendChild(h);
+    if (t.lead) head.appendChild(pair(t.lead, "div", "bi think-lead"));
+    card.appendChild(head);
+
+    var ul = el("ul", "think-points");
+    (t.points || []).forEach(function (p) {
+      var li = el("li", "think-point");
+      li.appendChild(el("div", "think-no", p.no || ""));
+      var main = el("div", "think-main");
+      var h3 = el("h3", "think-h");
+      h3.appendChild(pairSpan(p.title || {}));
+      main.appendChild(h3);
+      if (p.body) main.appendChild(pair(p.body, "div", "bi think-body"));
+      if ((p.examples || []).length) {
+        var ex = el("div", "think-ex");
+        p.examples.forEach(function (x) {
+          var a = el("a", null, x.label || "");
+          a.href = "quiz.html?c=" + encodeURIComponent(x.part) + "&p=" + (x.p || 0);
+          ex.appendChild(a);
+        });
+        main.appendChild(ex);
+      }
+      li.appendChild(main);
+      ul.appendChild(li);
+    });
+    card.appendChild(ul);
+
+    if ((t.shapes || []).length) {
+      var grid = el("div", "think-shapes");
+      t.shapes.forEach(function (s) {
+        var box = el("div", "think-shape");
+        var host = el("div");
+        box.appendChild(host);
+        if (window.S5A_CIRCLE) {
+          try { window.S5A_CIRCLE.mount(host, s.anim || {}, { static: true }); } catch (e) {}
+        }
+        var nm = el("div", "think-shape-name");
+        nm.appendChild(pairSpan(s.name || {}));
+        box.appendChild(nm);
+        if (s.note) box.appendChild(pair(s.note, "p", "bi think-shape-note"));
+        grid.appendChild(box);
+      });
+      card.appendChild(grid);
+    }
+
+    if (t.classify) {
+      var chost = el("div");
+      card.appendChild(chost);
+      if (window.S5A_DEMO && S5A_DEMO.types && S5A_DEMO.types.classify) {
+        try { S5A_DEMO.types.classify(chost, t.classify); } catch (e) {}
+      }
+    }
+    return card;
+  }
+
   function renderChapter() {
     var bar = qs("#lang-slot");
     if (bar) bar.appendChild(langBar());
@@ -620,6 +690,9 @@
     });
     card.appendChild(meta);
     body.appendChild(card);
+
+    /* 這一章的教學心得（有寫才有）：五點 ＋ 五個型態 ＋ 兩問分類器 */
+    if (ch.thinking) thinkingCard(ch.thinking, body);
 
     var list = el("div", "part-grid");
     list.style.marginTop = "14px";
