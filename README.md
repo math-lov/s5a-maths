@@ -247,7 +247,9 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 * 新增一章心得：寫 `data/src/notes/ch12.json` → 在 `site.json` 該章加 `"notes": "ch12"` → 跑 `build.py`。
 
 * `title` / `lead`：卡片標題與一句引言（中英各一）。
-* `points[]`：`no`（01、02…）、`title`（中英）、`subtitle`（一句副題，渲染成灰字）、`body`（可用 `$…$`）、`examples[]`
+* `points[]`：`no`（01、02…）、`title`（**只會顯示 `en`**——七個標題都是英文名句的變體，
+  中文版照樣印英文；`zh` 仍要寫，S21 會驗，但唔會 render）、`subtitle`（中英各一句，渲染成灰字）、
+  `body`（可用 `$…$`）、`examples[]`
   （`{ "part": "ch11-1", "p": 13, "label": "11.1 Q12" }`，`p` 是題目在該頁的頁碼，1 起）、
   以及可選的 `demo`：
   * `{ "type": "classify", "mode": "arc" }`：點角亮弧的分類器（`mode` 省略就是完整兩問版；

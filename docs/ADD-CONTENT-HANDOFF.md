@@ -650,6 +650,14 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * 題幹、題解、圖解字幕、定理簡稱與列印工作紙（`tools/make_worksheet_docx.py` 的 `plain()` 會把 `\,` 印成空格）全部一致顯示 `AB // CD`。以後新增內容照此寫法，不要再用 `\parallel` 或 `∥`；`tools/build.py` 的現有檢查（S6／S7／S19）不受影響。
 * 驗證：`python -X utf8 tools/build.py` 0 錯 0 警；`node --max-old-space-size=8192 tools/smoke_test.js` 全部通過；另用真 KaTeX 逐條渲染 75 條含 `//` 的數式，零錯誤，並在真瀏覽器截圖核對數學模式與純文字兩種寫法。
 
+### 9.25 心得標題只印英文，做成「題詞 epigraph」（2026-11-18）
+
+* 老師指示：七個論點的標題是英文名句的變體（`To Arc, or Not to Arc?` ← `To be, or not to be`；`All That Glitters Is Not Gold`；`Give Me a Line to Draw, and I Shall Find the Angle` ← 阿基米德），所以**唔要中文譯名**，連中文版都只印英文。
+* `app.js`：`thinkingCard()` 的 `h3` 不再用 `pairSpan()`，改為語言中立的 `el("h3", "think-h", p.title.en || p.title.zh)`——同一條規則適用於中／英／雙語三種模式。`zh` 標題仍留在 JSON（S21 要求中英對稱），只是不 render。
+* `style.css`：`.think-h` 改成襯線斜體（`STIX Two Text`, 21px／600／1.3）＋ 前後一對 `“ ”`（accent 色、非斜體），做成書中題詞的樣子；同時刪掉已失效的 `.think-h .l-zh/.l-en` 規則。
+* `smoke_test.js`：兩條斷言改寫——標題逐個等於 `title.en` 且**不含 CJK 字元**；副題數目等於論點數，正文與副題仍然中英齊。
+* 驗證：`build.py` 0 錯 0 警；完整 smoke 全綠；中英並列與英文模式截圖核對（`“To Arc, or Not to Arc?”` 一行，下面接中英副題）。
+
 ### 9.24 第 11 章心得改用 source/ch11-v5.json（2026-11-18）
 
 * 老師提供 `source/ch11-v5.json`（另一個 AI 重寫的完整心得）：**7 個論點、6 個型態圖**（新增「飛鏢 dart」）、同一個兩問分類器與兩回合配對。已整份取代 `data/src/notes/ch11.json`。

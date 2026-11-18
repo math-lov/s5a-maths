@@ -633,8 +633,9 @@
       var li = el("li", "think-point");
       li.appendChild(el("div", "think-no", p.no || ""));
       var main = el("div", "think-main");
-      var h3 = el("h3", "think-h");
-      h3.appendChild(pairSpan(p.title || {}));
+      /* 標題是英文名句的變體，所以只出英文（連中文版都唔譯），
+         用語言中立的元素，唔交畀 pairSpan 處理。 */
+      var h3 = el("h3", "think-h", (p.title && (p.title.en || p.title.zh)) || "");
       main.appendChild(h3);
       if (p.subtitle) main.appendChild(pair(p.subtitle, "div", "bi think-sub"));
       if (p.body) main.appendChild(pair(p.body, "div", "bi think-body"));

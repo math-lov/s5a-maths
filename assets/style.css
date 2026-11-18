@@ -1735,7 +1735,6 @@ body[data-lang="both"] .cg-split .cg-en {
 body[data-lang="both"] .think .q-code .l-en::before { content: " · "; }
 /* 只有中英並列才需要強制上下兩行；單一語言時要讓 body[data-lang] 的 display:none 生效 */
 body[data-lang="both"] .think-head h2 .l-zh, body[data-lang="both"] .think-head h2 .l-en,
-body[data-lang="both"] .think-h .l-zh, body[data-lang="both"] .think-h .l-en,
 body[data-lang="both"] .think-shape-name .l-zh, body[data-lang="both"] .think-shape-name .l-en { display: block; }
 .think-lead { margin: 0 0 var(--sp-4); color: var(--muted); }
 .think-points { display: grid; gap: var(--sp-4); margin: 0 0 var(--sp-5); padding: 0; list-style: none; }
@@ -1746,7 +1745,30 @@ body[data-lang="both"] .think-shape-name .l-zh, body[data-lang="both"] .think-sh
   color: var(--primary-ink); background: var(--primary-soft); border: 1px solid var(--primary-line);
 }
 .think-main { min-width: 0; }
-.think-h { margin: 2px 0 0; font-size: 16px; }
+/* 七個論點的標題都是英文名句的變體（To be, or not to be／All that glitters…），
+   所以只印英文，並且用襯線斜體＋引號，做成書中「題詞 epigraph」的樣子。 */
+.think-h {
+  margin: 6px 0 0;
+  font-family: "STIX Two Text", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.3;
+  letter-spacing: .005em;
+  text-wrap: pretty;
+}
+.think-h::before {
+  content: "\201C";
+  font-style: normal;
+  color: var(--accent);
+  margin-right: .06em;
+}
+.think-h::after {
+  content: "\201D";
+  font-style: normal;
+  color: var(--accent);
+  margin-left: .04em;
+}
 .think-sub { margin: 2px 0 0; font-size: 14.5px; color: var(--muted); }
 .think-body { margin: 4px 0 0; }
 .think-ex { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-2); }

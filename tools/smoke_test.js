@@ -3576,13 +3576,16 @@ ok(!!notesPage.$("#notes-body .think") && notesPage.$$(".think-point").length ==
 ok(notesPage.$$(".think-point .think-no").map((n) => n.textContent).join() ===
   TH11.points.map((p) => p.no).join(),
   "論點按 01–0" + TH11.points.length + " 編號列出");
-ok(notesPage.$$(".think-point .think-h .l-zh").length === TH11.points.length &&
-  notesPage.$$(".think-point .think-h .l-en").length === TH11.points.length,
-  "每個論點都有中英標題");
-ok(TH11.points.every(p => p.title.zh && p.title.en && p.body.zh && p.body.en) &&
-  notesPage.$$(".think-point .think-h .l-en").map((n) => n.textContent.trim()).join("|") ===
-    TH11.points.map((p) => p.title.en).join("|"),
-  "五個思考方向顯示完整雙語解說");
+const thinkTitles = notesPage.$$(".think-point .think-h");
+ok(thinkTitles.length === TH11.points.length &&
+  thinkTitles.map((n) => n.textContent.trim()).join("|") ===
+    TH11.points.map((p) => p.title.en).join("|") &&
+  !thinkTitles.some((n) => /[\u3400-\u9fff]/.test(n.textContent)),
+  "論點標題只印英文（名句原句，連中文版都不譯）");
+ok(TH11.points.every((p) => p.title.en && p.subtitle && p.subtitle.zh && p.subtitle.en &&
+  p.body.zh && p.body.en) &&
+  notesPage.$$(".think-sub").length === TH11.points.length,
+  "每個論點都有英文標題、中英副題與中英正文");
 ok(notesPage.$$(".think .katex-error").length === 0 &&
   !notesPage.$$(".think-body").some((n) => /\$/.test(n.textContent)),
   "五點正文的 KaTeX 零錯誤，$…$ 全部渲染");
