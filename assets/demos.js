@@ -2773,13 +2773,15 @@
       Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
       return n;
     }
-    var svg = S("svg", { viewBox: "0 0 340 300", class: "cls-svg", role: "img" });
+    var svg = S("svg", { viewBox: "0 0 340 300", class: "cls-svg", role: "img", "aria-label": "圓上角與對應弧 / Angles and intercepted arcs" });
     svg.appendChild(S("circle", { cx: CX, cy: CY, r: R, class: "cls-circle" }));
     [["A", "C"], ["C", "D"], ["C", "O"], ["O", "A"], ["O", "D"]].forEach(function (sg) {
       svg.appendChild(S("line", {
         x1: P[sg[0]].x, y1: P[sg[0]].y, x2: P[sg[1]].x, y2: P[sg[1]].y, class: "cls-seg"
       }));
     });
+    var selectedRays = S("g", { class: "cls-rays", "aria-hidden": "true" });
+    svg.appendChild(selectedRays);
     var arcG = S("g");
     var arcs = {};
     (o.angles || []).forEach(function (a) {
@@ -2853,6 +2855,8 @@
     side.appendChild(picks);
 
     var panel = el("div", "cls-panel");
+    panel.setAttribute("aria-live", "polite");
+    panel.setAttribute("aria-atomic", "true");
     var idle = el("p", "cls-idle");
     idle.appendChild(bi("揀一隻角開始。", "Pick one of the four angles above."));
     panel.appendChild(idle);
@@ -2888,6 +2892,12 @@
 
     function pick(a) {
       clearTimers();
+      selectedRays.innerHTML = "";
+      var spec = SPEC[a.id];
+      [spec.p1, spec.p2].forEach(function (name) {
+        selectedRays.appendChild(S("line", { x1: P[spec.v].x, y1: P[spec.v].y,
+          x2: P[name].x, y2: P[name].y, class: "cls-ray" }));
+      });
       Object.keys(chips).forEach(function (k) {
         chips[k].setAttribute("aria-pressed", k === a.id ? "true" : "false");
       });
@@ -2910,22 +2920,27 @@
           var name = a.arcName || {};
           if (a.arc) {
             line.appendChild(bi(
-              "兩臂都再碰圓 → 有弧。對住" + (name.zh || "弧") + "，圓周上已經亮起。",
-              "Both arms meet the circle again, so it stands on " + (name.en || "an arc") + " — lit on the rim."
+              (a.verdict === "centre" ? "兩邊是半徑，這個圓心角所對的" : "兩邊沿弦伸展，這個圓周角所對的") +
+                (name.zh || "弧") + "已在圓周上標示。",
+              (a.verdict === "centre" ? "The radii form a central angle; " : "The sides lie along chords; ") +
+                (name.en || "the intercepted arc") + " is highlighted on the circle."
             ));
           } else {
             line.appendChild(bi(
-              "冇弧：其中一臂只到圓心，唔係弦，所以冇嘢可以亮。",
-              "No arc: one arm stops at the centre, so there is nothing to light up."
+              "目前冇弧可直接標示：" + (a.id === "oca" ? "CO 只畫到圓心 O；若要用延長線，須先補畫圓周交點。" : "頂點 E 在圓內，不能當作圓心角或圓周角。"),
+              a.id === "oca" ? "No arc is identified by the drawn segments: CO stops at O. Mark the circle intersection before using its extension."
+                : "E is inside the circle and is not the centre, so this is neither a central nor a circumference angle."
             ));
           }
           panel.appendChild(line);
           var card = el("div", "cls-verdict" + (a.arc ? "" : " cls-normal"));
           card.appendChild(bi(
-            a.arc ? "可以用弧定理：½ 圓心角、同弓形相等、弧長比例。"
-                  : "唔可以用弧定理；改用等腰三角形底角、內角和或外角。",
-            a.arc ? "Arc theorems apply: half the centre angle, same segment, arc ratios."
-                  : "No arc theorem — use isosceles base angles, angle sum or the exterior angle."
+            a.arc ? (a.verdict === "centre" ? "同弧比較：圓心角是圓周角的兩倍；亦可利用圓心角比較弧長。"
+                    : "同弧比較：圓周角是相應圓心角的一半；同弓形內的圓周角相等。")
+                  : "先找等腰三角形、內角和、對頂角或平行線等關係；補畫延長線後再重新辨認。",
+            a.arc ? (a.verdict === "centre" ? "On the same arc, the central angle is twice the circumference angle. Central angles also give arc-length ratios."
+                    : "On the same arc, the circumference angle is half the central angle. Angles in the same segment are equal.")
+                  : "First look for isosceles triangles, angle sums, vertically opposite angles or parallel lines. Reassess after adding an extension."
           ));
           panel.appendChild(card);
           panel.appendChild(hint);
@@ -2999,13 +3014,32 @@
       Object.keys(attrs || {}).forEach(function (k) { n.setAttribute(k, attrs[k]); });
       return n;
     }
-    var svg = S("svg", { viewBox: "0 0 340 310", class: "mat-svg", role: "img" });
+    var svg = S("svg", { viewBox: "0 0 340 310", class: "mat-svg", role: "group", "aria-label": "選角配弧 / Match angles to arcs" });
     svg.appendChild(S("circle", { cx: CX, cy: CY, r: R, class: "cls-circle" }));
     [["A", "B"], ["B", "C"], ["C", "D"], ["D", "A"], ["A", "C"], ["B", "D"]].forEach(function (sg) {
       svg.appendChild(S("line", {
         x1: P[sg[0]].x, y1: P[sg[0]].y, x2: P[sg[1]].x, y2: P[sg[1]].y, class: "cls-seg"
       }));
     });
+
+    var selection = S("g", { class: "mat-selection", "aria-hidden": "true" });
+    svg.appendChild(selection);
+    function showAngle(a) {
+      selection.innerHTML = "";
+      if (!a) return;
+      var names = (a.label || "").replace("∠", "");
+      var v = P[names[1]], p = P[names[0]], q = P[names[2]];
+      if (!v || !p || !q) return;
+      [p, q].forEach(function (end) {
+        selection.appendChild(S("line", { x1: v.x, y1: v.y, x2: end.x, y2: end.y, class: "mat-ray" }));
+      });
+      var t1 = Math.atan2(p.y - v.y, p.x - v.x), t2 = Math.atan2(q.y - v.y, q.x - v.x);
+      var delta = norm(t2 - t1);
+      if (delta > Math.PI) delta -= 2 * Math.PI;
+      var radius = 28, end = t1 + delta;
+      selection.appendChild(S("path", { class: "mat-angle", d: "M" + (v.x + radius * Math.cos(t1)) + " " + (v.y + radius * Math.sin(t1)) +
+        "A" + radius + " " + radius + " 0 0 " + (delta > 0 ? 1 : 0) + " " + (v.x + radius * Math.cos(end)) + " " + (v.y + radius * Math.sin(end)) }));
+    }
 
     /* 四條弧：粗透明線做點擊區，上面一條細線做顯示 */
     var arcPaths = {}, hitPaths = {};
@@ -3045,7 +3079,21 @@
     var side = el("div", "mat-side");
     var picks = el("div", "mat-picks");
     var status = el("p", "mat-say");
+    status.setAttribute("aria-live", "polite");
+    status.setAttribute("aria-atomic", "true");
     var progress = el("p", "mat-progress");
+    var controls = el("div", "mat-controls");
+    var nextRound = el("button", "btn btn-sm mat-next");
+    nextRound.type = "button";
+    nextRound.appendChild(biInline("下一回合", "Next round"));
+    nextRound.hidden = true;
+    nextRound.onclick = function () { startRound(roundIdx + 1); picks.querySelector("button").focus(); };
+    var replay = el("button", "btn btn-sm mat-restart");
+    replay.type = "button";
+    replay.appendChild(biInline("重新配對", "Start again"));
+    replay.onclick = function () { startRound(0); picks.querySelector("button").focus(); };
+    controls.appendChild(nextRound);
+    controls.appendChild(replay);
     var chips = {};
     /* 回合：第一回合四隻角對四條不同的弧；第二回合兩隻角對同一條弧（同弓形） */
     var rounds = (o.rounds && o.rounds.length) ? o.rounds : [{ angles: o.angles || [], done: o.done }];
@@ -3054,15 +3102,16 @@
     side.appendChild(picks);
     side.appendChild(status);
     side.appendChild(progress);
+    side.appendChild(controls);
     stage.appendChild(side);
     root.appendChild(stage);
     host.appendChild(root);
 
     var sel = null, done = {}, solved = 0, timer = null;
-    /* 減少動態（或測試環境）時，回合之間唔等，立即接落去 */
-    function after(ms, fn) {
-      if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) { fn(); return; }
-      setTimeout(fn, ms);
+    function clearFeedback() {
+      clearTimeout(timer);
+      Object.keys(arcPaths).forEach(function (key) { arcPaths[key].classList.remove("bad"); });
+      status.classList.remove("bad");
     }
     function say(zh, en) {
       status.innerHTML = "";
@@ -3086,6 +3135,10 @@
     }
 
     function startRound(i) {
+      if (!rounds[i]) return;
+      clearFeedback();
+      showAngle(null);
+      nextRound.hidden = true;
       roundIdx = i;
       var rd = rounds[i] || { angles: [] };
       sel = null; done = {}; solved = 0;
@@ -3104,20 +3157,23 @@
 
     function choose(a) {
       if (done[a.id]) return;
+      clearFeedback();
       sel = a;
+      showAngle(a);
       Object.keys(chips).forEach(function (k) {
         chips[k].setAttribute("aria-pressed", k === a.id ? "true" : "false");
       });
-      say("而家配 " + (a.label || a.id) + "：佢嘅兩臂嘅另一端係邊兩點？點那條弧。",
+      say("正在配對 " + (a.label || a.id) + "：兩邊已用紫色標示。選出不經頂點的那條弧。",
         "Pairing " + (a.label || a.id) + ": which two points do its arms meet? Tap that arc.");
       status.classList.remove("bad");
     }
 
     function flashWrong(arcId) {
+      clearFeedback();
       var p = arcPaths[arcId];
       if (p) p.classList.add("bad");
       status.classList.add("bad");
-      say("唔對：看清楚兩臂再碰圓的兩點。", "Not that one: read the two points where the arms meet the circle again.");
+      say("唔對，再看兩邊所連的圓周點，並選不經頂點的弧。", "Try again: check the endpoints of the two sides, then choose the arc excluding the vertex.");
       if (timer) clearTimeout(timer);
       timer = setTimeout(function () {
         if (p) p.classList.remove("bad");
@@ -3132,11 +3188,13 @@
       }
       if (done[sel.id]) { sel = null; return; }
       if (sel.arc === a.id) {
+        clearFeedback();
         done[sel.id] = true;
         solved++;
         if (arcPaths[a.id]) arcPaths[a.id].classList.add("done");
         if (chips[sel.id]) {
           chips[sel.id].classList.add("done");
+          chips[sel.id].setAttribute("aria-disabled", "true");
           chips[sel.id].setAttribute("aria-pressed", "false");
         }
         var lbl = chips[sel.id] ? chips[sel.id].textContent : "";
@@ -3147,8 +3205,7 @@
           say((rd.done && rd.done.zh) || (o.done && o.done.zh) || "全部配對！",
             (rd.done && rd.done.en) || (o.done && o.done.en) || "All matched!");
           if (rounds[roundIdx + 1]) {
-            var nextIdx = roundIdx + 1;
-            after(2000, function () { startRound(nextIdx); });
+            nextRound.hidden = false;
           }
         } else {
           say(lbl + " 配對了。再揀另一隻角。", lbl + " matched. Pick another angle.");

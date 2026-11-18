@@ -890,11 +890,12 @@
       autoBtn.setAttribute("aria-pressed", "false");
       autoBtn.onclick = function () {
         if (autoTimer) { stopAuto(); return; }
+        if (at >= steps.length) renderUpTo(0);
         autoBtn.textContent = "暫停 Pause ⏸";
         autoBtn.setAttribute("aria-pressed", "true");
         autoTimer = setInterval(function () {
           if (at >= steps.length) { stopAuto(); return; }
-          next.onclick();
+          advance();
         }, 4500);
       };
       /* 自己一行，唔好同「上一步／下一步」爭位 */
@@ -908,7 +909,7 @@
       }, true);
     }
 
-    next.onclick = function () {
+    function advance() {
       if (at >= steps.length) return;
       // Finish earlier steps immediately before starting the next one. This also
       // cancels delayed labels so Back/Restart cannot show an obsolete answer.
@@ -924,12 +925,15 @@
       if (at >= steps.length) stopAuto();
     };
 
+    next.onclick = function () { stopAuto(); advance(); };
+
     back.onclick = function () {
+      stopAuto();
       if (at <= 0) return;
       renderUpTo(at - 1);
     };
 
-    restart.onclick = function () { renderUpTo(0); };
+    restart.onclick = function () { stopAuto(); renderUpTo(0); };
 
     arcMeasures(anim.arcMeasures, true);
     syncGivens(0);

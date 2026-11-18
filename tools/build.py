@@ -786,17 +786,27 @@ def write_stamp(stamp: str) -> list[str]:
 
 
 def check_thinking(site) -> None:
-    """S21 章節心得（chapter.thinking）：中英對稱、例題連結存在、型態圖有動畫步驟。
+    """S21 章節心得（data/src/notes/<id>.json）：中英對稱、例題連結存在、型態圖有動畫步驟。
 
-    章節頁的心得卡由 site.json 直接驅動（assets/app.js 的 thinkingCard），
-    所以欄位寫錯唔會爆，只會靜靜地少一段——這裡把它當成資料檢查。
+    心得是「內容」，所以跟題目一樣一個檔一份（site.json 只留 chapter.notes 指針）；
+    欄位寫錯唔會爆，只會靜靜地少一段——這裡把它當成資料檢查。
     """
     parts = {p["id"]: p for p in site["site"].get("parts", [])}
     for ch in (site["site"].get("classwork") or {}).get("chapters", []):
-        t = ch.get("thinking")
-        if t is None:
+        nid = ch.get("notes")
+        if not nid:
             continue
-        tag = "S21 %s.thinking" % ch.get("id")
+        path = os.path.join(SRC, "notes", nid + ".json")
+        if not os.path.exists(path):
+            err("S21 %s：找不到 data/src/notes/%s.json" % (ch.get("id"), nid))
+            continue
+        try:
+            with open(path, encoding="utf-8") as f:
+                t = json.load(f)
+        except Exception as e:  # noqa: BLE001
+            err("S21 %s：notes/%s.json 讀不到（%s）" % (ch.get("id"), nid, e))
+            continue
+        tag = "S21 %s.notes" % nid
         if not isinstance(t, dict):
             err(tag + "：必須是物件")
             continue
@@ -890,6 +900,40 @@ def check_thinking(site) -> None:
                     err("%s：classify 角 %r 缺少 answers（兩問的答案）" % (tag, a.get("id")))
 
 
+def build_notes(site, write: bool) -> list:
+    """data/src/notes/<id>.json → data/notes-<id>.js，並把入口卡需要的摘要寫入 index。
+
+    目錄頁只讀 index.js，所以摘要（title／lead／點數／圖數）要留在章節物件；
+    全文另存一支 JS，只有 notes.html 才載入。
+    """
+    out = []
+    for ch in (site["site"].get("classwork") or {}).get("chapters", []):
+        nid = ch.get("notes")
+        if not nid:
+            continue
+        path = os.path.join(SRC, "notes", nid + ".json")
+        if not os.path.exists(path):
+            continue
+        with open(path, encoding="utf-8") as f:
+            notes = json.load(f)
+        ch.pop("thinking", None)          # 舊寫法（直接掛在章節物件）自動遷移
+        ch["notesSummary"] = {
+            "title": notes.get("title", {}),
+            "lead": notes.get("lead", {}),
+            "points": len(notes.get("points") or []),
+            "shapes": len(notes.get("shapes") or []),
+        }
+        rel = "data/notes-%s.js" % nid
+        out.append(rel)
+        if write:
+            gname = "S5A_NOTES_" + re.sub(r"[^A-Za-z0-9]", "_", nid).upper()
+            with open(os.path.join(OUT, "notes-%s.js" % nid), "w",
+                      encoding="utf-8", newline="\n") as f:
+                f.write(HEADER)
+                f.write("window.%s = %s;\n" % (gname, js_dump(notes)))
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="只檢查，不生成檔案")
@@ -901,6 +945,7 @@ def main() -> int:
     templates = load("prompt-templates.json")
     check_prompt_templates(templates)
     check_thinking(site)
+    notes_files = build_notes(site, not args.check)
 
     rendered_figs = {}
     for fid, spec in figures.items():
@@ -955,7 +1000,7 @@ def main() -> int:
         with open(os.path.join(OUT, "figures.js"), "w", encoding="utf-8", newline="\n") as f:
             f.write(HEADER)
             f.write("window.S5A_FIGURES = %s;\n" % js_dump(rendered_figs))
-        stamp = content_stamp([p["dataFile"] for p in parts_out])
+        stamp = content_stamp([p["dataFile"] for p in parts_out] + notes_files)
         touched = write_stamp(stamp)
         print("版本戳（cache stamp）%s → %s" % (stamp, "、".join(touched) if touched else "HTML 無變動"))
 

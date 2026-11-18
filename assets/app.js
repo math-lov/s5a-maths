@@ -582,7 +582,7 @@
   /* 章節頁只放一張「入口卡」，按入去 notes.html 才看全文
      （不要把五點、五幅圖、分類器全部塞進目錄頁）。 */
   function thinkingEntry(ch) {
-    var t = ch.thinking || {};
+    var t = ch.notesSummary || {};
     var card = el("div", "card think think-entry");
     var head = el("div", "q-head");
     var code = el("span", "q-code");
@@ -595,10 +595,13 @@
     card.appendChild(h);
     if (t.lead) card.appendChild(pair(t.lead, "div", "bi think-lead"));
 
+    /* notesSummary 只帶數字（points／shapes），全文才有陣列；兩種都食 */
+    var nPoints = typeof t.points === "number" ? t.points : (t.points || []).length;
+    var nShapes = typeof t.shapes === "number" ? t.shapes : (t.shapes || []).length;
     var meta = el("div", "think-entry-meta");
     meta.appendChild(mchips([
-      { zh: (t.points || []).length + " 個論點", en: (t.points || []).length + " moves" },
-      { zh: (t.shapes || []).length + " 個型態", en: (t.shapes || []).length + " shapes" },
+      { zh: nPoints + " 個思考方向", en: nPoints + " moves" },
+      { zh: nShapes + " 個常見圖形", en: nShapes + " shapes" },
       { zh: "兩問分類器", en: "two-question check" }
     ]));
     card.appendChild(meta);
@@ -680,12 +683,20 @@
         /* 點圖會再閃一次「同一條弧」，提醒學生睇邊條弧 */
         if (host.querySelector(".cg-circle-arc")) {
           box.classList.add("think-shape-tap");
-          host.addEventListener("click", function () {
+          var replay = el("button", "btn btn-sm think-shape-replay");
+          replay.type = "button";
+          replay.appendChild(pairSpan({ zh: "顯示相關的弧", en: "Highlight the arc(s)" }));
+          var pulseTimer;
+          function pulseArc() {
+            clearTimeout(pulseTimer);
             box.classList.remove("pulse");
             void box.offsetWidth;
             box.classList.add("pulse");
-            setTimeout(function () { box.classList.remove("pulse"); }, 1500);
-          });
+            pulseTimer = setTimeout(function () { box.classList.remove("pulse"); }, 1500);
+          }
+          host.addEventListener("click", pulseArc);
+          replay.addEventListener("click", pulseArc);
+          box.appendChild(replay);
         }
         var nm = el("div", "think-shape-name");
         nm.appendChild(pairSpan(s.name || {}));
@@ -757,7 +768,7 @@
     body.appendChild(card);
 
     /* 這一章的教學心得（有寫才有）：目錄頁只放入口卡，全文在 notes.html */
-    if (ch.thinking) body.appendChild(thinkingEntry(ch));
+    if (ch.notes) body.appendChild(thinkingEntry(ch));
 
     var list = el("div", "part-grid");
     list.style.marginTop = "14px";
@@ -802,6 +813,22 @@
     body.appendChild(list);
   }
 
+  /* ── 章節心得：全文放 data/notes-<id>.js，只有心得頁才載入 ─────────────── */
+  function notesGlobal(id) {
+    var key = "S5A_NOTES_" + String(id || "").toUpperCase().replace(/[^A-Z0-9]/g, "_");
+    return window[key] || null;
+  }
+  function loadNotes(id, cb) {
+    var got = notesGlobal(id);
+    if (got) { cb(got); return; }
+    var s = document.createElement("script");
+    s.src = "data/notes-" + id + ".js?v=" + (window.__V || "");
+    s.async = true;
+    s.onload = function () { cb(notesGlobal(id)); };
+    s.onerror = function () { cb(null); };
+    document.head.appendChild(s);
+  }
+
   /* ── 章節心得頁（notes.html?ch=ch11）：入口卡之後的全文 ───────────────── */
   function renderNotes() {
     var bar = qs("#lang-slot");
@@ -813,7 +840,7 @@
     if (back) back.href = "chapter.html?ch=" + encodeURIComponent(id || "");
     if (!body) return;
     body.innerHTML = "";
-    if (!ch || !ch.thinking) {
+    if (!ch || !ch.notes) {
       var p = el("p", "small muted");
       p.appendChild(pairSpan({
         zh: "這一章未有章節心得。",
@@ -822,7 +849,7 @@
       body.appendChild(p);
       return;
     }
-    var t = ch.thinking;
+    var t = ch.notesSummary || {};
     setPair(qs("#notes-name"), ch.title || { zh: ch.id, en: ch.id });
     var enEl = qs("#notes-en");
     if (enEl) enEl.textContent = "";
@@ -831,7 +858,19 @@
     document.title = ((t.title && t.title.zh) || "章節心得") + " · 5A 數學溫習站";
     var bs = qs("#build-stamp");
     if (bs) bs.textContent = (window.__V || "dev");
-    thinkingCard(t, body);
+    loadNotes(ch.notes, function (full) {
+      body.innerHTML = "";
+      if (!full) {
+        var q = el("p", "small muted");
+        q.appendChild(pairSpan({
+          zh: "心得載入失敗，請重新整理這一頁。",
+          en: "The notes could not be loaded. Please reload this page."
+        }));
+        body.appendChild(q);
+        return;
+      }
+      thinkingCard(full, body);
+    });
   }
 
   /* ── 測驗頁 ─────────────────────────────────────────────────────────── */

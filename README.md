@@ -186,7 +186,7 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 | S8 | 引用的圖一定存在 |
 | S9 | 每題都有答案欄、每題都有「帶得走的技巧」 |
 | S20 | 全班表現（`classPerf`）：總覽統計齊全、每題都有平均分與排名；答對率要等於「平均 ÷ 滿分」 |
-| S21 | 章節心得（`chapter.thinking`）：標題、引言、五點正文都中英對稱；例題連結的 `part`／`p` 真實存在；每個型態圖有 `points`／`segments`／`steps`；分類器的 `verdict` 與 `answers` 對得上 |
+| S21 | 章節心得（`data/src/notes/<id>.json`，由 `chapter.notes` 指向）：標題、引言、五點正文都中英對稱；例題連結的 `part`／`p` 真實存在；每個型態圖有 `points`／`segments`／`steps`；分類器的 `verdict` 與 `answers` 對得上；配對遊戲逐回合齊 `label`／`angles`／`done` |
 
 ## 加一份新測驗（網站擴充方法）
 
@@ -231,11 +231,19 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
   在 (b) 的第一步加 `"goal"` 到該拍，之後同樣會保留。
   `build.py` 會檢查（S19）：有圖解但沒有 goal 就出警告（證明題除外）。
 
-## 章節心得（`site.json` 的 `chapter.thinking`）
+## 章節心得（`data/src/notes/<chapter>.json`）
 
-第 11 章的章節頁（`chapter.html?ch=ch11`）在引言卡之後多一張**入口卡**（標題、引言、統計、
-「打開心得」按鈕）；全文在獨立一頁 `notes.html?ch=ch11`，唔會把五點、五幅圖、分類器塞進目錄頁。
-兩頁的內容都來自 `site.json` 的 `classwork.chapters[].thinking`——前端只負責排位，改字只需改 JSON。
+**每一章都可以有自己一份教學心得**（老師的教法、常見誤解、解題次序），跟題目一樣一檔一份，
+唔會塞進 `site.json`（那是導覽／課題元資料，而且每一頁都要下載）。
+
+* 內容放 `data/src/notes/<id>.json`，例如 `notes/ch11.json`；`site.json` 的章節物件只寫
+  `"notes": "ch11"` 這個指針。
+* `build.py` 會驗證（S21）、生成 `data/notes-<id>.js`（`window.S5A_NOTES_CH11`），並把入口卡要用的
+  摘要（title／lead／點數／圖數）寫入 `index.js` 的章節物件（`notesSummary`，幾百 bytes）。
+* 章節頁（`chapter.html?ch=ch11`）在引言卡之後只放一張**入口卡**（標題、引言、統計、「打開心得」）；
+  全文在 `notes.html?ch=ch11` 才動態載入 `data/notes-<id>.js`。所以普通題目頁唔會再下載心得內容
+  （實測 `index.js` 由 85 KB 減到 62 KB）。
+* 新增一章心得：寫 `data/src/notes/ch12.json` → 在 `site.json` 該章加 `"notes": "ch12"` → 跑 `build.py`。
 
 * `title` / `lead`：卡片標題與一句引言（中英各一）。
 * `points[]`：`no`（01、02…）、`title`、`body`（可用 `$…$`）、`examples[]`

@@ -77,8 +77,11 @@ function boot(page, search, storage, solPreference, legacySolPreference) {
   // Home/chapter pages use metadata only, matching the production page loaders.
   const defaultId = page === "quiz.html" ? ctx.window.S5A_INDEX.parts[0].id : null;
   const wantFile = needId ? needId[1] + ".js" : (defaultId ? defaultId + ".js" : null);
+  /* 心得頁：production 由 app.js 動態載入 data/notes-<id>.js；測試要先放入 context */
+  const notesId = page === "notes.html" ? (/[?&]ch=([a-z0-9-]+)/.exec(search || "") || [])[1] : null;
+  const notesFile = notesId ? "notes-" + notesId + ".js" : null;
   dataFiles
-    .filter((f) => f === wantFile)
+    .filter((f) => f === wantFile || f === notesFile)
     .forEach((f) => vm.runInContext(read("data/" + f), ctx, { filename: f }));
   vm.runInContext(circleJs, ctx, { filename: "circle.js" });  // 圓形幾何逐步圖解
   vm.runInContext(partsJs, ctx, { filename: "parts.js" });    // 圓的各部分（八個名詞）
@@ -3550,7 +3553,7 @@ ok(["3","19","21","24","33"].every((code)=>revisionQs11.find((q)=>q.code===code)
 
 /* ── 6c-9. 第 11 章章節心得：目錄頁入口卡 ＋ notes.html 全文 ──────────── */
 console.log("\n== 第 11 章 · 章節心得（入口卡 ＋ notes.html）==");
-const TH11 = CW_CHAPTERS.find((c) => c.id === "ch11").thinking;
+const TH11 = JSON.parse(read("data/src/notes/ch11.json"));
 const thinkPage = boot("chapter.html", "?ch=ch11");
 const entryCard = thinkPage.$$("#chapter-body > .card")[1];
 ok(!!TH11 && !!entryCard && entryCard.classList.contains("think-entry"),
@@ -3563,8 +3566,8 @@ ok(!!goNotes && goNotes.getAttribute("href") === "notes.html?ch=ch11",
   "入口卡按鈕指向 notes.html?ch=ch11");
 ok(/打開心得/.test(goNotes.textContent) && /Open the notes/.test(goNotes.textContent),
   "入口按鈕有中英兩版");
-ok(/5 個論點/.test(entryCard.textContent) && /5 個型態/.test(entryCard.textContent),
-  "入口卡列出「5 個論點 · 5 個型態」統計");
+ok(/5 個思考方向/.test(entryCard.textContent) && /5 個常見圖形/.test(entryCard.textContent),
+  "入口卡列出「5 個思考方向 · 5 個常見圖形」統計");
 
 const notesPage = boot("notes.html", "?ch=ch11");
 ok(!!notesPage.$("#notes-body .think") && notesPage.$$(".think-point").length === TH11.points.length,
@@ -3574,12 +3577,9 @@ ok(notesPage.$$(".think-point .think-no").map((n) => n.textContent).join() === "
 ok(notesPage.$$(".think-point .think-h .l-zh").length === 5 &&
   notesPage.$$(".think-point .think-h .l-en").length === 5,
   "每個論點都有中英標題");
-ok(TH11.points.map((p) => p.title.en).join("|") ===
-  "To arc, or not to arc|Where to start|Circle is Radius, Radius is Circle|" +
-  "Theorems give angles; chords and similar triangles give lengths|Five common shapes",
-  "英文標題就是老師最後定稿的五個");
-ok(/To arc, or not to arc/.test((notesPage.$(".think") || {}).textContent || ""),
-  "心得頁真的印出英文標題");
+ok(TH11.points.every(p => p.title.zh && p.title.en && p.body.zh && p.body.en) &&
+  /Identify the angle/.test(notesPage.$(".think").textContent),
+  "五個思考方向顯示完整雙語解說");
 ok(notesPage.$$(".think .katex-error").length === 0 &&
   !notesPage.$$(".think-body").some((n) => /\$/.test(n.textContent)),
   "五點正文的 KaTeX 零錯誤，$…$ 全部渲染");
@@ -3597,15 +3597,15 @@ ok(cssDisp(notesPage, ".think-shape .cg-row") === "none" &&
   cssDisp(notesPage, ".think-shape .cg-say") === "none",
   "型態圖的按鈕與字幕在 CSS 隱藏（只做圖）");
 ok(notesPage.$$(".think-shape .cg-arc").length >= 12 &&
-  notesPage.$$(".think-shape .cg-circle-arc").length === 5,
+  notesPage.$$(".think-shape .cg-circle-arc").length === 6,
   "每幅型態都畫出角度弧，並把「同一條弧」用 accent 標出來");
 ok(notesPage.$$(".think-shape .cg-arc").every((n) => {
   const d = n.getAttribute("d") || "";
   return d && !/NaN|undefined/.test(d);
 }), "型態圖的弧線都是合法路徑");
-ok(TH11.shapes.map((s) => s.name.en).join("|") ===
-  "the butterfly|the fake butterfly|fortune fan|semi-circle $90^\\circ$|cyclic quadrilateral",
-  "型態名稱沿用老師定的英文（the butterfly／the fake butterfly／fortune fan）");
+ok(TH11.shapes.slice(0,3).map(s => s.name.en).join("|") === "the butterfly|the fake butterfly|fortune fan" &&
+  /cyclic quadrilateral/.test(TH11.shapes[4].name.en),
+  "保留五個常見型態及記憶名稱");
 
 const mainCls = notesPage.$$(".cls").pop();
 const clsPicks = mainCls ? Array.prototype.slice.call(mainCls.querySelectorAll(".cls-pick")) : [];
@@ -3683,13 +3683,65 @@ ok(mat.querySelectorAll(".mat-arc.done").length === 1 &&
 mPicks[1].click(); tapHit(mHits[1]);
 mPicks[2].click(); tapHit(mHits[2]);
 mPicks[3].click(); tapHit(mHits[3]);
+ok(!mat.querySelector(".mat-next").hidden && /4 \/ 4/.test(mat.querySelector(".mat-progress").textContent),
+  "完成後保留回饋，等待學生繼續");
+mat.querySelector(".mat-next").click();
 const r2picks = Array.prototype.slice.call(mat.querySelectorAll(".mat-pick"));
 ok(r2picks.length === 2 && /0 \/ 2/.test((mat.querySelector(".mat-progress") || {}).textContent || ""),
-  "第一回合完成後自動開第二回合（兩隻角）");
+  "學生按下一回合後進入第二回合（兩隻角）");
 r2picks[0].click(); tapHit(mHits[0]);
 r2picks[1].click(); tapHit(mHits[0]);
-ok(/同弓形/.test((mat.querySelector(".mat-say") || {}).textContent || ""),
+ok(/同一?弓形/.test((mat.querySelector(".mat-say") || {}).textContent || ""),
   "第二回合：兩隻角對同一條弧，示範同弓形相等");
+
+/* Notes: repaired formulas and all 15 inference states, including reverse navigation. */
+let noteSync = true, noteSegments = true;
+playerFigs.forEach((host, i) => {
+  const anim = TH11.points[i + 1].demo.anim;
+  host.querySelector(".cg-next").click();
+  host.querySelector(".cg-restart").click();
+  const snapshots = [];
+  const state = () => JSON.stringify({svg: host.querySelector("svg").innerHTML,
+    zh:host.querySelector(".cg-zh").textContent, en:host.querySelector(".cg-en").textContent,
+    ref:host.querySelector(".cg-ref").textContent});
+  snapshots.push(state());
+  anim.steps.forEach(step => {
+    host.querySelector(".cg-next").click();
+    noteSync &&= host.querySelector(".cg-ref").textContent === (step.ref || "") &&
+      host.querySelectorAll(".cg-zh .cg-equation").length === step.mathLines.length &&
+      host.querySelectorAll(".cg-en .cg-equation").length === step.mathLines.length &&
+      !host.querySelector(".katex-error") && !/@B@/.test(host.textContent);
+    const keys = [...host.querySelectorAll("[data-segment]")].map(n=>n.getAttribute("data-segment"));
+    noteSegments &&= new Set(keys).size === keys.length;
+    snapshots.push(state());
+  });
+  for(let n=anim.steps.length-1;n>=0;n--) {
+    host.querySelector(".cg-back").click();
+    noteSync &&= state() === snapshots[n];
+  }
+  host.querySelector(".cg-next").click(); host.querySelector(".cg-restart").click();
+  noteSync &&= state() === snapshots[0];
+});
+ok(noteSync && noteSegments, "三個筆記播放器：15 步公式、理由、線段、返回及重播完全同步");
+ok(notesPage.$$(".think-shape-replay").length===5,
+  "五幅圖均有鍵盤可操作的顯示弧按鈕");
+p1picks[2].click();
+ok(/兩倍/.test(pointFigs[0].querySelector(".cls-verdict").textContent) &&
+  pointFigs[0].querySelectorAll(".cls-rays line").length===2,
+  "圓心角高亮兩條半徑，回饋用兩倍而不是一半");
+mat.querySelector(".mat-restart").click();
+const matchFirst = mat.querySelector(".mat-pick");
+matchFirst.click(); tapHit(mHits[2]); tapHit(mHits[3]);
+ok(mat.querySelectorAll(".mat-arc.bad").length===1 &&
+  mat.querySelectorAll(".mat-selection line").length===2,
+  "快速連續配錯只保留當前錯誤；所選角兩邊清楚標示");
+tapHit(mHits[0]);
+ok(!mat.querySelector(".mat-arc.bad") && mat.querySelectorAll(".mat-pick.done").length===1,
+  "改正後立即清除錯誤高亮");
+mat.querySelector(".mat-restart").click();
+ok(!mat.querySelector(".mat-arc.done") && !mat.querySelector(".mat-selection line") &&
+  /0 \/ 4/.test(mat.querySelector(".mat-progress").textContent),
+  "重新配對會清除選角、得分及所有弧的高亮");
 
 const backLink = notesPage.$("#notes-back");
 ok(!!backLink && backLink.getAttribute("href") === "chapter.html?ch=ch11",

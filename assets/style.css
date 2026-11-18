@@ -1820,6 +1820,28 @@ body[data-lang="both"] .cg-split .cg-en {
 .think-fig { margin: var(--sp-3) 0 var(--sp-2); }
 .think-fig .cg { margin: 0; }
 
+/* Notes keep prose readable while giving each worked figure enough room. */
+body[data-page="notes"] > .wrap { max-width: 1040px; }
+.think-body, .think-lead { max-width: 72ch; }
+.think-body .l-zh, .think-body .l-en { line-height: 1.85; }
+.think-shape-replay { margin-block: 4px 8px; }
+.think-shape-replay .l-zh, .think-shape-replay .l-en { display: block; }
+.cls-ray, .mat-ray { stroke: #4f46e5; stroke-width: 2.5; stroke-linecap: round; }
+.mat-angle { fill: none; stroke: #4f46e5; stroke-width: 2; }
+.cls-pick, .mat-pick { min-height: 44px; }
+.mat-controls { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.mat-controls .btn { min-height: 44px; }
+.mat-next[hidden] { display: none; }
+@media (max-width: 480px) {
+  .think-point { grid-template-columns: minmax(0, 1fr); }
+  .think-no { margin-bottom: 8px; }
+  .think .cg-detail { padding: 14px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .think-shape.pulse .cg-circle-arc { animation: none; stroke-width: 7; }
+  .mat-arc, .cls-arc-hi { transition: none; }
+}
+
 /* 角 ↔ 弧 配對小遊戲 */
 .mat { margin-top: var(--sp-5); border-top: 1px solid var(--line); padding-top: var(--sp-4); }
 .mat-stage { display: grid; gap: var(--sp-4); }
@@ -1835,7 +1857,7 @@ body[data-lang="both"] .cg-split .cg-en {
 .mat-arc.hov { stroke: var(--primary); stroke-width: 7; }
 .mat-arc.done { stroke: var(--accent); stroke-width: 8; }
 .mat-arc.bad { stroke: var(--err); stroke-width: 8; }
-.mat-hit { fill: none; stroke: transparent; stroke-width: 18; stroke-linecap: round; cursor: pointer; }
+.mat-hit { fill: none; stroke: transparent; stroke-width: 24; stroke-linecap: round; cursor: pointer; }
 .mat-hit:focus-visible { stroke: var(--primary-soft); }
 .mat-side { min-width: 0; }
 .mat-picks { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--sp-3); }
@@ -1856,3 +1878,4 @@ body[data-lang="both"] .cg-split .cg-en {
   .cls-stage { grid-template-columns: minmax(0, 330px) minmax(0, 1fr); align-items: start; }
 }
 @media (prefers-reduced-motion: reduce) { .cls-arc { transition: none; } }
+.think-fig .cg-length.given { fill: #b45309; }
