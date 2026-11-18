@@ -749,8 +749,9 @@ body[data-sol="show"] .hint-row { display: none; }
 /* 頁首標題：中英並列時上下兩行（唔會黏成「第 17 章…Chapter 17…」），
    英文降一級做次標題 */
 #quiz-name .l-zh, #quiz-name .l-en,
-#chapter-name .l-zh, #chapter-name .l-en { display: block; }
-#quiz-name .l-en, #chapter-name .l-en {
+#chapter-name .l-zh, #chapter-name .l-en,
+#notes-name .l-zh, #notes-name .l-en { display: block; }
+#quiz-name .l-en, #chapter-name .l-en, #notes-name .l-en {
   font-size: .78em; font-weight: 500; color: var(--muted); margin-top: 1px;
 }
 
@@ -1719,6 +1720,13 @@ body[data-lang="both"] .cg-split .cg-en {
 /* 型態圖用 circle.js 的 static 模式：只畫圖，不要字幕與按鈕 */
 .cg-static .cg-say, .cg-static .cg-row,
 .cg-static .cg-detail, .cg-static .cg-navigation { display: none; }
+
+/* 目錄頁的入口卡：只有標題、引言、統計與一個按鈕 */
+.think-entry-h { margin: 0 0 var(--sp-2); font-size: 18px; }
+.think-entry-h .l-zh, .think-entry-h .l-en { display: block; }
+.think-entry .think-lead { margin-bottom: var(--sp-3); }
+.think-entry-meta { margin-bottom: var(--sp-3); }
+.think-entry-go { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
 
 .think-head h2 { margin: 0 0 var(--sp-2); font-size: 19px; }
 /* 卡片右上角的小籤：中英並列時加一個分隔，免得「章節心得Chapter notes」黏成一串 */

@@ -579,6 +579,40 @@
     var p = new URLSearchParams(location.search);
     return (p.get("ch") || ((chapters()[0] || {}).id) || "").toLowerCase();
   }
+  /* 章節頁只放一張「入口卡」，按入去 notes.html 才看全文
+     （不要把五點、五幅圖、分類器全部塞進目錄頁）。 */
+  function thinkingEntry(ch) {
+    var t = ch.thinking || {};
+    var card = el("div", "card think think-entry");
+    var head = el("div", "q-head");
+    var code = el("span", "q-code");
+    code.appendChild(pairSpan({ zh: "章節心得", en: "Chapter notes" }));
+    head.appendChild(code);
+    card.appendChild(head);
+
+    var h = el("h2", "think-entry-h");
+    h.appendChild(pairSpan(t.title || {}));
+    card.appendChild(h);
+    if (t.lead) card.appendChild(pair(t.lead, "div", "bi think-lead"));
+
+    var meta = el("div", "think-entry-meta");
+    meta.appendChild(mchips([
+      { zh: (t.points || []).length + " 個論點", en: (t.points || []).length + " moves" },
+      { zh: (t.shapes || []).length + " 個型態", en: (t.shapes || []).length + " shapes" },
+      { zh: "兩問分類器", en: "two-question check" }
+    ]));
+    card.appendChild(meta);
+
+    var go = el("a", "btn btn-primary think-entry-go");
+    go.href = "notes.html?ch=" + encodeURIComponent(ch.id);
+    go.appendChild(pairSpan({ zh: "打開心得", en: "Open the notes" }));
+    var arrow = el("span", "arw", "→");
+    arrow.setAttribute("aria-hidden", "true");
+    go.appendChild(arrow);
+    card.appendChild(go);
+    return card;
+  }
+
   /* 章節心得（site.json 的 chapter.thinking）：五點 ＋ 型態圖 ＋ 分類器。
      內容全部來自 JSON；前端只負責排位，改字唔需要碰這裡。 */
   function thinkingCard(t, parent) {
@@ -691,8 +725,8 @@
     card.appendChild(meta);
     body.appendChild(card);
 
-    /* 這一章的教學心得（有寫才有）：五點 ＋ 五個型態 ＋ 兩問分類器 */
-    if (ch.thinking) thinkingCard(ch.thinking, body);
+    /* 這一章的教學心得（有寫才有）：目錄頁只放入口卡，全文在 notes.html */
+    if (ch.thinking) body.appendChild(thinkingEntry(ch));
 
     var list = el("div", "part-grid");
     list.style.marginTop = "14px";
@@ -735,6 +769,38 @@
       list.appendChild(btn);
     });
     body.appendChild(list);
+  }
+
+  /* ── 章節心得頁（notes.html?ch=ch11）：入口卡之後的全文 ───────────────── */
+  function renderNotes() {
+    var bar = qs("#lang-slot");
+    if (bar) bar.appendChild(langBar());
+    var body = qs("#notes-body");
+    var id = chapterFromUrl();
+    var ch = chapterOf(id);
+    var back = qs("#notes-back");
+    if (back) back.href = "chapter.html?ch=" + encodeURIComponent(id || "");
+    if (!body) return;
+    body.innerHTML = "";
+    if (!ch || !ch.thinking) {
+      var p = el("p", "small muted");
+      p.appendChild(pairSpan({
+        zh: "這一章未有章節心得。",
+        en: "No chapter notes for this chapter yet."
+      }));
+      body.appendChild(p);
+      return;
+    }
+    var t = ch.thinking;
+    setPair(qs("#notes-name"), ch.title || { zh: ch.id, en: ch.id });
+    var enEl = qs("#notes-en");
+    if (enEl) enEl.textContent = "";
+    var chEl = qs("#notes-ch");
+    if (chEl) setPairLines(chEl, { zh: "章節心得", en: "Chapter notes" });
+    document.title = ((t.title && t.title.zh) || "章節心得") + " · 5A 數學溫習站";
+    var bs = qs("#build-stamp");
+    if (bs) bs.textContent = (window.__V || "dev");
+    thinkingCard(t, body);
   }
 
   /* ── 測驗頁 ─────────────────────────────────────────────────────────── */
@@ -2808,6 +2874,7 @@
     if (PAGE === "index") renderIndex();
     else if (PAGE === "quiz") renderQuiz();
     else if (PAGE === "chapter") renderChapter();
+    else if (PAGE === "notes") renderNotes();
 
     if (!window.katex) {
       var tries = 0;

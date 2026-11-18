@@ -645,7 +645,7 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 
 ### 9.18 第 11 章「章節心得」卡（2026-11-18）
 
-* 老師在章節頁（`chapter.html?ch=ch11`）要一張獨立卡片，讓學生「學完整章之後重溫解題思路」。位置：引言卡與五節按鈕之間，標題「第 11 章心得 · 點樣諗圓形幾何」。內容放 `site.json` 的 `classwork.chapters[].thinking`（新欄位），前端 `renderChapter()` 的 `thinkingCard()` 只負責排位；其他章節冇這個欄位就照舊。
+* 老師在章節頁（`chapter.html?ch=ch11`）要一張獨立卡片，讓學生「學完整章之後重溫解題思路」。位置：引言卡與五節按鈕之間。**目錄頁只放入口卡**（標題、引言、`5 個論點 · 5 個型態`統計、「打開心得」按鈕），全文放獨立頁 `notes.html?ch=ch11`（頂欄返回鍵指回該章目錄頁），避免把長篇內容塞進目錄。內容放 `site.json` 的 `classwork.chapters[].thinking`（新欄位）：`renderChapter()` 用 `thinkingEntry()` 畫入口卡，`renderNotes()` 用 `thinkingCard()` 畫全文；其他章節冇這個欄位就照舊（`notes.html` 顯示一句提示）。
 * 五個論點（老師原稿，經評鑑後補正）：
   `01 有弧，定冇弧 / To arc, or not to arc`、`02 由邊度開始 / Where to start`、`03 圓即是半徑，半徑即是圓 / Circle is Radius, Radius is Circle`、`04 定理計角，長度靠弦同相似 / Theorems give angles; chords and similar triangles give lengths`、`05 五個常見型態 / Five common shapes`。
 * 評鑑時補正四點，已寫入正文：①「經過圓心」≠「止於圓心」（直徑仍然係圓周角）；②分類單位係「（角，弧）」而非頂點；③圓內接四邊形外角係「普通角都用得圓定理」的唯一例外（11.4）；④同弓形要有「四點共圓＋兩弦相交」才順手得到相似三角形，並補「弧長 ∝ 角、弦長唔係」。
@@ -653,7 +653,7 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * 兩問分類器：`assets/demos.js` 新增 `classify` 型別（`DEMO_TYPES` 同步）。固定一幅圖（A、C、D、O、E 交點），四隻可選角 `∠OCA`／`∠ACD`／`∠AOD`／`∠AEO`；揀角 → 只亮那一條弧 → 逐格揭示「頂點喺邊？」「兩臂另一端喺唔喺圓上？」→ 三種判決（圓周角／圓心角／普通角）。圖上只有細細的 ①②③④ 標記（`pointer-events:none`），真正可按的是右邊寫明角名的按鈕，避免細角搶位。
 * 例子連結用 `quiz.html?c=<part>&p=<頁碼>`（`p` 由 1 起，等於題目在該頁的次序）：11.1 Q12 = `ch11-1` p13、11.1 Q21 = p22、11.3 Q17 = `ch11-3` p21、11.4 Q35 = `ch11-4` p40、11R Q12 = `ch11-revision` p12。Q17 就係老師指定的「由所求設 x」示範（x → 內錯角 → 半徑 → 2× → 弧比 → 內角和）。
 * `tools/build.py` 新增 **S21**：`thinking` 的中英對稱、例題 `part`／`p` 存在、型態 `anim` 有 `points`／`segments`／`steps`、分類器 `verdict` 與 `answers` 對得上。
-* `tools/smoke_test.js` 新增「章節心得」22 條斷言：卡片位置、五點編號與中英標題、KaTeX 零錯誤、8 條例題連結、五幅 `cg-static` 圖（按鈕與字幕 CSS 隱藏、弧線合法、accent 標同一條弧）、四隻角逐一點選（只亮一條弧、判決正確、中英兩版），以及 ch17 冇心得卡的回歸測試（`matchMedia` 暫時當作 reduced motion，令逐格揭示同步發生）。
+* `tools/smoke_test.js` 新增「章節心得」二十多條斷言：目錄頁**只有入口卡**（且冇五點／五幅圖／分類器）、入口按鈕的 `href` 與中英文字、`notes.html` 的五點編號與中英標題、KaTeX 零錯誤、8 條例題連結、五幅 `cg-static` 圖（按鈕與字幕 CSS 隱藏、弧線合法、accent 標同一條弧）、四隻角逐一點選（只亮一條弧、判決正確、中英兩版）、返回鍵與頂欄標題，以及 ch17 冇入口卡／`notes.html?ch=ch17` 只出提示的回歸測試（測試時把 `matchMedia` 當作 reduced motion，令逐格揭示同步發生）。`build.py` 的版本戳亦加入 `notes.html`。
 * 驗證：`tools/build.py` 0 錯 0 警；完整 smoke 全綠；`verify_ch11_4.py`／`verify_ch11_revision.py`／`figcheck.py` 全 PASS；真瀏覽器（1280／390px）截圖核對五幅圖、分類器與中英／英文模式。
 
 ### 9.18 第 12.1 節：圓的切線（2026-11-17）

@@ -233,8 +233,9 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 
 ## 章節心得（`site.json` 的 `chapter.thinking`）
 
-第 11 章的章節頁（`chapter.html?ch=ch11`）在引言卡之後多一張「章節心得」卡，內容全部來自
-`site.json` 的 `classwork.chapters[].thinking`——前端只負責排位，改字只需改 JSON。
+第 11 章的章節頁（`chapter.html?ch=ch11`）在引言卡之後多一張**入口卡**（標題、引言、統計、
+「打開心得」按鈕）；全文在獨立一頁 `notes.html?ch=ch11`，唔會把五點、五幅圖、分類器塞進目錄頁。
+兩頁的內容都來自 `site.json` 的 `classwork.chapters[].thinking`——前端只負責排位，改字只需改 JSON。
 
 * `title` / `lead`：卡片標題與一句引言（中英各一）。
 * `points[]`：`no`（01、02…）、`title`、`body`（可用 `$…$`）、`examples[]`
@@ -246,8 +247,9 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
 * `classify`：兩問分類器（`assets/demos.js` 的 `classify`）。`angles[]` 每隻角有
   `id`（`oca`／`acd`／`aod`／`aeo`，對應圖上的固定位置）、`label`、`verdict`；
   `answers` 寫兩問的答案；`verdicts` 寫三種判決（`circumference`／`centre`／`normal`）的標題與說明。
-* `build.py` 的 S21 會檢查以上欄位，`tools/smoke_test.js` 的「章節心得」段落會實際點四隻角，
-  確認每次都只亮一條弧、判決正確。其他章節冇寫 `thinking` 就照舊不顯示。
+* `build.py` 的 S21 會檢查以上欄位，`tools/smoke_test.js` 的「章節心得」段落會先驗目錄頁只有
+  入口卡，再開 `notes.html` 點四隻角，確認每次都只亮一條弧、判決正確。其他章節冇寫 `thinking`
+  就照舊不顯示（`notes.html` 會顯示一句「這一章未有章節心得」）。
 
 ## 對圖流程（figpack → 外部 → figimport）
 

@@ -753,7 +753,7 @@ STAMP_RE = re.compile(r"window\.__V\s*=\s*[^;]+;")
 # style.css 亦要帶版本戳：HTML／app.js／data 都是新 URL，只有 CSS 的 href 不變，
 # 學生就可能沿用快取的舊樣式（＝改了 CSS 但看不到）。這裡一併把 href 加上 ?v=。
 CSS_RE = re.compile(r'href="assets/style\.css(\?v=[0-9a-f]+)?"')
-STAMP_HTML = ("index.html", "quiz.html", "chapter.html")
+STAMP_HTML = ("index.html", "quiz.html", "chapter.html", "notes.html")
 STAMP_ASSETS = ("assets/app.js", "assets/circle.js", "assets/demos.js", "assets/style.css", "data/index.js", "data/figures.js")
 
 

@@ -330,6 +330,7 @@ ok(cssDisp(sc2, ".answer-box.sol-answer") === "none",
 ok(/window\.__V = "[0-9a-f]{8}"/.test(read("index.html")), "index.html 有 build 版本戳");
 ok(/window\.__V = "[0-9a-f]{8}"/.test(read("quiz.html")), "quiz.html 有 build 版本戳");
 ok(/window\.__V = "[0-9a-f]{8}"/.test(read("chapter.html")), "chapter.html 有 build 版本戳");
+ok(/window\.__V = "[0-9a-f]{8}"/.test(read("notes.html")), "notes.html 有 build 版本戳");
 
 /* ── 一鍵複製 LLM 提問 Prompt ────────────────────────────────────────── */
 console.log("\n== LLM 提問 Prompt ==");
@@ -3547,45 +3548,58 @@ ok(revisionReplay11,"11R: every backward step and restart restores the matching 
 ok(["3","19","21","24","33"].every((code)=>revisionQs11.find((q)=>q.code===code).solution.tip.en.includes("official")),
   "11R: verified official notation errors are identified in the affected questions");
 
-/* ── 6c-9. 第 11 章心得（章節頁卡片）：五點、五型態、兩問分類器 ───────── */
-console.log("\n== 第 11 章 · 章節心得（chapter notes）==");
+/* ── 6c-9. 第 11 章章節心得：目錄頁入口卡 ＋ notes.html 全文 ──────────── */
+console.log("\n== 第 11 章 · 章節心得（入口卡 ＋ notes.html）==");
 const TH11 = CW_CHAPTERS.find((c) => c.id === "ch11").thinking;
 const thinkPage = boot("chapter.html", "?ch=ch11");
-const thinkCard = thinkPage.$$("#chapter-body > .card")[1];
-ok(!!TH11 && !!thinkCard && thinkCard.classList.contains("think"),
-  "章節頁在引言卡之後多一張「章節心得」卡");
-ok(thinkPage.$$(".think-point").length === TH11.points.length &&
-  thinkPage.$$(".think-point .think-no").map((n) => n.textContent).join() === "01,02,03,04,05",
+const entryCard = thinkPage.$$("#chapter-body > .card")[1];
+ok(!!TH11 && !!entryCard && entryCard.classList.contains("think-entry"),
+  "目錄頁只多一張「章節心得」入口卡");
+ok(thinkPage.$$(".think-point").length === 0 && thinkPage.$$(".think-shape").length === 0 &&
+  thinkPage.$$(".cls-pick").length === 0 && thinkPage.$$(".cg-static").length === 0,
+  "目錄頁冇塞入五點／五幅圖／分類器（全文留在心得頁）");
+const goNotes = thinkPage.$(".think-entry-go");
+ok(!!goNotes && goNotes.getAttribute("href") === "notes.html?ch=ch11",
+  "入口卡按鈕指向 notes.html?ch=ch11");
+ok(/打開心得/.test(goNotes.textContent) && /Open the notes/.test(goNotes.textContent),
+  "入口按鈕有中英兩版");
+ok(/5 個論點/.test(entryCard.textContent) && /5 個型態/.test(entryCard.textContent),
+  "入口卡列出「5 個論點 · 5 個型態」統計");
+
+const notesPage = boot("notes.html", "?ch=ch11");
+ok(!!notesPage.$("#notes-body .think") && notesPage.$$(".think-point").length === TH11.points.length,
+  "心得頁列出五個論點");
+ok(notesPage.$$(".think-point .think-no").map((n) => n.textContent).join() === "01,02,03,04,05",
   "五個論點按 01–05 編號列出");
-ok(thinkPage.$$(".think-point .think-h .l-zh").length === 5 &&
-  thinkPage.$$(".think-point .think-h .l-en").length === 5,
+ok(notesPage.$$(".think-point .think-h .l-zh").length === 5 &&
+  notesPage.$$(".think-point .think-h .l-en").length === 5,
   "每個論點都有中英標題");
 ok(TH11.points.map((p) => p.title.en).join("|") ===
   "To arc, or not to arc|Where to start|Circle is Radius, Radius is Circle|" +
   "Theorems give angles; chords and similar triangles give lengths|Five common shapes",
   "英文標題就是老師最後定稿的五個");
-ok(/To arc, or not to arc/.test((thinkPage.$(".think") || {}).textContent || ""),
-  "章節頁真的印出英文標題");
-ok(thinkPage.$$(".think .katex-error").length === 0 &&
-  !thinkPage.$$(".think-body").some((n) => /\$/.test(n.textContent)),
+ok(/To arc, or not to arc/.test((notesPage.$(".think") || {}).textContent || ""),
+  "心得頁真的印出英文標題");
+ok(notesPage.$$(".think .katex-error").length === 0 &&
+  !notesPage.$$(".think-body").some((n) => /\$/.test(n.textContent)),
   "五點正文的 KaTeX 零錯誤，$…$ 全部渲染");
-const thinkLinks = thinkPage.$$(".think-ex a");
+const thinkLinks = notesPage.$$(".think-ex a");
 ok(thinkLinks.length >= 5 && thinkLinks.every((a) => /^quiz\.html\?c=ch11/.test(a.getAttribute("href"))),
   "例題連結全部指向第 11 章（" + thinkLinks.length + " 條）");
 
-ok(thinkPage.$$(".think-shape").length === 5 &&
-  thinkPage.$$(".think-shape .cg-static").length === 5,
+ok(notesPage.$$(".think-shape").length === 5 &&
+  notesPage.$$(".think-shape .cg-static").length === 5,
   "五個型態圖用 circle.js 的靜態模式（cg-static）");
-const thinkStyle = thinkPage.doc.createElement("style");
+const thinkStyle = notesPage.doc.createElement("style");
 thinkStyle.textContent = cssText;
-thinkPage.doc.head.appendChild(thinkStyle);
-ok(cssDisp(thinkPage, ".think-shape .cg-row") === "none" &&
-  cssDisp(thinkPage, ".think-shape .cg-say") === "none",
+notesPage.doc.head.appendChild(thinkStyle);
+ok(cssDisp(notesPage, ".think-shape .cg-row") === "none" &&
+  cssDisp(notesPage, ".think-shape .cg-say") === "none",
   "型態圖的按鈕與字幕在 CSS 隱藏（只做圖）");
-ok(thinkPage.$$(".think-shape .cg-arc").length >= 12 &&
-  thinkPage.$$(".think-shape .cg-circle-arc").length === 5,
+ok(notesPage.$$(".think-shape .cg-arc").length >= 12 &&
+  notesPage.$$(".think-shape .cg-circle-arc").length === 5,
   "每幅型態都畫出角度弧，並把「同一條弧」用 accent 標出來");
-ok(thinkPage.$$(".think-shape .cg-arc").every((n) => {
+ok(notesPage.$$(".think-shape .cg-arc").every((n) => {
   const d = n.getAttribute("d") || "";
   return d && !/NaN|undefined/.test(d);
 }), "型態圖的弧線都是合法路徑");
@@ -3593,38 +3607,47 @@ ok(TH11.shapes.map((s) => s.name.en).join("|") ===
   "the butterfly|the fake butterfly|fortune fan|semi-circle $90^\\circ$|cyclic quadrilateral",
   "型態名稱沿用老師定的英文（the butterfly／the fake butterfly／fortune fan）");
 
-const clsPicks = thinkPage.$$(".cls-pick");
-ok(clsPicks.length === 4 && thinkPage.$$(".cls-mark").length === 4,
+const clsPicks = notesPage.$$(".cls-pick");
+ok(clsPicks.length === 4 && notesPage.$$(".cls-mark").length === 4,
   "分類器有四隻可點角，圖上亦有四個編號標記");
-ok(thinkPage.$$(".cls-pick[aria-pressed='true']").length === 0 &&
-  thinkPage.$$(".cls-verdict").length === 0,
+ok(notesPage.$$(".cls-pick[aria-pressed='true']").length === 0 &&
+  notesPage.$$(".cls-verdict").length === 0,
   "未揀角之前不預設答案");
-/* 逐格揭示用計時器；測試時把「減少動態」當真，令每一步同步出現 */
-thinkPage.ctx.window.matchMedia = () => ({ matches: true });
+notesPage.ctx.window.matchMedia = () => ({ matches: true });
 clsPicks[1].click();
-ok(thinkPage.$$(".cls-arc.on").length === 1 &&
-  thinkPage.$(".cls-arc.on").getAttribute("data-angle") === "acd",
+ok(notesPage.$$(".cls-arc.on").length === 1 &&
+  notesPage.$(".cls-arc.on").getAttribute("data-angle") === "acd",
   "揀 ∠ACD 只亮那一條弧");
-ok(thinkPage.$$(".cls-row").length === 2,
-  "兩問（頂點／兩臂另一端）都問了");
-ok(/圓周角/.test((thinkPage.$(".cls-verdict-h") || {}).textContent || "") &&
-  /circumference/i.test((thinkPage.$(".cls-verdict-h") || {}).textContent || ""),
+ok(notesPage.$$(".cls-row").length === 2, "兩問（頂點／兩臂另一端）都問了");
+ok(/圓周角/.test((notesPage.$(".cls-verdict-h") || {}).textContent || "") &&
+  /circumference/i.test((notesPage.$(".cls-verdict-h") || {}).textContent || ""),
   "∠ACD 判為「特殊角：圓周角」");
 clsPicks[0].click();
-ok(/普通角/.test((thinkPage.$(".cls-verdict-h") || {}).textContent || ""),
+ok(/普通角/.test((notesPage.$(".cls-verdict-h") || {}).textContent || ""),
   "∠OCA（一臂止於圓心）判為「普通角」");
 clsPicks[2].click();
-ok(/圓心角/.test((thinkPage.$(".cls-verdict-h") || {}).textContent || ""),
+ok(/圓心角/.test((notesPage.$(".cls-verdict-h") || {}).textContent || ""),
   "∠AOD 判為「特殊角：圓心角」");
 clsPicks[3].click();
-ok(/普通角/.test((thinkPage.$(".cls-verdict-h") || {}).textContent || "") &&
-  /AEO/.test((thinkPage.$(".cls-sel") || {}).textContent || ""),
+ok(/普通角/.test((notesPage.$(".cls-verdict-h") || {}).textContent || "") &&
+  /AEO/.test((notesPage.$(".cls-sel") || {}).textContent || ""),
   "∠AEO（頂點在交點）判為「普通角」");
-ok(thinkPage.$$(".cls-row-v.l-zh").length === 2 && thinkPage.$$(".cls-row-v.l-en").length === 2,
+ok(notesPage.$$(".cls-row-v.l-zh").length === 2 && notesPage.$$(".cls-row-v.l-en").length === 2,
   "兩問的答案有中英兩版");
+const backLink = notesPage.$("#notes-back");
+ok(!!backLink && backLink.getAttribute("href") === "chapter.html?ch=ch11",
+  "心得頁的返回鍵指回這一章的目錄頁");
+ok(/第 11 章/.test((notesPage.$("#notes-name") || {}).textContent || "") &&
+  /章節心得/.test((notesPage.$("#notes-ch") || {}).textContent || ""),
+  "心得頁頂欄顯示章名，右邊標明「章節心得」");
+
 const ch17NoThink = boot("chapter.html", "?ch=ch17");
-ok(ch17NoThink.$$(".think").length === 0 && ch17NoThink.$$(".cls-pick").length === 0,
-  "其他章節（ch17）沒有心得卡，版面照舊");
+ok(ch17NoThink.$$(".think-entry").length === 0 && ch17NoThink.$$(".cls-pick").length === 0,
+  "其他章節（ch17）沒有入口卡，版面照舊");
+const notes17 = boot("notes.html", "?ch=ch17");
+ok(!notes17.$("#notes-body .think") &&
+  /未有章節心得/.test((notes17.$("#notes-body") || {}).textContent || ""),
+  "未有心得時 notes.html 只顯示一句提示，不會爆");
 
 console.log("\n== Chapter 12.1: tangents, all questions and step players ==");
 const tangent12 = JSON.parse(read("data/src/ch12-1.json"));
