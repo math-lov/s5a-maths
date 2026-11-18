@@ -240,9 +240,10 @@ node tools/preview_prompt.js ch10-A1 zh        # 也可用 ch10-B3 en
   `"notes": "ch11"` 這個指針。
 * `build.py` 會驗證（S21）、生成 `data/notes-<id>.js`（`window.S5A_NOTES_CH11`），並把入口卡要用的
   摘要（title／lead／點數／圖數）寫入 `index.js` 的章節物件（`notesSummary`，幾百 bytes）。
-* 章節頁（`chapter.html?ch=ch11`）在引言卡之後只放一張**入口卡**（標題、引言、統計、「打開心得」）；
-  全文在 `notes.html?ch=ch11` 才動態載入 `data/notes-<id>.js`。所以普通題目頁唔會再下載心得內容
-  （實測 `index.js` 由 85 KB 減到 62 KB）。
+* 章節頁（`chapter.html?ch=ch11`）唔會另開大卡：心得是 `.part-grid` 裡的**其中一張節卡**
+  （同 11.1–11R 一樣大小、同一個圓環位，排在最後），按入去 `notes.html?ch=ch11` 才看全文。
+  全文由 `data/notes-<id>.js` 動態載入，所以普通題目頁唔會下載心得內容
+  （實測 `index.js` 由 85 KB 減到 62 KB）。心得頁與全站一樣用 720px 置中欄，唔另設闊度。
 * 新增一章心得：寫 `data/src/notes/ch12.json` → 在 `site.json` 該章加 `"notes": "ch12"` → 跑 `build.py`。
 
 * `title` / `lead`：卡片標題與一句引言（中英各一）。

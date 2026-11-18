@@ -579,41 +579,34 @@
     var p = new URLSearchParams(location.search);
     return (p.get("ch") || ((chapters()[0] || {}).id) || "").toLowerCase();
   }
-  /* 章節頁只放一張「入口卡」，按入去 notes.html 才看全文
-     （不要把五點、五幅圖、分類器全部塞進目錄頁）。 */
-  function thinkingEntry(ch) {
+  /* 章節心得在目錄頁就是其中一張節卡（同 .part-btn 一樣大小），
+     按入去 notes.html 才看全文（不要把五點、五幅圖、分類器塞進目錄頁）。 */
+  function notesTile(ch) {
     var t = ch.notesSummary || {};
-    var card = el("div", "card think think-entry");
-    var head = el("div", "q-head");
-    var code = el("span", "q-code");
-    code.appendChild(pairSpan({ zh: "章節心得", en: "Chapter notes" }));
-    head.appendChild(code);
-    card.appendChild(head);
-
-    var h = el("h2", "think-entry-h");
-    h.appendChild(pairSpan(t.title || {}));
-    card.appendChild(h);
-    if (t.lead) card.appendChild(pair(t.lead, "div", "bi think-lead"));
-
+    var a = el("a", "part-btn tile-link");
+    a.href = "notes.html?ch=" + encodeURIComponent(ch.id);
+    /* 同其他節卡一樣有左邊的圓環位（心得冇進度，所以留空） */
+    var ring = el("div", "ring");
+    ring.style.setProperty("--p", 0);
+    ring.setAttribute("data-label", "");
+    ring.setAttribute("aria-hidden", "true");
+    a.appendChild(ring);
+    var body = el("div", "t-body");
+    var nm = el("div", "t-name", (t.title && t.title.zh) || "章節心得");
+    nm.appendChild(el("span", "t-en", (t.title && t.title.en) || "Chapter notes"));
+    body.appendChild(nm);
     /* notesSummary 只帶數字（points／shapes），全文才有陣列；兩種都食 */
     var nPoints = typeof t.points === "number" ? t.points : (t.points || []).length;
     var nShapes = typeof t.shapes === "number" ? t.shapes : (t.shapes || []).length;
-    var meta = el("div", "think-entry-meta");
-    meta.appendChild(mchips([
+    var mt = el("div", "t-meta");
+    mt.appendChild(mchips([
       { zh: nPoints + " 個思考方向", en: nPoints + " moves" },
       { zh: nShapes + " 個常見圖形", en: nShapes + " shapes" },
       { zh: "兩問分類器", en: "two-question check" }
     ]));
-    card.appendChild(meta);
-
-    var go = el("a", "btn btn-primary think-entry-go");
-    go.href = "notes.html?ch=" + encodeURIComponent(ch.id);
-    go.appendChild(pairSpan({ zh: "打開心得", en: "Open the notes" }));
-    var arrow = el("span", "arw", "→");
-    arrow.setAttribute("aria-hidden", "true");
-    go.appendChild(arrow);
-    card.appendChild(go);
-    return card;
+    body.appendChild(mt);
+    a.appendChild(body);
+    return a;
   }
 
   /* 章節心得（site.json 的 chapter.thinking）：五點 ＋ 型態圖 ＋ 分類器。
@@ -767,8 +760,7 @@
     card.appendChild(meta);
     body.appendChild(card);
 
-    /* 這一章的教學心得（有寫才有）：目錄頁只放入口卡，全文在 notes.html */
-    if (ch.notes) body.appendChild(thinkingEntry(ch));
+
 
     var list = el("div", "part-grid");
     list.style.marginTop = "14px";
@@ -810,6 +802,8 @@
       btn.onclick = function () { go("quiz.html?c=" + encodeURIComponent(part.id)); };
       list.appendChild(btn);
     });
+    /* 章節心得：同其他節卡一樣大小，排在最後（11.4／11R 之後） */
+    if (ch.notes) list.appendChild(notesTile(ch));
     body.appendChild(list);
   }
 

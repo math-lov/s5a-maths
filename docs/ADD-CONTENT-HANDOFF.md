@@ -643,6 +643,15 @@ s5a-maths\source\SMS_sol_5B17_e.docx     （官方答案）
 * 題幹、題解、圖解字幕、定理簡稱與列印工作紙（`tools/make_worksheet_docx.py` 的 `plain()` 會把 `\,` 印成空格）全部一致顯示 `AB // CD`。以後新增內容照此寫法，不要再用 `\parallel` 或 `∥`；`tools/build.py` 的現有檢查（S6／S7／S19）不受影響。
 * 驗證：`python -X utf8 tools/build.py` 0 錯 0 警；`node --max-old-space-size=8192 tools/smoke_test.js` 全部通過；另用真 KaTeX 逐條渲染 75 條含 `//` 的數式，零錯誤，並在真瀏覽器截圖核對數學模式與純文字兩種寫法。
 
+### 9.22 心得頁排版歸隊：720 置中、目錄頁用同款節卡（2026-11-18）
+
+* 老師指：心得頁排版要跟站內其他頁一樣**置中**（不要自立門戶的 1040px 闊欄）；目錄頁的心得**不要特別大張**，跟其他節卡一樣大小、排在 11.4／11R 之後。
+* `style.css`：刪掉 `body[data-page="notes"] > .wrap { max-width: 1040px }`，回到全站 `.wrap { max-width: 720px; margin: 0 auto }`；72ch 的文字上限在 720 欄內剛好貼近卡片寬度。
+* `app.js`：移除舊的 `thinkingEntry()` 大卡，改為 `notesTile(ch)`——一隻 `<a class="part-btn tile-link" href="notes.html?ch=…">`，內含同款 `.ring`（心得冇進度，留空）、`.t-name`、`.t-en` 與 `.t-meta` 三個 mchip；`renderChapter()` 在節卡迴圈之後 `list.appendChild(notesTile(ch))`，所以同格、同尺寸、排最後。
+* 實測（800px 視窗）：心得卡與 11R 卡同為 338×236，圓環 x 419／69（差 350＝一欄），標題 x 481／131（同一內距）。
+* smoke 更新：唔再找 `.think-entry`／「打開心得」，改為找 `.part-grid a[href="notes.html?ch=ch11"]`，並驗「同格、數目 = 節數 + 1、排最後」。
+* 驗證：build 0 錯 0 警；完整 smoke 全綠；1080px 真瀏覽器截圖核對章節頁與心得頁。
+
 ### 9.21 章節心得搬出 site.json：一檔一章，按需載入（2026-11-18）
 
 * 老師指出：`site.json` 是導覽／元資料，心得是「內容」，應該跟題目一樣獨立成檔；而且將來每一章都想放自己的教學心得（不是教科書內容）。

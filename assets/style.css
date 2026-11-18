@@ -1727,11 +1727,8 @@ body[data-lang="both"] .cg-split .cg-en {
 .cg-count { white-space: nowrap; }
 
 /* 目錄頁的入口卡：只有標題、引言、統計與一個按鈕 */
-.think-entry-h { margin: 0 0 var(--sp-2); font-size: 18px; }
-.think-entry-h .l-zh, .think-entry-h .l-en { display: block; }
-.think-entry .think-lead { margin-bottom: var(--sp-3); }
-.think-entry-meta { margin-bottom: var(--sp-3); }
-.think-entry-go { display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+/* 章節心得在目錄頁就是其中一張節卡（同 .part-btn 一樣大），只係用 <a> 連去 notes.html */
+.part-btn.tile-link { text-decoration: none; color: inherit; }
 
 .think-head h2 { margin: 0 0 var(--sp-2); font-size: 19px; }
 /* 卡片右上角的小籤：只有中英並列才加分隔，免得「章節心得Chapter notes」黏成一串 */
@@ -1822,7 +1819,7 @@ body[data-lang="both"] .think-shape-name .l-zh, body[data-lang="both"] .think-sh
 .think-fig .cg { margin: 0; }
 
 /* Notes keep prose readable while giving each worked figure enough room. */
-body[data-page="notes"] > .wrap { max-width: 1040px; }
+/* 心得頁同全站一樣用 720px 置中欄（唔好自立門戶用 1040px） */
 .think-body, .think-lead { max-width: 72ch; }
 .think-body .l-zh, .think-body .l-en { line-height: 1.85; }
 .think-shape-replay { margin-block: 4px 8px; }

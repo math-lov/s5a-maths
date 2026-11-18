@@ -3555,19 +3555,19 @@ ok(["3","19","21","24","33"].every((code)=>revisionQs11.find((q)=>q.code===code)
 console.log("\n== 第 11 章 · 章節心得（入口卡 ＋ notes.html）==");
 const TH11 = JSON.parse(read("data/src/notes/ch11.json"));
 const thinkPage = boot("chapter.html", "?ch=ch11");
-const entryCard = thinkPage.$$("#chapter-body > .card")[1];
-ok(!!TH11 && !!entryCard && entryCard.classList.contains("think-entry"),
-  "目錄頁只多一張「章節心得」入口卡");
+const notesTile = thinkPage.$('.part-grid a[href="notes.html?ch=ch11"]');
+ok(!!TH11 && !!notesTile && notesTile.classList.contains("part-btn"),
+  "目錄頁的章節心得是同款節卡（.part-btn）");
+ok(thinkPage.$$("#chapter-body > .card").length === 1, "目錄頁冇額外的大卡（只剩章節引言）");
 ok(thinkPage.$$(".think-point").length === 0 && thinkPage.$$(".think-shape").length === 0 &&
   thinkPage.$$(".cls-pick").length === 0 && thinkPage.$$(".cg-static").length === 0,
   "目錄頁冇塞入五點／五幅圖／分類器（全文留在心得頁）");
-const goNotes = thinkPage.$(".think-entry-go");
-ok(!!goNotes && goNotes.getAttribute("href") === "notes.html?ch=ch11",
-  "入口卡按鈕指向 notes.html?ch=ch11");
-ok(/打開心得/.test(goNotes.textContent) && /Open the notes/.test(goNotes.textContent),
-  "入口按鈕有中英兩版");
-ok(/5 個思考方向/.test(entryCard.textContent) && /5 個常見圖形/.test(entryCard.textContent),
-  "入口卡列出「5 個思考方向 · 5 個常見圖形」統計");
+const gridTiles = thinkPage.$$("#chapter-body .part-grid > *");
+const ch11Sections = (CW_CHAPTERS.find((c) => c.id === "ch11").sections || []).length;
+ok(gridTiles.length === ch11Sections + 1 && gridTiles[gridTiles.length - 1] === notesTile,
+  "心得卡與其他節卡同格，排在 11.4／11R 之後（" + (ch11Sections + 1) + " 張）");
+ok(/5 個思考方向/.test(notesTile.textContent) && /5 個常見圖形/.test(notesTile.textContent),
+  "節卡列出「5 個思考方向 · 5 個常見圖形」統計");
 
 const notesPage = boot("notes.html", "?ch=ch11");
 ok(!!notesPage.$("#notes-body .think") && notesPage.$$(".think-point").length === TH11.points.length,
