@@ -3906,5 +3906,22 @@ stagedQ19.$(".cg-restart").click();
 ok(!extraLength19(),"12.1 Q19: Restart preserves the initial givens and clears later conditions");
 stagedQ19.dom.window.close();
 
+const tangentTestCard12 = JSON.parse(read("data/src/ch12-1.json")).cards
+  .find((c) => c.id === "ch12-1-card-test").demo.opts.anim;
+chordPage.doc.body.replaceChildren();
+chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, tangentTestCard12);
+const tangentTestGivens12 = () => chordPage.$(".cg-givens").innerHTML;
+const tangentTestInitial12 = tangentTestGivens12();
+ok(chordPage.$$(".cg-givens .cg-length").map((n) => n.textContent).join() === "5,12,13" &&
+  chordPage.$$(".cg-givens path[data-angle-key]").length === 0,
+  "12.1 tangent-test teaching card: 5, 12 and 13 are visible before Next, without assuming a right angle");
+chordPage.$(".cg-next").click();
+chordPage.$(".cg-next").click();
+chordPage.$(".cg-back").click();
+const tangentTestBack12 = tangentTestGivens12();
+chordPage.$(".cg-restart").click();
+ok(tangentTestBack12 === tangentTestInitial12 && tangentTestGivens12() === tangentTestInitial12,
+  "12.1 tangent-test teaching card: givens persist on Back and Restart");
+
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

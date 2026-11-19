@@ -219,3 +219,11 @@ build.check_question(sample,'angle regression',set(),need_input=True)
 assert any('anim' in w and 'goal' in w for w in build.WARNINGS),build.WARNINGS
 build.ERRORS.clear();build.WARNINGS.clear()
 print('PASS: 54 source questions, 5 cards; original angle/length givens, tangent perpendicularity, parallel lines, symbolic claims and bilingual formula synchronisation')
+
+# The tangent-test teaching example also needs its premises before Next.
+a=next(c['demo']['opts']['anim'] for c in D['cards'] if c['id']=='ch12-1-card-test')
+assert {''.join(v['between']):v['text'] for v in a['givens']['segmentLabels']+a['givens']['dimensions']} == {'OA':'5','AP':'12','OP':'13'}
+assert not a['givens'].get('arcs'), 'The right angle is a deduction, not a given'
+p=build_points(a)
+for side,value in [('OA',5),('AP',12),('OP',13)]:near(length(p,side)*5,value,'teaching card '+side)
+print('PASS: tangent-test card starts with all three given lengths and leaves perpendicularity to be proved')

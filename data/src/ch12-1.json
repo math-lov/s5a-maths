@@ -265,7 +265,43 @@
       "hideSolvedGoals": true,
       "r": 80.55555555555556,
       "cx": 145.55555555555554,
-      "cy": 195.0
+      "cy": 195.0,
+      "readable": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "between": [
+          "O",
+          "A"
+         ],
+         "text": "5",
+         "id": "given-OA",
+         "dx": -14,
+         "dy": -6
+        },
+        {
+         "between": [
+          "A",
+          "P"
+         ],
+         "text": "12",
+         "id": "given-AP",
+         "dx": 6,
+         "dy": -14
+        }
+       ],
+       "dimensions": [
+        {
+         "between": [
+          "O",
+          "P"
+         ],
+         "text": "13",
+         "offset": 36,
+         "dy": -8
+        }
+       ]
+      }
      }
     }
    },
