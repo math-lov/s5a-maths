@@ -205,3 +205,32 @@ assert abs(angle(p,'BAD')+angle(p,'BCD')-180)>1
 p=svg_points(4);parallel(p,'AB','DC')
 assert abs(angle(p,'BAD')+angle(p,'BCD')-180)>1
 print('PASS: Section Check vector givens and counterexamples')
+
+# Every numerical angle in the original question must be visible before Next.
+# Match geometric rays, so equivalent names such as ACB and BCE are accepted.
+def wedge(p, names):
+    v = p[names[1]]
+    return (names[1], tuple(sorted(round(math.atan2(p[k][1]-v[1], p[k][0]-v[0]), 8)
+                                    for k in (names[0], names[2]))))
+count = 0
+for code, q in Q.items():
+    if not q.get('anim'): continue
+    a = q['anim']; p = build_points(a)
+    shown = {wedge(p, v[1]+v[0]+v[2]): v[3] for v in a.get('givens', {}).get('arcs', [])}
+    for chain, value in re.findall(r'((?:\\angle\s+[A-Z]{3}\s*=\s*)+)(\d+)\^\\circ', q['stem']['en']):
+        for names in re.findall(r'\\angle\s+([A-Z]{3})', chain):
+            assert shown.get(wedge(p, names)) == value+'°', (code, names, value, shown)
+            count += 1
+    assert not check_anim(a, code), check_anim(a, code)
+# Do not promote a later assumption or a theorem's conclusion into a given.
+for code in ['17','23']:
+    assert not Q[code]['anim']['givens'].get('ticks')
+    assert Q[code]['anim']['steps'][2]['givens']['ticks']
+assert Q['34']['anim']['givens']['arcs'][0][3] == 'θ'
+assert Q['34']['anim']['steps'][3]['givens']['arcs'][0][3] == '90°'
+assert not Q['28']['anim']['givens']['arcMeasures'][-1]['from'] == 'B'
+assert Q['28']['anim']['steps'][3]['givens']['arcMeasures'][0]['text'] == '3'
+assert Q['14']['anim']['givens']['parallel'] == [['C','E'],['D','A']]
+assert not Q['21']['anim'].get('givens', {}).get('parallel')
+assert not Q['31']['anim']['givens'].get('parallel')
+print('PASS: all %d stated numerical angles are initial givens; later assumptions remain staged' % count)

@@ -559,7 +559,27 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 203.2512851550814
+      "cx": 203.2512851550814,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "D",
+         "80°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "B",
+         "D",
+         "100°",
+         "given",
+         28
+        ]
+       ]
+      }
      }
     }
    }
@@ -606,7 +626,7 @@
          "D"
         ],
         "k": 0.4,
-        "hidden": true
+        "hidden": false
        }
       },
       "segments": [
@@ -625,6 +645,10 @@
        [
         "D",
         "A"
+       ],
+       [
+        "D",
+        "E"
        ]
       ],
       "steps": [
@@ -718,7 +742,27 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "E",
+         "x",
+         "given",
+         28
+        ],
+        [
+         "B",
+         "A",
+         "C",
+         "x",
+         "given",
+         28
+        ]
+       ]
+      }
      }
     }
    }
@@ -878,7 +922,27 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "D",
+         "50°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "A",
+         "D",
+         "50°",
+         "given",
+         28
+        ]
+       ]
+      }
      }
     }
    }
@@ -1152,7 +1216,37 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "E",
+         "94°",
+         "given",
+         28
+        ],
+        [
+         "B",
+         "A",
+         "D",
+         "50°",
+         "given",
+         28
+        ]
+       ],
+       "ticks": [
+        [
+         "B",
+         "C"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -1394,7 +1488,26 @@
        "C",
        "A"
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "B",
+         "22°",
+         "given",
+         28
+        ]
+       ],
+       "notes": [
+        [
+         "∠ABD = ∠CBD",
+         210,
+         395
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -1676,7 +1789,43 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 203.12443918965351
+      "cx": 203.12443918965351,
+      "givens": {
+       "arcs": [
+        [
+         "E",
+         "A",
+         "D",
+         "105°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "B",
+         "E",
+         "39°",
+         "given",
+         28
+        ],
+        [
+         "B",
+         "A",
+         "C",
+         "60°",
+         "given",
+         54
+        ],
+        [
+         "C",
+         "A",
+         "D",
+         "24°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -1933,7 +2082,29 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 216.75
+      "cx": 216.75,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "A",
+         "C"
+        ]
+       ],
+       "parallel": [
+        [
+         "D",
+         "E"
+        ],
+        [
+         "B",
+         "C"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -2312,7 +2483,27 @@
         46
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "C",
+         "62°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "B",
+         "D",
+         "86°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -2547,7 +2738,29 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "C",
+         "111°",
+         "given",
+         28
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "A",
+         "C"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -2823,7 +3036,27 @@
         46
        ]
       ],
-      "cx": 212.21298499068087
+      "cx": 212.21298499068087,
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "P",
+         "104°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "D",
+         "Q",
+         "89°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -3036,7 +3269,29 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "B",
+         "D",
+         "76°",
+         "given",
+         28
+        ]
+       ],
+       "parallel": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -3240,7 +3495,45 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 221.17019178989312
+      "cx": 221.17019178989312,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "D",
+         "104°",
+         "given",
+         28
+        ],
+        [
+         "B",
+         "D",
+         "C",
+         "58°",
+         "given",
+         28
+        ],
+        [
+         "D",
+         "A",
+         "C",
+         "84°",
+         "given",
+         28
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "A",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -3437,7 +3730,35 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 116.04102137387072
+      "cx": 116.04102137387072,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "E",
+         "122°",
+         "given",
+         28
+        ],
+        [
+         "B",
+         "A",
+         "C",
+         "121°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "B",
+         "D",
+         "122°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -3650,7 +3971,35 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 217.9762630629492
+      "cx": 217.9762630629492,
+      "givens": {
+       "arcs": [
+        [
+         "E",
+         "C",
+         "D",
+         "69°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "D",
+         "E",
+         "38°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "A",
+         "B",
+         "31°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -3894,7 +4243,35 @@
        ]
       ],
       "circle": false,
-      "cx": 203.73921816572383
+      "cx": 203.73921816572383,
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "D",
+         "43°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "A",
+         "D",
+         "43°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "D",
+         "E",
+         "98°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -4154,7 +4531,43 @@
        ]
       ],
       "circle": false,
-      "cx": 216.95306835936412
+      "cx": 216.95306835936412,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "35°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "C",
+         "D",
+         "48°",
+         "given",
+         46
+        ],
+        [
+         "C",
+         "B",
+         "A",
+         "46°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "A",
+         "D",
+         "51°",
+         "given",
+         46
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -4442,7 +4855,45 @@
        ]
       ],
       "circle": false,
-      "cx": 186.87276601026883
+      "cx": 186.87276601026883,
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "C",
+         "107°",
+         "given",
+         28
+        ],
+        [
+         "D",
+         "C",
+         "E",
+         "107°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "B",
+         "D",
+         "56°",
+         "given",
+         28
+        ]
+       ],
+       "ticks": [
+        [
+         "B",
+         "C"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -4526,7 +4977,7 @@
       "points": {
        "O": {
         "centre": true,
-        "hidden": true
+        "hidden": false
        },
        "A": {
         "at": 140
@@ -4681,7 +5132,27 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "B",
+         "C",
+         "122°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "B",
+         "D",
+         "111°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -4934,7 +5405,27 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "E",
+         "A",
+         "D",
+         "97°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "B",
+         "D",
+         "68°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -5190,7 +5681,19 @@
        "C",
        "A"
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "E"
+        ],
+        [
+         "D",
+         "E"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -5510,7 +6013,29 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": true,
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "ticks": [
+        [
+         "B",
+         "C"
+        ],
+        [
+         "C",
+         "E"
+        ]
+       ],
+       "parallel": [
+        [
+         "C",
+         "E"
+        ],
+        [
+         "D",
+         "A"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -5797,7 +6322,49 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 253.3881636538414
+      "cx": 253.3881636538414,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "C",
+         "80°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "B",
+         "D",
+         "60°",
+         "given",
+         60
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "C",
+         1
+        ],
+        [
+         "A",
+         "D",
+         1
+        ],
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "B",
+         "C",
+         2
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -6045,7 +6612,47 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 178.6393223983829
+      "cx": 178.6393223983829,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "32°",
+         "given",
+         28
+        ],
+        [
+         "C",
+         "A",
+         "B",
+         "84°",
+         "given",
+         28
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "D"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ],
+       "parallel": [
+        [
+         "B",
+         "A"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -6293,16 +6900,6 @@
           28
          ]
         ],
-        "ticks": [
-         [
-          "B",
-          "E"
-         ],
-         [
-          "E",
-          "C"
-         ]
-        ],
         "clearAngle": [
          "O",
          "A",
@@ -6310,7 +6907,19 @@
          "C",
          "D",
          "E"
-        ]
+        ],
+        "givens": {
+         "ticks": [
+          [
+           "B",
+           "E"
+          ],
+          [
+           "E",
+           "C"
+          ]
+         ]
+        }
        },
        {
         "zh": "同弓形角相等，組成直角：$\\angle ACD=\\angle ABD=36^\\circ\\quad \\angle BCD=54^\\circ+36^\\circ=90^\\circ$。",
@@ -6393,7 +7002,37 @@
        "en": "Read the givens and point order, then follow one reason at a time."
       },
       "circle": false,
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "36°",
+         "given",
+         28
+        ],
+        [
+         "E",
+         "B",
+         "C",
+         "72°",
+         "given",
+         28
+        ]
+       ],
+       "parallel": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "D",
+         "C"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -6486,7 +7125,7 @@
       "points": {
        "O": {
         "centre": true,
-        "hidden": true
+        "hidden": false
        },
        "A": {
         "at": 150
@@ -6639,7 +7278,27 @@
        "zh": "先讀已知條件及點的次序，再按下一步逐項推理。",
        "en": "Read the givens and point order, then follow one reason at a time."
       },
-      "cx": 290.07849957050456
+      "cx": 290.07849957050456,
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "A",
+         "C",
+         "105°",
+         "given",
+         28
+        ],
+        [
+         "D",
+         "A",
+         "C",
+         "30°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -6888,7 +7547,27 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "E",
+         "102°",
+         "given",
+         28
+        ],
+        [
+         "D",
+         "C",
+         "E",
+         "126°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -7215,7 +7894,19 @@
         30
        ]
       ],
-      "cx": 162.16469858966124
+      "cx": 162.16469858966124,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "E",
+         "F",
+         "124°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -7577,7 +8268,7 @@
       "points": {
        "O": {
         "centre": true,
-        "hidden": true
+        "hidden": false
        },
        "A": {
         "at": 130
@@ -7828,7 +8519,27 @@
         46
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "D",
+         "72°",
+         "given",
+         28
+        ],
+        [
+         "O",
+         "B",
+         "C",
+         "106°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -8075,16 +8786,6 @@
           28
          ]
         ],
-        "ticks": [
-         [
-          "A",
-          "B"
-         ],
-         [
-          "A",
-          "E"
-         ]
-        ],
         "clearAngle": [
          "O",
          "A",
@@ -8092,7 +8793,19 @@
          "C",
          "D",
          "E"
-        ]
+        ],
+        "givens": {
+         "ticks": [
+          [
+           "A",
+           "B"
+          ],
+          [
+           "A",
+           "E"
+          ]
+         ]
+        }
        },
        {
         "zh": "對角互補求第二問：$\\angle BAD=180^\\circ-(50^\\circ+68^\\circ)\\quad =62^\\circ$。",
@@ -8152,7 +8865,27 @@
         46
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "D",
+         "68°",
+         "given",
+         28
+        ],
+        [
+         "A",
+         "D",
+         "E",
+         "18°",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -8441,7 +9174,28 @@
        "zh": "先讀已知條件及點的次序，再按下一步逐項推理。",
        "en": "Read the givens and point order, then follow one reason at a time."
       },
-      "cx": 270.87411293369667
+      "cx": 270.87411293369667,
+      "givens": {
+       "notes": [
+        [
+         "∠CAD = ∠CDA",
+         210,
+         395
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "D",
+         "E",
+         2
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -8525,7 +9279,7 @@
       "points": {
        "O": {
         "centre": true,
-        "hidden": true
+        "hidden": false
        },
        "A": {
         "at": 230
@@ -8704,7 +9458,25 @@
        "zh": "先讀已知條件及點的次序，再按下一步逐項推理。",
        "en": "Read the givens and point order, then follow one reason at a time."
       },
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcMeasures": [
+        {
+         "from": "A",
+         "to": "B",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -8972,7 +9744,32 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "notes": [
+        [
+         "∠BAE = ∠CDE",
+         210,
+         395
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "from": "C",
+         "to": "E",
+         "text": "2",
+         "colour": "given",
+         "offset": 15
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -9258,7 +10055,29 @@
        "C",
        "A"
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "C",
+         "123°",
+         "given",
+         28
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "A",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -9524,7 +10343,18 @@
          "B",
          "C",
          "D"
-        ]
+        ],
+        "givens": {
+         "arcMeasures": [
+          {
+           "from": "B",
+           "to": "C",
+           "text": "3",
+           "colour": "given",
+           "offset": 15
+          }
+         ]
+        }
        },
        {
         "zh": "把同弓形角轉到 A 後相加：$\\angle BAC=\\angle BDC=87^\\circ\\quad \\angle BAD=87^\\circ+29^\\circ=116^\\circ$。",
@@ -9583,7 +10413,35 @@
         46
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "A",
+         "C",
+         "93°",
+         "given",
+         28
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "from": "A",
+         "to": "D",
+         "text": "2",
+         "colour": "given",
+         "offset": 15
+        },
+        {
+         "from": "D",
+         "to": "C",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -9856,7 +10714,42 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "R",
+         "S",
+         "T",
+         "84°",
+         "given",
+         28
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "from": "P",
+         "to": "Q",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        },
+        {
+         "from": "Q",
+         "to": "R",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        },
+        {
+         "from": "R",
+         "to": "S",
+         "text": "2",
+         "colour": "given",
+         "offset": 15
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -9940,7 +10833,7 @@
       "points": {
        "O": {
         "centre": true,
-        "hidden": true,
+        "hidden": false,
         "labelOffset": [
          -18,
          20
@@ -10197,7 +11090,19 @@
         "goal",
         30
        ]
-      ]
+      ],
+      "givens": {
+       "ticks": [
+        [
+         "B",
+         "C"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -10537,7 +11442,29 @@
        "zh": "先讀已知條件及點的次序，再按下一步逐項推理。",
        "en": "Read the givens and point order, then follow one reason at a time."
       },
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "18°",
+         "given",
+         28
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "F"
+        ],
+        [
+         "E",
+         "F"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -11092,7 +12019,27 @@
         "r": 0.6690525589604638
        }
       ],
-      "cx": 185.68582798623467
+      "cx": 185.68582798623467,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "F",
+         "x",
+         "given",
+         28
+        ],
+        [
+         "B",
+         "A",
+         "E",
+         "y",
+         "given",
+         28
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -11368,7 +12315,19 @@
          "D",
          "E",
          "F"
-        ]
+        ],
+        "givens": {
+         "arcs": [
+          [
+           "F",
+           "D",
+           "E",
+           "90°",
+           "given",
+           28
+          ]
+         ]
+        }
        },
        {
         "zh": "ABFE 的對角不互補，故不共圓：$\\angle BAE+\\angle BFE\\quad =135^\\circ+90^\\circ=225^\\circ\\ne180^\\circ$。",
@@ -11428,7 +12387,29 @@
         "goal",
         30
        ]
-      ]
+      ],
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "E",
+         "θ",
+         "given",
+         28
+        ]
+       ],
+       "parallel": [
+        [
+         "B",
+         "C"
+        ],
+        [
+         "E",
+         "D"
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -11743,7 +12724,21 @@
          "D",
          "E",
          "M"
-        ]
+        ],
+        "givens": {
+         "ticks": [
+          [
+           "A",
+           "M",
+           1
+          ],
+          [
+           "M",
+           "C",
+           1
+          ]
+         ]
+        }
        },
        {
         "zh": "同弧圓心角是圓周角兩倍：$\\angle BMD=2(70^\\circ)=140^\\circ$。",
@@ -11829,7 +12824,46 @@
        ]
       ],
       "circle": false,
-      "cx": 225.79200008946898
+      "cx": 225.79200008946898,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "D",
+         "35°",
+         "given",
+         28
+        ],
+        [
+         "B",
+         "A",
+         "C",
+         "90°",
+         "given",
+         28
+        ]
+       ],
+       "notes": [
+        [
+         "∠BCA = ∠ACD",
+         210,
+         395
+        ]
+       ],
+       "ticks": [
+        [
+         "B",
+         "C",
+         2
+        ],
+        [
+         "C",
+         "D",
+         2
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -12144,7 +13178,51 @@
        "zh": "先讀已知條件及點的次序，再按下一步逐項推理。",
        "en": "Read the givens and point order, then follow one reason at a time."
       },
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcs": [
+        [
+         "T",
+         "P",
+         "S",
+         "105°",
+         "given",
+         28
+        ],
+        [
+         "P",
+         "Q",
+         "T",
+         "95°",
+         "given",
+         65
+        ],
+        [
+         "Q",
+         "P",
+         "R",
+         "115°",
+         "given",
+         65
+        ],
+        [
+         "R",
+         "Q",
+         "S",
+         "110°",
+         "given",
+         28
+        ],
+        [
+         "S",
+         "R",
+         "T",
+         "115°",
+         "given",
+         86
+        ]
+       ]
+      }
      },
      "solution": {
       "steps": [
@@ -12447,7 +13525,32 @@
         30
        ]
       ],
-      "cx": 210.0
+      "cx": 210.0,
+      "givens": {
+       "arcMeasures": [
+        {
+         "from": "A",
+         "to": "B",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        },
+        {
+         "from": "B",
+         "to": "C",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        },
+        {
+         "from": "C",
+         "to": "D",
+         "text": "1",
+         "colour": "given",
+         "offset": 15
+        }
+       ]
+      }
      },
      "solution": {
       "steps": [

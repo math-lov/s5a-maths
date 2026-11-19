@@ -3444,7 +3444,7 @@ const cyclicMeta4 = INDEX.parts.find((p) => p.id === "ch11-4");
 ok(cyclicMeta4.stats.questions === 42 && cyclicMeta4.stats.marks === 107 &&
   CW_CHAPTERS.find((c) => c.id === "ch11").sections.some((s) => s.part === "ch11-4"),
   "11.4: chapter registration and 107 teacher-set practice marks agree");
-let cyclicReplay4 = true, cyclicFormula4 = true, cyclicSegments4 = true, cyclicPages4 = true;
+let cyclicReplay4 = true, cyclicFormula4 = true, cyclicSegments4 = true, cyclicPages4 = true, cyclicGivens4 = true;
 for (const [index, q] of cyclicQuestions4.entries()) {
   const rendered = boot("quiz.html", `?c=ch11-4&p=${index + 1}`, null, "show");
   if (rendered.$$(".katex-error").length || !rendered.$(".sol-card") ||
@@ -3458,6 +3458,13 @@ for (const anim of cyclicReaders4) {
     chordPage.$(".cg-svg").textContent, chordPage.$(".cg-say").textContent,
     chordPage.$$("[data-segment]").map((n) => n.getAttribute("data-segment"))]);
   const initial = state(), states = [];
+  const givenAngles = anim.givens?.arcs || [];
+  const initialValues = chordPage.$$(".cg-givens .cg-val").map((n) => n.textContent);
+  if (chordPage.$$(".cg-givens path[data-angle-key]").length !== givenAngles.length ||
+      givenAngles.some((a) => a[3] !== "90°" && !initialValues.includes(a[3])) ||
+      chordPage.$$(".cg-givens [data-tick-key]").length !== (anim.givens?.ticks || []).length ||
+      chordPage.$$(".cg-givens [data-arc-measure]").length !== (anim.givens?.arcMeasures || []).length)
+    cyclicGivens4 = false;
   let segments = new Set();
   for (const [index, step] of anim.steps.entries()) {
     chordPage.$(".cg-next").click();
@@ -3478,6 +3485,23 @@ for (const anim of cyclicReaders4) {
   chordPage.$(".cg-restart").click();
   if (state() !== initial || chordPage.$(".cg-equation") || chordPage.$(".cg-ref").textContent ||
       !chordPage.$(".cg-back").disabled) cyclicReplay4 = false;
+}
+ok(cyclicGivens4, "11.4: all given angles, equal-side marks and arc ratios are visible before Next");
+for (const [code, stepIndex] of [["17",2],["23",2],["28",3],["34",3],["35",3]]) {
+  const anim = cyclicQuestions4.find((q) => q.code === code).anim;
+  chordPage.doc.body.replaceChildren();
+  chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, anim);
+  const givenState = () => chordPage.$(".cg-givens").innerHTML;
+  const initial = givenState();
+  for (let i=0; i<stepIndex; i++) chordPage.$(".cg-next").click();
+  const before = givenState();
+  chordPage.$(".cg-next").click();
+  const added = givenState() !== before;
+  chordPage.$(".cg-back").click();
+  const restored = givenState() === before;
+  chordPage.$(".cg-restart").click();
+  ok(added && restored && givenState() === initial,
+    `11.4 Q${code}: extra part-(b) givens appear at that part and are removed by Back/Restart`);
 }
 ok(cyclicPages4, "11.4: every question page renders bilingual worked solutions with zero KaTeX errors");
 ok(cyclicFormula4, "11.4: all 46 players render the matching step, bilingual formulas and saved reasons");

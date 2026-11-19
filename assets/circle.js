@@ -744,7 +744,7 @@
     // Use the same geometry primitives for initial givens and for later-part
     // conditions. Rebuild from data on Back/Restart; never retain a future given.
     function syncGivens(n) {
-      var fixed = { arcs: [], ticks: [], parallel: [], segmentLabels: [], dimensions: [], notes: [], lines: [], noRays: true };
+      var fixed = { arcs: [], ticks: [], parallel: [], segmentLabels: [], dimensions: [], notes: [], lines: [], arcMeasures: [], noRays: true };
       function add(source) {
         Object.keys(fixed).forEach(function (key) {
           if (Array.isArray(fixed[key])) fixed[key] = fixed[key].concat((source || {})[key] || []);
