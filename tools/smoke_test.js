@@ -3650,7 +3650,7 @@ ok(mainCls.querySelectorAll(".cls-row-v.l-zh").length === 2 &&
 notesPage.ctx.window.matchMedia = () => ({ matches: true });
 const pointFigs = notesPage.$$(".think-point .think-fig");
 ok(pointFigs.length === 5, "第 1、3、4、6、7 點有互動示範");
-ok(notesPage.$$(".think-illustration").length === 12, "新增十二幅雙語概念圖");
+ok(notesPage.$$(".think-illustration").length === 13, "新增十三幅雙語概念圖");
 ok(notesPage.$$(".think-point")[1].querySelectorAll(".think-shape").length === TH11.shapes.length,
   "全部常見圖形放在第 2 點內");
 ok(notesPage.$$(".think-point").every((p) => p.querySelectorAll("svg").length >= 2),

@@ -128,6 +128,105 @@
      }
     },
     {
+     "id": "cyclic-direct-rules",
+     "title": {
+      "zh": "四點共圓：對角與外角",
+      "en": "Four concyclic points: opposite and exterior angles"
+     },
+     "caption": {
+      "zh": "A、B、C、D 四點共圓。對角互補：$\\angle DAB+\\angle BCD=75^\\circ+105^\\circ=180^\\circ$。把 BC 延長至 E，外角等於內對角：$\\angle DCE=\\angle DAB=75^\\circ$。確認四點共圓後，便可直接使用這兩條定理。",
+      "en": "A, B, C and D lie on the circle. Opposite angles are supplementary: $\\angle DAB+\\angle BCD=75^\\circ+105^\\circ=180^\\circ$. Extend BC to E; the exterior angle equals the interior opposite angle: $\\angle DCE=\\angle DAB=75^\\circ$. Once the four points are confirmed concyclic, apply these two theorems directly."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true,
+        "hidden": true
+       },
+       "A": {
+        "at": 210
+       },
+       "B": {
+        "at": 330
+       },
+       "C": {
+        "at": 60
+       },
+       "D": {
+        "at": 120
+       },
+       "E": {
+        "extend": [
+         "B",
+         "C"
+        ],
+        "k": 0.5
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "B",
+        "C"
+       ],
+       [
+        "C",
+        "D"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "C",
+        "E"
+       ]
+      ],
+      "r": 115,
+      "readable": true,
+      "label": {
+       "zh": "圓內接四邊形 ABCD，BC 延長至 E；角 A 是 75°，角 C 是 105°，C 點的外角是 75°。",
+       "en": "Cyclic quadrilateral ABCD with BC extended to E. Angle A is 75°, angle C is 105°, and the exterior angle at C is 75°."
+      },
+      "steps": [
+       {
+        "zh": "對角互補；外角等於內對角。",
+        "en": "Opposite angles are supplementary; an exterior angle equals the interior opposite angle.",
+        "noRays": true,
+        "arcs": [
+         [
+          "A",
+          "D",
+          "B",
+          "75°",
+          "claim",
+          30
+         ],
+         [
+          "C",
+          "B",
+          "D",
+          "105°",
+          "claim",
+          28
+         ],
+         [
+          "C",
+          "D",
+          "E",
+          "75°",
+          "accent",
+          36
+         ]
+        ]
+       }
+      ]
+     }
+    },
+    {
      "id": "ordinary-angle",
      "title": {
       "zh": "其中一邊只到圓心",

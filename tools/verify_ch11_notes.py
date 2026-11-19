@@ -97,7 +97,7 @@ print('All Chapter 11 notes geometry checks passed (%d players, %d shapes, %d ma
 # Supporting figures: check the actual geometry, including the chord-ratio
 # counterexample, rather than trusting captions or drawn length labels.
 figures = {f['id']: f['anim'] for section in notes['points'] for f in section.get('figures', [])}
-assert len(figures) == 12
+assert len(figures) == 13
 for name, anim in figures.items():
     assert not check_anim(anim, name), check_anim(anim, name)
 p = build_points(figures['chord-trap'])
@@ -111,4 +111,9 @@ near(angle(p,'OMB'), 90, 'perpendicular bisector')
 p = build_points(figures['split-dart'])
 near(angle(p,'ADO'), angle(p,'DAO'), 'left isosceles triangle')
 near(angle(p,'ODB'), angle(p,'OBD'), 'right isosceles triangle')
-print('All 12 supporting figures and geometric counterexamples passed.')
+print('All 13 supporting figures and geometric counterexamples passed.')
+
+p = build_points(figures['cyclic-direct-rules'])
+near(angle(p,'DAB') + angle(p,'BCD'), 180, 'cyclic opposite angles')
+near(angle(p,'DCE'), angle(p,'DAB'), 'cyclic exterior angle')
+near(angle(p,'BCE'), 180, 'BC extended through C to E')
