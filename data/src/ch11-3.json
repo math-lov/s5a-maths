@@ -85,7 +85,6 @@
        {
         "en": "Start with two equal arcs: $\\overset{\\frown}{AB}=\\overset{\\frown}{CD}=6\\text{ cm}$.",
         "zh": "先看兩段已知相等的弧：$\\overset{\\frown}{AB}=\\overset{\\frown}{CD}=6\\text{ cm}$。",
-        "arcs": [],
         "circleArcs": [
          [
           "A",
@@ -200,7 +199,8 @@
         "offset": 22
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {}
      }
     }
    }
@@ -321,18 +321,6 @@
        {
         "en": "Corresponding chords are equal $AB=CD$.",
         "zh": "全等三角形的對應弦長相等：$AB=CD$。",
-        "ticks": [
-         [
-          "A",
-          "B",
-          2
-         ],
-         [
-          "C",
-          "D",
-          2
-         ]
-        ],
         "mathLines": [
          "AB=CD"
         ],
@@ -370,7 +358,21 @@
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
       },
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "C",
+         "D",
+         2
+        ]
+       ]
+      }
      }
     }
    }
@@ -518,7 +520,23 @@
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
       },
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcMeasures": [
+        {
+         "id": "equal-arc-AB",
+         "to": "B",
+         "tickCount": 1,
+         "from": "A"
+        },
+        {
+         "id": "equal-arc-CD",
+         "to": "D",
+         "tickCount": 1,
+         "from": "C"
+        }
+       ]
+      }
      }
     }
    }
@@ -678,7 +696,8 @@
         "from": "C"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {}
      }
     }
    }
@@ -863,7 +882,8 @@
         "from": "C"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {}
      }
     }
    }
@@ -987,17 +1007,6 @@
        {
         "en": "Use the angles around O $250^\\circ+x+x=360^\\circ$.",
         "zh": "圓心四周的角度總和為三百六十度：$250^\\circ+x+x=360^\\circ$。",
-        "arcs": [
-         [
-          "O",
-          "A",
-          "C",
-          "250°",
-          "given",
-          60,
-          "reflex"
-         ]
-        ],
         "mathLines": [
          "250^\\circ+x+x=360^\\circ"
         ],
@@ -1053,7 +1062,36 @@
         48
        ]
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "C",
+         "250°",
+         "given",
+         60,
+         "reflex"
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "id": "equal-arc-AB",
+         "to": "B",
+         "tickCount": 1,
+         "from": "A"
+        },
+        {
+         "id": "equal-arc-BC",
+         "to": "C",
+         "tickCount": 1,
+         "from": "B"
+        }
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -1157,10 +1195,6 @@
         "D"
        ],
        [
-        "D",
-        "A"
-       ],
-       [
         "A",
         "C"
        ]
@@ -1169,18 +1203,6 @@
        {
         "en": "Equal chords cut off equal arcs $BC=CD\\ \\Rightarrow\\ \\overset{\\frown}{BC}=\\overset{\\frown}{CD}$.",
         "zh": "同圓內的等弦所對的弧相等：$BC=CD\\ \\Rightarrow\\ \\overset{\\frown}{BC}=\\overset{\\frown}{CD}$。",
-        "ticks": [
-         [
-          "B",
-          "C",
-          2
-         ],
-         [
-          "C",
-          "D",
-          2
-         ]
-        ],
         "circleArcs": [
          [
           "B",
@@ -1263,7 +1285,23 @@
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
       },
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "B",
+         "C",
+         2
+        ],
+        [
+         "C",
+         "D",
+         2
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -1383,16 +1421,6 @@
        {
         "en": "Mark the given angle on arc BC $\\angle BDC=30^\\circ$.",
         "zh": "先標示已知角及它所對的弧：$\\angle BDC=30^\\circ$。",
-        "arcs": [
-         [
-          "D",
-          "B",
-          "C",
-          "30°",
-          "given",
-          28
-         ]
-        ],
         "circleArcs": [
          [
           "B",
@@ -1531,7 +1559,21 @@
         "from": "B"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "B",
+         "C",
+         "30°",
+         "given",
+         28
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -1800,47 +1842,6 @@
        {
         "en": "Mark the given centre angles $\\angle BOC=70^\\circ,\\quad\\text{reflex }\\angle AOC=220^\\circ$.",
         "zh": "先標出兩隻已知的圓心角：$\\angle BOC=70^\\circ,\\quad\\text{reflex }\\angle AOC=220^\\circ$。",
-        "arcs": [
-         [
-          "O",
-          "B",
-          "C",
-          "70°",
-          "given",
-          30
-         ],
-         [
-          "O",
-          "A",
-          "C",
-          "220°",
-          "given",
-          55,
-          "reflex"
-         ]
-        ],
-        "segmentLabels": [
-         {
-          "id": "AB",
-          "between": [
-           "A",
-           "B"
-          ],
-          "text": "9 cm",
-          "dx": 0,
-          "dy": -15
-         },
-         {
-          "id": "BC",
-          "between": [
-           "B",
-           "C"
-          ],
-          "text": "x",
-          "dx": 20,
-          "dy": 0
-         }
-        ],
         "mathLines": [
          "\\angle BOC=70^\\circ",
          "\\text{reflex }\\angle AOC=220^\\circ"
@@ -1909,7 +1910,52 @@
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
       },
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "segmentLabels": [
+        {
+         "id": "AB",
+         "between": [
+          "A",
+          "B"
+         ],
+         "text": "9 cm",
+         "dx": 0,
+         "dy": -15
+        },
+        {
+         "id": "BC",
+         "between": [
+          "B",
+          "C"
+         ],
+         "text": "x",
+         "dx": 20,
+         "dy": 0
+        }
+       ],
+       "arcs": [
+        [
+         "O",
+         "B",
+         "C",
+         "70°",
+         "given",
+         30
+        ],
+        [
+         "O",
+         "A",
+         "C",
+         "220°",
+         "given",
+         55,
+         "reflex"
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2028,18 +2074,6 @@
        {
         "en": "Equal chords give equal centre angles $AB=CD\\quad\\Rightarrow\\quad\\angle COD=x$.",
         "zh": "同圓內等弦所對的圓心角相等：$AB=CD\\quad\\Rightarrow\\quad\\angle COD=x$。",
-        "ticks": [
-         [
-          "A",
-          "B",
-          2
-         ],
-         [
-          "C",
-          "D",
-          2
-         ]
-        ],
         "arcs": [
          [
           "O",
@@ -2048,22 +2082,6 @@
           "x",
           "claim",
           42
-         ],
-         [
-          "O",
-          "B",
-          "C",
-          "50°",
-          "given",
-          30
-         ],
-         [
-          "O",
-          "A",
-          "D",
-          "80°",
-          "given",
-          30
          ]
         ],
         "mathLines": [
@@ -2130,7 +2148,41 @@
         32
        ]
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "C",
+         "D",
+         2
+        ]
+       ],
+       "arcs": [
+        [
+         "O",
+         "B",
+         "C",
+         "50°",
+         "given",
+         30
+        ],
+        [
+         "O",
+         "A",
+         "D",
+         "80°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2247,14 +2299,6 @@
         "arcs": [
          [
           "O",
-          "C",
-          "D",
-          "60°",
-          "given",
-          30
-         ],
-         [
-          "O",
           "A",
           "B",
           "60°",
@@ -2359,7 +2403,21 @@
         "from": "A"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "C",
+         "D",
+         "60°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2448,19 +2506,19 @@
         "at": 90
        },
        "B": {
-        "at": 38
+        "at": 35
        },
        "C": {
-        "at": -14
+        "at": -20
        },
        "D": {
-        "at": -66
+        "at": -75
        },
        "E": {
-        "at": -118
+        "at": -130
        },
        "F": {
-        "at": -170
+        "at": 175
        }
       },
       "segments": [
@@ -2495,39 +2553,24 @@
        [
         "O",
         "F"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "O",
+        "D"
+       ],
+       [
+        "O",
+        "E"
        ]
       ],
       "steps": [
        {
         "en": "Five equal chords cut off five equal arcs $\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}$.",
         "zh": "五條相等的弦對應五段相等的弧：$\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}$。",
-        "ticks": [
-         [
-          "A",
-          "B",
-          2
-         ],
-         [
-          "B",
-          "C",
-          2
-         ],
-         [
-          "C",
-          "D",
-          2
-         ],
-         [
-          "D",
-          "E",
-          2
-         ],
-         [
-          "E",
-          "F",
-          2
-         ]
-        ],
         "mathLines": [
          "\\overset{\\frown}{AB}=\\overset{\\frown}{BC}=\\overset{\\frown}{CD}",
          "\\phantom{\\overset{\\frown}{AB}}=\\overset{\\frown}{DE}=\\overset{\\frown}{EF}"
@@ -2602,7 +2645,38 @@
         "from": "C"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "B",
+         "C",
+         2
+        ],
+        [
+         "C",
+         "D",
+         2
+        ],
+        [
+         "D",
+         "E",
+         2
+        ],
+        [
+         "E",
+         "F",
+         2
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2712,14 +2786,6 @@
           "O",
           "A",
           "B",
-          "75°",
-          "given",
-          30
-         ],
-         [
-          "O",
-          "A",
-          "B",
           "285°",
           "claim",
           52,
@@ -2749,7 +2815,7 @@
           "avoid": "P",
           "text": "x = 20 cm",
           "offset": 22,
-          "id": "AB",
+          "id": "AB-minor",
           "from": "A"
          }
         ],
@@ -2774,7 +2840,7 @@
         "avoid": "P",
         "text": "x",
         "offset": 22,
-        "id": "AB",
+        "id": "AB-minor",
         "from": "A"
        },
        {
@@ -2782,11 +2848,25 @@
         "avoid": "Q",
         "text": "76 cm",
         "offset": 22,
-        "id": "AB",
+        "id": "AB-major",
         "from": "A"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "B",
+         "75°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2907,14 +2987,6 @@
         "arcs": [
          [
           "O",
-          "C",
-          "D",
-          "80°",
-          "given",
-          32
-         ],
-         [
-          "O",
           "B",
           "C",
           "60°",
@@ -3017,7 +3089,21 @@
         "from": "C"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "C",
+         "D",
+         "80°",
+         "given",
+         32
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -3125,16 +3211,6 @@
        {
         "en": "Match each angle with its opposite arc $\\angle QPR:\\angle PRS=\\overset{\\frown}{QR}:\\overset{\\frown}{PS}$.",
         "zh": "先把每隻圓周角與它所對的弧配對：$\\angle QPR:\\angle PRS=\\overset{\\frown}{QR}:\\overset{\\frown}{PS}$。",
-        "arcs": [
-         [
-          "R",
-          "P",
-          "S",
-          "54°",
-          "given",
-          30
-         ]
-        ],
         "circleArcs": [
          [
           "Q",
@@ -3218,7 +3294,21 @@
         "from": "Q"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "R",
+         "P",
+         "S",
+         "54°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -3296,13 +3386,13 @@
         "hidden": true
        },
        "D": {
-        "at": 100
+        "at": 125
        },
        "E": {
-        "at": 180
+        "at": 205
        },
        "F": {
-        "at": 20
+        "at": 45
        }
       },
       "segments": [
@@ -3323,28 +3413,6 @@
        {
         "en": "Equal sides give equal base angles $\\angle DEF=\\angle DFE$.",
         "zh": "等腰三角形的兩隻底角相等：$\\angle DEF=\\angle DFE$。",
-        "ticks": [
-         [
-          "D",
-          "E",
-          2
-         ],
-         [
-          "D",
-          "F",
-          2
-         ]
-        ],
-        "arcs": [
-         [
-          "D",
-          "E",
-          "F",
-          "100°",
-          "given",
-          28
-         ]
-        ],
         "polygons": [
          [
           "D",
@@ -3431,7 +3499,33 @@
         "from": "D"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "D",
+         "E",
+         2
+        ],
+        [
+         "D",
+         "F",
+         2
+        ]
+       ],
+       "arcs": [
+        [
+         "D",
+         "E",
+         "F",
+         "100°",
+         "given",
+         28
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -3565,33 +3659,6 @@
        {
         "en": "Equal chords cut off equal arcs $\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}$.",
         "zh": "三條相等的弦對應三段相等的弧：$\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}$。",
-        "ticks": [
-         [
-          "P",
-          "Q",
-          2
-         ],
-         [
-          "P",
-          "T",
-          2
-         ],
-         [
-          "S",
-          "T",
-          2
-         ]
-        ],
-        "arcs": [
-         [
-          "R",
-          "Q",
-          "T",
-          "70°",
-          "given",
-          54
-         ]
-        ],
         "mathLines": [
          "\\overset{\\frown}{PQ}=\\overset{\\frown}{PT}=\\overset{\\frown}{ST}"
         ],
@@ -3639,14 +3706,6 @@
          "R"
         ],
         "arcs": [
-         [
-          "R",
-          "Q",
-          "T",
-          "70°",
-          "given",
-          54
-         ],
          [
           "R",
           "S",
@@ -3701,7 +3760,38 @@
         "from": "S"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "P",
+         "Q",
+         2
+        ],
+        [
+         "P",
+         "T",
+         2
+        ],
+        [
+         "S",
+         "T",
+         2
+        ]
+       ],
+       "arcs": [
+        [
+         "R",
+         "Q",
+         "T",
+         "70°",
+         "given",
+         54
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -3842,14 +3932,6 @@
         ],
         "arcs": [
          [
-          "B",
-          "O",
-          "A",
-          "57°",
-          "given",
-          28
-         ],
-         [
           "A",
           "O",
           "B",
@@ -3973,7 +4055,35 @@
        "C",
        "A"
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "O",
+         "A",
+         "57°",
+         "given",
+         28
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "id": "equal-arc-AB",
+         "to": "B",
+         "tickCount": 1,
+         "from": "A"
+        },
+        {
+         "id": "equal-arc-CD",
+         "to": "D",
+         "tickCount": 1,
+         "from": "C"
+        }
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -4100,24 +4210,6 @@
        {
         "en": "Equal centre angles give equal chords $\\angle POQ=\\angle POR\\quad\\Rightarrow\\quad PQ=PR$.",
         "zh": "相等的圓心角所對的弦長相等：$\\angle POQ=\\angle POR\\quad\\Rightarrow\\quad PQ=PR$。",
-        "arcs": [
-         [
-          "O",
-          "P",
-          "Q",
-          "u",
-          "given",
-          32
-         ],
-         [
-          "O",
-          "P",
-          "R",
-          "u",
-          "given",
-          48
-         ]
-        ],
         "ticks": [
          [
           "P",
@@ -4140,14 +4232,6 @@
         "en": "PQR is an isosceles triangle $\\angle PQR=\\angle PRQ=x$.",
         "zh": "等腰三角形的兩隻底角相等：$\\angle PQR=\\angle PRQ=x$。",
         "arcs": [
-         [
-          "P",
-          "Q",
-          "R",
-          "68°",
-          "given",
-          30
-         ],
          [
           "R",
           "P",
@@ -4217,7 +4301,37 @@
         30
        ]
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "P",
+         "Q",
+         "u",
+         "given",
+         32
+        ],
+        [
+         "O",
+         "P",
+         "R",
+         "u",
+         "given",
+         48
+        ],
+        [
+         "P",
+         "Q",
+         "R",
+         "68°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -4335,14 +4449,6 @@
         "arcs": [
          [
           "O",
-          "B",
-          "C",
-          "48°",
-          "given",
-          30
-         ],
-         [
-          "O",
           "A",
           "D",
           "144°",
@@ -4418,12 +4524,27 @@
         "ref": "(∠s at a pt.)"
        },
        {
-        "en": "Use the equal radii in OCD $OC=OD\\quad\\Rightarrow\\quad\\angle OCD=\\frac{180^\\circ-84^\\circ}{2}=48^\\circ$.",
-        "zh": "等腰三角形的兩隻底角平分剩餘角度：$OC=OD\\quad\\Rightarrow\\quad\\angle OCD=\\frac{180^\\circ-84^\\circ}{2}=48^\\circ$。",
+        "en": "Join the two radii to establish an isosceles triangle $OC=OD$.",
+        "zh": "先連接兩條半徑，建立等腰三角形 $OC=OD$。",
         "radii": [
          "C",
          "D"
         ],
+        "polygons": [
+         [
+          "O",
+          "C",
+          "D"
+         ]
+        ],
+        "mathLines": [
+         "OC=OD"
+        ],
+        "ref": "(radii of the same circle)"
+       },
+       {
+        "en": "Use the equal base angles and the angle sum of the triangle $\\Rightarrow\\quad \\angle OCD=\\frac{180^\\circ-84^\\circ}{2}=48^\\circ$.",
+        "zh": "兩隻底角相等，再用三角形內角和求角度 $\\Rightarrow\\quad \\angle OCD=\\frac{180^\\circ-84^\\circ}{2}=48^\\circ$。",
         "polygons": [
          [
           "O",
@@ -4453,7 +4574,6 @@
         "clearGoal": true,
         "answer": "∠OCD = 48°",
         "mathLines": [
-         "OC=OD",
          "\\Rightarrow\\quad \\angle OCD=\\frac{180^\\circ-84^\\circ}{2}=48^\\circ"
         ],
         "ref": "(base ∠s, isos. △); (∠ sum of △)"
@@ -4476,7 +4596,43 @@
         30
        ]
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "B",
+         "C",
+         "48°",
+         "given",
+         30
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "id": "equal-arc-AB",
+         "to": "B",
+         "tickCount": 1,
+         "from": "A"
+        },
+        {
+         "id": "equal-arc-CD",
+         "to": "D",
+         "tickCount": 1,
+         "from": "C"
+        }
+       ],
+       "notes": [
+        [
+         "arc AD : arc BC = 3 : 1",
+         210,
+         30,
+         14
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -4602,14 +4758,6 @@
           "90°",
           "claim",
           24
-         ],
-         [
-          "A",
-          "B",
-          "C",
-          "63°",
-          "given",
-          28
          ]
         ],
         "mathLines": [
@@ -4729,7 +4877,21 @@
         "from": "A"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "63°",
+         "given",
+         28
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -4863,14 +5025,6 @@
         "arcs": [
          [
           "O",
-          "A",
-          "B",
-          "60°",
-          "given",
-          32
-         ],
-         [
-          "O",
           "B",
           "D",
           "120°",
@@ -4944,7 +5098,21 @@
         "from": "C"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "B",
+         "60°",
+         "given",
+         32
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -5109,43 +5277,6 @@
           "accent"
          ]
         ],
-        "ticks": [
-         [
-          "A",
-          "B",
-          2
-         ],
-         [
-          "A",
-          "F",
-          2
-         ],
-         [
-          "B",
-          "C",
-          2
-         ],
-         [
-          "D",
-          "E",
-          2
-         ],
-         [
-          "E",
-          "F",
-          2
-         ]
-        ],
-        "arcs": [
-         [
-          "O",
-          "C",
-          "D",
-          "40°",
-          "given",
-          30
-         ]
-        ],
         "mathLines": [
          "\\angle AOB=\\angle AOF=\\angle BOC",
          "=\\angle DOE=\\angle EOF=t"
@@ -5172,12 +5303,27 @@
         "ref": "(∠s at a pt.)"
        },
        {
-        "en": "Use the equal radii in OEF $OE=OF\\quad\\Rightarrow\\quad\\angle OFE=\\frac{180^\\circ-64^\\circ}{2}=58^\\circ$.",
-        "zh": "等腰三角形的兩隻底角平分剩餘角度：$OE=OF\\quad\\Rightarrow\\quad\\angle OFE=\\frac{180^\\circ-64^\\circ}{2}=58^\\circ$。",
+        "en": "Join the two radii to establish an isosceles triangle $OE=OF$.",
+        "zh": "先連接兩條半徑，建立等腰三角形 $OE=OF$。",
         "radii": [
          "E",
          "F"
         ],
+        "polygons": [
+         [
+          "O",
+          "E",
+          "F"
+         ]
+        ],
+        "mathLines": [
+         "OE=OF"
+        ],
+        "ref": "(radii of the same circle)"
+       },
+       {
+        "en": "Use the equal base angles and the angle sum of the triangle $\\Rightarrow\\quad \\angle OFE=\\frac{180^\\circ-64^\\circ}{2}=58^\\circ$.",
+        "zh": "兩隻底角相等，再用三角形內角和求角度 $\\Rightarrow\\quad \\angle OFE=\\frac{180^\\circ-64^\\circ}{2}=58^\\circ$。",
         "polygons": [
          [
           "O",
@@ -5204,7 +5350,6 @@
          ]
         ],
         "mathLines": [
-         "OE=OF",
          "\\Rightarrow\\quad \\angle OFE=\\frac{180^\\circ-64^\\circ}{2}=58^\\circ"
         ],
         "ref": "(base ∠s, isos. △); (∠ sum of △)"
@@ -5261,7 +5406,48 @@
         32
        ]
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "A",
+         "F",
+         2
+        ],
+        [
+         "B",
+         "C",
+         2
+        ],
+        [
+         "D",
+         "E",
+         2
+        ],
+        [
+         "E",
+         "F",
+         2
+        ]
+       ],
+       "arcs": [
+        [
+         "O",
+         "C",
+         "D",
+         "40°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -5433,14 +5619,6 @@
         ],
         "arcs": [
          [
-          "B",
-          "O",
-          "C",
-          "65°",
-          "given",
-          28
-         ],
-         [
           "C",
           "O",
           "B",
@@ -5601,7 +5779,41 @@
         30
        ]
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "B",
+         "O",
+         "C",
+         "65°",
+         "given",
+         28
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "id": "equal-arc-BC",
+         "to": "C",
+         "tickCount": 1,
+         "from": "B"
+        },
+        {
+         "id": "equal-arc-CD",
+         "to": "D",
+         "tickCount": 1,
+         "from": "C"
+        },
+        {
+         "id": "equal-arc-DE",
+         "to": "E",
+         "tickCount": 1,
+         "from": "D"
+        }
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -5733,16 +5945,6 @@
        {
         "en": "Use alternate angles on AO and BC $\\angle BCA=x\\quad\\Rightarrow\\quad\\angle CAO=x$.",
         "zh": "平行線的內錯角相等，先設目標角為未知數：$\\angle BCA=x\\quad\\Rightarrow\\quad\\angle CAO=x$。",
-        "parallel": [
-         [
-          "A",
-          "O"
-         ],
-         [
-          "B",
-          "C"
-         ]
-        ],
         "arcs": [
          [
           "A",
@@ -5797,8 +5999,26 @@
         "ref": "(base ∠s, isos. △)"
        },
        {
-        "en": "Use the centre angle and the arc ratio $\\angle AOB=2x,\\quad\\angle BOC=3(2x)=6x$.",
-        "zh": "先用同弧圓心角兩倍，再用弧長比例：$\\angle AOB=2x,\\quad\\angle BOC=3(2x)=6x$。",
+        "en": "First use arc AB: the centre angle is twice its circumference angle $\\angle AOB=2x$.",
+        "zh": "先用弧 AB：圓心角是圓周角的兩倍 $\\angle AOB=2x$。",
+        "mathLines": [
+         "\\angle AOB=2x"
+        ],
+        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ)",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "2x",
+          "claim",
+          36
+         ]
+        ]
+       },
+       {
+        "en": "Arc BC is three times arc AB, so its centre angle is also three times as large $\\angle BOC=3(2x)=6x$.",
+        "zh": "弧 BC 是弧 AB 的三倍，所以對應圓心角也是三倍 $\\angle BOC=3(2x)=6x$。",
         "arcs": [
          [
           "O",
@@ -5818,10 +6038,9 @@
          ]
         ],
         "mathLines": [
-         "\\angle AOB=2x",
          "\\angle BOC=3(2x)=6x"
         ],
-        "ref": "(∠ at centre twice ∠ at ○ᶜᵉ); (arcs prop. to ∠s at centre)"
+        "ref": "(arcs prop. to ∠s at centre)"
        },
        {
         "en": "Use the angle sum in OAC $x+x+(2x+6x)=180^\\circ\\quad\\Rightarrow\\quad x=18^\\circ$.",
@@ -5899,7 +6118,29 @@
         28
        ]
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "parallel": [
+        [
+         "A",
+         "O"
+        ],
+        [
+         "B",
+         "C"
+        ]
+       ],
+       "notes": [
+        [
+         "arc AB : arc BC = 1 : 3",
+         210,
+         30,
+         14
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -6035,22 +6276,6 @@
           "90°",
           "claim",
           24
-         ],
-         [
-          "A",
-          "B",
-          "D",
-          "63°",
-          "given",
-          28
-         ],
-         [
-          "E",
-          "B",
-          "C",
-          "27°",
-          "given",
-          28
          ]
         ],
         "polygons": [
@@ -6117,14 +6342,6 @@
         "arcs": [
          [
           "E",
-          "B",
-          "C",
-          "27°",
-          "given",
-          28
-         ],
-         [
-          "E",
           "C",
           "D",
           "36°",
@@ -6184,7 +6401,29 @@
         "from": "C"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "D",
+         "63°",
+         "given",
+         28
+        ],
+        [
+         "E",
+         "B",
+         "C",
+         "27°",
+         "given",
+         28
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -6341,14 +6580,6 @@
           "90°",
           "claim",
           24
-         ],
-         [
-          "C",
-          "A",
-          "E",
-          "36°",
-          "given",
-          38
          ]
         ],
         "mathLines": [
@@ -6405,14 +6636,6 @@
         "arcs": [
          [
           "C",
-          "A",
-          "E",
-          "36°",
-          "given",
-          38
-         ],
-         [
-          "C",
           "D",
           "E",
           "27°",
@@ -6464,7 +6687,35 @@
         32
        ]
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "E",
+         "36°",
+         "given",
+         38
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "id": "equal-arc-AB",
+         "to": "B",
+         "tickCount": 1,
+         "from": "A"
+        },
+        {
+         "id": "equal-arc-DE",
+         "to": "E",
+         "tickCount": 1,
+         "from": "D"
+        }
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -6572,15 +6823,19 @@
         "D"
        ],
        [
-        "C",
-        "A"
+        "A",
+        "C"
        ],
        [
-        "B",
+        "C",
+        "D"
+       ],
+       [
+        "D",
         "E"
        ],
        [
-        "C",
+        "B",
         "E"
        ]
       ],
@@ -6608,14 +6863,6 @@
           "90°",
           "claim",
           24
-         ],
-         [
-          "E",
-          "B",
-          "D",
-          "50°",
-          "given",
-          52
          ]
         ],
         "mathLines": [
@@ -6713,7 +6960,21 @@
         "from": "C"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "E",
+         "B",
+         "D",
+         "50°",
+         "given",
+         52
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -6857,14 +7118,6 @@
         ],
         "arcs": [
          [
-          "C",
-          "A",
-          "D",
-          "x",
-          "given",
-          28
-         ],
-         [
           "O",
           "A",
           "D",
@@ -6899,7 +7152,7 @@
           "D",
           "y",
           "claim",
-          28
+          60
          ],
          [
           "D",
@@ -6970,7 +7223,33 @@
         "mathLines": [
          "\\angle COD=\\angle AOB=74^\\circ"
         ],
-        "ref": "(equal arcs, equal ∠s)"
+        "ref": "(equal arcs, equal ∠s)",
+        "givens": {
+         "arcs": [
+          [
+           "O",
+           "A",
+           "B",
+           "74°",
+           "given",
+           30
+          ]
+         ],
+         "arcMeasures": [
+          {
+           "id": "equal-arc-AB",
+           "to": "B",
+           "tickCount": 1,
+           "from": "A"
+          },
+          {
+           "id": "equal-arc-CD",
+           "to": "D",
+           "tickCount": 1,
+           "from": "C"
+          }
+         ]
+        }
        },
        {
         "en": "Subtract from the straight angle BOC $2x=180^\\circ-74^\\circ-74^\\circ=32^\\circ\\quad\\Rightarrow\\quad x=16^\\circ$.",
@@ -7058,7 +7337,29 @@
        "C",
        "A"
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "D",
+         "x",
+         "given",
+         28
+        ],
+        [
+         "D",
+         "A",
+         "O",
+         "y",
+         "given",
+         28
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -7225,18 +7526,6 @@
           "accent"
          ]
         ],
-        "ticks": [
-         [
-          "A",
-          "C",
-          2
-         ],
-         [
-          "B",
-          "D",
-          2
-         ]
-        ],
         "mathLines": [
          "AC=BD",
          "\\Rightarrow\\quad \\overset{\\frown}{AC}=\\overset{\\frown}{BD}"
@@ -7244,8 +7533,34 @@
         "ref": "(equal chords, equal arcs)"
        },
        {
-        "en": "Use equal arcs and the same segment $\\angle ABC=\\angle BCD=u,\\quad\\angle ABD=\\angle ACD=v$.",
-        "zh": "利用等弧及同弓形，配對兩組相等的角：$\\angle ABC=\\angle BCD=u,\\quad\\angle ABD=\\angle ACD=v$。",
+        "en": "Equal arcs AC and BD subtend equal circumference angles $\\angle ABC=\\angle BCD=u$.",
+        "zh": "等弧 AC、BD 所對的圓周角相等 $\\angle ABC=\\angle BCD=u$。",
+        "mathLines": [
+         "\\angle ABC=\\angle BCD=u"
+        ],
+        "ref": "(equal arcs, equal ∠s)",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "u",
+          "claim",
+          46
+         ],
+         [
+          "C",
+          "B",
+          "D",
+          "u",
+          "claim",
+          46
+         ]
+        ]
+       },
+       {
+        "en": "Both angles stand on the same arc AD $\\angle ABD=\\angle ACD=v$.",
+        "zh": "這兩隻角都對同一條弧 AD $\\angle ABD=\\angle ACD=v$。",
         "arcs": [
          [
           "B",
@@ -7281,10 +7596,9 @@
          ]
         ],
         "mathLines": [
-         "\\angle ABC=\\angle BCD=u",
          "\\angle ABD=\\angle ACD=v"
         ],
-        "ref": "(equal arcs, equal ∠s); (∠s in the same segment)"
+        "ref": "(∠s in the same segment)"
        },
        {
         "en": "Subtract equal angles from equal angles $\\angle DBM=\\angle ACM=u-v$.",
@@ -7385,7 +7699,41 @@
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
       },
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "C",
+         2
+        ],
+        [
+         "B",
+         "D",
+         2
+        ]
+       ],
+       "arcs": [
+        [
+         "M",
+         "A",
+         "B",
+         "α",
+         "given",
+         22
+        ],
+        [
+         "M",
+         "D",
+         "C",
+         "α",
+         "given",
+         40
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -7537,8 +7885,8 @@
         "ref": "(arcs prop. to ∠s at ○ᶜᵉ)"
        },
        {
-        "en": "The four angle pieces fill triangle ACD $\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ$.",
-        "zh": "四個比例角剛好合成三角形的內角和：$\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ$。",
+        "en": "The full circle has 18 arc units. Find the centre angle for the required arc, then halve it $\\text{total arc units}=7+2+6+3=18\\quad \\angle CAD=\\frac12\\left(360^\\circ\\times\\frac{6}{18}\\right)=60^\\circ$.",
+        "zh": "全圓共 18 份弧；先求所對弧的圓心角，圓周角是它的一半 $\\text{total arc units}=7+2+6+3=18\\quad \\angle CAD=\\frac12\\left(360^\\circ\\times\\frac{6}{18}\\right)=60^\\circ$。",
         "polygons": [
          [
           "A",
@@ -7557,13 +7905,14 @@
          ]
         ],
         "mathLines": [
-         "\\angle CAD=180^\\circ\\times\\frac6{18}=60^\\circ"
+         "\\text{total arc units}=7+2+6+3=18",
+         "\\angle CAD=\\frac12\\left(360^\\circ\\times\\frac{6}{18}\\right)=60^\\circ"
         ],
-        "ref": "(∠ sum of △)"
+        "ref": "(arcs prop. to ∠s at centre); (∠ at centre twice ∠ at ○ᶜᵉ)"
        },
        {
-        "en": "Use the same total of eighteen parts $\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ$.",
-        "zh": "沿用同一個總比例份數求另一隻角：$\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ$。",
+        "en": "The full circle has 18 arc units. Find the centre angle for the required arc, then halve it $\\text{total arc units}=7+2+6+3=18\\quad \\angle ADB=\\frac12\\left(360^\\circ\\times\\frac{7}{18}\\right)=70^\\circ$.",
+        "zh": "全圓共 18 份弧；先求所對弧的圓心角，圓周角是它的一半 $\\text{total arc units}=7+2+6+3=18\\quad \\angle ADB=\\frac12\\left(360^\\circ\\times\\frac{7}{18}\\right)=70^\\circ$。",
         "arcs": [
          [
           "D",
@@ -7575,9 +7924,10 @@
          ]
         ],
         "mathLines": [
-         "\\angle ADB=180^\\circ\\times\\frac7{18}=70^\\circ"
+         "\\text{total arc units}=7+2+6+3=18",
+         "\\angle ADB=\\frac12\\left(360^\\circ\\times\\frac{7}{18}\\right)=70^\\circ"
         ],
-        "ref": "(∠ sum of △)"
+        "ref": "(arcs prop. to ∠s at centre); (∠ at centre twice ∠ at ○ᶜᵉ)"
        },
        {
         "en": "Use the exterior angle of triangle AED $\\angle AEB=\\angle EAD+\\angle ADE=60^\\circ+70^\\circ=130^\\circ$.",
@@ -7659,7 +8009,10 @@
         "from": "D"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {},
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -8029,7 +8382,25 @@
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
       },
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcMeasures": [
+        {
+         "id": "equal-arc-AB",
+         "to": "B",
+         "tickCount": 1,
+         "from": "A"
+        },
+        {
+         "id": "equal-arc-CD",
+         "to": "D",
+         "tickCount": 1,
+         "from": "C"
+        }
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -8181,18 +8552,6 @@
           "accent"
          ]
         ],
-        "ticks": [
-         [
-          "A",
-          "B",
-          2
-         ],
-         [
-          "B",
-          "C",
-          2
-         ]
-        ],
         "arcs": [
          [
           "B",
@@ -8201,14 +8560,6 @@
           "90°",
           "claim",
           24
-         ],
-         [
-          "B",
-          "C",
-          "D",
-          "30°",
-          "given",
-          44
          ]
         ],
         "mathLines": [
@@ -8293,16 +8644,6 @@
         "clearAngle": [
          "B"
         ],
-        "arcs": [
-         [
-          "B",
-          "C",
-          "D",
-          "30°",
-          "given",
-          34
-         ]
-        ],
         "parallel": [
          [
           "A",
@@ -8335,7 +8676,41 @@
        "D",
        "B"
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "B",
+         "C",
+         2
+        ]
+       ],
+       "arcs": [
+        [
+         "B",
+         "C",
+         "D",
+         "30°",
+         "given",
+         44
+        ],
+        [
+         "B",
+         "C",
+         "D",
+         "30°",
+         "given",
+         34
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -8518,12 +8893,36 @@
         "ref": "(∠s at a pt.)"
        },
        {
-        "en": "Use the equal radii in OAC $OA=OC=10,\\quad\\angle OAC=\\angle OCA=40^\\circ$.",
-        "zh": "等腰三角形的底角平分剩餘角度：$OA=OC=10,\\quad\\angle OAC=\\angle OCA=40^\\circ$。",
+        "en": "For part (b), now use radius 10 cm; OA and OC are radii $OA=OC=10$.",
+        "zh": "(b) 現在加入半徑 10 cm；OA、OC 都是半徑 $OA=OC=10$。",
         "radii": [
          "A",
          "C"
         ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "OA=OC=10"
+        ],
+        "givens": {
+         "notes": [
+          [
+           "(b) r = 10 cm",
+           210,
+           58,
+           14
+          ]
+         ]
+        }
+       },
+       {
+        "en": "OAC is isosceles, so its base angles share the remaining 80° equally $\\angle OAC=\\angle OCA\\quad =\\frac{180^\\circ-100^\\circ}{2}=40^\\circ$.",
+        "zh": "OAC 是等腰三角形，兩隻底角平均分配餘下的 80° $\\angle OAC=\\angle OCA\\quad =\\frac{180^\\circ-100^\\circ}{2}=40^\\circ$。",
         "polygons": [
          [
           "O",
@@ -8572,8 +8971,8 @@
          }
         ],
         "mathLines": [
-         "OA=OC=10",
-         "\\angle OAC=\\angle OCA=40^\\circ"
+         "\\angle OAC=\\angle OCA",
+         "=\\frac{180^\\circ-100^\\circ}{2}=40^\\circ"
         ],
         "ref": "(base ∠s, isos. △); (∠ sum of △)"
        },
@@ -8721,7 +9120,19 @@
         "from": "A"
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "notes": [
+        [
+         "arc AB : arc BC : arc CA = 7 : 6 : 5",
+         210,
+         30,
+         14
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -8921,30 +9332,33 @@
           32
          ]
         ],
-        "segmentLabels": [
-         {
-          "id": "AD",
-          "between": [
-           "A",
-           "D"
-          ],
-          "text": "12 cm",
-          "dx": -30,
-          "dy": -38
-         }
-        ],
         "mathLines": [
          "\\angle AOD=180^\\circ\\times\\frac3{1+3+5}=60^\\circ"
         ],
         "ref": "(arcs prop. to ∠s at centre)"
        },
        {
-        "en": "OAD is equilateral $OA=OD,\\quad\\angle OAD=\\angle ODA=60^\\circ$.",
-        "zh": "等腰三角形三隻角都是六十度，所以是等邊三角形：$OA=OD,\\quad\\angle OAD=\\angle ODA=60^\\circ$。",
+        "en": "Join the two radii to establish an isosceles triangle $OA=OD$.",
+        "zh": "先連接兩條半徑，建立等腰三角形 $OA=OD$。",
         "radii": [
          "A",
          "D"
         ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "D"
+         ]
+        ],
+        "mathLines": [
+         "OA=OD"
+        ],
+        "ref": "(radii of the same circle)"
+       },
+       {
+        "en": "Use the equal base angles and the angle sum of the triangle $\\angle OAD=\\angle ODA=60^\\circ$.",
+        "zh": "兩隻底角相等，再用三角形內角和求角度 $\\angle OAD=\\angle ODA=60^\\circ$。",
         "arcs": [
          [
           "A",
@@ -8971,7 +9385,6 @@
          ]
         ],
         "mathLines": [
-         "OA=OD",
          "\\angle OAD=\\angle ODA=60^\\circ"
         ],
         "ref": "(base ∠s, isos. △); (∠ sum of △)"
@@ -9112,7 +9525,31 @@
         ]
        }
       ],
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "segmentLabels": [
+        {
+         "id": "AD",
+         "between": [
+          "A",
+          "D"
+         ],
+         "text": "12 cm",
+         "dx": -30,
+         "dy": -38
+        }
+       ],
+       "notes": [
+        [
+         "arc AB : arc AD : arc CD = 1 : 3 : 5",
+         210,
+         30,
+         14
+        ]
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -9312,10 +9749,6 @@
         "E"
        ],
        [
-        "E",
-        "A"
-       ],
-       [
         "A",
         "D"
        ],
@@ -9333,14 +9766,6 @@
         "en": "Use three equal arcs $\\angle ADB=\\angle DCE=\\angle BDC=30^\\circ$.",
         "zh": "三段相等的弧對應相等的圓周角：$\\angle ADB=\\angle DCE=\\angle BDC=30^\\circ$。",
         "arcs": [
-         [
-          "D",
-          "B",
-          "C",
-          "30°",
-          "given",
-          28
-         ],
          [
           "D",
           "A",
@@ -9376,7 +9801,7 @@
           "F",
           "60°",
           "claim",
-          36
+          82
          ]
         ],
         "polygons": [
@@ -9457,7 +9882,7 @@
           "E",
           "60°",
           "claim",
-          58
+          82
          ]
         ],
         "mathLines": [
@@ -9555,7 +9980,41 @@
        "en": "Read the given information. Follow one reason at a time.",
        "zh": "先看已知條件，再逐步跟隨每一步的理由。"
       },
-      "layout": "side-by-side"
+      "layout": "side-by-side",
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "B",
+         "C",
+         "30°",
+         "given",
+         28
+        ]
+       ],
+       "arcMeasures": [
+        {
+         "id": "equal-arc-AB",
+         "to": "B",
+         "tickCount": 1,
+         "from": "A"
+        },
+        {
+         "id": "equal-arc-BC",
+         "to": "C",
+         "tickCount": 1,
+         "from": "B"
+        },
+        {
+         "id": "equal-arc-DE",
+         "to": "E",
+         "tickCount": 1,
+         "from": "D"
+        }
+       ]
+      },
+      "hideSolvedGoals": true,
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [

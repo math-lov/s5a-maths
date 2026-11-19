@@ -2,7 +2,7 @@
 
 Run: python -X utf8 tools/verify_ch11_2.py
 Checks the saved geometry independently of the SVG renderer, including the
-corrected printed question 27 and the original question/answer for question 18.
+equal-chord condition in question 27 and the original question/answer for question 18.
 """
 import json
 import math
@@ -127,7 +127,8 @@ for names in ("PABQ", "PFER", "QCDR"):
 points = build_points(questions["l2-27"]["anim"])
 near(distance(points, "A", "B"), distance(points, "D", "E"), "Q27 corrected equal-chord condition")
 near(distance(points, "C", "M"), distance(points, "C", "N"), "Q27 conclusion CM = CN")
-assert "omitted" in questions["l2-27"]["stem"]["en"]
+assert "AB = DE" in questions["l2-27"]["stem"]["en"]
+assert "omitted" not in questions["l2-27"]["stem"]["en"]
 assert "4.8" in questions["l2-18"]["answers"][0]["math"]
 assert "30\\sqrt{10}" in questions["l2-22"]["answers"][0]["math"]
 assert "SSS" in questions["l1-16"]["solution"]["steps"][1]["en"]

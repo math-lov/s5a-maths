@@ -55,7 +55,7 @@ angles = {
 }
 # Physical radius, inferred from the original arc lengths (display size is independent).
 radii = {
-    'ce-3':18/math.pi, 'l1-3':24/math.pi, 'l1-4':15/math.radians(156),
+    'ce-3':18/math.pi, 'l1-3':24/math.pi, 'l1-4':15/math.radians(165),
     'l1-5':48/math.pi, 'l1-6':36/math.pi, 'l1-7':30/math.pi,
     'l1-8':27/math.pi, 'l1-9':18/math.pi, 'l1-13':20/math.pi,'l1-14':48/math.pi,
     'l2-18':15/math.pi,'l2-20':27/math.pi,

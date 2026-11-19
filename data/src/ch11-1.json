@@ -165,8 +165,7 @@
          "B",
          "P",
          "Q"
-        ],
-        "arcs": []
+        ]
        },
        {
         "zh": "連 PO，並延長至圓上的 Q。 $P,O,Q\\text{ collinear}$。",
@@ -195,8 +194,7 @@
          "B",
          "P",
          "Q"
-        ],
-        "arcs": []
+        ]
        },
        {
         "zh": "半徑相等，所以三角形 OAP 是等腰三角形。 $OA=OP$。",
@@ -222,8 +220,7 @@
          "B",
          "P",
          "Q"
-        ],
-        "arcs": []
+        ]
        },
        {
         "zh": "把兩隻相等的底角記作 p。 $\\angle OAP=\\angle OPA=p$。",
@@ -403,7 +400,8 @@
        "en": "Study the centre, the points on the circle and the connecting lines. Press Next step to follow the proof."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {}
      }
     }
    }
@@ -487,8 +485,7 @@
          "A",
          "B",
          "P"
-        ],
-        "arcs": []
+        ]
        },
        {
         "zh": "半圓所對的圓心角是平角。 $\\angle AOB=180^\\circ$。",
@@ -581,7 +578,8 @@
        "en": "Study the centre, the points on the circle and the connecting lines. Press Next step to follow the proof."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {}
      }
     }
    }
@@ -647,15 +645,6 @@
        {
         "zh": "從已知的圓周直角開始。 $\\angle APB=90^\\circ$。",
         "en": "Start with the given right angle on the circumference. $\\angle APB=90^\\circ$.",
-        "arcs": [
-         [
-          "P",
-          "A",
-          "B",
-          "90°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "\\angle APB=90^\\circ"
         ],
@@ -781,7 +770,18 @@
        "en": "Study the centre, the points on the circle and the connecting lines. Press Next step to follow the proof."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "P",
+         "A",
+         "B",
+         "90°",
+         "given"
+        ]
+       ]
+      }
      }
     }
    }
@@ -1026,7 +1026,8 @@
        "en": "Study the centre, the points on the circle and the connecting lines. Press Next step to follow the proof."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {}
      }
     }
    }
@@ -1294,13 +1295,13 @@
         "centre": true
        },
        "A": {
-        "at": 90
+        "at": 70
        },
        "B": {
-        "at": 190
+        "at": 220
        },
        "C": {
-        "at": 350
+        "at": 20
        },
        "D": {
         "extend": [
@@ -1332,15 +1333,6 @@
        {
         "zh": "留意外角及 B、A、D 所在的直線。 $\\angle DAC=100^\\circ$。",
         "en": "Read the exterior angle and the straight line through B, A and D. $\\angle DAC=100^\\circ$.",
-        "arcs": [
-         [
-          "A",
-          "D",
-          "C",
-          "100°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "\\angle DAC=100^\\circ"
         ],
@@ -1429,7 +1421,19 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "D",
+         "C",
+         "100°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -1504,13 +1508,13 @@
         "centre": true
        },
        "A": {
-        "at": 100
+        "at": 90
        },
        "B": {
-        "at": 10
+        "at": 310
        },
        "C": {
-        "at": 290
+        "at": 280
        }
       },
       "segments": [
@@ -1535,15 +1539,6 @@
        {
         "zh": "先看已知的較小圓心角。 $\\angle AOC=170^\\circ$。",
         "en": "Read the given minor centre angle. $\\angle AOC=170^\\circ$.",
-        "arcs": [
-         [
-          "O",
-          "A",
-          "C",
-          "170°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "\\angle AOC=170^\\circ"
         ],
@@ -1637,7 +1632,19 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "C",
+         "170°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -1712,13 +1719,13 @@
         "centre": true
        },
        "P": {
-        "at": 166
+        "at": 136
        },
        "Q": {
-        "at": 214
+        "at": 184
        },
        "R": {
-        "at": 280
+        "at": 250
        },
        "S": {
         "cross": [
@@ -1755,25 +1762,6 @@
        {
         "zh": "留意平行線及 R 點的已知角。 $QP\\,//\\,RO\\quad \\angle PRO=33^\\circ$。",
         "en": "Read the parallel lines and the given angle at R. $QP\\,//\\,RO\\quad \\angle PRO=33^\\circ$.",
-        "parallel": [
-         [
-          "Q",
-          "P"
-         ],
-         [
-          "O",
-          "R"
-         ]
-        ],
-        "arcs": [
-         [
-          "R",
-          "P",
-          "O",
-          "33°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "QP\\,//\\,RO",
          "\\angle PRO=33^\\circ"
@@ -1894,7 +1882,29 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "parallel": [
+        [
+         "Q",
+         "P"
+        ],
+        [
+         "O",
+         "R"
+        ]
+       ],
+       "arcs": [
+        [
+         "R",
+         "P",
+         "O",
+         "33°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2040,22 +2050,6 @@
         "en": "Write down the two angles in terms of x. $\\angle BAC=3x\\quad \\angle ACB=2x$.",
         "arcs": [
          [
-          "A",
-          "B",
-          "C",
-          "3x",
-          "given",
-          30
-         ],
-         [
-          "C",
-          "A",
-          "B",
-          "2x",
-          "given",
-          30
-         ],
-         [
           "B",
           "A",
           "C",
@@ -2076,8 +2070,50 @@
         ]
        },
        {
-        "zh": "利用三角形 ABC 的內角和解方程。 $90^\\circ+3x+2x=180^\\circ\\quad 5x=90^\\circ\\quad x=18^\\circ$。",
-        "en": "Use the angle sum of triangle ABC and solve. $90^\\circ+3x+2x=180^\\circ\\quad 5x=90^\\circ\\quad x=18^\\circ$.",
+        "zh": "三角形三隻內角的和是 180° $90^\\circ+3x+2x=180^\\circ$。",
+        "en": "The three interior angles add to 180° $90^\\circ+3x+2x=180^\\circ$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "90^\\circ+3x+2x=180^\\circ"
+        ],
+        "ref": "(∠ sum of △)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C"
+        ]
+       },
+       {
+        "zh": "把上一步的結果代入，再逐項計算 $5x=90^\\circ\\quad x=18^\\circ$。",
+        "en": "Substitute the previous result, then calculate one quantity at a time $5x=90^\\circ\\quad x=18^\\circ$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "5x=90^\\circ",
+         "x=18^\\circ"
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C"
+        ]
+       },
+       {
+        "zh": "最後把 x = 18° 代回原圖的 3x、2x，才更新圖上的角度 $\\angle BAC=3(18^\\circ)=54^\\circ\\quad \\angle ACB=2(18^\\circ)=36^\\circ$。",
+        "en": "Finally substitute x = 18° into 3x and 2x before updating the diagram $\\angle BAC=3(18^\\circ)=54^\\circ\\quad \\angle ACB=2(18^\\circ)=36^\\circ$.",
         "final": true,
         "answer": "x = 18",
         "clearGoal": true,
@@ -2107,11 +2143,9 @@
          ]
         ],
         "mathLines": [
-         "90^\\circ+3x+2x=180^\\circ",
-         "5x=90^\\circ",
-         "x=18^\\circ"
+         "\\angle BAC=3(18^\\circ)=54^\\circ",
+         "\\angle ACB=2(18^\\circ)=36^\\circ"
         ],
-        "ref": "(∠ sum of △)",
         "clearAngle": [
          "O",
          "A",
@@ -2120,31 +2154,35 @@
         ]
        }
       ],
-      "goal": [
-       [
-        "A",
-        "B",
-        "C",
-        "3x",
-        "given",
-        30
-       ],
-       [
-        "C",
-        "A",
-        "B",
-        "2x",
-        "given",
-        30
-       ]
-      ],
+      "goal": [],
       "readable": true,
       "intro": {
        "zh": "先看原圖，找出已知條件和所求結果，按「下一步」觀看推理。",
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "3x",
+         "given",
+         30
+        ],
+        [
+         "C",
+         "A",
+         "B",
+         "2x",
+         "given",
+         30
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2253,25 +2291,6 @@
        {
         "zh": "留意已知角、平行線及直徑 SQ。 $\\angle PQS=62^\\circ\\quad SR\\,//\\,PQ$。",
         "en": "Read the angle, the parallel lines and diameter SQ. $\\angle PQS=62^\\circ\\quad SR\\,//\\,PQ$.",
-        "parallel": [
-         [
-          "S",
-          "R"
-         ],
-         [
-          "P",
-          "Q"
-         ]
-        ],
-        "arcs": [
-         [
-          "Q",
-          "P",
-          "S",
-          "62°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "\\angle PQS=62^\\circ",
          "SR\\,//\\,PQ"
@@ -2392,7 +2411,29 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "parallel": [
+        [
+         "S",
+         "R"
+        ],
+        [
+         "P",
+         "Q"
+        ]
+       ],
+       "arcs": [
+        [
+         "Q",
+         "P",
+         "S",
+         "62°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2529,25 +2570,6 @@
        {
         "zh": "留意相等邊及 F 點的角。 $EF=EG\\quad \\angle EFG=64^\\circ$。",
         "en": "Read the equal sides and the angle at F. $EF=EG\\quad \\angle EFG=64^\\circ$.",
-        "ticks": [
-         [
-          "E",
-          "F"
-         ],
-         [
-          "E",
-          "G"
-         ]
-        ],
-        "arcs": [
-         [
-          "F",
-          "E",
-          "G",
-          "64°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "EF=EG",
          "\\angle EFG=64^\\circ"
@@ -2675,7 +2697,29 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "E",
+         "F"
+        ],
+        [
+         "E",
+         "G"
+        ]
+       ],
+       "arcs": [
+        [
+         "F",
+         "E",
+         "G",
+         "64°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2734,8 +2778,8 @@
      "marks": 2,
      "difficulty": 2,
      "stem": {
-      "en": "In the figure, $AC$ and $BD$ intersect at $E$. It is given that $\\angle BDC = 26^\\circ$ and $\\angle BEC = 68^\\circ$. Find $x$.",
-      "zh": "圖中 $AC$ 與 $BD$ 交於 $E$。已知 $\\angle BDC = 26^\\circ$ 及 $\\angle BEC = 68^\\circ$，求 $x$。"
+      "en": "In the figure, $AC$ and $BD$ intersect at $E$. It is given that $\\angle BDC = 26^\\circ$ and $\\angle AED = 68^\\circ$. Find $x$.",
+      "zh": "圖中 $AC$ 與 $BD$ 交於 $E$。已知 $\\angle BDC = 26^\\circ$ 及 $\\angle AED = 68^\\circ$，求 $x$。"
      },
      "parts": [
       {
@@ -2796,10 +2840,6 @@
         "D"
        ],
        [
-        "D",
-        "A"
-       ],
-       [
         "A",
         "C"
        ],
@@ -2810,28 +2850,11 @@
       ],
       "steps": [
        {
-        "zh": "先看 D、E 兩點的已知角。 $\\angle BDC=26^\\circ\\quad \\angle BEC=68^\\circ$。",
-        "en": "Read the two given angles at D and E. $\\angle BDC=26^\\circ\\quad \\angle BEC=68^\\circ$.",
-        "arcs": [
-         [
-          "D",
-          "B",
-          "C",
-          "26°",
-          "given"
-         ],
-         [
-          "E",
-          "B",
-          "C",
-          "68°",
-          "given",
-          30
-         ]
-        ],
+        "zh": "先看 D、E 兩點的已知角。 $\\angle BDC=26^\\circ\\quad \\angle AED=68^\\circ$。",
+        "en": "Read the two given angles at D and E. $\\angle BDC=26^\\circ\\quad \\angle AED=68^\\circ$.",
         "mathLines": [
          "\\angle BDC=26^\\circ",
-         "\\angle BEC=68^\\circ"
+         "\\angle AED=68^\\circ"
         ],
         "clearAngle": [
          "O",
@@ -2928,7 +2951,27 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "D",
+         "B",
+         "C",
+         "26°",
+         "given"
+        ],
+        [
+         "E",
+         "A",
+         "D",
+         "68°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -2950,8 +2993,8 @@
          "en": "Exterior angle"
         },
         "math": "x + 26^\\circ = 68^\\circ \\Rightarrow x = 42^\\circ",
-        "zh": "在 $\\triangle ABE$ 中，$\\angle BEC$ 是外角，等於兩個內對角之和：$x + 26^\\circ = 68^\\circ$，$x = 42^\\circ$。",
-        "en": "In $\\triangle ABE$, $\\angle BEC$ is the exterior angle: $x + 26^\\circ = 68^\\circ$, so $x = 42^\\circ$.",
+        "zh": "在 $\\triangle ABE$ 中，$\\angle AED$ 是外角，等於兩個內對角之和：$x + 26^\\circ = 68^\\circ$，$x = 42^\\circ$。",
+        "en": "In $\\triangle ABE$, $\\angle AED$ is the exterior angle: $x + 26^\\circ = 68^\\circ$, so $x = 42^\\circ$.",
         "marking": "(1A)"
        }
       ],
@@ -2959,7 +3002,7 @@
        {
         "label": "(a)",
         "labelEn": "(a)",
-        "zh": "把 $68^\\circ$ 當成 $\\angle AEB$ 的內角直接用，忘記 $\\angle AEB$ 與 $\\angle BEC$ 互補。",
+        "zh": "把 $68^\\circ$ 當成 $\\angle AEB$ 的內角直接用，忘記 $\\angle AEB$ 與 $\\angle AED$ 互補。",
         "en": "Using 68° as an interior angle of △ABE — it is the exterior angle at E."
        }
       ],
@@ -3004,16 +3047,16 @@
         "hidden": true
        },
        "A": {
-        "at": 60
+        "at": 30
        },
        "B": {
-        "at": 190
+        "at": 160
        },
        "C": {
-        "at": 270
+        "at": 240
        },
        "D": {
-        "at": 350
+        "at": 320
        },
        "E": {
         "cross": [
@@ -3038,10 +3081,6 @@
         "D"
        ],
        [
-        "D",
-        "A"
-       ],
-       [
         "A",
         "C"
        ],
@@ -3054,25 +3093,6 @@
        {
         "zh": "留意 A 點的角及兩條相等邊。 $\\angle BAC=40^\\circ\\quad BC=CD$。",
         "en": "Read the angle at A and the equal sides. $\\angle BAC=40^\\circ\\quad BC=CD$.",
-        "ticks": [
-         [
-          "B",
-          "C"
-         ],
-         [
-          "C",
-          "D"
-         ]
-        ],
-        "arcs": [
-         [
-          "A",
-          "B",
-          "C",
-          "40°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "\\angle BAC=40^\\circ",
          "BC=CD"
@@ -3205,7 +3225,29 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "B",
+         "C"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ],
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "40°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -3292,16 +3334,16 @@
         "hidden": true
        },
        "A": {
-        "at": 100
+        "at": 135
        },
        "B": {
-        "at": 170
+        "at": 205
        },
        "C": {
-        "at": 270
+        "at": 305
        },
        "D": {
-        "at": 0
+        "at": 35
        },
        "E": {
         "cross": [
@@ -3318,16 +3360,8 @@
         "B"
        ],
        [
-        "B",
-        "C"
-       ],
-       [
-        "C",
-        "D"
-       ],
-       [
         "D",
-        "A"
+        "C"
        ],
        [
         "A",
@@ -3342,25 +3376,6 @@
        {
         "zh": "留意平行線及 E 點的角。 $AB\\,//\\,DC\\quad \\angle CED=80^\\circ$。",
         "en": "Read the parallel lines and the angle at E. $AB\\,//\\,DC\\quad \\angle CED=80^\\circ$.",
-        "parallel": [
-         [
-          "A",
-          "B"
-         ],
-         [
-          "D",
-          "C"
-         ]
-        ],
-        "arcs": [
-         [
-          "E",
-          "C",
-          "D",
-          "80°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "AB\\,//\\,DC",
          "\\angle CED=80^\\circ"
@@ -3494,7 +3509,29 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "parallel": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "D",
+         "C"
+        ]
+       ],
+       "arcs": [
+        [
+         "E",
+         "C",
+         "D",
+         "80°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -3618,23 +3655,6 @@
        {
         "zh": "留意圓心角及 B 點的角。 $\\angle AOB=112^\\circ\\quad \\angle OBC=26^\\circ$。",
         "en": "Read the centre angle and the angle at B. $\\angle AOB=112^\\circ\\quad \\angle OBC=26^\\circ$.",
-        "arcs": [
-         [
-          "O",
-          "A",
-          "B",
-          "112°",
-          "given"
-         ],
-         [
-          "B",
-          "O",
-          "C",
-          "26°",
-          "given",
-          22
-         ]
-        ],
         "mathLines": [
          "\\angle AOB=112^\\circ",
          "\\angle OBC=26^\\circ"
@@ -3647,18 +3667,8 @@
         ]
        },
        {
-        "zh": "半徑相等，所以 OBC 是等腰三角形。 $OB=OC\\quad \\angle OCB=\\angle OBC=26^\\circ$。",
-        "en": "Equal radii make triangle OBC isosceles. $OB=OC\\quad \\angle OCB=\\angle OBC=26^\\circ$.",
-        "arcs": [
-         [
-          "C",
-          "B",
-          "O",
-          "26°",
-          "claim",
-          20
-         ]
-        ],
+        "zh": "先連接所需半徑；同圓半徑相等 $OB=OC$。",
+        "en": "Join the required radii. Radii of the same circle are equal $OB=OC$.",
         "radii": [
          "B",
          "C"
@@ -3671,10 +3681,40 @@
          ]
         ],
         "mathLines": [
-         "OB=OC",
+         "OB=OC"
+        ],
+        "ref": "(radii of the same circle)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C"
+        ]
+       },
+       {
+        "zh": "半徑相等形成等腰三角形，所以兩隻底角相等 $\\angle OCB=\\angle OBC=26^\\circ$。",
+        "en": "The equal radii form an isosceles triangle, so its base angles are equal $\\angle OCB=\\angle OBC=26^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "B",
+          "O",
+          "26°",
+          "claim",
+          20
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "B",
+          "C"
+         ]
+        ],
+        "mathLines": [
          "\\angle OCB=\\angle OBC=26^\\circ"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △)",
+        "ref": "(base ∠s, isos. △)",
         "clearAngle": [
          "O",
          "A",
@@ -3746,8 +3786,33 @@
         ]
        },
        {
-        "zh": "半徑相等，所以 OAC 的兩隻底角相等。 $OA=OC\\quad \\angle OAC=\\angle OCA=30^\\circ$。",
-        "en": "Equal radii make the two base angles of OAC equal. $OA=OC\\quad \\angle OAC=\\angle OCA=30^\\circ$.",
+        "zh": "先連接所需半徑；同圓半徑相等 $OA=OC$。",
+        "en": "Join the required radii. Radii of the same circle are equal $OA=OC$.",
+        "radii": [
+         "A",
+         "C"
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "OA=OC"
+        ],
+        "ref": "(radii of the same circle)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C"
+        ]
+       },
+       {
+        "zh": "半徑相等形成等腰三角形，所以兩隻底角相等 $\\angle OAC=\\angle OCA=30^\\circ$。",
+        "en": "The equal radii form an isosceles triangle, so its base angles are equal $\\angle OAC=\\angle OCA=30^\\circ$.",
         "arcs": [
          [
           "A",
@@ -3757,10 +3822,6 @@
           "claim",
           24
          ]
-        ],
-        "radii": [
-         "A",
-         "C"
         ],
         "final": true,
         "answer": "∠OAC = 30°",
@@ -3773,10 +3834,9 @@
          ]
         ],
         "mathLines": [
-         "OA=OC",
          "\\angle OAC=\\angle OCA=30^\\circ"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △)",
+        "ref": "(base ∠s, isos. △)",
         "clearAngle": [
          "O",
          "A",
@@ -3799,7 +3859,27 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "O",
+         "A",
+         "B",
+         "112°",
+         "given"
+        ],
+        [
+         "B",
+         "O",
+         "C",
+         "26°",
+         "given",
+         22
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -3904,13 +3984,13 @@
         "centre": true
        },
        "A": {
-        "at": 176
+        "at": 191
        },
        "B": {
-        "at": 228
+        "at": 243
        },
        "C": {
-        "at": 280
+        "at": 295
        }
       },
       "segments": [
@@ -3939,15 +4019,6 @@
        {
         "zh": "先看 C 點的已知角。 $\\angle ACO=38^\\circ$。",
         "en": "Read the given angle at C. $\\angle ACO=38^\\circ$.",
-        "arcs": [
-         [
-          "C",
-          "A",
-          "O",
-          "38°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "\\angle ACO=38^\\circ"
         ],
@@ -3959,18 +4030,8 @@
         ]
        },
        {
-        "zh": "在 OAC 中利用半徑相等及等腰三角形底角相等。 $OA=OC\\quad \\angle OAC=\\angle ACO=38^\\circ$。",
-        "en": "Equal radii give equal base angles in OAC. $OA=OC\\quad \\angle OAC=\\angle ACO=38^\\circ$.",
-        "arcs": [
-         [
-          "A",
-          "O",
-          "C",
-          "38°",
-          "claim",
-          24
-         ]
-        ],
+        "zh": "先連接所需半徑；同圓半徑相等 $OA=OC$。",
+        "en": "Join the required radii. Radii of the same circle are equal $OA=OC$.",
         "radii": [
          "A",
          "C"
@@ -3983,10 +4044,40 @@
          ]
         ],
         "mathLines": [
-         "OA=OC",
+         "OA=OC"
+        ],
+        "ref": "(radii of the same circle)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C"
+        ]
+       },
+       {
+        "zh": "半徑相等形成等腰三角形，所以兩隻底角相等 $\\angle OAC=\\angle ACO=38^\\circ$。",
+        "en": "The equal radii form an isosceles triangle, so its base angles are equal $\\angle OAC=\\angle ACO=38^\\circ$.",
+        "arcs": [
+         [
+          "A",
+          "O",
+          "C",
+          "38°",
+          "claim",
+          24
+         ]
+        ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "C"
+         ]
+        ],
+        "mathLines": [
          "\\angle OAC=\\angle ACO=38^\\circ"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △)",
+        "ref": "(base ∠s, isos. △)",
         "clearAngle": [
          "O",
          "A",
@@ -4161,7 +4252,19 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "O",
+         "38°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -4299,30 +4402,21 @@
        ],
        [
         "O",
-        "C"
-       ],
-       [
-        "O",
         "D"
        ],
        [
         "A",
         "C"
+       ],
+       [
+        "C",
+        "D"
        ]
       ],
       "steps": [
        {
         "zh": "先看 C 點的已知角。 $\\angle OCA=32^\\circ$。",
         "en": "Read the given angle at C. $\\angle OCA=32^\\circ$.",
-        "arcs": [
-         [
-          "C",
-          "A",
-          "O",
-          "32°",
-          "given"
-         ]
-        ],
         "mathLines": [
          "\\angle OCA=32^\\circ"
         ],
@@ -4336,18 +4430,8 @@
         ]
        },
        {
-        "zh": "在三角形 OAC 中利用半徑相等。 $OA=OC\\quad \\angle OAC=\\angle OCA=32^\\circ$。",
-        "en": "Use equal radii in triangle OAC. $OA=OC\\quad \\angle OAC=\\angle OCA=32^\\circ$.",
-        "arcs": [
-         [
-          "A",
-          "C",
-          "O",
-          "32°",
-          "claim",
-          24
-         ]
-        ],
+        "zh": "先連接所需半徑；同圓半徑相等 $OA=OC$。",
+        "en": "Join the required radii. Radii of the same circle are equal $OA=OC$.",
         "radii": [
          "A",
          "C"
@@ -4360,10 +4444,9 @@
          ]
         ],
         "mathLines": [
-         "OA=OC",
-         "\\angle OAC=\\angle OCA=32^\\circ"
+         "OA=OC"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △)",
+        "ref": "(radii of the same circle)",
         "clearAngle": [
          "O",
          "A",
@@ -4374,30 +4457,41 @@
         ]
        },
        {
-        "zh": "已知 AE、OE 相等，所以 AOE 是等腰三角形。 $AE=OE\\quad \\angle AOE=\\angle OAE=32^\\circ$。",
-        "en": "The given equal sides make triangle AOE isosceles. $AE=OE\\quad \\angle AOE=\\angle OAE=32^\\circ$.",
-        "ticks": [
-         [
-          "A",
-          "E",
-          2
-         ],
-         [
-          "O",
-          "E",
-          2
-         ]
-        ],
+        "zh": "半徑相等形成等腰三角形，所以兩隻底角相等 $\\angle OAC=\\angle OCA=32^\\circ$。",
+        "en": "The equal radii form an isosceles triangle, so its base angles are equal $\\angle OAC=\\angle OCA=32^\\circ$.",
         "arcs": [
          [
-          "O",
           "A",
-          "E",
+          "C",
+          "O",
           "32°",
           "claim",
-          32
+          24
          ]
         ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "\\angle OAC=\\angle OCA=32^\\circ"
+        ],
+        "ref": "(base ∠s, isos. △)",
+        "clearAngle": [
+         "O",
+         "A",
+         "D",
+         "B",
+         "C",
+         "E"
+        ]
+       },
+       {
+        "zh": "已知 AE = OE，利用等腰三角形 AOE 的底角 $AE=OE\\quad \\angle AOE=\\angle OAE=32^\\circ$。",
+        "en": "Use the equal base angles of isosceles triangle AOE $AE=OE\\quad \\angle AOE=\\angle OAE=32^\\circ$.",
         "polygons": [
          [
           "A",
@@ -4417,6 +4511,48 @@
          "B",
          "C",
          "E"
+        ],
+        "arcs": [
+         [
+          "O",
+          "A",
+          "E",
+          "32°",
+          "claim",
+          32
+         ]
+        ]
+       },
+       {
+        "zh": "E 在 OD 上，AOD 與 AOE 是同一隻角 $\\angle AOD=\\angle AOE=32^\\circ$。",
+        "en": "E lies on OD, so AOD and AOE are the same angle $\\angle AOD=\\angle AOE=32^\\circ$.",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "E",
+          "32°",
+          "claim",
+          32
+         ]
+        ],
+        "polygons": [
+         [
+          "A",
+          "O",
+          "E"
+         ]
+        ],
+        "mathLines": [
+         "\\angle AOD=\\angle AOE=32^\\circ"
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "D",
+         "B",
+         "C",
+         "E"
         ]
        },
        {
@@ -4429,7 +4565,7 @@
           "D",
           "16°",
           "claim",
-          22
+          62
          ]
         ],
         "lines": [
@@ -4462,8 +4598,8 @@
         ]
        },
        {
-        "zh": "先把 C 點兩隻角相加，再利用 OCD 的半徑相等。 $\\angle OCD=32^\\circ+16^\\circ=48^\\circ\\quad OD=OC\\quad \\angle ODC=\\angle OCD=48^\\circ$。",
-        "en": "Add the angles at C, then use equal radii in OCD. $\\angle OCD=32^\\circ+16^\\circ=48^\\circ\\quad OD=OC\\quad \\angle ODC=\\angle OCD=48^\\circ$.",
+        "zh": "把上一步的結果代入，再逐項計算 $\\angle OCD=32^\\circ+16^\\circ=48^\\circ$。",
+        "en": "Substitute the previous result, then calculate one quantity at a time $\\angle OCD=32^\\circ+16^\\circ=48^\\circ$.",
         "ticks": [
          [
           "O",
@@ -4474,27 +4610,6 @@
           "C"
          ]
         ],
-        "arcs": [
-         [
-          "C",
-          "O",
-          "D",
-          "48°",
-          "claim",
-          32
-         ],
-         [
-          "D",
-          "O",
-          "C",
-          "48°",
-          "claim",
-          30
-         ]
-        ],
-        "final": true,
-        "answer": "∠ODC = 48°",
-        "clearGoal": true,
         "polygons": [
          [
           "O",
@@ -4515,11 +4630,85 @@
          "E"
         ],
         "mathLines": [
-         "\\angle OCD=32^\\circ+16^\\circ=48^\\circ",
-         "OD=OC",
+         "\\angle OCD=32^\\circ+16^\\circ=48^\\circ"
+        ],
+        "arcs": [
+         [
+          "C",
+          "O",
+          "D",
+          "48°",
+          "claim",
+          58
+         ]
+        ]
+       },
+       {
+        "zh": "OD、OC 都是半徑 $OD=OC$。",
+        "en": "OD and OC are radii $OD=OC$.",
+        "polygons": [
+         [
+          "O",
+          "C",
+          "D"
+         ]
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "D",
+         "B",
+         "C",
+         "E"
+        ],
+        "mathLines": [
+         "OD=OC"
+        ],
+        "ref": "(radii of the same circle)"
+       },
+       {
+        "zh": "在等腰三角形 OCD 中搬移底角 $\\angle ODC=\\angle OCD=48^\\circ$。",
+        "en": "Use equal base angles in isosceles triangle OCD $\\angle ODC=\\angle OCD=48^\\circ$.",
+        "arcs": [
+         [
+          "C",
+          "O",
+          "D",
+          "48°",
+          "claim",
+          58
+         ],
+         [
+          "D",
+          "O",
+          "C",
+          "48°",
+          "claim",
+          30
+         ]
+        ],
+        "final": true,
+        "answer": "∠ODC = 48°",
+        "clearGoal": true,
+        "polygons": [
+         [
+          "O",
+          "C",
+          "D"
+         ]
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "D",
+         "B",
+         "C",
+         "E"
+        ],
+        "mathLines": [
          "\\angle ODC=\\angle OCD=48^\\circ"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △)"
+        "ref": "(base ∠s, isos. △)"
        }
       ],
       "semi": [
@@ -4541,7 +4730,31 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "O",
+         "32°",
+         "given"
+        ]
+       ],
+       "ticks": [
+        [
+         "A",
+         "E",
+         2
+        ],
+        [
+         "O",
+         "E",
+         2
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -4680,14 +4893,6 @@
         "D"
        ],
        [
-        "D",
-        "E"
-       ],
-       [
-        "E",
-        "A"
-       ],
-       [
         "C",
         "E"
        ],
@@ -4704,33 +4909,6 @@
        {
         "zh": "留意兩隻已知角及平行線。 $\\angle ABC=93^\\circ\\quad \\angle DOE=78^\\circ\\quad AB\\,//\\,DC$。",
         "en": "Read the two angles and the parallel lines. $\\angle ABC=93^\\circ\\quad \\angle DOE=78^\\circ\\quad AB\\,//\\,DC$.",
-        "parallel": [
-         [
-          "A",
-          "B"
-         ],
-         [
-          "D",
-          "C"
-         ]
-        ],
-        "arcs": [
-         [
-          "B",
-          "A",
-          "C",
-          "93°",
-          "given"
-         ],
-         [
-          "O",
-          "D",
-          "E",
-          "78°",
-          "given",
-          24
-         ]
-        ],
         "mathLines": [
          "\\angle ABC=93^\\circ",
          "\\angle DOE=78^\\circ",
@@ -4857,7 +5035,37 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "parallel": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "D",
+         "C"
+        ]
+       ],
+       "arcs": [
+        [
+         "B",
+         "A",
+         "C",
+         "93°",
+         "given"
+        ],
+        [
+         "O",
+         "D",
+         "E",
+         "78°",
+         "given",
+         24
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -4932,8 +5140,8 @@
        "part": "(a)",
        "math": "\\angle ABD = 32^\\circ",
        "note": {
-        "zh": "$D$ 就是圓心，$BD$ 是直徑",
-        "en": "D is the centre, so BD is the diameter"
+        "zh": "BC 是直徑，先求 ∠BAC = 90°，再用三角形內角和。",
+        "en": "BC is a diameter. Find ∠BAC = 90°, then use the angle sum of a triangle."
        }
       }
      ],
@@ -4992,25 +5200,6 @@
        {
         "zh": "留意 D 點的角及相等邊。 $\\angle ADC=64^\\circ\\quad AD=CD$。",
         "en": "Read the angle at D and the equal sides. $\\angle ADC=64^\\circ\\quad AD=CD$.",
-        "arcs": [
-         [
-          "D",
-          "A",
-          "C",
-          "64°",
-          "given"
-         ]
-        ],
-        "ticks": [
-         [
-          "A",
-          "D"
-         ],
-         [
-          "C",
-          "D"
-         ]
-        ],
         "mathLines": [
          "\\angle ADC=64^\\circ",
          "AD=CD"
@@ -5152,7 +5341,29 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "D"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ],
+       "arcs": [
+        [
+         "D",
+         "A",
+         "C",
+         "64°",
+         "given"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -5205,8 +5416,8 @@
        }
       ],
       "tip": {
-       "zh": "$AD = CD$ 加上 $D$ 在 $BC$ 上，其實就是 $D$ 為圓心、$BD$ 為直徑；先找直角再算三角形。",
-       "en": "AD = CD with D on BC makes D the centre and BD a diameter — find the right angle first, then the triangle."
+       "zh": "AD = CD 給出等腰三角形 ACD；BC 是直徑，給出 ∠BAC = 90°。",
+       "en": "AD = CD gives isosceles triangle ACD; diameter BC gives ∠BAC = 90°."
       }
      }
     },
@@ -5289,15 +5500,6 @@
        {
         "zh": "先看弧 AB 所對的圓周角。 $\\angle ACB=33^\\circ$。",
         "en": "Read the angle on arc AB. $\\angle ACB=33^\\circ$.",
-        "arcs": [
-         [
-          "C",
-          "A",
-          "B",
-          "33°",
-          "given"
-         ]
-        ],
         "circleArcs": [
          [
           "A",
@@ -5351,16 +5553,6 @@
           "C",
           "66°",
           "claim"
-         ]
-        ],
-        "parallel": [
-         [
-          "B",
-          "O"
-         ],
-         [
-          "C",
-          "D"
          ]
         ],
         "mathLines": [
@@ -5463,7 +5655,29 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "C",
+         "A",
+         "B",
+         "33°",
+         "given"
+        ]
+       ],
+       "parallel": [
+        [
+         "B",
+         "O"
+        ],
+        [
+         "C",
+         "D"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -5643,16 +5857,6 @@
        {
         "zh": "利用兩條平行邊的內錯角。 $AD\\,//\\,BC\\quad \\angle ADB=\\angle CBD$。",
         "en": "Use the alternate angles of the parallel sides. $AD\\,//\\,BC\\quad \\angle ADB=\\angle CBD$.",
-        "parallel": [
-         [
-          "A",
-          "D"
-         ],
-         [
-          "B",
-          "C"
-         ]
-        ],
         "arcs": [
          [
           "D",
@@ -5736,8 +5940,35 @@
         ]
        },
        {
-        "zh": "先證全等，再比較對應邊。 $\\triangle ABD\\cong\\triangle CDB\\quad AD=BC$。",
-        "en": "Prove congruence, then compare corresponding sides. $\\triangle ABD\\cong\\triangle CDB\\quad AD=BC$.",
+        "zh": "兩角及一對應邊相等，所以兩個三角形全等 $\\triangle ABD\\cong\\triangle CDB$。",
+        "en": "Two angles and a corresponding side establish congruence $\\triangle ABD\\cong\\triangle CDB$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "D"
+         ],
+         [
+          "C",
+          "D",
+          "B"
+         ]
+        ],
+        "mathLines": [
+         "\\triangle ABD\\cong\\triangle CDB"
+        ],
+        "ref": "(AAS)",
+        "clearAngle": [
+         "O",
+         "D",
+         "B",
+         "A",
+         "C"
+        ]
+       },
+       {
+        "zh": "全等三角形的對應邊相等 $AD=BC$。",
+        "en": "Corresponding sides of congruent triangles are equal $AD=BC$.",
         "final": true,
         "answer": "AD = BC",
         "clearGoal": true,
@@ -5754,10 +5985,9 @@
          ]
         ],
         "mathLines": [
-         "\\triangle ABD\\cong\\triangle CDB",
          "AD=BC"
         ],
-        "ref": "(AAS); (corr. sides, ≅ △s)",
+        "ref": "(corr. sides, ≅ △s)",
         "clearAngle": [
          "O",
          "D",
@@ -5791,7 +6021,20 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "parallel": [
+        [
+         "A",
+         "D"
+        ],
+        [
+         "B",
+         "C"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -5915,19 +6158,15 @@
         "C"
        ],
        [
-        "C",
-        "D"
-       ],
-       [
-        "D",
-        "A"
-       ],
-       [
         "A",
         "C"
        ],
        [
         "B",
+        "D"
+       ],
+       [
+        "A",
         "D"
        ]
       ],
@@ -5935,34 +6174,6 @@
        {
         "zh": "留意兩隻已知角及相等邊。 $\\angle BAC=42^\\circ\\quad \\angle ABD=38^\\circ\\quad AB=BC$。",
         "en": "Read the two angles and the equal sides. $\\angle BAC=42^\\circ\\quad \\angle ABD=38^\\circ\\quad AB=BC$.",
-        "ticks": [
-         [
-          "A",
-          "B"
-         ],
-         [
-          "B",
-          "C"
-         ]
-        ],
-        "arcs": [
-         [
-          "A",
-          "B",
-          "C",
-          "42°",
-          "given",
-          20
-         ],
-         [
-          "B",
-          "A",
-          "D",
-          "38°",
-          "given",
-          22
-         ]
-        ],
         "mathLines": [
          "\\angle BAC=42^\\circ",
          "\\angle ABD=38^\\circ",
@@ -6129,7 +6340,38 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B"
+        ],
+        [
+         "B",
+         "C"
+        ]
+       ],
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "42°",
+         "given",
+         20
+        ],
+        [
+         "B",
+         "A",
+         "D",
+         "38°",
+         "given",
+         22
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -6283,23 +6525,6 @@
        {
         "zh": "留意 E 點及圓外點 F 的已知角。 $\\angle AED=94^\\circ\\quad \\angle AFD=42^\\circ$。",
         "en": "Read the angles at E and the exterior point F. $\\angle AED=94^\\circ\\quad \\angle AFD=42^\\circ$.",
-        "arcs": [
-         [
-          "E",
-          "A",
-          "D",
-          "94°",
-          "given"
-         ],
-         [
-          "F",
-          "A",
-          "D",
-          "42°",
-          "given",
-          30
-         ]
-        ],
         "mathLines": [
          "\\angle AED=94^\\circ",
          "\\angle AFD=42^\\circ"
@@ -6487,7 +6712,27 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "E",
+         "A",
+         "D",
+         "94°",
+         "given"
+        ],
+        [
+         "F",
+         "A",
+         "D",
+         "42°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -6652,33 +6897,6 @@
        {
         "zh": "留意已知角及相等的 BD、BF。 $\\angle BDC=25^\\circ\\quad \\angle CAD=65^\\circ\\quad BD=BF$。",
         "en": "Read the angles and the equal lengths BD and BF. $\\angle BDC=25^\\circ\\quad \\angle CAD=65^\\circ\\quad BD=BF$.",
-        "ticks": [
-         [
-          "B",
-          "D"
-         ],
-         [
-          "B",
-          "F"
-         ]
-        ],
-        "arcs": [
-         [
-          "D",
-          "B",
-          "C",
-          "25°",
-          "given"
-         ],
-         [
-          "A",
-          "C",
-          "D",
-          "65°",
-          "given",
-          24
-         ]
-        ],
         "mathLines": [
          "\\angle BDC=25^\\circ",
          "\\angle CAD=65^\\circ",
@@ -6764,8 +6982,41 @@
         ]
        },
        {
-        "zh": "在 A 點先相加，再用三角形 ADF 的內角和。 $\\angle FAD=25^\\circ+65^\\circ=90^\\circ\\quad \\angle ADF=180^\\circ-90^\\circ-25^\\circ\\quad =65^\\circ$。",
-        "en": "Add at A, then use the angle sum of triangle ADF. $\\angle FAD=25^\\circ+65^\\circ=90^\\circ\\quad \\angle ADF=180^\\circ-90^\\circ-25^\\circ\\quad =65^\\circ$.",
+        "zh": "把上一步的結果代入，再逐項計算 $\\angle FAD=25^\\circ+65^\\circ=90^\\circ$。",
+        "en": "Substitute the previous result, then calculate one quantity at a time $\\angle FAD=25^\\circ+65^\\circ=90^\\circ$.",
+        "polygons": [
+         [
+          "A",
+          "D",
+          "F"
+         ]
+        ],
+        "mathLines": [
+         "\\angle FAD=25^\\circ+65^\\circ=90^\\circ"
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C",
+         "D",
+         "E",
+         "F"
+        ],
+        "arcs": [
+         [
+          "A",
+          "F",
+          "D",
+          "90°",
+          "claim",
+          34
+         ]
+        ]
+       },
+       {
+        "zh": "現在看三角形 ADF，用內角和求 ADF $\\angle ADF=180^\\circ-90^\\circ-25^\\circ\\quad =65^\\circ$。",
+        "en": "Now use the angle sum of triangle ADF $\\angle ADF=180^\\circ-90^\\circ-25^\\circ\\quad =65^\\circ$.",
         "arcs": [
          [
           "A",
@@ -6792,7 +7043,6 @@
          ]
         ],
         "mathLines": [
-         "\\angle FAD=25^\\circ+65^\\circ=90^\\circ",
          "\\angle ADF=180^\\circ-90^\\circ-25^\\circ",
          "=65^\\circ"
         ],
@@ -6895,7 +7145,37 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "B",
+         "D"
+        ],
+        [
+         "B",
+         "F"
+        ]
+       ],
+       "arcs": [
+        [
+         "D",
+         "B",
+         "C",
+         "25°",
+         "given"
+        ],
+        [
+         "A",
+         "C",
+         "D",
+         "65°",
+         "given",
+         24
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -7032,10 +7312,6 @@
       },
       "segments": [
        [
-        "B",
-        "D"
-       ],
-       [
         "A",
         "B"
        ],
@@ -7048,8 +7324,8 @@
         "D"
        ],
        [
-        "D",
-        "A"
+        "B",
+        "D"
        ],
        [
         "A",
@@ -7058,10 +7334,6 @@
        [
         "O",
         "C"
-       ],
-       [
-        "O",
-        "D"
        ]
       ],
       "steps": [
@@ -7134,8 +7406,35 @@
         ]
        },
        {
-        "zh": "在 OCD 中利用半徑相等及等腰三角形底角相等。 $OC=OD\\quad \\angle OCD=\\angle ODC$。",
-        "en": "Equal radii give equal base angles in OCD. $OC=OD\\quad \\angle OCD=\\angle ODC$.",
+        "zh": "先連接所需半徑；同圓半徑相等 $OC=OD$。",
+        "en": "Join the required radii. Radii of the same circle are equal $OC=OD$.",
+        "radii": [
+         "C",
+         "D"
+        ],
+        "polygons": [
+         [
+          "O",
+          "C",
+          "D"
+         ]
+        ],
+        "mathLines": [
+         "OC=OD"
+        ],
+        "ref": "(radii of the same circle)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C",
+         "D",
+         "E"
+        ]
+       },
+       {
+        "zh": "半徑相等形成等腰三角形，所以兩隻底角相等 $\\angle OCD=\\angle ODC$。",
+        "en": "The equal radii form an isosceles triangle, so its base angles are equal $\\angle OCD=\\angle ODC$.",
         "arcs": [
          [
           "C",
@@ -7154,10 +7453,6 @@
           22
          ]
         ],
-        "radii": [
-         "C",
-         "D"
-        ],
         "polygons": [
          [
           "O",
@@ -7166,10 +7461,9 @@
          ]
         ],
         "mathLines": [
-         "OC=OD",
          "\\angle OCD=\\angle ODC"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △)",
+        "ref": "(base ∠s, isos. △)",
         "clearAngle": [
          "O",
          "A",
@@ -7237,7 +7531,9 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {},
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -7380,16 +7676,8 @@
         "B"
        ],
        [
-        "B",
-        "C"
-       ],
-       [
         "C",
         "D"
-       ],
-       [
-        "D",
-        "A"
        ],
        [
         "A",
@@ -7510,8 +7798,36 @@
         ]
        },
        {
-        "zh": "E 點的對頂角亦相等，利用 AA 證相似。 $\\angle AEB=\\angle CED\\quad \\triangle ABE\\sim\\triangle DCE$。",
-        "en": "The opposite angles at E also agree. Use AA to prove similarity. $\\angle AEB=\\angle CED\\quad \\triangle ABE\\sim\\triangle DCE$.",
+        "zh": "相交直線給出對頂角相等 $\\angle AEB=\\angle CED$。",
+        "en": "The intersecting lines give equal vertically opposite angles $\\angle AEB=\\angle CED$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "E"
+         ],
+         [
+          "D",
+          "C",
+          "E"
+         ]
+        ],
+        "mathLines": [
+         "\\angle AEB=\\angle CED"
+        ],
+        "ref": "(vert. opp. ∠s)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C",
+         "D",
+         "E"
+        ]
+       },
+       {
+        "zh": "已有兩對對應角相等，故兩三角形相似 $\\triangle ABE\\sim\\triangle DCE$。",
+        "en": "Two pairs of equal corresponding angles establish similarity $\\triangle ABE\\sim\\triangle DCE$.",
         "arcs": [
          [
           "E",
@@ -7543,10 +7859,9 @@
          ]
         ],
         "mathLines": [
-         "\\angle AEB=\\angle CED",
          "\\triangle ABE\\sim\\triangle DCE"
         ],
-        "ref": "(vert. opp. ∠s); (AA)",
+        "ref": "(AA)",
         "clearAngle": [
          "O",
          "A",
@@ -7557,8 +7872,79 @@
         ]
        },
        {
-        "zh": "寫出對應邊的比例，再代入已知長度。 $\\frac{AE}{DE}=\\frac{BE}{CE}\\quad \\frac{12}{18}=\\frac{BE}{24}$。",
-        "en": "Write the ratio of corresponding sides and substitute. $\\frac{AE}{DE}=\\frac{BE}{CE}\\quad \\frac{12}{18}=\\frac{BE}{24}$.",
+        "zh": "(b) 現在加入三條已知長度，所求是 BE $AE=12,\\quad CE=24,\\quad DE=18$。",
+        "en": "For part (b), now add the three given lengths. The unknown is BE $AE=12,\\quad CE=24,\\quad DE=18$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "E"
+         ],
+         [
+          "D",
+          "C",
+          "E"
+         ]
+        ],
+        "mathLines": [
+         "AE=12,\\quad CE=24,\\quad DE=18"
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C",
+         "D",
+         "E"
+        ],
+        "givens": {
+         "segmentLabels": [
+          {
+           "id": "AE",
+           "between": [
+            "A",
+            "E"
+           ],
+           "text": "12",
+           "dx": 18,
+           "dy": 0
+          },
+          {
+           "id": "CE",
+           "between": [
+            "C",
+            "E"
+           ],
+           "text": "24",
+           "dx": 18,
+           "dy": 0
+          },
+          {
+           "id": "DE",
+           "between": [
+            "D",
+            "E"
+           ],
+           "text": "18",
+           "dx": 0,
+           "dy": 22
+          },
+          {
+           "id": "BE",
+           "between": [
+            "B",
+            "E"
+           ],
+           "text": "BE?",
+           "dx": 0,
+           "dy": -20
+          }
+         ]
+        }
+       },
+       {
+        "zh": "沿用 (a) 的相似三角形，對應邊的比相等 $\\frac{AE}{DE}=\\frac{BE}{CE}\\quad \\frac{12}{18}=\\frac{BE}{24}$。",
+        "en": "Use the similar triangles from part (a); corresponding sides are proportional $\\frac{AE}{DE}=\\frac{BE}{CE}\\quad \\frac{12}{18}=\\frac{BE}{24}$.",
         "polygons": [
          [
           "A",
@@ -7713,7 +8099,9 @@
       },
       "goal": [],
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {},
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -7869,25 +8257,7 @@
        {
         "zh": "利用已知平行線的內錯角。 $AD\\,//\\,BC\\quad \\angle CAD=\\angle ACB=32^\\circ$。",
         "en": "Use alternate angles in the given parallel lines. $AD\\,//\\,BC\\quad \\angle CAD=\\angle ACB=32^\\circ$.",
-        "parallel": [
-         [
-          "A",
-          "D"
-         ],
-         [
-          "B",
-          "C"
-         ]
-        ],
         "arcs": [
-         [
-          "C",
-          "A",
-          "B",
-          "32°",
-          "given",
-          24
-         ],
          [
           "A",
           "C",
@@ -7981,7 +8351,7 @@
           "D",
           "26°",
           "claim",
-          30
+          60
          ]
         ],
         "final": true,
@@ -8016,7 +8386,38 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "parallel": [
+        [
+         "A",
+         "D"
+        ],
+        [
+         "B",
+         "C"
+        ]
+       ],
+       "arcs": [
+        [
+         "C",
+         "A",
+         "B",
+         "32°",
+         "given",
+         24
+        ],
+        [
+         "C",
+         "A",
+         "B",
+         "32°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -8162,56 +8563,22 @@
         "B"
        ],
        [
+        "A",
+        "E"
+       ],
+       [
         "B",
+        "E"
+       ],
+       [
+        "O",
         "C"
-       ],
-       [
-        "C",
-        "D"
-       ],
-       [
-        "D",
-        "A"
-       ],
-       [
-        "O",
-        "A"
-       ],
-       [
-        "O",
-        "D"
-       ],
-       [
-        "D",
-        "E"
-       ],
-       [
-        "C",
-        "E"
        ]
       ],
       "steps": [
        {
         "zh": "留意兩隻已知角；O 位於直徑 AD 上。 $\\angle OAB=50^\\circ\\quad \\angle OEC=26^\\circ$。",
         "en": "Read the two given angles; O lies on diameter AD. $\\angle OAB=50^\\circ\\quad \\angle OEC=26^\\circ$.",
-        "arcs": [
-         [
-          "A",
-          "O",
-          "B",
-          "50°",
-          "given",
-          26
-         ],
-         [
-          "E",
-          "O",
-          "C",
-          "26°",
-          "given",
-          30
-         ]
-        ],
         "mathLines": [
          "\\angle OAB=50^\\circ",
          "\\angle OEC=26^\\circ"
@@ -8226,12 +8593,35 @@
         ]
        },
        {
-        "zh": "在三角形 OAB 中利用半徑相等。 $OA=OB\\quad \\angle OBA=50^\\circ$。",
-        "en": "Use equal radii in triangle OAB. $OA=OB\\quad \\angle OBA=50^\\circ$.",
+        "zh": "先連接所需半徑；同圓半徑相等 $OA=OB$。",
+        "en": "Join the required radii. Radii of the same circle are equal $OA=OB$.",
         "radii": [
          "A",
          "B"
         ],
+        "polygons": [
+         [
+          "O",
+          "A",
+          "B"
+         ]
+        ],
+        "mathLines": [
+         "OA=OB"
+        ],
+        "ref": "(radii of the same circle)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C",
+         "D",
+         "E"
+        ]
+       },
+       {
+        "zh": "半徑相等形成等腰三角形，所以兩隻底角相等 $\\angle OBA=50^\\circ$。",
+        "en": "The equal radii form an isosceles triangle, so its base angles are equal $\\angle OBA=50^\\circ$.",
         "arcs": [
          [
           "B",
@@ -8250,10 +8640,9 @@
          ]
         ],
         "mathLines": [
-         "OA=OB",
          "\\angle OBA=50^\\circ"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △)",
+        "ref": "(base ∠s, isos. △)",
         "clearAngle": [
          "O",
          "A",
@@ -8339,12 +8728,42 @@
         ]
        },
        {
-        "zh": "在三角形 OBC 中利用半徑相等。 $OB=OC\\quad \\angle OCB=\\angle OBC=54^\\circ$。",
-        "en": "Use equal radii in triangle OBC. $OB=OC\\quad \\angle OCB=\\angle OBC=54^\\circ$.",
+        "zh": "先連接所需半徑；同圓半徑相等 $OB=OC$。",
+        "en": "Join the required radii. Radii of the same circle are equal $OB=OC$.",
         "radii": [
          "B",
          "C"
         ],
+        "polygons": [
+         [
+          "O",
+          "B",
+          "C"
+         ]
+        ],
+        "lines": [
+         [
+          "O",
+          "C",
+          "accent"
+         ]
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C",
+         "D",
+         "E"
+        ],
+        "mathLines": [
+         "OB=OC"
+        ],
+        "ref": "(radii of the same circle)"
+       },
+       {
+        "zh": "半徑相等形成等腰三角形，所以兩隻底角相等 $\\angle OCB=\\angle OBC=54^\\circ$。",
+        "en": "The equal radii form an isosceles triangle, so its base angles are equal $\\angle OCB=\\angle OBC=54^\\circ$.",
         "arcs": [
          [
           "B",
@@ -8373,13 +8792,6 @@
           "C"
          ]
         ],
-        "lines": [
-         [
-          "O",
-          "C",
-          "accent"
-         ]
-        ],
         "clearAngle": [
          "O",
          "A",
@@ -8389,10 +8801,9 @@
          "E"
         ],
         "mathLines": [
-         "OB=OC",
          "\\angle OCB=\\angle OBC=54^\\circ"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △)"
+        "ref": "(base ∠s, isos. △)"
        }
       ],
       "readable": true,
@@ -8401,7 +8812,28 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "O",
+         "B",
+         "50°",
+         "given",
+         26
+        ],
+        [
+         "E",
+         "O",
+         "C",
+         "26°",
+         "given",
+         30
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -8540,16 +8972,6 @@
        {
         "zh": "AC、CD 相等，因此底角相等，記作 x。 $\\angle CAD=\\angle ADC=x$。",
         "en": "Equal sides AC and CD give equal base angles. Name them x. $\\angle CAD=\\angle ADC=x$.",
-        "ticks": [
-         [
-          "A",
-          "C"
-         ],
-         [
-          "C",
-          "D"
-         ]
-        ],
         "arcs": [
          [
           "D",
@@ -8590,18 +9012,6 @@
        {
         "zh": "AB、AD 相等，再得到另一隻等於 x 的底角。 $\\angle ABC=\\angle ADC=x$。",
         "en": "Equal sides AB and AD give another angle equal to x. $\\angle ABC=\\angle ADC=x$.",
-        "ticks": [
-         [
-          "A",
-          "B",
-          2
-         ],
-         [
-          "A",
-          "D",
-          2
-         ]
-        ],
         "arcs": [
          [
           "B",
@@ -8703,7 +9113,40 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "C"
+        ],
+        [
+         "C",
+         "D"
+        ],
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "A",
+         "D",
+         2
+        ],
+        [
+         "A",
+         "C",
+         3
+        ],
+        [
+         "C",
+         "D",
+         3
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -8860,20 +9303,12 @@
         "B"
        ],
        [
-        "B",
-        "C"
-       ],
-       [
-        "C",
-        "D"
-       ],
-       [
-        "D",
+        "A",
         "E"
        ],
        [
         "E",
-        "A"
+        "D"
        ],
        [
         "A",
@@ -8892,26 +9327,6 @@
        {
         "zh": "留意直徑 BE、平行線及 A 點的角。 $AC\\,//\\,ED\\quad \\angle DAE=34^\\circ$。",
         "en": "Read diameter BE, the parallel lines and the angle at A. $AC\\,//\\,ED\\quad \\angle DAE=34^\\circ$.",
-        "parallel": [
-         [
-          "A",
-          "C"
-         ],
-         [
-          "E",
-          "D"
-         ]
-        ],
-        "arcs": [
-         [
-          "A",
-          "D",
-          "E",
-          "34°",
-          "given",
-          26
-         ]
-        ],
         "mathLines": [
          "AC\\,//\\,ED",
          "\\angle DAE=34^\\circ"
@@ -9012,14 +9427,6 @@
         "arcs": [
          [
           "A",
-          "D",
-          "E",
-          "34°",
-          "given",
-          28
-         ],
-         [
-          "A",
           "B",
           "D",
           "56°",
@@ -9076,11 +9483,67 @@
          "C",
          "F",
          "G"
+        ],
+        "goal": [
+         [
+          "A",
+          "B",
+          "C",
+          "?",
+          "goal",
+          44
+         ]
+        ],
+        "givens": {
+         "notes": [
+          [
+           "(b) EB bisects ∠AED",
+           210,
+           30,
+           14
+          ]
+         ]
+        }
+       },
+       {
+        "zh": "先在三角形 ADE 中求角 ADE $\\angle ADE=180^\\circ-34^\\circ-112^\\circ\\quad =34^\\circ$。",
+        "en": "First find angle ADE in triangle ADE $\\angle ADE=180^\\circ-34^\\circ-112^\\circ\\quad =34^\\circ$.",
+        "polygons": [
+         [
+          "A",
+          "D",
+          "E"
+         ]
+        ],
+        "mathLines": [
+         "\\angle ADE=180^\\circ-34^\\circ-112^\\circ",
+         "=34^\\circ"
+        ],
+        "ref": "(∠ sum of △)",
+        "clearAngle": [
+         "O",
+         "B",
+         "E",
+         "A",
+         "D",
+         "C",
+         "F",
+         "G"
+        ],
+        "arcs": [
+         [
+          "D",
+          "A",
+          "E",
+          "34°",
+          "claim",
+          26
+         ]
         ]
        },
        {
-        "zh": "利用三角形 ADE 及平行線。 $\\angle ADE=180^\\circ-34^\\circ-112^\\circ\\quad =34^\\circ\\quad \\angle CAD=\\angle ADE=34^\\circ$。",
-        "en": "Use triangle ADE and the parallel lines. $\\angle ADE=180^\\circ-34^\\circ-112^\\circ\\quad =34^\\circ\\quad \\angle CAD=\\angle ADE=34^\\circ$.",
+        "zh": "AC 平行 ED，把角 ADE 搬到 CAD $\\angle CAD=\\angle ADE=34^\\circ$。",
+        "en": "Since AC is parallel to ED, transfer angle ADE to CAD $\\angle CAD=\\angle ADE=34^\\circ$.",
         "arcs": [
          [
           "D",
@@ -9107,11 +9570,9 @@
          ]
         ],
         "mathLines": [
-         "\\angle ADE=180^\\circ-34^\\circ-112^\\circ",
-         "=34^\\circ",
          "\\angle CAD=\\angle ADE=34^\\circ"
         ],
-        "ref": "(∠ sum of △); (alt. ∠s, // lines)",
+        "ref": "(alt. ∠s, // lines)",
         "clearAngle": [
          "O",
          "B",
@@ -9127,14 +9588,6 @@
         "zh": "在 A 點把兩隻三十四度的角減去。 $\\angle BAC=90^\\circ-34^\\circ-34^\\circ\\quad =22^\\circ$。",
         "en": "Subtract the two 34-degree angles at A. $\\angle BAC=90^\\circ-34^\\circ-34^\\circ\\quad =22^\\circ$.",
         "arcs": [
-         [
-          "A",
-          "D",
-          "E",
-          "34°",
-          "given",
-          28
-         ],
          [
           "A",
           "C",
@@ -9177,7 +9630,38 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "parallel": [
+        [
+         "A",
+         "C"
+        ],
+        [
+         "E",
+         "D"
+        ]
+       ],
+       "arcs": [
+        [
+         "A",
+         "D",
+         "E",
+         "34°",
+         "given",
+         26
+        ],
+        [
+         "A",
+         "D",
+         "E",
+         "34°",
+         "given",
+         28
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -9353,28 +9837,6 @@
        {
         "zh": "留意相等弦，並把 BAC 角記作 θ。 $AB=AC\\quad \\angle BAC=\\theta$。",
         "en": "Read the equal chords and name angle BAC as theta. $AB=AC\\quad \\angle BAC=\\theta$.",
-        "ticks": [
-         [
-          "A",
-          "B",
-          2
-         ],
-         [
-          "A",
-          "C",
-          2
-         ]
-        ],
-        "arcs": [
-         [
-          "A",
-          "B",
-          "C",
-          "θ",
-          "given",
-          26
-         ]
-        ],
         "mathLines": [
          "AB=AC",
          "\\angle BAC=\\theta"
@@ -9419,12 +9881,54 @@
         ]
        },
        {
-        "zh": "在三角形 OBC 中利用半徑相等。 $OB=OC\\quad \\angle OCB=\\frac{180^\\circ-2\\theta}{2}\\quad =90^\\circ-\\theta$。",
-        "en": "Use equal radii in triangle OBC. $OB=OC\\quad \\angle OCB=\\frac{180^\\circ-2\\theta}{2}\\quad =90^\\circ-\\theta$.",
+        "zh": "OB、OC 都是半徑 $OB=OC$。",
+        "en": "OB and OC are radii $OB=OC$.",
         "radii": [
          "B",
          "C"
         ],
+        "polygons": [
+         [
+          "O",
+          "B",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "OB=OC"
+        ],
+        "ref": "(radii of the same circle)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C"
+        ]
+       },
+       {
+        "zh": "先指出三角形 OBC 的兩隻底角相等 $\\angle OBC=\\angle OCB$。",
+        "en": "First identify the equal base angles in triangle OBC $\\angle OBC=\\angle OCB$.",
+        "polygons": [
+         [
+          "O",
+          "B",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "\\angle OBC=\\angle OCB"
+        ],
+        "ref": "(base ∠s, isos. △)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C"
+        ]
+       },
+       {
+        "zh": "把上一步的結果代入，再逐項計算 $\\angle OCB=\\frac{180^\\circ-2\\theta}{2}\\quad =90^\\circ-\\theta$。",
+        "en": "Substitute the previous result, then calculate one quantity at a time $\\angle OCB=\\frac{180^\\circ-2\\theta}{2}\\quad =90^\\circ-\\theta$.",
         "arcs": [
          [
           "C",
@@ -9443,11 +9947,10 @@
          ]
         ],
         "mathLines": [
-         "OB=OC",
          "\\angle OCB=\\frac{180^\\circ-2\\theta}{2}",
          "=90^\\circ-\\theta"
         ],
-        "ref": "(radii of the same circle); (base ∠s, isos. △); (∠ sum of △)",
+        "ref": "(∠ sum of △)",
         "clearAngle": [
          "O",
          "A",
@@ -9559,7 +10062,17 @@
         "mathLines": [
          "\\frac\\theta2=90^\\circ-\\theta",
          "\\theta=60^\\circ"
-        ]
+        ],
+        "givens": {
+         "notes": [
+          [
+           "(b) OC bisects ∠ACB",
+           210,
+           30,
+           14
+          ]
+         ]
+        }
        }
       ],
       "readable": true,
@@ -9568,7 +10081,32 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "A",
+         "C",
+         2
+        ]
+       ],
+       "arcs": [
+        [
+         "A",
+         "B",
+         "C",
+         "θ",
+         "given",
+         26
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -9695,20 +10233,46 @@
       ],
       "steps": [
        {
-        "zh": "連 BC、CD；直徑 AC 給出兩隻直角。 $AB=AD\\quad \\angle ABC=\\angle ADC=90^\\circ$。",
-        "en": "Join BC and CD. Diameter AC gives two right angles. $AB=AD\\quad \\angle ABC=\\angle ADC=90^\\circ$.",
-        "ticks": [
+        "zh": "先標明原題給出的相等弦 $AB=AD$。",
+        "en": "Mark the equal chords given in the question $AB=AD$.",
+        "polygons": [
          [
           "A",
           "B",
-          2
+          "C"
          ],
          [
           "A",
           "D",
-          2
+          "C"
          ]
         ],
+        "lines": [
+         [
+          "B",
+          "C",
+          "accent"
+         ],
+         [
+          "C",
+          "D",
+          "accent"
+         ]
+        ],
+        "mathLines": [
+         "AB=AD"
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       },
+       {
+        "zh": "連接 BC、DC；直徑 AC 所對的兩隻圓周角都是直角 $\\angle ABC=\\angle ADC=90^\\circ$。",
+        "en": "Join BC and DC. Both angles subtended by diameter AC are right angles $\\angle ABC=\\angle ADC=90^\\circ$.",
         "arcs": [
          [
           "B",
@@ -9739,20 +10303,7 @@
           "C"
          ]
         ],
-        "lines": [
-         [
-          "B",
-          "C",
-          "accent"
-         ],
-         [
-          "C",
-          "D",
-          "accent"
-         ]
-        ],
         "mathLines": [
-         "AB=AD",
          "\\angle ABC=\\angle ADC=90^\\circ"
         ],
         "ref": "(∠ in semi-circle)",
@@ -9765,8 +10316,8 @@
         ]
        },
        {
-        "zh": "兩個直角三角形共用斜邊 AC，且 AB、AD 相等。 $AC=AC\\quad \\triangle ABC\\cong\\triangle ADC$。",
-        "en": "The triangles share hypotenuse AC and have AB equal to AD. $AC=AC\\quad \\triangle ABC\\cong\\triangle ADC$.",
+        "zh": "兩個直角三角形共用斜邊 AC $AC=AC$。",
+        "en": "The two right-angled triangles share hypotenuse AC $AC=AC$.",
         "polygons": [
          [
           "A",
@@ -9787,7 +10338,32 @@
          ]
         ],
         "mathLines": [
-         "AC=AC",
+         "AC=AC"
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       },
+       {
+        "zh": "斜邊及一條對應直角邊相等，因此全等 $\\triangle ABC\\cong\\triangle ADC$。",
+        "en": "Equal hypotenuses and one corresponding leg establish congruence $\\triangle ABC\\cong\\triangle ADC$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "C"
+         ],
+         [
+          "A",
+          "D",
+          "C"
+         ]
+        ],
+        "mathLines": [
          "\\triangle ABC\\cong\\triangle ADC"
         ],
         "ref": "(RHS)",
@@ -9872,7 +10448,22 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "B",
+         2
+        ],
+        [
+         "A",
+         "D",
+         2
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -10014,38 +10605,6 @@
        {
         "zh": "先看三角形 ACD 的三邊長。 $AC=39\\text{ cm}\\quad AD=36\\text{ cm},\\quad CD=15\\text{ cm}$。",
         "en": "Read the three side lengths of triangle ACD. $AC=39\\text{ cm}\\quad AD=36\\text{ cm},\\quad CD=15\\text{ cm}$.",
-        "segmentLabels": [
-         {
-          "id": "AC",
-          "between": [
-           "A",
-           "C"
-          ],
-          "text": "39",
-          "dx": -30,
-          "dy": 0
-         },
-         {
-          "id": "AD",
-          "between": [
-           "A",
-           "D"
-          ],
-          "text": "36",
-          "dx": 25,
-          "dy": 0
-         },
-         {
-          "id": "CD",
-          "between": [
-           "C",
-           "D"
-          ],
-          "text": "15",
-          "dx": 15,
-          "dy": 17
-         }
-        ],
         "mathLines": [
          "AC=39\\text{ cm}",
          "AD=36\\text{ cm},",
@@ -10057,8 +10616,7 @@
          "C",
          "B",
          "D"
-        ],
-        "arcs": []
+        ]
        },
        {
         "zh": "比較三邊的平方，證明是直角。 $39^2=36^2+15^2=1521\\quad \\angle ADC=90^\\circ$。",
@@ -10130,8 +10688,95 @@
         ]
        },
        {
-        "zh": "在直角三角形 ABC 使用餘弦。 $\\angle ACB=25^\\circ\\quad BC=39\\cos25^\\circ\\quad \\approx35.3\\text{ cm}$。",
-        "en": "Use cosine in right triangle ABC. $\\angle ACB=25^\\circ\\quad BC=39\\cos25^\\circ\\quad \\approx35.3\\text{ cm}$.",
+        "zh": "(b) 現在加入新的已知角 25° $\\angle ACB=25^\\circ$。",
+        "en": "For part (b), now add the given 25° angle $\\angle ACB=25^\\circ$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "\\angle ACB=25^\\circ"
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "C",
+         "B",
+         "D"
+        ],
+        "givens": {
+         "arcs": [
+          [
+           "C",
+           "A",
+           "B",
+           "25°",
+           "given",
+           32
+          ]
+         ],
+         "segmentLabels": [
+          {
+           "id": "BC",
+           "between": [
+            "B",
+            "C"
+           ],
+           "text": "BC?",
+           "dx": -38,
+           "dy": 0
+          }
+         ]
+        },
+        "arcs": [
+         [
+          "C",
+          "A",
+          "B",
+          "25°",
+          "claim",
+          32
+         ]
+        ]
+       },
+       {
+        "zh": "(a) 已證 AC 是直徑，所以 ABC 是直角 $\\angle ABC=90^\\circ$。",
+        "en": "Part (a) proved AC is a diameter, so ABC is a right angle $\\angle ABC=90^\\circ$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "C"
+         ]
+        ],
+        "mathLines": [
+         "\\angle ABC=90^\\circ"
+        ],
+        "ref": "(∠ in semi-circle)",
+        "clearAngle": [
+         "O",
+         "A",
+         "C",
+         "B",
+         "D"
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "90°",
+          "claim",
+          24
+         ]
+        ]
+       },
+       {
+        "zh": "BC 是 25° 的鄰邊，AC 是斜邊，故用餘弦 $BC=39\\cos25^\\circ\\quad \\approx35.3\\text{ cm}$。",
+        "en": "BC is adjacent to 25° and AC is the hypotenuse, so use cosine $BC=39\\cos25^\\circ\\quad \\approx35.3\\text{ cm}$.",
         "arcs": [
          [
           "C",
@@ -10164,17 +10809,15 @@
            "B",
            "C"
           ],
-          "text": "BC?",
+          "text": "35.3 cm",
           "dx": -38,
           "dy": 0
          }
         ],
         "mathLines": [
-         "\\angle ACB=25^\\circ",
          "BC=39\\cos25^\\circ",
          "\\approx35.3\\text{ cm}"
         ],
-        "ref": "(∠ in semi-circle)",
         "clearAngle": [
          "O",
          "A",
@@ -10244,7 +10887,42 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "segmentLabels": [
+        {
+         "id": "AC",
+         "between": [
+          "A",
+          "C"
+         ],
+         "text": "39",
+         "dx": -30,
+         "dy": 0
+        },
+        {
+         "id": "AD",
+         "between": [
+          "A",
+          "D"
+         ],
+         "text": "36",
+         "dx": 25,
+         "dy": 0
+        },
+        {
+         "id": "CD",
+         "between": [
+          "C",
+          "D"
+         ],
+         "text": "15",
+         "dx": 15,
+         "dy": 17
+        }
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -10367,19 +11045,15 @@
         "B"
        ],
        [
-        "B",
-        "C"
-       ],
-       [
-        "C",
+        "A",
         "D"
        ],
        [
-        "D",
-        "A"
+        "B",
+        "D"
        ],
        [
-        "B",
+        "C",
         "D"
        ],
        [
@@ -10395,24 +11069,6 @@
        {
         "zh": "先看 A、D 兩點的已知角。 $\\angle BAD=70^\\circ\\quad \\angle BDC=26^\\circ$。",
         "en": "Read the angles at A and D. $\\angle BAD=70^\\circ\\quad \\angle BDC=26^\\circ$.",
-        "arcs": [
-         [
-          "A",
-          "B",
-          "D",
-          "70°",
-          "given",
-          26
-         ],
-         [
-          "D",
-          "B",
-          "C",
-          "26°",
-          "given",
-          24
-         ]
-        ],
         "mathLines": [
          "\\angle BAD=70^\\circ",
          "\\angle BDC=26^\\circ"
@@ -10531,7 +11187,28 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "arcs": [
+        [
+         "A",
+         "B",
+         "D",
+         "70°",
+         "given",
+         26
+        ],
+        [
+         "D",
+         "B",
+         "C",
+         "26°",
+         "given",
+         24
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -10662,12 +11339,8 @@
         "D"
        ],
        [
-        "D",
+        "A",
         "E"
-       ],
-       [
-        "E",
-        "A"
        ],
        [
         "A",
@@ -10686,34 +11359,6 @@
        {
         "zh": "留意平行線及 O、F 兩點的角。 $AE\\,//\\,BO\\quad \\angle BOE=116^\\circ\\quad \\angle DFE=110^\\circ$。",
         "en": "Read the parallel lines and the angles at O and F. $AE\\,//\\,BO\\quad \\angle BOE=116^\\circ\\quad \\angle DFE=110^\\circ$.",
-        "parallel": [
-         [
-          "A",
-          "E"
-         ],
-         [
-          "B",
-          "O"
-         ]
-        ],
-        "arcs": [
-         [
-          "O",
-          "B",
-          "E",
-          "116°",
-          "given",
-          26
-         ],
-         [
-          "F",
-          "D",
-          "E",
-          "110°",
-          "given",
-          22
-         ]
-        ],
         "mathLines": [
          "AE\\,//\\,BO",
          "\\angle BOE=116^\\circ",
@@ -10906,7 +11551,38 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "parallel": [
+        [
+         "A",
+         "E"
+        ],
+        [
+         "B",
+         "O"
+        ]
+       ],
+       "arcs": [
+        [
+         "O",
+         "B",
+         "E",
+         "116°",
+         "given",
+         26
+        ],
+        [
+         "F",
+         "D",
+         "E",
+         "110°",
+         "given",
+         22
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -11016,13 +11692,13 @@
         "hidden": true
        },
        "A": {
-        "at": 170
+        "at": 190
        },
        "B": {
         "at": 270
        },
        "C": {
-        "at": 310
+        "at": 330
        },
        "D": {
         "at": 50
@@ -11042,14 +11718,6 @@
       },
       "segments": [
        [
-        "B",
-        "C"
-       ],
-       [
-        "D",
-        "A"
-       ],
-       [
         "A",
         "C"
        ],
@@ -11062,16 +11730,6 @@
        {
         "zh": "連 AB、CD，並標出已知的相等邊。 $AE=DE$。",
         "en": "Join AB and CD. Mark the given equal lengths. $AE=DE$.",
-        "ticks": [
-         [
-          "A",
-          "E"
-         ],
-         [
-          "D",
-          "E"
-         ]
-        ],
         "lines": [
          [
           "A",
@@ -11094,8 +11752,7 @@
          "C",
          "D",
          "E"
-        ],
-        "arcs": []
+        ]
        },
        {
         "zh": "利用弧 AD 所對的圓周角。 $\\angle ABD=\\angle ACD$。",
@@ -11320,7 +11977,20 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "A",
+         "E"
+        ],
+        [
+         "D",
+         "E"
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -11408,16 +12078,16 @@
         "hidden": true
        },
        "A": {
-        "at": 0
+        "at": 145
        },
        "B": {
-        "at": 76
+        "at": 221
        },
        "C": {
-        "at": 180
+        "at": 325
        },
        "D": {
-        "at": 256
+        "at": 401
        },
        "E": {
         "cross": [
@@ -11442,10 +12112,6 @@
         "D"
        ],
        [
-        "D",
-        "A"
-       ],
-       [
         "A",
         "C"
        ],
@@ -11458,26 +12124,6 @@
        {
         "zh": "留意相等邊及 E 點的已知角。 $BE=CE\\quad \\angle BEC=104^\\circ$。",
         "en": "Read the equal lengths and the angle at E. $BE=CE\\quad \\angle BEC=104^\\circ$.",
-        "ticks": [
-         [
-          "B",
-          "E"
-         ],
-         [
-          "C",
-          "E"
-         ]
-        ],
-        "arcs": [
-         [
-          "E",
-          "B",
-          "C",
-          "104°",
-          "given",
-          24
-         ]
-        ],
         "mathLines": [
          "BE=CE",
          "\\angle BEC=104^\\circ"
@@ -11534,8 +12180,34 @@
         ]
        },
        {
-        "zh": "利用直徑 AC，再在 B 點減去較小角。 $\\angle ABC=90^\\circ\\quad \\angle ABD=90^\\circ-38^\\circ=52^\\circ$。",
-        "en": "Use diameter AC, then subtract the smaller angle at B. $\\angle ABC=90^\\circ\\quad \\angle ABD=90^\\circ-38^\\circ=52^\\circ$.",
+        "zh": "AC 是直徑，所以 ABC 是直角 $\\angle ABC=90^\\circ$。",
+        "en": "AC is a diameter, so ABC is a right angle $\\angle ABC=90^\\circ$.",
+        "mathLines": [
+         "\\angle ABC=90^\\circ"
+        ],
+        "ref": "(∠ in semi-circle)",
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C",
+         "D",
+         "E"
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "C",
+          "90°",
+          "claim",
+          26
+         ]
+        ]
+       },
+       {
+        "zh": "把上一步的結果代入，再逐項計算 $\\angle ABD=90^\\circ-38^\\circ=52^\\circ$。",
+        "en": "Substitute the previous result, then calculate one quantity at a time $\\angle ABD=90^\\circ-38^\\circ=52^\\circ$.",
         "arcs": [
          [
           "B",
@@ -11555,10 +12227,8 @@
          ]
         ],
         "mathLines": [
-         "\\angle ABC=90^\\circ",
          "\\angle ABD=90^\\circ-38^\\circ=52^\\circ"
         ],
-        "ref": "(∠ in semi-circle)",
         "clearAngle": [
          "O",
          "A",
@@ -11650,7 +12320,30 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "B",
+         "E"
+        ],
+        [
+         "C",
+         "E"
+        ]
+       ],
+       "arcs": [
+        [
+         "E",
+         "B",
+         "C",
+         "104°",
+         "given",
+         24
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [
@@ -11822,70 +12515,6 @@
        {
         "zh": "留意平行邊、相等長度及已知角。 $AD\\,//\\,BC\\quad BC=CD=15\\text{ cm}\\quad \\angle BAD=60^\\circ,\\quad\\angle BDC=30^\\circ$。",
         "en": "Read the parallel sides, equal lengths and marked angles. $AD\\,//\\,BC\\quad BC=CD=15\\text{ cm}\\quad \\angle BAD=60^\\circ,\\quad\\angle BDC=30^\\circ$.",
-        "parallel": [
-         [
-          "A",
-          "D"
-         ],
-         [
-          "B",
-          "C"
-         ]
-        ],
-        "ticks": [
-         [
-          "B",
-          "C",
-          2
-         ],
-         [
-          "C",
-          "D",
-          2
-         ]
-        ],
-        "arcs": [
-         [
-          "A",
-          "B",
-          "D",
-          "60°",
-          "given",
-          28
-         ],
-         [
-          "D",
-          "B",
-          "C",
-          "30°",
-          "given",
-          22
-         ]
-        ],
-        "segmentLabels": [
-         {
-          "id": "BC",
-          "between": [
-           "B",
-           "C"
-          ],
-          "text": "15 cm",
-          "dx": 0,
-          "dy": -16,
-          "colour": "given"
-         },
-         {
-          "id": "CD",
-          "between": [
-           "C",
-           "D"
-          ],
-          "text": "15 cm",
-          "dx": 30,
-          "dy": 0,
-          "colour": "given"
-         }
-        ],
         "mathLines": [
          "AD\\,//\\,BC",
          "BC=CD=15\\text{ cm}",
@@ -11941,7 +12570,7 @@
           "B",
           "30°",
           "claim",
-          42
+          52
          ]
         ],
         "mathLines": [
@@ -12048,7 +12677,7 @@
           "C",
           "60°",
           "claim",
-          34
+          65
          ]
         ],
         "polygons": [
@@ -12144,12 +12773,32 @@
         "mathLines": [
          "OD=CD=15\\text{ cm}",
          "AD=2(15)=30\\text{ cm}"
-        ],
-        "arcs": []
+        ]
        },
        {
-        "zh": "在直角三角形 ABD 使用三角比，求 AB、BD。 $AB=30\\sin30^\\circ=15\\text{ cm}\\quad BD=15\\tan60^\\circ=15\\sqrt3\\text{ cm}$。",
-        "en": "Use trigonometry in right triangle ABD to find AB and BD. $AB=30\\sin30^\\circ=15\\text{ cm}\\quad BD=15\\tan60^\\circ=15\\sqrt3\\text{ cm}$.",
+        "zh": "先在直角三角形 ABD 中求 AB $AB=30\\sin30^\\circ=15\\text{ cm}$。",
+        "en": "First find AB in right-angled triangle ABD $AB=30\\sin30^\\circ=15\\text{ cm}$.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "D"
+         ]
+        ],
+        "mathLines": [
+         "AB=30\\sin30^\\circ=15\\text{ cm}"
+        ],
+        "clearAngle": [
+         "O",
+         "A",
+         "B",
+         "C",
+         "D"
+        ]
+       },
+       {
+        "zh": "再用已求出的 AB 計算 BD $BD=15\\tan60^\\circ=15\\sqrt3\\text{ cm}$。",
+        "en": "Then use AB to calculate BD $BD=15\\tan60^\\circ=15\\sqrt3\\text{ cm}$.",
         "polygons": [
          [
           "A",
@@ -12164,7 +12813,7 @@
           "B",
           "30°",
           "claim",
-          32
+          52
          ]
         ],
         "segmentLabels": [
@@ -12190,7 +12839,6 @@
          }
         ],
         "mathLines": [
-         "AB=30\\sin30^\\circ=15\\text{ cm}",
          "BD=15\\tan60^\\circ=15\\sqrt3\\text{ cm}"
         ],
         "clearAngle": [
@@ -12233,7 +12881,7 @@
           "B",
           "30°",
           "claim",
-          32
+          52
          ]
         ]
        }
@@ -12244,7 +12892,74 @@
        "en": "Study the original figure, identify the given information and the required result, then press Next step."
       },
       "layout": "side-by-side",
-      "hideSolvedGoals": true
+      "hideSolvedGoals": true,
+      "givens": {
+       "ticks": [
+        [
+         "B",
+         "C",
+         2
+        ],
+        [
+         "C",
+         "D",
+         2
+        ]
+       ],
+       "parallel": [
+        [
+         "A",
+         "D"
+        ],
+        [
+         "B",
+         "C"
+        ]
+       ],
+       "segmentLabels": [
+        {
+         "id": "BC",
+         "between": [
+          "B",
+          "C"
+         ],
+         "text": "15 cm",
+         "dx": 0,
+         "dy": -16,
+         "colour": "given"
+        },
+        {
+         "id": "CD",
+         "between": [
+          "C",
+          "D"
+         ],
+         "text": "15 cm",
+         "dx": 30,
+         "dy": 0,
+         "colour": "given"
+        }
+       ],
+       "arcs": [
+        [
+         "A",
+         "B",
+         "D",
+         "60°",
+         "given",
+         28
+        ],
+        [
+         "D",
+         "B",
+         "C",
+         "30°",
+         "given",
+         22
+        ]
+       ]
+      },
+      "replaceSolvedGivens": true
      },
      "solution": {
       "steps": [

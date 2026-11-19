@@ -3119,8 +3119,9 @@ const p11q = boot("quiz.html", "?c=ch11-1&p=3");
 ok(!!p11q.$(".cg-svg"), "題目頁有逐步圖解");
 const cgNext = p11q.$(".cg-next");
 const arcsBefore = p11q.$$(".cg-arc").length;
+const initial111Figure = p11q.$(".cg-svg").textContent;
 cgNext.click();
-ok(p11q.$$(".cg-arc").length + p11q.$$(".cg-draw").length + p11q.$$(".cg-tick").length > arcsBefore,
+ok(p11q.$$(".cg-arc").length >= arcsBefore && !!p11q.$(".cg-equation"),
   "按「下一步」會畫出第一拍");
 ok(/1 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),
   "計數器由 1 開始（" + ((p11q.$(".cg-count") || {}).textContent || "") + "）");
@@ -3133,8 +3134,8 @@ ok(/1 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),
   "「上一步」退回第 1 步（" + ((p11q.$(".cg-count") || {}).textContent || "") + "）");
 const cgRestart = p11q.$(".cg-restart");
 cgRestart.click();
-ok(!p11q.$(".cg-arc") && /0 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),
-  "「重播 Restart」清空圖形並回到第 0 步");
+ok(p11q.$(".cg-svg").textContent === initial111Figure && /0 \/ \d+/.test((p11q.$(".cg-count") || {}).textContent || ""),
+  "「重播 Restart」保留原題資料並回到第 0 步");
 
 ok(P11_DATA.sections[1].questions.every((q) => q.anim),
   "Level 1 每題都有 anim 圖解資料");
@@ -3174,7 +3175,7 @@ for (const anim of readers111) {
   if (p11q.$(".cg-svg").textContent !== initial || p11q.$(".cg-equation") ||
       p11q.$(".cg-ref").textContent || !p11q.$(".cg-back").disabled) replay111Valid = false;
 }
-ok(lesson111Valid, "11.1: all 176 steps render the matching bilingual formulas and saved reasons");
+ok(lesson111Valid, "11.1: all steps render the matching bilingual formulas and saved reasons");
 ok(construction111Valid, "11.1: constructed segments persist without duplicate copies in every player");
 ok(replay111Valid, "11.1: Back and Restart restore the matching diagram and reading panel");
 
@@ -3260,7 +3261,8 @@ chordPage.$(".cg-back").click();
 ok(!chordPage.$(".cg-measure") && !chordPage.$(".cg-answer") && !!chordPage.$('[data-length="ON"]'),
   "Back removes the final measurement while retaining the two proven 6 cm distances");
 chordPage.$(".cg-restart").click();
-ok(chordPage.$$(".cg-length,.cg-arc,.cg-area,.cg-measure,.cg-draw,.cg-tick").length === 0 &&
+ok(chordPage.$$(".cg-length").length === 2 &&
+  chordPage.$$(".cg-arc,.cg-area,.cg-measure,.cg-draw,.cg-tick").length === 0 &&
   /0 \/ 7/.test(chordPage.$(".cg-count").textContent),
   "Restart restores the original figure and step 0");
 
@@ -3273,8 +3275,8 @@ ok(/SSS/.test(chordById("l1-16").solution.steps[1].en) &&
   /59/.test(chordById("l2-17").solution.steps.at(-1).en) &&
   /4.8/.test(chordById("l2-18").answers[0].math) &&
   /30\\sqrt\{10\}/.test(chordById("l2-22").answers[0].math) &&
-  /omitted/.test(chordById("l2-27").stem.en),
-  "Correct SSS proof, Q17 explanation, Q18 requested chord, Q22 surd and Q27 missing condition");
+  /AB = DE/.test(chordById("l2-27").stem.en) && !/omitted/.test(chordById("l2-27").stem.en),
+  "Correct SSS proof, Q17 explanation, Q18 requested chord, Q22 surd and Q27 original equal-chord condition");
 ok(["l2-20", "l2-28"].every((id) => chordById(id).parts.length === 2 && chordById(id).answers.length === 2),
   "Q20 and Q28 keep the two separate parts from the source paper");
 ok(chordPart.cards.every((card) => card.demo.opts.anim.readable) &&
@@ -3325,7 +3327,7 @@ for (const anim of chordReaders) {
       chordPage.$(".cg-ref").textContent || !chordPage.$(".cg-back").disabled ||
       !/^Study the figure/.test(chordPage.$(".cg-progress .l-en").textContent)) chordReplayValid = false;
 }
-ok(chordReadingValid, "11.2: all 167 steps display the matching formula lines and theorem abbreviations");
+ok(chordReadingValid, "11.2: all steps display the matching formula lines and theorem abbreviations");
 ok(chordReplayValid, "11.2: Back and Restart restore the matching diagrams, captions and reasons in all 36 players");
 
 console.log("\n== 11.3: complete exercises, curved arc lengths and shaded segments ==");
@@ -4009,6 +4011,79 @@ for(const code of ["13","18","20","24","27","30"]){
  ok(extras>=0 && initial===before && before!==after && back===before && chordPage.$(".cg-givens").innerHTML===initial,
   `12.2 Q${code}: later-part givens appear at their own step and disappear on Back/Restart`);
 }
+
+console.log("\n== Chapter 11.1–11.3: source givens, construction continuity and replay ==");
+const audited1113 = readers111.concat(chordReaders,
+  arcPart3.sections.flatMap(s => s.questions.filter(q => q.anim).map(q => q.anim)),
+  arcPart3.cards.filter(c => c.demo?.type === "circle").map(c => c.demo.opts.anim));
+let continuity1113 = true, replayAll1113 = true, valid1113 = true, frames1113 = 0;
+function auditState1113() {
+  return JSON.stringify([
+    chordPage.$(".cg-svg").textContent,
+    chordPage.$$("[data-segment]").map(n => n.getAttribute("data-segment")).sort(),
+    chordPage.$$(".cg-pt").map(n => n.style.opacity === "0"),
+    chordPage.$(".cg-say").textContent, chordPage.$(".cg-ref").textContent
+  ]);
+}
+for (const anim of audited1113) {
+  chordPage.doc.body.replaceChildren();
+  chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, anim);
+  const snapshots = [auditState1113()];
+  let previous = new Set(chordPage.$$("[data-segment]").map(n => n.getAttribute("data-segment")));
+  for (const step of anim.steps) {
+    chordPage.$(".cg-next").click();frames1113++;
+    const actual = chordPage.$$("[data-segment]").map(n => n.getAttribute("data-segment"));
+    if ([...previous].some(key => !actual.includes(key)) || actual.length !== new Set(actual).size) continuity1113 = false;
+    previous = new Set(actual);
+    if (chordPage.$$(".katex-error").length || chordPage.$$("svg [d]").some(n => /NaN|undefined/.test(n.getAttribute("d")))) valid1113 = false;
+    snapshots.push(auditState1113());
+  }
+  for (let index = anim.steps.length - 1; index >= 0; index--) {
+    chordPage.$(".cg-back").click();
+    if (auditState1113() !== snapshots[index]) replayAll1113 = false;
+  }
+  chordPage.$(".cg-next").click();chordPage.$(".cg-restart").click();
+  if (auditState1113() !== snapshots[0]) replayAll1113 = false;
+}
+ok(audited1113.length === 109 && continuity1113, "All 109 players retain every original and constructed segment without duplicate lines");
+ok(valid1113, `All ${frames1113} steps render valid geometry and formulas`);
+ok(replayAll1113, "Every Back frame and Restart restore the exact givens, unknowns, hidden points and explanation");
+const auditedQuestions1113 = [P11_DATA, chordPart, arcPart3].flatMap(d => d.sections.flatMap(s => s.questions.filter(q => q.anim)));
+ok(auditedQuestions1113.length === 95 && auditedQuestions1113.every(q => q.anim.givens),
+  "Every one of the 95 animated questions declares its original givens separately from its deductions");
+for (const id of ["ch11-1-l1-21", "ch11-1-l2-25", "ch11-1-l2-26", "ch11-1-l2-28", "ch11-2-l1-16", "ch11-2-l2-24", "ch11-3-l2-21", "ch11-3-l2-26"]) {
+  const anim = auditedQuestions1113.find(q => q.id === id).anim;
+  chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, anim);
+  const boundary = anim.steps.findIndex(s => s.givens);
+  const start = chordPage.$(".cg-givens").textContent;
+  for (let index=0; index<boundary; index++) chordPage.$(".cg-next").click();
+  const before = chordPage.$(".cg-givens").textContent;
+  chordPage.$(".cg-next").click();
+  const after = chordPage.$(".cg-givens").textContent;
+  chordPage.$(".cg-back").click();
+  ok(boundary > 0 && start === before && before !== after && chordPage.$(".cg-givens").textContent === before,
+    `${id}: later-part conditions appear at the correct boundary and disappear on Back`);
+}
+const majorMinor1113 = auditedQuestions1113.find(q => q.id === "ch11-3-l1-5").anim;
+chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, majorMinor1113);
+ok(chordPage.$('[data-arc-measure="AB-minor"] text').textContent === "x" &&
+   chordPage.$('[data-arc-measure="AB-major"] text').textContent === "76 cm",
+  "11.3 Q5: minor unknown and given major arc both appear initially");
+for (const step of majorMinor1113.steps) chordPage.$(".cg-next").click();
+ok(/20/.test(chordPage.$('[data-arc-measure="AB-minor"] text').textContent) &&
+   chordPage.$('[data-arc-measure="AB-major"] text').textContent === "76 cm",
+  "11.3 Q5: solving the minor arc preserves the major-arc length");
+const symbolic1113 = auditedQuestions1113.find(q => q.id === "ch11-3-l2-21").anim;
+chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, symbolic1113);
+for (const step of symbolic1113.steps) chordPage.$(".cg-next").click();
+ok(!chordPage.$$(".cg-svg text").some(n => /^(x|y)$/.test(n.textContent)) &&
+   chordPage.$$(".cg-svg text").some(n => n.textContent === "74°"),
+  "11.3 Q21: computed angle values replace the initial symbolic labels");
+chordPage.$(".cg-restart").click();
+ok(chordPage.$$(".cg-svg text").some(n => n.textContent === "x") &&
+   chordPage.$$(".cg-svg text").some(n => n.textContent === "y") &&
+   !chordPage.$$(".cg-svg text").some(n => n.textContent === "74°"),
+  "11.3 Q21: Restart restores both original unknowns without revealing the later 74° condition");
 
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

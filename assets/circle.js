@@ -12,8 +12,11 @@
                   "ticks": [["O","A"]],
                   "notes": [["…", x, y]] } ]
    }
+   Optional anim flag: replaceSolvedGivens replaces symbolic input labels with
+   calculated values, restoring them on Back/Restart.
    Optional step fields: polygons (current triangle), segmentLabels (named lengths),
-   arcMeasures (lengths on circular arcs, also allowed initially on anim),
+   arcMeasures (curved lengths, or tickCount for equal arcs; also on anim),
+   notes [text,x,y,optionalFontSize],
    dimensions (perpendicular distance), ticks [a,b,count], parallel [a,b,t].
    Points may set labelOffset: [dx,dy]. anim.intro supplies the starting caption.
    anim.layout = "side-by-side" enables the reading panel; steps may set mathLines.
@@ -538,6 +541,19 @@
         function atAngle(t, rr) { return { x: CX + Math.cos(t) * rr, y: CY + Math.sin(t) * rr }; }
         var p = atAngle(start, radius), q = atAngle(end, radius);
         var group = el("g", { "data-arc-measure": id });
+        // Equal-arc ticks belong on the circumference, not on the chord.
+        // They use the same minor/major arc selection as a length guide.
+        if (measure.tickCount) {
+          var middle = start + (sweep ? 1 : -1) * delta / 2;
+          for (var tickIndex = 0; tickIndex < measure.tickCount; tickIndex++) {
+            var tickAngle = middle + (tickIndex - (measure.tickCount - 1) / 2) * 6 / R;
+            var tickInner = atAngle(tickAngle, R - 5), tickOuter = atAngle(tickAngle, R + 5);
+            group.appendChild(el("line", { class: "cg-tick given", "data-arc-tick": id,
+              x1: tickInner.x, y1: tickInner.y, x2: tickOuter.x, y2: tickOuter.y }));
+          }
+          gStep.appendChild(group);
+          return;
+        }
         var path = el("path", { class: "cg-arc-guide", d: "M" + p.x + " " + p.y + "A" + radius + " " + radius + " 0 " +
           (delta > Math.PI ? 1 : 0) + " " + sweep + " " + q.x + " " + q.y });
         group.appendChild(path);
@@ -701,6 +717,7 @@
 
       (st.notes || []).forEach(function (N) {
         var t = el("text", { class: "cg-note", x: N[1], y: N[2], "text-anchor": "middle" }, N[0]);
+        if (N[3]) t.style.fontSize = N[3] + "px";
         gLabels.appendChild(t);
         if (instant) {
           t.style.opacity = "1";
@@ -752,6 +769,34 @@
       }
       add(anim.givens);
       for (var i = 0; i < n; i++) add(steps[i].givens);
+      // A solved length replaces its original unknown. Keep the original
+      // condition in the data so Back and Restart can restore it exactly.
+      if (anim.replaceSolvedGivens) {
+        var updatedLengths = {}, updatedDimensions = {};
+        for (var activeIndex = 0; activeIndex < n; activeIndex++) {
+          (steps[activeIndex].segmentLabels || []).forEach(function (label) {
+            if (label.id) updatedLengths[label.id] = true;
+          });
+          (steps[activeIndex].dimensions || []).forEach(function (dimension) {
+            updatedDimensions[segmentKey(dimension.between[0], dimension.between[1])] = true;
+          });
+        }
+        fixed.segmentLabels = fixed.segmentLabels.filter(function (label) { return !updatedLengths[label.id]; });
+        fixed.dimensions = fixed.dimensions.filter(function (dimension) {
+          return !updatedDimensions[segmentKey(dimension.between[0], dimension.between[1])];
+        });
+        // Symbolic input angles (x, y, etc.) become their calculated values.
+        // Numeric givens remain fixed even when an adjacent angle is cleared.
+        fixed.arcs = fixed.arcs.filter(function (original) {
+          if (String(original[3]).indexOf("°") >= 0) return true;
+          for (var stepIndex = 0; stepIndex < n; stepIndex++) {
+            if ((steps[stepIndex].arcs || []).some(function (angle) {
+              return angleKey(angle) === angleKey(original) && angle[3] !== original[3];
+            })) return false;
+          }
+          return true;
+        });
+      }
       givenAngles = {}; givenTicks = {}; givenParallels = {};
       fixed.arcs = fixed.arcs.map(function (arc) {
         var a = arc.slice(); a[4] = "given"; givenAngles[angleKey(a)] = true;
