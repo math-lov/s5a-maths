@@ -441,6 +441,20 @@
         "zh": "同一外點引出的切線段等長；外點與圓心的連線平分兩切線夾角及小圓心角。",
         "en": "Tangents from an external point have equal lengths; the line to the centre bisects their angle and the minor central angle."
       }
+    },
+    "tangent_chord": {
+      "abbreviation": "(∠ in alt. segment)",
+      "meaning": {
+        "zh": "切線與弦的夾角等於該弦在另一弓形內所對的圓周角。",
+        "en": "The angle between a tangent and a chord equals the angle in the alternate segment on that chord."
+      }
+    },
+    "converse_tangent_chord": {
+      "abbreviation": "(converse of ∠ in alt. segment)",
+      "meaning": {
+        "zh": "通過弦端點的直線若與該弦所成的角等於另一弓形內的圓周角，該直線是圓在該端點的切線。",
+        "en": "If a line through a chord endpoint makes an angle with the chord equal to the angle in its alternate segment, the line is tangent at that endpoint."
+      }
     }
   }
 }

@@ -747,6 +747,38 @@
      "zh": "課堂練習 12.1A、12.1B、Section Check 及 Exercise 12.1 第 1–41 題；原題及官方題解。",
      "en": "Class Exercises 12.1A and 12.1B, Section Check and Exercise 12.1 Questions 1–41; original questions and official solutions."
     }
+   },
+   {
+    "id": "ch12-2",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch12",
+    "code": "12.2",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 12 章 · 圓形的基本性質（二）",
+     "en": "Chapter 12 · Basic Properties of Circles (II)"
+    },
+    "title": {
+     "zh": "12.2 切線與弦所成的角 · 課本練習",
+     "en": "12.2 Angles between Tangents and Chords · Book Exercise"
+    },
+    "meta": {
+     "paper": "Book 5A · Exercise 12.2"
+    },
+    "stats": {
+     "questions": 36,
+     "marks": 120,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "課堂練習 12.2 三題、Section Check 三項、Exercise 12.2 第 1–30 題；所提供的原題及官方解答。",
+     "en": "Three Class Exercises 12.2, three Section Check items and Exercise 12.2 Questions 1–30; supplied original questions and official solutions."
+    }
    }
   ],
   "classwork": {
@@ -828,8 +860,8 @@
       "en": "Chapter 12 · Basic Properties of Circles (II)"
      },
      "intro": {
-      "zh": "12.1 圓的切線已提供完整雙語題解及互動圖解。",
-      "en": "12.1 Tangents to a Circle includes complete bilingual solutions and interactive figures."
+      "zh": "12.1 圓的切線及 12.2 切線與弦所成的角，附完整雙語題解及互動圖解。",
+      "en": "12.1 Tangents to a Circle and 12.2 Angles between Tangents and Chords include bilingual solutions and interactive figures."
      },
      "sections": [
       {
@@ -838,6 +870,14 @@
        "title": {
         "zh": "12.1 圓的切線",
         "en": "12.1 Tangents to a Circle"
+       }
+      },
+      {
+       "code": "12.2",
+       "part": "ch12-2",
+       "title": {
+        "zh": "12.2 切線與弦所成的角",
+        "en": "12.2 Angles between Tangents and Chords"
        }
       }
      ]

@@ -3923,5 +3923,92 @@ chordPage.$(".cg-restart").click();
 ok(tangentTestBack12 === tangentTestInitial12 && tangentTestGivens12() === tangentTestInitial12,
   "12.1 tangent-test teaching card: givens persist on Back and Restart");
 
+console.log("\n== Chapter 12.2: tangent–chord theorems and all step players ==");
+const tangentChord122=JSON.parse(read("data/src/ch12-2.json"));
+const questions122=tangentChord122.sections.flatMap(s=>s.questions);
+const meta122=INDEX.parts.find(p=>p.id==="ch12-2");
+ok(questions122.length===36 && tangentChord122.sections.map(s=>s.questions.length).join()==="3,3,17,11,1,1",
+ "12.2: three class exercises, three Section Check items and Questions 1–30 are present");
+ok(meta122.answerInput && meta122.stats.questions===36 && meta122.stats.marks===120 &&
+ CW_CHAPTERS.find(c=>c.id==="ch12").sections.some(s=>s.part==="ch12-2"),
+ "12.2: navigation, marks and numerical-answer checks are registered");
+const overview122=boot("quiz.html","?c=ch12-2&p=0");
+ok(overview122.$$("#pagenav .pg").length===37 && overview122.$$(".cg-split").length===4,
+ "12.2: all 37 pages and four interactive teaching cards are available");
+overview122.dom.window.close();
+let pages122=true,inputs122=true,tf122=true;
+for(const [index,q] of questions122.entries()){
+ const rendered=boot("quiz.html",`?c=ch12-2&p=${index+1}`,null,"show");
+ if(rendered.$$(".katex-error").length || !rendered.$(".sol-card") || !rendered.$(".cg-split"))pages122=false;
+ const answers=q.answers.filter(a=>a.input!=null);
+ if(q.type==="long" && answers.length){
+  if(rendered.$$(".ans-input").length!==answers.length)inputs122=false;
+  ansType(rendered,0,"99999");ansSub(rendered).click();
+  if((rendered.store().done||{})[q.id])inputs122=false;
+  answers.forEach((a,i)=>ansType(rendered,i,a.input));
+  if((rendered.store().done||{})[q.id])inputs122=false;
+  ansSub(rendered).click();
+  if(rendered.$$(".ans-input").some(n=>!n.disabled))inputs122=false;
+ }
+ if(q.type==="tf"){
+  const item=rendered.$(".tf-item"),want=q.answers[0].tf?"T":"F";
+  item.querySelector(`[data-tf="${want==="T"?"F":"T"}"]`).click();
+  if(item.querySelector(".tf-opt.correct"))tf122=false;
+  item.querySelector(`[data-tf="${want}"]`).click();
+  if(!item.querySelector(".tf-opt.correct"))tf122=false;
+ }
+ rendered.dom.window.close();
+}
+ok(pages122,"12.2: all question pages render the bilingual solution, figure and valid formulas");
+ok(inputs122,"12.2: numerical inputs reject a wrong answer and accept correction only after submission");
+ok(tf122,"12.2: all three Section Check items allow wrong-first retries with the verified answer");
+let sync122=true,replay122=true,givens122=true;
+const players122=questions122.map(q=>q.anim).concat(tangentChord122.cards.map(c=>c.demo.opts.anim));
+chordPage.ctx.window.matchMedia=()=>({matches:true});
+for(const anim of players122){
+ chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,anim);
+ const state=()=>{
+  const svg=chordPage.$(".cg-svg").cloneNode(true);
+  svg.querySelectorAll(".cg-pt").forEach(n=>{if(n.style.opacity==="1")n.style.removeProperty("opacity");if(!n.getAttribute("style"))n.removeAttribute("style");});
+  return JSON.stringify([svg.innerHTML,chordPage.$(".cg-say").textContent,chordPage.$(".cg-ref").textContent]);
+ };
+ const initial=state(),states=[];
+ const expected=new Map();
+ const arcKey=a=>a[0]+":"+[a[1],a[2]].sort().join(":");
+ (anim.givens?.arcs||[]).forEach(a=>expected.set(arcKey(a),a[3]));
+ const checkGivens=()=>{
+  const shown=chordPage.$$(".cg-givens .cg-val.given").map(n=>n.textContent);
+  return shown.length===expected.size && [...expected.values()].every(v=>shown.includes(v));
+ };
+ if(!checkGivens())givens122=false;
+ for(const step of anim.steps){
+  chordPage.$(".cg-next").click();
+  if(chordPage.$(".cg-ref").textContent!==(step.ref||"") || chordPage.$$(".katex-error").length ||
+   chordPage.$$(".cg-en .cg-equation annotation").map(n=>n.textContent).join("\n")!==step.mathLines.map(l=>"\\displaystyle "+l).join("\n") ||
+   chordPage.$$(".cg-svg [d]").some(n=>/NaN|undefined/.test(n.getAttribute("d"))))sync122=false;
+  (step.givens?.arcs||[]).forEach(a=>expected.set(arcKey(a),a[3]));
+  if(!checkGivens())givens122=false;
+  states.push(state());
+ }
+ for(let i=states.length-2;i>=0;i--){chordPage.$(".cg-back").click();if(state()!==states[i])replay122=false;}
+ chordPage.$(".cg-restart").click();if(state()!==initial)replay122=false;
+}
+ok(players122.length===40 && sync122,"12.2: all 40 players synchronise every formula, figure and reason");
+ok(givens122,"12.2: all initial and staged given angles remain visible without duplicate labels");
+ok(replay122,"12.2: every Back and Restart restores the exact figure and explanation");
+for(const code of ["13","18","20","24","27","30"]){
+ const anim=questions122.find(q=>q.code===code).anim;
+ chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,anim);
+ const extras=anim.steps.findIndex(s=>s.givens);
+ const initial=chordPage.$(".cg-givens").innerHTML;
+ for(let i=0;i<extras;i++)chordPage.$(".cg-next").click();
+ const before=chordPage.$(".cg-givens").innerHTML;
+ chordPage.$(".cg-next").click();const after=chordPage.$(".cg-givens").innerHTML;
+ chordPage.$(".cg-back").click();const back=chordPage.$(".cg-givens").innerHTML;
+ chordPage.$(".cg-restart").click();
+ ok(extras>=0 && initial===before && before!==after && back===before && chordPage.$(".cg-givens").innerHTML===initial,
+  `12.2 Q${code}: later-part givens appear at their own step and disappear on Back/Restart`);
+}
+
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);
