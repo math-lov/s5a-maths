@@ -42,7 +42,164 @@
      "zh": "圖中只畫到圓心的線段不會自動延長。留意圓心角和圓周角雖然對著同一條弧，但所用的定理並不相同。",
      "en": "Segments ending at the centre are not extended automatically. Notice that central and circumference angles can intercept the same arc, yet they follow different theorems."
     }
-   }
+   },
+   "figures": [
+    {
+     "id": "same-arc",
+     "title": {
+      "zh": "同一條弧，兩種角",
+      "en": "One arc, two angle types"
+     },
+     "caption": {
+      "zh": "先找不經 C 的弧 AB：圓心角 120°，圓周角 60°。",
+      "en": "Trace arc AB excluding C: the central angle is 120° and the circumference angle is 60°."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 210
+       },
+       "B": {
+        "at": 330
+       },
+       "C": {
+        "at": 90
+       }
+      },
+      "segments": [
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "C",
+        "A"
+       ],
+       [
+        "C",
+        "B"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "同一條弧，兩種角",
+       "en": "One arc, two angle types"
+      },
+      "steps": [
+       {
+        "zh": "先找不經 C 的弧 AB：圓心角 120°，圓周角 60°。",
+        "en": "Trace arc AB excluding C: the central angle is 120° and the circumference angle is 60°.",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "120°",
+          "claim",
+          38
+         ],
+         [
+          "C",
+          "A",
+          "B",
+          "60°",
+          "claim",
+          30
+         ]
+        ],
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "accent"
+         ]
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "ordinary-angle",
+     "title": {
+      "zh": "其中一邊只到圓心",
+      "en": "An arm stops at the centre"
+     },
+     "caption": {
+      "zh": "角 OAB 的 AO 只到圓心：先用 OA = OB，得到兩個相等底角。",
+      "en": "AO stops at the centre: use OA = OB to obtain equal base angles."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 210
+       },
+       "B": {
+        "at": 330
+       }
+      },
+      "segments": [
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "A",
+        "B"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "其中一邊只到圓心",
+       "en": "An arm stops at the centre"
+      },
+      "steps": [
+       {
+        "zh": "角 OAB 的 AO 只到圓心：先用 OA = OB，得到兩個相等底角。",
+        "en": "AO stops at the centre: use OA = OB to obtain equal base angles.",
+        "radii": [
+         "A",
+         "B"
+        ],
+        "arcs": [
+         [
+          "A",
+          "O",
+          "B",
+          "p",
+          "claim",
+          30
+         ],
+         [
+          "B",
+          "O",
+          "A",
+          "p",
+          "claim",
+          30
+         ]
+        ]
+       }
+      ]
+     }
+    }
+   ]
   },
   {
    "no": "02",
@@ -232,7 +389,192 @@
       }
      ]
     }
-   }
+   },
+   "figures": [
+    {
+     "id": "radius-base",
+     "title": {
+      "zh": "半徑 → 等腰 → 底角",
+      "en": "Radii → isosceles → base angles"
+     },
+     "caption": {
+      "zh": "OA = OB；若圓心角是 120°，每個底角便是 (180° − 120°) ÷ 2 = 30°。",
+      "en": "OA = OB. A central angle of 120° leaves base angles of (180° − 120°) ÷ 2 = 30°."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 210
+       },
+       "B": {
+        "at": 330
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "半徑 → 等腰 → 底角",
+       "en": "Radii → isosceles → base angles"
+      },
+      "steps": [
+       {
+        "zh": "OA = OB；若圓心角是 120°，每個底角便是 (180° − 120°) ÷ 2 = 30°。",
+        "en": "OA = OB. A central angle of 120° leaves base angles of (180° − 120°) ÷ 2 = 30°.",
+        "radii": [
+         "A",
+         "B"
+        ],
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "120°",
+          "claim",
+          36
+         ],
+         [
+          "A",
+          "O",
+          "B",
+          "30°",
+          "claim",
+          30
+         ],
+         [
+          "B",
+          "O",
+          "A",
+          "30°",
+          "claim",
+          30
+         ]
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "split-dart",
+     "title": {
+      "zh": "加一條半徑，拆成兩個等腰三角形",
+      "en": "One radius makes two isosceles triangles"
+     },
+     "caption": {
+      "zh": "補畫 OD：OA = OD，OB = OD；兩側的底角各自相等。",
+      "en": "Add OD: OA = OD and OB = OD. Each pair of base angles is equal."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 225
+       },
+       "B": {
+        "at": 315
+       },
+       "D": {
+        "at": 90
+       }
+      },
+      "segments": [
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "D",
+        "A"
+       ],
+       [
+        "D",
+        "B"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "加一條半徑，拆成兩個等腰三角形",
+       "en": "One radius makes two isosceles triangles"
+      },
+      "steps": [
+       {
+        "zh": "補畫 OD：OA = OD，OB = OD；兩側的底角各自相等。",
+        "en": "Add OD: OA = OD and OB = OD. Each pair of base angles is equal.",
+        "lines": [
+         [
+          "O",
+          "D",
+          "ink"
+         ]
+        ],
+        "radii": [
+         "A",
+         "B",
+         "D"
+        ],
+        "arcs": [
+         [
+          "D",
+          "A",
+          "O",
+          "p",
+          "claim",
+          48
+         ],
+         [
+          "A",
+          "D",
+          "O",
+          "p",
+          "claim",
+          30
+         ],
+         [
+          "D",
+          "O",
+          "B",
+          "q",
+          "claim",
+          48
+         ],
+         [
+          "B",
+          "O",
+          "D",
+          "q",
+          "claim",
+          30
+         ]
+        ]
+       }
+      ]
+     }
+    }
+   ]
   },
   {
    "no": "04",
@@ -445,7 +787,263 @@
       }
      ]
     }
-   }
+   },
+   "figures": [
+    {
+     "id": "crossing-angles",
+     "title": {
+      "zh": "先對準相等角",
+      "en": "Match equal angles first"
+     },
+     "caption": {
+      "zh": "弧 AD 給出 p，弧 BC 給出 q；兩對相等角建立 AA 相似。",
+      "en": "Arc AD gives p and arc BC gives q. Two equal angle pairs establish AA similarity."
+     },
+     "anim": {
+      "points": {
+       "A": {
+        "at": 205
+       },
+       "B": {
+        "at": 330
+       },
+       "C": {
+        "at": 45
+       },
+       "D": {
+        "at": 125
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       },
+       "O": {
+        "centre": true,
+        "hidden": true
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "C",
+        "D"
+       ]
+      ],
+      "readable": true,
+      "r": 135,
+      "cy": 210,
+      "hideSolvedGoals": true,
+      "intro": {
+       "zh": "A、B、C、D 四點共圓，弦 AC 與 BD 相交於 E。比較三角形 ABE 和 DCE。",
+       "en": "A, B, C, and D lie on a circle, and chords AC and BD intersect at E. Compare triangles ABE and DCE."
+      },
+      "steps": [
+       {
+        "zh": "E 在 AC 和 BD 上；角 B 與角 C 同對不經 B、C 的弧 AD：$\\angle ABE=\\angle DCE=p$。",
+        "en": "Since E lies on AC and BD, the angles at B and C intercept the same arc AD: $\\angle ABE=\\angle DCE=p$.",
+        "mathLines": [
+         "\\angle ABE=\\angle DCE=p"
+        ],
+        "ref": "(∠s in the same segment)",
+        "arcs": [
+         [
+          "B",
+          "A",
+          "E",
+          "p",
+          "claim",
+          30
+         ],
+         [
+          "C",
+          "D",
+          "E",
+          "p",
+          "claim",
+          30
+         ]
+        ],
+        "circleArcs": [
+         [
+          "A",
+          "D",
+          "B",
+          "accent"
+         ]
+        ]
+       },
+       {
+        "zh": "角 A 與角 D 同對弧 BC，得到第二對相等的角：$\\angle BAE=\\angle CDE=q$。",
+        "en": "The angles at A and D intercept arc BC, giving a second pair of equal angles: $\\angle BAE=\\angle CDE=q$.",
+        "mathLines": [
+         "\\angle BAE=\\angle CDE=q"
+        ],
+        "ref": "(∠s in the same segment)",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "E",
+          "q",
+          "claim",
+          34
+         ],
+         [
+          "D",
+          "C",
+          "E",
+          "q",
+          "claim",
+          34
+         ]
+        ],
+        "circleArcs": [
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "corresponding-sides",
+     "title": {
+      "zh": "再按次序列比例",
+      "en": "Then follow the vertex order"
+     },
+     "caption": {
+      "zh": "△ABE ∼ △DCE：AE 對 DE，BE 對 CE，AB 對 DC。",
+      "en": "△ABE ∼ △DCE: AE matches DE, BE matches CE, and AB matches DC."
+     },
+     "anim": {
+      "points": {
+       "A": {
+        "at": 205
+       },
+       "B": {
+        "at": 330
+       },
+       "C": {
+        "at": 45
+       },
+       "D": {
+        "at": 125
+       },
+       "E": {
+        "cross": [
+         "A",
+         "C",
+         "B",
+         "D"
+        ]
+       },
+       "O": {
+        "centre": true,
+        "hidden": true
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "A",
+        "C"
+       ],
+       [
+        "B",
+        "D"
+       ],
+       [
+        "C",
+        "D"
+       ]
+      ],
+      "readable": true,
+      "r": 135,
+      "cy": 210,
+      "hideSolvedGoals": true,
+      "intro": {
+       "zh": "A、B、C、D 四點共圓，弦 AC 與 BD 相交於 E。比較三角形 ABE 和 DCE。",
+       "en": "A, B, C, and D lie on a circle, and chords AC and BD intersect at E. Compare triangles ABE and DCE."
+      },
+      "steps": [
+       {
+        "zh": "對應次序：A ↔ D，B ↔ C，E ↔ E。",
+        "en": "Correspondence: A ↔ D, B ↔ C, E ↔ E.",
+        "polygons": [
+         [
+          "A",
+          "B",
+          "E"
+         ],
+         [
+          "D",
+          "C",
+          "E"
+         ]
+        ],
+        "arcs": [
+         [
+          "B",
+          "A",
+          "E",
+          "p",
+          "claim",
+          30
+         ],
+         [
+          "C",
+          "D",
+          "E",
+          "p",
+          "claim",
+          30
+         ],
+         [
+          "A",
+          "B",
+          "E",
+          "q",
+          "claim",
+          34
+         ],
+         [
+          "D",
+          "C",
+          "E",
+          "q",
+          "claim",
+          34
+         ]
+        ],
+        "answer": "AE / DE = BE / CE = AB / DC",
+        "final": true
+       }
+      ]
+     }
+    }
+   ]
   },
   {
    "no": "05",
@@ -461,7 +1059,198 @@
     "zh": "在同圓或等圓中，弧長與它所對的圓心角（或圓周角）成正比，例如弧長比為 $1:3$，對應的圓心角比也是 $1:3$。然而，這是 DSE 選擇題最常見的陷阱：弦長並不與圓心角或弧長成正比！即使弦 $AB$ 的長度是弦 $CD$ 的兩倍，弧 $AB$ 也不會是弧 $CD$ 的兩倍，圓心角更不會是兩倍。遇到題目給出「弦長比」時，千萬不要直接當成角度比例計算。",
     "en": "In the same or equal circles, arc lengths are proportional to their subtended central angles (and circumference angles)—for example, an arc ratio of $1:3$ means the central angles are also in the ratio $1:3$. However, beware of a classic DSE multiple-choice trap: chord lengths are NOT proportional to central angles or arc lengths. Even if chord $AB$ is twice as long as chord $CD$, arc $AB$ is not twice arc $CD$, nor is its central angle doubled. Never treat a ratio of chord lengths as a ratio of angles."
    },
-   "examples": []
+   "examples": [],
+   "figures": [
+    {
+     "id": "arc-ratio",
+     "title": {
+      "zh": "弧長比 = 圓心角比",
+      "en": "Arc ratio = central-angle ratio"
+     },
+     "caption": {
+      "zh": "同圓中，30° : 90° = 1 : 3，對應弧長也是 1 : 3。",
+      "en": "In one circle, 30° : 90° = 1 : 3, so the corresponding arc lengths are also 1 : 3."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 120
+       },
+       "B": {
+        "at": 150
+       },
+       "C": {
+        "at": 240
+       }
+      },
+      "segments": [
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "O",
+        "C"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "弧長比 = 圓心角比",
+       "en": "Arc ratio = central-angle ratio"
+      },
+      "steps": [
+       {
+        "zh": "同圓中，30° : 90° = 1 : 3，對應弧長也是 1 : 3。",
+        "en": "In one circle, 30° : 90° = 1 : 3, so the corresponding arc lengths are also 1 : 3.",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "30°",
+          "claim",
+          64
+         ],
+         [
+          "O",
+          "B",
+          "C",
+          "90°",
+          "claim",
+          32
+         ]
+        ],
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "C",
+          "accent"
+         ],
+         [
+          "B",
+          "C",
+          "A",
+          "accent"
+         ]
+        ],
+        "arcMeasures": [
+         {
+          "from": "A",
+          "to": "B",
+          "avoid": "C",
+          "text": "1",
+          "offset": 15
+         },
+         {
+          "from": "B",
+          "to": "C",
+          "avoid": "A",
+          "text": "3",
+          "offset": 15
+         }
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "chord-trap",
+     "title": {
+      "zh": "弦長加倍，角度不會加倍",
+      "en": "Double the chord does not double the angle"
+     },
+     "caption": {
+      "zh": "半徑為 1：60° 所對的弦長是 1，180° 所對的直徑長是 2；角度比是 1 : 3。",
+      "en": "With radius 1, a 60° angle subtends a chord of length 1; a 180° angle subtends a diameter of length 2. The angle ratio is 1 : 3."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 60
+       },
+       "B": {
+        "at": 120
+       },
+       "C": {
+        "at": 180
+       },
+       "D": {
+        "at": 0
+       }
+      },
+      "segments": [
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "A",
+        "B"
+       ],
+       [
+        "C",
+        "D"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "弦長加倍，角度不會加倍",
+       "en": "Double the chord does not double the angle"
+      },
+      "steps": [
+       {
+        "zh": "半徑為 1：60° 所對的弦長是 1，180° 所對的直徑長是 2；角度比是 1 : 3。",
+        "en": "With radius 1, a 60° angle subtends a chord of length 1; a 180° angle subtends a diameter of length 2. The angle ratio is 1 : 3.",
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "60°",
+          "claim",
+          42
+         ]
+        ],
+        "segmentLabels": [
+         {
+          "between": [
+           "A",
+           "B"
+          ],
+          "text": "1",
+          "dy": -12
+         },
+         {
+          "between": [
+           "C",
+           "D"
+          ],
+          "text": "2",
+          "dy": 22
+         }
+        ]
+       }
+      ]
+     }
+    }
+   ]
   },
   {
    "no": "06",
@@ -783,7 +1572,184 @@
       }
      ]
     }
-   }
+   },
+   "figures": [
+    {
+     "id": "forward",
+     "title": {
+      "zh": "順推：由已知走到所求",
+      "en": "Forwards: from given to target"
+     },
+     "caption": {
+      "zh": "已知圓周角 35° → 同弧圓心角 70° → 等腰三角形底角 55°。",
+      "en": "Given circumference angle 35° → central angle 70° → isosceles base angles 55°."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 235
+       },
+       "B": {
+        "at": 305
+       },
+       "C": {
+        "at": 90
+       }
+      },
+      "segments": [
+       [
+        "C",
+        "A"
+       ],
+       [
+        "C",
+        "B"
+       ],
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "A",
+        "B"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "順推：由已知走到所求",
+       "en": "Forwards: from given to target"
+      },
+      "steps": [
+       {
+        "zh": "已知圓周角 35° → 同弧圓心角 70° → 等腰三角形底角 55°。",
+        "en": "Given circumference angle 35° → central angle 70° → isosceles base angles 55°.",
+        "arcs": [
+         [
+          "C",
+          "A",
+          "B",
+          "35°",
+          "given",
+          32
+         ],
+         [
+          "O",
+          "A",
+          "B",
+          "70°",
+          "claim",
+          36
+         ],
+         [
+          "A",
+          "O",
+          "B",
+          "55°",
+          "claim",
+          32
+         ],
+         [
+          "B",
+          "O",
+          "A",
+          "55°",
+          "claim",
+          32
+         ]
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "backward",
+     "title": {
+      "zh": "逆推：先設所求為 x",
+      "en": "Backwards: start with x"
+     },
+     "caption": {
+      "zh": "兩條半徑相等，底角都是 x；利用已知圓心角 100°，列式 2x + 100° = 180°。",
+      "en": "Equal radii give base angles x. With the given central angle 100°, form 2x + 100° = 180°."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 220
+       },
+       "B": {
+        "at": 320
+       }
+      },
+      "segments": [
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "A",
+        "B"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "逆推：先設所求為 x",
+       "en": "Backwards: start with x"
+      },
+      "steps": [
+       {
+        "zh": "兩條半徑相等，底角都是 x；利用已知圓心角 100°，列式 2x + 100° = 180°。",
+        "en": "Equal radii give base angles x. With the given central angle 100°, form 2x + 100° = 180°.",
+        "radii": [
+         "A",
+         "B"
+        ],
+        "arcs": [
+         [
+          "O",
+          "A",
+          "B",
+          "100°",
+          "given",
+          36
+         ],
+         [
+          "A",
+          "O",
+          "B",
+          "x",
+          "claim",
+          32
+         ],
+         [
+          "B",
+          "O",
+          "A",
+          "x",
+          "claim",
+          32
+         ]
+        ]
+       }
+      ]
+     }
+    }
+   ]
   },
   {
    "no": "07",
@@ -810,7 +1776,266 @@
      "p": 40,
      "label": "11.4 Q35"
     }
-   ]
+   ],
+   "figures": [
+    {
+     "id": "bisect-chord",
+     "title": {
+      "zh": "弦的垂直平分線通過圓心",
+      "en": "A chord’s perpendicular bisector passes through O"
+     },
+     "caption": {
+      "zh": "M 是弦 AB 的中點，OM ⟂ AB；圓心在這條垂直平分線上。",
+      "en": "M is the midpoint of chord AB and OM ⟂ AB. The centre lies on this perpendicular bisector."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 210
+       },
+       "B": {
+        "at": 330
+       },
+       "M": {
+        "between": [
+         "A",
+         "B"
+        ]
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "B"
+       ],
+       [
+        "O",
+        "M"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "弦的垂直平分線通過圓心",
+       "en": "A chord’s perpendicular bisector passes through O"
+      },
+      "steps": [
+       {
+        "zh": "M 是弦 AB 的中點，OM ⟂ AB；圓心在這條垂直平分線上。",
+        "en": "M is the midpoint of chord AB and OM ⟂ AB. The centre lies on this perpendicular bisector.",
+        "ticks": [
+         [
+          "A",
+          "M",
+          "claim"
+         ],
+         [
+          "M",
+          "B",
+          "claim"
+         ]
+        ],
+        "arcs": [
+         [
+          "M",
+          "O",
+          "B",
+          "90°",
+          "claim"
+         ]
+        ]
+       }
+      ]
+     }
+    },
+    {
+     "id": "extend-radius",
+     "title": {
+      "zh": "把半徑延長成直徑",
+      "en": "Extend a radius to a diameter"
+     },
+     "caption": {
+      "zh": "沿 AO 延長至 B，標明新交點。AB 是直徑，所以 ∠APB = 90°。",
+      "en": "Extend AO to the new intersection B. AB is a diameter, so ∠APB = 90°."
+     },
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 180
+       },
+       "B": {
+        "at": 0
+       },
+       "P": {
+        "at": 65
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "O"
+       ],
+       [
+        "A",
+        "P"
+       ]
+      ],
+      "r": 135,
+      "readable": true,
+      "label": {
+       "zh": "把半徑延長成直徑",
+       "en": "Extend a radius to a diameter"
+      },
+      "steps": [
+       {
+        "zh": "沿 AO 延長至 B，標明新交點。AB 是直徑，所以 ∠APB = 90°。",
+        "en": "Extend AO to the new intersection B. AB is a diameter, so ∠APB = 90°.",
+        "lines": [
+         [
+          "O",
+          "B",
+          "ink"
+         ],
+         [
+          "P",
+          "B",
+          "ink"
+         ]
+        ],
+        "arcs": [
+         [
+          "P",
+          "A",
+          "B",
+          "90°",
+          "claim"
+         ]
+        ],
+        "circleArcs": [
+         [
+          "A",
+          "B",
+          "P",
+          "accent"
+         ]
+        ]
+       }
+      ]
+     }
+    }
+   ],
+   "demo": {
+    "type": "circle",
+    "anim": {
+     "points": {
+      "O": {
+       "centre": true
+      },
+      "A": {
+       "at": 180
+      },
+      "B": {
+       "at": 0,
+       "hidden": true
+      },
+      "P": {
+       "at": 65
+      }
+     },
+     "segments": [
+      [
+       "A",
+       "O"
+      ],
+      [
+       "A",
+       "P"
+      ]
+     ],
+     "layout": "side-by-side",
+     "readable": true,
+     "r": 135,
+     "auto": true,
+     "intro": {
+      "zh": "AO 只畫到圓心。把它延長到圓周，看看能得到甚麼新條件。",
+      "en": "AO stops at the centre. Extend it to the circle and look for a new relationship."
+     },
+     "steps": [
+      {
+       "zh": "沿 AO 延長至圓周，標明新交點：$A,O,B\\text{ are collinear}$。",
+       "en": "Extend AO to the circle and name the new intersection: $A,O,B\\text{ are collinear}$.",
+       "mathLines": [
+        "A,O,B\\text{ are collinear}"
+       ],
+       "show": [
+        "B"
+       ],
+       "lines": [
+        [
+         "O",
+         "B",
+         "claim"
+        ]
+       ],
+       "ref": ""
+      },
+      {
+       "zh": "AB 經過圓心，兩端都在圓周，所以它是直徑：$AB=2r$。",
+       "en": "AB passes through the centre with both endpoints on the circle, so it is a diameter: $AB=2r$.",
+       "mathLines": [
+        "AB=2r"
+       ],
+       "radii": [
+        "A",
+        "B"
+       ],
+       "ref": ""
+      },
+      {
+       "zh": "連接 PB；直徑所對的圓周角是直角：$\\angle APB=90^\\circ$。",
+       "en": "Join PB. The circumference angle subtended by a diameter is a right angle: $\\angle APB=90^\\circ$.",
+       "mathLines": [
+        "\\angle APB=90^\\circ"
+       ],
+       "lines": [
+        [
+         "P",
+         "B",
+         "ink"
+        ]
+       ],
+       "arcs": [
+        [
+         "P",
+         "A",
+         "B",
+         "90°",
+         "claim"
+        ]
+       ],
+       "circleArcs": [
+        [
+         "A",
+         "B",
+         "P",
+         "accent"
+        ]
+       ],
+       "clearGoal": true,
+       "final": true,
+       "answer": "∠APB = 90°",
+       "ref": ""
+      }
+     ],
+     "hideSolvedGoals": true
+    }
+   }
   }
  ],
  "shapes": [
@@ -1544,5 +2769,6 @@
     }
    }
   ]
- }
+ },
+ "shapesSection": "02"
 }

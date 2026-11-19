@@ -123,7 +123,10 @@
       if (norm(aV - aA) <= d1) { sweep = 0; delta = 2 * Math.PI - d1; }
       else { sweep = 1; delta = d1; }
     } else {
-      sweep = 1; delta = d1;
+      // Without an excluded vertex, highlight the minor arc, matching the
+      // non-reflex central angle regardless of endpoint order.
+      sweep = d1 <= Math.PI ? 1 : 0;
+      delta = Math.min(d1, 2 * Math.PI - d1);
     }
     return "M" + a.x + " " + a.y + "A" + R + " " + R + " 0 " + (delta > Math.PI ? 1 : 0) +
       " " + sweep + " " + b.x + " " + b.y;
@@ -663,13 +666,16 @@
       /* 最後一步：答案角先閃兩下，靜下來才把答案寫出來 */
       if (st.final) {
         if (!instant) {
-          arcsDrawn.forEach(function (p) { p.classList.add("cg-shine"); });
+          // Start the flash only after every final angle has been drawn.
+          later(function () {
+            arcsDrawn.forEach(function (p) { p.classList.add("cg-shine"); });
+          }, Math.max(0, arcsDrawn.length - 1) * 520 + 1060);
         }
         if (st.answer) {
           if (instant) {
             answerBadge(st.answer, true);
           } else {
-            var answerDelay = Math.max(1300, ((st.arcs || []).length - 1) * 520 + 1100);
+            var answerDelay = Math.max(1300, Math.max(0, arcsDrawn.length - 1) * 520 + 1760);
             later(function () { answerBadge(st.answer); }, answerDelay);
           }
         }

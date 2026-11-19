@@ -1900,3 +1900,14 @@ body[data-lang="both"] .think-shape-name .l-zh, body[data-lang="both"] .think-sh
 }
 @media (prefers-reduced-motion: reduce) { .cls-arc { transition: none; } }
 .think-fig .cg-length.given { fill: #b45309; }
+
+/* Supporting geometry stays beside its explanation, stacking on small screens. */
+.think-figures { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-4); margin: var(--sp-4) 0; }
+.think-illustration { margin: 0; min-width: 0; padding: var(--sp-3); border: 1px solid var(--line); border-radius: var(--radius-sm); background: #fff; }
+.think-illustration .cg { margin: 0; }
+.think-illustration .cg-svg { border: 0; background: transparent; width: 100%; max-width: 360px; margin: auto; }
+.think-figure-title { font-weight: 700; margin-bottom: 6px; }
+.think-figure-caption { font-size: 14px; color: var(--muted); }
+.think-main > .think-shapes { margin-top: var(--sp-4); }
+@media (max-width: 620px) { .think-figures { grid-template-columns: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .think-shape.pulse .cg-circle-arc { animation: none; } }

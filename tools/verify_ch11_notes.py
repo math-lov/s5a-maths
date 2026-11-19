@@ -93,3 +93,22 @@ for rd in notes['match']['rounds']:
         near(2*angle(p,a+v+b),sweep(p,a,b,v),'matched arc '+item['label'])
 print('All Chapter 11 notes geometry checks passed (%d players, %d shapes, %d matches).'
       % (len(players), len(notes['shapes']), sum(len(rd['angles']) for rd in notes['match']['rounds'])))
+
+# Supporting figures: check the actual geometry, including the chord-ratio
+# counterexample, rather than trusting captions or drawn length labels.
+figures = {f['id']: f['anim'] for section in notes['points'] for f in section.get('figures', [])}
+assert len(figures) == 12
+for name, anim in figures.items():
+    assert not check_anim(anim, name), check_anim(anim, name)
+p = build_points(figures['chord-trap'])
+near(math.dist(p['A'],p['B']), 1, 'unit chord')
+near(math.dist(p['C'],p['D']), 2, 'diameter')
+near(angle(p,'AOB'), 60, 'unit chord central angle')
+near(angle(p,'COD'), 180, 'diameter central angle')
+p = build_points(figures['bisect-chord'])
+near(math.dist(p['A'],p['M']), math.dist(p['B'],p['M']), 'chord midpoint')
+near(angle(p,'OMB'), 90, 'perpendicular bisector')
+p = build_points(figures['split-dart'])
+near(angle(p,'ADO'), angle(p,'DAO'), 'left isosceles triangle')
+near(angle(p,'ODB'), angle(p,'OBD'), 'right isosceles triangle')
+print('All 12 supporting figures and geometric counterexamples passed.')

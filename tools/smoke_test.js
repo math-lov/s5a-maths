@@ -3649,7 +3649,12 @@ ok(mainCls.querySelectorAll(".cls-row-v.l-zh").length === 2 &&
 /* 每一點都配一幅圖／示範 */
 notesPage.ctx.window.matchMedia = () => ({ matches: true });
 const pointFigs = notesPage.$$(".think-point .think-fig");
-ok(pointFigs.length === 4, "前四個論點各有一幅圖／示範（第 5 點是下面五幅型態）");
+ok(pointFigs.length === 5, "第 1、3、4、6、7 點有互動示範");
+ok(notesPage.$$(".think-illustration").length === 12, "新增十二幅雙語概念圖");
+ok(notesPage.$$(".think-point")[1].querySelectorAll(".think-shape").length === TH11.shapes.length,
+  "全部常見圖形放在第 2 點內");
+ok(notesPage.$$(".think-point").every((p) => p.querySelectorAll("svg").length >= 2),
+  "每一節至少有兩幅圖");
 const p1picks = pointFigs.length ? pointFigs[0].querySelectorAll(".cls-pick") : [];
 ok(p1picks.length === 4, "第一點是「點角亮弧」：四隻角可以點");
 p1picks[1].click();
@@ -3669,13 +3674,13 @@ ok(aodArc && /^M[^A]+A[\d.]+ [\d.]+ 0 0 [01] /.test(aodArc),
 ok(aodArc === acdArc, "∠AOD 與 ∠ACD 亮同一條弧 AD（正好示範同一條弧、不同定理）");
 ok(/冇弧/.test((pointFigs[0].querySelector(".cls-arcsay") || {}).textContent || ""),
   "冇弧時會講明原因");
-const playerFigs = [1, 2, 3].map((i) => pointFigs[i]).filter(Boolean);
-ok(playerFigs.length === 3 && playerFigs.every((f) => f.querySelector(".cg-svg")),
-  "第 2–4 點各有逐步動畫（circle.js 播放器）");
+const playerFigs = [1, 2, 3, 4].map((i) => pointFigs[i]).filter(Boolean);
+ok(playerFigs.length === 4 && playerFigs.every((f) => f.querySelector(".cg-svg")),
+  "第 3、4、6、7 點各有逐步動畫（circle.js 播放器）");
 ok(playerFigs.every((f) => f.querySelectorAll(".cg-next").length === 1),
   "播放器有「下一步」可以逐格看");
 const autoBtns = playerFigs.map((f) => f.querySelector(".cg-auto"));
-ok(autoBtns.every((b) => !!b), "三個播放器都有「自動播放」");
+ok(autoBtns.every((b) => !!b), "四個播放器都有「自動播放」");
 autoBtns[0].click();
 ok(autoBtns[0].getAttribute("aria-pressed") === "true", "按一下會開始自動播放");
 autoBtns[0].click();

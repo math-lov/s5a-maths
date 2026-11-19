@@ -639,6 +639,22 @@
       main.appendChild(h3);
       if (p.subtitle) main.appendChild(pair(p.subtitle, "div", "bi think-sub"));
       if (p.body) main.appendChild(pair(p.body, "div", "bi think-body"));
+      if ((p.figures || []).length && window.S5A_CIRCLE) {
+        var figures = el("div", "think-figures");
+        p.figures.forEach(function (f) {
+          var figure = el("figure", "think-illustration");
+          var caption = el("figcaption");
+          caption.appendChild(pair(f.title, "div", "bi think-figure-title"));
+          caption.appendChild(pair(f.caption, "div", "bi think-figure-caption"));
+          var stage = el("div");
+          window.S5A_CIRCLE.mount(stage, f.anim, { static: true });
+          figure.appendChild(stage);
+          figure.appendChild(caption);
+          figures.appendChild(figure);
+        });
+        main.appendChild(figures);
+      }
+      if (t.shapesSection === p.no) renderShapes(main);
       /* 每一點都可以配一幅圖／小示範（demo.type 要在白名單；classify 會沿用大分類器的設定） */
       if (p.demo && window.S5A_DEMO && S5A_DEMO.types && S5A_DEMO.types[p.demo.type]) {
         var fh = el("div", "think-fig");
@@ -666,7 +682,8 @@
     });
     card.appendChild(ul);
 
-    if ((t.shapes || []).length) {
+    function renderShapes(target) {
+      if (!(t.shapes || []).length) return;
       var grid = el("div", "think-shapes");
       t.shapes.forEach(function (s) {
         var box = el("div", "think-shape");
@@ -699,8 +716,10 @@
         if (s.note) box.appendChild(pair(s.note, "p", "bi think-shape-note"));
         grid.appendChild(box);
       });
-      card.appendChild(grid);
+      target.appendChild(grid);
     }
+
+    if (!t.shapesSection) renderShapes(card);
 
     if (t.match) {
       var mhost = el("div");
