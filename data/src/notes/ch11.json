@@ -21,8 +21,8 @@
     "en": "Check Vertex and Arms: Three Steps to Pick the Right Theorem"
    },
    "body": {
-    "zh": "第一步，先看角的頂點和兩條邊：頂點在圓心的是「圓心角」；頂點在圓周且兩邊都是弦的是「圓周角」（所對的弧不經過頂點）。只要認出這兩種角並找到對應的弧，就應優先考慮使用圓形定理——最常見的思路是順著這條弧，看看它有沒有連接到圓周上其他點或圓心，從而形成同對這條弧的其他圓周角或圓心角，直接運用「同弓形內的圓周角」（angles in the same segment）或「圓心角兩倍於圓周角」（angle at centre twice angle at circumference）。第二步，留意「圓內接四邊形的對角或外角」雖然不用靠找弧來判斷，但同樣直接屬於圓形定理，確認四點共圓後即可使用。第三步，若兩者皆非（例如其中一邊只畫到圓心），千萬別硬套圓形定理，應先當作普通角，用等腰三角形或平行線等基礎性質推算；有需要時才把線段延長至圓周並標明交點。",
-    "en": "First, inspect the vertex and both arms of the angle: a vertex at the centre gives an angle at the centre, while a vertex on the circle with chords as arms gives an angle at the circumference (intercepting the arc that excludes its vertex). Once you spot either type and identify its intercepted arc, prioritize circle theorems. A key habit is to trace whether that same arc connects to other points on the circle or the centre, forming other circumference or central angles on the same arc—allowing you to apply 'angles in the same segment' or 'angle at centre twice angle at circumference'. Second, remember that opposite angles and exterior angles of a cyclic quadrilateral do not depend on tracing an arc, yet they are direct circle theorems you can use once four concyclic points are confirmed. Third, if an angle fits neither case (such as an arm stopping at the centre), do not force a circle theorem; treat it as an ordinary angle using isosceles triangles or parallel lines first, or extend the segment to the circle and mark the new intersection."
+    "zh": "先看角的頂點和兩邊：頂點在圓心，兩邊沿半徑伸展的是圓心角；頂點在圓周，兩邊沿弦伸展的是圓周角。圓周角所對的弧不經過頂點。找到這條弧後，再找同對這條弧的其他角，便可考慮「同弓形內的圓周角相等」或「圓心角是圓周角的兩倍」。圓內接四邊形則可在確認四點共圓後，直接用對角互補或外角等於內對角。若暫時看不到這些關係，例如其中一邊只畫到圓心，可先用等腰三角形、平行線或內角和推角；如要延長至圓周，記得標明新交點及所對的弧。",
+    "en": "Start with the vertex and the two arms. An angle at the centre has its arms along radii; an angle at the circumference has its vertex on the circle and its arms along chords. Its intercepted arc excludes the vertex. Look for other angles on that same arc to use equal angles in the same segment or the centre-angle theorem. Once four points are known to be concyclic, you can also use supplementary opposite angles or an exterior angle equal to the interior opposite angle. If none of these relationships is apparent, try isosceles triangles, parallel lines or angle sums. When extending a segment to the circle, label the new intersection and identify the arc."
    },
    "examples": [
     {
@@ -134,8 +134,8 @@
       "en": "Four concyclic points: opposite and exterior angles"
      },
      "caption": {
-      "zh": "A、B、C、D 四點共圓。對角互補：$\\angle DAB+\\angle BCD=75^\\circ+105^\\circ=180^\\circ$。把 BC 延長至 E，外角等於內對角：$\\angle DCE=\\angle DAB=75^\\circ$。確認四點共圓後，便可直接使用這兩條定理。",
-      "en": "A, B, C and D lie on the circle. Opposite angles are supplementary: $\\angle DAB+\\angle BCD=75^\\circ+105^\\circ=180^\\circ$. Extend BC to E; the exterior angle equals the interior opposite angle: $\\angle DCE=\\angle DAB=75^\\circ$. Once the four points are confirmed concyclic, apply these two theorems directly."
+      "zh": "A、B、C、D 共圓。對角之和為 $75^\\circ+105^\\circ=180^\\circ$。把 BC 延長至 E，外角 ∠DCE 等於內對角 ∠DAB，兩者都是 $75^\\circ$。",
+      "en": "A, B, C and D are concyclic. Their opposite angles sum to $75^\\circ+105^\\circ=180^\\circ$. Extend BC to E: exterior angle DCE equals interior opposite angle DAB, both $75^\\circ$."
      },
      "anim": {
       "points": {
@@ -311,8 +311,8 @@
     "en": "Six Common Configurations to Spot Key Relationships"
    },
    "body": {
-    "zh": "「真蝴蝶」、「假蝴蝶」、「飛鏢」和「招財進寶」是課堂上幫助大家快速認圖的記憶口訣。認出外形後，必須核對哪些點在圓周上、哪一點才是圓心，以及兩角是否對著同一條弧。特別要注意：「飛鏢」與「招財進寶」本質上是同一個定理（圓心角兩倍於圓周角），只是兩側圓周點的位置高低不同；而且「招財進寶」的圓心並不在圓周上，因此它並不是圓內接四邊形，對角之和並不等於 $180^\\circ$！另外，遇到「飛鏢」或「招財進寶」時，有一招非常實用的輔助線技巧：連接圓心與圓周頂點的半徑，便可把圖形一分為二，變成兩個等腰三角形。點選下方圖形，觀察相關的弧與角度關係。",
-    "en": "Nicknames like 'the butterfly', 'the fake butterfly', 'dart', and 'fortune fan' are handy visual cues for recognizing classic setups. Once you spot the outline, always verify which points lie on the circle, which point is the centre, and whether the angles intercept the same arc. In particular, 'dart' and 'fortune fan' are governed by the exact same theorem (angle at centre twice angle at circumference)—the only difference is whether the two side vertices sit below or above the centre. Furthermore, because the centre does not lie on the circle, a 'fortune fan' is NOT a cyclic quadrilateral, so its opposite angles do NOT sum to $180^\\circ$. A classic problem-solving trick for both 'dart' and 'fortune fan' is to join the centre to the top circumference vertex, splitting the figure into two isosceles triangles. Click the diagrams below to highlight the relevant arcs."
+    "zh": "「真蝴蝶」「假蝴蝶」「飛鏢」和「招財進寶」都是幫助認圖的課堂口訣。認出外形後，仍要核對哪些點在圓周上、哪一點是圓心，以及兩角是否對着同一條弧。「飛鏢」和「招財進寶」都用圓心角兩倍定理，分別在於所對的是劣弧還是優弧，因此要選相應的小圓心角或反角。「招財進寶」包含圓心，四個頂點並非全在圓周上，不能套用圓內接四邊形的對角互補性質。補畫圓心至圓周頂點的半徑，還可拆出兩個等腰三角形。點選下圖，看看相關的弧與角。",
+    "en": "The butterfly, fake butterfly, dart and fortune fan are classroom memory aids. After recognising the outline, check which points lie on the circle, which is the centre, and whether the angles intercept the same arc. The dart and fortune fan both use the centre-angle theorem. The distinction is whether the intercepted arc is minor or major, requiring the smaller or reflex central angle respectively. A fortune fan includes the centre among its vertices, so it is not a cyclic quadrilateral and the supplementary-opposite-angles rule does not apply. Joining the centre to the circumference vertex also reveals two isosceles triangles. Select a diagram below to highlight the relevant arc."
    },
    "examples": [
     {
@@ -338,8 +338,8 @@
     "en": "Use Radii to Create Isosceles Triangles"
    },
    "body": {
-    "zh": "在圓形幾何中，最容易被忽略的隱藏條件就是「同圓半徑相等」。只要從圓心連起兩條半徑，再配上一條弦，就能立刻組成等腰三角形，把圓心角和底角連繫起來；例如在「飛鏢」或「招財進寶」中補畫一條半徑連接圓心與圓周頂點，便能立即拆出兩個等腰三角形。解題時不必一開始就把所有半徑全畫出來，以免線條太亂；只需按推理需要逐條連接，並隨手標上等長記號，隱藏的角度關係便會一目了然。",
-    "en": "One of the most frequently overlooked clues in circle geometry is that all radii of the same circle are equal. Joining any two radii to a chord immediately creates an isosceles triangle, linking the central angle to its base angles—for example, drawing one radius to connect the centre to the circumference vertex in a 'dart' or 'fortune fan' immediately splits it into two isosceles triangles. Avoid drawing every possible radius at the very beginning, as too many lines will clutter the diagram. Instead, add only the radii needed for your next step and mark them as equal."
+    "zh": "同一個圓的半徑相等，是題目未必寫明、但解題時經常用到的條件。兩條半徑配上一條弦，就組成等腰三角形，將圓心角與底角連起來。在「飛鏢」或「招財進寶」中，連接圓心與圓周頂點，亦可拆出兩個等腰三角形。不必一開始便畫齊所有半徑；按推理需要逐條加入，再標上相同的等長記號，圖中的關係會更清楚。",
+    "en": "Equal radii are often a useful condition even when the question does not state it explicitly. Two radii and a chord form an isosceles triangle, connecting the central angle to the base angles. In a dart or fortune fan, joining the centre to the circumference vertex reveals two isosceles triangles. Add radii as they become useful and mark equal lengths, rather than drawing every possible line at the start."
    },
    "examples": [
     {
@@ -686,8 +686,8 @@
     "en": "For Lengths, Connect Circle Properties to Triangles and Trigonometry"
    },
    "body": {
-    "zh": "圓形幾何的基礎定理主要用來推算角度；一旦題目要求計算線段長度，思路就要轉向「在圓內尋找或構作合適的三角形」，再配合三角學與相似性質求解。面對直角三角形時，除了利用圓心到弦的垂線平分該弦，配合半徑套用畢氏定理 $r^2=d^2+\\left(\\frac{c}{2}\\right)^2$（其中 $r$ 為半徑、$d$ 為弦心距、$c$ 為整條弦長），或利用直徑所對的圓周角為 $90^\\circ$ 之外，還別忘了直接運用三角比（$\\sin$、$\\cos$、$\\tan$）求邊長。在 DSE 跨課題題目中，更常出現非直角三角形，這時就要結合圓形定理求出的已知角與半徑，靈活運用正弦公式（sine formula）及餘弦公式（cosine formula）。此外，當兩條弦在圓內或圓外相交時，亦可利用同弓形內的圓周角證明一對相似三角形，再按正確的頂點次序列出對應邊比例。",
-    "en": "Basic circle theorems mainly help you find angles; when a question asks for lengths, shift your focus to spotting or constructing suitable triangles inside the circle, then apply trigonometry or similarity. For right-angled triangles—whether formed by a perpendicular from the centre bisecting a chord (giving Pythagoras' theorem $r^2=d^2+\\left(\\frac{c}{2}\\right)^2$, where $r$ is the radius, $d$ is the perpendicular distance from the centre, and $c$ is the full chord length) or by the $90^\\circ$ angle in a semi-circle—remember to use both Pythagoras' theorem and trigonometric ratios ($\\sin$, $\\cos$, $\\tan$). In cross-topic DSE questions, non-right-angled triangles appear even more frequently: combine the angles and radii found from circle theorems with the sine formula and cosine formula to solve for unknown lengths. Finally, when two chords intersect inside or outside a circle, use angles in the same segment to prove similar triangles, and match corresponding vertices carefully before writing side ratios."
+    "zh": "求長度時，先找合適的三角形。圓心到弦的垂線會平分弦，配合半徑便可用畢氏定理：$r^2=d^2+\\left(\\frac{c}{2}\\right)^2$，其中 $r$ 是半徑、$d$ 是圓心到弦的垂直距離、$c$ 是整條弦長。直徑也可帶來圓周直角；有了直角三角形，便可按已知資料選用畢氏定理或三角比（$\\sin$、$\\cos$、$\\tan$）。遇到非直角三角形，可先用圓形定理求角，再考慮正弦公式或餘弦公式。兩弦在圓內相交，或兩弦的延長線在圓外相交時，亦可找同弓形內的圓周角，建立相似三角形；列邊長比例前，先對準頂點次序。",
+    "en": "For lengths, look for a useful triangle. A perpendicular from the centre bisects a chord, so Pythagoras gives $r^2=d^2+\\left(\\frac{c}{2}\\right)^2$, where $r$ is the radius, $d$ the perpendicular distance from the centre, and $c$ the full chord length. A diameter also gives a right angle at the circumference. In a right-angled triangle, choose Pythagoras or the trigonometric ratios ($\\sin$, $\\cos$, $\\tan$) to suit the information given. For other triangles, circle theorems may supply angles for the sine or cosine formula. When chords intersect inside the circle, or their extensions meet outside it, look for same-segment angles that establish similar triangles. Match the vertices before writing side ratios."
    },
    "examples": [
     {
@@ -1155,8 +1155,8 @@
     "en": "Common DSE Trap: Arc Lengths Are Proportional, Chord Lengths Are Not"
    },
    "body": {
-    "zh": "在同圓或等圓中，弧長與它所對的圓心角（或圓周角）成正比，例如弧長比為 $1:3$，對應的圓心角比也是 $1:3$。然而，這是 DSE 選擇題最常見的陷阱：弦長並不與圓心角或弧長成正比！即使弦 $AB$ 的長度是弦 $CD$ 的兩倍，弧 $AB$ 也不會是弧 $CD$ 的兩倍，圓心角更不會是兩倍。遇到題目給出「弦長比」時，千萬不要直接當成角度比例計算。",
-    "en": "In the same or equal circles, arc lengths are proportional to their subtended central angles (and circumference angles)—for example, an arc ratio of $1:3$ means the central angles are also in the ratio $1:3$. However, beware of a classic DSE multiple-choice trap: chord lengths are NOT proportional to central angles or arc lengths. Even if chord $AB$ is twice as long as chord $CD$, arc $AB$ is not twice arc $CD$, nor is its central angle doubled. Never treat a ratio of chord lengths as a ratio of angles."
+    "zh": "同圓或等圓中，弧長與相應的圓心角成比例；選對所對的弧後，相應的圓周角亦有同樣的比例。例如弧長比是 $1:3$，相應的圓心角比也是 $1:3$。但這個關係不能直接套用到弦長：弦 $AB$ 是弦 $CD$ 的兩倍，並不足以推出弧長或角度也是兩倍。下圖提供一個反例：半徑為 1 的圓，弦長比是 $1:2$，所對的圓心角比卻是 $60^\\circ:180^\\circ=1:3$。遇到比例，先分清楚題目給的是弧長還是弦長。",
+    "en": "In the same or equal circles, arc lengths are proportional to their corresponding central angles. Corresponding circumference angles have the same ratio when their intercepted arcs are correctly matched. An arc-length ratio of $1:3$, for example, gives a central-angle ratio of $1:3$. This relationship does not extend to chord lengths: knowing that chord $AB$ is twice chord $CD$ does not justify doubling the arc length or angle. The diagram gives a counterexample. In a circle of radius 1, two chords have lengths in the ratio $1:2$, but their central angles are in the ratio $60^\\circ:180^\\circ=1:3$. Check whether the given ratio concerns arcs or chords before using it."
    },
    "examples": [],
    "figures": [
@@ -1362,8 +1362,8 @@
     "en": "Tackling Complex Angle Problems: Working Forwards, Setting $x$, or Two Unknowns"
    },
    "body": {
-    "zh": "面對步驟較多的求角題，有三條實戰出路：如果已知角可以直接套用定理，就由已知條件一路順推；如果由已知角推不下去，而所求角附近反而容易連繫其他角，不妨直接設所求角為 $x$，把相關的角逐一用 $x$ 表示，最後利用已知角、三角形內角和或平行線等關係建立方程。遇到結構較複雜的 DSE 題目時，有時只設一個 $x$ 未必足夠，可以大膽設兩個未知數（例如 $x$ 和 $y$），只要寫清每步理由並湊夠兩條獨立方程，一樣可以順利解出答案。",
-    "en": "For multi-step angle problems, use one of three strategies: if a given angle triggers a theorem right away, work forwards from the givens; if you get stuck early on, let the target angle be $x$, express surrounding angles in terms of $x$, and form an equation using a given angle, the angle sum of a triangle, or parallel-line properties. In tougher DSE questions, one unknown may not be enough—feel free to introduce two unknowns (such as $x$ and $y$). As long as every step is justified and you build enough independent equations, the target angle will fall into place."
+    "zh": "求角時，可以由已知順推，也可以由所求逆推。若已知角可直接套用定理，就沿相關的弧或三角形逐步推下去。若所求附近的關係較清楚，不妨設所求角為 $x$，將其他角逐一用 $x$ 表示，最後利用已知角、三角形內角和或平行線關係列方程。圖形較複雜時，一個未知數未必足夠；也可設 $x$ 和 $y$，只要每一步有理由，並找到兩條足夠的獨立方程，便可聯立求解。",
+    "en": "You can work forwards from the givens or backwards from the target. When a given angle leads directly to a theorem, follow the relevant arcs or triangles. If the relationships around the target are clearer, call it $x$, express related angles in terms of $x$, and form an equation using a given angle, a triangle angle sum or parallel-line properties. More complex diagrams may need two unknowns, such as $x$ and $y$. Justify each step and look for enough independent equations to solve them."
    },
    "examples": [
     {
@@ -1861,8 +1861,8 @@
     "en": "Advanced Techniques: Unmarked Centres and Auxiliary Lines"
    },
    "body": {
-    "zh": "當基本定理都用過仍未破題時，便要考慮以下進階操作。第一，若題目沒有標示圓心，可留意「弦的垂直平分線必通過圓心」，或者利用「圓周上的直角（$90^\\circ$）所對的弦必為直徑」來找出直徑與圓心位置。第二，若圖中有半徑只畫到圓心，或需要用到圓內接四邊形、半圓直角等性質，可主動補畫輔助線——例如連接兩點構成弦、延長半徑成直徑，或把停止在圓心的線段延長至圓周，但切記在圖上清楚標明新的交點字母，才能準確寫出所對的弧與理由。",
-    "en": "When standard theorems are not enough, turn to two advanced techniques. First, if the centre is not marked on the diagram, remember that the perpendicular bisector of any chord passes through the centre, and a $90^\\circ$ angle at the circumference always subtends a diameter—helping you locate both the diameter and the centre. Second, do not hesitate to add auxiliary lines when needed: join two points to form a chord, extend a radius into a diameter, or extend a segment ending at the centre all the way to the circumference. Always label the new intersection point clearly so you can name the intercepted arc accurately."
+    "zh": "卡住時，可想想補哪一條線，才能把已知與所求連起來。若圓心未有標示，弦的垂直平分線可幫助定位；圓周上的直角則可指出一條直徑，其中點就是圓心。需要圓周角、半圓直角或圓內接四邊形時，也可考慮連弦、把半徑延長成直徑，或將只畫到圓心的線段延長至圓周。新增交點要清楚標上字母，並說明它如何得到，才能準確寫出角名、弧名和理由。",
+    "en": "When you are stuck, ask which extra line would connect the givens to the target. If the centre is unmarked, perpendicular bisectors of chords can help locate it. A right angle at the circumference identifies a diameter, whose midpoint is the centre. Depending on the theorem you need, try joining a chord, extending a radius to form a diameter, or extending a segment through the centre to the circle. Label each new intersection and explain its construction so that the angles, arcs and reasons can be named precisely."
    },
    "examples": [
     {
