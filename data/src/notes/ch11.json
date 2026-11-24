@@ -2658,7 +2658,11 @@
     "id": "oca",
     "label": "∠OCA",
     "verdict": "normal",
-    "arc": null
+    "arc": null,
+    "hint": {
+     "zh": "解題提示：把 CO 經 O 延長至圓周上的新交點 F，射線 CF 與 CO 方向相同，因此 ∠OCA = ∠FCA；角度大小不變，但現在兩邊都是弦，便可清楚指出它所對的弧 FA。",
+     "en": "Hint: extend CO through O to meet the circle at a new point F. Since rays CF and CO share the same direction, ∠OCA = ∠FCA; the angle stays the same size, but both arms are now chords, clearly intercepting arc FA."
+    }
    },
    {
     "id": "acd",
@@ -2671,6 +2675,10 @@
     "arcName": {
      "zh": "弧 AD",
      "en": "arc AD"
+    },
+    "hint": {
+     "zh": "沿 CA 和 CD 找到圓周上的 A、D；所對的是不經 C 的弧 AD。本圖可與同弧的圓心角比較：∠ACD = ½∠AOD。",
+     "en": "Follow CA and CD to A and D on the circle. The intercepted arc AD excludes C. Compare this angle with the central angle on that arc: ∠ACD = ½∠AOD."
     }
    },
    {
@@ -2684,13 +2692,21 @@
     "arcName": {
      "zh": "弧 AD",
      "en": "arc AD"
+    },
+    "hint": {
+     "zh": "OA 和 OD 是半徑，兩端是 A、D。找出同對劣弧 AD 的圓周角 ACD，便有 ∠AOD = 2∠ACD。",
+     "en": "OA and OD are radii ending at A and D. Find angle ACD at the circumference on the same minor arc AD, then use ∠AOD = 2∠ACD."
     }
    },
    {
     "id": "aeo",
     "label": "∠AEO",
     "verdict": "normal",
-    "arc": null
+    "arc": null,
+    "hint": {
+     "zh": "A、E、C 共線，可先用 ∠AEO + ∠OEC = 180°，再結合三角形 OCE 的內角和推算；E 既不是圓心，亦不在圓周上。",
+     "en": "A, E and C are collinear, so start with ∠AEO + ∠OEC = 180°, then use the angle sum of triangle OCE. E is neither the centre nor a point on the circumference."
+    }
    }
   ],
   "verdicts": {
@@ -2724,10 +2740,6 @@
      "en": "Since its drawn arms are not two chords or two radii, this angle does not directly intercept an arc—do not force circumference or central angle theorems here. Start with isosceles triangles, triangle angle sums, vertically opposite angles, or parallel lines; if you extend a segment to the circle, mark the new intersection first."
     }
    }
-  },
-  "hint": {
-   "zh": "解題提示：把 CO 經 O 延長至圓周上的新交點 F，射線 CF 與 CO 方向相同，因此 ∠OCA = ∠FCA；角度大小不變，但現在兩邊都是弦，便可清楚指出它所對的弧 FA。",
-   "en": "Hint: extend CO through O to meet the circle at a new point F. Since rays CF and CO share the same direction, ∠OCA = ∠FCA; the angle stays the same size, but both arms are now chords, clearly intercepting arc FA."
   },
   "answers": {
    "oca": {

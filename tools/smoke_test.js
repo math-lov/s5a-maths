@@ -3700,6 +3700,30 @@ ok(aodArc && /^M[^A]+A[\d.]+ [\d.]+ 0 0 [01] /.test(aodArc),
 ok(aodArc === acdArc, "∠AOD 與 ∠ACD 亮同一條弧 AD（正好示範同一條弧、不同定理）");
 ok(/冇弧/.test((pointFigs[0].querySelector(".cls-arcsay") || {}).textContent || ""),
   "冇弧時會講明原因");
+// Both classifier modes must show only the selected angle's bilingual hint.
+let angleHintsMatch = true;
+for (const classifier of [pointFigs[0].querySelector(".cls"), mainCls]) {
+  const buttons = [...classifier.querySelectorAll(".cls-pick")];
+  for (const i of [0, 1, 2, 3, 2, 1, 0]) {
+    buttons[i].click();
+    const hints = classifier.querySelectorAll(".cls-hint");
+    const expected = TH11.classify.angles[i].hint;
+    angleHintsMatch &&= hints.length === 1 &&
+      hints[0].querySelector(".l-zh").textContent === expected.zh &&
+      hints[0].querySelector(".l-en").textContent === expected.en;
+    if (i !== 0) angleHintsMatch &&= !/extend CO|∠FCA/.test(hints[0].textContent);
+  }
+}
+ok(angleHintsMatch, "兩個分類器的四個角各自顯示正確的雙語提示，切換時沒有舊提示殘留");
+const noHintHost = notesPage.doc.createElement("div");
+notesPage.doc.body.appendChild(noHintHost);
+const noHintOpts = JSON.parse(JSON.stringify(TH11.classify));
+noHintOpts.hint = {zh:"不應顯示的舊共用提示", en:"Obsolete shared hint"};
+noHintOpts.angles.forEach(a => delete a.hint);
+notesPage.ctx.window.S5A_DEMO.types.classify(noHintHost, noHintOpts);
+noHintHost.querySelector(".cls-pick").click();
+ok(!noHintHost.querySelector(".cls-hint"), "沒有專用提示的角不會退回不相關的共用提示");
+noHintHost.remove();
 const playerFigs = [1, 2, 3, 4].map((i) => pointFigs[i]).filter(Boolean);
 ok(playerFigs.length === 4 && playerFigs.every((f) => f.querySelector(".cg-svg")),
   "第 3、4、6、7 點各有逐步動畫（circle.js 播放器）");

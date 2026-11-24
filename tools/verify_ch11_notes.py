@@ -128,6 +128,17 @@ near(angle(p,'ADO'), angle(p,'DAO'), 'left isosceles triangle')
 near(angle(p,'ODB'), angle(p,'OBD'), 'right isosceles triangle')
 print('All 13 supporting figures and geometric counterexamples passed.')
 
+# Check the angle-specific classifier hints against its fixed diagram.
+p = build_points({'points': {'O': {'centre': True}, 'A': {'at': 32},
+    'C': {'at': -84}, 'D': {'at': 0}, 'E': {'cross': ['A', 'C', 'O', 'D']}}})
+p['F'] = tuple(-value for value in p['C'])
+near(angle(p,'OCA'),angle(p,'FCA'),'OCA hint: extending CO preserves the angle')
+near(angle(p,'AOD'),2*angle(p,'ACD'),'ACD/AOD hints: shared minor arc AD')
+near(angle(p,'AEO')+angle(p,'OEC'),180,'AEO hint: adjacent angles on AC')
+near(angle(p,'AEO'),angle(p,'ECO')+angle(p,'COE'),'AEO hint: triangle exterior angle')
+assert math.hypot(*p['E']) < 1 and math.hypot(*p['E']) > 0
+print('All four classifier hints agree with the selected angles.')
+
 p = build_points(figures['cyclic-direct-rules'])
 near(angle(p,'DAB') + angle(p,'BCD'), 180, 'cyclic opposite angles')
 near(angle(p,'DCE'), angle(p,'DAB'), 'cyclic exterior angle')

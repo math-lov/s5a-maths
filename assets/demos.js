@@ -2882,8 +2882,13 @@
 
     var verdicts = o.verdicts || {};
     var answers = o.answers || {};
-    var hint = el("p", "cls-hint");
-    if (o.hint) hint.appendChild(bi(o.hint.zh || "", o.hint.en || ""));
+    function appendHint(angle) {
+      var copy = angle.hint;
+      if (!copy || !(copy.zh || copy.en)) return;
+      var hint = el("p", "cls-hint");
+      hint.appendChild(bi(copy.zh || "", copy.en || ""));
+      panel.appendChild(hint);
+    }
     stage.appendChild(side);
     root.appendChild(stage);
     host.appendChild(root);
@@ -2951,7 +2956,7 @@
                   : "First look for isosceles triangles, angle sums, vertically opposite angles or parallel lines. Reassess after adding an extension."
           ));
           panel.appendChild(card);
-          panel.appendChild(hint);
+          appendHint(a);
         }, 320);
         return;
       }
@@ -2973,7 +2978,7 @@
         card.appendChild(h);
         card.appendChild(bi((v.body || {}).zh || "", (v.body || {}).en || ""));
         panel.appendChild(card);
-        panel.appendChild(hint);
+        appendHint(a);
       }, 1180);
     }
 

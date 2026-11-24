@@ -898,6 +898,10 @@ def check_thinking(site) -> None:
                         % (tag, a.get("id"), a.get("verdict")))
                 if a.get("id") not in ans:
                     err("%s：classify 角 %r 缺少 answers（兩問的答案）" % (tag, a.get("id")))
+                if "hint" in a:
+                    hint = a["hint"]
+                    if not (isinstance(hint, dict) and hint.get("zh") and hint.get("en")):
+                        err("%s：classify 角 %r 的 hint 要有中英兩版" % (tag, a.get("id")))
 
 
 def build_notes(site, write: bool) -> list:
