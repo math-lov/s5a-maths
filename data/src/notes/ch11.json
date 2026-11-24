@@ -2229,32 +2229,36 @@
     "en": "the fake butterfly"
    },
    "note": {
-    "zh": "外形極像蝴蝶，但千萬別誤當成兩角相等！先確認 O 是圓心：圓心角 AOB 與圓周角 ACB 同對不經 C 的弧 AB（B 介乎 A、C 之間），所以圓心角是圓周角的兩倍（$\\angle AOB = 2\\angle ACB$）。",
-    "en": "Despite looking like a butterfly, these two angles are not equal! Confirm that O is the centre first: central angle AOB and circumference angle ACB both intercept arc AB (with B lying between A and C), so the central angle is twice the circumference angle ($\\angle AOB = 2\\angle ACB$)."
+    "zh": "O 是圓心；A 在 O 上方，C 在 O 右方，B 在劣弧 AC 上。連接 OA、OB、AC、BC，外形便像蝴蝶，但 O 不在圓周上。同對不經 C 的弧 AB，正確關係是 $\\angle AOB=2\\angle ACB$。切勿把 $\\angle OAC$ 和 $\\angle OBC$ 當作同弓形內的圓周角：O 不在圓周上，不能據此斷定兩角相等。",
+    "en": "O is the centre, A is above O, C is to its right, and B lies on minor arc AC. Join OA, OB, AC and BC to form the butterfly-like outline. Since O is not on the circle, this is a fake butterfly. The correct relationship on arc AB excluding C is $\\angle AOB=2\\angle ACB$. Do not treat $\\angle OAC$ and $\\angle OBC$ as angles in the same segment: O is not on the circumference, so the equal-angle theorem does not apply."
    },
    "anim": {
     "points": {
      "O": {
-      "centre": true
+      "centre": true,
+      "labelOffset": [
+       -12,
+       16
+      ]
      },
      "A": {
-      "at": 210
+      "at": 90
      },
      "B": {
-      "at": 115
+      "at": 30
      },
      "C": {
-      "at": 30
+      "at": 0
      }
     },
     "segments": [
      [
-      "A",
-      "O"
+      "O",
+      "A"
      ],
      [
-      "B",
-      "O"
+      "O",
+      "B"
      ],
      [
       "A",
@@ -2267,22 +2271,24 @@
     ],
     "steps": [
      {
-      "zh": "看似蝴蝶，但其中一個頂點在圓心！同對弧 AB，圓心角是圓周角的兩倍。",
-      "en": "It looks like a butterfly, but one vertex is at the centre! On arc AB, the centre angle is twice the circumference angle.",
+      "zh": "O 是圓心，不在圓周上；同對弧 AB，∠AOB = 2∠ACB，不能誤用同弓形角相等。",
+      "en": "O is the centre, not a point on the circle. On arc AB, angle AOB is twice angle ACB; the same-segment equal-angle theorem does not apply.",
       "arcs": [
        [
         "O",
         "A",
         "B",
         "2p",
-        "claim"
+        "claim",
+        38
        ],
        [
         "C",
         "A",
         "B",
         "p",
-        "claim"
+        "claim",
+        38
        ]
       ],
       "circleArcs": [
@@ -2292,14 +2298,15 @@
         "C",
         "accent"
        ]
-      ]
+      ],
+      "ref": "(∠ at centre twice ∠ at ○ᶜᵉ)"
      }
     ],
     "readable": true,
     "r": 130,
     "label": {
-     "zh": "假蝴蝶",
-     "en": "the fake butterfly"
+     "zh": "假蝴蝶：A 在上、C 在右，B 在劣弧 AC 上；圓心角 AOB 是圓周角 ACB 的兩倍。",
+     "en": "Fake butterfly: A above O, C to its right, B on minor arc AC; angle AOB is twice angle ACB."
     }
    }
   },

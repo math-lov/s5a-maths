@@ -67,7 +67,22 @@ for shape in notes['shapes']:
     assert any(v.get('centre') for v in a['points'].values()), 'main circle needs centre'
     p=build_points(a)
     if shape['id']=='butterfly':near(angle(p,'ACB'),angle(p,'ADB'),'butterfly')
-    if shape['id']=='fake-butterfly':near(angle(p,'AOB'),2*angle(p,'ACB'),'centre twice')
+    if shape['id']=='fake-butterfly':
+        # The fake butterfly has one vertex at the centre, not four concyclic
+        # vertices. Preserve the teacher's point order and crossing outline.
+        near(p['A'][0],0,'A above O')
+        near(p['A'][1],1,'A above O')
+        near(p['C'][0],1,'C right of O')
+        near(p['C'][1],0,'C right of O')
+        assert p['B'][0]>0 and p['B'][1]>0, 'B inside minor arc AC'
+        assert {frozenset(s) for s in a['segments']} == {
+            frozenset(s) for s in [('O','A'),('O','B'),('A','C'),('B','C')]}
+        near(angle(p,'AOB'),2*angle(p,'ACB'),'centre twice on arc AB')
+        near(angle(p,'ACB'),30,'circumference example')
+        near(angle(p,'OAC'),45,'misleading angle at A')
+        near(angle(p,'OBC'),75,'misleading angle at B')
+        assert not math.isclose(angle(p,'OAC'),angle(p,'OBC'))
+        assert not math.isclose(angle(p,'AOC'),2*angle(p,'ACB'))
     if shape['id']=='fortune-fan':
         # 圓周角係鈍角，所對的是優弧：反角 = 2×圓周角，弧長亦等於反角
         near(360-angle(p,'AOB'),2*angle(p,'ADB'),'reflex centre twice')
