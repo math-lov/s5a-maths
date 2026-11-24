@@ -779,6 +779,38 @@
      "zh": "課堂練習 12.2 三題、Section Check 三項、Exercise 12.2 第 1–30 題；所提供的原題及官方解答。",
      "en": "Three Class Exercises 12.2, three Section Check items and Exercise 12.2 Questions 1–30; supplied original questions and official solutions."
     }
+   },
+   {
+    "id": "ch12-revision",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch12",
+    "code": "12R",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 12 章 · 圓形的基本性質（二）",
+     "en": "Chapter 12 · Basic Properties of Circles (II)"
+    },
+    "title": {
+     "zh": "第 12 章 綜合練習",
+     "en": "Revision Exercise 12"
+    },
+    "meta": {
+     "paper": "Book 5A · Revision Exercise 12"
+    },
+    "stats": {
+     "questions": 55,
+     "marks": 190,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "Revision Exercise 12 第 1–41 題及 MC1–MC14；原題與官方解答，課本第 12.42–12.50 頁。",
+     "en": "Revision Exercise 12 Questions 1–41 and MC1–MC14; original questions and official solutions, pages 12.42–12.50."
+    }
    }
   ],
   "classwork": {
@@ -860,8 +892,8 @@
       "en": "Chapter 12 · Basic Properties of Circles (II)"
      },
      "intro": {
-      "zh": "12.1 圓的切線及 12.2 切線與弦所成的角，附完整雙語題解及互動圖解。",
-      "en": "12.1 Tangents to a Circle and 12.2 Angles between Tangents and Chords include bilingual solutions and interactive figures."
+      "zh": "第 12 章包括 12.1 圓的切線、12.2 切線與弦所成的角，以及章末綜合練習。兩節課本練習與綜合練習共 145 題，均附雙語逐步題解。綜合練習完整收錄 41 題長題及 14 題多項選擇題，並配六張互動複習卡。",
+      "en": "Chapter 12 covers 12.1 Tangents to a Circle, 12.2 Angles between Tangents and Chords, and the chapter revision exercise. All 145 questions have bilingual step-by-step solutions. The revision exercise includes all 41 conventional questions, 14 multiple-choice questions and six interactive revision cards."
      },
      "sections": [
       {
@@ -878,6 +910,14 @@
        "title": {
         "zh": "12.2 切線與弦所成的角",
         "en": "12.2 Angles between Tangents and Chords"
+       }
+      },
+      {
+       "code": "12R",
+       "part": "ch12-revision",
+       "title": {
+        "zh": "第 12 章 綜合練習",
+        "en": "Revision Exercise 12"
        }
       }
      ]

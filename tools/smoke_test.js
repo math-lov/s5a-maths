@@ -4109,5 +4109,114 @@ ok(chordPage.$$(".cg-svg text").some(n => n.textContent === "x") &&
    !chordPage.$$(".cg-svg text").some(n => n.textContent === "74°"),
   "11.3 Q21: Restart restores both original unknowns without revealing the later 74° condition");
 
+console.log("\n== Revision Exercise 12: all 41 conventional questions and 14 MCs ==");
+const revision12=JSON.parse(read("data/src/ch12-revision.json"));
+const revisionQs12=revision12.sections.flatMap(s=>s.questions);
+const revisionPlayers12=revisionQs12.map(q=>q.anim).concat(revision12.cards.map(c=>c.demo.opts.anim));
+const revisionMeta12=INDEX.parts.find(p=>p.id==="ch12-revision");
+ok(revisionQs12.length===55 && revision12.sections.map(s=>s.questions.length).join()==="18,20,1,2,14",
+ "12R: all original questions and all five book sections are present");
+ok(revisionMeta12.answerInput && revisionMeta12.stats.questions===55 && revisionMeta12.stats.marks===190 &&
+ CW_CHAPTERS.find(c=>c.id==="ch12").sections.some(s=>s.part==="ch12-revision"),
+ "12R: chapter navigation, scalar answer inputs and teaching marks are registered");
+ok(revisionQs12.filter(q=>q.type==="mc").map(q=>q.answer).join()==="D,B,C,B,C,B,C,B,B,C,D,B,B,D",
+ "12R: all 14 official MC answers agree");
+const overview12R=boot("quiz.html","?c=ch12-revision&p=0");
+ok(overview12R.$$("#pagenav .pg").length===56 && overview12R.$$(".cg-split").length===6,
+ "12R: overview has all 56 pages and six interactive teaching cards");
+overview12R.dom.window.close();
+let pages12R=true,mc12R=true,inputs12R=true;
+for(const [index,q]of revisionQs12.entries()){
+ const rendered=boot("quiz.html",`?c=ch12-revision&p=${index+1}`,null,"show");
+ if(rendered.$$(".katex-error").length || !rendered.$(".sol-card") || !rendered.$(".cg-split"))pages12R=false;
+ if(q.type==="mc"){
+  const wrong=Object.keys(q.options).find(k=>k!==q.answer);
+  rendered.$(`[data-opt="${wrong}"]`).click();
+  if((rendered.store().done||{})[q.id])mc12R=false;
+  rendered.$("[data-check]").click();
+  if((rendered.store().done||{})[q.id])mc12R=false;
+  rendered.$(`[data-opt="${q.answer}"]`).click();
+  if((rendered.store().done||{})[q.id])mc12R=false;
+  rendered.$("[data-check]").click();
+  if(!(rendered.store().done||{})[q.id])mc12R=false;
+ }else{
+  const answers=q.answers.filter(a=>a.input!=null);
+  if(rendered.$$(".ans-input").length!==answers.length)inputs12R=false;
+  if(answers.length){
+   ansType(rendered,0,"99999");ansSub(rendered).click();
+   if((rendered.store().done||{})[q.id])inputs12R=false;
+   answers.forEach((a,i)=>ansType(rendered,i,a.input));
+   if((rendered.store().done||{})[q.id])inputs12R=false;
+   ansSub(rendered).click();
+   if(rendered.$$(".ans-input").some(n=>!n.disabled))inputs12R=false;
+  }
+ }
+ rendered.dom.window.close();
+}
+ok(pages12R,"12R: every question renders a bilingual solution, valid formulas and an interactive figure");
+ok(mc12R,"12R: all MCs require submission and allow a wrong-first retry");
+ok(inputs12R,"12R: every scalar input rejects a wrong answer and accepts a correction only after submission");
+let sync12R=true,replay12R=true,continuity12R=true,givens12R=true;
+chordPage.ctx.window.matchMedia=()=>({matches:true});
+for(const anim of revisionPlayers12){
+ chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,anim);
+ const state=()=>{
+  const svg=chordPage.$(".cg-svg").cloneNode(true);
+  svg.querySelectorAll(".cg-pt").forEach(n=>{if(n.style.opacity==="1")n.style.removeProperty("opacity");if(!n.getAttribute("style"))n.removeAttribute("style");});
+  return JSON.stringify([svg.innerHTML,chordPage.$(".cg-say").textContent,chordPage.$(".cg-ref").textContent]);
+ };
+ const initial=state(),states=[initial];let segments=new Set(chordPage.$$("[data-segment]").map(n=>n.getAttribute("data-segment")));
+ const expected=new Map(),arcKey=a=>a[0]+":"+[a[1],a[2]].sort().join(":")+(a[6]==="reflex"?":reflex":"");
+ (anim.givens?.arcs||[]).forEach(a=>expected.set(arcKey(a),a[3]));
+ const checkGivens=()=>{
+  const shown=chordPage.$$(".cg-givens .cg-val.given").map(n=>n.textContent);
+  const values=[...expected.values()].filter(v=>v!=="90°");
+  return shown.length===values.length && values.every(v=>shown.includes(v)) &&
+   chordPage.$$(".cg-givens .cg-arc.given").length===expected.size;
+ };
+ if(!checkGivens())givens12R=false;
+ for(const [i,step]of anim.steps.entries()){
+  chordPage.$(".cg-next").click();
+  const now=chordPage.$$("[data-segment]").map(n=>n.getAttribute("data-segment"));
+  if([...segments].some(k=>!now.includes(k)) || new Set(now).size!==now.length)continuity12R=false;
+  segments=new Set(now);
+  if(chordPage.$(".cg-ref").textContent!==step.ref || chordPage.$$(".katex-error").length ||
+   chordPage.$$(".cg-en .cg-equation annotation").map(n=>n.textContent).join("\n")!==step.mathLines.map(l=>"\\displaystyle "+l).join("\n") ||
+   chordPage.$$("svg [d]").some(n=>/NaN|undefined/.test(n.getAttribute("d"))))sync12R=false;
+  (step.givens?.arcs||[]).forEach(a=>expected.set(arcKey(a),a[3]));
+  if(!checkGivens())givens12R=false;
+  states.push(state());
+ }
+ for(let i=states.length-2;i>=0;i--){chordPage.$(".cg-back").click();if(state()!==states[i])replay12R=false;}
+ chordPage.$(".cg-next").click();chordPage.$(".cg-restart").click();if(state()!==initial)replay12R=false;
+}
+ok(revisionPlayers12.length===61 && sync12R,"12R: all 61 players synchronise every diagram, bilingual formula and reason");
+ok(continuity12R,"12R: all original and constructed lines persist without duplicate segments");
+ok(givens12R,"12R: original and staged given angles remain visible without duplicate labels");
+ok(replay12R,"12R: every backward frame and restart restore the exact figure and explanation");
+for(const code of ["20","23","38","40"]){
+ const anim=revisionQs12.find(q=>q.code===code).anim;
+ chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,anim);
+ const boundary=anim.steps.findIndex(s=>s.givens),before=chordPage.$(".cg-givens").innerHTML;
+ for(let i=0;i<boundary;i++)chordPage.$(".cg-next").click();
+ const prior=chordPage.$(".cg-givens").innerHTML;
+ chordPage.$(".cg-next").click();const after=chordPage.$(".cg-givens").innerHTML;
+ chordPage.$(".cg-back").click();
+ ok(before===prior && after!==before && chordPage.$(".cg-givens").innerHTML===before,
+  `12R Q${code}: later-part conditions appear at their own step and disappear on Back`);
+}
+const reflex12R=revisionQs12.find(q=>q.code==="3").anim;
+chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,reflex12R);
+const reflexPath12R=chordPage.$(".cg-goal-arc").getAttribute("d");
+ok(reflexPath12R.split("A")[1].trim().split(/\s+/)[3]==="1",
+ "12R Q3: the initial target marks the reflex angle with a large arc");
+chordPage.$(".cg-next").click();chordPage.$(".cg-next").click();
+ok(chordPage.$(".cg-goal-arc").getAttribute("d")===reflexPath12R &&
+ chordPage.$(".cg-arc.claim").getAttribute("d").split("A")[1].trim().split(/\s+/)[3]==="0",
+ "12R Q3: reflex target and derived minor central angle remain distinct");
+chordPage.$(".cg-next").click();
+ok(!chordPage.$(".cg-goal-arc") && chordPage.$(".cg-val.claim").textContent==="242°",
+ "12R Q3: the solved reflex value replaces its target marker");
+
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

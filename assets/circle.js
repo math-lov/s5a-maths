@@ -861,7 +861,7 @@
         if (!v || !p1 || !p2) return;
         var colour = A[4] || "goal";
         var radius = A[5] || 34;
-        var geo = arcPath(v, p1, p2, radius);
+        var geo = arcPath(v, p1, p2, radius, A[6] === "reflex");
         gGoal.appendChild(el("path", { class: "cg-goal-arc " + colour, d: geo.d }));
         if (A[3]) {
           gGoal.appendChild(el("text", {

@@ -455,6 +455,62 @@
         "zh": "通過弦端點的直線若與該弦所成的角等於另一弓形內的圓周角，該直線是圓在該端點的切線。",
         "en": "If a line through a chord endpoint makes an angle with the chord equal to the angle in its alternate segment, the line is tangent at that endpoint."
       }
+    },
+    "algebra": {
+      "abbreviation": "(algebra)",
+      "meaning": {
+        "zh": "代入、化簡及解方程。",
+        "en": "Substitution, simplification and solving equations."
+      }
+    },
+    "segment_addition": {
+      "abbreviation": "(addition of lengths)",
+      "meaning": {
+        "zh": "按點序把線段長度相加或相減。",
+        "en": "Add or subtract segment lengths according to the point order."
+      }
+    },
+    "circle_sector_area": {
+      "abbreviation": "(area of circle / sector)",
+      "meaning": {
+        "zh": "使用圓或扇形的面積公式。",
+        "en": "Use the area formula for a circle or sector."
+      }
+    },
+    "coordinate_geometry": {
+      "abbreviation": "(coordinate geometry)",
+      "meaning": {
+        "zh": "使用坐標、斜率、距離或直線方程。",
+        "en": "Use coordinates, gradients, distances or equations of lines."
+      }
+    },
+    "right_triangle_trigonometry": {
+      "abbreviation": "(trig. ratios in right △)",
+      "meaning": {
+        "zh": "使用直角三角形的三角比。",
+        "en": "Use trigonometric ratios in a right triangle."
+      }
+    },
+    "regular_polygon_angles": {
+      "abbreviation": "(∠s of regular polygon)",
+      "meaning": {
+        "zh": "正多邊形的內角相等，內角和為邊數減二乘一百八十度。",
+        "en": "A regular polygon has equal interior angles with sum (n−2) × 180°."
+      }
+    },
+    "common_angle": {
+      "abbreviation": "(common ∠)",
+      "meaning": {
+        "zh": "兩個三角形共用同一個角。",
+        "en": "The two triangles share the same angle."
+      }
+    },
+    "definition_chord": {
+      "abbreviation": "(definition of chord)",
+      "meaning": {
+        "zh": "弦是連接圓周上兩點的線段。",
+        "en": "A chord is a line segment joining two points on a circle."
+      }
     }
   }
 }
