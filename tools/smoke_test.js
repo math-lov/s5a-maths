@@ -3843,8 +3843,8 @@ ok(tangentQs12.length === 54 && tangent12.sections.map(s=>s.questions.length).jo
 ok(tangentMeta12.answerInput && tangentMeta12.stats.questions === 54 && tangentMeta12.stats.marks === tangentQs12.reduce((s,q)=>s+q.marks,0) && CW_CHAPTERS.find(c=>c.id==="ch12").sections[0].part==="ch12-1",
   "12.1: chapter navigation, counts and numerical-answer flag agree");
 const tangentOverview12=boot("quiz.html","?c=ch12-1&p=0");
-ok(tangentOverview12.$$("#pagenav .pg").length===55 && tangentOverview12.$$(".cg-split").length===5,
-  "12.1: overview includes all 55 pages and five interactive teaching cards");
+ok(tangentOverview12.$$("#pagenav .pg").length===55 && tangentOverview12.$$(".cg-split").length===6,
+  "12.1: overview includes all 55 pages and six interactive teaching cards");
 let tangentPages12=true,tangentInputs12=true,tangentTF12=true;
 for(const [index,q] of tangentQs12.entries()){
  const rendered=boot("quiz.html",`?c=ch12-1&p=${index+1}`,null,"show");
@@ -3890,7 +3890,7 @@ for(const anim of tangentPlayers12){
  for(let i=states.length-2;i>=0;i--){chordPage.$(".cg-back").click();if(state()!==states[i])tangentReplay12=false;}
  chordPage.$(".cg-restart").click();if(state()!==initial)tangentReplay12=false;
 }
-ok(tangentPlayers12.length===59 && tangentSync12,"12.1: all 59 players synchronise formulas, figures and theorem reasons");
+ok(tangentPlayers12.length===60 && tangentSync12,"12.1: all 60 players synchronise formulas, figures and theorem reasons");
 ok(tangentReplay12,"12.1: every Back step and Restart restores the matching figure and explanation");
 ok(["26","38"].every(k=>tangentQs12.find(q=>q.code===k).solution.tip.en.includes("official")),"12.1: verified official notation errors are explained");
 
@@ -3950,6 +3950,36 @@ const tangentTestBack12 = tangentTestGivens12();
 chordPage.$(".cg-restart").click();
 ok(tangentTestBack12 === tangentTestInitial12 && tangentTestGivens12() === tangentTestInitial12,
   "12.1 tangent-test teaching card: givens persist on Back and Restart");
+
+// Inspect the final diagrams after normal playback and after rewinding.
+for (const card of tangent12.cards) {
+ chordPage.doc.body.replaceChildren();
+ chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, card.demo.opts.anim);
+ const finish = () => { while (!chordPage.$(".cg-next").disabled) chordPage.$(".cg-next").click(); };
+ const checkFinal = () => {
+  if (["ch12-1-card-radius", "ch12-1-card-centre", "ch12-1-card-test"].includes(card.id))
+   return chordPage.$$(".cg-svg path[data-angle='A']").length === 1;
+  if (card.id === "ch12-1-card-equal")
+   return ["AT", "BT"].every(side => chordPage.$$("[data-tick='" + side + "'] line").length === 2) &&
+     ["OA", "OB"].every(side => chordPage.$$("[data-tick='" + side + "'] line").length === 1);
+  if (card.id === "ch12-1-card-bisect")
+   return ["O", "T"].every(v => chordPage.$$(".cg-svg path[data-angle='" + v + "']").length === 2) &&
+     chordPage.$(".cg-ref").textContent === "(tangents from ext. pt.)";
+  return chordPage.$(".cg-ref").textContent === "(tangents from ext. pt.)";
+ };
+ finish();
+ const played = checkFinal();
+ if (card.id === "ch12-1-card-test") {
+  const equations = chordPage.$$(".cg-en .cg-equation annotation").map(n => n.textContent);
+  ok(equations.length === 2 && equations[0].includes("\\because OA\\perp AP") &&
+    equations[1].includes("\\therefore AP\\text{ is tangent at }A"),
+    "12.1 tangent test: the perpendicular premise appears above the tangent conclusion");
+ }
+ chordPage.$(".cg-back").click(); finish();
+ const rewound = checkFinal();
+ chordPage.$(".cg-restart").click(); finish();
+ ok(played && rewound && checkFinal(), "12.1 teaching card playback, Back and Restart preserve final geometry: " + card.id);
+}
 
 console.log("\n== Chapter 12.2: tangent–chord theorems and all step players ==");
 const tangentChord122=JSON.parse(read("data/src/ch12-2.json"));

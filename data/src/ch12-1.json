@@ -126,7 +126,16 @@
          "AB\\perp AP"
         ],
         "ref": "(tangent ⊥ radius)",
-        "arcs": [],
+        "arcs": [
+         [
+          "A",
+          "B",
+          "P",
+          "90°",
+          "claim",
+          25
+         ]
+        ],
         "final": true,
         "answer": "Complete ✓",
         "clearAngle": [
@@ -149,6 +158,144 @@
    "warn": {
     "zh": "每次套用定理前，先核對接觸點、圓心及半徑。",
     "en": "Check the contact point, centre and radius before applying a theorem."
+   }
+  },
+  {
+   "id": "ch12-1-card-centre",
+   "topic": "ch12-1",
+   "title": {
+    "zh": "接觸點上垂直於切線的直線通過圓心",
+    "en": "The perpendicular to a tangent at contact passes through the centre"
+   },
+   "body": {
+    "zh": "若 AP 是 A 點的切線，而通過 A 的直線 AB 垂直於 AP，則 AB 必定通過圓心 O。關鍵是垂線通過接觸點 A。",
+    "en": "If AP is tangent at A and a line AB through A is perpendicular to AP, then AB passes through the centre O. The perpendicular must pass through the contact point A."
+   },
+   "demo": {
+    "type": "circle",
+    "caption": {
+     "zh": "按下一步查看構造與理由；可返回或重播。",
+     "en": "Press Next to follow the construction and reasons; use Back or Restart to review."
+    },
+    "opts": {
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 270
+       },
+       "P": {
+        "at": -33.690067525979785,
+        "r": 1.8027756377319946
+       },
+       "B": {
+        "at": 90,
+        "r": 1.35
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "P"
+       ],
+       [
+        "A",
+        "B"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "已知 AP 是 A 點的切線，AB 在接觸點垂直於 AP：$AB\\perp AP$。",
+        "en": "AP is tangent at A, and AB is perpendicular to it at the contact point: $AB\\perp AP$.",
+        "mathLines": [
+         "AB\\perp AP"
+        ],
+        "ref": "",
+        "arcs": [
+         [
+          "A",
+          "B",
+          "P",
+          "90°",
+          "given",
+          25
+         ]
+        ],
+        "clearAngle": [
+         "A"
+        ]
+       },
+       {
+        "zh": "連接 OA；接觸點的半徑也垂直於切線：$OA\\perp AP$。",
+        "en": "Join OA; the contact radius is also perpendicular to the tangent: $OA\\perp AP$.",
+        "mathLines": [
+         "OA\\perp AP"
+        ],
+        "ref": "(tangent ⊥ radius)",
+        "lines": [
+         [
+          "O",
+          "A"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "O",
+          "P",
+          "90°",
+          "claim",
+          25
+         ]
+        ],
+        "clearAngle": [
+         "A"
+        ]
+       },
+       {
+        "zh": "通過 A 只有一條直線垂直於 AP，所以 A、O、B 共線，AB 通過圓心：$\\therefore O\\text{ lies on }AB$。",
+        "en": "There is only one perpendicular to AP through A, so A, O and B are collinear and AB passes through the centre: $\\therefore O\\text{ lies on }AB$.",
+        "mathLines": [
+         "\\therefore O\\text{ lies on }AB"
+        ],
+        "ref": "(tangent ⊥ radius)",
+        "lines": [
+         [
+          "A",
+          "B"
+         ]
+        ],
+        "arcs": [
+         [
+          "A",
+          "B",
+          "P",
+          "90°",
+          "claim",
+          25
+         ]
+        ],
+        "clearAngle": [
+         "A"
+        ],
+        "final": true,
+        "answer": "AB passes through O"
+       }
+      ],
+      "goal": [],
+      "layout": "side-by-side",
+      "hideSolvedGoals": true,
+      "r": 116.0,
+      "cx": 181.0,
+      "cy": 195.0
+     }
+    }
+   },
+   "warn": {
+    "zh": "垂線必須通過接觸點；在切線上其他位置作垂線，不一定通過圓心。",
+    "en": "The perpendicular must pass through the point of contact. A perpendicular elsewhere on the tangent need not pass through the centre."
    }
   },
   {
@@ -243,13 +390,23 @@
         ]
        },
        {
-        "zh": "才可判定 AP 是切線：$OA\\perp AP$。",
-        "en": "Now conclude that AP is tangent: $OA\\perp AP$.",
+        "zh": "由已證的垂直關係，判定切線：$\\because OA\\perp AP\\quad \\therefore AP\\text{ is tangent at }A$。",
+        "en": "Use the proved perpendicularity to conclude tangency: $\\because OA\\perp AP\\quad \\therefore AP\\text{ is tangent at }A$.",
         "mathLines": [
-         "OA\\perp AP"
+         "\\because OA\\perp AP",
+         "\\therefore AP\\text{ is tangent at }A"
         ],
         "ref": "(converse of tangent ⊥ radius)",
-        "arcs": [],
+        "arcs": [
+         [
+          "A",
+          "O",
+          "P",
+          "90°",
+          "claim",
+          25
+         ]
+        ],
         "final": true,
         "answer": "Complete ✓",
         "clearAngle": [
@@ -433,11 +590,13 @@
         "ticks": [
          [
           "A",
-          "T"
+          "T",
+          2
          ],
          [
           "B",
-          "T"
+          "T",
+          2
          ]
         ],
         "final": true,
@@ -545,7 +704,7 @@
         "mathLines": [
          "\\angle ATO=\\angle BTO=40^\\circ"
         ],
-        "ref": "(corr. ∠s, ≅ △s)",
+        "ref": "(tangents from ext. pt.)",
         "arcs": [
          [
           "T",
@@ -572,13 +731,30 @@
         ]
        },
        {
-        "zh": "圓心的兩個角也相等：$\\angle AOT=\\angle BOT=50^\\circ$。",
-        "en": "The angles at the centre are also equal: $\\angle AOT=\\angle BOT=50^\\circ$.",
+        "zh": "OT 同時平分外點的角 ATB 與小圓心角 AOB：$\\angle ATO=\\angle BTO=40^\\circ\\quad \\angle AOT=\\angle BOT=50^\\circ$。",
+        "en": "OT bisects both the external angle ATB and the minor central angle AOB: $\\angle ATO=\\angle BTO=40^\\circ\\quad \\angle AOT=\\angle BOT=50^\\circ$.",
         "mathLines": [
+         "\\angle ATO=\\angle BTO=40^\\circ",
          "\\angle AOT=\\angle BOT=50^\\circ"
         ],
-        "ref": "(corr. ∠s, ≅ △s)",
+        "ref": "(tangents from ext. pt.)",
         "arcs": [
+         [
+          "T",
+          "A",
+          "O",
+          "40°",
+          "claim",
+          25
+         ],
+         [
+          "T",
+          "B",
+          "O",
+          "40°",
+          "claim",
+          25
+         ],
          [
           "O",
           "A",
@@ -761,7 +937,7 @@
          "AB+BC+CA=(u+v)+(v+w)+(u+w)",
          "=2(u+v+w)"
         ],
-        "ref": "",
+        "ref": "(tangents from ext. pt.)",
         "arcs": [],
         "final": true,
         "answer": "Complete ✓",

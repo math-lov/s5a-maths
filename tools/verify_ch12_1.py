@@ -143,7 +143,7 @@ for a,b,c,d,e in [(12,9,15,20,25),(16,12,20,48,52)]:
     assert a*a+b*b==c*c and c*c+d*d==e*e
 near((math.degrees(math.atan2(20,15))/360)*math.pi*25**2,289.7797556255,'41 sector area')
 for c in D['cards']:assert not check_anim(c['demo']['opts']['anim'],c['id'])
-assert len(D['cards'])==5
+assert len(D['cards'])==6
 assert [Q['SC('+c+')']['answers'][0]['tf'] for c in 'abcd']==[True,False,True,True]
 # The original premises must be annotated before any solution step; conclusions
 # such as TA=TB in Q22 and the claimed radius in SC(a) are not initial givens.
@@ -218,7 +218,7 @@ sample['parts'][0]['en']='Find the angle ABC.'
 build.check_question(sample,'angle regression',set(),need_input=True)
 assert any('anim' in w and 'goal' in w for w in build.WARNINGS),build.WARNINGS
 build.ERRORS.clear();build.WARNINGS.clear()
-print('PASS: 54 source questions, 5 cards; original angle/length givens, tangent perpendicularity, parallel lines, symbolic claims and bilingual formula synchronisation')
+print('PASS: 54 source questions, 6 cards; original angle/length givens, tangent perpendicularity, parallel lines, symbolic claims and bilingual formula synchronisation')
 
 # The tangent-test teaching example also needs its premises before Next.
 a=next(c['demo']['opts']['anim'] for c in D['cards'] if c['id']=='ch12-1-card-test')
