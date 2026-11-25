@@ -1911,3 +1911,18 @@ body[data-lang="both"] .think-shape-name .l-zh, body[data-lang="both"] .think-sh
 .think-main > .think-shapes { margin-top: var(--sp-4); }
 @media (max-width: 620px) { .think-figures { grid-template-columns: minmax(0, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .think-shape.pulse .cg-circle-arc { animation: none; } }
+
+/* Inequality examples reuse the circle player's responsive reading order. */
+.iq-cases { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.iq-case { min-height: 44px; }
+.iq-case[aria-pressed="true"] { color: white; background: var(--primary); border-color: var(--primary); }
+.iq-svg { min-width: 0; }
+.iq-svg text { paint-order: stroke; stroke: #fdfcfb; stroke-width: 2px; stroke-linejoin: round; }
+/* Long source inequalities may exceed a narrow phone. Keep part marks on their
+   own line and allow mathematical expressions to scroll within the question. */
+.inequality-question .q-parts li { flex-wrap: wrap; }
+.inequality-question .q-parts li > .bi { min-width: 0; flex: 1; }
+.inequality-question .q-parts li > .mk { flex-basis: 100%; text-align: right; }
+.inequality-question .q-parts li > .bi > div,
+.inequality-question .q-stem > div { max-width: 100%; overflow-x: auto; padding-block: 3px; }
+.inequality-question .q-parts li > .mk .l-en { margin-left: 6px; }

@@ -192,6 +192,51 @@ def derive_input(mathstr: str):
 
 
 # ── 單題檢查 ────────────────────────────────────────────────────────────────
+def check_inequality(spec, tag):
+    """S22: reversible inequality players and their independently selectable cases."""
+    if not isinstance(spec, dict):
+        err("S22 %s: inequality player must be an object" % tag)
+        return
+    if "cases" in spec:
+        if not isinstance(spec["cases"], list) or not spec["cases"]:
+            err("S22 %s: cases must be a nonempty list" % tag)
+            return
+        for i, case in enumerate(spec["cases"]):
+            for lang in ("zh", "en"):
+                check_text("%s case %d name.%s" % (tag, i, lang), (case.get("name") or {}).get(lang, ""))
+            check_inequality(case, "%s case %d" % (tag, i))
+        return
+    domain = spec.get("domain", [])
+    if len(domain) != 2 or not all(isinstance(v, (int, float)) for v in domain) or domain[0] >= domain[1]:
+        err("S22 %s: domain must have two increasing numeric bounds" % tag)
+    if spec.get("layout") != "side-by-side" or not spec.get("steps"):
+        err("S22 %s: side-by-side layout and steps are required" % tag)
+    def view_check(view):
+        if not isinstance(view, dict):
+            err("S22 %s: view must be an object" % tag)
+            return
+        plot = view.get("plot")
+        if plot and (len(plot.get("coeff", [])) != 3 or not plot["coeff"][0]):
+            err("S22 %s: quadratic plot requires three coefficients and nonzero leading term" % tag)
+        for lane in view.get("lanes", []):
+            for interval in lane.get("intervals", []):
+                a, b = interval.get("lo"), interval.get("hi")
+                if a is not None and b is not None and (a > b or (a == b and not (interval.get("loClosed") and interval.get("hiClosed")))):
+                    err("S22 %s: invalid or empty interval; use an empty intervals array instead" % tag)
+    view_check(spec)
+    for i, step in enumerate(spec.get("steps", [])):
+        lines = step.get("mathLines", [])
+        if not lines or any(not isinstance(m, str) or not m or "$" in m or CJK_RE.search(m) for m in lines):
+            err("S22 %s step %d: mathLines must be nonempty LaTeX without Chinese or dollars" % (tag, i))
+        expected = r"\quad ".join(lines)
+        for lang in ("zh", "en"):
+            caption = step.get(lang, "")
+            check_text("%s step %d %s" % (tag, i, lang), caption)
+            if re.findall(r"\$([^$]*)\$", caption) != [expected]:
+                err("S22 %s step %d: %s must contain one formula group matching mathLines" % (tag, i, lang))
+        view_check(step.get("view", {}))
+
+
 def check_question(q: dict, where: str, fig_ids: set, need_input: bool = False) -> None:
     qid = q.get("id") or "?"
     tag = "%s / %s" % (where, qid)
@@ -230,6 +275,9 @@ def check_question(q: dict, where: str, fig_ids: set, need_input: bool = False) 
                     err("S19 %s：anim.goal 每項要係 [頂點, 點1, 點2, 標籤]" % tag)
         elif not proof and asks_angle:
             warn("S19 %s：anim 沒有 goal（題目要求的那隻角應該一開始就標出來）" % tag)
+
+    if q.get("inequalityAnim") is not None:
+        check_inequality(q["inequalityAnim"], tag)
 
     sol = q.get("solution") or {}
     steps = sol.get("steps") or []
@@ -579,7 +627,7 @@ CJK_RE = re.compile(r"[\u4e00-\u9fff]")
 # （新增示範：先在 demos.js 的 S5A_DEMO.types 註冊，再把 type 加落這裡）
 DEMO_TYPES = ("tie-up", "slot-in", "grouping", "combination", "path", "complement",
               "menu", "venn", "code", "venncalc", "floor", "circle", "parts", "classify",
-              "arc-match")
+              "arc-match", "inequality")
 
 
 def check_intro(data: dict, where: str) -> None:
@@ -715,6 +763,8 @@ def check_cards(cards, where: str, fig_ids: set | None = None) -> None:
                 if demo.get("type") not in DEMO_TYPES:
                     err("S14 %s：demo.type「%s」不在白名單（%s）"
                         % (tag, demo.get("type"), "、".join(DEMO_TYPES)))
+                if demo.get("type") == "inequality":
+                    check_inequality(demo.get("opts"), tag)
                 cap = demo.get("caption")
                 if cap is not None:
                     if not isinstance(cap, dict):
@@ -755,7 +805,7 @@ STAMP_RE = re.compile(r"window\.__V\s*=\s*[^;]+;")
 # 學生就可能沿用快取的舊樣式（＝改了 CSS 但看不到）。這裡一併把 href 加上 ?v=。
 CSS_RE = re.compile(r'href="assets/style\.css(\?v=[0-9a-f]+)?"')
 STAMP_HTML = ("index.html", "quiz.html", "chapter.html", "notes.html")
-STAMP_ASSETS = ("assets/app.js", "assets/circle.js", "assets/demos.js", "assets/style.css", "data/index.js", "data/figures.js")
+STAMP_ASSETS = ("assets/app.js", "assets/circle.js", "assets/inequalities.js", "assets/demos.js", "assets/style.css", "data/index.js", "data/figures.js")
 
 
 def content_stamp(part_files) -> str:

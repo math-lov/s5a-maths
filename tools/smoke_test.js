@@ -31,6 +31,7 @@ const autoRenderJs = read("vendor/katex/auto-render.min.js");
 const appJs = read("assets/app.js");
 const demosJs = read("assets/demos.js");
 const circleJs = read("assets/circle.js");
+const inequalitiesJs = read("assets/inequalities.js");
 const partsJs = read("assets/parts.js");
 const indexJs = read("data/index.js");
 const figuresJs = read("data/figures.js");
@@ -83,9 +84,10 @@ function boot(page, search, storage, solPreference, legacySolPreference) {
   dataFiles
     .filter((f) => f === wantFile || f === notesFile)
     .forEach((f) => vm.runInContext(read("data/" + f), ctx, { filename: f }));
-  vm.runInContext(circleJs, ctx, { filename: "circle.js" });  // 圓形幾何逐步圖解
+  vm.runInContext(circleJs, ctx, { filename: "circle.js" });
   vm.runInContext(partsJs, ctx, { filename: "parts.js" });    // 圓的各部分（八個名詞）
   vm.runInContext(demosJs, ctx, { filename: "demos.js" });   // 互動示範（教學卡用）
+  vm.runInContext(inequalitiesJs, ctx, { filename: "inequalities.js" });
   vm.runInContext(appJs, ctx, { filename: "app.js" });
   if (typeof ctx.window.__S5A_START === "function") ctx.window.__S5A_START();
   const doc = dom.window.document;
@@ -456,7 +458,7 @@ ok(all.every((t) => t.body === undefined || t.doc.body.getAttribute("data-lang")
   "每頁都有語言設定");
 
 const figs = JSON.parse(figuresJs.slice(figuresJs.indexOf("{"), figuresJs.lastIndexOf("}") + 1));
-ok(Object.keys(figs).length === 44, "圖共 44 幅（原有 33 幅 ＋ 第 11.1、11.3、11.4 節的 11 幅判斷題圖；實際 " + Object.keys(figs).length + "）");
+ok(Object.keys(figs).filter(id => !id.startsWith("ch10-")).length === 44 && Object.keys(figs).length === 50, "原有 44 幅圖保持完整，另加第 10 章六幅應用題圖（共 50 幅）");
 ok(Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length === 13,
   "其中 13 幅屬於第 18.1 節（文氏圖；實際 " +
   Object.keys(figs).filter((k) => k.indexOf("ch18-1-") === 0).length + "）");
@@ -4217,6 +4219,79 @@ ok(chordPage.$(".cg-goal-arc").getAttribute("d")===reflexPath12R &&
 chordPage.$(".cg-next").click();
 ok(!chordPage.$(".cg-goal-arc") && chordPage.$(".cg-val.claim").textContent==="242°",
  "12R Q3: the solved reflex value replaces its target marker");
+
+/* Chapter 10: every source page and every reversible player frame. */
+console.log("\n== Chapter 10 Inequalities ==");
+let iqPages=true,iqInputs=true,iqChoices=true,iqFrames=true,iqReplay=true,iqFrameCount=0;
+const iqParts=['ch10-1','ch10-2','ch10-3','ch10-revision'];
+const iqExpected=[72,27,57,83],iqData=iqParts.map(id=>JSON.parse(read(`data/src/${id}.json`)));
+const iqHarness=boot('quiz.html','?c=ch10-1&p=0');
+function iqAudit(spec){
+ const host=iqHarness.doc.createElement('div');iqHarness.doc.body.replaceChildren(host);
+ iqHarness.ctx.window.S5A_INEQUALITIES.mount(host,spec);
+ const count=(spec.cases||[spec]).length;
+ for(let c=0;c<count;c++){
+  if(spec.cases)host.querySelectorAll('.iq-case')[c].click();
+  const s=(spec.cases||[spec])[c],player=host.querySelector('.iq-player');
+  const signature=()=>JSON.stringify([host.querySelector('.iq-svg').innerHTML,host.querySelector('.cg-say').textContent,player.dataset.step]);
+  const states=[signature()];
+  for(let i=0;i<s.steps.length;i++){
+   host.querySelector('.cg-next').click();iqFrameCount++;
+   if(host.querySelector('.katex-error')||Number(player.dataset.step)!==i+1)iqFrames=false;
+   const rendered=[...host.querySelectorAll('.cg-zh .cg-equation')].map(n=>n.dataset.formula);
+   if(JSON.stringify(rendered)!==JSON.stringify(s.steps[i].mathLines))iqFrames=false;
+   if(!host.querySelector('.cg-ref')||host.querySelector('.cg-ref').textContent!==(s.steps[i].ref||''))iqFrames=false;
+   states.push(signature());
+  }
+  if(!host.querySelector('.cg-next').disabled)iqReplay=false;
+  for(let i=s.steps.length-1;i>=0;i--){host.querySelector('.cg-back').click();if(signature()!==states[i])iqReplay=false;}
+  // Rapid calls are deliberately synchronous, including an extra click at the end.
+  for(let i=0;i<s.steps.length+3;i++)host.querySelector('.cg-next').click();
+  if(signature()!==states[states.length-1])iqReplay=false;
+  host.querySelector('.cg-restart').click();if(signature()!==states[0]||!host.querySelector('.cg-back').disabled)iqReplay=false;
+ }
+}
+for(const [partIndex,d]of iqData.entries()){
+ const id=iqParts[partIndex],qs=d.sections.flatMap(s=>s.questions),meta=INDEX.parts.find(p=>p.id===id);
+ ok(qs.length===iqExpected[partIndex]&&meta.stats.questions===qs.length&&meta.stats.marks===qs.reduce((n,q)=>n+q.marks,0),`${id}: complete original inventory and mark totals`);
+ const overview=boot('quiz.html',`?c=${id}&p=0`);
+ ok(overview.$$('.iq-player').length===d.cards.length&&overview.$$('.katex-error').length===0,`${id}: every teaching card mounts with valid formulas`);
+ overview.dom.window.close();
+ d.cards.forEach(c=>iqAudit(c.demo.opts));
+ for(const [i,q]of qs.entries()){
+  const t=boot('quiz.html',`?c=${id}&p=${i+1}`,null,'show');
+  if(!t.$('.sol-card')||t.$$('.katex-error').length||Boolean(t.$('.iq-player'))!==Boolean(q.inequalityAnim)) {iqPages=false;console.log('CH10 PAGE FAILURE',id,q.code);}
+  if(q.inequalityAnim)iqAudit(q.inequalityAnim);
+  if(q.type==='mc'){
+   const wrong=Object.keys(q.options).find(k=>k!==q.answer);
+   t.$(`[data-opt="${wrong}"]`).click();t.$('[data-check]').click();if(t.store().done?.[q.id])iqChoices=false;
+   t.$(`[data-opt="${q.answer}"]`).click();if(t.store().done?.[q.id])iqChoices=false;
+   t.$('[data-check]').click();if(!t.store().done?.[q.id])iqChoices=false;
+  }else if(q.type==='tf'){
+   const buttons=t.$$('.tf-opt'),answer=q.answers[0].tf;
+   const b=buttons.find(n=>n.getAttribute('data-tf')===(answer?'T':'F'));
+   // The existing renderer stores the boolean choice as 1 or 0.
+   const correct=b||buttons.find(n=>n.dataset.v===(answer?'1':'0'));
+   if(correct){correct.click();if(!t.$('.tf-opt.correct'))iqChoices=false;}else{iqChoices=false;console.log('TF SELECTOR',buttons.map(n=>n.outerHTML));}
+  }else{
+   const numeric=q.answers.filter(a=>a.input!=null);
+   if(t.$$('.ans-input').length!==numeric.length)iqInputs=false;
+   if(numeric.length){ansType(t,0,'999999');ansSub(t).click();if(t.store().done?.[q.id])iqInputs=false;numeric.forEach((a,j)=>ansType(t,j,a.input));ansSub(t).click();if(t.$$('.ans-input').some(n=>!n.disabled))iqInputs=false;}
+  }
+  t.dom.window.close();
+ }
+}
+ok(iqPages,'Ch10: all 239 pages render bilingual solutions and valid KaTeX');
+ok(iqFrames,`Ch10: all ${iqFrameCount} player frames match formulas and reasons`);
+ok(iqReplay,'Ch10: every frame restores on Back, Restart and rapid repeated Next');
+ok(iqInputs,'Ch10: every numeric input rejects a wrong answer and accepts correction after submission');
+ok(iqChoices,'Ch10: all MC and Section Check answers grade correctly');
+const iqNegativeData=iqData[0].sections.flatMap(s=>s.questions),iqNegativeIndex=iqNegativeData.findIndex(q=>q.code==='CE B5');
+const iqNegative=boot('quiz.html',`?c=ch10-1&p=${iqNegativeIndex+1}`);
+ansType(iqNegative,0,'28');ansSub(iqNegative).click();const iqWrongSign=iqNegative.$$('.ans-input[disabled]').length===0;
+ansType(iqNegative,0,'-56/2');ansSub(iqNegative).click();
+ok(iqWrongSign&&iqNegative.$$('.ans-input[disabled]').length===1,'Ch10: negative answers reject the wrong sign and accept equivalent signed fractions');
+iqNegative.dom.window.close();iqHarness.dom.window.close();
 
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));
 process.exit(fails ? 1 : 0);

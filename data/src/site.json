@@ -811,6 +811,134 @@
      "zh": "Revision Exercise 12 第 1–41 題及 MC1–MC14；原題與官方解答，課本第 12.42–12.50 頁。",
      "en": "Revision Exercise 12 Questions 1–41 and MC1–MC14; original questions and official solutions, pages 12.42–12.50."
     }
+   },
+   {
+    "id": "ch10-1",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch10",
+    "code": "10.1",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 10 章 · 不等式",
+     "en": "Chapter 10 · Inequalities"
+    },
+    "title": {
+     "zh": "10.1 複合一次不等式",
+     "en": "10.1 Compound Linear Inequalities"
+    },
+    "meta": {
+     "paper": "Book 4B · 10.1 Compound Linear Inequalities"
+    },
+    "stats": {
+     "questions": 72,
+     "marks": 385,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "SMS_bkexe_4B10_e.docx 原題；與 SMS_sol_4B10_e.docx 官方解答核對，差異另有註明。",
+     "en": "Original SMS_bkexe_4B10_e.docx questions, checked against SMS_sol_4B10_e.docx; discrepancies are noted."
+    }
+   },
+   {
+    "id": "ch10-2",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch10",
+    "code": "10.2",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 10 章 · 不等式",
+     "en": "Chapter 10 · Inequalities"
+    },
+    "title": {
+     "zh": "10.2 以圖像法解二次不等式",
+     "en": "10.2 Solving Quadratic Inequalities Graphically"
+    },
+    "meta": {
+     "paper": "Book 4B · 10.2 Solving Quadratic Inequalities Graphically"
+    },
+    "stats": {
+     "questions": 27,
+     "marks": 143,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "SMS_bkexe_4B10_e.docx 原題；與 SMS_sol_4B10_e.docx 官方解答核對，差異另有註明。",
+     "en": "Original SMS_bkexe_4B10_e.docx questions, checked against SMS_sol_4B10_e.docx; discrepancies are noted."
+    }
+   },
+   {
+    "id": "ch10-3",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch10",
+    "code": "10.3",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 10 章 · 不等式",
+     "en": "Chapter 10 · Inequalities"
+    },
+    "title": {
+     "zh": "10.3 以代數法解二次不等式",
+     "en": "10.3 Solving Quadratic Inequalities Algebraically"
+    },
+    "meta": {
+     "paper": "Book 4B · 10.3 Solving Quadratic Inequalities Algebraically"
+    },
+    "stats": {
+     "questions": 57,
+     "marks": 195,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "SMS_bkexe_4B10_e.docx 原題；與 SMS_sol_4B10_e.docx 官方解答核對，差異另有註明。",
+     "en": "Original SMS_bkexe_4B10_e.docx questions, checked against SMS_sol_4B10_e.docx; discrepancies are noted."
+    }
+   },
+   {
+    "id": "ch10-revision",
+    "answerInput": true,
+    "group": "classwork",
+    "chapter": "ch10",
+    "code": "10R",
+    "kind": {
+     "zh": "課本練習",
+     "en": "Book exercise"
+    },
+    "unit": {
+     "zh": "第 10 章 · 不等式",
+     "en": "Chapter 10 · Inequalities"
+    },
+    "title": {
+     "zh": "第 10 章綜合練習",
+     "en": "Revision Exercise 10"
+    },
+    "meta": {
+     "paper": "Book 4B · Revision Exercise 10"
+    },
+    "stats": {
+     "questions": 83,
+     "marks": 362,
+     "bonus": 0
+    },
+    "status": "ready",
+    "source": {
+     "zh": "SMS_bkexe_4B10_e.docx 原題；與 SMS_sol_4B10_e.docx 官方解答核對，差異另有註明。",
+     "en": "Original SMS_bkexe_4B10_e.docx questions, checked against SMS_sol_4B10_e.docx; discrepancies are noted."
+    }
    }
   ],
   "classwork": {
@@ -823,6 +951,55 @@
     "en": "Textbook exercises arranged by section, one section per page, with step-by-step solutions. Marks and (1M)/(1A) step marks are set by the teacher for checking your working."
    },
    "chapters": [
+    {
+     "id": "ch10",
+     "short": {
+      "zh": "第 10 章",
+      "en": "Chapter 10"
+     },
+     "title": {
+      "zh": "第 10 章 · 不等式",
+      "en": "Chapter 10 · Inequalities"
+     },
+     "intro": {
+      "zh": "10.1–10.3 及綜合練習共 239 題，附雙語題解及互動教學卡。",
+      "en": "239 questions across 10.1–10.3 and Revision Exercise 10, with bilingual solutions and interactive teaching cards."
+     },
+     "sections": [
+      {
+       "code": "10.1",
+       "part": "ch10-1",
+       "title": {
+        "zh": "10.1 複合一次不等式",
+        "en": "10.1 Compound Linear Inequalities"
+       }
+      },
+      {
+       "code": "10.2",
+       "part": "ch10-2",
+       "title": {
+        "zh": "10.2 以圖像法解二次不等式",
+        "en": "10.2 Solving Quadratic Inequalities Graphically"
+       }
+      },
+      {
+       "code": "10.3",
+       "part": "ch10-3",
+       "title": {
+        "zh": "10.3 以代數法解二次不等式",
+        "en": "10.3 Solving Quadratic Inequalities Algebraically"
+       }
+      },
+      {
+       "code": "10R",
+       "part": "ch10-revision",
+       "title": {
+        "zh": "第 10 章綜合練習",
+        "en": "Revision Exercise 10"
+       }
+      }
+     ]
+    },
     {
      "id": "ch11",
      "short": {

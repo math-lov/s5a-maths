@@ -579,5 +579,53 @@
       "zh": "圖 (d)",
       "en": "Figure (d)"
     }
+  },
+  "ch10-3-ceb1": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 300\" role=\"img\" aria-label=\"Shaded triangle EFC; AE = x and FD = 2x, with E and F on the sides. Schematic, not to scale.\"><title>Shaded triangle EFC; AE = x and FD = 2x, with E and F on the sides. Schematic, not to scale.</title><g fill=\"none\" stroke=\"#30303b\" stroke-width=\"2\"><path d=\"M65 50H353V250H65Z\"/><path d=\"M145 50L65 155L353 250Z\" fill=\"#e9e7ff\"/></g><g fill=\"#30303b\" font-size=\"17\" font-family=\"Georgia,serif\" text-anchor=\"middle\"><text x=\"52\" y=\"43\" text-anchor=\"middle\">A</text><text x=\"365\" y=\"43\" text-anchor=\"middle\">B</text><text x=\"366\" y=\"267\" text-anchor=\"middle\">C</text><text x=\"52\" y=\"267\" text-anchor=\"middle\">D</text><text x=\"145\" y=\"38\" text-anchor=\"middle\">E</text><text x=\"50\" y=\"157\" text-anchor=\"middle\">F</text><text x=\"209\" y=\"20\" text-anchor=\"middle\">36 cm</text><text x=\"390\" y=\"160\" text-anchor=\"middle\">25 cm</text><text x=\"99\" y=\"39\" text-anchor=\"middle\">x cm</text><text x=\"91\" y=\"219\" text-anchor=\"middle\">2x cm</text></g></svg>",
+    "caption": {
+      "zh": "陰影是 △EFC；AE = x、FD = 2x，E、F 均在邊上。示意圖不按比例。",
+      "en": "Shaded triangle EFC; AE = x and FD = 2x, with E and F on the sides. Schematic, not to scale."
+    }
+  },
+  "ch10-3-garden": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 300\" role=\"img\" aria-label=\"A 3 m path surrounds the garden on all four sides. Schematic, not to scale.\"><title>A 3 m path surrounds the garden on all four sides. Schematic, not to scale.</title><g fill=\"none\" stroke=\"#30303b\" stroke-width=\"2\"><path d=\"M75 55H345V250H75Z\" fill=\"#fff1e5\"/><path d=\"M109 89H311V216H109Z\" fill=\"#e8f2e9\"/><path d=\"M75 145H109\"/></g><g fill=\"#30303b\" font-size=\"17\" font-family=\"Georgia,serif\" text-anchor=\"middle\"><text x=\"210\" y=\"30\" text-anchor=\"middle\">(2x − 4) m</text><text x=\"367\" y=\"157\" text-anchor=\"middle\">(x + 4) m</text><text x=\"93\" y=\"134\" text-anchor=\"middle\">3 m</text><text x=\"210\" y=\"158\" text-anchor=\"middle\">Garden</text></g></svg>",
+    "caption": {
+      "zh": "小徑在花園外圍，四邊闊度均為 3 m。示意圖不按比例。",
+      "en": "A 3 m path surrounds the garden on all four sides. Schematic, not to scale."
+    }
+  },
+  "ch10-3-cars": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 300\" role=\"img\" aria-label=\"P heads north and Q east from R; positions shown after three hours.\"><title>P heads north and Q east from R; positions shown after three hours.</title><g fill=\"none\" stroke=\"#30303b\" stroke-width=\"2\"><path d=\"M100 65V245H340\"/><path d=\"M100 65L340 245\" stroke-dasharray=\"5 5\"/><path d=\"M100 226H119V245\"/></g><g fill=\"#30303b\" font-size=\"17\" font-family=\"Georgia,serif\" text-anchor=\"middle\"><text x=\"85\" y=\"260\" text-anchor=\"middle\">R</text><text x=\"85\" y=\"53\" text-anchor=\"middle\">P</text><text x=\"354\" y=\"253\" text-anchor=\"middle\">Q</text><text x=\"52\" y=\"130\" text-anchor=\"middle\">North</text><text x=\"235\" y=\"275\" text-anchor=\"middle\">East</text><text x=\"250\" y=\"132\" text-anchor=\"middle\">PQ ≥ 220 km</text></g></svg>",
+    "caption": {
+      "zh": "同時由 R 出發，P 向北、Q 向東；圖示三小時後的位置。",
+      "en": "P heads north and Q east from R; positions shown after three hours."
+    }
+  },
+  "ch10-1-wood": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 300\" role=\"img\" aria-label=\"The rectangular board has sides (6x + 5) cm and x cm. Schematic, not to scale.\"><title>The rectangular board has sides (6x + 5) cm and x cm. Schematic, not to scale.</title><g fill=\"none\" stroke=\"#30303b\" stroke-width=\"2\"><path d=\"M85 55H335V220H85Z\"/></g><g fill=\"#30303b\" font-size=\"17\" font-family=\"Georgia,serif\" text-anchor=\"middle\"><text x=\"210\" y=\"32\" text-anchor=\"middle\">(6x + 5) cm</text><text x=\"365\" y=\"145\" text-anchor=\"middle\">x cm</text></g></svg>",
+    "caption": {
+      "zh": "長方形木板兩邊分別為 (6x + 5) cm、x cm。示意圖不按比例。",
+      "en": "The rectangular board has sides (6x + 5) cm and x cm. Schematic, not to scale."
+    }
+  },
+  "ch10-revision-circle": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 300\" role=\"img\" aria-label=\"Circle C has diameter PQ joining the two x-intercepts. Schematic, not to scale.\"><title>Circle C has diameter PQ joining the two x-intercepts. Schematic, not to scale.</title><g fill=\"none\" stroke=\"#30303b\" stroke-width=\"2\"><path d=\"M40 170H385M250 35V275\" stroke=\"#a2a2ad\"/><circle cx=\"135\" cy=\"170\" r=\"70\"/><path d=\"M65 170H205\" stroke=\"#4f46e5\"/></g><g fill=\"#30303b\" font-size=\"17\" font-family=\"Georgia,serif\" text-anchor=\"middle\"><text x=\"65\" y=\"194\" text-anchor=\"middle\">P</text><text x=\"205\" y=\"194\" text-anchor=\"middle\">Q</text><text x=\"145\" y=\"90\" text-anchor=\"middle\">C</text><text x=\"267\" y=\"191\" text-anchor=\"middle\">O</text><text x=\"390\" y=\"163\" text-anchor=\"middle\">x</text><text x=\"260\" y=\"32\" text-anchor=\"middle\">y</text></g></svg>",
+    "caption": {
+      "zh": "圓 C 以兩個 x 截距 P、Q 之間的線段為直徑。示意圖不按比例。",
+      "en": "Circle C has diameter PQ joining the two x-intercepts. Schematic, not to scale."
+    }
+  },
+  "ch10-revision-dots": {
+    "type": "svg",
+    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 220\" role=\"img\" aria-label=\"The first four dot patterns, arranged as in the original.\"><title>The first four dot patterns, arranged as in the original.</title><g fill=\"none\" stroke=\"#30303b\" stroke-width=\"2\"><circle cx=\"24\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"128\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"147\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"128\" cy=\"90\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"232\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"251\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"270\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"232\" cy=\"90\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"251\" cy=\"90\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"270\" cy=\"90\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"232\" cy=\"115\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"336\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"355\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"374\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"393\" cy=\"65\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"336\" cy=\"90\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"355\" cy=\"90\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"374\" cy=\"90\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"393\" cy=\"90\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"336\" cy=\"115\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"355\" cy=\"115\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"374\" cy=\"115\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"393\" cy=\"115\" r=\"5\" fill=\"#e2660a\"/><circle cx=\"336\" cy=\"140\" r=\"5\" fill=\"#e2660a\"/></g><g fill=\"#30303b\" font-size=\"17\" font-family=\"Georgia,serif\" text-anchor=\"middle\"><text x=\"49\" y=\"192\" text-anchor=\"middle\">1</text><text x=\"153\" y=\"192\" text-anchor=\"middle\">2</text><text x=\"257\" y=\"192\" text-anchor=\"middle\">3</text><text x=\"361\" y=\"192\" text-anchor=\"middle\">4</text></g></svg>",
+    "caption": {
+      "zh": "原題第 1–4 幅的點陣排列。",
+      "en": "The first four dot patterns, arranged as in the original."
+    }
   }
 }

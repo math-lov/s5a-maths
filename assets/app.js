@@ -1593,6 +1593,7 @@
     var card = el("div", "card q-card");
     if (q.review) card.classList.add("review-question");
     card.setAttribute("data-qid", q.id);
+    if (Array.isArray(q.inequalityChecks)) card.classList.add("inequality-question");
     var head = el("div", "q-head");
     head.appendChild(el("span", "q-code", q.code));
     if (q.marks) {
@@ -2278,7 +2279,7 @@
        ② 準確至 3 位有效數字 —— 1/3 收 0.333、93/182 收 0.511（0.33 唔收）。
        整數答案（例如 14400、120）唔可以用 ②：數數目的答案一定要準確。 */
     function value(s) {              // "1/4"｜"0.25"｜"14400" → 分數 {n, d}；唔合法回 null
-      var m = /^(\d+(?:\.\d+)?)(?:\/(\d+(?:\.\d+)?))?$/.exec(s);
+      var m = /^([+-]?\d+(?:\.\d+)?)(?:\/([+-]?\d+(?:\.\d+)?))?$/.exec(s);
       if (!m) return null;
       function part(t) {
         var p = t.split(".");
@@ -2295,7 +2296,7 @@
       if (!p || !q || p.n % p.d === 0 || q.n % q.d === 0) return false;
       function rnd(v) {
         var x = v.n / v.d;
-        var f = Math.pow(10, Math.floor(Math.log10(x)) - 2);
+        var f = Math.pow(10, Math.floor(Math.log10(Math.abs(x))) - 2);
         return Math.round(x / f) * f;
       }
       return rnd(p) === rnd(q);
@@ -2628,6 +2629,13 @@
       animCard.appendChild(holder);
       body.appendChild(animCard);
       window.S5A_CIRCLE.mount(holder, q.anim);
+    }
+    if (q.inequalityAnim && window.S5A_INEQUALITIES) {
+      var iqCard = el("div", "card anim-card");
+      var iqHead = el("div", "section-title");
+      iqHead.appendChild(pairSpan({ zh: "逐步圖解", en: "Figure, step by step" }));
+      iqCard.appendChild(iqHead); body.appendChild(iqCard);
+      window.S5A_INEQUALITIES.mount(iqCard, q.inequalityAnim);
     }
     var ac = answerInputCard(q);
     if (ac) body.appendChild(ac);
