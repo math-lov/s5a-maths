@@ -3845,6 +3845,15 @@ ok(tangentMeta12.answerInput && tangentMeta12.stats.questions === 54 && tangentM
 const tangentOverview12=boot("quiz.html","?c=ch12-1&p=0");
 ok(tangentOverview12.$$("#pagenav .pg").length===55 && tangentOverview12.$$(".cg-split").length===6,
   "12.1: overview includes all 55 pages and six interactive teaching cards");
+const tangentSummary12 = tangentOverview12.$(".cc");
+ok(tangent12.cards[0].id === "ch12-1-card-tangents-summary" &&
+  tangentSummary12.querySelector(".cg-static") &&
+  ["O", "T"].every(v => tangentSummary12.querySelectorAll("path[data-angle='" + v + "']").length === 2) &&
+  ["AT", "BT"].every(side => tangentSummary12.querySelectorAll("[data-tick='" + side + "'] line").length === 2) &&
+  tangentSummary12.querySelectorAll(".l-en .formula annotation").length === 3 &&
+  tangentSummary12.textContent.includes("without repeating the congruent-triangle proof") &&
+  tangentSummary12.textContent.includes("(tangents from ext. pt.)"),
+  "12.1: first card immediately shows equal tangents and both angle bisectors, with the reusable theorem reason");
 let tangentPages12=true,tangentInputs12=true,tangentTF12=true;
 for(const [index,q] of tangentQs12.entries()){
  const rendered=boot("quiz.html",`?c=ch12-1&p=${index+1}`,null,"show");
@@ -3872,7 +3881,7 @@ ok(tangentPages12,"12.1: every question renders bilingual solutions, an interact
 ok(tangentInputs12,"12.1: all numerical answers require submission, reject a wrong value and accept a corrected answer");
 ok(tangentTF12,"12.1: all four Section Check items support wrong-first retries and the official answer");
 let tangentSync12=true,tangentReplay12=true,tangentGivens12=true;
-const tangentPlayers12=tangentQs12.map(q=>q.anim).concat(tangent12.cards.map(c=>c.demo.opts.anim));
+const tangentPlayers12=tangentQs12.map(q=>q.anim).concat(tangent12.cards.filter(c=>!c.demo.opts.static).map(c=>c.demo.opts.anim));
 for(const anim of tangentPlayers12){
  chordPage.doc.body.replaceChildren();chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body,anim);
  const state=()=>JSON.stringify([chordPage.$(".cg-svg").textContent,chordPage.$(".cg-say").textContent,chordPage.$(".cg-ref").textContent]);
@@ -3952,7 +3961,7 @@ ok(tangentTestBack12 === tangentTestInitial12 && tangentTestGivens12() === tange
   "12.1 tangent-test teaching card: givens persist on Back and Restart");
 
 // Inspect the final diagrams after normal playback and after rewinding.
-for (const card of tangent12.cards) {
+for (const card of tangent12.cards.filter(c => !c.demo.opts.static)) {
  chordPage.doc.body.replaceChildren();
  chordPage.ctx.window.S5A_CIRCLE.mount(chordPage.doc.body, card.demo.opts.anim);
  const finish = () => { while (!chordPage.$(".cg-next").disabled) chordPage.$(".cg-next").click(); };
@@ -3964,7 +3973,7 @@ for (const card of tangent12.cards) {
      ["OA", "OB"].every(side => chordPage.$$("[data-tick='" + side + "'] line").length === 1);
   if (card.id === "ch12-1-card-bisect")
    return ["O", "T"].every(v => chordPage.$$(".cg-svg path[data-angle='" + v + "']").length === 2) &&
-     chordPage.$(".cg-ref").textContent === "(tangents from ext. pt.)";
+     chordPage.$(".cg-ref").textContent === "(corr. ∠s, ≅ △s)";
   return chordPage.$(".cg-ref").textContent === "(tangents from ext. pt.)";
  };
  finish();

@@ -28,6 +28,149 @@
  ],
  "cards": [
   {
+   "id": "ch12-1-card-tangents-summary",
+   "topic": "ch12-1",
+   "title": {
+    "zh": "定理速記：tangents from ext. pt.",
+    "en": "Theorem summary: tangents from ext. pt."
+   },
+   "body": {
+    "zh": "已知 TA、TB 是同一外點 T 引出的兩條切線，A、B 是接觸點，O 是圓心。連接 OT，便可直接使用以下三個結論：\n- 兩條切線段等長：{{math:0}}\n- OT 平分兩切線的夾角 ATB：{{math:1}}\n- OT 也平分小圓心角 AOB：{{math:2}}\n記憶理由：(tangents from ext. pt.)。做題時確認上述條件後，可直接引用，毋須每次由全等三角形重新證明。下方的證明卡解釋定理為甚麼成立。",
+    "en": "TA and TB are tangents from the same external point T, touching the circle at A and B; O is the centre. Join OT and use these three results directly:\n- The tangent segments are equal: {{math:0}}\n- OT bisects the angle ATB between the tangents: {{math:1}}\n- OT also bisects the minor central angle AOB: {{math:2}}\nRemember the reason: (tangents from ext. pt.). Once the conditions above are established, quote this theorem directly without repeating the congruent-triangle proof. The proof cards below explain why it works."
+   },
+   "math": [
+    "TA=TB",
+    "\\angle ATO=\\angle BTO",
+    "\\angle AOT=\\angle BOT"
+   ],
+   "demo": {
+    "type": "circle",
+    "caption": {
+     "zh": "一圖記三個結論：雙刻號表示 TA = TB；兩個 α 及兩個 β 分別表示兩組角相等。",
+     "en": "Three results in one figure: double ticks show TA = TB; matching α and β labels show the two angle bisectors."
+    },
+    "opts": {
+     "static": true,
+     "anim": {
+      "points": {
+       "O": {
+        "centre": true
+       },
+       "A": {
+        "at": 50.0
+       },
+       "B": {
+        "at": -50.0
+       },
+       "T": {
+        "at": 0.0,
+        "r": 1.5557238268604123
+       }
+      },
+      "segments": [
+       [
+        "A",
+        "T"
+       ],
+       [
+        "B",
+        "T"
+       ],
+       [
+        "O",
+        "A"
+       ],
+       [
+        "O",
+        "B"
+       ],
+       [
+        "O",
+        "T"
+       ]
+      ],
+      "steps": [
+       {
+        "zh": "同一外點的兩條切線給出三個結論：$TA=TB\\quad \\angle ATO=\\angle BTO\\quad \\angle AOT=\\angle BOT$。",
+        "en": "Tangents from one external point give three results: $TA=TB\\quad \\angle ATO=\\angle BTO\\quad \\angle AOT=\\angle BOT$.",
+        "mathLines": [
+         "TA=TB",
+         "\\angle ATO=\\angle BTO",
+         "\\angle AOT=\\angle BOT"
+        ],
+        "ref": "(tangents from ext. pt.)",
+        "ticks": [
+         [
+          "A",
+          "T",
+          2
+         ],
+         [
+          "B",
+          "T",
+          2
+         ]
+        ],
+        "radii": [
+         "A",
+         "B"
+        ],
+        "arcs": [
+         [
+          "T",
+          "A",
+          "O",
+          "α",
+          "claim",
+          28
+         ],
+         [
+          "T",
+          "B",
+          "O",
+          "α",
+          "claim",
+          28
+         ],
+         [
+          "O",
+          "A",
+          "T",
+          "β",
+          "claim",
+          28
+         ],
+         [
+          "O",
+          "B",
+          "T",
+          "β",
+          "claim",
+          28
+         ]
+        ],
+        "noRays": true
+       }
+      ],
+      "goal": [],
+      "hideSolvedGoals": true,
+      "r": 113.47078935217013,
+      "cx": 178.47078935217013,
+      "cy": 195.0,
+      "readable": true,
+      "label": {
+       "zh": "同一外點的兩條切線等長，外點與圓心連線平分兩組角。",
+       "en": "Equal tangent segments TA and TB; OT bisects angles ATB and AOB."
+      }
+     }
+    }
+   },
+   "warn": {
+    "zh": "兩條線必須都是切線，並由同一外點引出。OA = OB 是半徑相等，不代表 OA 與 TA 相等；圖中半徑用單刻號、切線段用雙刻號。",
+    "en": "Both lines must be tangents from the same external point. Equal radii OA and OB need not equal TA; radii use single ticks and tangent segments use double ticks."
+   }
+  },
+  {
    "id": "ch12-1-card-radius",
    "topic": "ch12-1",
    "title": {
@@ -471,12 +614,12 @@
    "id": "ch12-1-card-equal",
    "topic": "ch12-1",
    "title": {
-    "zh": "同一外點的兩條切線等長",
-    "en": "Tangents from one external point are equal"
+    "zh": "證明：同一外點的兩條切線等長",
+    "en": "Proof: tangents from one external point are equal"
    },
    "body": {
-    "zh": "從外點 T 引兩條切線 TA、TB，連 OA、OB、OT。以 RHS 證明兩個直角三角形全等，才得到切線段等長。",
-    "en": "Draw tangents TA and TB from T and join OA, OB and OT. Prove the right triangles congruent by RHS to obtain equal tangent segments."
+    "zh": "以下證明上方定理的切線等長結論：從外點 T 引兩條切線 TA、TB，連 OA、OB、OT，以 RHS 證明兩個直角三角形全等，再取對應邊。日後應用定理時，可直接引用 (tangents from ext. pt.)。",
+    "en": "To prove the equal-length result above, draw tangents TA and TB from T and join OA, OB and OT. Establish congruence by RHS, then compare corresponding sides. In later applications, quote (tangents from ext. pt.) directly."
    },
    "demo": {
     "type": "circle",
@@ -627,8 +770,8 @@
    "id": "ch12-1-card-bisect",
    "topic": "ch12-1",
    "title": {
-    "zh": "外點與圓心的連線平分兩組角",
-    "en": "The centre–external-point line bisects both angles"
+    "zh": "證明：外點與圓心的連線平分兩組角",
+    "en": "Proof: the centre–external-point line bisects both angles"
    },
    "body": {
     "zh": "同一對全等直角三角形也給出兩組相等的角；因此 OT 平分兩切線夾角，也平分小圓心角 AOB。",
@@ -704,7 +847,7 @@
         "mathLines": [
          "\\angle ATO=\\angle BTO=40^\\circ"
         ],
-        "ref": "(tangents from ext. pt.)",
+        "ref": "(corr. ∠s, ≅ △s)",
         "arcs": [
          [
           "T",
@@ -737,7 +880,7 @@
          "\\angle ATO=\\angle BTO=40^\\circ",
          "\\angle AOT=\\angle BOT=50^\\circ"
         ],
-        "ref": "(tangents from ext. pt.)",
+        "ref": "(corr. ∠s, ≅ △s)",
         "arcs": [
          [
           "T",
