@@ -4330,6 +4330,57 @@ const iqNegative=boot('quiz.html',`?c=ch10-1&p=${iqNegativeIndex+1}`);
 ansType(iqNegative,0,'28');ansSub(iqNegative).click();const iqWrongSign=iqNegative.$$('.ans-input[disabled]').length===0;
 ansType(iqNegative,0,'-56/2');ansSub(iqNegative).click();
 ok(iqWrongSign&&iqNegative.$$('.ans-input[disabled]').length===1,'Ch10: negative answers reject the wrong sign and accept equivalent signed fractions');
+const iqOv1=boot('quiz.html','?c=ch10-1&p=0');
+ok(iqOv1.$$('.iq-player .iq-inline-math[data-tex]').length>=3 && iqOv1.$$('.iq-player .iq-inline-math .katex').length>=3 &&
+ !/Example:\s*\./.test(iqOv1.$('.iq-host').textContent),
+ 'Ch10: teaching card Step 0 intros render inline KaTeX formulas instead of erasing them');
+ok(iqOv1.$$('.iq-player .cg-back .arw').length===3 && iqOv1.$$('.iq-player .cg-next .arw').length===3 &&
+ iqOv1.$$('.iq-player .cg-back .l-zh').every(n=>!/←/.test(n.textContent)),
+ 'Ch10: player buttons keep arrows outside bilingual .bi spans');
+ok(iqOv1.$$('.iq-player .cg-auto').length===3,'Ch10: inequality players provide an Auto play control');
+iqOv1.dom.window.close();
+const iqOv2=boot('quiz.html','?c=ch10-2&p=0');
+const tangCard=iqOv2.$$('.iq-host')[1];
+tangCard.querySelectorAll('.iq-case')[3].click();
+while(!tangCard.querySelector('.cg-next').disabled)tangCard.querySelector('.cg-next').click();
+ok(!!tangCard.querySelector('.iq-highlight-point'),'Ch10: tangent singleton solution renders a visible highlight point on the parabola');
+iqOv2.dom.window.close();
+const iqFlipData=iqData[0].sections.flatMap(s=>s.questions);
+const iqFlipIdx=iqFlipData.findIndex(q=>q.code==='14');
+const iqFlipPage=boot('quiz.html',`?c=ch10-1&p=${iqFlipIdx+1}`);
+iqFlipPage.$('.iq-player .cg-next').click();
+ok(!!iqFlipPage.$('.iq-callout-alg'),'Ch10: algebraic-only step renders an on-stage operation callout');
+let sawFlip=false;
+while(!iqFlipPage.$('.iq-player .cg-next').disabled){
+ iqFlipPage.$('.iq-player .cg-next').click();
+ if(iqFlipPage.$('.iq-callout-flip'))sawFlip=true;
+}
+ok(sawFlip,'Ch10: negative sign-reversal step renders an on-stage sign-flip callout');
+iqFlipPage.dom.window.close();
+const iqQ12Data=iqData[1].sections.flatMap(s=>s.questions);
+const iqQ12Idx=iqQ12Data.findIndex(q=>q.code==='12');
+const iqQ12Page=boot('quiz.html',`?c=ch10-2&p=${iqQ12Idx+1}`);
+const iqPartsBtns=iqQ12Page.$$('.iq-part');
+ok(iqPartsBtns.length===4,'Ch10: multi-part question 10.2 Q12 shows 4 clickable part-jump pills');
+iqPartsBtns[2].click();
+ok(iqPartsBtns[2].getAttribute('aria-pressed')==='true' && Number(iqQ12Page.$('.iq-player').dataset.step)>1,
+ 'Ch10: clicking a part-jump pill jumps directly to that part');
+iqQ12Page.dom.window.close();
+const iqAlgData=iqData[2].sections.flatMap(s=>s.questions);
+const iqAlgPage=boot('quiz.html',`?c=ch10-3&p=1`);
+ok(!iqAlgPage.$('.iq-curve'),'Ch10: algebraic quadratic question keeps Step 0 clean without spoiling the derived parabola');
+iqAlgPage.$('.iq-player .cg-next').click();
+ok(!!iqAlgPage.$('.iq-curve.iq-anim-draw'),'Ch10: derived parabola draws in when stepping to the derivation frame');
+ok(iqAlgData[0].solution.steps.length>=6,'Ch10: 10.3 CE A1 breaks quadratic solving into gentle steps including quadratic formula');
+iqAlgPage.dom.window.close();
+const iqMc14Data=iqData[3].sections.flatMap(s=>s.questions);
+const iqMc14Idx=iqMc14Data.findIndex(q=>q.code==='MC14');
+const iqMc14Page=boot('quiz.html',`?c=ch10-revision&p=${iqMc14Idx+1}`);
+while(!iqMc14Page.$('.iq-player .cg-next').disabled)iqMc14Page.$('.iq-player .cg-next').click();
+const mc14Xs=iqMc14Page.$$('.iq-svg text').filter(n=>n.textContent==='44'||n.textContent==='46').map(n=>Number(n.getAttribute('x')));
+ok(mc14Xs.length>=2 && Math.abs(mc14Xs[1]-mc14Xs[0])>=30,
+ 'Ch10: close roots/endpoints (MC14 44 & 46) are separated automatically without label collision');
+iqMc14Page.dom.window.close();
 iqNegative.dom.window.close();iqHarness.dom.window.close();
 
 console.log("\n" + (fails ? "有 " + fails + " 項未通過" : "全部通過 all smoke tests passed"));

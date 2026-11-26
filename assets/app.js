@@ -2634,8 +2634,14 @@
       var iqCard = el("div", "card anim-card");
       var iqHead = el("div", "section-title");
       iqHead.appendChild(pairSpan({ zh: "逐步圖解", en: "Figure, step by step" }));
-      iqCard.appendChild(iqHead); body.appendChild(iqCard);
-      window.S5A_INEQUALITIES.mount(iqCard, q.inequalityAnim);
+      iqCard.appendChild(iqHead);
+      var iqHolder = el("div", "anim-host");
+      iqCard.appendChild(iqHolder);
+      body.appendChild(iqCard);
+      var stepParts = ((q.solution && q.solution.steps) || []).map(function (st) {
+        return (st && st.part) || "";
+      });
+      window.S5A_INEQUALITIES.mount(iqHolder, q.inequalityAnim, { stepParts: stepParts });
     }
     var ac = answerInputCard(q);
     if (ac) body.appendChild(ac);

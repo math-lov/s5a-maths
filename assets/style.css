@@ -1916,8 +1916,80 @@ body[data-lang="both"] .think-shape-name .l-zh, body[data-lang="both"] .think-sh
 .iq-cases { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
 .iq-case { min-height: 44px; }
 .iq-case[aria-pressed="true"] { color: white; background: var(--primary); border-color: var(--primary); }
+.iq-parts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 8px 0 10px; }
+.iq-parts-lbl { font-size: 13px; font-weight: 700; color: var(--muted); margin-right: 2px; }
+body[data-lang="both"] .iq-parts-lbl .l-zh + .l-en { margin-left: 4px; }
+.iq-part { min-height: 36px; min-width: 44px; padding-inline: 10px; font-weight: 600; }
+.iq-part[aria-pressed="true"] { color: white; background: var(--primary); border-color: var(--primary); }
+.iq-prog-head .l-zh, .iq-prog-head .l-en { display: block; }
+.iq-meter {
+  height: 5px; margin-top: 8px; border-radius: 999px;
+  background: rgba(79, 70, 229, .14); overflow: hidden;
+}
+.iq-meter-fill {
+  height: 100%; border-radius: 999px; background: var(--primary);
+  transition: width .32s cubic-bezier(.35, .65, .3, 1);
+}
+.iq-inline-math { display: inline-block; padding: 0 2px; }
+.iq-player .cg-row .btn, .iq-player .cg-auto { gap: 6px; }
+.iq-player .cg-row .btn .bi, .iq-player .cg-auto .bi { display: inline-flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px; }
 .iq-svg { min-width: 0; }
-.iq-svg text { paint-order: stroke; stroke: #fdfcfb; stroke-width: 2px; stroke-linejoin: round; }
+.iq-svg text { paint-order: stroke; stroke: #fdfcfb; stroke-width: 2.5px; stroke-linejoin: round; }
+.iq-callout-txt { font-family: system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif; font-weight: 700; paint-order: normal; stroke: none; }
+.iq-callout-flip .iq-callout-bg { fill: var(--accent-soft); stroke: var(--accent-line); stroke-width: 1.4; }
+.iq-callout-flip .iq-callout-txt { fill: var(--accent-ink); }
+.iq-callout-alg .iq-callout-bg { fill: var(--primary-soft); stroke: var(--primary-line); stroke-width: 1.2; }
+.iq-callout-alg .iq-callout-txt { fill: var(--primary-ink); }
+.iq-callout-intro .iq-callout-bg { fill: #f5f0e9; stroke: #e3ddd5; stroke-width: 1.2; }
+.iq-callout-intro .iq-callout-txt { fill: var(--muted); }
+body[data-lang="en"] .iq-svg .l-zh,
+body[data-lang="en"] .iq-svg .iq-bi-sep,
+body[data-lang="zh"] .iq-svg .l-en,
+body[data-lang="zh"] .iq-svg .iq-bi-sep { display: none; }
+
+@keyframes iqDraw {
+  from { stroke-dashoffset: 100; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes iqPop {
+  0%   { opacity: 0; transform: scale(.55); }
+  70%  { opacity: 1; transform: scale(1.16); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes iqFade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes iqFinalGlow {
+  0%, 100% { stroke-width: 4.2; }
+  50%      { stroke-width: 6.4; }
+}
+.iq-anim-draw {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: iqDraw .68s cubic-bezier(.35, .65, .3, 1) forwards;
+}
+.iq-drop-line.iq-anim-draw {
+  stroke-dasharray: 4 4;
+  stroke-dashoffset: 0;
+  animation: iqFade .52s ease-out both;
+}
+.iq-level.iq-anim-draw {
+  stroke-dasharray: 5 4;
+  stroke-dashoffset: 0;
+  animation: iqFade .52s ease-out both;
+}
+.iq-anim-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: iqPop .48s cubic-bezier(.25, .8, .3, 1) both;
+}
+.iq-anim-fade { animation: iqFade .45s ease-out both; }
+.iq-final-glow { animation: iqFinalGlow .95s ease-in-out 1; }
+.iq-anim-draw.iq-final-glow { animation: iqDraw .68s cubic-bezier(.35, .65, .3, 1) forwards, iqFinalGlow .95s ease-in-out .62s 1; }
+@media (prefers-reduced-motion: reduce) {
+  .iq-svg *, .iq-meter-fill { animation: none !important; transition: none !important; stroke-dashoffset: 0 !important; opacity: 1; }
+}
 /* Long source inequalities may exceed a narrow phone. Keep part marks on their
    own line and allow mathematical expressions to scroll within the question. */
 .inequality-question .q-parts li { flex-wrap: wrap; }
